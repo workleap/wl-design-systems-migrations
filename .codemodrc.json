@@ -1,0 +1,16 @@
+{
+  "$schema": "https://codemod-utils.s3.us-west-1.amazonaws.com/configuration_schema.json",
+  "name": "o2h-migration",
+  "version": "0.1.0",
+  "engine": "jscodeshift",
+  "private": false,
+  "arguments": [
+    {
+      "name": "component",
+      "kind": "string"
+    }
+  ],
+  "meta": {
+    "tags": []
+  }
+}
