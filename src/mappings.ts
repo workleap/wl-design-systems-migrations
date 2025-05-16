@@ -1,15 +1,4 @@
-export type ComponentMapMetaData = {
-  targetName: string;
-  props?: {
-    [key: string]: string;
-  };
-};
-
-export type MapMetaData = {
-  sourcePackage: string;
-  targetPackage: string;
-  components: Record<string, ComponentMapMetaData>;
-};
+import { MapMetaData } from "./utils/types.js";
 
 export const mappings: MapMetaData = {
   sourcePackage: "@workleap/orbiter-ui",

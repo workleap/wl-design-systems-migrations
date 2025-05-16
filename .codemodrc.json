@@ -1,13 +1,15 @@
 {
   "$schema": "https://codemod-utils.s3.us-west-1.amazonaws.com/configuration_schema.json",
-  "name": "o2h-migration",
+  "name": "workleap/orbiter-to-hopper",
   "version": "0.1.0",
   "engine": "jscodeshift",
   "private": false,
   "arguments": [
     {
-      "name": "component",
-      "kind": "string"
+      "name": "c",
+      "description": "The component name to migrate. If not provided, all components will be migrated.",
+      "kind": "string",
+      "default": "all"
     }
   ],
   "meta": {
