@@ -7,12 +7,14 @@
   "arguments": [
     {
       "name": "c",
-      "description": "The component name to migrate. If not provided, all components will be migrated.",
       "kind": "string",
+      "description": "The component name to migrate. If not provided, all components will be migrated.",
+      "required": false,
       "default": "all"
     }
   ],
   "meta": {
-    "tags": []
+    "tags": [],
+    "git": "https://github.com/workleap/orbiter-to-hopper-codemods.git"
   }
 }
