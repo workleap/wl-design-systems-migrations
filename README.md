@@ -63,7 +63,7 @@ codemod publish
 But if you want to test them locally before publishing, you can run this command in your target project:
 
 ```bash
-codemod --source LOCAL_PATH_TO_THIS_PROJECT"
+codemod --source THIS_PROJECT_LOCAL_PATH
 ```
 
 > [!IMPORTANT]
@@ -83,6 +83,13 @@ Modify the [mappings.ts](/src/mappings.ts) for simple mappings. The structure is
       props: {
         width: "UNSAFE_width",
         height: "UNSAFE_height",
+        maxWidth: (oldValue) => {
+            return {
+                value: oldValue,
+                propName: "UNSAFE_maxWidth"
+            }
+
+        }
       },
     },
     Text: {

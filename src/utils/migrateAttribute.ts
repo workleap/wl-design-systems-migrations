@@ -1,4 +1,4 @@
-import { Runtime } from "./types.js";
+import { PropertyMapperFunction, Runtime } from "./types.js";
 
 /**
  * Renames JSX attributes for a specific component
@@ -11,7 +11,7 @@ import { Runtime } from "./types.js";
 export function migrateAttribute(
   componentName: string,
   oldAttrName: string,
-  newAttrName: string,
+  newAttributeMap: string | PropertyMapperFunction,
   runtime: Runtime
 ): void {
   const { j, root } = runtime;
@@ -23,11 +23,31 @@ export function migrateAttribute(
     })
     .forEach((path: any) => {
       const attributes = path.node.attributes || [];
-      const targetAttribute = attributes.find(
+      const sourceAttribute = attributes.find(
         (attr: any) => attr.name && attr.name.name === oldAttrName
       );
 
-      if (targetAttribute) {
+      if (sourceAttribute) {
+        const newAttribute: { name: string; value: any } = {
+          name: "",
+          value: null,
+        };
+
+        if (typeof newAttributeMap === "function") {
+          console.log();
+          const mapResult = newAttributeMap(sourceAttribute.value);
+          if (mapResult) {
+            const { to, value } = mapResult;
+            newAttribute.name = to;
+            newAttribute.value = value;
+          } else {
+            return; // Skip if there is no mapping
+          }
+        } else {
+          newAttribute.name = newAttributeMap;
+          newAttribute.value = sourceAttribute.value;
+        }
+
         j(path).replaceWith(
           j.jsxOpeningElement(
             j.jsxIdentifier(componentName),
@@ -36,8 +56,8 @@ export function migrateAttribute(
                 (attr: any) => attr.name && attr.name.name !== oldAttrName
               ),
               j.jsxAttribute(
-                j.jsxIdentifier(newAttrName),
-                targetAttribute.value
+                j.jsxIdentifier(newAttribute.name),
+                newAttribute.value
               ),
             ],
             path.node.selfClosing

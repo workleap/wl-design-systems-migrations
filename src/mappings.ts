@@ -9,6 +9,7 @@ export const mappings: MapMetaData = {
       props: {
         width: "UNSAFE_width",
         height: "UNSAFE_height",
+        maxWidth: "UNSAFE_maxWidth",
       },
     },
     Text: {
