@@ -68,3 +68,26 @@ codemod --source LOCAL_PATH_TO_THIS_PROJECT"
 
 > [!IMPORTANT]
 > Because of a bug in codemod CLI, you need to remove the `cdmd_dist` folder before running the command to get the latest modifications.
+
+### Simple Modifications
+
+Modify the [mappings.ts](/src/mappings.ts) for simple mappings. The structure is straightforward. Just add the components and props to map.
+
+```ts
+{
+  sourcePackage: "@workleap/orbiter-ui",
+  targetPackage: "@hopper-ui/components",
+  components: {
+    Div: {
+      targetName: "Div",
+      props: {
+        width: "UNSAFE_width",
+        height: "UNSAFE_height",
+      },
+    },
+    Text: {
+      targetName: "Text",
+    },
+  },
+};
+```
