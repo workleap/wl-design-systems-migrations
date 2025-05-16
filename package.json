@@ -10,8 +10,7 @@
   },
   "scripts": {
     "test": "vitest run",
-    "test:watch": "vitest watch",
-    "build": "codemod unpublish  o2h-migration -f && codemod publish"
+    "test:watch": "vitest watch"
   },
   "files": [
     "README.md",
