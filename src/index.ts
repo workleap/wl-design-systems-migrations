@@ -8,6 +8,7 @@ import type {
   Options,
 } from "jscodeshift";
 import { mappings } from "./mappings.js";
+import { analyze } from "./utils/analyze.js";
 import { migrate } from "./utils/migrate.js";
 import { migrateComponent } from "./utils/migrateComponent.js";
 import { MapMetaData, Runtime } from "./utils/types.js";
@@ -22,8 +23,15 @@ export default function transform(
   const runtime: Runtime = {
     j: api.jscodeshift,
     root: api.jscodeshift(file.source),
+    filePath: file.path,
     mappings: mappings,
   };
 
-  return migrate(runtime, options);
+  if (options?.a !== undefined) {
+    const outputPath = options.a as string;
+    const result = analyze(runtime, outputPath, options);
+    return result.source;
+  } else {
+    return migrate(runtime, options);
+  }
 }
