@@ -8,6 +8,7 @@ export interface Runtime {
   j: core.JSCodeshift;
   root: Collection<ASTNode>;
   mappings: MapMetaData;
+  filePath: string;
 }
 
 /**

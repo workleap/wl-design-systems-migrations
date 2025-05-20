@@ -22,7 +22,17 @@ export function App() {
 }
 ```
 
-### Run Migrates for All Components
+### Analyze Component Usages
+
+To find out what components and what properties are used you can use the following command. This command writes the usages in `orbiter-usage.json` file.
+
+⚠️ It is important to pass `-n 1` to use only one thread and get reliable output.
+
+```bash
+npx codemod workleap/orbiter-to-hopper -a -n 1
+```
+
+### Run Migrations for All Components
 
 ```bash
 npx codemod workleap/orbiter-to-hopper
@@ -34,13 +44,13 @@ or
 npx codemod workleap/orbiter-to-hopper -c all
 ```
 
-### Run Migrates Only for One Component
+### Run Migrations Only for One Component
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c Div
 ```
 
-### Run Migrates Only in Specific Path
+### Run Migrations Only in Specific Path
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -t /app/users

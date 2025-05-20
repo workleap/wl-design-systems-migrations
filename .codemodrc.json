@@ -11,6 +11,13 @@
       "description": "The component name to migrate. If not provided, all components will be migrated.",
       "required": false,
       "default": "all"
+    },
+    {
+      "name": "a",
+      "kind": "string",
+      "description": "Analyze and list all components that need to be migrated. ",
+      "required": false,
+      "default": "orbiter-usage.json"
     }
   ],
   "meta": {
