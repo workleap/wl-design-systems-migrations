@@ -22,7 +22,7 @@ export function App() {
 }
 ```
 
-### Analyze Component Usages
+### Analyze Orbiter Components Usages
 
 To find out what components and what properties are used you can use the following command. This command writes the usages in `orbiter-usage.json` file.
 
