@@ -27,7 +27,7 @@ export default function transform(
     mappings: mappings,
   };
 
-  if (options?.a !== undefined) {
+  if (options?.a !== undefined && options?.a !== "") {
     const outputPath = options.a as string;
     const result = analyze(runtime, outputPath, options);
     return result.source;

@@ -151,7 +151,7 @@ describe("component usage analysis", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    // Check that the results are in the expected JSON format
+    // Check that the results are in the expected JSON format with usage counts
     assert.ok(
       analysisResults.Div,
       "Div component should be present in results"
@@ -160,8 +160,46 @@ describe("component usage analysis", () => {
       analysisResults.Text,
       "Text component should be present in results"
     );
-    assert.deepEqual([...analysisResults.Div].sort(), ["border", "width"]);
-    assert.deepEqual(analysisResults.Text, ["fontSize"]);
+
+    // Check component usage count
+    assert.strictEqual(
+      analysisResults.Div.usage,
+      1,
+      "Div should have usage count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.Text.usage,
+      1,
+      "Text should have usage count of 1"
+    );
+
+    // Check prop counts
+    assert.strictEqual(
+      Object.keys(analysisResults.Div.props).length,
+      2,
+      "Div should have 2 props"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.border,
+      1,
+      "Div border prop should have count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.width,
+      1,
+      "Div width prop should have count of 1"
+    );
+
+    assert.strictEqual(
+      Object.keys(analysisResults.Text.props).length,
+      1,
+      "Text should have 1 prop"
+    );
+    assert.strictEqual(
+      analysisResults.Text.props.fontSize,
+      1,
+      "Text fontSize prop should have count of 1"
+    );
   });
 
   test("analyze component with alias", () => {
@@ -169,11 +207,35 @@ describe("component usage analysis", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    const expectedResults = {
-      Div: ["border", "width"],
-    };
+    // Check expected component is present
+    assert.ok(
+      analysisResults.Div,
+      "Div component should be present in results"
+    );
 
-    assert.deepEqual(analysisResults, expectedResults);
+    // Check component usage count
+    assert.strictEqual(
+      analysisResults.Div.usage,
+      1,
+      "Div should have usage count of 1"
+    );
+
+    // Check prop counts
+    assert.strictEqual(
+      Object.keys(analysisResults.Div.props).length,
+      2,
+      "Div should have 2 props"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.border,
+      1,
+      "Div border prop should have count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.width,
+      1,
+      "Div width prop should have count of 1"
+    );
   });
 
   test("analyze includes non-mapped components", () => {
@@ -186,9 +248,29 @@ describe("component usage analysis", () => {
       analysisResults.UnknownComponent,
       "UnknownComponent should be present in results"
     );
-    assert.deepEqual(
-      new Set(analysisResults.UnknownComponent),
-      new Set(["prop1", "prop2"])
+
+    // Check component usage count
+    assert.strictEqual(
+      analysisResults.UnknownComponent.usage,
+      1,
+      "UnknownComponent should have usage count of 1"
+    );
+
+    // Check prop counts
+    assert.strictEqual(
+      Object.keys(analysisResults.UnknownComponent.props).length,
+      2,
+      "UnknownComponent should have 2 props"
+    );
+    assert.strictEqual(
+      analysisResults.UnknownComponent.props.prop1,
+      1,
+      "UnknownComponent prop1 should have count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.UnknownComponent.props.prop2,
+      1,
+      "UnknownComponent prop2 should have count of 1"
     );
   });
 
@@ -210,33 +292,76 @@ describe("component usage analysis", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    const expectedResults = {
-      Div: ["width", "height", "maxWidth"],
-      Text: ["fontSize", "fontWeight"],
-    };
-
-    // Use a deep comparison that doesn't care about array order
+    // Check component names
+    const expectedComponents = ["Div", "Text"];
     assert.deepEqual(
       Object.keys(analysisResults).sort(),
-      Object.keys(expectedResults).sort()
+      expectedComponents.sort()
     );
 
-    // Check each array separately to handle unsorted arrays
+    // Check Div component
     assert.ok(
       analysisResults.Div,
       "Div component should be present in results"
     );
+    assert.strictEqual(
+      analysisResults.Div.usage,
+      2,
+      "Div should have usage count of 2"
+    );
+
+    // Check Div props
+    const divProps = Object.keys(analysisResults.Div.props);
+    assert.strictEqual(divProps.length, 3, "Div should have 3 props");
+    assert.ok(divProps.includes("width"), "Div should have width prop");
+    assert.ok(divProps.includes("height"), "Div should have height prop");
+    assert.ok(divProps.includes("maxWidth"), "Div should have maxWidth prop");
+
+    assert.strictEqual(
+      analysisResults.Div.props.width,
+      1,
+      "width prop should have count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.height,
+      2,
+      "height prop should have count of 2"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.maxWidth,
+      1,
+      "maxWidth prop should have count of 1"
+    );
+
+    // Check Text component
     assert.ok(
       analysisResults.Text,
       "Text component should be present in results"
     );
-    assert.deepEqual(
-      new Set(analysisResults.Div),
-      new Set(expectedResults.Div)
+    assert.strictEqual(
+      analysisResults.Text.usage,
+      2,
+      "Text should have usage count of 2"
     );
-    assert.deepEqual(
-      new Set(analysisResults.Text),
-      new Set(expectedResults.Text)
+
+    // Check Text props
+    const textProps = Object.keys(analysisResults.Text.props);
+    assert.strictEqual(textProps.length, 2, "Text should have 2 props");
+    assert.ok(textProps.includes("fontSize"), "Text should have fontSize prop");
+    assert.ok(
+      textProps.includes("fontWeight"),
+      "Text should have fontWeight prop"
+    );
+
+    assert.strictEqual(
+      analysisResults.Text.props.fontSize,
+      1,
+      "fontSize prop should have count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.Text.props.fontWeight,
+      1,
+      "fontWeight prop should have count of 1"
     );
   });
 
@@ -256,9 +381,29 @@ describe("component usage analysis", () => {
       analysisResults.CustomComponent,
       "CustomComponent should be present in results"
     );
-    assert.deepEqual(
-      new Set(analysisResults.CustomComponent),
-      new Set(["prop1", "prop2"])
+
+    // Check usage count
+    assert.strictEqual(
+      analysisResults.CustomComponent.usage,
+      1,
+      "CustomComponent should have usage count of 1"
+    );
+
+    // Check props
+    assert.strictEqual(
+      Object.keys(analysisResults.CustomComponent.props).length,
+      2,
+      "CustomComponent should have 2 props"
+    );
+    assert.strictEqual(
+      analysisResults.CustomComponent.props.prop1,
+      1,
+      "prop1 should have count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.CustomComponent.props.prop2,
+      1,
+      "prop2 should have count of 1"
     );
   });
 
@@ -285,14 +430,45 @@ describe("component usage analysis", () => {
       ["Button", "Text"].sort(),
       "Only actual components should be included in results"
     );
+
+    // Check Button component
     assert.ok(
       analysisResults.Button,
       "Button component should be present in results"
     );
+    assert.strictEqual(
+      analysisResults.Button.usage,
+      1,
+      "Button should have usage count of 1"
+    );
+    assert.strictEqual(
+      Object.keys(analysisResults.Button.props).length,
+      2,
+      "Button should have 2 props"
+    );
+    assert.strictEqual(
+      analysisResults.Button.props.onClick,
+      1,
+      "onClick prop should have count of 1"
+    );
+    assert.strictEqual(
+      analysisResults.Button.props.size,
+      1,
+      "size prop should have count of 1"
+    );
+
+    // Check Text component
     assert.ok(
       analysisResults.Text,
       "Text component should be present in results"
     );
+    assert.strictEqual(
+      analysisResults.Text.usage,
+      1,
+      "Text should have usage count of 1"
+    );
+
+    // Verify hooks and utility functions are not included
     assert.strictEqual(
       analysisResults.useHook,
       undefined,
@@ -304,41 +480,414 @@ describe("component usage analysis", () => {
       "Utility function should not be present in results"
     );
   });
+
+  test("properties are correctly sorted by usage frequency", () => {
+    const INPUT = `
+      import { Div } from "@workleap/orbiter-ui";
+      
+      export function App() {
+        return (
+          <>
+            <Div width="100px" height="100px" padding="5px" />
+            <Div width="200px" padding="10px" />
+            <Div width="300px" />
+          </>
+        );
+      }
+    `;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    // Check that the Div component exists with correct usage count
+    assert.ok(analysisResults.Div, "Div component should exist");
+    assert.strictEqual(
+      analysisResults.Div.usage,
+      3,
+      "Div should have 3 usages"
+    );
+
+    // Check that properties have correct counts
+    assert.strictEqual(
+      analysisResults.Div.props.width,
+      3,
+      "width prop should be used 3 times"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.padding,
+      2,
+      "padding prop should be used 2 times"
+    );
+    assert.strictEqual(
+      analysisResults.Div.props.height,
+      1,
+      "height prop should be used 1 time"
+    );
+
+    // Get properties sorted by usage count
+    const propEntries = Object.entries(analysisResults.Div.props);
+    const sortedProps = propEntries
+      .sort(([, a], [, b]) => b - a)
+      .map(([name]) => name);
+
+    // Properties should be sorted in order of frequency (width > padding > height)
+    assert.strictEqual(
+      sortedProps[0],
+      "width",
+      "width should be the most frequently used property"
+    );
+    assert.strictEqual(
+      sortedProps[1],
+      "padding",
+      "padding should be the second most used property"
+    );
+    assert.strictEqual(
+      sortedProps[2],
+      "height",
+      "height should be the least used property"
+    );
+  });
 });
 
 describe("analyze file aggregation", () => {
-  test("mergeAnalysisResults combines component props correctly", () => {
+  test("mergeAnalysisResults combines component usage and prop counts correctly", () => {
     const existingResults = {
-      Button: ["variant", "size", "disabled"],
-      Text: ["fontSize", "color"],
+      Button: {
+        usage: 5,
+        props: {
+          variant: 3,
+          size: 5,
+          disabled: 2,
+        },
+      },
+      Text: {
+        usage: 8,
+        props: {
+          fontSize: 6,
+          color: 4,
+        },
+      },
     };
 
     const newResults = {
-      Button: ["variant", "onClick", "aria-label"],
-      Div: ["width", "padding"],
+      Button: {
+        usage: 3,
+        props: {
+          variant: 2,
+          onClick: 3,
+          "aria-label": 1,
+        },
+      },
+      Div: {
+        usage: 4,
+        props: {
+          width: 3,
+          padding: 2,
+        },
+      },
     };
 
     const mergedResults = mergeAnalysisResults(existingResults, newResults);
 
-    // Check that Button props are merged correctly with duplicates removed
-    assert.deepEqual(
-      new Set(mergedResults.Button),
-      new Set(["variant", "size", "disabled", "onClick", "aria-label"]),
-      "Button props should be merged without duplicates"
+    // Verify components exist in merged results
+    assert.ok(mergedResults.Button, "Button should exist in merged results");
+    assert.ok(mergedResults.Text, "Text should exist in merged results");
+    assert.ok(mergedResults.Div, "Div should exist in merged results");
+
+    // Check that component usage counts are summed
+    assert.strictEqual(
+      mergedResults.Button.usage,
+      8,
+      "Button usage should be summed to 8"
+    );
+    assert.strictEqual(
+      mergedResults.Text.usage,
+      8,
+      "Text usage should remain 8"
+    );
+    assert.strictEqual(mergedResults.Div.usage, 4, "Div usage should be 4");
+
+    // Check Button props are merged correctly
+    assert.ok(mergedResults.Button.props, "Button should have props");
+    assert.strictEqual(
+      mergedResults.Button.props.variant,
+      5,
+      "Button variant prop should sum to 5"
+    );
+    assert.strictEqual(
+      mergedResults.Button.props.size,
+      5,
+      "Button size prop should remain 5"
+    );
+    assert.strictEqual(
+      mergedResults.Button.props.disabled,
+      2,
+      "Button disabled prop should remain 2"
+    );
+    assert.strictEqual(
+      mergedResults.Button.props.onClick,
+      3,
+      "Button onClick prop should be 3"
+    );
+    assert.strictEqual(
+      mergedResults.Button.props["aria-label"],
+      1,
+      "Button aria-label prop should be 1"
     );
 
-    // Check that Text props remain unchanged
-    assert.deepEqual(
-      mergedResults.Text,
-      ["fontSize", "color"],
-      "Text props should remain unchanged"
+    // Check Text props remain unchanged
+    assert.ok(mergedResults.Text.props, "Text should have props");
+    assert.strictEqual(
+      mergedResults.Text.props.fontSize,
+      6,
+      "Text fontSize prop should remain 6"
+    );
+    assert.strictEqual(
+      mergedResults.Text.props.color,
+      4,
+      "Text color prop should remain 4"
     );
 
-    // Check that Div is added correctly
-    assert.deepEqual(
-      mergedResults.Div,
-      ["width", "padding"],
-      "Div props should be added to the merged results"
+    // Check Div is added correctly
+    assert.ok(mergedResults.Div.props, "Div should have props");
+    assert.strictEqual(
+      mergedResults.Div.props.width,
+      3,
+      "Div width prop should be 3"
+    );
+    assert.strictEqual(
+      mergedResults.Div.props.padding,
+      2,
+      "Div padding prop should be 2"
+    );
+  });
+
+  test("props are sorted by usage count", () => {
+    const INPUT = `
+      import { Button, Text, Div, Box, Alert } from "@workleap/orbiter-ui";
+      
+      export function App() {
+        return (
+          <>
+            <Text fontSize="14px">Text 1</Text>
+            <Text fontSize="14px">Text 2</Text>
+            <Div width="100px" height="200px" />
+            <Button variant="primary" size="lg">Button 1</Button>
+            <Button variant="primary" size="lg">Button 2</Button>
+            <Button variant="primary" size="lg">Button 3</Button>
+          </>
+        );
+      }
+    `;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    // Check Button props have correct counts
+    assert.strictEqual(
+      analysisResults["Button"]!.props.variant,
+      3,
+      "Button variant prop should have 3 usages"
+    );
+    assert.strictEqual(
+      analysisResults["Button"]!.props.size,
+      3,
+      "Button size prop should have 3 usages"
+    );
+
+    // Check Text props have correct counts
+    assert.strictEqual(
+      analysisResults["Text"]!.props.fontSize,
+      2,
+      "Text fontSize prop should have 2 usages"
+    );
+
+    // Check Div props have correct counts
+    assert.strictEqual(
+      analysisResults["Div"]!.props.width,
+      1,
+      "Div width prop should have 1 usage"
+    );
+    assert.strictEqual(
+      analysisResults["Div"]!.props.height,
+      1,
+      "Div height prop should have 1 usage"
+    );
+
+    // Verify Button props are properly ordered by usage
+    const buttonProps = Object.entries(analysisResults["Button"]!.props).map(
+      ([name]) => name
+    );
+
+    // Both variant and size are used 3 times, so they should both be included early in the list
+    assert.ok(
+      buttonProps.indexOf("variant") < 2,
+      "variant should be among the first Button props"
+    );
+    assert.ok(
+      buttonProps.indexOf("size") < 2,
+      "size should be among the first Button props"
+    );
+
+    // Verify Text props are properly ordered
+    const textProps = Object.entries(analysisResults["Text"]!.props).map(
+      ([name]) => name
+    );
+
+    // fontSize is used 2 times, so it should be first
+    assert.strictEqual(
+      textProps[0],
+      "fontSize",
+      "fontSize should be the first Text prop"
+    );
+
+    // Create a component with mixed prop usage for better testing
+    const INPUT_WITH_MIXED_PROPS = `
+      import { Button } from "@workleap/orbiter-ui";
+      
+      export function App() {
+        return (
+          <>
+            <Button variant="primary" size="lg" onClick={() => {}} disabled>Button 1</Button>
+            <Button variant="primary" size="lg" onClick={() => {}}>Button 2</Button>
+            <Button variant="primary" size="lg">Button 3</Button>
+          </>
+        );
+      }
+    `;
+
+    const { analysisResults: mixedResults } = analyze(
+      getRuntime(INPUT_WITH_MIXED_PROPS),
+      null
+    );
+
+    // Check prop counts with mixed usage
+    assert.strictEqual(
+      mixedResults["Button"]!.props.variant,
+      3,
+      "variant should be used 3 times"
+    );
+    assert.strictEqual(
+      mixedResults["Button"]!.props.size,
+      3,
+      "size should be used 3 times"
+    );
+    assert.strictEqual(
+      mixedResults["Button"]!.props.onClick,
+      2,
+      "onClick should be used 2 times"
+    );
+    assert.strictEqual(
+      mixedResults["Button"]!.props.disabled,
+      1,
+      "disabled should be used 1 time"
+    );
+
+    // Get Button props sorted by usage
+    const mixedButtonProps = Object.entries(mixedResults["Button"]!.props).map(
+      ([name]) => name
+    );
+
+    // Props should be sorted by usage count (variant/size > onClick > disabled)
+    assert.ok(
+      mixedButtonProps.indexOf("variant") <= 1 &&
+        mixedButtonProps.indexOf("size") <= 1,
+      "variant and size should be first two props (tied at 3 usages each)"
+    );
+    assert.ok(
+      mixedButtonProps.indexOf("onClick") === 2,
+      "onClick should be the third prop (2 usages)"
+    );
+    assert.ok(
+      mixedButtonProps.indexOf("disabled") === 3,
+      "disabled should be the fourth prop (1 usage)"
+    );
+  });
+
+  test("components are strictly ordered by usage count in the returned object", () => {
+    const INPUT = `
+      import { Div, Text, Button, Box, Alert } from "@workleap/orbiter-ui";
+      
+      export function App() {
+        return (
+          <>
+            <Div width="100px">Div 1</Div>
+            <Div height="100px">Div 2</Div>
+            <Div padding="10px">Div 3</Div>
+            <Div margin="20px">Div 4</Div>
+            <Text>Text 1</Text>
+            <Text>Text 2</Text>
+            <Text>Text 3</Text>
+            <Text>Text 3</Text>
+            <Text>Text 3</Text>
+            <Button>Button 1</Button>
+            <Button>Button 2</Button>
+            <Box>Box</Box>
+          </>
+        );
+      }
+    `;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    // Expected order by usage count: Text (5), Div (4), Button (2), Box (1)
+    const componentNames = Object.keys(analysisResults);
+
+    // First, verify we have all expected components
+    assert.ok(analysisResults.Div, "Div component should exist");
+    assert.ok(analysisResults.Text, "Text component should exist");
+    assert.ok(analysisResults.Button, "Button component should exist");
+    assert.ok(analysisResults.Box, "Box component should exist");
+
+    // Verify component usage counts
+    assert.strictEqual(
+      analysisResults.Div.usage,
+      4,
+      "Div should have 4 usages"
+    );
+    assert.strictEqual(
+      analysisResults.Text.usage,
+      5,
+      "Text should have 5 usages"
+    );
+    assert.strictEqual(
+      analysisResults.Button.usage,
+      2,
+      "Button should have 2 usages"
+    );
+    assert.strictEqual(analysisResults.Box.usage, 1, "Box should have 1 usage");
+
+    // Check the order of components
+    assert.strictEqual(
+      componentNames.length,
+      4,
+      "Should have exactly 4 components"
+    );
+
+    assert.strictEqual(
+      componentNames[0],
+      "Text",
+      "Text should be second (5 usages)"
+    );
+    assert.strictEqual(
+      componentNames[1],
+      "Div",
+      "Div should be first (4 usages)"
+    );
+    assert.strictEqual(
+      componentNames[2],
+      "Button",
+      "Button should be third (2 usages)"
+    );
+    assert.strictEqual(
+      componentNames[3],
+      "Box",
+      "Box should be fourth (1 usage)"
+    );
+
+    // Verify that Alert is not included (not used in JSX)
+    assert.strictEqual(
+      analysisResults.Alert,
+      undefined,
+      "Alert should not be included"
     );
   });
 });

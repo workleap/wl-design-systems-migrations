@@ -24,12 +24,34 @@ export function App() {
 
 ### Analyze Orbiter Components Usages
 
-To find out what components and what properties are used you can use the following command. This command writes the usages in `orbiter-usage.json` file.
+To find out the Orbiter's components and their properties usage, run the following command. This command writes the usages in `orbiter-usage.json` file.
 
 ⚠️ It is important to pass `-n 1` to use only one thread and get reliable output.
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a -n 1
+npx codemod workleap/orbiter-to-hopper -a result.json -n 1
+```
+
+The sample output is an ordered JSON that prioritizes the most frequently used components. Within each component, the commonly used properties are also organized in order of frequency:
+
+```json
+{
+  "Div": {
+    "usage": 5,
+    "props": {
+      "backgroundColor": 2,
+      "width": 2,
+      "height": 1
+    }
+  },
+  "Text": {
+    "usage": 4,
+    "props": {
+      "color": 3,
+      "backgroundColor": 1
+    }
+  },
+}
 ```
 
 ### Run Migrations for All Components
