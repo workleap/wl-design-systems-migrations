@@ -17,7 +17,7 @@
       "kind": "string",
       "description": "Analyze and list all components that need to be migrated. ",
       "required": false,
-      "default": "orbiter-usage.json"
+      "default": ""
     }
   ],
   "meta": {
