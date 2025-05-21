@@ -1,5 +1,6 @@
 {
   "name": "orbiter-to-hopper",
+  "version": "1.0.0",
   "devDependencies": {
     "@codemod.com/codemod-utils": "*",
     "@hopper-ui/components": "^1.5.12",
@@ -12,7 +13,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "publish": "codmod publish && pnpm dlx rimraf cdmd_dist"
+    "deploy:codemod": "codemod publish && pnpm dlx rimraf cdmd_dist"
   },
   "files": [
     "README.md",
