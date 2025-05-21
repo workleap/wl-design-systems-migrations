@@ -13,7 +13,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "deploy:codmod": "codemod publish && pnpm dlx rimraf cdmd_dist"
+    "deploy:codemod": "codemod publish && pnpm dlx rimraf cdmd_dist"
   },
   "files": [
     "README.md",

@@ -101,7 +101,7 @@ codemod --source THIS_PROJECT_LOCAL_PATH
 ```
 
 > [!TIP]
-> To run the latest modifications, the `cdmd_dist` folder should not exist. If you use the `pnpm publish`, this folder is getting deleted after each publish automatically.
+> To run the latest modifications, the `cdmd_dist` folder should not exist. If you use the `pnpm deploy:codemod`, this folder is getting deleted after each deployment automatically.
 
 ### Simple Modifications
 
