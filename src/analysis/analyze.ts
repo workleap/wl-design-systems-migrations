@@ -1,7 +1,7 @@
 // filepath: /Users/mahmoud.moravej/workleap/orbiter-to-hopper-codemods/src/utils/analyze.ts
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { Options } from "jscodeshift";
-import { Runtime } from "./types.js";
+import { Runtime } from "../utils/types.js";
 
 // Define the new structure for analysis results
 /**

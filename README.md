@@ -54,7 +54,9 @@ The sample output is an ordered JSON that prioritizes the most frequently used c
 }
 ```
 
-### Run Migrations for All Components
+### Run Migrations
+
+#### All Components
 
 ```bash
 npx codemod workleap/orbiter-to-hopper
@@ -66,19 +68,19 @@ or
 npx codemod workleap/orbiter-to-hopper -c all
 ```
 
-### Run Migrations Only for One Component
+#### One Component
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c Div
 ```
 
-### Run Migrations Only in Specific Path
+#### In a Path
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -t /app/users
 ```
 
-### Other Options
+#### Other Options
 
 Read the [Codemod CLI options](https://docs.codemod.com/deploying-codemods/cli#options) doc for more options.
 
@@ -103,7 +105,7 @@ codemod --source THIS_PROJECT_LOCAL_PATH
 
 ### Simple Modifications
 
-Modify the [mappings.ts](/src/mappings.ts) for simple mappings. The structure is straightforward. Just add the components and props to map.
+Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just add the components and props to map.
 
 ```ts
 {

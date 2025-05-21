@@ -1,4 +1,4 @@
-import { Runtime } from "./types.js";
+import { Runtime } from "../utils/types.js";
 
 /**
  * Migrates specific components from one package to another
@@ -12,14 +12,17 @@ import { Runtime } from "./types.js";
 export function migrateImport(
   componentName: string,
   runtime: Runtime
-): { localName?: string } {
+): {
+  oldLocalName: string;
+  newLocalName: string;
+} | null {
   const { j, root, mappings } = runtime;
   const { sourcePackage, targetPackage } = mappings;
   const targetComponentName = mappings.components[componentName]?.targetName;
-  const result: ReturnType<typeof migrateImport> = {};
+  let result: ReturnType<typeof migrateImport> = null;
 
   if (!targetComponentName) {
-    return result; // No target component name found, exit early
+    return null; // No target component name found, exit early
   }
 
   // Find all import declarations from the source package
@@ -29,12 +32,12 @@ export function migrateImport(
         value: sourcePackage,
       },
     })
-    .forEach((path: any) => {
+    .forEach((path) => {
       const importSpecifiers = path.node.specifiers || [];
 
       // Find the specific component specifier
       const componentSpecifier = importSpecifiers.find(
-        (specifier: any) =>
+        (specifier) =>
           j.ImportSpecifier.check(specifier) &&
           specifier.imported &&
           specifier.imported.name === componentName
@@ -44,12 +47,12 @@ export function migrateImport(
       if (componentSpecifier && j.ImportSpecifier.check(componentSpecifier)) {
         // Get the local name (alias) of the component, or use the original name if no alias
         const localName = componentSpecifier.local?.name || componentName;
-        result.localName = localName;
+        const isAliased = localName !== componentName;
 
         // Create a new import specifier for the target package
         const newImportSpecifier = j.importSpecifier(
           j.identifier(targetComponentName),
-          localName !== targetComponentName ? j.identifier(localName) : null
+          isAliased ? j.identifier(localName) : null
         );
 
         // Remove the component from the original import
@@ -119,6 +122,11 @@ export function migrateImport(
             }
           }
         }
+
+        result = {
+          oldLocalName: localName,
+          newLocalName: isAliased ? localName : targetComponentName,
+        };
       }
     });
 

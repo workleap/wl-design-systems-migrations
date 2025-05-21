@@ -9,22 +9,32 @@ export interface Runtime {
   root: Collection<ASTNode>;
   mappings: MapMetaData;
   filePath: string;
+  log: (message: string, ...optionalParams: any[]) => void;
 }
 
 /**
- * Represents a function that maps a property from old name to a new name with a value.
- * @param originalValue - The original property value to be mapped.
- * @returns An object containing the new property name (`to`) and its value, or `null` if the property should be excluded.
+ * A function that maps a property from one value to another.
+ *
+ * @template T - The type of the target property name. Defaults to string.
+ * @param {JSXAttribute["value"]} originalValue - The original value of the JSX attribute.
+ * @param {Runtime} runtime - The runtime environment.
+ * @returns {{ to: T; value: JSXAttribute["value"] } | null} - An object containing the target property name and its new value, or null if the property should be removed.
  */
-export type PropertyMapperFunction = (
-  originalValue: JSXAttribute["value"]
-) => { to: string; value: JSXAttribute["value"] } | null;
+export type PropertyMapperFunction<T extends string = string> = (
+  originalValue: JSXAttribute["value"],
+  runtime: Runtime
+) => { to: T; value: JSXAttribute["value"] } | null;
 
-export type ComponentMapMetaData = {
-  targetName: string;
-  props?: {
-    [key: string]: string | PropertyMapperFunction;
-  };
+export type PropsMapping<
+  S extends string = string,
+  T extends string = string
+> = {
+  [K in S]: T | PropertyMapperFunction<T>;
+};
+
+export type ComponentMapMetaData<T extends string = string> = {
+  targetName: T;
+  props?: PropsMapping;
 };
 
 export type MapMetaData = {

@@ -7,11 +7,11 @@ import type {
   Line,
   Options,
 } from "jscodeshift";
-import { mappings } from "./mappings.js";
-import { analyze } from "./utils/analyze.js";
-import { migrate } from "./utils/migrate.js";
-import { migrateComponent } from "./utils/migrateComponent.js";
-import { MapMetaData, Runtime } from "./utils/types.js";
+import { analyze } from "./analysis/analyze.js";
+import { mappings } from "./mappings/mappings.js";
+import { migrate } from "./migrations/migrate.js";
+import { logToFile } from "./utils/logger.js";
+import { Runtime } from "./utils/types.js";
 
 type CommentKind = Block | Line | CommentBlock | CommentLine;
 
@@ -25,6 +25,7 @@ export default function transform(
     root: api.jscodeshift(file.source),
     filePath: file.path,
     mappings: mappings,
+    log: logToFile,
   };
 
   if (options?.a !== undefined && options?.a !== "") {

@@ -1,6 +1,6 @@
 import { Options, mappings } from "jscodeshift";
+import { Runtime } from "../utils/types.js";
 import { migrateComponent } from "./migrateComponent.js";
-import { Runtime } from "./types.js";
 
 export function migrate(
   runtime: Runtime,
