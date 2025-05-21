@@ -14,14 +14,31 @@ export function migrateComponent(
   componentName: string,
   runtime: Runtime
 ): void {
-  const { localName } = migrateImport(componentName, runtime);
+  const migrateImportResult = migrateImport(componentName, runtime);
   const { mappings } = runtime;
 
-  if (localName) {
-    Object.entries(mappings.components[componentName]?.props || {}).forEach(
-      ([oldAttrName, newAttrName]) => {
-        migrateAttribute(localName, oldAttrName, newAttrName, runtime);
-      }
-    );
+  if (!migrateImportResult) {
+    return; // No mapping found, exit early
   }
+
+  const { oldLocalName, newLocalName } = migrateImportResult;
+
+  if (newLocalName !== oldLocalName) {
+    // rename all instances of the component with the target name
+    const { j, root } = runtime;
+    root
+      .find(j.JSXIdentifier, {
+        name: oldLocalName,
+      })
+      .forEach((path) => {
+        path.node.name = newLocalName;
+      });
+  }
+
+  // Migrate attributes for the component
+  Object.entries(mappings.components[componentName]?.props || {}).forEach(
+    ([oldAttrName, newAttrName]) => {
+      migrateAttribute(newLocalName, oldAttrName, newAttrName, runtime);
+    }
+  );
 }
