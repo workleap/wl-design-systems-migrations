@@ -15,5 +15,31 @@ export const mappings: MapMetaData = {
     Text: {
       targetName: "Text",
     },
+    Flex: {
+      targetName: "Flex",
+      props: {
+        minHeight: (oldValue) => {
+          if (oldValue && oldValue.type === "Literal") {
+            return {
+              to: "UNSAFE_minHeight",
+              value: oldValue,
+            };
+          }
+          return null;
+        },
+      },
+    },
+    Header: {
+      targetName: "Header",
+    },
+    Heading: {
+      targetName: "Heading",
+    },
+    Content: {
+      targetName: "Content",
+    },
+    Paragraph: {
+      targetName: "Text",
+    },
   },
 };
