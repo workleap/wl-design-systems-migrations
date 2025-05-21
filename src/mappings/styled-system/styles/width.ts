@@ -8,6 +8,7 @@ import { StyledSystemPropertyMapper } from "../types.js";
 
 export const widthMapper: StyledSystemPropertyMapper = (oldValue, { j }) => {
   const value = tryGettingLiteralValue(oldValue);
+
   if (value !== null) {
     if (typeof value === "number") {
       return {

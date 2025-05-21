@@ -85,12 +85,10 @@ describe("o2h-migration", () => {
   });
 
   test("when an Orbiter component has attributes, use the map table to migrate them.", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120rem" height="auto" />; }`;
+    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120px" height="auto" />; }`;
     const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div UNSAFE_width="120px" height="auto" />; }`;
 
     const actualOutput = migrate(getRuntime(INPUT));
-
-    console.log("AAAA", actualOutput);
 
     assert.deepEqual(actualOutput, OUTPUT);
   });

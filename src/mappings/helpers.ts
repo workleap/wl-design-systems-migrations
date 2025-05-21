@@ -7,6 +7,8 @@ export function tryGettingLiteralValue(
     return null;
   } else if (value.type === "Literal") {
     return value.value;
+  } else if (value.type === "StringLiteral") {
+    return value.value;
   } else if (value.type === "JSXExpressionContainer") {
     if (value.expression.type === "Identifier") {
       return value.expression.name;
