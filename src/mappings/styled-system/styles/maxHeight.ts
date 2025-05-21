@@ -7,4 +7,7 @@ import {
 } from "../../helpers.js";
 import { StyledSystemPropertyMapper } from "../types.js";
 
-export const widthMapper = getSizingPropertyMapper("width", "UNSAFE_width");
+export const maxHeightMapper = getSizingPropertyMapper(
+  "maxHeight",
+  "UNSAFE_maxHeight"
+);

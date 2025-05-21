@@ -1,4 +1,8 @@
 import { JSXAttribute } from "jscodeshift";
+import {
+  HopperStyledSystemPropsKeys,
+  StyledSystemPropertyMapper,
+} from "./styled-system/types.js";
 
 export function tryGettingLiteralValue(
   value: JSXAttribute["value"]
@@ -44,3 +48,36 @@ export function isGlobalValue(value: string | boolean | RegExp): boolean {
 export function isPercentageValue(value: string | boolean | RegExp): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?%$/.test(value);
 }
+
+export const getSizingPropertyMapper =
+  (
+    propertyName: HopperStyledSystemPropsKeys,
+    unsafePropertyName: HopperStyledSystemPropsKeys
+  ): StyledSystemPropertyMapper =>
+  (oldValue, { j }) => {
+    const value = tryGettingLiteralValue(oldValue);
+    if (value !== null) {
+      if (typeof value === "number") {
+        return {
+          to: propertyName,
+          value: j.literal(`core_${value}`),
+        };
+      } else if (isGlobalValue(value)) {
+        return {
+          to: propertyName,
+          value: oldValue,
+        };
+      } else if (isPercentageValue(value)) {
+        return {
+          to: propertyName,
+          value: oldValue,
+        };
+      }
+
+      return {
+        to: unsafePropertyName,
+        value: oldValue,
+      };
+    }
+    return null;
+  };
