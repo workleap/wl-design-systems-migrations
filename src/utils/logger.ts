@@ -7,7 +7,10 @@ const logFile = "debug.log";
  * @param message - Message or object to log
  * @param logFile - Optional log file name (defaults to debug.log)
  */
-export function logToFile(message: unknown, ...optionalParams: any[]): void {
+export async function logToFile(
+  message: unknown,
+  ...optionalParams: any[]
+): Promise<void> {
   try {
     const timestamp = new Date().toISOString();
     let formattedMessage =
