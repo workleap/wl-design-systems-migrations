@@ -1,6 +1,6 @@
+import { Runtime } from "../utils/types.js";
 import { migrateAttribute } from "./migrateAttribute.js";
 import { migrateImport } from "./migrateImport.js";
-import { Runtime } from "./types.js";
 
 /**
  * Creates a function that migrates a component from one package to another

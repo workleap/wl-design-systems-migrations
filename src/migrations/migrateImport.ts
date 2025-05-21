@@ -1,4 +1,4 @@
-import { Runtime } from "./types.js";
+import { Runtime } from "../utils/types.js";
 
 /**
  * Migrates specific components from one package to another

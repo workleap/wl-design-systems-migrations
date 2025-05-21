@@ -3,10 +3,13 @@ import assert from "node:assert";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { describe, test } from "vitest";
+import { analyze, mergeAnalysisResults } from "../src/analysis/analyze.js";
 import transform from "../src/index.js";
-import { mappings as initialMappings, mappings } from "../src/mappings.js";
-import { analyze, mergeAnalysisResults } from "../src/utils/analyze.js";
-import { migrate } from "../src/utils/migrate.js";
+import {
+  mappings as initialMappings,
+  mappings,
+} from "../src/mappings/mappings.js";
+import { migrate } from "../src/migrations/migrate.js";
 import { MapMetaData, Runtime } from "../src/utils/types.js";
 
 const buildApi = (parser: string | undefined): API => ({
@@ -37,6 +40,7 @@ const getRuntime = (
       ...initialMappings,
       ...mappingsOverrides,
     },
+    log: console.log,
   };
 };
 

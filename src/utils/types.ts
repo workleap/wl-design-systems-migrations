@@ -9,6 +9,7 @@ export interface Runtime {
   root: Collection<ASTNode>;
   mappings: MapMetaData;
   filePath: string;
+  log: (message: string, ...optionalParams: any[]) => void;
 }
 
 /**
@@ -16,15 +17,21 @@ export interface Runtime {
  * @param originalValue - The original property value to be mapped.
  * @returns An object containing the new property name (`to`) and its value, or `null` if the property should be excluded.
  */
-export type PropertyMapperFunction = (
-  originalValue: JSXAttribute["value"]
-) => { to: string; value: JSXAttribute["value"] } | null;
+export type PropertyMapperFunction<T extends string = string> = (
+  originalValue: JSXAttribute["value"],
+  runtime: Runtime
+) => { to: T; value: JSXAttribute["value"] } | null;
 
-export type ComponentMapMetaData = {
-  targetName: string;
-  props?: {
-    [key: string]: string | PropertyMapperFunction;
-  };
+export type PropsMapping<
+  S extends string = string,
+  T extends string = string
+> = {
+  [K in S]: T | PropertyMapperFunction<T>;
+};
+
+export type ComponentMapMetaData<T extends string = string> = {
+  targetName: T;
+  props?: PropsMapping;
 };
 
 export type MapMetaData = {

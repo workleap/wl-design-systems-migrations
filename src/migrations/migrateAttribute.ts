@@ -1,4 +1,4 @@
-import { PropertyMapperFunction, Runtime } from "./types.js";
+import { PropertyMapperFunction, Runtime } from "../utils/types.js";
 
 /**
  * Renames JSX attributes for a specific component
@@ -34,8 +34,7 @@ export function migrateAttribute(
         };
 
         if (typeof newAttributeMap === "function") {
-          console.log();
-          const mapResult = newAttributeMap(sourceAttribute.value);
+          const mapResult = newAttributeMap(sourceAttribute.value, runtime);
           if (mapResult) {
             const { to, value } = mapResult;
             newAttribute.name = to;
