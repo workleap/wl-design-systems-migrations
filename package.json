@@ -10,7 +10,8 @@
   },
   "scripts": {
     "test": "vitest run",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "publish": "codmod publish && pnpm dlx rimraf cdmd_dist"
   },
   "files": [
     "README.md",

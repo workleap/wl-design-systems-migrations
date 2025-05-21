@@ -89,7 +89,7 @@ First, [install the codemod CLI globally](https://docs.codemod.com/deploying-cod
 Then, do the modifications and publish a new version by running:
 
 ```bash
-codemod publish
+pnpm publish
 ```
 
 But if you want to test them locally before publishing, you can run this command in your target project:
@@ -98,8 +98,8 @@ But if you want to test them locally before publishing, you can run this command
 codemod --source THIS_PROJECT_LOCAL_PATH
 ```
 
-> [!IMPORTANT]
-> Because of a bug in codemod CLI, you need to remove the `cdmd_dist` folder before running the command to get the latest modifications.
+> [!TIP]
+> To run the latest modifications, the `cdmd_dist` folder should not exist. If you use the `pnpm publish`, this folder is getting deleted after each publish automatically.
 
 ### Simple Modifications
 
