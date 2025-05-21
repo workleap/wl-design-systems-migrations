@@ -89,7 +89,6 @@ describe("o2h-migration", () => {
     const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div UNSAFE_width="120px" height="auto" />; }`;
 
     const actualOutput = migrate(getRuntime(INPUT));
-
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
