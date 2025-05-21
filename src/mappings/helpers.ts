@@ -7,10 +7,16 @@ export function tryGettingLiteralValue(
     return null;
   } else if (value.type === "Literal") {
     return value.value;
+  } else if (value.type === "StringLiteral") {
+    // Add support for StringLiteral type
+    return value.value;
   } else if (value.type === "JSXExpressionContainer") {
     if (value.expression.type === "Identifier") {
       return value.expression.name;
     } else if (value.expression.type === "Literal") {
+      return value.expression.value;
+    } else if (value.expression.type === "StringLiteral") {
+      // Add support for StringLiteral in expressions
       return value.expression.value;
     }
   }
