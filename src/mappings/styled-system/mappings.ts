@@ -1,11 +1,18 @@
 import { heightMapper } from "./styles/height.js";
+import { maxHeightMapper } from "./styles/maxHeight.js";
+import { maxWidthMapper } from "./styles/maxWidth.js";
+import { minHeightMapper } from "./styles/minHeight.js";
+import { minWidthMapper } from "./styles/minWidth.js";
 import { widthMapper } from "./styles/width.js";
 import { StyledSystemPropsMapping } from "./types.js";
 
 export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   width: widthMapper,
   height: heightMapper,
-  maxWidth: "maxWidth",
+  maxWidth: maxWidthMapper,
+  maxHeight: maxHeightMapper,
+  minHeight: minHeightMapper,
+  minWidth: minWidthMapper,
   alignContent: "alignContent",
   alignItems: "alignItems",
   alignSelf: "alignSelf",
@@ -104,9 +111,6 @@ export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   marginTop: "marginTop",
   marginX: "marginX",
   marginY: "marginY",
-  maxHeight: "maxHeight",
-  minHeight: "minHeight",
-  minWidth: "minWidth",
   objectFit: "objectFit",
   objectPosition: "objectPosition",
   opacity: "opacity",
