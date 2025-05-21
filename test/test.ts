@@ -1,14 +1,8 @@
 import jscodeshift, { type API } from "jscodeshift";
 import assert from "node:assert";
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { describe, test } from "vitest";
 import { analyze, mergeAnalysisResults } from "../src/analysis/analyze.js";
-import transform from "../src/index.js";
-import {
-  mappings as initialMappings,
-  mappings,
-} from "../src/mappings/mappings.js";
+import { mappings as initialMappings } from "../src/mappings/mappings.js";
 import { migrate } from "../src/migrations/migrate.js";
 import { MapMetaData, Runtime } from "../src/utils/types.js";
 
@@ -90,11 +84,13 @@ describe("o2h-migration", () => {
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
-  test("when an Orbiter component has attributes, used the map table to migrate them.", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120px" height="auto" />; }`;
-    const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div UNSAFE_width="120px" UNSAFE_height="auto" />; }`;
+  test("when an Orbiter component has attributes, use the map table to migrate them.", async () => {
+    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120rem" height="auto" />; }`;
+    const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div UNSAFE_width="120px" height="auto" />; }`;
 
     const actualOutput = migrate(getRuntime(INPUT));
+
+    console.log("AAAA", actualOutput);
 
     assert.deepEqual(actualOutput, OUTPUT);
   });
