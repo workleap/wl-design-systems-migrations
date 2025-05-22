@@ -34,7 +34,12 @@ export type PropsMapping<
 
 export type ComponentMapMetaData<T extends string = string> = {
   targetName: T;
-  props?: PropsMapping;
+  props?: {
+    mappings?: PropsMapping;
+    additions?: {
+      [key: string]: string | number | boolean | null;
+    };
+  };
 };
 
 export type MapMetaData = {

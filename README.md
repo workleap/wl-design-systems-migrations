@@ -113,14 +113,18 @@ Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just ad
     Div: {
       targetName: "Div",
       props: {
-        width: "UNSAFE_width",
-        height: "UNSAFE_height",
-        maxWidth: (oldValue) => {
-            return {
-                value: oldValue,
-                propName: "UNSAFE_maxWidth"
-            }
-
+        mappings: {
+          width: "UNSAFE_width",
+          height: "UNSAFE_height",
+          maxWidth: (oldValue) => {
+              return {
+                  to: "UNSAFE_maxWidth"
+                  value: oldValue,
+              }
+          }
+        }
+        additions: { //add these prop/values to the mapped component
+          "display" : "block"
         }
       },
     },

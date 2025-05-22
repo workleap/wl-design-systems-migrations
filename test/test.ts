@@ -43,7 +43,7 @@ const getRuntime = (
   };
 };
 
-describe("o2h-migration", () => {
+describe("migrations", () => {
   test("when an Orbiter import got an alter name, keep it with hopper Hopper", async () => {
     const INPUT = `import { Div as Div2, Text } from "@workleap/orbiter-ui";`;
     const OUTPUT = `import { Div as Div2, Text } from "@hopper-ui/components";`;
@@ -71,6 +71,15 @@ describe("o2h-migration", () => {
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
+  test("when two components map to same component, import them only once", async () => {
+    const INPUT = `import { Text, Paragraph } from "@workleap/orbiter-ui";export function App() { return <><Paragraph><Text>Sample</Text></Paragraph></>; }`;
+    const OUTPUT = `import { Text } from "@hopper-ui/components";export function App() { return <><Text display="block"><Text>Sample</Text></Text></>; }`;
+
+    const actualOutput = migrate(getRuntime(INPUT));
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
   test("when there is already an import for Hopper, add the migrated one to it", async () => {
     const INPUT = `import { Div } from "@workleap/orbiter-ui";import { Span } from "@hopper-ui/components";`;
     const OUTPUT = `import { Span, Div } from "@hopper-ui/components";`;
@@ -81,8 +90,8 @@ describe("o2h-migration", () => {
   });
 
   test("when a component has similar name, Don't touch it.", async () => {
-    const INPUT = `import { Div as Div2 } from "@workleap/orbiter-ui"; import { Div } from "external"; export function App() { return <><Div width="120px" height="auto" /><Div2/></>; }`;
-    const OUTPUT = `import { Div } from "external"; import { Div as Div2 } from "@hopper-ui/components"; export function App() { return <><Div width="120px" height="auto" /><Div2/></>; }`;
+    const INPUT = `import { Div as Div2 } from "@workleap/orbiter-ui"; import { Div } from "external"; export function App() { return <><Div width="120px" height="auto" /><Div/></>; }`;
+    const OUTPUT = `import { Div } from "external"; import { Div as Div2 } from "@hopper-ui/components"; export function App() { return <><Div width="120px" height="auto" /><Div/></>; }`;
 
     const actualOutput = migrate(getRuntime(INPUT));
 
@@ -92,6 +101,14 @@ describe("o2h-migration", () => {
   test("when an Orbiter component has attributes, use the map table to migrate them.", async () => {
     const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120px" height="auto" />; }`;
     const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div UNSAFE_width="120px" height="auto" />; }`;
+
+    const actualOutput = migrate(getRuntime(INPUT));
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when mapping has additional props for a mapping, add them to the result.", async () => {
+    const INPUT = `import { Paragraph } from "@workleap/orbiter-ui"; export function App() { return <Paragraph />; }`;
+    const OUTPUT = `import { Text } from "@hopper-ui/components"; export function App() { return <Text display="block" />; }`;
 
     const actualOutput = migrate(getRuntime(INPUT));
     assert.deepEqual(actualOutput, OUTPUT);
@@ -107,7 +124,9 @@ describe("o2h-migration", () => {
           Div: {
             targetName: "Div",
             props: {
-              width: () => null,
+              mappings: {
+                width: () => null,
+              },
             },
           },
         },
@@ -127,15 +146,17 @@ describe("o2h-migration", () => {
           Div: {
             targetName: "Div",
             props: {
-              width: (value) => {
-                if (value?.type == "StringLiteral") {
-                  value.value = `${value.value}_Custom`;
-                }
+              mappings: {
+                width: (value) => {
+                  if (value?.type == "StringLiteral") {
+                    value.value = `${value.value}_Custom`;
+                  }
 
-                return {
-                  to: "CUSTOM_width",
-                  value: value,
-                };
+                  return {
+                    to: "CUSTOM_width",
+                    value: value,
+                  };
+                },
               },
             },
           },
