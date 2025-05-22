@@ -32,18 +32,21 @@ export type PropsMapping<
   [K in S]: T | PropertyMapperFunction<T>;
 };
 
+type PropsMapMetaData = {
+  mappings?: PropsMapping;
+  additions?: {
+    [key: string]: string | number | boolean | null;
+  };
+};
+
 export type ComponentMapMetaData<T extends string = string> = {
   targetName: T;
-  props?: {
-    mappings?: PropsMapping;
-    additions?: {
-      [key: string]: string | number | boolean | null;
-    };
-  };
+  props?: PropsMapMetaData;
 };
 
 export type MapMetaData = {
   sourcePackage: string;
   targetPackage: string;
-  components: Record<string, ComponentMapMetaData>;
+  propsDefaults?: PropsMapMetaData;
+  components: Record<string, ComponentMapMetaData | string> & {};
 };

@@ -1,3 +1,4 @@
+import { getComponentPropsMetadata } from "../utils/mapping.js";
 import { Runtime } from "../utils/types.js";
 import { addAttribute } from "./addAttribute.js";
 import { migrateAttribute } from "./migrateAttribute.js";
@@ -37,23 +38,28 @@ export function migrateComponent(
   }
 
   // Migrate attributes for the component
-  Object.entries(
-    mappings.components[componentName]?.props?.mappings || {}
-  ).forEach(([oldAttrName, newAttrName]) => {
-    migrateAttribute(newLocalName, oldAttrName, newAttrName, runtime);
-  });
+  const propsMetadata = getComponentPropsMetadata(componentName, mappings);
+
+  Object.entries(propsMetadata?.mappings || {}).forEach(
+    ([oldAttrName, newAttrName]) => {
+      migrateAttribute(newLocalName, oldAttrName, newAttrName, runtime);
+    }
+  );
 
   // Add additional attributes for the component
-  Object.entries(
-    mappings.components[componentName]?.props?.additions || {}
-  ).forEach(([newAttrName, newAttrValue]) => {
-    instances.forEach((path) => {
-      //find the JSXOpeningElement for the path
-      const openingElement = path.parentPath;
-      if (!openingElement || openingElement.node.type !== "JSXOpeningElement") {
-        return;
-      }
-      addAttribute(openingElement, newAttrName, newAttrValue, runtime);
-    });
-  });
+  Object.entries(propsMetadata?.additions || {}).forEach(
+    ([newAttrName, newAttrValue]) => {
+      instances.forEach((path) => {
+        //find the JSXOpeningElement for the path
+        const openingElement = path.parentPath;
+        if (
+          !openingElement ||
+          openingElement.node.type !== "JSXOpeningElement"
+        ) {
+          return;
+        }
+        addAttribute(openingElement, newAttrName, newAttrValue, runtime);
+      });
+    }
+  );
 }

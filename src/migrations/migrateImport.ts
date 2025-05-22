@@ -1,3 +1,4 @@
+import { getComponentTargetName } from "../utils/mapping.js";
 import { Runtime } from "../utils/types.js";
 
 /**
@@ -18,7 +19,7 @@ export function migrateImport(
 } | null {
   const { j, root, mappings } = runtime;
   const { sourcePackage, targetPackage } = mappings;
-  const targetComponentName = mappings.components[componentName]?.targetName;
+  const targetComponentName = getComponentTargetName(componentName, mappings);
   let result: ReturnType<typeof migrateImport> = null;
 
   if (!targetComponentName) {

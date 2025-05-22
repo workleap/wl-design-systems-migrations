@@ -9,43 +9,18 @@ const defaultPropsMappings = {
 export const mappings: MapMetaData = {
   sourcePackage: "@workleap/orbiter-ui",
   targetPackage: "@hopper-ui/components",
+  propsDefaults: {
+    mappings: defaultPropsMappings,
+  },
   components: {
-    Div: {
-      targetName: "Div",
-      props: {
-        mappings: defaultPropsMappings,
-      },
-    },
-    Text: {
-      targetName: "Text",
-      props: {
-        mappings: defaultPropsMappings,
-      },
-    },
-    Flex: {
-      targetName: "Flex",
-      props: {
-        mappings: defaultPropsMappings,
-      },
-    },
-    Header: {
-      targetName: "Header",
-      props: {
-        mappings: defaultPropsMappings,
-      },
-    },
-    Heading: {
-      targetName: "Heading",
-      props: {
-        mappings: defaultPropsMappings,
-      },
-    },
-    Content: {
-      targetName: "Content",
-      props: {
-        mappings: defaultPropsMappings,
-      },
-    },
+    Div: "Div",
+    Span: "Span",
+    Text: "Text",
+    Flex: "Flex",
+    Header: "Header",
+    Heading: "Heading",
+    Content: "Content",
+    TextInput: "TextField",
     Paragraph: {
       targetName: "Text",
       props: {
@@ -53,12 +28,6 @@ export const mappings: MapMetaData = {
         additions: {
           elementType: "p",
         },
-      },
-    },
-    TextInput: {
-      targetName: "TextField",
-      props: {
-        mappings: defaultPropsMappings,
       },
     },
   },
