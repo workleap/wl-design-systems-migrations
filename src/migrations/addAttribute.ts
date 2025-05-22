@@ -15,10 +15,6 @@ export function addAttribute(
   );
 
   if (sourceAttribute) return; // Skip if the attribute already exists
-  const newAttribute = {
-    name: newAttrName,
-    value: newAttrValue,
-  };
 
   const createAttributeValue = (value: string | number | boolean | null) => {
     if (value === null) return null;
