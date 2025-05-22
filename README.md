@@ -122,6 +122,8 @@ Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just ad
   sourcePackage: "@workleap/orbiter-ui",
   targetPackage: "@hopper-ui/components",
   components: {
+    Span: "Span",
+    Text: "Text",    
     Div: {
       targetName: "Div",
       props: {
@@ -139,9 +141,6 @@ Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just ad
           "display" : "block"
         }
       },
-    },
-    Text: {
-      targetName: "Text",
     },
   },
 };
