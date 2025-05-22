@@ -1,9 +1,14 @@
 import jscodeshift, { type API } from "jscodeshift";
 import assert from "node:assert";
 import { describe, test } from "vitest";
-import { analyze, mergeAnalysisResults } from "../src/analysis/analyze.js";
+import {
+  AnalysisResults,
+  analyze,
+  mergeAnalysisResults,
+} from "../src/analysis/analyze.js";
 import { mappings as initialMappings } from "../src/mappings/mappings.js";
 import { migrate } from "../src/migrations/migrate.js";
+import { setReplacer, setReviver } from "../src/utils/serialization.js";
 import { MapMetaData, Runtime } from "../src/utils/types.js";
 
 const buildApi = (parser: string | undefined): API => ({
@@ -177,14 +182,34 @@ describe("component usage analysis", () => {
       "Div should have 2 props"
     );
     assert.strictEqual(
-      analysisResults.Div.props.border,
+      analysisResults.Div.props.border?.usage,
       1,
-      "Div border prop should have count of 1"
+      "Div border prop should have usage count of 1"
+    );
+    assert.ok(
+      analysisResults.Div.props.border?.values instanceof Set,
+      "Div border prop values should be a Set"
     );
     assert.strictEqual(
-      analysisResults.Div.props.width,
+      analysisResults.Div.props.width?.usage,
       1,
-      "Div width prop should have count of 1"
+      "Div width prop should have usage count of 1"
+    );
+    assert.ok(
+      analysisResults.Div.props.width?.values instanceof Set,
+      "Div width prop values should be a Set"
+    );
+
+    // Check actual values stored in the Set
+    assert.deepStrictEqual(
+      Array.from(analysisResults.Div.props.border?.values || []),
+      ["1px"],
+      "Div border values should contain '1px'"
+    );
+    assert.deepStrictEqual(
+      Array.from(analysisResults.Div.props.width?.values || []),
+      ["120px"],
+      "Div width values should contain '120px'"
     );
 
     assert.strictEqual(
@@ -193,9 +218,18 @@ describe("component usage analysis", () => {
       "Text should have 1 prop"
     );
     assert.strictEqual(
-      analysisResults.Text.props.fontSize,
+      analysisResults.Text.props.fontSize?.usage,
       1,
-      "Text fontSize prop should have count of 1"
+      "Text fontSize prop should have usage count of 1"
+    );
+    assert.ok(
+      analysisResults.Text.props.fontSize?.values instanceof Set,
+      "Text fontSize prop values should be a Set"
+    );
+    assert.deepStrictEqual(
+      Array.from(analysisResults.Text.props.fontSize?.values || []),
+      ["14px"],
+      "Text fontSize values should contain '14px'"
     );
   });
 
@@ -224,14 +258,22 @@ describe("component usage analysis", () => {
       "Div should have 2 props"
     );
     assert.strictEqual(
-      analysisResults.Div.props.border,
+      analysisResults.Div.props.border?.usage,
       1,
-      "Div border prop should have count of 1"
+      "Div border prop should have usage count of 1"
+    );
+    assert.ok(
+      analysisResults.Div.props.border?.values instanceof Set,
+      "Div border prop values should be a Set"
     );
     assert.strictEqual(
-      analysisResults.Div.props.width,
+      analysisResults.Div.props.width?.usage,
       1,
-      "Div width prop should have count of 1"
+      "Div width prop should have usage count of 1"
+    );
+    assert.ok(
+      analysisResults.Div.props.width?.values instanceof Set,
+      "Div width prop values should be a Set"
     );
   });
 
@@ -260,14 +302,22 @@ describe("component usage analysis", () => {
       "UnknownComponent should have 2 props"
     );
     assert.strictEqual(
-      analysisResults.UnknownComponent.props.prop1,
+      analysisResults.UnknownComponent.props.prop1?.usage,
       1,
-      "UnknownComponent prop1 should have count of 1"
+      "UnknownComponent prop1 should have usage count of 1"
+    );
+    assert.ok(
+      analysisResults.UnknownComponent.props.prop1?.values instanceof Set,
+      "UnknownComponent prop1 values should be a Set"
     );
     assert.strictEqual(
-      analysisResults.UnknownComponent.props.prop2,
+      analysisResults.UnknownComponent.props.prop2?.usage,
       1,
-      "UnknownComponent prop2 should have count of 1"
+      "UnknownComponent prop2 should have usage count of 1"
+    );
+    assert.ok(
+      analysisResults.UnknownComponent.props.prop2?.values instanceof Set,
+      "UnknownComponent prop2 values should be a Set"
     );
   });
 
@@ -315,19 +365,19 @@ describe("component usage analysis", () => {
     assert.ok(divProps.includes("maxWidth"), "Div should have maxWidth prop");
 
     assert.strictEqual(
-      analysisResults.Div.props.width,
+      analysisResults.Div.props.width?.usage,
       1,
-      "width prop should have count of 1"
+      "width prop should have usage count of 1"
     );
     assert.strictEqual(
-      analysisResults.Div.props.height,
+      analysisResults.Div.props.height?.usage,
       2,
-      "height prop should have count of 2"
+      "height prop should have usage count of 2"
     );
     assert.strictEqual(
-      analysisResults.Div.props.maxWidth,
+      analysisResults.Div.props.maxWidth?.usage,
       1,
-      "maxWidth prop should have count of 1"
+      "maxWidth prop should have usage count of 1"
     );
 
     // Check Text component
@@ -351,14 +401,14 @@ describe("component usage analysis", () => {
     );
 
     assert.strictEqual(
-      analysisResults.Text.props.fontSize,
+      analysisResults.Text.props.fontSize?.usage,
       1,
-      "fontSize prop should have count of 1"
+      "fontSize prop should have usage count of 1"
     );
     assert.strictEqual(
-      analysisResults.Text.props.fontWeight,
+      analysisResults.Text.props.fontWeight?.usage,
       1,
-      "fontWeight prop should have count of 1"
+      "fontWeight prop should have usage count of 1"
     );
   });
 
@@ -393,14 +443,14 @@ describe("component usage analysis", () => {
       "CustomComponent should have 2 props"
     );
     assert.strictEqual(
-      analysisResults.CustomComponent.props.prop1,
+      analysisResults.CustomComponent.props.prop1?.usage,
       1,
-      "prop1 should have count of 1"
+      "prop1 should have usage count of 1"
     );
     assert.strictEqual(
-      analysisResults.CustomComponent.props.prop2,
+      analysisResults.CustomComponent.props.prop2?.usage,
       1,
-      "prop2 should have count of 1"
+      "prop2 should have usage count of 1"
     );
   });
 
@@ -444,14 +494,14 @@ describe("component usage analysis", () => {
       "Button should have 2 props"
     );
     assert.strictEqual(
-      analysisResults.Button.props.onClick,
+      analysisResults.Button.props.onClick?.usage,
       1,
-      "onClick prop should have count of 1"
+      "onClick prop should have usage count of 1"
     );
     assert.strictEqual(
-      analysisResults.Button.props.size,
+      analysisResults.Button.props.size?.usage,
       1,
-      "size prop should have count of 1"
+      "size prop should have usage count of 1"
     );
 
     // Check Text component
@@ -505,17 +555,17 @@ describe("component usage analysis", () => {
 
     // Check that properties have correct counts
     assert.strictEqual(
-      analysisResults.Div.props.width,
+      analysisResults.Div.props.width?.usage,
       3,
       "width prop should be used 3 times"
     );
     assert.strictEqual(
-      analysisResults.Div.props.padding,
+      analysisResults.Div.props.padding?.usage,
       2,
       "padding prop should be used 2 times"
     );
     assert.strictEqual(
-      analysisResults.Div.props.height,
+      analysisResults.Div.props.height?.usage,
       1,
       "height prop should be used 1 time"
     );
@@ -523,7 +573,7 @@ describe("component usage analysis", () => {
     // Get properties sorted by usage count
     const propEntries = Object.entries(analysisResults.Div.props);
     const sortedProps = propEntries
-      .sort(([, a], [, b]) => b - a)
+      .sort(([, a], [, b]) => b.usage - a.usage)
       .map(([name]) => name);
 
     // Properties should be sorted in order of frequency (width > padding > height)
@@ -543,6 +593,189 @@ describe("component usage analysis", () => {
       "height should be the least used property"
     );
   });
+
+  test("analyze correctly captures different types of prop values", () => {
+    const INPUT = `
+      import { Button, Text, Div } from "@workleap/orbiter-ui";
+      export function App() {
+        const dynamicValue = "dynamic";
+        return (
+          <>
+            <Button 
+              variant="primary" 
+              onClick={() => console.log("clicked")} 
+              disabled={true} 
+              data-testid="test-button"
+              aria-label={\`Button \${dynamicValue}\`}
+            >
+              Click me
+            </Button>
+            <Div 
+              width="100px"
+              height={200} 
+              margin={{ top: 10, bottom: 20 }}
+              padding={["10px", "20px"]}
+            />
+            <Text fontSize={dynamicValue}>Text content</Text>
+          </>
+        );
+      }
+    `;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    // Check Button prop values
+    assert.ok(analysisResults.Button, "Button should be present in results");
+
+    // String literal value
+    assert.deepStrictEqual(
+      Array.from(analysisResults.Button.props.variant?.values || []),
+      ["primary"],
+      "Button variant values should contain 'primary'"
+    );
+
+    // Function expression (partial match since it might include whitespace differences)
+    const onClickValues = Array.from(
+      analysisResults.Button.props.onClick?.values || []
+    );
+    assert.ok(
+      onClickValues.some((value) => value.includes("console.log")),
+      "onClick should contain a function with console.log"
+    );
+
+    // Boolean expression
+    const disabledValues = Array.from(
+      analysisResults.Button.props.disabled?.values || []
+    );
+    assert.ok(
+      disabledValues.some((value) => value.includes("true")),
+      "disabled prop should contain true value"
+    );
+
+    // String literal with hyphen
+    assert.deepStrictEqual(
+      Array.from(analysisResults.Button.props["data-testid"]?.values || []),
+      ["test-button"],
+      "data-testid should contain 'test-button'"
+    );
+
+    // Template literal
+    const ariaLabelValues = Array.from(
+      analysisResults.Button.props["aria-label"]?.values || []
+    );
+    assert.ok(
+      ariaLabelValues.some((value) => value.includes("dynamicValue")),
+      "aria-label should contain a template literal with dynamicValue"
+    );
+
+    // Check Div prop values
+    assert.ok(analysisResults.Div, "Div should be present in results");
+
+    // String literal (width)
+    assert.deepStrictEqual(
+      Array.from(analysisResults.Div.props.width?.values || []),
+      ["100px"],
+      "Div width values should contain '100px'"
+    );
+
+    // Numeric literal
+    const heightValues = Array.from(
+      analysisResults.Div.props.height?.values || []
+    );
+    assert.ok(
+      heightValues.some((value) => value.includes("200")),
+      "height should contain '200' value"
+    );
+
+    // Object expression
+    const marginValues = Array.from(
+      analysisResults.Div.props.margin?.values || []
+    );
+    assert.ok(
+      marginValues.some(
+        (value) => value.includes("top") && value.includes("bottom")
+      ),
+      "margin should contain an object with top and bottom properties"
+    );
+
+    // Array expression
+    const paddingValues = Array.from(
+      analysisResults.Div.props.padding?.values || []
+    );
+    assert.ok(
+      paddingValues.some((value) => value.includes("[") && value.includes("]")),
+      "padding should contain an array value"
+    );
+
+    // Variable reference
+    assert.ok(analysisResults.Text, "Text should be present in results");
+    const fontSizeValues = Array.from(
+      analysisResults.Text?.props.fontSize?.values || []
+    );
+    assert.ok(
+      fontSizeValues.some((value) => value.includes("dynamicValue")),
+      "fontSize should contain value referencing 'dynamicValue'"
+    );
+  });
+
+  test("analyze correctly stores multiple values for the same prop", () => {
+    const INPUT = `
+      import { Button } from "@workleap/orbiter-ui";
+      export function App() {
+        return (
+          <>
+            <Button variant="primary" size="sm">Primary Small</Button>
+            <Button variant="secondary" size="md">Secondary Medium</Button>
+            <Button variant="tertiary" size="lg">Tertiary Large</Button>
+          </>
+        );
+      }
+    `;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    // Check button component exists
+    assert.ok(analysisResults.Button, "Button should be present in results");
+
+    // Check usage count
+    assert.strictEqual(
+      analysisResults.Button.usage,
+      3,
+      "Button should have 3 usages"
+    );
+
+    // Check variant values
+    assert.strictEqual(
+      analysisResults.Button.props.variant?.usage,
+      3,
+      "variant prop should have usage count of 3"
+    );
+
+    const variantValues = Array.from(
+      analysisResults.Button.props.variant?.values || []
+    ).sort();
+    assert.deepStrictEqual(
+      variantValues,
+      ["primary", "secondary", "tertiary"].sort(),
+      "variant values should contain all three variants"
+    );
+
+    // Check size values
+    assert.strictEqual(
+      analysisResults.Button.props.size?.usage,
+      3,
+      "size prop should have usage count of 3"
+    );
+
+    const sizeValues = Array.from(
+      analysisResults.Button.props.size?.values || []
+    ).sort();
+    assert.deepStrictEqual(
+      sizeValues,
+      ["sm", "md", "lg"].sort(),
+      "size values should contain all three sizes"
+    );
+  });
 });
 
 describe("analyze file aggregation", () => {
@@ -551,16 +784,16 @@ describe("analyze file aggregation", () => {
       Button: {
         usage: 5,
         props: {
-          variant: 3,
-          size: 5,
-          disabled: 2,
+          variant: { usage: 3, values: new Set(["primary", "secondary"]) },
+          size: { usage: 5, values: new Set(["lg", "sm"]) },
+          disabled: { usage: 2, values: new Set(["true"]) },
         },
       },
       Text: {
         usage: 8,
         props: {
-          fontSize: 6,
-          color: 4,
+          fontSize: { usage: 6, values: new Set(["14px", "16px"]) },
+          color: { usage: 4, values: new Set(["red", "blue"]) },
         },
       },
     };
@@ -569,16 +802,16 @@ describe("analyze file aggregation", () => {
       Button: {
         usage: 3,
         props: {
-          variant: 2,
-          onClick: 3,
-          "aria-label": 1,
+          variant: { usage: 2, values: new Set(["primary", "tertiary"]) },
+          onClick: { usage: 3, values: new Set(["() => {}"]) },
+          "aria-label": { usage: 1, values: new Set(["Button label"]) },
         },
       },
       Div: {
         usage: 4,
         props: {
-          width: 3,
-          padding: 2,
+          width: { usage: 3, values: new Set(["100px", "auto"]) },
+          padding: { usage: 2, values: new Set(["10px"]) },
         },
       },
     };
@@ -604,57 +837,75 @@ describe("analyze file aggregation", () => {
     assert.strictEqual(mergedResults.Div.usage, 4, "Div usage should be 4");
 
     // Check Button props are merged correctly
-    assert.ok(mergedResults.Button.props, "Button should have props");
+    assert.ok(mergedResults.Button?.props, "Button should have props");
+
+    // Use type assertions to handle TypeScript's possibly undefined warnings
+    const buttonProps = mergedResults.Button!.props;
+
     assert.strictEqual(
-      mergedResults.Button.props.variant,
+      buttonProps.variant!.usage,
       5,
-      "Button variant prop should sum to 5"
+      "Button variant prop usage should sum to 5"
+    );
+    const mergedVariantValues = Array.from(buttonProps.variant!.values).sort();
+    assert.deepEqual(
+      mergedVariantValues,
+      ["primary", "secondary", "tertiary"].sort(),
+      "Button variant values should be merged correctly"
     );
     assert.strictEqual(
-      mergedResults.Button.props.size,
+      buttonProps.size!.usage,
       5,
-      "Button size prop should remain 5"
+      "Button size prop usage should remain 5"
     );
     assert.strictEqual(
-      mergedResults.Button.props.disabled,
+      buttonProps.disabled!.usage,
       2,
-      "Button disabled prop should remain 2"
+      "Button disabled prop usage should remain 2"
     );
     assert.strictEqual(
-      mergedResults.Button.props.onClick,
+      buttonProps.onClick!.usage,
       3,
-      "Button onClick prop should be 3"
+      "Button onClick prop usage should be 3"
     );
     assert.strictEqual(
-      mergedResults.Button.props["aria-label"],
+      buttonProps["aria-label"]!.usage,
       1,
-      "Button aria-label prop should be 1"
+      "Button aria-label prop usage should be 1"
     );
 
     // Check Text props remain unchanged
-    assert.ok(mergedResults.Text.props, "Text should have props");
+    assert.ok(mergedResults.Text?.props, "Text should have props");
+
+    // Use type assertions for Text props
+    const textProps = mergedResults.Text!.props;
+
     assert.strictEqual(
-      mergedResults.Text.props.fontSize,
+      textProps.fontSize!.usage,
       6,
-      "Text fontSize prop should remain 6"
+      "Text fontSize prop usage should remain 6"
     );
     assert.strictEqual(
-      mergedResults.Text.props.color,
+      textProps.color!.usage,
       4,
-      "Text color prop should remain 4"
+      "Text color prop usage should remain 4"
     );
 
     // Check Div is added correctly
-    assert.ok(mergedResults.Div.props, "Div should have props");
+    assert.ok(mergedResults.Div?.props, "Div should have props");
+
+    // Use type assertions for Div props
+    const divProps = mergedResults.Div!.props;
+
     assert.strictEqual(
-      mergedResults.Div.props.width,
+      divProps.width!.usage,
       3,
-      "Div width prop should be 3"
+      "Div width prop usage should be 3"
     );
     assert.strictEqual(
-      mergedResults.Div.props.padding,
+      divProps.padding!.usage,
       2,
-      "Div padding prop should be 2"
+      "Div padding prop usage should be 2"
     );
   });
 
@@ -680,31 +931,31 @@ describe("analyze file aggregation", () => {
 
     // Check Button props have correct counts
     assert.strictEqual(
-      analysisResults["Button"]!.props.variant,
+      analysisResults["Button"]!.props.variant?.usage,
       3,
       "Button variant prop should have 3 usages"
     );
     assert.strictEqual(
-      analysisResults["Button"]!.props.size,
+      analysisResults["Button"]!.props.size?.usage,
       3,
       "Button size prop should have 3 usages"
     );
 
     // Check Text props have correct counts
     assert.strictEqual(
-      analysisResults["Text"]!.props.fontSize,
+      analysisResults["Text"]!.props.fontSize?.usage,
       2,
       "Text fontSize prop should have 2 usages"
     );
 
     // Check Div props have correct counts
     assert.strictEqual(
-      analysisResults["Div"]!.props.width,
+      analysisResults["Div"]!.props.width?.usage,
       1,
       "Div width prop should have 1 usage"
     );
     assert.strictEqual(
-      analysisResults["Div"]!.props.height,
+      analysisResults["Div"]!.props.height?.usage,
       1,
       "Div height prop should have 1 usage"
     );
@@ -758,22 +1009,22 @@ describe("analyze file aggregation", () => {
 
     // Check prop counts with mixed usage
     assert.strictEqual(
-      mixedResults["Button"]!.props.variant,
+      mixedResults["Button"]!.props.variant?.usage,
       3,
       "variant should be used 3 times"
     );
     assert.strictEqual(
-      mixedResults["Button"]!.props.size,
+      mixedResults["Button"]!.props.size?.usage,
       3,
       "size should be used 3 times"
     );
     assert.strictEqual(
-      mixedResults["Button"]!.props.onClick,
+      mixedResults["Button"]!.props.onClick?.usage,
       2,
       "onClick should be used 2 times"
     );
     assert.strictEqual(
-      mixedResults["Button"]!.props.disabled,
+      mixedResults["Button"]!.props.disabled?.usage,
       1,
       "disabled should be used 1 time"
     );
@@ -885,6 +1136,70 @@ describe("analyze file aggregation", () => {
       analysisResults.Alert,
       undefined,
       "Alert should not be included"
+    );
+  });
+});
+
+describe("JSON serialization", () => {
+  test("correctly serializes and deserializes Set objects", () => {
+    // Create a sample analysis result with Set objects
+    const testResults: AnalysisResults = {
+      Button: {
+        usage: 5,
+        props: {
+          variant: {
+            usage: 3,
+            values: new Set(["primary", "secondary"]),
+          },
+        },
+      },
+    };
+
+    // Serialize to JSON string using the shared utility functions
+    const jsonString = JSON.stringify(testResults, setReplacer, 2);
+
+    // Make sure the serialized representation includes our special format
+    assert.ok(
+      jsonString.includes('"values": ['),
+      "Serialized JSON should contain values array"
+    );
+
+    // Parse back to object
+    const parsedResults = JSON.parse(jsonString, setReviver) as AnalysisResults;
+
+    // Verify the Button component exists
+    assert.ok(
+      parsedResults.Button,
+      "Button component should exist in parsed results"
+    );
+
+    // Verify structure is preserved
+    assert.strictEqual(
+      parsedResults.Button!.usage,
+      5,
+      "Component usage count should be preserved"
+    );
+
+    // Verify the variant prop exists
+    assert.ok(
+      parsedResults.Button!.props.variant,
+      "Button variant prop should exist"
+    );
+
+    // Most importantly, verify the Set was correctly restored
+    assert.ok(
+      parsedResults.Button!.props.variant!.values instanceof Set,
+      "Values should be restored as a Set"
+    );
+
+    const restoredValues = Array.from(
+      parsedResults.Button!.props.variant!.values
+    );
+    assert.strictEqual(restoredValues.length, 2, "Set should have 2 values");
+    assert.ok(
+      restoredValues.includes("primary") &&
+        restoredValues.includes("secondary"),
+      "Set should contain original values"
     );
   });
 });

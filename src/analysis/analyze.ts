@@ -1,15 +1,16 @@
 // filepath: /Users/mahmoud.moravej/workleap/orbiter-to-hopper-codemods/src/utils/analyze.ts
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { Options } from "jscodeshift";
+import { setReplacer, setReviver } from "../utils/serialization.js";
 import { Runtime } from "../utils/types.js";
 
 // Define the new structure for analysis results
 /**
- * Maps property names to their usage count
+ * Maps property names to their usage data including count and actual values used
  * Properties are sorted by usage count (most used first)
  */
 export interface PropertyUsage {
-  [propName: string]: number;
+  [propName: string]: { usage: number; values: Set<string> };
 }
 
 /**
@@ -45,7 +46,7 @@ export function mergeAnalysisResults(
     string,
     {
       usage: number;
-      props: Record<string, number>;
+      props: Record<string, { usage: number; values: Set<string> }>;
     }
   > = {};
 
@@ -64,18 +65,42 @@ export function mergeAnalysisResults(
       // Add component usage count
       combinedComponentData.usage += componentData.usage;
 
-      // Merge property usage counts
-      Object.entries(componentData.props).forEach(([propName, propCount]) => {
+      // Merge property usage counts and values
+      Object.entries(componentData.props).forEach(([propName, propData]) => {
         if (combinedComponentData.props[propName]) {
-          combinedComponentData.props[propName] += propCount;
+          // Update usage count
+          const existingProp = combinedComponentData.props[propName];
+          if (existingProp) {
+            existingProp.usage += propData.usage;
+
+            // Merge values sets
+            propData.values.forEach((value) => {
+              existingProp.values.add(value);
+            });
+          }
         } else {
-          combinedComponentData.props[propName] = propCount;
+          // Copy the property data with a new Set instance
+          combinedComponentData.props[propName] = {
+            usage: propData.usage,
+            values: new Set([...propData.values]),
+          };
         }
       });
     } else {
+      // Create a deep copy with new Set instances for each property
+      const propsCopy: Record<string, { usage: number; values: Set<string> }> =
+        {};
+
+      Object.entries(componentData.props).forEach(([propName, propData]) => {
+        propsCopy[propName] = {
+          usage: propData.usage,
+          values: new Set([...propData.values]),
+        };
+      });
+
       combinedData[componentName] = {
         usage: componentData.usage,
-        props: { ...componentData.props },
+        props: propsCopy,
       };
     }
   });
@@ -90,9 +115,14 @@ export function mergeAnalysisResults(
       const sortedProps: PropertyUsage = {};
 
       Object.entries(data.props)
-        .sort(([, countA], [, countB]) => countB - countA)
-        .forEach(([propName, count]) => {
-          sortedProps[propName] = count;
+        .sort(
+          ([, propDataA], [, propDataB]) => propDataB.usage - propDataA.usage
+        )
+        .forEach(([propName, propData]) => {
+          sortedProps[propName] = {
+            usage: propData.usage,
+            values: new Set([...propData.values]),
+          };
         });
 
       orderedComponents.set(componentName, {
@@ -132,7 +162,7 @@ export function analyze(
     string,
     {
       count: number;
-      props: Record<string, number>;
+      props: Record<string, { usage: number; values: Set<string> }>;
     }
   > = {};
 
@@ -200,7 +230,7 @@ export function analyze(
       jsxUsages.forEach((path) => {
         const attributes = path.node.attributes || [];
 
-        // Collect attribute names for this component and their counts
+        // Collect attribute names for this component and their counts and values
         attributes.forEach((attr) => {
           if (
             attr.type === "JSXAttribute" &&
@@ -208,10 +238,38 @@ export function analyze(
             attr.name.type === "JSXIdentifier"
           ) {
             const propName = attr.name.name;
+
+            // Initialize property data if not exists
             if (!componentUsage.props[propName]) {
-              componentUsage.props[propName] = 0;
+              componentUsage.props[propName] = {
+                usage: 0,
+                values: new Set<string>(),
+              };
             }
-            componentUsage.props[propName]++;
+
+            // Increment usage count
+            componentUsage.props[propName].usage++;
+
+            // Extract and store value as string
+            if (attr.value) {
+              let valueStr = "";
+
+              // Handle different types of JSX attribute values
+              if (attr.value.type === "StringLiteral") {
+                valueStr = attr.value.value;
+              } else if (attr.value.type === "JSXExpressionContainer") {
+                // Convert the expression to string by getting its source code
+                valueStr = j(attr.value.expression).toSource();
+              } else {
+                // For other types, convert to string representation
+                valueStr = j(attr.value).toSource();
+              }
+
+              // Add to values Set
+              if (valueStr) {
+                componentUsage.props[propName].values.add(valueStr);
+              }
+            }
           }
         });
       });
@@ -233,9 +291,12 @@ export function analyze(
     const sortedProps: PropertyUsage = {};
 
     Object.entries(data.props)
-      .sort(([, countA], [, countB]) => countB - countA)
-      .forEach(([propName, count]) => {
-        sortedProps[propName] = count;
+      .sort(([, propDataA], [, propDataB]) => propDataB.usage - propDataA.usage)
+      .forEach(([propName, propData]) => {
+        sortedProps[propName] = {
+          usage: propData.usage,
+          values: new Set([...propData.values]),
+        };
       });
 
     orderedComponents.set(componentName, {
@@ -252,33 +313,36 @@ export function analyze(
 
   // Write the output to a file
   if (Object.keys(analysisResults).length > 0 && outputPath !== null) {
-    try {
-      let finalResults = analysisResults;
+    let finalResults = analysisResults;
 
-      // Check if the file already exists and read its content
-      if (existsSync(outputPath)) {
-        try {
-          const existingContent = readFileSync(outputPath, "utf8");
-          const existingResults = JSON.parse(
-            existingContent
-          ) as AnalysisResults;
+    // Check if the file already exists and read its content
+    if (existsSync(outputPath)) {
+      try {
+        const existingContent = readFileSync(outputPath, "utf8");
 
-          // Merge existing results with new results
-          finalResults = mergeAnalysisResults(existingResults, analysisResults);
-        } catch (readError) {
-          console.warn(
-            `Could not read or parse existing file: ${readError}. Creating a new file.`
-          );
-        }
+        // Parse existing results, reconstructing Sets from serialized format
+        const existingResults = JSON.parse(
+          existingContent,
+          setReviver
+        ) as AnalysisResults;
+
+        // Merge existing results with new results
+        finalResults = mergeAnalysisResults(existingResults, analysisResults);
+      } catch (readError) {
+        runtime.log(
+          `Could not read or parse existing file: ${readError}. Creating a new file.`
+        );
       }
+    }
 
-      // Write the combined results
-      writeFileSync(outputPath, JSON.stringify(finalResults, null, 2));
+    try {
+      // Write the combined results with custom serialization for Sets
+      writeFileSync(outputPath, JSON.stringify(finalResults, setReplacer, 2));
     } catch (error) {
-      console.error(`Error writing analysis to file: ${error}`);
+      runtime.log(`Error writing analysis to file: ${error}`);
     }
   } else if (Object.keys(analysisResults).length === 0) {
-    // console.log(`No component usage found in: ` + runtime.filePath);
+    //console.log(`No component usage found in: ` + runtime.filePath);
   }
 
   return {

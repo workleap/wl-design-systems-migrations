@@ -28,11 +28,17 @@ export default function transform(
     log: logToFile,
   };
 
-  if (options?.a !== undefined && options?.a !== "") {
-    const outputPath = options.a as string;
-    const result = analyze(runtime, outputPath, options);
-    return result.source;
-  } else {
-    return migrate(runtime, options);
+  try {
+    if (options?.a !== undefined && options?.a !== "") {
+      const outputPath = options.a as string;
+      const result = analyze(runtime, outputPath, options);
+      return result.source;
+    } else {
+      return migrate(runtime, options);
+    }
+  } catch (error) {
+    const errorMessage = `Error: ${error}`;
+    runtime.log(errorMessage, "error");
+    return errorMessage;
   }
 }
