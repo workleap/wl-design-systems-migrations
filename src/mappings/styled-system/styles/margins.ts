@@ -20,7 +20,7 @@ const createMarginMapper =
       if (typeof value === "number") {
         return {
           to: propertyName,
-          value: j.literal(`core_${value}`),
+          value: j.stringLiteral(`core_${value}`),
         };
       } else if (isGlobalValue(value)) {
         return {
