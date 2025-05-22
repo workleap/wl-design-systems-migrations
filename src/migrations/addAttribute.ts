@@ -18,8 +18,8 @@ export function addAttribute(
 
   const createAttributeValue = (value: string | number | boolean | null) => {
     if (value === null) return null;
-    if (typeof value === "string") return j.literal(value);
-    if (typeof value === "number") return j.literal(value);
+    if (typeof value === "string") return j.stringLiteral(value);
+    if (typeof value === "number") return j.jsxExpressionContainer(j.literal(value));
     if (typeof value === "boolean")
       return j.jsxExpressionContainer(j.literal(value));
     return null;
