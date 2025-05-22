@@ -1,4 +1,5 @@
 import { Runtime } from "../utils/types.js";
+import { addAttribute } from "./addAttribute.js";
 import { migrateAttribute } from "./migrateAttribute.js";
 import { migrateImport } from "./migrateImport.js";
 
@@ -21,24 +22,38 @@ export function migrateComponent(
     return; // No mapping found, exit early
   }
 
+  const { j, root } = runtime;
+
   const { oldLocalName, newLocalName } = migrateImportResult;
+  const instances = root.find(j.JSXIdentifier, {
+    name: oldLocalName,
+  });
 
   if (newLocalName !== oldLocalName) {
     // rename all instances of the component with the target name
-    const { j, root } = runtime;
-    root
-      .find(j.JSXIdentifier, {
-        name: oldLocalName,
-      })
-      .forEach((path) => {
-        path.node.name = newLocalName;
-      });
+    instances.forEach((path) => {
+      path.node.name = newLocalName;
+    });
   }
 
   // Migrate attributes for the component
-  Object.entries(mappings.components[componentName]?.props || {}).forEach(
-    ([oldAttrName, newAttrName]) => {
-      migrateAttribute(newLocalName, oldAttrName, newAttrName, runtime);
-    }
-  );
+  Object.entries(
+    mappings.components[componentName]?.props?.mappings || {}
+  ).forEach(([oldAttrName, newAttrName]) => {
+    migrateAttribute(newLocalName, oldAttrName, newAttrName, runtime);
+  });
+
+  // Add additional attributes for the component
+  Object.entries(
+    mappings.components[componentName]?.props?.additions || {}
+  ).forEach(([newAttrName, newAttrValue]) => {
+    instances.forEach((path) => {
+      //find the JSXOpeningElement for the path
+      const openingElement = path.parentPath;
+      if (!openingElement || openingElement.node.type !== "JSXOpeningElement") {
+        return;
+      }
+      addAttribute(openingElement, newAttrName, newAttrValue, runtime);
+    });
+  });
 }

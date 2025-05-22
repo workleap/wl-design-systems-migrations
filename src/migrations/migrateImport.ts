@@ -91,13 +91,23 @@ export function migrateImport(
           if (targetImportPath && targetImportPath.node) {
             const targetSpecifiers = targetImportPath.node.specifiers || [];
 
-            // Add the new specifier to the existing ones
-            j(targetImportPath).replaceWith(
-              j.importDeclaration(
-                [...targetSpecifiers, newImportSpecifier],
-                j.stringLiteral(targetPackage)
-              )
+            // Check if the component is already imported (avoid duplicates)
+            const alreadyImported = targetSpecifiers.some(
+              (spec) =>
+                j.ImportSpecifier.check(spec) &&
+                spec.imported &&
+                spec.imported.name === targetComponentName
             );
+
+            // Only add the new specifier if it's not already imported
+            if (!alreadyImported) {
+              j(targetImportPath).replaceWith(
+                j.importDeclaration(
+                  [...targetSpecifiers, newImportSpecifier],
+                  j.stringLiteral(targetPackage)
+                )
+              );
+            }
           }
         } else {
           // Create a new import declaration if one doesn't exist

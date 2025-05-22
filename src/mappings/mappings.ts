@@ -13,49 +13,52 @@ export const mappings: MapMetaData = {
     Div: {
       targetName: "Div",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
       },
     },
     Text: {
       targetName: "Text",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
       },
     },
     Flex: {
       targetName: "Flex",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
       },
     },
     Header: {
       targetName: "Header",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
       },
     },
     Heading: {
       targetName: "Heading",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
       },
     },
     Content: {
       targetName: "Content",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
       },
     },
     Paragraph: {
       targetName: "Text",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
+        additions: {
+          display: "block",
+        },
       },
     },
     TextInput: {
       targetName: "TextField",
       props: {
-        ...defaultPropsMappings,
+        mappings: defaultPropsMappings,
       },
     },
   },
