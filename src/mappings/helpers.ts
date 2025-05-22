@@ -65,6 +65,27 @@ export function isSimpleMarginTokenValue(
   );
 }
 
+export function isPaddingTokenValue(
+  value: string | boolean | RegExp,
+  allowComplexPadding: boolean
+): boolean {
+  return (
+    typeof value === "string" &&
+    (["inset-xs", "inset-sm", "inset-md", "inset-lg", "inset-xl"].includes(
+      value
+    ) ||
+      (allowComplexPadding &&
+        [
+          "inset-squish-sm",
+          "inset-squish-md",
+          "inset-squish-lg",
+          "inset-stretch-sm",
+          "inset-stretch-md",
+          "inset-stretch-lg",
+        ].includes(value)))
+  );
+}
+
 export function isPercentageValue(value: string | boolean | RegExp): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?%$/.test(value);
 }
