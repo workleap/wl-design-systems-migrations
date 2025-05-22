@@ -48,5 +48,5 @@ export type MapMetaData = {
   sourcePackage: string;
   targetPackage: string;
   propsDefaults?: PropsMapMetaData;
-  components: Record<string, ComponentMapMetaData | string> & {};
+  components: Record<string, ComponentMapMetaData | string>;
 };
