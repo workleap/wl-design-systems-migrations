@@ -27,20 +27,40 @@ export function tryGettingLiteralValue(
   return null;
 }
 
-export function isGlobalValue(value: string | boolean | RegExp): boolean {
+export function isGlobalValue(
+  value: string | boolean | RegExp,
+  extra?: string[]
+): boolean {
   return (
     typeof value === "string" &&
     [
-      "auto",
-      "fit-content",
-      "max-content",
-      "min-content",
       "-moz-initial",
       "inherit",
       "initial",
       "revert",
       "revert-layer",
       "unset",
+      ...(extra || []),
+    ].includes(value)
+  );
+}
+
+export function isSimpleMarginTokenValue(
+  value: string | boolean | RegExp
+): boolean {
+  return (
+    typeof value === "string" &&
+    [
+      "stack-xs",
+      "stack-sm",
+      "stack-md",
+      "stack-lg",
+      "stack-xl",
+      "inline-xs",
+      "inline-sm",
+      "inline-md",
+      "inline-lg",
+      "inline-xl",
     ].includes(value)
   );
 }
@@ -48,36 +68,3 @@ export function isGlobalValue(value: string | boolean | RegExp): boolean {
 export function isPercentageValue(value: string | boolean | RegExp): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?%$/.test(value);
 }
-
-export const getSizingPropertyMapper =
-  (
-    propertyName: HopperStyledSystemPropsKeys,
-    unsafePropertyName: HopperStyledSystemPropsKeys
-  ): StyledSystemPropertyMapper =>
-  (oldValue, { j }) => {
-    const value = tryGettingLiteralValue(oldValue);
-    if (value !== null) {
-      if (typeof value === "number") {
-        return {
-          to: propertyName,
-          value: j.literal(`core_${value}`),
-        };
-      } else if (isGlobalValue(value)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      } else if (isPercentageValue(value)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      }
-
-      return {
-        to: unsafePropertyName,
-        value: oldValue,
-      };
-    }
-    return null;
-  };

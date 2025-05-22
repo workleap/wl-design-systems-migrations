@@ -51,7 +51,7 @@ export const mappings: MapMetaData = {
       props: {
         mappings: defaultPropsMappings,
         additions: {
-          display: "block",
+          elementType: "p",
         },
       },
     },
