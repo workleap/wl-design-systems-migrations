@@ -73,9 +73,20 @@ describe("migrations", () => {
 
   test("when two components map to same component, import them only once", async () => {
     const INPUT = `import { Text, Paragraph } from "@workleap/orbiter-ui";export function App() { return <><Paragraph><Text>Sample</Text></Paragraph></>; }`;
-    const OUTPUT = `import { Text } from "@hopper-ui/components";export function App() { return <><Text display="block"><Text>Sample</Text></Text></>; }`;
+    const OUTPUT = `import { Text } from "@hopper-ui/components";export function App() { return <><Text><Text>Sample</Text></Text></>; }`;
 
-    const actualOutput = migrate(getRuntime(INPUT));
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Text: {
+            targetName: "Text",
+          },
+          Paragraph: {
+            targetName: "Text",
+          },
+        },
+      })
+    );
 
     assert.deepEqual(actualOutput, OUTPUT);
   });
@@ -110,7 +121,20 @@ describe("migrations", () => {
     const INPUT = `import { Paragraph } from "@workleap/orbiter-ui"; export function App() { return <Paragraph />; }`;
     const OUTPUT = `import { Text } from "@hopper-ui/components"; export function App() { return <Text display="block" />; }`;
 
-    const actualOutput = migrate(getRuntime(INPUT));
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Paragraph: {
+            targetName: "Text",
+            props: {
+              additions: {
+                display: "block",
+              },
+            },
+          },
+        },
+      })
+    );
     assert.deepEqual(actualOutput, OUTPUT);
   });
 

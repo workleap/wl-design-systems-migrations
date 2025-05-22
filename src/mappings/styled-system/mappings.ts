@@ -1,9 +1,12 @@
-import { heightMapper } from "./styles/height.js";
-import { maxHeightMapper } from "./styles/maxHeight.js";
-import { maxWidthMapper } from "./styles/maxWidth.js";
-import { minHeightMapper } from "./styles/minHeight.js";
-import { minWidthMapper } from "./styles/minWidth.js";
-import { widthMapper } from "./styles/width.js";
+import { columnGapMapper, gapMapper, rowGapMapper } from "./styles/gap.js";
+import {
+  heightMapper,
+  maxHeightMapper,
+  maxWidthMapper,
+  minHeightMapper,
+  minWidthMapper,
+  widthMapper,
+} from "./styles/sizings.js";
 import { StyledSystemPropsMapping } from "./types.js";
 
 export const styledSystemPropsMappings: StyledSystemPropsMapping = {
@@ -13,6 +16,9 @@ export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   maxHeight: maxHeightMapper,
   minHeight: minHeightMapper,
   minWidth: minWidthMapper,
+  gap: gapMapper,
+  rowGap: rowGapMapper,
+  columnGap: columnGapMapper,
   alignContent: "alignContent",
   alignItems: "alignItems",
   alignSelf: "alignSelf",
@@ -59,7 +65,6 @@ export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   colorActive: "colorActive",
   colorFocus: "colorFocus",
   colorHover: "colorHover",
-  columnGap: "columnGap",
   content: "content",
   contentVisibility: "contentVisibility",
   cursor: "cursor",
@@ -80,7 +85,7 @@ export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   fontSize: "fontSize",
   fontStyle: "fontStyle",
   fontWeight: "fontWeight",
-  gap: "gap",
+
   grid: "grid",
   gridArea: "gridArea",
   gridAutoColumns: "gridAutoColumns",
@@ -134,7 +139,6 @@ export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   position: "position",
   resize: "resize",
   right: "right",
-  rowGap: "rowGap",
   stroke: "stroke",
   textAlign: "textAlign",
   textDecoration: "textDecoration",
