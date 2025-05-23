@@ -15,6 +15,7 @@ export const createSizingMapper =
   ): StyledSystemPropertyMapper =>
   (oldValue, { j }) => {
     const value = tryGettingLiteralValue(oldValue);
+
     if (value !== null) {
       if (typeof value === "number") {
         return {

@@ -11,7 +11,10 @@ export function tryGettingLiteralValue(
     return null;
   } else if (value.type === "Literal") {
     return value.value;
-  } else if (value.type === "StringLiteral") {
+  } else if (
+    value.type === "StringLiteral" ||
+    value.type === "NumericLiteral"
+  ) {
     // Add support for StringLiteral type
     return value.value;
   } else if (value.type === "JSXExpressionContainer") {
@@ -19,7 +22,10 @@ export function tryGettingLiteralValue(
       return value.expression.name;
     } else if (value.expression.type === "Literal") {
       return value.expression.value;
-    } else if (value.expression.type === "StringLiteral") {
+    } else if (
+      value.expression.type === "StringLiteral" ||
+      value.expression.type === "NumericLiteral"
+    ) {
       // Add support for StringLiteral in expressions
       return value.expression.value;
     }

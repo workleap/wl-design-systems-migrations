@@ -1,5 +1,6 @@
 import jscodeshift, { type API } from "jscodeshift";
 import assert from "node:assert";
+import { readFileSync } from "node:fs";
 import { describe, test } from "vitest";
 import {
   AnalysisResults,
@@ -189,6 +190,19 @@ describe("migrations", () => {
     );
 
     assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("migrates input.tsx to match expected output.txt", async () => {
+    // Read the input and expected output files
+    const INPUT = readFileSync(new URL("input.tsx", import.meta.url), "utf8");
+    const EXPECTED_OUTPUT = readFileSync(
+      new URL("output.txt", import.meta.url),
+      "utf8"
+    );
+
+    const actualOutput = migrate(getRuntime(INPUT));
+
+    assert.deepEqual(actualOutput, EXPECTED_OUTPUT);
   });
 });
 
