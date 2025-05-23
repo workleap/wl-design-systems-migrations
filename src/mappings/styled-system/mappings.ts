@@ -1,3 +1,8 @@
+import {
+  alignContentMapper,
+  alignItemsMapper,
+  alignSelfMapper,
+} from "./styles/alignments.js";
 import { columnGapMapper, gapMapper, rowGapMapper } from "./styles/gap.js";
 import {
   marginBottomMapper,
@@ -51,9 +56,9 @@ export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   paddingTop: paddingTopMapper,
   paddingX: paddingXMapper,
   paddingY: paddingYMapper,
-  alignContent: "alignContent",
-  alignItems: "alignItems",
-  alignSelf: "alignSelf",
+  alignContent: alignContentMapper,
+  alignItems: alignItemsMapper,
+  alignSelf: alignSelfMapper,
   aspectRatio: "aspectRatio",
   backgroundColor: "backgroundColor",
   backgroundColorActive: "backgroundColorActive",

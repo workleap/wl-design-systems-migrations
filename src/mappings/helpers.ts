@@ -28,7 +28,7 @@ export function tryGettingLiteralValue(
 }
 
 export function isGlobalValue(
-  value: string | boolean | RegExp,
+  value: string | boolean | number | RegExp,
   extra?: string[]
 ): boolean {
   return (
