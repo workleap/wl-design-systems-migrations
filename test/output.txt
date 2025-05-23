@@ -121,6 +121,39 @@ export function App() {
       <Div backgroundColor="core_orchid-bloom-50" />
       <Div backgroundColor="neutral-weak-selected" />
       <Div backgroundColor="primary" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridAutoColumns="min-content" />
+      <Div gridAutoColumns="initial" />
+      <Div gridAutoColumns="95%" />
+      <Div gridAutoColumns="95.5fr" />
+      <Div gridAutoColumns="core_0" />
+      <Div gridAutoColumns="core_0" />
+      <Div gridAutoColumns="core_480" />
+      <Div UNSAFE_gridAutoColumns="2/3" />
+      <Div UNSAFE_gridAutoColumns="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridAutoRows="min-content" />
+      <Div gridAutoRows="initial" />
+      <Div gridAutoRows="95%" />
+      <Div gridAutoRows="95.5fr" />
+      <Div gridAutoRows="core_0" />
+      <Div gridAutoRows="core_0" />
+      <Div gridAutoRows="core_480" />
+      <Div UNSAFE_gridAutoRows="2/3" />
+      <Div UNSAFE_gridAutoRows="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridTemplateColumns="subgrid" />
+      <Div gridTemplateColumns="min-content" />
+      <Div gridTemplateColumns="core_0" />
+      <Div gridTemplateColumns="core_960" />
+      <Div UNSAFE_gridTemplateColumns="invalid" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridTemplateRows="none" />
+      <Div gridTemplateRows="auto" />
+      <Div gridTemplateRows="core_0" />
+      <Div gridTemplateRows="core_960" />
+      <Div UNSAFE_gridTemplateRows="invalid" />
+      {/* ------------------------------------------------------------------------------------------ */}
     </div>
   );
 }
