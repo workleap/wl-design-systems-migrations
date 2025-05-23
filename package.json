@@ -22,7 +22,8 @@
     "test": "vitest run",
     "test:watch": "vitest watch",
     "deploy:codemod": "codemod publish && pnpm dlx rimraf cdmd_dist",
-    "sample": "codemod --source ./  -t test/input.tsx -d"
+    "sample": "codemod --source ./  -t test/input.tsx -d",
+    "sample:write": "codemod --source ./  -t test/input.tsx"
   },
   "files": [
     "README.md",
