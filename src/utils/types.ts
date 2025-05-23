@@ -23,7 +23,7 @@ export interface Runtime {
 export type PropertyMapperFunction<T extends string = string> = (
   originalValue: JSXAttribute["value"],
   runtime: Runtime
-) => { to: T; value: JSXAttribute["value"] } | null;
+) => { to: T | `REVIEWME_${T}`; value: JSXAttribute["value"] } | null;
 
 export type PropsMapping<
   S extends string = string,
