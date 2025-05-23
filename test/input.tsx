@@ -123,6 +123,39 @@ export function App() {
       <Div backgroundColor="orchid-bloom-50" />
       <Div backgroundColor="neutral-weak-selected" />
       <Div backgroundColor="primary" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridAutoColumns="min-content" />
+      <Div gridAutoColumns="initial" />
+      <Div gridAutoColumns="95%" />
+      <Div gridAutoColumns="95.5fr" />
+      <Div gridAutoColumns={0} />
+      <Div gridAutoColumns="0" />
+      <Div gridAutoColumns={480} />
+      <Div gridAutoColumns="2/3" />
+      <Div gridAutoColumns="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridAutoRows="min-content" />
+      <Div gridAutoRows="initial" />
+      <Div gridAutoRows="95%" />
+      <Div gridAutoRows="95.5fr" />
+      <Div gridAutoRows={0} />
+      <Div gridAutoRows="0" />
+      <Div gridAutoRows={480} />
+      <Div gridAutoRows="2/3" />
+      <Div gridAutoRows="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridTemplateColumns="subgrid" />
+      <Div gridTemplateColumns="min-content" />
+      <Div gridTemplateColumns={0} />
+      <Div gridTemplateColumns={960} />
+      <Div gridTemplateColumns="invalid" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div gridTemplateRows="none" />
+      <Div gridTemplateRows="auto" />
+      <Div gridTemplateRows={0} />
+      <Div gridTemplateRows={960} />
+      <Div gridTemplateRows="invalid" />
+      {/* ------------------------------------------------------------------------------------------ */}
     </div>
   );
 }

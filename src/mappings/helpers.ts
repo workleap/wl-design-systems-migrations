@@ -92,8 +92,14 @@ export function isPaddingTokenValue(
   );
 }
 
-export function isPercentageValue(value: string | boolean | RegExp): boolean {
+export function isPercentageValue(
+  value: string | number | boolean | RegExp
+): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?%$/.test(value);
+}
+
+export function isFrValue(value: string | number | boolean | RegExp): boolean {
+  return typeof value === "string" && /^-?\d+(\.\d+)?fr$/.test(value);
 }
 
 export function hasSameKey(key: string, source: object, target: object) {
