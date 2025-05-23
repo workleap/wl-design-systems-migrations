@@ -192,7 +192,7 @@ describe("migrations", () => {
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
-  test("migrates input.tsx to match expected output.txt", async () => {
+  test("migrates input.tsx to match expected output.txt", () => {
     // Read the input and expected output files
     const INPUT = readFileSync(new URL("input.tsx", import.meta.url), "utf8");
     const EXPECTED_OUTPUT = readFileSync(
