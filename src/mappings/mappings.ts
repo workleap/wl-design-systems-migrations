@@ -24,7 +24,6 @@ export const mappings: MapMetaData = {
     Paragraph: {
       targetName: "Text",
       props: {
-        mappings: defaultPropsMappings,
         additions: {
           elementType: "p",
         },

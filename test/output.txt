@@ -1,0 +1,112 @@
+import { useAccordionContext } from "@workleap/orbiter-ui";
+import { Div, Span, Text, Flex, TextField } from "@hopper-ui/components";
+
+export function App() {
+  const { expandedKeys } = useAccordionContext();
+
+  return (
+    <div>
+      <h1>Page 2</h1>
+      <p>This is a page component.{expandedKeys}</p>
+      <Div width="core_320" UNSAFE_minHeight={"120px"} backgroundColor="warning" />
+      <Div width="35%" backgroundColor="warning" />
+      <Div UNSAFE_width="45rem" backgroundColor="warning" />
+      <Div width={"-35%"} backgroundColor="warning" />
+      <Div width="fit-content" backgroundColor="warning" />
+      <Div height="core_0" backgroundColor="warning" />
+      <Div height="0.5%" backgroundColor="warning" />
+      <Div UNSAFE_height="800px" backgroundColor="warning" />
+      <Div height={"-35%"} backgroundColor="warning" />
+      <Div height="-moz-initial" backgroundColor="warning" />
+      <Text color="neutral">Hello World!</Text>
+      <TextField isDisabled />
+      <Text size={"2xl"} elementType="p">Hello World!</Text>
+      <Flex direction="row" gap="core_960" rowGap="core_0" columnGap="core_0">
+        text
+      </Flex>
+      <Flex
+        direction="row"
+        gap="inline-md"
+        rowGap={"inline-md"}
+        columnGap={"inline-md"}>
+        text
+      </Flex>
+      <Flex
+        direction="row"
+        UNSAFE_gap={"20px"}
+        UNSAFE_rowGap="20px"
+        UNSAFE_columnGap={"20px"}>
+        text
+      </Flex>
+      <Flex
+        direction="row"
+        UNSAFE_gap="35%"
+        UNSAFE_rowGap="35%"
+        UNSAFE_columnGap="35%">
+        text
+      </Flex>
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div UNSAFE_marginTop={"10px"}></Div>
+      <Div marginBottom="inline-sm"></Div>
+      <Div UNSAFE_marginLeft="25%"></Div>
+      <Div UNSAFE_marginRight="auto"></Div>
+      <Div marginX="core_0"></Div>
+      <Div marginLeft="core_1280"></Div>
+      <Div UNSAFE_marginY={"0"}></Div>
+      <Div marginLeft="revert-layer"></Div>
+      <Div margin="inline-lg"></Div>
+      <Div UNSAFE_margin="auto"></Div>
+      <Div UNSAFE_margin="inline-lg inline-md"></Div>
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Span UNSAFE_paddingTop={"10px"}></Span>
+      <Span UNSAFE_paddingBottom="inline-sm"></Span>
+      <Span UNSAFE_paddingLeft="25%"></Span>
+      <Span UNSAFE_paddingRight="auto"></Span>
+      <Span paddingX="core_0"></Span>
+      <Span padding="core_1280"></Span>
+      <Span UNSAFE_paddingY={"0"}></Span>
+      <Span paddingLeft="revert-layer"></Span>
+      <Span UNSAFE_padding="inline-lg"></Span>
+      <Span UNSAFE_padding="auto"></Span>
+      <Span padding="inset-squish-lg"></Span>
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div alignContent="initial" />
+      <Div alignContent="baseline" />
+      <Div alignContent="space-between" />
+      <Div REVIEWME_alignContent="random value" />
+      <Div alignContent={expandedKeys ? "initial" : "space-around"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div alignItems="initial" />
+      <Div alignItems="baseline" />
+      <Div alignItems="flex-start" />
+      <Div REVIEWME_alignItems="space-between" />
+      <Div alignItems={expandedKeys ? "initial" : "space-around"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div alignSelf="initial" />
+      <Div alignSelf="auto" />
+      <Div alignSelf="flex-start" />
+      <Div REVIEWME_alignSelf="space-between" />
+      <Div alignSelf={expandedKeys ? "initial" : "space-around"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div UNSAFE_border="3px" />
+      <Div border="upsell" />
+      <Div border="core_rock-200" />
+      <Div border="core_coastal-200" />
+      <Div border="currentcolor" />
+      <Div UNSAFE_border="0" />
+      <Div border={0} />
+      <Div UNSAFE_border={"solid"} />
+      <Div border={expandedKeys ? "initial" : "space-around"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div UNSAFE_borderRadius="3px" />
+      <Div borderRadius="rounded-md" />
+      <Div borderRadius="pill" />
+      <Div borderRadius="core_9999" />
+      <Div borderRadius="core_0" />
+      <Div borderRadius={0} />
+      <Div UNSAFE_borderRadius="invalid value" />
+      <Div borderRadius={expandedKeys ? "initial" : "space-around"} />
+      <Div borderRadius="circle" />
+    </div>
+  );
+}
