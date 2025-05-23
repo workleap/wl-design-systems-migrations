@@ -29,10 +29,10 @@ export function tryGettingLiteralValue(
 
 export function isGlobalValue(
   value: string | boolean | number | RegExp,
-  extra?: string[]
+  extra?: (string | number)[]
 ): boolean {
   return (
-    typeof value === "string" &&
+    (typeof value === "string" || typeof value === "number") &&
     [
       "-moz-initial",
       "inherit",
@@ -88,4 +88,15 @@ export function isPaddingTokenValue(
 
 export function isPercentageValue(value: string | boolean | RegExp): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?%$/.test(value);
+}
+
+export function hasSameKey(key: string, source: object, target: object) {
+  return Object.keys(source).includes(key) && Object.keys(target).includes(key);
+}
+
+export function hasCoreVersionKey(key: string, source: object, target: object) {
+  return (
+    Object.keys(source).includes(key) &&
+    Object.keys(target).includes(`core_${key}`)
+  );
 }
