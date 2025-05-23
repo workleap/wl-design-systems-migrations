@@ -109,6 +109,20 @@ export function App() {
       <Div borderRadius="invalid value" />
       <Div borderRadius={expandedKeys ? "initial" : "space-around"} />
       <Div borderRadius="circle" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div color="initial" />
+      <Div color="currentcolor" />
+      <Div color="invalid value" />
+      <Div color="amanita-400" />
+      <Div color="neutral-weak-selected" />
+      <Div color="dotColor" />
+      <Div color="" />
+      <Div backgroundColor="initial" />
+      <Div backgroundColor="currentcolor" />
+      <Div backgroundColor="invalid value" />
+      <Div backgroundColor="orchid-bloom-50" />
+      <Div backgroundColor="neutral-weak-selected" />
+      <Div backgroundColor="primary" />
     </div>
   );
 }
