@@ -1,6 +1,6 @@
-import { createMapper } from "../../helpers.js";
+import { createStyleMapper } from "../../helpers.js";
 
-export const justifyContentMapper = createMapper({
+export const justifyContentMapper = createStyleMapper({
   propertyName: "justifyContent",
   extraGlobalValues: [
     "center",
@@ -18,7 +18,7 @@ export const justifyContentMapper = createMapper({
   ],
 });
 
-export const justifyItemsMapper = createMapper({
+export const justifyItemsMapper = createStyleMapper({
   propertyName: "justifyItems",
   extraGlobalValues: [
     "normal",
@@ -37,7 +37,7 @@ export const justifyItemsMapper = createMapper({
   ],
 });
 
-export const justifySelfMapper = createMapper({
+export const justifySelfMapper = createStyleMapper({
   propertyName: "justifySelf",
   extraGlobalValues: [
     "auto",

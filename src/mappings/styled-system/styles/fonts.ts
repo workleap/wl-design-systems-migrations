@@ -1,4 +1,4 @@
-import { createMapper } from "../../helpers.js";
+import { createStyleMapper } from "../../helpers.js";
 
 import {
   FontFamilyMapping as HopperFontFamilyMapping,
@@ -11,14 +11,14 @@ import {
   FontWeightMapping as OrbiterFontWeightMapping,
 } from "@workleap/orbiter-ui";
 
-export const fontFamilyMapper = createMapper({
+export const fontFamilyMapper = createStyleMapper({
   propertyName: "fontFamily",
   unsafePropertyName: "UNSAFE_fontFamily",
   orbiterValidKeys: OrbiterFontFamilyMapping,
   hopperValidKeys: HopperFontFamilyMapping,
 });
 
-export const fontSizeMapper = createMapper({
+export const fontSizeMapper = createStyleMapper({
   propertyName: "fontSize",
   unsafePropertyName: "UNSAFE_fontSize",
   extraGlobalValues: [],
@@ -35,12 +35,13 @@ export const fontSizeMapper = createMapper({
   },
 });
 
-export const fontStyleMapper = createMapper({
+// It is good to have it as it adds REVIEWME_ prefix for invalid values
+export const fontStyleMapper = createStyleMapper({
   propertyName: "fontStyle",
   extraGlobalValues: ["normal", "italic", "oblique"],
 });
 
-export const fontWeightMapper = createMapper({
+export const fontWeightMapper = createStyleMapper({
   propertyName: "fontWeight",
   unsafePropertyName: "UNSAFE_fontWeight",
   hopperValidKeys: HopperFontWeightMapping,

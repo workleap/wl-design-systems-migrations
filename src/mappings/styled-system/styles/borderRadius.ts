@@ -1,9 +1,9 @@
-import { createMapper } from "../../helpers.js";
+import { createStyleMapper } from "../../helpers.js";
 
 import { BorderRadiusMapping as HopperBorderRadiusMapping } from "@hopper-ui/components";
 import { BorderRadiusMapping as OrbiterBorderRadiusMapping } from "@workleap/orbiter-ui";
 
-export const borderRadiusMapper = createMapper({
+export const borderRadiusMapper = createStyleMapper({
   propertyName: "borderRadius",
   unsafePropertyName: "UNSAFE_borderRadius",
   extraGlobalValues: [0],
@@ -11,7 +11,7 @@ export const borderRadiusMapper = createMapper({
   hopperValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderTopLeftRadiusMapper = createMapper({
+export const borderTopLeftRadiusMapper = createStyleMapper({
   propertyName: "borderTopLeftRadius",
   unsafePropertyName: "UNSAFE_borderTopLeftRadius",
   extraGlobalValues: [0],
@@ -19,7 +19,7 @@ export const borderTopLeftRadiusMapper = createMapper({
   hopperValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderTopRightRadiusMapper = createMapper({
+export const borderTopRightRadiusMapper = createStyleMapper({
   propertyName: "borderTopRightRadius",
   unsafePropertyName: "UNSAFE_borderTopRightRadius",
   extraGlobalValues: [0],
@@ -27,7 +27,7 @@ export const borderTopRightRadiusMapper = createMapper({
   hopperValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderBottomLeftRadiusMapper = createMapper({
+export const borderBottomLeftRadiusMapper = createStyleMapper({
   propertyName: "borderBottomLeftRadius",
   unsafePropertyName: "UNSAFE_borderBottomLeftRadius",
   extraGlobalValues: [0],
@@ -35,7 +35,7 @@ export const borderBottomLeftRadiusMapper = createMapper({
   hopperValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderBottomRightRadiusMapper = createMapper({
+export const borderBottomRightRadiusMapper = createStyleMapper({
   propertyName: "borderBottomRightRadius",
   unsafePropertyName: "UNSAFE_borderBottomRightRadius",
   extraGlobalValues: [0],

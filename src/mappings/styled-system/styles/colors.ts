@@ -1,4 +1,4 @@
-import { createMapper } from "../../helpers.js";
+import { createStyleMapper } from "../../helpers.js";
 import { HopperStyledSystemPropsKeys } from "../types.js";
 
 import {
@@ -11,7 +11,7 @@ import {
 } from "@workleap/orbiter-ui";
 
 // Text color mappers
-export const colorMapper = createMapper({
+export const colorMapper = createStyleMapper({
   propertyName: "color",
   unsafePropertyName: "UNSAFE_color",
   extraGlobalValues: ["currentcolor"],
@@ -19,7 +19,7 @@ export const colorMapper = createMapper({
   hopperValidKeys: HopperTextColorMapping,
 });
 
-export const colorActiveMapper = createMapper({
+export const colorActiveMapper = createStyleMapper({
   propertyName: "colorActive",
   unsafePropertyName: "UNSAFE_colorActive",
   extraGlobalValues: ["currentcolor"],
@@ -27,7 +27,7 @@ export const colorActiveMapper = createMapper({
   hopperValidKeys: HopperTextColorMapping,
 });
 
-export const colorFocusMapper = createMapper({
+export const colorFocusMapper = createStyleMapper({
   propertyName: "colorFocus",
   unsafePropertyName: "UNSAFE_colorFocus",
   extraGlobalValues: ["currentcolor"],
@@ -35,7 +35,7 @@ export const colorFocusMapper = createMapper({
   hopperValidKeys: HopperTextColorMapping,
 });
 
-export const colorHoverMapper = createMapper({
+export const colorHoverMapper = createStyleMapper({
   propertyName: "colorHover",
   unsafePropertyName: "UNSAFE_colorHover",
   extraGlobalValues: ["currentcolor"],
@@ -44,7 +44,7 @@ export const colorHoverMapper = createMapper({
 });
 
 // Background color mappers
-export const backgroundColorMapper = createMapper({
+export const backgroundColorMapper = createStyleMapper({
   propertyName: "backgroundColor",
   unsafePropertyName: "UNSAFE_backgroundColor",
   extraGlobalValues: ["currentcolor"],
@@ -52,7 +52,7 @@ export const backgroundColorMapper = createMapper({
   hopperValidKeys: HopperBackgroundColorMapping,
 });
 
-export const backgroundColorActiveMapper = createMapper({
+export const backgroundColorActiveMapper = createStyleMapper({
   propertyName: "backgroundColorActive",
   unsafePropertyName: "UNSAFE_backgroundColorActive",
   extraGlobalValues: ["currentcolor"],
@@ -60,7 +60,7 @@ export const backgroundColorActiveMapper = createMapper({
   hopperValidKeys: HopperBackgroundColorMapping,
 });
 
-export const backgroundColorFocusMapper = createMapper({
+export const backgroundColorFocusMapper = createStyleMapper({
   propertyName: "backgroundColorFocus",
   unsafePropertyName: "UNSAFE_backgroundColorFocus",
   extraGlobalValues: ["currentcolor"],
@@ -68,7 +68,7 @@ export const backgroundColorFocusMapper = createMapper({
   hopperValidKeys: HopperBackgroundColorMapping,
 });
 
-export const backgroundColorHoverMapper = createMapper({
+export const backgroundColorHoverMapper = createStyleMapper({
   propertyName: "backgroundColorHover",
   unsafePropertyName: "UNSAFE_backgroundColorHover",
   extraGlobalValues: ["currentcolor"],

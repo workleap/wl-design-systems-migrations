@@ -1,4 +1,4 @@
-import { createMapper } from "../../helpers.js";
+import { createStyleMapper } from "../../helpers.js";
 import {
   HopperStyledSystemPropsKeys,
   StyledSystemPropertyMapper,
@@ -13,7 +13,7 @@ import {
   SimplePaddingMapping as OrbiterSimplePaddingMapping,
 } from "@workleap/orbiter-ui";
 
-export const paddingMapper = createMapper({
+export const paddingMapper = createStyleMapper({
   propertyName: "padding",
   unsafePropertyName: "UNSAFE_padding",
   orbiterValidKeys: OrbiterComplexPaddingMapping,
@@ -30,42 +30,42 @@ export const paddingMapper = createMapper({
   },
 });
 
-export const paddingBottomMapper = createMapper({
+export const paddingBottomMapper = createStyleMapper({
   propertyName: "paddingBottom",
   unsafePropertyName: "UNSAFE_paddingBottom",
   orbiterValidKeys: OrbiterSimplePaddingMapping,
   hopperValidKeys: HopperSimplePaddingMapping,
 });
 
-export const paddingLeftMapper = createMapper({
+export const paddingLeftMapper = createStyleMapper({
   propertyName: "paddingLeft",
   unsafePropertyName: "UNSAFE_paddingLeft",
   orbiterValidKeys: OrbiterSimplePaddingMapping,
   hopperValidKeys: HopperSimplePaddingMapping,
 });
 
-export const paddingRightMapper = createMapper({
+export const paddingRightMapper = createStyleMapper({
   propertyName: "paddingRight",
   unsafePropertyName: "UNSAFE_paddingRight",
   orbiterValidKeys: OrbiterSimplePaddingMapping,
   hopperValidKeys: HopperSimplePaddingMapping,
 });
 
-export const paddingTopMapper = createMapper({
+export const paddingTopMapper = createStyleMapper({
   propertyName: "paddingTop",
   unsafePropertyName: "UNSAFE_paddingTop",
   orbiterValidKeys: OrbiterSimplePaddingMapping,
   hopperValidKeys: HopperSimplePaddingMapping,
 });
 
-export const paddingXMapper = createMapper({
+export const paddingXMapper = createStyleMapper({
   propertyName: "paddingX",
   unsafePropertyName: "UNSAFE_paddingX",
   orbiterValidKeys: OrbiterSimplePaddingMapping,
   hopperValidKeys: HopperSimplePaddingMapping,
 });
 
-export const paddingYMapper = createMapper({
+export const paddingYMapper = createStyleMapper({
   propertyName: "paddingY",
   unsafePropertyName: "UNSAFE_paddingY",
   orbiterValidKeys: OrbiterSimplePaddingMapping,

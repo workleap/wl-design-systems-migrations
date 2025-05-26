@@ -178,6 +178,52 @@ export function App() {
       <Text fontWeight="revert" />
       <Text fontWeight="core_680" />
       {/* ------------------------------------------------------------------------------------------ */}
+      <Div lineHeight="core_1-4285" />
+      <Div lineHeight="body-xs" />
+      <Div UNSAFE_lineHeight="normal" />
+      <Div UNSAFE_lineHeight="invalid" />
+      <Div UNSAFE_lineHeight="124rem" />
+      <Div UNSAFE_lineHeight={425} />
+      <Div UNSAFE_lineHeight={0} />
+      <Div UNSAFE_lineHeight={"0"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div boxShadow="none" />
+      <Div boxShadow="core_sm" />
+      <Div UNSAFE_boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)" />
+      <Div UNSAFE_boxShadow="invalid-shadow" />
+      <Div UNSAFE_boxShadow={"0"} />
+      <Div boxShadowActive="floating" />
+      <Div boxShadowFocus="lifted" />
+      <Div boxShadowHover="raised" />
+      <Div boxShadow={expandedKeys ? "sm" : "lg"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div fill="initial" />
+      <Div fill="child" />
+      <Div fill="core_coastal-700" />
+      <Div fill="core_abyss" />
+      <Div fill="primary-active" />
+      <Div UNSAFE_fill="invalid value" />
+      <Div fill="initial" />
+      <Div fillFocus="-moz-initial" />
+      <Div fillFocus="core_amanita-75" />
+      <Div fillFocus="warning" />
+      <Div fillFocus="none" />
+      <Div UNSAFE_fillFocus="invalid value" />
+      <Div fillFocus="-moz-initial" />
+      <Div fillHover="core_moss-400" />
+      <Div fillHover="danger" />
+      <Div fillHover="context-stroke" />
+      <Div UNSAFE_fillHover="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Span stroke="currentcolor" />
+      <Span stroke="child" />
+      <Span stroke="core_moss-600" />
+      <Span stroke="transparent" />
+      <Span UNSAFE_stroke="red" />
+      <Span UNSAFE_stroke="aliceblue" />
+      <Span UNSAFE_stroke="CaptionText" />
+      <Span UNSAFE_stroke="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
     </div>
   );
 }
