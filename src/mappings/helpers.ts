@@ -166,9 +166,6 @@ export function createMapper<T extends string = string>({
       if (customValue) return customValue;
 
       if (unsafePropertyName != null) {
-        log(
-          `Using unsafe mapping for ${propertyName}: ${value}. Please review this mapping.`
-        );
         return {
           to: unsafePropertyName,
           value: originalValue,

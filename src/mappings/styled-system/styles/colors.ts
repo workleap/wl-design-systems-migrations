@@ -1,13 +1,5 @@
-import {
-  hasCoreVersionKey,
-  hasSameKey,
-  isGlobalValue,
-  tryGettingLiteralValue,
-} from "../../helpers.js";
-import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper,
-} from "../types.js";
+import { createMapper } from "../../helpers.js";
+import { HopperStyledSystemPropsKeys } from "../types.js";
 
 import {
   BackgroundColorMapping as HopperBackgroundColorMapping,
@@ -18,92 +10,68 @@ import {
   TextColorMapping as OrbiterTextColorMapping,
 } from "@workleap/orbiter-ui";
 
-const createColorMapper =
-  (
-    propertyName: HopperStyledSystemPropsKeys,
-    unsafePropertyName: HopperStyledSystemPropsKeys,
-    isBackground: boolean = false
-  ): StyledSystemPropertyMapper =>
-  (oldValue, { j }) => {
-    const value = tryGettingLiteralValue(oldValue);
-    if (value !== null) {
-      if (isGlobalValue(value, ["currentcolor"])) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      } else if (
-        typeof value === "string" &&
-        hasSameKey(
-          value,
-          isBackground
-            ? OrbiterBackgroundColorMapping
-            : OrbiterTextColorMapping,
-          isBackground ? HopperBackgroundColorMapping : HopperTextColorMapping
-        )
-      ) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      } else if (
-        typeof value === "string" &&
-        hasCoreVersionKey(
-          value,
-          isBackground
-            ? OrbiterBackgroundColorMapping
-            : OrbiterTextColorMapping,
-          isBackground ? HopperBackgroundColorMapping : HopperTextColorMapping
-        )
-      ) {
-        return {
-          to: propertyName,
-          value: j.stringLiteral(`core_${value}`),
-        };
-      }
-
-      return {
-        to: unsafePropertyName,
-        value: oldValue,
-      };
-    }
-
-    return null;
-  };
-
 // Text color mappers
-export const colorMapper = createColorMapper("color", "UNSAFE_color");
-export const colorActiveMapper = createColorMapper(
-  "colorActive",
-  "UNSAFE_colorActive"
-);
-export const colorFocusMapper = createColorMapper(
-  "colorFocus",
-  "UNSAFE_colorFocus"
-);
-export const colorHoverMapper = createColorMapper(
-  "colorHover",
-  "UNSAFE_colorHover"
-);
+export const colorMapper = createMapper({
+  propertyName: "color",
+  unsafePropertyName: "UNSAFE_color",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterTextColorMapping,
+  hopperValidKeys: HopperTextColorMapping,
+});
+
+export const colorActiveMapper = createMapper({
+  propertyName: "colorActive",
+  unsafePropertyName: "UNSAFE_colorActive",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterTextColorMapping,
+  hopperValidKeys: HopperTextColorMapping,
+});
+
+export const colorFocusMapper = createMapper({
+  propertyName: "colorFocus",
+  unsafePropertyName: "UNSAFE_colorFocus",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterTextColorMapping,
+  hopperValidKeys: HopperTextColorMapping,
+});
+
+export const colorHoverMapper = createMapper({
+  propertyName: "colorHover",
+  unsafePropertyName: "UNSAFE_colorHover",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterTextColorMapping,
+  hopperValidKeys: HopperTextColorMapping,
+});
 
 // Background color mappers
-export const backgroundColorMapper = createColorMapper(
-  "backgroundColor",
-  "UNSAFE_backgroundColor",
-  true
-);
-export const backgroundColorActiveMapper = createColorMapper(
-  "backgroundColorActive",
-  "UNSAFE_backgroundColorActive",
-  true
-);
-export const backgroundColorFocusMapper = createColorMapper(
-  "backgroundColorFocus",
-  "UNSAFE_backgroundColorFocus",
-  true
-);
-export const backgroundColorHoverMapper = createColorMapper(
-  "backgroundColorHover",
-  "UNSAFE_backgroundColorHover",
-  true
-);
+export const backgroundColorMapper = createMapper({
+  propertyName: "backgroundColor",
+  unsafePropertyName: "UNSAFE_backgroundColor",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterBackgroundColorMapping,
+  hopperValidKeys: HopperBackgroundColorMapping,
+});
+
+export const backgroundColorActiveMapper = createMapper({
+  propertyName: "backgroundColorActive",
+  unsafePropertyName: "UNSAFE_backgroundColorActive",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterBackgroundColorMapping,
+  hopperValidKeys: HopperBackgroundColorMapping,
+});
+
+export const backgroundColorFocusMapper = createMapper({
+  propertyName: "backgroundColorFocus",
+  unsafePropertyName: "UNSAFE_backgroundColorFocus",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterBackgroundColorMapping,
+  hopperValidKeys: HopperBackgroundColorMapping,
+});
+
+export const backgroundColorHoverMapper = createMapper({
+  propertyName: "backgroundColorHover",
+  unsafePropertyName: "UNSAFE_backgroundColorHover",
+  extraGlobalValues: ["currentcolor"],
+  orbiterValidKeys: OrbiterBackgroundColorMapping,
+  hopperValidKeys: HopperBackgroundColorMapping,
+});
