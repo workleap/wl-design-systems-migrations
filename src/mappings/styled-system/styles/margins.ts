@@ -1,63 +1,59 @@
+import { createMapper } from "../../helpers.js";
+
 import {
-  isGlobalValue,
-  isPercentageValue,
-  isSimpleMarginTokenValue,
-  tryGettingLiteralValue,
-} from "../../helpers.js";
+  ComplexMarginMapping as HopperComplexMarginMapping,
+  SimpleMarginMapping as HopperSimpleMarginMapping,
+} from "@hopper-ui/components";
 import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper,
-} from "../types.js";
+  ComplexMarginMapping as OrbiterComplexMarginMapping,
+  SimpleMarginMapping as OrbiterSimpleMarginMapping,
+} from "@workleap/orbiter-ui";
 
-const createMarginMapper =
-  (
-    propertyName: HopperStyledSystemPropsKeys,
-    unsafePropertyName: HopperStyledSystemPropsKeys
-  ): StyledSystemPropertyMapper =>
-  (oldValue, { j }) => {
-    const value = tryGettingLiteralValue(oldValue);
-    if (value !== null) {
-      if (typeof value === "number") {
-        return {
-          to: propertyName,
-          value: j.stringLiteral(`core_${value}`),
-        };
-      } else if (isGlobalValue(value)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      } else if (isSimpleMarginTokenValue(value)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      }
+export const marginMapper = createMapper({
+  propertyName: "margin",
+  unsafePropertyName: "UNSAFE_margin",
+  orbiterValidKeys: OrbiterComplexMarginMapping,
+  hopperValidKeys: HopperComplexMarginMapping,
+});
 
-      return {
-        to: unsafePropertyName,
-        value: oldValue,
-      };
-    }
-    return null;
-  };
+export const marginBottomMapper = createMapper({
+  propertyName: "marginBottom",
+  unsafePropertyName: "UNSAFE_marginBottom",
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});
 
-export const marginMapper = createMarginMapper("margin", "UNSAFE_margin");
-export const marginBottomMapper = createMarginMapper(
-  "marginBottom",
-  "UNSAFE_marginBottom"
-);
-export const marginLeftMapper = createMarginMapper(
-  "marginLeft",
-  "UNSAFE_marginLeft"
-);
-export const marginRightMapper = createMarginMapper(
-  "marginRight",
-  "UNSAFE_marginRight"
-);
-export const marginTopMapper = createMarginMapper(
-  "marginTop",
-  "UNSAFE_marginTop"
-);
-export const marginXMapper = createMarginMapper("marginX", "UNSAFE_marginX");
-export const marginYMapper = createMarginMapper("marginY", "UNSAFE_marginY");
+export const marginLeftMapper = createMapper({
+  propertyName: "marginLeft",
+  unsafePropertyName: "UNSAFE_marginLeft",
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});
+
+export const marginRightMapper = createMapper({
+  propertyName: "marginRight",
+  unsafePropertyName: "UNSAFE_marginRight",
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});
+
+export const marginTopMapper = createMapper({
+  propertyName: "marginTop",
+  unsafePropertyName: "UNSAFE_marginTop",
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});
+
+export const marginXMapper = createMapper({
+  propertyName: "marginX",
+  unsafePropertyName: "UNSAFE_marginX",
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});
+
+export const marginYMapper = createMapper({
+  propertyName: "marginY",
+  unsafePropertyName: "UNSAFE_marginY",
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});

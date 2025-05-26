@@ -1,82 +1,44 @@
-import {
-  hasCoreVersionKey,
-  hasSameKey,
-  isGlobalValue,
-  tryGettingLiteralValue,
-} from "../../helpers.js";
-import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper,
-} from "../types.js";
+import { createMapper } from "../../helpers.js";
 
 import { BorderRadiusMapping as HopperBorderRadiusMapping } from "@hopper-ui/components";
 import { BorderRadiusMapping as OrbiterBorderRadiusMapping } from "@workleap/orbiter-ui";
 
-const createBorderRadiusMapper =
-  (
-    propertyName: HopperStyledSystemPropsKeys,
-    unsafePropertyName: HopperStyledSystemPropsKeys
-  ): StyledSystemPropertyMapper =>
-  (oldValue, { j }) => {
-    const value = tryGettingLiteralValue(oldValue);
-    if (value !== null) {
-      if (isGlobalValue(value, [0])) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      } else if (
-        (typeof value === "string" || typeof value === "number") &&
-        hasSameKey(
-          value.toString(),
-          OrbiterBorderRadiusMapping,
-          HopperBorderRadiusMapping
-        )
-      ) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      } else if (
-        (typeof value === "string" || typeof value === "number") &&
-        hasCoreVersionKey(
-          value.toString(),
-          OrbiterBorderRadiusMapping,
-          HopperBorderRadiusMapping
-        )
-      ) {
-        return {
-          to: propertyName,
-          value: j.stringLiteral(`core_${value}`),
-        };
-      }
+export const borderRadiusMapper = createMapper({
+  propertyName: "borderRadius",
+  unsafePropertyName: "UNSAFE_borderRadius",
+  extraGlobalValues: [0],
+  orbiterValidKeys: OrbiterBorderRadiusMapping,
+  hopperValidKeys: HopperBorderRadiusMapping,
+});
 
-      return {
-        to: unsafePropertyName,
-        value: oldValue,
-      };
-    }
+export const borderTopLeftRadiusMapper = createMapper({
+  propertyName: "borderTopLeftRadius",
+  unsafePropertyName: "UNSAFE_borderTopLeftRadius",
+  extraGlobalValues: [0],
+  orbiterValidKeys: OrbiterBorderRadiusMapping,
+  hopperValidKeys: HopperBorderRadiusMapping,
+});
 
-    return null;
-  };
+export const borderTopRightRadiusMapper = createMapper({
+  propertyName: "borderTopRightRadius",
+  unsafePropertyName: "UNSAFE_borderTopRightRadius",
+  extraGlobalValues: [0],
+  orbiterValidKeys: OrbiterBorderRadiusMapping,
+  hopperValidKeys: HopperBorderRadiusMapping,
+});
 
-export const borderRadiusMapper = createBorderRadiusMapper(
-  "borderRadius",
-  "UNSAFE_borderRadius"
-);
-export const borderTopLeftRadiusMapper = createBorderRadiusMapper(
-  "borderTopLeftRadius",
-  "UNSAFE_borderTopLeftRadius"
-);
-export const borderTopRightRadiusMapper = createBorderRadiusMapper(
-  "borderTopRightRadius",
-  "UNSAFE_borderTopRightRadius"
-);
-export const borderBottomLeftRadiusMapper = createBorderRadiusMapper(
-  "borderBottomLeftRadius",
-  "UNSAFE_borderBottomLeftRadius"
-);
-export const borderBottomRightRadiusMapper = createBorderRadiusMapper(
-  "borderBottomRightRadius",
-  "UNSAFE_borderBottomRightRadius"
-);
+export const borderBottomLeftRadiusMapper = createMapper({
+  propertyName: "borderBottomLeftRadius",
+  unsafePropertyName: "UNSAFE_borderBottomLeftRadius",
+  extraGlobalValues: [0],
+  orbiterValidKeys: OrbiterBorderRadiusMapping,
+  hopperValidKeys: HopperBorderRadiusMapping,
+});
+
+export const borderBottomRightRadiusMapper = createMapper({
+  propertyName: "borderBottomRightRadius",
+  unsafePropertyName: "UNSAFE_borderBottomRightRadius",
+  extraGlobalValues: [0],
+  orbiterValidKeys: OrbiterBorderRadiusMapping,
+  hopperValidKeys: HopperBorderRadiusMapping,
+});

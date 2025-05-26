@@ -1,47 +1,28 @@
-import {
-  isGlobalValue,
-  isPercentageValue,
-  isSimpleMarginTokenValue,
-  tryGettingLiteralValue,
-} from "../../helpers.js";
-import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper,
-} from "../types.js";
+import { createMapper } from "../../helpers.js";
 
-const createGapMapper =
-  (
-    propertyName: HopperStyledSystemPropsKeys,
-    unsafePropertyName: HopperStyledSystemPropsKeys
-  ): StyledSystemPropertyMapper =>
-  (oldValue, { j }) => {
-    const value = tryGettingLiteralValue(oldValue);
-    if (value !== null) {
-      if (typeof value === "number") {
-        return {
-          to: propertyName,
-          value: j.literal(`core_${value}`),
-        };
-      } else if (isGlobalValue(value, ["normal", "0"])) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      } else if (isSimpleMarginTokenValue(value)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      }
+import { SimpleMarginMapping as HopperSimpleMarginMapping } from "@hopper-ui/components";
+import { SimpleMarginMapping as OrbiterSimpleMarginMapping } from "@workleap/orbiter-ui";
 
-      return {
-        to: unsafePropertyName,
-        value: oldValue,
-      };
-    }
-    return null;
-  };
+export const gapMapper = createMapper({
+  propertyName: "gap",
+  unsafePropertyName: "UNSAFE_gap",
+  extraGlobalValues: ["normal", "0"],
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});
 
-export const gapMapper = createGapMapper("gap", "UNSAFE_gap");
-export const rowGapMapper = createGapMapper("rowGap", "UNSAFE_rowGap");
-export const columnGapMapper = createGapMapper("columnGap", "UNSAFE_columnGap");
+export const rowGapMapper = createMapper({
+  propertyName: "rowGap",
+  unsafePropertyName: "UNSAFE_rowGap",
+  extraGlobalValues: ["normal", "0"],
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});
+
+export const columnGapMapper = createMapper({
+  propertyName: "columnGap",
+  unsafePropertyName: "UNSAFE_columnGap",
+  extraGlobalValues: ["normal", "0"],
+  orbiterValidKeys: OrbiterSimpleMarginMapping,
+  hopperValidKeys: HopperSimpleMarginMapping,
+});

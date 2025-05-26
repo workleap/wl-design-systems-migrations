@@ -2,14 +2,14 @@ import {
   alignContentMapper,
   alignItemsMapper,
   alignSelfMapper,
-} from "./styles/alignments.js";
+} from "./styles/alignments.ts";
 import {
   borderBottomLeftRadiusMapper,
   borderBottomRightRadiusMapper,
   borderRadiusMapper,
   borderTopLeftRadiusMapper,
   borderTopRightRadiusMapper,
-} from "./styles/borderRadius.js";
+} from "./styles/borderRadius.ts";
 import {
   borderActiveMapper,
   borderBottomActiveMapper,
@@ -31,7 +31,7 @@ import {
   borderTopFocusMapper,
   borderTopHoverMapper,
   borderTopMapper,
-} from "./styles/borders.js";
+} from "./styles/borders.ts";
 import {
   backgroundColorActiveMapper,
   backgroundColorFocusMapper,
@@ -41,13 +41,13 @@ import {
   colorFocusMapper,
   colorHoverMapper,
   colorMapper,
-} from "./styles/colors.js";
+} from "./styles/colors.ts";
 import {
   fontFamilyMapper,
   fontSizeMapper,
   fontStyleMapper,
   fontWeightMapper,
-} from "./styles/fonts.js";
+} from "./styles/fonts.ts";
 import { columnGapMapper, gapMapper, rowGapMapper } from "./styles/gap.js";
 import {
   gridAreaMapper,
@@ -67,12 +67,12 @@ import {
   gridTemplateColumnsMapper,
   gridTemplateMapper,
   gridTemplateRowsMapper,
-} from "./styles/grid.js";
+} from "./styles/grid.ts";
 import {
   justifyContentMapper,
   justifyItemsMapper,
   justifySelfMapper,
-} from "./styles/justify.js";
+} from "./styles/justify.ts";
 import {
   marginBottomMapper,
   marginLeftMapper,
@@ -81,7 +81,7 @@ import {
   marginTopMapper,
   marginXMapper,
   marginYMapper,
-} from "./styles/margins.js";
+} from "./styles/margins.ts";
 import {
   paddingBottomMapper,
   paddingLeftMapper,
@@ -90,7 +90,7 @@ import {
   paddingTopMapper,
   paddingXMapper,
   paddingYMapper,
-} from "./styles/paddings.js";
+} from "./styles/paddings.ts";
 import {
   heightMapper,
   maxHeightMapper,
@@ -98,8 +98,8 @@ import {
   minHeightMapper,
   minWidthMapper,
   widthMapper,
-} from "./styles/sizings.js";
-import { StyledSystemPropsMapping } from "./types.js";
+} from "./styles/sizings.ts";
+import { StyledSystemPropsMapping } from "./types.ts";
 
 export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   width: widthMapper,

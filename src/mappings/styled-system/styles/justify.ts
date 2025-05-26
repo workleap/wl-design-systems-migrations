@@ -1,13 +1,4 @@
-import { create } from "domain";
-import {
-  createMapper,
-  isGlobalValue,
-  tryGettingLiteralValue,
-} from "../../helpers.js";
-import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper,
-} from "../types.js";
+import { createMapper } from "../../helpers.js";
 
 export const justifyContentMapper = createMapper({
   propertyName: "justifyContent",
