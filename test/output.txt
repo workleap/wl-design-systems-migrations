@@ -45,7 +45,7 @@ export function App() {
       <Div UNSAFE_marginRight="auto"></Div>
       <Div marginX="core_0"></Div>
       <Div marginLeft="core_1280"></Div>
-      <Div UNSAFE_marginY={"0"}></Div>
+      <Div marginY="core_0"></Div>
       <Div marginLeft="revert-layer"></Div>
       <Div margin="inline-lg"></Div>
       <Div UNSAFE_margin="auto"></Div>
@@ -57,7 +57,7 @@ export function App() {
       <Span UNSAFE_paddingRight="auto"></Span>
       <Span paddingX="core_0"></Span>
       <Span padding="core_1280"></Span>
-      <Span UNSAFE_paddingY={"0"}></Span>
+      <Span paddingY="core_0"></Span>
       <Span paddingLeft="revert-layer"></Span>
       <Span UNSAFE_padding="inline-lg"></Span>
       <Span UNSAFE_padding="auto"></Span>

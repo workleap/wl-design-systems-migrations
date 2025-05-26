@@ -1,9 +1,5 @@
 import { JSXAttribute } from "jscodeshift";
 import { PropertyMapperFunction, Runtime } from "../utils/types.js";
-import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper,
-} from "./styled-system/types.js";
 
 export function tryGettingLiteralValue(
   value: JSXAttribute["value"]
@@ -52,47 +48,6 @@ export function isGlobalValue(
   );
 }
 
-export function isSimpleMarginTokenValue(
-  value: string | boolean | RegExp
-): boolean {
-  return (
-    typeof value === "string" &&
-    [
-      "stack-xs",
-      "stack-sm",
-      "stack-md",
-      "stack-lg",
-      "stack-xl",
-      "inline-xs",
-      "inline-sm",
-      "inline-md",
-      "inline-lg",
-      "inline-xl",
-    ].includes(value)
-  );
-}
-
-export function isPaddingTokenValue(
-  value: string | boolean | RegExp,
-  allowComplexPadding: boolean
-): boolean {
-  return (
-    typeof value === "string" &&
-    (["inset-xs", "inset-sm", "inset-md", "inset-lg", "inset-xl"].includes(
-      value
-    ) ||
-      (allowComplexPadding &&
-        [
-          "inset-squish-sm",
-          "inset-squish-md",
-          "inset-squish-lg",
-          "inset-stretch-sm",
-          "inset-stretch-md",
-          "inset-stretch-lg",
-        ].includes(value)))
-  );
-}
-
 export function isPercentageValue(
   value: string | number | boolean | RegExp
 ): boolean {
@@ -117,7 +72,7 @@ export function hasCoreVersionKey(key: string, source: object, target: object) {
 type MapperOptions<T extends string = string> = {
   propertyName: T;
   unsafePropertyName?: T | null;
-  extraGlobalValues?: string[];
+  extraGlobalValues?: (string | number)[];
   orbiterValidKeys?: Object;
   hopperValidKeys?: Object;
   customMapper?: (
