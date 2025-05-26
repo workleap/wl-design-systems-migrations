@@ -1,4 +1,5 @@
 import { JSXAttribute } from "jscodeshift";
+import { PropertyMapperFunction, Runtime } from "../utils/types.js";
 import {
   HopperStyledSystemPropsKeys,
   StyledSystemPropertyMapper,
@@ -111,4 +112,75 @@ export function hasCoreVersionKey(key: string, source: object, target: object) {
     Object.keys(source).includes(key) &&
     Object.keys(target).includes(`core_${key}`)
   );
+}
+
+type MapperOptions<T extends string = string> = {
+  propertyName: T;
+  unsafePropertyName?: T | null;
+  extraGlobalValues?: string[];
+  orbiterValidKeys?: Object;
+  hopperValidKeys?: Object;
+  customMapper?: (
+    value: string | number | boolean | RegExp,
+    originalValue: JSXAttribute["value"],
+    runtime: Runtime
+  ) => ReturnType<PropertyMapperFunction<T>>;
+};
+
+export function createMapper<T extends string = string>({
+  propertyName,
+  unsafePropertyName,
+  extraGlobalValues,
+  orbiterValidKeys = {},
+  hopperValidKeys = {},
+  customMapper,
+}: MapperOptions<T>): PropertyMapperFunction<T> {
+  return (originalValue, runtime) => {
+    const { j, log } = runtime;
+    const value = tryGettingLiteralValue(originalValue);
+    if (value !== null) {
+      if (isGlobalValue(value, extraGlobalValues)) {
+        return {
+          to: propertyName,
+          value: originalValue,
+        };
+      } else if (
+        (typeof value === "string" || typeof value === "number") &&
+        hasSameKey(value.toString(), orbiterValidKeys, hopperValidKeys)
+      ) {
+        return {
+          to: propertyName,
+          value: originalValue,
+        };
+      } else if (
+        (typeof value === "string" || typeof value === "number") &&
+        hasCoreVersionKey(value.toString(), orbiterValidKeys, hopperValidKeys)
+      ) {
+        return {
+          to: propertyName,
+          value: j.stringLiteral(`core_${value}`),
+        };
+      }
+
+      const customValue = customMapper?.(value, originalValue, runtime);
+      if (customValue) return customValue;
+
+      if (unsafePropertyName != null) {
+        log(
+          `Using unsafe mapping for ${propertyName}: ${value}. Please review this mapping.`
+        );
+        return {
+          to: unsafePropertyName,
+          value: originalValue,
+        };
+      } else {
+        return {
+          to: `REVIEWME_${propertyName}`,
+          value: originalValue,
+        };
+      }
+    }
+
+    return null;
+  };
 }

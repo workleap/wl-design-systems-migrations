@@ -42,6 +42,12 @@ import {
   colorHoverMapper,
   colorMapper,
 } from "./styles/colors.js";
+import {
+  fontFamilyMapper,
+  fontSizeMapper,
+  fontStyleMapper,
+  fontWeightMapper,
+} from "./styles/fonts.js";
 import { columnGapMapper, gapMapper, rowGapMapper } from "./styles/gap.js";
 import {
   gridAreaMapper,
@@ -175,10 +181,10 @@ export const styledSystemPropsMappings: StyledSystemPropsMapping = {
   justifyContent: justifyContentMapper,
   justifyItems: justifyItemsMapper,
   justifySelf: justifySelfMapper,
-  fontFamily: "fontFamily",
-  fontSize: "fontSize",
-  fontStyle: "fontStyle",
-  fontWeight: "fontWeight",
+  fontFamily: fontFamilyMapper,
+  fontSize: fontSizeMapper,
+  fontStyle: fontStyleMapper,
+  fontWeight: fontWeightMapper,
   overflow: "overflow",
   overflowX: "overflowX",
   overflowY: "overflowY",

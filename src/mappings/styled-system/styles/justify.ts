@@ -1,78 +1,66 @@
-import { isGlobalValue, tryGettingLiteralValue } from "../../helpers.js";
+import { create } from "domain";
+import {
+  createMapper,
+  isGlobalValue,
+  tryGettingLiteralValue,
+} from "../../helpers.js";
 import {
   HopperStyledSystemPropsKeys,
   StyledSystemPropertyMapper,
 } from "../types.js";
 
-const createJustifyMapper =
-  (
-    propertyName: HopperStyledSystemPropsKeys,
-    validValues: string[]
-  ): StyledSystemPropertyMapper =>
-  (oldValue, { j }) => {
-    const value = tryGettingLiteralValue(oldValue);
-    if (value !== null) {
-      if (isGlobalValue(value, validValues)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      }
+export const justifyContentMapper = createMapper({
+  propertyName: "justifyContent",
+  extraGlobalValues: [
+    "center",
+    "start",
+    "end",
+    "flex-start",
+    "flex-end",
+    "left",
+    "right",
+    "normal",
+    "space-between",
+    "space-around",
+    "space-evenly",
+    "stretch",
+  ],
+});
 
-      // justify props allow string in Hopper too,
-      // but it should not be a valid case.
-      // so we ask to review it.
-      return {
-        to: `REVIEWME_${propertyName}`,
-        value: oldValue,
-      };
-    }
-    return null;
-  };
+export const justifyItemsMapper = createMapper({
+  propertyName: "justifyItems",
+  extraGlobalValues: [
+    "normal",
+    "stretch",
+    "center",
+    "start",
+    "end",
+    "flex-start",
+    "flex-end",
+    "self-start",
+    "self-end",
+    "left",
+    "right",
+    "baseline",
+    "legacy",
+  ],
+});
 
-export const justifyContentMapper = createJustifyMapper("justifyContent", [
-  "center",
-  "start",
-  "end",
-  "flex-start",
-  "flex-end",
-  "left",
-  "right",
-  "normal",
-  "space-between",
-  "space-around",
-  "space-evenly",
-  "stretch",
-]);
-
-export const justifyItemsMapper = createJustifyMapper("justifyItems", [
-  "normal",
-  "stretch",
-  "center",
-  "start",
-  "end",
-  "flex-start",
-  "flex-end",
-  "self-start",
-  "self-end",
-  "left",
-  "right",
-  "baseline",
-  "legacy",
-]);
-
-export const justifySelfMapper = createJustifyMapper("justifySelf", [
-  "auto",
-  "normal",
-  "stretch",
-  "center",
-  "start",
-  "end",
-  "flex-start",
-  "flex-end",
-  "self-start",
-  "self-end",
-  "left",
-  "right",
-  "baseline",
-]);
+export const justifySelfMapper = createMapper({
+  propertyName: "justifySelf",
+  extraGlobalValues: [
+    "auto",
+    "normal",
+    "stretch",
+    "center",
+    "start",
+    "end",
+    "flex-start",
+    "flex-end",
+    "self-start",
+    "self-end",
+    "left",
+    "right",
+    "baseline",
+  ],
+});
