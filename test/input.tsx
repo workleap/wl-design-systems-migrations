@@ -187,6 +187,52 @@ export function App() {
       <Text fontWeight="revert" />
       <Text fontWeight={680} />
       {/* ------------------------------------------------------------------------------------------ */}
+      <Div lineHeight="1-4285" />
+      <Div lineHeight="body-xs" />
+      <Div lineHeight="normal" />
+      <Div lineHeight="invalid" />
+      <Div lineHeight="124rem" />
+      <Div lineHeight={425} />
+      <Div lineHeight={0} />
+      <Div lineHeight={"0"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div boxShadow="none" />
+      <Div boxShadow="sm" />
+      <Div boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)" />
+      <Div boxShadow="invalid-shadow" />
+      <Div boxShadow={"0"} />
+      <Div boxShadowActive="floating" />
+      <Div boxShadowFocus="lifted" />
+      <Div boxShadowHover="raised" />
+      <Div boxShadow={expandedKeys ? "sm" : "lg"} />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div fill="initial" />
+      <Div fill="child" />
+      <Div fill="coastal-700" />
+      <Div fill="abyss" />
+      <Div fill="primary-active" />
+      <Div fill="invalid value" />
+      <Div fill="initial" />
+      <Div fillFocus="-moz-initial" />
+      <Div fillFocus="amanita-75" />
+      <Div fillFocus="warning" />
+      <Div fillFocus="none" />
+      <Div fillFocus="invalid value" />
+      <Div fillFocus="-moz-initial" />
+      <Div fillHover="moss-400" />
+      <Div fillHover="danger" />
+      <Div fillHover="context-stroke" />
+      <Div fillHover="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Span stroke="currentcolor" />
+      <Span stroke="child" />
+      <Span stroke="moss-600" />
+      <Span stroke="transparent" />
+      <Span stroke="red" />
+      <Span stroke="aliceblue" />
+      <Span stroke="CaptionText" />
+      <Span stroke="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
     </div>
   );
 }

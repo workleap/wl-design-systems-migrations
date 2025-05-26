@@ -1,5 +1,6 @@
 import { JSXAttribute } from "jscodeshift";
 import { PropertyMapperFunction, Runtime } from "../utils/types.js";
+import { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
 
 export function tryGettingLiteralValue(
   value: JSXAttribute["value"]
@@ -136,3 +137,7 @@ export function createMapper<T extends string = string>({
     return null;
   };
 }
+
+export const createStyleMapper = (
+  options: MapperOptions<HopperStyledSystemPropsKeys>
+) => createMapper<HopperStyledSystemPropsKeys>(options);
