@@ -156,6 +156,16 @@ export function App() {
       <Div gridTemplateRows={960} />
       <Div gridTemplateRows="invalid" />
       {/* ------------------------------------------------------------------------------------------ */}
+      <Div justifyContent="space-between" />
+      <Div justifyContent="left" />
+      <Div justifyContent="invalid" />
+      <Div justifyItems="normal" />
+      <Div justifyItems="legacy" />
+      <Div justifyItems="invalid" />
+      <Div justifySelf="auto" />
+      <Div justifySelf="baseline" />
+      <Div justifySelf="invalid" />
+      {/* ------------------------------------------------------------------------------------------ */}
     </div>
   );
 }
