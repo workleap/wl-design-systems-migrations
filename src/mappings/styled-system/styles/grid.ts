@@ -1,63 +1,7 @@
-import {
-  hasCoreVersionKey,
-  hasSameKey,
-  isFrValue,
-  isGlobalValue,
-  isPercentageValue,
-  tryGettingLiteralValue,
-} from "../../helpers.js";
-import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper,
-} from "../types.js";
+import { createMapper, isFrValue, isPercentageValue } from "../../helpers.js";
 
 import { SizingMapping as HopperSizingMapping } from "@hopper-ui/components";
 import { SizingMapping as OrbiterSizingMapping } from "@workleap/orbiter-ui";
-
-const createGridMapper =
-  (
-    propertyName: HopperStyledSystemPropsKeys,
-    unsafePropertyName: HopperStyledSystemPropsKeys,
-    validValues: (string | number)[] = []
-  ): StyledSystemPropertyMapper =>
-  (oldValue, { j }) => {
-    const value = tryGettingLiteralValue(oldValue);
-    if (value !== null) {
-      if (isGlobalValue(value, validValues)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      }
-
-      if (
-        (typeof value === "string" || typeof value === "number") &&
-        hasCoreVersionKey(
-          value.toString(),
-          OrbiterSizingMapping,
-          HopperSizingMapping
-        )
-      ) {
-        return {
-          to: propertyName,
-          value: j.stringLiteral(`core_${value}`),
-        };
-      }
-
-      if (isPercentageValue(value) || isFrValue(value)) {
-        return {
-          to: propertyName,
-          value: oldValue,
-        };
-      }
-
-      return {
-        to: unsafePropertyName,
-        value: oldValue,
-      };
-    }
-    return null;
-  };
 
 // Grid property mappers
 export const gridMapper = "grid";
@@ -74,25 +18,69 @@ export const gridAutoFlowMapper = "gridAutoFlow";
 export const gridColumnSpanMapper = "gridColumnSpan"; //although it has UNSAFE_gridColumnSpan version too, their types are always number. so the unsafe version is not required
 export const gridRowSpanMapper = "gridRowSpan"; //although it has UNSAFE_gridRowSpan version too, their types are always number. so the unsafe version is not required
 
-export const gridAutoColumnsMapper = createGridMapper(
-  "gridAutoColumns",
-  "UNSAFE_gridAutoColumns",
-  ["auto", "min-content", "max-content"]
-);
+export const gridAutoColumnsMapper = createMapper({
+  propertyName: "gridAutoColumns",
+  unsafePropertyName: "UNSAFE_gridAutoColumns",
+  extraGlobalValues: ["auto", "min-content", "max-content"],
+  orbiterValidKeys: OrbiterSizingMapping,
+  hopperValidKeys: HopperSizingMapping,
+  customMapper: (value, originalValue) => {
+    if (isPercentageValue(value) || isFrValue(value)) {
+      return {
+        to: "gridAutoColumns",
+        value: originalValue,
+      };
+    }
+    return null;
+  },
+});
 
-export const gridAutoRowsMapper = createGridMapper(
-  "gridAutoRows",
-  "UNSAFE_gridAutoRows",
-  ["auto", "min-content", "max-content"]
-);
+export const gridAutoRowsMapper = createMapper({
+  propertyName: "gridAutoRows",
+  unsafePropertyName: "UNSAFE_gridAutoRows",
+  extraGlobalValues: ["auto", "min-content", "max-content"],
+  orbiterValidKeys: OrbiterSizingMapping,
+  hopperValidKeys: HopperSizingMapping,
+  customMapper: (value, originalValue) => {
+    if (isPercentageValue(value) || isFrValue(value)) {
+      return {
+        to: "gridAutoRows",
+        value: originalValue,
+      };
+    }
+    return null;
+  },
+});
 
-export const gridTemplateColumnsMapper = createGridMapper(
-  "gridTemplateColumns",
-  "UNSAFE_gridTemplateColumns",
-  ["none", "subgrid", "auto", "max-content", "min-content"]
-);
-export const gridTemplateRowsMapper = createGridMapper(
-  "gridTemplateRows",
-  "UNSAFE_gridTemplateRows",
-  ["none", "subgrid", "auto", "max-content", "min-content"]
-);
+export const gridTemplateColumnsMapper = createMapper({
+  propertyName: "gridTemplateColumns",
+  unsafePropertyName: "UNSAFE_gridTemplateColumns",
+  extraGlobalValues: ["none", "subgrid", "auto", "max-content", "min-content"],
+  orbiterValidKeys: OrbiterSizingMapping,
+  hopperValidKeys: HopperSizingMapping,
+  customMapper: (value, originalValue) => {
+    if (isPercentageValue(value) || isFrValue(value)) {
+      return {
+        to: "gridTemplateColumns",
+        value: originalValue,
+      };
+    }
+    return null;
+  },
+});
+export const gridTemplateRowsMapper = createMapper({
+  propertyName: "gridTemplateRows",
+  unsafePropertyName: "UNSAFE_gridTemplateRows",
+  extraGlobalValues: ["none", "subgrid", "auto", "max-content", "min-content"],
+  orbiterValidKeys: OrbiterSizingMapping,
+  hopperValidKeys: HopperSizingMapping,
+  customMapper: (value, originalValue) => {
+    if (isPercentageValue(value) || isFrValue(value)) {
+      return {
+        to: "gridTemplateRows",
+        value: originalValue,
+      };
+    }
+    return null;
+  },
+});

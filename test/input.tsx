@@ -31,7 +31,7 @@ export function App() {
       <TextInput disabled />
       <Paragraph size={"2xl"}>Hello World!</Paragraph>
       <Flex direction="row" gap={960} rowGap={0} columnGap={0}>
-        text
+        text 1
       </Flex>
       <Flex
         direction="row"
@@ -39,13 +39,13 @@ export function App() {
         rowGap={"inline-md"}
         columnGap={"inline-md"}
       >
-        text
+        text 2
       </Flex>
       <Flex direction="row" gap={"20px"} rowGap="20px" columnGap={"20px"}>
-        text
+        text 3
       </Flex>
       <Flex direction="row" gap="35%" rowGap="35%" columnGap="35%">
-        text
+        text 4
       </Flex>
       {/* ------------------------------------------------------------------------------------------ */}
       <Div marginTop={"10px"}></Div>
@@ -165,6 +165,27 @@ export function App() {
       <Div justifySelf="auto" />
       <Div justifySelf="baseline" />
       <Div justifySelf="invalid" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Text fontFamily="cursive" />
+      <Text fontFamily="revert" />
+      <Text fontFamily="heading-md" />
+      <Text fontFamily="tertiary" />
+      <Text fontFamily="overline" />
+      <Text fontFamily="Arial, sans-serif" />
+      <Text fontSize="lighter" />
+      <Text fontSize="bold" />
+      <Text fontSize="body-lg-bold" />
+      <Text fontSize={120} />
+      <Text fontSize={1234.5} />
+      <Text fontSize="1.2em" />
+      <Text fontSize="invalid-size" />
+      <Text fontStyle="initial" />
+      <Text fontStyle="oblique" />
+      <Text fontStyle="invalid-style" />
+      <Text fontWeight="body-lg-semibold" />
+      <Text fontWeight="initial" />
+      <Text fontWeight="revert" />
+      <Text fontWeight={680} />
       {/* ------------------------------------------------------------------------------------------ */}
     </div>
   );

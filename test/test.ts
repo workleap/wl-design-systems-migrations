@@ -161,6 +161,38 @@ describe("migrations", () => {
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
+  test("when there are similar targets for two components, don't run migration twice for them", async () => {
+    const INPUT = `import { Text, Paragraph } from "@workleap/orbiter-ui"; export function App() { return <div><Paragraph fontFamily="tertiary"/><Text fontFamily="tertiary"></Text></div>; }`;
+    const OUTPUT = `import { Text } from "@hopper-ui/components"; export function App() { return <div><Text fontFamily="core_tertiary" elementType="p" /><Text fontFamily="core_tertiary"></Text></div>; }`;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Text: "Text",
+          Paragraph: {
+            targetName: "Text",
+            props: {
+              mappings: {
+                fontFamily: (value: any) => {
+                  value.value = `core_${value.value}`;
+                  return {
+                    to: "fontFamily",
+                    value: value,
+                  };
+                },
+              },
+              additions: {
+                elementType: "p",
+              },
+            },
+          },
+        },
+      })
+    );
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
   test("when the provided function for property map returns a custom map, use it", async () => {
     const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120px" />; }`;
     const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div CUSTOM_width="120px_Custom" />; }`;

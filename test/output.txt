@@ -8,42 +8,35 @@ export function App() {
     <div>
       <h1>Page 2</h1>
       <p>This is a page component.{expandedKeys}</p>
-      <Div width="core_320" UNSAFE_minHeight={"120px"} backgroundColor="warning" />
-      <Div width="35%" backgroundColor="warning" />
-      <Div UNSAFE_width="45rem" backgroundColor="warning" />
-      <Div width={"-35%"} backgroundColor="warning" />
-      <Div width="fit-content" backgroundColor="warning" />
-      <Div height="core_0" backgroundColor="warning" />
-      <Div height="0.5%" backgroundColor="warning" />
-      <Div UNSAFE_height="800px" backgroundColor="warning" />
-      <Div height={"-35%"} backgroundColor="warning" />
-      <Div height="-moz-initial" backgroundColor="warning" />
+      <Div backgroundColor="warning" width="core_320" UNSAFE_minHeight={"120px"} />
+      <Div backgroundColor="warning" width="35%" />
+      <Div backgroundColor="warning" UNSAFE_width="45rem" />
+      <Div backgroundColor="warning" width={"-35%"} />
+      <Div backgroundColor="warning" width="fit-content" />
+      <Div backgroundColor="warning" height="core_0" />
+      <Div backgroundColor="warning" height="0.5%" />
+      <Div backgroundColor="warning" UNSAFE_height="800px" />
+      <Div backgroundColor="warning" height={"-35%"} />
+      <Div backgroundColor="warning" height="-moz-initial" />
       <Text color="neutral">Hello World!</Text>
       <TextField isDisabled />
       <Text size={"2xl"} elementType="p">Hello World!</Text>
       <Flex direction="row" gap="core_960" rowGap="core_0" columnGap="core_0">
-        text
+        text 1
       </Flex>
       <Flex
         direction="row"
         gap="inline-md"
         rowGap={"inline-md"}
-        columnGap={"inline-md"}>
-        text
+        columnGap={"inline-md"}
+      >
+        text 2
       </Flex>
-      <Flex
-        direction="row"
-        UNSAFE_gap={"20px"}
-        UNSAFE_rowGap="20px"
-        UNSAFE_columnGap={"20px"}>
-        text
+      <Flex direction="row" UNSAFE_gap={"20px"} UNSAFE_rowGap="20px" UNSAFE_columnGap={"20px"}>
+        text 3
       </Flex>
-      <Flex
-        direction="row"
-        UNSAFE_gap="35%"
-        UNSAFE_rowGap="35%"
-        UNSAFE_columnGap="35%">
-        text
+      <Flex direction="row" UNSAFE_gap="35%" UNSAFE_rowGap="35%" UNSAFE_columnGap="35%">
+        text 4
       </Flex>
       {/* ------------------------------------------------------------------------------------------ */}
       <Div UNSAFE_marginTop={"10px"}></Div>
@@ -163,6 +156,27 @@ export function App() {
       <Div justifySelf="auto" />
       <Div justifySelf="baseline" />
       <Div REVIEWME_justifySelf="invalid" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Text UNSAFE_fontFamily="cursive" />
+      <Text fontFamily="revert" />
+      <Text fontFamily="heading-md" />
+      <Text fontFamily="core_tertiary" />
+      <Text fontFamily="overline" />
+      <Text UNSAFE_fontFamily="Arial, sans-serif" />
+      <Text UNSAFE_fontSize="lighter" />
+      <Text UNSAFE_fontSize="bold" />
+      <Text fontSize="body-lg-bold" />
+      <Text fontSize="core_120" />
+      <Text UNSAFE_fontSize="1234.5px" />
+      <Text UNSAFE_fontSize="1.2em" />
+      <Text UNSAFE_fontSize="invalid-size" />
+      <Text fontStyle="initial" />
+      <Text fontStyle="oblique" />
+      <Text REVIEWME_fontStyle="invalid-style" />
+      <Text fontWeight="body-lg-semibold" />
+      <Text fontWeight="initial" />
+      <Text fontWeight="revert" />
+      <Text fontWeight="core_680" />
       {/* ------------------------------------------------------------------------------------------ */}
     </div>
   );

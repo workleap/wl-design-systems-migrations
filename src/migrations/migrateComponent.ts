@@ -1,3 +1,4 @@
+import { JSXIdentifier } from "jscodeshift";
 import { getComponentPropsMetadata } from "../utils/mapping.js";
 import { Runtime } from "../utils/types.js";
 import { addAttribute } from "./addAttribute.js";
@@ -26,15 +27,22 @@ export function migrateComponent(
   const { j, root } = runtime;
 
   const { oldLocalName, newLocalName } = migrateImportResult;
-  const instances = root.find(j.JSXIdentifier, {
-    name: oldLocalName,
+  const instances = root.find(j.JSXOpeningElement, {
+    name: {
+      name: oldLocalName,
+    },
   });
 
   if (newLocalName !== oldLocalName) {
     // rename all instances of the component with the target name
-    instances.forEach((path) => {
-      path.node.name = newLocalName;
-    });
+    // Note: we cannot use instances because it is not including closing tags
+    root
+      .find(j.JSXIdentifier, {
+        name: oldLocalName,
+      })
+      .forEach((path) => {
+        path.node.name = newLocalName;
+      });
   }
 
   // Migrate attributes for the component
@@ -42,7 +50,7 @@ export function migrateComponent(
 
   Object.entries(propsMetadata?.mappings || {}).forEach(
     ([oldAttrName, newAttrName]) => {
-      migrateAttribute(newLocalName, oldAttrName, newAttrName, runtime);
+      migrateAttribute(instances, oldAttrName, newAttrName, runtime);
     }
   );
 
@@ -50,15 +58,7 @@ export function migrateComponent(
   Object.entries(propsMetadata?.additions || {}).forEach(
     ([newAttrName, newAttrValue]) => {
       instances.forEach((path) => {
-        //find the JSXOpeningElement for the path
-        const openingElement = path.parentPath;
-        if (
-          !openingElement ||
-          openingElement.node.type !== "JSXOpeningElement"
-        ) {
-          return;
-        }
-        addAttribute(openingElement, newAttrName, newAttrValue, runtime);
+        addAttribute(path, newAttrName, newAttrValue, runtime);
       });
     }
   );
