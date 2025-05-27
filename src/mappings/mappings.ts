@@ -30,14 +30,7 @@ export const mappings = {
     Text: "Text",
 
     //components
-    Paragraph: {
-      targetName: "Text",
-      props: {
-        additions: {
-          elementType: "p",
-        },
-      },
-    },
+    Paragraph: "Paragraph",
 
     //placeholders
     Content: "Content",
