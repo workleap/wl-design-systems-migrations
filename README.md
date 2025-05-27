@@ -40,7 +40,15 @@ Or explicitly specify all components:
 npx codemod workleap/orbiter-to-hopper -c all
 ```
 
-#### Migrate a Specific Component
+#### Migrate Layout Components Only
+
+Migrate layout related components only (Flex, Grid, Div, ...). You can see the list in [layoutComponents.ts](/src/utils/layoutComponents.ts) file.
+
+```bash
+npx codemod workleap/orbiter-to-hopper -c layout
+```
+
+#### Migrate a Single Component Only
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c Div

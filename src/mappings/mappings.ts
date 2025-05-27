@@ -6,7 +6,7 @@ const defaultPropsMappings = {
   disabled: "isDisabled",
 };
 
-export const mappings: MapMetaData = {
+export const mappings = {
   sourcePackage: "@workleap/orbiter-ui",
   targetPackage: "@hopper-ui/components",
   propsDefaults: {
@@ -64,10 +64,11 @@ export const mappings: MapMetaData = {
     Span: "Span",
     Table: "Table",
 
+    //for fields
     TextInput: "TextField",
     TextArea: "TextArea",
   },
-};
+} satisfies MapMetaData;
 
 //Notes:
 /*
