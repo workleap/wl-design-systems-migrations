@@ -1,6 +1,5 @@
 import { mappings } from "../mappings/mappings.ts";
 
-// Create a type that only allows the specific layout components
 export type LayoutComponent = keyof typeof mappings.components;
 
 export const layoutComponents: LayoutComponent[] = [
@@ -47,4 +46,6 @@ export const layoutComponents: LayoutComponent[] = [
   "HtmlSection",
   "Span",
   "Table",
+
+  "ContentProps",
 ];

@@ -97,7 +97,7 @@ describe("migrations", () => {
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
-  test("when migrating multiple imports of same component with different aliases and existing target import, merge all imports correctly", async () => {
+  test("when migrating multiple imports of same component, migrate all of the instances", async () => {
     const INPUT = `
           import { Div, Div as DivOrbiter } from "@workleap/orbiter-ui";
           import { Div as DivHopper } from "@hopper-ui/components";
@@ -133,6 +133,48 @@ describe("migrations", () => {
               },
             },
           },
+        },
+      })
+    );
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when imports have separate type declaration, migrate them correctly", async () => {
+    const INPUT = `
+          import { Div } from "@workleap/orbiter-ui";
+          import type { ContentProps } from "@workleap/orbiter-ui";
+          `;
+    const OUTPUT = `
+          import { Div } from "@hopper-ui/components";
+          import type { ContentProps } from "@hopper-ui/components";
+          `;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Div: "Div",
+          ContentProps: "ContentProps",
+        },
+      })
+    );
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when imports have inline type specifiers, migrate them correctly", async () => {
+    const INPUT = `
+          import { Div, type ContentProps} from "@workleap/orbiter-ui";
+          `;
+    const OUTPUT = `
+          import { Div, type ContentProps } from "@hopper-ui/components";
+          `;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Div: "Div",
+          ContentProps: "ContentProps",
         },
       })
     );

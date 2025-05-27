@@ -36,6 +36,7 @@ import {
   TextInput,
   UL,
   useAccordionContext,
+  type ContentProps,
 } from "@workleap/orbiter-ui";
 
 export function App() {
@@ -306,3 +307,11 @@ export function App() {
     </div>
   );
 }
+
+const ConditionalContent = ({ children, ...rest }: ContentProps) => {
+  if (!children) {
+    return null;
+  }
+
+  return <Content {...rest}>{children}</Content>;
+};
