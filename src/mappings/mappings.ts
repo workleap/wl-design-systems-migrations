@@ -14,7 +14,15 @@ export const mappings = {
   },
   components: {
     //layout components
-    Flex: "Flex",
+    Flex: {
+      targetName: "Flex",
+      props: {
+        mappings: {
+          flexGrow: "grow",
+          flexShrink: "shrink",
+        },
+      },
+    },
     Grid: "Grid",
     Inline: "Inline",
     Stack: "Stack",
