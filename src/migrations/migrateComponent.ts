@@ -17,49 +17,51 @@ export function migrateComponent(
   componentName: string,
   runtime: Runtime
 ): void {
-  const migrateImportResult = migrateImport(componentName, runtime);
+  const migrateImportResults = migrateImport(componentName, runtime);
   const { mappings } = runtime;
 
-  if (!migrateImportResult) {
+  if (!migrateImportResults) {
     return; // No mapping found, exit early
   }
 
   const { j, root } = runtime;
 
-  const { oldLocalName, newLocalName } = migrateImportResult;
-  const instances = root.find(j.JSXOpeningElement, {
-    name: {
-      name: oldLocalName,
-    },
-  });
-
-  if (newLocalName !== oldLocalName) {
-    // rename all instances of the component with the target name
-    // Note: we cannot use instances because it is not including closing tags
-    root
-      .find(j.JSXIdentifier, {
+  // Process each imported alias
+  migrateImportResults.forEach(({ oldLocalName, newLocalName }) => {
+    const instances = root.find(j.JSXOpeningElement, {
+      name: {
         name: oldLocalName,
-      })
-      .forEach((path) => {
-        path.node.name = newLocalName;
-      });
-  }
+      },
+    });
 
-  // Migrate attributes for the component
-  const propsMetadata = getComponentPropsMetadata(componentName, mappings);
-
-  Object.entries(propsMetadata?.mappings || {}).forEach(
-    ([oldAttrName, newAttrName]) => {
-      migrateAttribute(instances, oldAttrName, newAttrName, runtime);
+    if (newLocalName !== oldLocalName) {
+      // rename all instances of the component with the target name
+      // Note: we cannot use instances because it is not including closing tags
+      root
+        .find(j.JSXIdentifier, {
+          name: oldLocalName,
+        })
+        .forEach((path) => {
+          path.node.name = newLocalName;
+        });
     }
-  );
 
-  // Add additional attributes for the component
-  Object.entries(propsMetadata?.additions || {}).forEach(
-    ([newAttrName, newAttrValue]) => {
-      instances.forEach((path) => {
-        addAttribute(path, newAttrName, newAttrValue, runtime);
-      });
-    }
-  );
+    // Migrate attributes for this specific component alias
+    const propsMetadata = getComponentPropsMetadata(componentName, mappings);
+
+    Object.entries(propsMetadata?.mappings || {}).forEach(
+      ([oldAttrName, newAttrName]) => {
+        migrateAttribute(instances, oldAttrName, newAttrName, runtime);
+      }
+    );
+
+    // Add additional attributes for this specific component alias
+    Object.entries(propsMetadata?.additions || {}).forEach(
+      ([newAttrName, newAttrValue]) => {
+        instances.forEach((path) => {
+          addAttribute(path, newAttrName, newAttrValue, runtime);
+        });
+      }
+    );
+  });
 }

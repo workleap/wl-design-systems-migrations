@@ -1,10 +1,40 @@
+import { Div as DivHopper } from "@hopper-ui/components";
 import {
+  A,
+  Address,
+  Article,
+  Aside,
+  Content,
   Div,
   Flex,
+  Footer,
+  Grid,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  Header,
+  Heading,
+  HtmlButton,
+  HtmlFooter,
+  HtmlHeader,
+  HtmlInput,
+  HtmlSection,
+  Img,
+  Inline,
+  LI,
+  Main,
+  Nav,
+  OL,
   Paragraph,
   Span,
+  Stack,
+  Table,
   Text,
   TextInput,
+  UL,
   useAccordionContext,
 } from "@workleap/orbiter-ui";
 
@@ -14,7 +44,10 @@ export function App() {
   return (
     <div>
       <h1>Page 2</h1>
-      <p>This is a page component.{expandedKeys}</p>
+      <p>Welcome {expandedKeys}</p>
+      {/* ------------------------------------------------------------------------------------------ */}
+      {/* Styled System Props ---------------------------------------------------------------------- */}
+      {/* ------------------------------------------------------------------------------------------ */}
       <Div backgroundColor="warning" width={320} minHeight={"120px"} />
       <Div backgroundColor="warning" width="35%" />
       <Div backgroundColor="warning" width="45rem" />
@@ -233,6 +266,43 @@ export function App() {
       <Span stroke="CaptionText" />
       <Span stroke="invalid value" />
       {/* ------------------------------------------------------------------------------------------ */}
+      {/* Components ------------------------------------------------------------------------------- */}
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Flex padding={400}>text</Flex>
+      <Grid padding={400}>text</Grid>
+      <Inline padding={400}>text</Inline>
+      <Stack padding={400}>text</Stack>
+      <Heading padding={400}>text</Heading>
+      <H1 padding={400}>text</H1>
+      <H2 padding={400}>text</H2>
+      <H3 padding={400}>text</H3>
+      <H4 padding={400}>text</H4>
+      <H5 padding={400}>text</H5>
+      <H6 padding={400}>text</H6>
+      <Text padding={400}>text</Text>
+      <Content padding={400}>text</Content>
+      <Footer padding={400}>text</Footer>
+      <Header padding={400}>text</Header>
+      <A padding={400}>text</A>
+      <Address padding={400}>text</Address>
+      <Article padding={400}>text</Article>
+      <Aside padding={400}>text</Aside>
+      <HtmlButton padding={400}>text</HtmlButton>
+      <Div padding={400}>text</Div>
+      <HtmlFooter padding={400}>text</HtmlFooter>
+      <HtmlHeader padding={400}>text</HtmlHeader>
+      <Img padding={400}>text</Img>
+      <HtmlInput padding={400}>text</HtmlInput>
+      <UL padding={400}>text</UL>
+      <OL padding={400}>text</OL>
+      <LI padding={400}>text</LI>
+      <Main padding={400}>text</Main>
+      <Nav padding={400}>text</Nav>
+      <HtmlSection padding={400}>text</HtmlSection>
+      <Span padding={400}>text</Span>
+      <Table padding={400}>text</Table>
+      {/* ------------------------------------------------------------------------------------------ */}
+      <DivHopper padding={"core_400"}>text</DivHopper>
     </div>
   );
 }

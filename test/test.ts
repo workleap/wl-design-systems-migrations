@@ -45,11 +45,97 @@ const getRuntime = (
 };
 
 describe("migrations", () => {
-  test("when an Orbiter import got an alter name, keep it with hopper Hopper", async () => {
+  test("when an Orbiter import got an alter name, keep it with Hopper", async () => {
     const INPUT = `import { Div as Div2, Text } from "@workleap/orbiter-ui";`;
     const OUTPUT = `import { Div as Div2, Text } from "@hopper-ui/components";`;
 
-    const actualOutput = migrate(getRuntime(INPUT));
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Div: "Div",
+          Text: "Text",
+        },
+      })
+    );
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when migrating multiple imports of same component with different aliases and existing target import, merge all imports correctly", async () => {
+    const INPUT = `
+          import { Div, Div as DivOrbiter } from "@workleap/orbiter-ui";
+          import { Div as DivHopper } from "@hopper-ui/components";
+          function App() {
+            return (
+              <>
+                <Div />
+                <DivOrbiter />
+                <DivHopper />
+              </>
+            );
+          }`;
+    const OUTPUT = `
+          import { Div, Div as DivOrbiter, Div as DivHopper } from "@hopper-ui/components";
+          function App() {
+            return (
+              <>
+                <Div />
+                <DivOrbiter />
+                <DivHopper />
+              </>
+            );
+          }`;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Div: "Div",
+        },
+      })
+    );
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when migrating multiple imports of same component with different aliases and existing target import, merge all imports correctly", async () => {
+    const INPUT = `
+          import { Div, Div as DivOrbiter } from "@workleap/orbiter-ui";
+          import { Div as DivHopper } from "@hopper-ui/components";
+          function App() {
+            return (
+              <>
+                <Div width="100px" />
+                <DivOrbiter width="100px" />
+                <DivHopper width="100px" />
+              </>
+            );
+          }`;
+    const OUTPUT = `
+          import { Div, Div as DivOrbiter, Div as DivHopper } from "@hopper-ui/components";
+          function App() {
+            return (
+              <>
+                <Div UNSAFE_width="100px" />
+                <DivOrbiter UNSAFE_width="100px" />
+                <DivHopper width="100px" />
+              </>
+            );
+          }`;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          Div: {
+            targetName: "Div",
+            props: {
+              mappings: {
+                width: "UNSAFE_width",
+              },
+            },
+          },
+        },
+      })
+    );
 
     assert.deepEqual(actualOutput, OUTPUT);
   });

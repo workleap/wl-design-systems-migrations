@@ -13,14 +13,23 @@ export const mappings: MapMetaData = {
     mappings: defaultPropsMappings,
   },
   components: {
-    Div: "Div",
-    Span: "Span",
-    Text: "Text",
+    //layout components
     Flex: "Flex",
-    Header: "Header",
+    Grid: "Grid",
+    Inline: "Inline",
+    Stack: "Stack",
+
+    //content
     Heading: "Heading",
-    Content: "Content",
-    TextInput: "TextField",
+    H1: "H1",
+    H2: "H2",
+    H3: "H3",
+    H4: "H4",
+    H5: "H5",
+    H6: "H6",
+    Text: "Text",
+
+    //components
     Paragraph: {
       targetName: "Text",
       props: {
@@ -29,5 +38,40 @@ export const mappings: MapMetaData = {
         },
       },
     },
+
+    //placeholders
+    Content: "Content",
+    Footer: "Footer",
+    Header: "Header",
+
+    //html elements
+    A: "A",
+    Address: "Address",
+    Article: "Article",
+    Aside: "Aside",
+    HtmlButton: "HtmlButton",
+    Div: "Div",
+    HtmlFooter: "HtmlFooter",
+    HtmlHeader: "HtmlHeader",
+    Img: "Img",
+    HtmlInput: "HtmlInput",
+    UL: "UL",
+    OL: "OL",
+    LI: "LI",
+    Main: "Main",
+    Nav: "Nav",
+    HtmlSection: "HtmlSection",
+    Span: "Span",
+    Table: "Table",
+
+    TextInput: "TextField",
+    TextArea: "TextArea",
   },
 };
+
+//Notes:
+/*
+- Divider is probably not 1:1, depending on what property is used.
+- Box will be a case by case basis. It's usually used to render a polymorphic component using the as props. We don't support that in hopper. It might be a case of manual migration for that one
+
+*/

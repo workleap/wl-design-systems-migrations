@@ -1,5 +1,41 @@
+import {
+  Div as DivHopper,
+  Flex,
+  Grid,
+  Inline,
+  Stack,
+  Heading,
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  Text,
+  Content,
+  Footer,
+  Header,
+  A,
+  Address,
+  Article,
+  Aside,
+  HtmlButton,
+  Div,
+  HtmlFooter,
+  HtmlHeader,
+  Img,
+  HtmlInput,
+  UL,
+  OL,
+  LI,
+  Main,
+  Nav,
+  HtmlSection,
+  Span,
+  Table,
+  TextField,
+} from "@hopper-ui/components";
 import { useAccordionContext } from "@workleap/orbiter-ui";
-import { Div, Span, Text, Flex, TextField } from "@hopper-ui/components";
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
@@ -7,7 +43,10 @@ export function App() {
   return (
     <div>
       <h1>Page 2</h1>
-      <p>This is a page component.{expandedKeys}</p>
+      <p>Welcome {expandedKeys}</p>
+      {/* ------------------------------------------------------------------------------------------ */}
+      {/* Styled System Props ---------------------------------------------------------------------- */}
+      {/* ------------------------------------------------------------------------------------------ */}
       <Div backgroundColor="warning" width="core_320" UNSAFE_minHeight={"120px"} />
       <Div backgroundColor="warning" width="35%" />
       <Div backgroundColor="warning" UNSAFE_width="45rem" />
@@ -224,6 +263,43 @@ export function App() {
       <Span UNSAFE_stroke="CaptionText" />
       <Span UNSAFE_stroke="invalid value" />
       {/* ------------------------------------------------------------------------------------------ */}
+      {/* Components ------------------------------------------------------------------------------- */}
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Flex padding="core_400">text</Flex>
+      <Grid padding="core_400">text</Grid>
+      <Inline padding="core_400">text</Inline>
+      <Stack padding="core_400">text</Stack>
+      <Heading padding="core_400">text</Heading>
+      <H1 padding="core_400">text</H1>
+      <H2 padding="core_400">text</H2>
+      <H3 padding="core_400">text</H3>
+      <H4 padding="core_400">text</H4>
+      <H5 padding="core_400">text</H5>
+      <H6 padding="core_400">text</H6>
+      <Text padding="core_400">text</Text>
+      <Content padding="core_400">text</Content>
+      <Footer padding="core_400">text</Footer>
+      <Header padding="core_400">text</Header>
+      <A padding="core_400">text</A>
+      <Address padding="core_400">text</Address>
+      <Article padding="core_400">text</Article>
+      <Aside padding="core_400">text</Aside>
+      <HtmlButton padding="core_400">text</HtmlButton>
+      <Div padding="core_400">text</Div>
+      <HtmlFooter padding="core_400">text</HtmlFooter>
+      <HtmlHeader padding="core_400">text</HtmlHeader>
+      <Img padding="core_400">text</Img>
+      <HtmlInput padding="core_400">text</HtmlInput>
+      <UL padding="core_400">text</UL>
+      <OL padding="core_400">text</OL>
+      <LI padding="core_400">text</LI>
+      <Main padding="core_400">text</Main>
+      <Nav padding="core_400">text</Nav>
+      <HtmlSection padding="core_400">text</HtmlSection>
+      <Span padding="core_400">text</Span>
+      <Table padding="core_400">text</Table>
+      {/* ------------------------------------------------------------------------------------------ */}
+      <DivHopper padding={"core_400"}>text</DivHopper>
     </div>
   );
 }
