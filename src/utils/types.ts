@@ -39,14 +39,17 @@ type PropsMapMetaData = {
   };
 };
 
-export type ComponentMapMetaData<T extends string = string> = {
-  targetName: T;
-  props?: PropsMapMetaData;
-};
+export type ComponentMapMetaData =
+  | {
+      to?: string;
+      props?: PropsMapMetaData;
+      tags?: string[];
+    }
+  | string;
 
 export type MapMetaData = {
   sourcePackage: string;
   targetPackage: string;
   propsDefaults?: PropsMapMetaData;
-  components: Record<string, ComponentMapMetaData | string>;
+  components: Record<string, ComponentMapMetaData>;
 };

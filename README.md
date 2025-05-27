@@ -135,7 +135,7 @@ Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just ad
     Span: "Span",
     Text: "Text",    
     Div: {
-      targetName: "Div",
+      to: "Div",
       props: {
         mappings: {
           width: "UNSAFE_width",

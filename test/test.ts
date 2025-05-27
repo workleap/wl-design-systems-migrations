@@ -126,7 +126,6 @@ describe("migrations", () => {
       getRuntime(INPUT, {
         components: {
           Div: {
-            targetName: "Div",
             props: {
               mappings: {
                 width: "UNSAFE_width",
@@ -208,10 +207,10 @@ describe("migrations", () => {
       getRuntime(INPUT, {
         components: {
           Text: {
-            targetName: "Text",
+            to: "Text",
           },
           Paragraph: {
-            targetName: "Text",
+            to: "Text",
           },
         },
       })
@@ -254,7 +253,7 @@ describe("migrations", () => {
       getRuntime(INPUT, {
         components: {
           Paragraph: {
-            targetName: "Text",
+            to: "Text",
             props: {
               additions: {
                 display: "block",
@@ -275,7 +274,6 @@ describe("migrations", () => {
       getRuntime(INPUT, {
         components: {
           Div: {
-            targetName: "Div",
             props: {
               mappings: {
                 width: () => null,
@@ -298,7 +296,7 @@ describe("migrations", () => {
         components: {
           Text: "Text",
           Paragraph: {
-            targetName: "Text",
+            to: "Text",
             props: {
               mappings: {
                 fontFamily: (value: any) => {
@@ -329,7 +327,7 @@ describe("migrations", () => {
       getRuntime(INPUT, {
         components: {
           Div: {
-            targetName: "Div",
+            to: "Div",
             props: {
               mappings: {
                 width: (value) => {

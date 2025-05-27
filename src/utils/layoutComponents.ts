@@ -24,6 +24,7 @@ export const layoutComponents: LayoutComponent[] = [
 
   // placeholders
   "Content",
+  "ContentProps",
   "Footer",
   "Header",
 
