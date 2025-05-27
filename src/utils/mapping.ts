@@ -36,5 +36,7 @@ export function getComponentTargetName(
     return null;
   }
 
-  return typeof component === "string" ? component : component.targetName;
+  return typeof component === "string"
+    ? component
+    : component.to ?? componentName;
 }

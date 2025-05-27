@@ -1,3 +1,4 @@
+import { Address, H1 } from "@hopper-ui/components";
 import { MapMetaData } from "../utils/types.js";
 import { styledSystemPropsMappings } from "./styled-system/mappings.js";
 
@@ -15,7 +16,6 @@ export const mappings = {
   components: {
     //layout components
     Flex: {
-      targetName: "Flex",
       props: {
         mappings: {
           flexGrow: "grow",
@@ -23,12 +23,17 @@ export const mappings = {
         },
       },
     },
+    FlexProps: "FlexProps",
     Grid: "Grid",
+    GridProps: "GridProps",
     Inline: "Inline",
+    InlineProps: "InlineProps",
     Stack: "Stack",
+    StackProps: "StackProps",
 
     //content
     Heading: "Heading",
+    HeadingProps: "HeadingProps",
     H1: "H1",
     H2: "H2",
     H3: "H3",
@@ -36,37 +41,59 @@ export const mappings = {
     H5: "H5",
     H6: "H6",
     Text: "Text",
+    TextProps: "TextProps",
 
     //components
     Paragraph: "Paragraph",
+    ParagraphProps: "ParagraphProps",
 
     //placeholders
     Content: "Content",
     ContentProps: "ContentProps",
     Footer: "Footer",
+    FooterProps: "FooterProps",
     Header: "Header",
+    HeaderProps: "HeaderProps",
 
     //html elements
     A: "A",
+    AProps: "AProps",
     Address: "Address",
+    AddressProps: "AddressProps",
     Article: "Article",
+    ArticleProps: "ArticleProps",
     Aside: "Aside",
+    AsideProps: "AsideProps",
     HtmlButton: "HtmlButton",
+    HtmlButtonProps: "HtmlButtonProps",
     Div: "Div",
+    DivProps: "DivProps",
     HtmlFooter: "HtmlFooter",
+    HtmlFooterProps: "HtmlFooterProps",
     HtmlHeader: "HtmlHeader",
+    HtmlHeaderProps: "HtmlHeaderProps",
     Img: "Img",
+    ImgProps: "ImgProps",
     HtmlInput: "HtmlInput",
+    HtmlInputProps: "HtmlInputProps",
     UL: "UL",
+    ULProps: "ULProps",
     OL: "OL",
+    OLProps: "OLProps",
     LI: "LI",
+    LIProps: "LIProps",
     Main: "Main",
+    MainProps: "MainProps",
     Nav: "Nav",
+    NavProps: "NavProps",
     HtmlSection: "HtmlSection",
+    HtmlSectionProps: "HtmlSectionProps",
     Span: "Span",
+    SpanProps: "SpanProps",
     Table: "Table",
+    TableProps: "TableProps",
 
-    //for fields
+    //form fields
     TextInput: "TextField",
     TextArea: "TextArea",
   },
