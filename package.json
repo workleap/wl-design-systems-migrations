@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "devDependencies": {
     "@codemod.com/codemod-utils": "*",
-    "@hopper-ui/components": "^1.5.9",
+    "@hopper-ui/components": "^1.5.15",
     "@hopper-ui/icons": "^2.9.2",
     "@hopper-ui/styled-system": "^2.5.6",
     "@workleap/orbiter-ui": "^5.6.10",

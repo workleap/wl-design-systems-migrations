@@ -12,6 +12,7 @@ import {
   H5,
   H6,
   Text,
+  Paragraph,
   Content,
   type ContentProps,
   Footer,
@@ -60,7 +61,7 @@ export function App() {
       <Div backgroundColor="warning" height="-moz-initial" />
       <Text color="neutral">Hello World!</Text>
       <TextField isDisabled />
-      <Text size={"2xl"} elementType="p">Hello World!</Text>
+      <Paragraph size={"2xl"}>Hello World!</Paragraph>
       <Flex direction="row" gap="core_960" rowGap="core_0" columnGap="core_0">
         text 1
       </Flex>
@@ -266,7 +267,9 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}
-      <Flex padding="core_400">text</Flex>
+      <Flex padding="core_400" grow={1} shrink={2}>
+        text
+      </Flex>
       <Grid padding="core_400">text</Grid>
       <Inline padding="core_400">text</Inline>
       <Stack padding="core_400">text</Stack>
