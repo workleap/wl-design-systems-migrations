@@ -41,6 +41,7 @@ export const mappings = {
 
     //placeholders
     Content: "Content",
+    ContentProps: "ContentProps",
     Footer: "Footer",
     Header: "Header",
 

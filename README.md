@@ -54,7 +54,9 @@ npx codemod workleap/orbiter-to-hopper -c layout
 npx codemod workleap/orbiter-to-hopper -c Div
 ```
 
-#### Target a Specific Directory
+#### Target a Specific Path
+
+Run the command in the desire path or pass the target path with the `-t` argument.
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -t /app/users
