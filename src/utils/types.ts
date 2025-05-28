@@ -2,6 +2,7 @@ import core, {
   ASTNode,
   Collection,
   JSXAttribute,
+  ObjectProperty,
 } from "jscodeshift/src/core.js";
 
 export interface Runtime {
@@ -12,6 +13,10 @@ export interface Runtime {
   log: (message: string, ...optionalParams: any[]) => void;
 }
 
+export const REVIEWME_PREFIX = "REVIEWME_" as const;
+type REVIEWME_PREFIX_TYPE = typeof REVIEWME_PREFIX;
+export type ReviewMe<T extends string> = `${REVIEWME_PREFIX_TYPE}${T}`;
+
 /**
  * A function that maps a property from one value to another.
  *
@@ -20,10 +25,18 @@ export interface Runtime {
  * @param {Runtime} runtime - The runtime environment.
  * @returns {{ to: T; value: JSXAttribute["value"] } | null} - An object containing the target property name and its new value, or null if the property should be removed.
  */
-export type PropertyMapperFunction<T extends string = string> = (
+export type PropertyMapperFunction<T extends string> = (
   originalValue: JSXAttribute["value"],
   runtime: Runtime
-) => { to: T | `REVIEWME_${T}`; value: JSXAttribute["value"] } | null;
+) => PropertyMapResult<T> | null;
+
+export type PropertyMapResult<
+  T extends string,
+  Z = JSXAttribute["value"] | ObjectProperty["value"]
+> = {
+  to: T | ReviewMe<T>;
+  value: Z;
+};
 
 export type PropsMapping<
   S extends string = string,

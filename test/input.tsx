@@ -48,6 +48,7 @@ import {
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
+  const variable: any = {};
 
   return (
     <div>
@@ -88,6 +89,7 @@ export function App() {
       <Flex direction="row" gap="35%" rowGap="35%" columnGap="35%">
         text 4
       </Flex>
+      <Flex padding={variable}>text</Flex>
       {/* ------------------------------------------------------------------------------------------ */}
       <Div marginTop={"10px"}></Div>
       <Div marginBottom="inline-sm"></Div>
@@ -273,6 +275,16 @@ export function App() {
       <Span stroke="aliceblue" />
       <Span stroke="CaptionText" />
       <Span stroke="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div padding={{ base: "0", md: "inset-sm", xl: "20rem" }} />
+      <Div padding={{ base: "0", md: "inset-sm", xl: "inset-squish-sm" }} />
+      <Div
+        padding={{ base: "0", md: "inset-sm", xl: expandedKeys ? "s" : "f" }}
+      />
+      <Div padding={{}} />
+      <Div justifyContent={{ base: "space-between", md: "initial" }} />
+      <Div justifyContent={{ base: "space-between", md: "invalid" }} />
+      <Div display={{ base: "none", md: "block" }} />
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}

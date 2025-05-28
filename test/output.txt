@@ -48,6 +48,7 @@ import { useAccordionContext } from "@workleap/orbiter-ui";
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
+  const variable: any = {};
 
   return (
     <div>
@@ -86,6 +87,7 @@ export function App() {
       <Flex direction="row" UNSAFE_gap="35%" UNSAFE_rowGap="35%" UNSAFE_columnGap="35%">
         text 4
       </Flex>
+      <Flex padding={variable}>text</Flex>
       {/* ------------------------------------------------------------------------------------------ */}
       <Div UNSAFE_marginTop={"10px"}></Div>
       <Div marginBottom="inline-sm"></Div>
@@ -271,6 +273,34 @@ export function App() {
       <Span UNSAFE_stroke="aliceblue" />
       <Span UNSAFE_stroke="CaptionText" />
       <Span UNSAFE_stroke="invalid value" />
+      {/* ------------------------------------------------------------------------------------------ */}
+      <Div UNSAFE_padding={{
+        base: "core_0",
+        md: "inset-sm",
+        xl: "20rem"
+      }} />
+      <Div padding={{
+        base: "core_0",
+        md: "inset-sm",
+        xl: "inset-squish-sm"
+      }} />
+      <Div
+        padding={{
+          base: "core_0",
+          md: "inset-sm",
+          xl: expandedKeys ? "s" : "f"
+        }}
+      />
+      <Div padding={{}} />
+      <Div justifyContent={{
+        base: "space-between",
+        md: "initial"
+      }} />
+      <Div REVIEWME_justifyContent={{
+        base: "space-between",
+        md: "invalid"
+      }} />
+      <Div display={{ base: "none", md: "block" }} />
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}

@@ -1,7 +1,7 @@
 import jscodeshift, { type API } from "jscodeshift";
 import assert from "node:assert";
 import { readFileSync } from "node:fs";
-import { describe, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import {
   AnalysisResults,
   analyze,
@@ -11,6 +11,10 @@ import { mappings as initialMappings } from "../src/mappings/mappings.js";
 import { migrate } from "../src/migrations/migrate.js";
 import { setReplacer, setReviver } from "../src/utils/serialization.js";
 import { MapMetaData, Runtime } from "../src/utils/types.js";
+
+function removeSpacesAndNewlines(str: string): string {
+  return str.replace(/\s+/g, " ").replace(/\n/g, " ").trim();
+}
 
 const buildApi = (parser: string | undefined): API => ({
   j: parser ? jscodeshift.withParser(parser) : jscodeshift,
@@ -348,6 +352,15 @@ describe("migrations", () => {
     );
 
     assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when the provided value is ResponsiveProp, convert them properly", async () => {
+    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div padding={{ base: 400, sm: 20 }} margin={20} />; }`;
+    const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return ( <Div padding={{ base: "core_400", sm: "core_20" }} margin="core_20" /> ); }`;
+
+    const actualOutput = migrate(getRuntime(INPUT))!;
+
+    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
   });
 
   test("migrates input.tsx to match expected output.txt", () => {
