@@ -19,6 +19,13 @@ import {
   Heading,
   HtmlButton,
   HtmlFooter,
+  HtmlH1,
+  HtmlH1Props,
+  HtmlH2,
+  HtmlH3,
+  HtmlH4,
+  HtmlH5,
+  HtmlH6,
   HtmlHeader,
   HtmlInput,
   HtmlSection,
@@ -282,6 +289,12 @@ export function App() {
       <H4 padding={400}>text</H4>
       <H5 padding={400}>text</H5>
       <H6 padding={400}>text</H6>
+      <HtmlH1 padding={400}>text</HtmlH1>
+      <HtmlH2 padding={400}>text</HtmlH2>
+      <HtmlH3 padding={400}>text</HtmlH3>
+      <HtmlH4 padding={400}>text</HtmlH4>
+      <HtmlH5 padding={400}>text</HtmlH5>
+      <HtmlH6 padding={400}>text</HtmlH6>
       <Text padding={400}>text</Text>
       <Content padding={400}>text</Content>
       <Footer padding={400}>text</Footer>
@@ -317,3 +330,7 @@ const ConditionalContent = ({ children, ...rest }: ContentProps) => {
 
   return <Content {...rest}>{children}</Content>;
 };
+
+interface PageProps extends HtmlH1Props {
+  footerZIndex?: number;
+}
