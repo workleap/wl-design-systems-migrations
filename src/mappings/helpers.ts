@@ -12,7 +12,7 @@ import {
 } from "../utils/types.js";
 import { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
 
-function tryGettingLiteralValue(
+export function tryGettingLiteralValue(
   value: JSXAttribute["value"] | ObjectProperty["value"]
 ): string | number | boolean | RegExp | null {
   if (value == null) {

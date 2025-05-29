@@ -8,6 +8,7 @@ const logFileName = "debug.log";
  * @param logFile - Optional log file name (defaults to debug.log)
  */
 export async function logToFile(
+  fileName: string = logFileName,
   message: unknown,
   ...optionalParams: any[]
 ): Promise<void> {
@@ -21,7 +22,7 @@ export async function logToFile(
       formattedMessage += " " + optionalParams.join(" ");
     }
 
-    const logEntry = `[${timestamp}] ${formattedMessage}\n`;
+    const logEntry = `[${timestamp}]-[${fileName}] \n${formattedMessage}\n`;
     appendFileSync(join(process.cwd(), logFileName), logEntry);
   } catch (error) {
     console.error("Error writing to log file:", error);

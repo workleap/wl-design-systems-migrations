@@ -15,7 +15,7 @@ export function migrateAttribute(
   newAttributeMap: string | PropertyMapperFunction,
   runtime: Runtime
 ): void {
-  const { j, log } = runtime;
+  const { j, log, filePath } = runtime;
   instances.forEach((path) => {
     const attributes = path.node.attributes || [];
     const sourceAttribute = attributes.find(
@@ -40,6 +40,21 @@ export function migrateAttribute(
       } else {
         newAttribute.name = newAttributeMap;
         newAttribute.value = sourceAttribute.value;
+      }
+
+      // Check if the new attribute name already exists
+      const existingNewAttribute = attributes.find(
+        (attr: any) =>
+          attr != sourceAttribute &&
+          attr.name &&
+          attr.name.name === newAttribute.name
+      );
+
+      if (existingNewAttribute) {
+        log(
+          `WARNING: Attribute '${newAttribute.name}' already exists, skipping migration of '${oldAttrName}'`
+        );
+        return;
       }
 
       // Replace just the source attribute in place
