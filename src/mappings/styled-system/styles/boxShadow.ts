@@ -1,36 +1,36 @@
-import { createStyleMapper } from "../../helpers.ts";
+import { createCssPropertyMapper } from "../../helpers.ts";
 
 import { BoxShadowMapping as HopperBoxShadowMapping } from "@hopper-ui/components";
 import { BoxShadowMapping as OrbiterBoxShadowMapping } from "@workleap/orbiter-ui";
 
-export const boxShadowMapper = createStyleMapper({
+export const boxShadowMapper = createCssPropertyMapper({
   propertyName: "boxShadow",
   unsafePropertyName: "UNSAFE_boxShadow",
-  extraGlobalValues: ["none"],
-  orbiterValidKeys: OrbiterBoxShadowMapping,
-  hopperValidKeys: HopperBoxShadowMapping,
+  validGlobalValues: ["none"],
+  sourceValidKeys: OrbiterBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping,
 });
 
-export const boxShadowActiveMapper = createStyleMapper({
+export const boxShadowActiveMapper = createCssPropertyMapper({
   propertyName: "boxShadowActive",
   unsafePropertyName: "UNSAFE_boxShadowActive",
-  extraGlobalValues: ["none"],
-  orbiterValidKeys: OrbiterBoxShadowMapping,
-  hopperValidKeys: HopperBoxShadowMapping,
+  validGlobalValues: ["none"],
+  sourceValidKeys: OrbiterBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping,
 });
 
-export const boxShadowFocusMapper = createStyleMapper({
+export const boxShadowFocusMapper = createCssPropertyMapper({
   propertyName: "boxShadowFocus",
   unsafePropertyName: "UNSAFE_boxShadowFocus",
-  extraGlobalValues: ["none"],
-  orbiterValidKeys: OrbiterBoxShadowMapping,
-  hopperValidKeys: HopperBoxShadowMapping,
+  validGlobalValues: ["none"],
+  sourceValidKeys: OrbiterBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping,
 });
 
-export const boxShadowHoverMapper = createStyleMapper({
+export const boxShadowHoverMapper = createCssPropertyMapper({
   propertyName: "boxShadowHover",
   unsafePropertyName: "UNSAFE_boxShadowHover",
-  extraGlobalValues: ["none"],
-  orbiterValidKeys: OrbiterBoxShadowMapping,
-  hopperValidKeys: HopperBoxShadowMapping,
+  validGlobalValues: ["none"],
+  sourceValidKeys: OrbiterBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping,
 });

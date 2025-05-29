@@ -1,8 +1,8 @@
-import { createStyleMapper } from "../../helpers.js";
+import { createCssPropertyMapper } from "../../helpers.js";
 
-export const justifyContentMapper = createStyleMapper({
+export const justifyContentMapper = createCssPropertyMapper({
   propertyName: "justifyContent",
-  extraGlobalValues: [
+  validGlobalValues: [
     "center",
     "start",
     "end",
@@ -18,9 +18,9 @@ export const justifyContentMapper = createStyleMapper({
   ],
 });
 
-export const justifyItemsMapper = createStyleMapper({
+export const justifyItemsMapper = createCssPropertyMapper({
   propertyName: "justifyItems",
-  extraGlobalValues: [
+  validGlobalValues: [
     "normal",
     "stretch",
     "center",
@@ -37,9 +37,9 @@ export const justifyItemsMapper = createStyleMapper({
   ],
 });
 
-export const justifySelfMapper = createStyleMapper({
+export const justifySelfMapper = createCssPropertyMapper({
   propertyName: "justifySelf",
-  extraGlobalValues: [
+  validGlobalValues: [
     "auto",
     "normal",
     "stretch",

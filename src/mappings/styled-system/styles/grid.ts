@@ -1,5 +1,5 @@
 import {
-  createStyleMapper,
+  createCssPropertyMapper,
   isFrValue,
   isPercentageValue,
 } from "../../helpers.js";
@@ -7,12 +7,12 @@ import {
 import { SizingMapping as HopperSizingMapping } from "@hopper-ui/components";
 import { SizingMapping as OrbiterSizingMapping } from "@workleap/orbiter-ui";
 
-export const gridAutoColumnsMapper = createStyleMapper({
+export const gridAutoColumnsMapper = createCssPropertyMapper({
   propertyName: "gridAutoColumns",
   unsafePropertyName: "UNSAFE_gridAutoColumns",
-  extraGlobalValues: ["auto", "min-content", "max-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "min-content", "max-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value) || isFrValue(value)) {
       return {
@@ -24,12 +24,12 @@ export const gridAutoColumnsMapper = createStyleMapper({
   },
 });
 
-export const gridAutoRowsMapper = createStyleMapper({
+export const gridAutoRowsMapper = createCssPropertyMapper({
   propertyName: "gridAutoRows",
   unsafePropertyName: "UNSAFE_gridAutoRows",
-  extraGlobalValues: ["auto", "min-content", "max-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "min-content", "max-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value) || isFrValue(value)) {
       return {
@@ -41,12 +41,12 @@ export const gridAutoRowsMapper = createStyleMapper({
   },
 });
 
-export const gridTemplateColumnsMapper = createStyleMapper({
+export const gridTemplateColumnsMapper = createCssPropertyMapper({
   propertyName: "gridTemplateColumns",
   unsafePropertyName: "UNSAFE_gridTemplateColumns",
-  extraGlobalValues: ["none", "subgrid", "auto", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["none", "subgrid", "auto", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value) || isFrValue(value)) {
       return {
@@ -57,12 +57,12 @@ export const gridTemplateColumnsMapper = createStyleMapper({
     return null;
   },
 });
-export const gridTemplateRowsMapper = createStyleMapper({
+export const gridTemplateRowsMapper = createCssPropertyMapper({
   propertyName: "gridTemplateRows",
   unsafePropertyName: "UNSAFE_gridTemplateRows",
-  extraGlobalValues: ["none", "subgrid", "auto", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["none", "subgrid", "auto", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value) || isFrValue(value)) {
       return {
