@@ -80,16 +80,35 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 
 ```json
 {
-  "Div": {
-    "usage": 5,
-    "props": {
-      "backgroundColor": {
-        "usage": 5,
-        "values": [
-          "\"neutral-weakest\"",
-          "\"neutral-disabled\"",
-          "style.backgroundColor"
-        ]
+  "overall": {
+    "usage": {
+      "components": 20,
+      "props": 80
+    }
+  },  
+  "components": {  
+    "Text": {
+      "usage": 15,
+      "props": {
+        "size": {
+          "usage": 75,
+          "values": [
+            "\"lg\"",
+          ]
+        }
+      }
+    },
+    "Div": {
+      "usage": 5,
+      "props": {
+        "backgroundColor": {
+          "usage": 5,
+          "values": [
+            "\"neutral-weakest\"",
+            "\"neutral-disabled\"",
+            "style.backgroundColor"
+          ]
+        }
       }
     }
   }
