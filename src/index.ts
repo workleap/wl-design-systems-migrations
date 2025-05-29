@@ -25,7 +25,9 @@ export default function transform(
     root: api.jscodeshift(file.source),
     filePath: file.path,
     mappings: mappings,
-    log: logToFile,
+    log: (...args) => {
+      logToFile(file.path, ...args);
+    },
   };
 
   try {

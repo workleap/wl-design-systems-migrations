@@ -294,9 +294,21 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}
-      <Flex padding={400} flexGrow={1} flexShrink={2} fluid flexFlow="row">
+      <Flex
+        padding={400}
+        flexGrow={1}
+        flexShrink={2}
+        fluid={1 == 1 ? true : true}
+        flexFlow="row"
+        basis={"invalid"}
+      >
         text
       </Flex>
+      <Flex fluid width="120%">
+        text
+      </Flex>
+      <Flex fluid={true}>text</Flex>
+      <Flex fluid={false}>text</Flex>
 
       <Grid padding={400}>text</Grid>
       <Grid autoRows="repeat(3, 1fr)">text</Grid>
