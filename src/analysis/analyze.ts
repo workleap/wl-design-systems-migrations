@@ -27,7 +27,15 @@ export interface ComponentAnalysisResult {
  * so components will be ordered by usage count (most used first)
  */
 export interface AnalysisResults {
-  [componentName: string]: ComponentAnalysisResult;
+  overall: {
+    usage: {
+      components: number;
+      props: number;
+    };
+  };
+  components: {
+    [componentName: string]: ComponentAnalysisResult;
+  };
 }
 
 /**
@@ -51,59 +59,65 @@ export function mergeAnalysisResults(
   > = {};
 
   // Process existing results
-  Object.entries(existingResults).forEach(([componentName, componentData]) => {
-    combinedData[componentName] = {
-      usage: componentData.usage,
-      props: { ...componentData.props },
-    };
-  });
+  Object.entries(existingResults.components).forEach(
+    ([componentName, componentData]) => {
+      combinedData[componentName] = {
+        usage: componentData.usage,
+        props: { ...componentData.props },
+      };
+    }
+  );
 
   // Merge new results
-  Object.entries(newResults).forEach(([componentName, componentData]) => {
-    const combinedComponentData = combinedData[componentName];
-    if (combinedComponentData) {
-      // Add component usage count
-      combinedComponentData.usage += componentData.usage;
+  Object.entries(newResults.components).forEach(
+    ([componentName, componentData]) => {
+      const combinedComponentData = combinedData[componentName];
+      if (combinedComponentData) {
+        // Add component usage count
+        combinedComponentData.usage += componentData.usage;
 
-      // Merge property usage counts and values
-      Object.entries(componentData.props).forEach(([propName, propData]) => {
-        if (combinedComponentData.props[propName]) {
-          // Update usage count
-          const existingProp = combinedComponentData.props[propName];
-          if (existingProp) {
-            existingProp.usage += propData.usage;
+        // Merge property usage counts and values
+        Object.entries(componentData.props).forEach(([propName, propData]) => {
+          if (combinedComponentData.props[propName]) {
+            // Update usage count
+            const existingProp = combinedComponentData.props[propName];
+            if (existingProp) {
+              existingProp.usage += propData.usage;
 
-            // Merge values sets
-            propData.values.forEach((value) => {
-              existingProp.values.add(value);
-            });
+              // Merge values sets
+              propData.values.forEach((value) => {
+                existingProp.values.add(value);
+              });
+            }
+          } else {
+            // Copy the property data with a new Set instance
+            combinedComponentData.props[propName] = {
+              usage: propData.usage,
+              values: new Set([...propData.values]),
+            };
           }
-        } else {
-          // Copy the property data with a new Set instance
-          combinedComponentData.props[propName] = {
+        });
+      } else {
+        // Create a deep copy with new Set instances for each property
+        const propsCopy: Record<
+          string,
+          { usage: number; values: Set<string> }
+        > = {};
+
+        Object.entries(componentData.props).forEach(([propName, propData]) => {
+          propsCopy[propName] = {
             usage: propData.usage,
             values: new Set([...propData.values]),
           };
-        }
-      });
-    } else {
-      // Create a deep copy with new Set instances for each property
-      const propsCopy: Record<string, { usage: number; values: Set<string> }> =
-        {};
+        });
 
-      Object.entries(componentData.props).forEach(([propName, propData]) => {
-        propsCopy[propName] = {
-          usage: propData.usage,
-          values: new Set([...propData.values]),
+        combinedData[componentName] = {
+          usage: componentData.usage,
+          props: propsCopy,
         };
-      });
-
-      combinedData[componentName] = {
-        usage: componentData.usage,
-        props: propsCopy,
-      };
+      }
     }
-  });
+  );
 
   // Sort components by usage count
   const orderedComponents = new Map<string, ComponentAnalysisResult>();
@@ -132,12 +146,31 @@ export function mergeAnalysisResults(
     });
 
   // Convert to regular object to maintain API compatibility
-  const merged: AnalysisResults = {};
+  const components: { [componentName: string]: ComponentAnalysisResult } = {};
   orderedComponents.forEach((value, key) => {
-    merged[key] = value;
+    components[key] = value;
   });
 
-  return merged;
+  // Calculate overall statistics
+  let totalComponentUsage = 0;
+  let totalPropUsage = 0;
+
+  Object.values(components).forEach((component) => {
+    totalComponentUsage += component.usage;
+    Object.values(component.props).forEach((prop) => {
+      totalPropUsage += prop.usage;
+    });
+  });
+
+  return {
+    overall: {
+      usage: {
+        components: totalComponentUsage,
+        props: totalPropUsage,
+      },
+    },
+    components,
+  };
 }
 
 /**
@@ -306,13 +339,37 @@ export function analyze(
   });
 
   // Convert to regular object for API compatibility, but now the insertion order matches the usage order
-  const analysisResults: AnalysisResults = {};
+  const components: { [componentName: string]: ComponentAnalysisResult } = {};
   orderedComponents.forEach((value, key) => {
-    analysisResults[key] = value;
+    components[key] = value;
   });
 
+  // Calculate overall statistics
+  let totalComponentUsage = 0;
+  let totalPropUsage = 0;
+
+  Object.values(components).forEach((component) => {
+    totalComponentUsage += component.usage;
+    Object.values(component.props).forEach((prop) => {
+      totalPropUsage += prop.usage;
+    });
+  });
+
+  const analysisResults: AnalysisResults = {
+    overall: {
+      usage: {
+        components: totalComponentUsage,
+        props: totalPropUsage,
+      },
+    },
+    components,
+  };
+
   // Write the output to a file
-  if (Object.keys(analysisResults).length > 0 && outputPath !== null) {
+  if (
+    Object.keys(analysisResults.components).length > 0 &&
+    outputPath !== null
+  ) {
     let finalResults = analysisResults;
 
     // Check if the file already exists and read its content
@@ -341,7 +398,7 @@ export function analyze(
     } catch (error) {
       runtime.log(`Error writing analysis to file: ${error}`);
     }
-  } else if (Object.keys(analysisResults).length === 0) {
+  } else if (Object.keys(analysisResults.components).length === 0) {
     //console.log(`No component usage found in: ` + runtime.filePath);
   }
 
