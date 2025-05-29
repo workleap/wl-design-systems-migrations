@@ -1,4 +1,4 @@
-import { createStyleMapper, isPercentageValue } from "../../helpers.js";
+import { createCssPropertyMapper, isPercentageValue } from "../../helpers.js";
 
 import {
   LineHeightMapping as HopperLineHeightMapping,
@@ -9,12 +9,12 @@ import {
   SizingMapping as OrbiterSizingMapping,
 } from "@workleap/orbiter-ui";
 
-export const widthMapper = createStyleMapper({
+export const widthMapper = createCssPropertyMapper({
   propertyName: "width",
   unsafePropertyName: "UNSAFE_width",
-  extraGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value)) {
       return {
@@ -26,12 +26,12 @@ export const widthMapper = createStyleMapper({
   },
 });
 
-export const heightMapper = createStyleMapper({
+export const heightMapper = createCssPropertyMapper({
   propertyName: "height",
   unsafePropertyName: "UNSAFE_height",
-  extraGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value)) {
       return {
@@ -43,12 +43,12 @@ export const heightMapper = createStyleMapper({
   },
 });
 
-export const minWidthMapper = createStyleMapper({
+export const minWidthMapper = createCssPropertyMapper({
   propertyName: "minWidth",
   unsafePropertyName: "UNSAFE_minWidth",
-  extraGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value)) {
       return {
@@ -60,12 +60,12 @@ export const minWidthMapper = createStyleMapper({
   },
 });
 
-export const minHeightMapper = createStyleMapper({
+export const minHeightMapper = createCssPropertyMapper({
   propertyName: "minHeight",
   unsafePropertyName: "UNSAFE_minHeight",
-  extraGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value)) {
       return {
@@ -77,12 +77,12 @@ export const minHeightMapper = createStyleMapper({
   },
 });
 
-export const maxWidthMapper = createStyleMapper({
+export const maxWidthMapper = createCssPropertyMapper({
   propertyName: "maxWidth",
   unsafePropertyName: "UNSAFE_maxWidth",
-  extraGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value)) {
       return {
@@ -94,12 +94,12 @@ export const maxWidthMapper = createStyleMapper({
   },
 });
 
-export const maxHeightMapper = createStyleMapper({
+export const maxHeightMapper = createCssPropertyMapper({
   propertyName: "maxHeight",
   unsafePropertyName: "UNSAFE_maxHeight",
-  extraGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
-  orbiterValidKeys: OrbiterSizingMapping,
-  hopperValidKeys: HopperSizingMapping,
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  sourceValidKeys: OrbiterSizingMapping,
+  targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
     if (isPercentageValue(value)) {
       return {
@@ -111,9 +111,9 @@ export const maxHeightMapper = createStyleMapper({
   },
 });
 
-export const lineHeightMapper = createStyleMapper({
+export const lineHeightMapper = createCssPropertyMapper({
   propertyName: "lineHeight",
   unsafePropertyName: "UNSAFE_lineHeight",
-  orbiterValidKeys: OrbiterLineHeightMapping,
-  hopperValidKeys: HopperLineHeightMapping,
+  sourceValidKeys: OrbiterLineHeightMapping,
+  targetValidKeys: HopperLineHeightMapping,
 });

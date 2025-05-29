@@ -1,164 +1,164 @@
-import { createStyleMapper } from "../../helpers.js";
+import { createCssPropertyMapper } from "../../helpers.js";
 
 import { BorderMapping as HopperBorderMapping } from "@hopper-ui/components";
 import { BorderMapping as OrbiterBorderMapping } from "@workleap/orbiter-ui";
 
-export const borderMapper = createStyleMapper({
+export const borderMapper = createCssPropertyMapper({
   propertyName: "border",
   unsafePropertyName: "UNSAFE_border",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderActiveMapper = createStyleMapper({
+export const borderActiveMapper = createCssPropertyMapper({
   propertyName: "borderActive",
   unsafePropertyName: "UNSAFE_borderActive",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderFocusMapper = createStyleMapper({
+export const borderFocusMapper = createCssPropertyMapper({
   propertyName: "borderFocus",
   unsafePropertyName: "UNSAFE_borderFocus",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderHoverMapper = createStyleMapper({
+export const borderHoverMapper = createCssPropertyMapper({
   propertyName: "borderHover",
   unsafePropertyName: "UNSAFE_borderHover",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderBottomMapper = createStyleMapper({
+export const borderBottomMapper = createCssPropertyMapper({
   propertyName: "borderBottom",
   unsafePropertyName: "UNSAFE_borderBottom",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderBottomActiveMapper = createStyleMapper({
+export const borderBottomActiveMapper = createCssPropertyMapper({
   propertyName: "borderBottomActive",
   unsafePropertyName: "UNSAFE_borderBottomActive",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderBottomFocusMapper = createStyleMapper({
+export const borderBottomFocusMapper = createCssPropertyMapper({
   propertyName: "borderBottomFocus",
   unsafePropertyName: "UNSAFE_borderBottomFocus",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderBottomHoverMapper = createStyleMapper({
+export const borderBottomHoverMapper = createCssPropertyMapper({
   propertyName: "borderBottomHover",
   unsafePropertyName: "UNSAFE_borderBottomHover",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderLeftMapper = createStyleMapper({
+export const borderLeftMapper = createCssPropertyMapper({
   propertyName: "borderLeft",
   unsafePropertyName: "UNSAFE_borderLeft",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderLeftActiveMapper = createStyleMapper({
+export const borderLeftActiveMapper = createCssPropertyMapper({
   propertyName: "borderLeftActive",
   unsafePropertyName: "UNSAFE_borderLeftActive",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderLeftFocusMapper = createStyleMapper({
+export const borderLeftFocusMapper = createCssPropertyMapper({
   propertyName: "borderLeftFocus",
   unsafePropertyName: "UNSAFE_borderLeftFocus",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderLeftHoverMapper = createStyleMapper({
+export const borderLeftHoverMapper = createCssPropertyMapper({
   propertyName: "borderLeftHover",
   unsafePropertyName: "UNSAFE_borderLeftHover",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderRightMapper = createStyleMapper({
+export const borderRightMapper = createCssPropertyMapper({
   propertyName: "borderRight",
   unsafePropertyName: "UNSAFE_borderRight",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderRightActiveMapper = createStyleMapper({
+export const borderRightActiveMapper = createCssPropertyMapper({
   propertyName: "borderRightActive",
   unsafePropertyName: "UNSAFE_borderRightActive",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderRightFocusMapper = createStyleMapper({
+export const borderRightFocusMapper = createCssPropertyMapper({
   propertyName: "borderRightFocus",
   unsafePropertyName: "UNSAFE_borderRightFocus",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderRightHoverMapper = createStyleMapper({
+export const borderRightHoverMapper = createCssPropertyMapper({
   propertyName: "borderRightHover",
   unsafePropertyName: "UNSAFE_borderRightHover",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderTopMapper = createStyleMapper({
+export const borderTopMapper = createCssPropertyMapper({
   propertyName: "borderTop",
   unsafePropertyName: "UNSAFE_borderTop",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderTopActiveMapper = createStyleMapper({
+export const borderTopActiveMapper = createCssPropertyMapper({
   propertyName: "borderTopActive",
   unsafePropertyName: "UNSAFE_borderTopActive",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderTopFocusMapper = createStyleMapper({
+export const borderTopFocusMapper = createCssPropertyMapper({
   propertyName: "borderTopFocus",
   unsafePropertyName: "UNSAFE_borderTopFocus",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });
 
-export const borderTopHoverMapper = createStyleMapper({
+export const borderTopHoverMapper = createCssPropertyMapper({
   propertyName: "borderTopHover",
   unsafePropertyName: "UNSAFE_borderTopHover",
-  extraGlobalValues: ["currentcolor", "transparent", 0],
-  orbiterValidKeys: OrbiterBorderMapping,
-  hopperValidKeys: HopperBorderMapping,
+  validGlobalValues: ["currentcolor", "transparent", 0],
+  sourceValidKeys: OrbiterBorderMapping,
+  targetValidKeys: HopperBorderMapping,
 });

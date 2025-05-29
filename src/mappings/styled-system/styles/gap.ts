@@ -1,28 +1,28 @@
-import { createStyleMapper } from "../../helpers.js";
+import { createCssPropertyMapper } from "../../helpers.js";
 
 import { SimpleMarginMapping as HopperSimpleMarginMapping } from "@hopper-ui/components";
 import { SimpleMarginMapping as OrbiterSimpleMarginMapping } from "@workleap/orbiter-ui";
 
-export const gapMapper = createStyleMapper({
+export const gapMapper = createCssPropertyMapper({
   propertyName: "gap",
   unsafePropertyName: "UNSAFE_gap",
-  extraGlobalValues: ["normal", "0"],
-  orbiterValidKeys: OrbiterSimpleMarginMapping,
-  hopperValidKeys: HopperSimpleMarginMapping,
+  validGlobalValues: ["normal", "0"],
+  sourceValidKeys: OrbiterSimpleMarginMapping,
+  targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const rowGapMapper = createStyleMapper({
+export const rowGapMapper = createCssPropertyMapper({
   propertyName: "rowGap",
   unsafePropertyName: "UNSAFE_rowGap",
-  extraGlobalValues: ["normal", "0"],
-  orbiterValidKeys: OrbiterSimpleMarginMapping,
-  hopperValidKeys: HopperSimpleMarginMapping,
+  validGlobalValues: ["normal", "0"],
+  sourceValidKeys: OrbiterSimpleMarginMapping,
+  targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const columnGapMapper = createStyleMapper({
+export const columnGapMapper = createCssPropertyMapper({
   propertyName: "columnGap",
   unsafePropertyName: "UNSAFE_columnGap",
-  extraGlobalValues: ["normal", "0"],
-  orbiterValidKeys: OrbiterSimpleMarginMapping,
-  hopperValidKeys: HopperSimpleMarginMapping,
+  validGlobalValues: ["normal", "0"],
+  sourceValidKeys: OrbiterSimpleMarginMapping,
+  targetValidKeys: HopperSimpleMarginMapping,
 });

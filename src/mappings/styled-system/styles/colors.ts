@@ -1,4 +1,4 @@
-import { createStyleMapper } from "../../helpers.js";
+import { createCssPropertyMapper } from "../../helpers.js";
 import { HopperStyledSystemPropsKeys } from "../types.js";
 
 import {
@@ -11,67 +11,67 @@ import {
 } from "@workleap/orbiter-ui";
 
 // Text color mappers
-export const colorMapper = createStyleMapper({
+export const colorMapper = createCssPropertyMapper({
   propertyName: "color",
   unsafePropertyName: "UNSAFE_color",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterTextColorMapping,
-  hopperValidKeys: HopperTextColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterTextColorMapping,
+  targetValidKeys: HopperTextColorMapping,
 });
 
-export const colorActiveMapper = createStyleMapper({
+export const colorActiveMapper = createCssPropertyMapper({
   propertyName: "colorActive",
   unsafePropertyName: "UNSAFE_colorActive",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterTextColorMapping,
-  hopperValidKeys: HopperTextColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterTextColorMapping,
+  targetValidKeys: HopperTextColorMapping,
 });
 
-export const colorFocusMapper = createStyleMapper({
+export const colorFocusMapper = createCssPropertyMapper({
   propertyName: "colorFocus",
   unsafePropertyName: "UNSAFE_colorFocus",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterTextColorMapping,
-  hopperValidKeys: HopperTextColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterTextColorMapping,
+  targetValidKeys: HopperTextColorMapping,
 });
 
-export const colorHoverMapper = createStyleMapper({
+export const colorHoverMapper = createCssPropertyMapper({
   propertyName: "colorHover",
   unsafePropertyName: "UNSAFE_colorHover",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterTextColorMapping,
-  hopperValidKeys: HopperTextColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterTextColorMapping,
+  targetValidKeys: HopperTextColorMapping,
 });
 
 // Background color mappers
-export const backgroundColorMapper = createStyleMapper({
+export const backgroundColorMapper = createCssPropertyMapper({
   propertyName: "backgroundColor",
   unsafePropertyName: "UNSAFE_backgroundColor",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterBackgroundColorMapping,
-  hopperValidKeys: HopperBackgroundColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterBackgroundColorMapping,
+  targetValidKeys: HopperBackgroundColorMapping,
 });
 
-export const backgroundColorActiveMapper = createStyleMapper({
+export const backgroundColorActiveMapper = createCssPropertyMapper({
   propertyName: "backgroundColorActive",
   unsafePropertyName: "UNSAFE_backgroundColorActive",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterBackgroundColorMapping,
-  hopperValidKeys: HopperBackgroundColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterBackgroundColorMapping,
+  targetValidKeys: HopperBackgroundColorMapping,
 });
 
-export const backgroundColorFocusMapper = createStyleMapper({
+export const backgroundColorFocusMapper = createCssPropertyMapper({
   propertyName: "backgroundColorFocus",
   unsafePropertyName: "UNSAFE_backgroundColorFocus",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterBackgroundColorMapping,
-  hopperValidKeys: HopperBackgroundColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterBackgroundColorMapping,
+  targetValidKeys: HopperBackgroundColorMapping,
 });
 
-export const backgroundColorHoverMapper = createStyleMapper({
+export const backgroundColorHoverMapper = createCssPropertyMapper({
   propertyName: "backgroundColorHover",
   unsafePropertyName: "UNSAFE_backgroundColorHover",
-  extraGlobalValues: ["currentcolor"],
-  orbiterValidKeys: OrbiterBackgroundColorMapping,
-  hopperValidKeys: HopperBackgroundColorMapping,
+  validGlobalValues: ["currentcolor"],
+  sourceValidKeys: OrbiterBackgroundColorMapping,
+  targetValidKeys: HopperBackgroundColorMapping,
 });
