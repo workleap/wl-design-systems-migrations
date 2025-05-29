@@ -1,2 +1,4 @@
 - When creating a PR:
-- Make sure to update the version in the `.codemodrc.json` file. Just increment the minor version.
+  - Make sure to update the version in the `.codemodrc.json` file only if the logic has changed.
+    - Just increment the minor version.
+  - Make sure to update the `README.md` file with any new features or changes.
