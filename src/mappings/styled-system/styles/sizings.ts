@@ -1,4 +1,7 @@
-import { createCssPropertyMapper, isPercentageValue } from "../../helpers.js";
+import {
+  createHopperCssPropertyMapper,
+  isPercentageValue,
+} from "../../helpers.js";
 
 import {
   LineHeightMapping as HopperLineHeightMapping,
@@ -9,7 +12,7 @@ import {
   SizingMapping as OrbiterSizingMapping,
 } from "@workleap/orbiter-ui";
 
-export const widthMapper = createCssPropertyMapper({
+export const widthMapper = createHopperCssPropertyMapper({
   propertyName: "width",
   unsafePropertyName: "UNSAFE_width",
   validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
@@ -26,7 +29,7 @@ export const widthMapper = createCssPropertyMapper({
   },
 });
 
-export const heightMapper = createCssPropertyMapper({
+export const heightMapper = createHopperCssPropertyMapper({
   propertyName: "height",
   unsafePropertyName: "UNSAFE_height",
   validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
@@ -43,7 +46,7 @@ export const heightMapper = createCssPropertyMapper({
   },
 });
 
-export const minWidthMapper = createCssPropertyMapper({
+export const minWidthMapper = createHopperCssPropertyMapper({
   propertyName: "minWidth",
   unsafePropertyName: "UNSAFE_minWidth",
   validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
@@ -60,7 +63,7 @@ export const minWidthMapper = createCssPropertyMapper({
   },
 });
 
-export const minHeightMapper = createCssPropertyMapper({
+export const minHeightMapper = createHopperCssPropertyMapper({
   propertyName: "minHeight",
   unsafePropertyName: "UNSAFE_minHeight",
   validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
@@ -77,7 +80,7 @@ export const minHeightMapper = createCssPropertyMapper({
   },
 });
 
-export const maxWidthMapper = createCssPropertyMapper({
+export const maxWidthMapper = createHopperCssPropertyMapper({
   propertyName: "maxWidth",
   unsafePropertyName: "UNSAFE_maxWidth",
   validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
@@ -94,7 +97,7 @@ export const maxWidthMapper = createCssPropertyMapper({
   },
 });
 
-export const maxHeightMapper = createCssPropertyMapper({
+export const maxHeightMapper = createHopperCssPropertyMapper({
   propertyName: "maxHeight",
   unsafePropertyName: "UNSAFE_maxHeight",
   validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
@@ -111,7 +114,7 @@ export const maxHeightMapper = createCssPropertyMapper({
   },
 });
 
-export const lineHeightMapper = createCssPropertyMapper({
+export const lineHeightMapper = createHopperCssPropertyMapper({
   propertyName: "lineHeight",
   unsafePropertyName: "UNSAFE_lineHeight",
   sourceValidKeys: OrbiterLineHeightMapping,

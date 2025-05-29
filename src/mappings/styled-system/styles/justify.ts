@@ -1,6 +1,6 @@
-import { createCssPropertyMapper } from "../../helpers.js";
+import { createHopperCssPropertyMapper } from "../../helpers.js";
 
-export const justifyContentMapper = createCssPropertyMapper({
+export const justifyContentMapper = createHopperCssPropertyMapper({
   propertyName: "justifyContent",
   validGlobalValues: [
     "center",
@@ -18,7 +18,7 @@ export const justifyContentMapper = createCssPropertyMapper({
   ],
 });
 
-export const justifyItemsMapper = createCssPropertyMapper({
+export const justifyItemsMapper = createHopperCssPropertyMapper({
   propertyName: "justifyItems",
   validGlobalValues: [
     "normal",
@@ -37,7 +37,7 @@ export const justifyItemsMapper = createCssPropertyMapper({
   ],
 });
 
-export const justifySelfMapper = createCssPropertyMapper({
+export const justifySelfMapper = createHopperCssPropertyMapper({
   propertyName: "justifySelf",
   validGlobalValues: [
     "auto",

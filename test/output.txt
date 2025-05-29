@@ -316,10 +316,18 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}
-      <Flex padding="core_400" grow={1} shrink={2}>
+      <Flex padding="core_400" grow={1} shrink={2} fluid direction="row">
         text
       </Flex>
       <Grid padding="core_400">text</Grid>
+      <Grid UNSAFE_autoRows="repeat(3, 1fr)">text</Grid>
+      <Grid autoRows="min-content">text</Grid>
+      <Grid UNSAFE_autoColumns="repeat(3, 1fr)">text</Grid>
+      <Grid autoColumns="auto">text</Grid>
+      <Grid UNSAFE_templateRows="repeat(3, 1fr)">text</Grid>
+      <Grid templateRows="subgrid">text</Grid>
+      <Grid UNSAFE_templateColumns="repeat(3, 1fr)">text</Grid>
+      <Grid templateColumns="subgrid">text</Grid>
       <Inline padding="core_400">text</Inline>
       <Stack padding="core_400">text</Stack>
       <Heading padding="core_400">text</Heading>

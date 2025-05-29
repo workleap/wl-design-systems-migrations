@@ -1,10 +1,12 @@
-import { Address, H1 } from "@hopper-ui/components";
 import { MapMetaData } from "../utils/types.js";
+import { flexMapping } from "./components/flex.ts";
+import { gridMappings } from "./components/grid.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.js";
 
 const defaultPropsMappings = {
   ...styledSystemPropsMappings,
   disabled: "isDisabled",
+  readOnly: "isReadOnly",
 };
 
 export const mappings = {
@@ -15,17 +17,8 @@ export const mappings = {
   },
   components: {
     //layout components
-    Flex: {
-      props: {
-        mappings: {
-          flexGrow: "grow",
-          flexShrink: "shrink",
-        },
-      },
-    },
-    FlexProps: "FlexProps",
-    Grid: "Grid",
-    GridProps: "GridProps",
+    ...flexMapping,
+    ...gridMappings,
     Inline: "Inline",
     InlineProps: "InlineProps",
     Stack: "Stack",

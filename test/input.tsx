@@ -294,10 +294,20 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}
-      <Flex padding={400} flexGrow={1} flexShrink={2}>
+      <Flex padding={400} flexGrow={1} flexShrink={2} fluid flexFlow="row">
         text
       </Flex>
+
       <Grid padding={400}>text</Grid>
+      <Grid autoRows="repeat(3, 1fr)">text</Grid>
+      <Grid autoRows="min-content">text</Grid>
+      <Grid autoColumns="repeat(3, 1fr)">text</Grid>
+      <Grid autoColumns="auto">text</Grid>
+      <Grid templateRows="repeat(3, 1fr)">text</Grid>
+      <Grid templateRows="subgrid">text</Grid>
+      <Grid templateColumns="repeat(3, 1fr)">text</Grid>
+      <Grid templateColumns="subgrid">text</Grid>
+
       <Inline padding={400}>text</Inline>
       <Stack padding={400}>text</Stack>
       <Heading padding={400}>text</Heading>
