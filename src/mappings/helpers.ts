@@ -92,6 +92,8 @@ function parseResponsiveObjectValue<T extends string>(
   const objectExpression = originalValue.expression;
   const transformedProperties: any[] = [];
   let hasChanges = false;
+
+  // each value may offer different property names. we keep track of them and use the one that has the highest priority
   let offeredTargetPropertyNames: (T | ReviewMe<T>)[] = [];
 
   // Process each property in the responsive object
@@ -151,6 +153,7 @@ function parseResponsiveObjectValue<T extends string>(
     const newJsxExpressionContainer =
       j.jsxExpressionContainer(newObjectExpression);
 
+    // To know which property name we should use, we follow this priorities:
     //1- Unsafe version has the highest priority
     //2- the ReviewMe version is the second priority
     //3- The original property name is the last priority
