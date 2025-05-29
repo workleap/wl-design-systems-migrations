@@ -96,7 +96,12 @@ function parseResponsiveObjectValue<T extends string>(
 
   // Process each property in the responsive object
   for (const property of objectExpression.properties) {
-    if (property.type === "ObjectProperty" && property.key && property.value) {
+    if (
+      //tsx parser returns ObjectProperty, but codemod default parser returns Property
+      (property.type === "ObjectProperty" || property.type === "Property") &&
+      property.key &&
+      property.value
+    ) {
       // Extract the literal value from the property value
       const literalValue = tryGettingLiteralValue(property.value);
 
@@ -200,7 +205,7 @@ export function createMapper<T extends string = string>(
       return parseResponsiveObjectValue(originalValue, options, runtime);
     }
     log(
-      `Skipping property "${options.propertyName}" because it has no literal value.`,
+      `Skipping property "${options.propertyName}" because its value is not literal or responsive object.`,
       originalValue
     );
 

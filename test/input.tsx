@@ -48,7 +48,8 @@ import {
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
-  const variable: any = {};
+  const rest: any = {};
+  const variable = {};
 
   return (
     <div>
@@ -285,6 +286,11 @@ export function App() {
       <Div justifyContent={{ base: "space-between", md: "initial" }} />
       <Div justifyContent={{ base: "space-between", md: "invalid" }} />
       <Div display={{ base: "none", md: "block" }} />
+      <Flex
+        {...rest}
+        borderRadius={{ base: 0, xs: 2 }}
+        width={{ base: "100%", xs: "488px" }}
+      />
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}

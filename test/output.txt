@@ -48,7 +48,8 @@ import { useAccordionContext } from "@workleap/orbiter-ui";
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
-  const variable: any = {};
+  const rest: any = {};
+  const variable = {};
 
   return (
     <div>
@@ -301,6 +302,17 @@ export function App() {
         md: "invalid"
       }} />
       <Div display={{ base: "none", md: "block" }} />
+      <Flex
+        {...rest}
+        borderRadius={{
+          base: 0,
+          xs: "core_2"
+        }}
+        UNSAFE_width={{
+          base: "100%",
+          xs: "488px"
+        }}
+      />
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}

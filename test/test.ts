@@ -1,3 +1,4 @@
+import { defaultJSCodeshiftParser } from "@codemod.com/codemod-utils";
 import jscodeshift, { type API } from "jscodeshift";
 import assert from "node:assert";
 import { readFileSync } from "node:fs";
@@ -16,7 +17,7 @@ function removeSpacesAndNewlines(str: string): string {
   return str.replace(/\s+/g, " ").replace(/\n/g, " ").trim();
 }
 
-const buildApi = (parser: string | undefined): API => ({
+const buildApi = (parser?: string | jscodeshift.Parser): API => ({
   j: parser ? jscodeshift.withParser(parser) : jscodeshift,
   jscodeshift: parser ? jscodeshift.withParser(parser) : jscodeshift,
   stats: () => {
@@ -35,7 +36,7 @@ const getRuntime = (
   source: string,
   mappingsOverrides?: Partial<MapMetaData>
 ): Runtime => {
-  const api = buildApi("tsx");
+  const api = buildApi(defaultJSCodeshiftParser); //to make sure our tests work like the codemod parser
   return {
     root: api.jscodeshift(source),
     filePath: "test.tsx",
@@ -335,7 +336,7 @@ describe("migrations", () => {
             props: {
               mappings: {
                 width: (value) => {
-                  if (value?.type == "StringLiteral") {
+                  if (value?.type == "Literal") {
                     value.value = `${value.value}_Custom`;
                   }
 
@@ -433,12 +434,12 @@ describe("component usage analysis", () => {
     // Check actual values stored in the Set
     assert.deepStrictEqual(
       Array.from(analysisResults.Div.props.border?.values || []),
-      ["1px"],
+      ['"1px"'],
       "Div border values should contain '1px'"
     );
     assert.deepStrictEqual(
       Array.from(analysisResults.Div.props.width?.values || []),
-      ["120px"],
+      ['"120px"'],
       "Div width values should contain '120px'"
     );
 
@@ -458,7 +459,7 @@ describe("component usage analysis", () => {
     );
     assert.deepStrictEqual(
       Array.from(analysisResults.Text.props.fontSize?.values || []),
-      ["14px"],
+      ['"14px"'],
       "Text fontSize values should contain '14px'"
     );
   });
@@ -860,7 +861,7 @@ describe("component usage analysis", () => {
     // String literal value
     assert.deepStrictEqual(
       Array.from(analysisResults.Button.props.variant?.values || []),
-      ["primary"],
+      ['"primary"'],
       "Button variant values should contain 'primary'"
     );
 
@@ -885,7 +886,7 @@ describe("component usage analysis", () => {
     // String literal with hyphen
     assert.deepStrictEqual(
       Array.from(analysisResults.Button.props["data-testid"]?.values || []),
-      ["test-button"],
+      ['"test-button"'],
       "data-testid should contain 'test-button'"
     );
 
@@ -904,7 +905,7 @@ describe("component usage analysis", () => {
     // String literal (width)
     assert.deepStrictEqual(
       Array.from(analysisResults.Div.props.width?.values || []),
-      ["100px"],
+      ['"100px"'],
       "Div width values should contain '100px'"
     );
 
@@ -986,7 +987,7 @@ describe("component usage analysis", () => {
     ).sort();
     assert.deepStrictEqual(
       variantValues,
-      ["primary", "secondary", "tertiary"].sort(),
+      ['"primary"', '"secondary"', '"tertiary"'].sort(),
       "variant values should contain all three variants"
     );
 
@@ -1002,7 +1003,7 @@ describe("component usage analysis", () => {
     ).sort();
     assert.deepStrictEqual(
       sizeValues,
-      ["sm", "md", "lg"].sort(),
+      ['"sm"', '"md"', '"lg"'].sort(),
       "size values should contain all three sizes"
     );
   });
