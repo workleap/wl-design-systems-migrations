@@ -25,7 +25,7 @@ export type ReviewMe<T extends string> = `${REVIEWME_PREFIX_TYPE}${T}`;
  * @param {Runtime} runtime - The runtime environment.
  * @returns {{ to: T; value: JSXAttribute["value"] } | null} - An object containing the target property name and its new value, or null if the property should be removed.
  */
-export type PropertyMapperFunction<T extends string> = (
+export type PropertyMapperFunction<T extends string = string> = (
   originalValue: JSXAttribute["value"],
   runtime: Runtime
 ) => PropertyMapResult<T> | null;
@@ -66,3 +66,9 @@ export type MapMetaData = {
   propsDefaults?: PropsMapMetaData;
   components: Record<string, ComponentMapMetaData>;
 };
+
+export function getMappingKeys<T extends Record<string, ComponentMapMetaData>>(
+  obj: T
+): Array<keyof T> {
+  return Object.keys(obj) as Array<keyof T>;
+}

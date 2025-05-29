@@ -1,13 +1,14 @@
+import { flexMapping } from "../mappings/components/flex.ts";
+import { gridMappings } from "../mappings/components/grid.ts";
 import { mappings } from "../mappings/mappings.ts";
+import { getMappingKeys } from "./types.ts";
 
 export type LayoutComponent = keyof typeof mappings.components;
 
 export const layoutComponents: LayoutComponent[] = [
   // layout components
-  "Flex",
-  "FlexProps",
-  "Grid",
-  "GridProps",
+  ...getMappingKeys(flexMapping),
+  ...getMappingKeys(gridMappings),
   "Inline",
   "InlineProps",
   "Stack",

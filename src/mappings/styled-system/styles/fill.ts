@@ -1,9 +1,9 @@
-import { createCssPropertyMapper } from "../../helpers.ts";
+import { createHopperCssPropertyMapper } from "../../helpers.ts";
 
 import { IconColorMapping as HopperIconColorMapping } from "@hopper-ui/components";
 import { IconColorMapping as OrbiterIconColorMapping } from "@workleap/orbiter-ui";
 
-export const fillMapper = createCssPropertyMapper({
+export const fillMapper = createHopperCssPropertyMapper({
   propertyName: "fill",
   unsafePropertyName: "UNSAFE_fill",
   validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
@@ -11,7 +11,7 @@ export const fillMapper = createCssPropertyMapper({
   targetValidKeys: HopperIconColorMapping,
 });
 
-export const fillHoverMapper = createCssPropertyMapper({
+export const fillHoverMapper = createHopperCssPropertyMapper({
   propertyName: "fillHover",
   unsafePropertyName: "UNSAFE_fillHover",
   validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
@@ -19,7 +19,7 @@ export const fillHoverMapper = createCssPropertyMapper({
   targetValidKeys: HopperIconColorMapping,
 });
 
-export const fillFocusMapper = createCssPropertyMapper({
+export const fillFocusMapper = createHopperCssPropertyMapper({
   propertyName: "fillFocus",
   unsafePropertyName: "UNSAFE_fillFocus",
   validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
@@ -27,7 +27,7 @@ export const fillFocusMapper = createCssPropertyMapper({
   targetValidKeys: HopperIconColorMapping,
 });
 
-export const strokeFocusMapper = createCssPropertyMapper({
+export const strokeFocusMapper = createHopperCssPropertyMapper({
   propertyName: "stroke",
   unsafePropertyName: "UNSAFE_stroke",
   validGlobalValues: [

@@ -1,6 +1,6 @@
-import { createCssPropertyMapper } from "../../helpers.js";
+import { createHopperCssPropertyMapper } from "../../helpers.js";
 
-export const alignContentMapper = createCssPropertyMapper({
+export const alignContentMapper = createHopperCssPropertyMapper({
   propertyName: "alignContent",
   validGlobalValues: [
     "center",
@@ -17,7 +17,7 @@ export const alignContentMapper = createCssPropertyMapper({
   ],
 });
 
-export const alignItemsMapper = createCssPropertyMapper({
+export const alignItemsMapper = createHopperCssPropertyMapper({
   propertyName: "alignItems",
   validGlobalValues: [
     "center",
@@ -31,7 +31,7 @@ export const alignItemsMapper = createCssPropertyMapper({
   ],
 });
 
-export const alignSelfMapper = createCssPropertyMapper({
+export const alignSelfMapper = createHopperCssPropertyMapper({
   propertyName: "alignSelf",
   validGlobalValues: [
     "auto",

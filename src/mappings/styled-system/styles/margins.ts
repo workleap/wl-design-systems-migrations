@@ -1,4 +1,4 @@
-import { createCssPropertyMapper } from "../../helpers.js";
+import { createHopperCssPropertyMapper } from "../../helpers.js";
 
 import {
   ComplexMarginMapping as HopperComplexMarginMapping,
@@ -9,49 +9,49 @@ import {
   SimpleMarginMapping as OrbiterSimpleMarginMapping,
 } from "@workleap/orbiter-ui";
 
-export const marginMapper = createCssPropertyMapper({
+export const marginMapper = createHopperCssPropertyMapper({
   propertyName: "margin",
   unsafePropertyName: "UNSAFE_margin",
   sourceValidKeys: OrbiterComplexMarginMapping,
   targetValidKeys: HopperComplexMarginMapping,
 });
 
-export const marginBottomMapper = createCssPropertyMapper({
+export const marginBottomMapper = createHopperCssPropertyMapper({
   propertyName: "marginBottom",
   unsafePropertyName: "UNSAFE_marginBottom",
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const marginLeftMapper = createCssPropertyMapper({
+export const marginLeftMapper = createHopperCssPropertyMapper({
   propertyName: "marginLeft",
   unsafePropertyName: "UNSAFE_marginLeft",
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const marginRightMapper = createCssPropertyMapper({
+export const marginRightMapper = createHopperCssPropertyMapper({
   propertyName: "marginRight",
   unsafePropertyName: "UNSAFE_marginRight",
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const marginTopMapper = createCssPropertyMapper({
+export const marginTopMapper = createHopperCssPropertyMapper({
   propertyName: "marginTop",
   unsafePropertyName: "UNSAFE_marginTop",
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const marginXMapper = createCssPropertyMapper({
+export const marginXMapper = createHopperCssPropertyMapper({
   propertyName: "marginX",
   unsafePropertyName: "UNSAFE_marginX",
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const marginYMapper = createCssPropertyMapper({
+export const marginYMapper = createHopperCssPropertyMapper({
   propertyName: "marginY",
   unsafePropertyName: "UNSAFE_marginY",
   sourceValidKeys: OrbiterSimpleMarginMapping,

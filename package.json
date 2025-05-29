@@ -22,6 +22,7 @@
   },
   "scripts": {
     "test": "vitest run",
+    "typecheck": "tsc --noEmit",
     "test:watch": "vitest watch",
     "deploy:codemod": "codemod publish && pnpm dlx rimraf cdmd_dist",
     "sample": "codemod --source ./  -t test/input.tsx -d",

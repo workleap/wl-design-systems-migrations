@@ -1,4 +1,4 @@
-import { createCssPropertyMapper } from "../../helpers.js";
+import { createHopperCssPropertyMapper } from "../../helpers.js";
 
 import {
   FontFamilyMapping as HopperFontFamilyMapping,
@@ -11,14 +11,14 @@ import {
   FontWeightMapping as OrbiterFontWeightMapping,
 } from "@workleap/orbiter-ui";
 
-export const fontFamilyMapper = createCssPropertyMapper({
+export const fontFamilyMapper = createHopperCssPropertyMapper({
   propertyName: "fontFamily",
   unsafePropertyName: "UNSAFE_fontFamily",
   sourceValidKeys: OrbiterFontFamilyMapping,
   targetValidKeys: HopperFontFamilyMapping,
 });
 
-export const fontSizeMapper = createCssPropertyMapper({
+export const fontSizeMapper = createHopperCssPropertyMapper({
   propertyName: "fontSize",
   unsafePropertyName: "UNSAFE_fontSize",
   validGlobalValues: [],
@@ -35,12 +35,12 @@ export const fontSizeMapper = createCssPropertyMapper({
   },
 });
 
-export const fontStyleMapper = createCssPropertyMapper({
+export const fontStyleMapper = createHopperCssPropertyMapper({
   propertyName: "fontStyle",
   validGlobalValues: ["normal", "italic", "oblique"],
 });
 
-export const fontWeightMapper = createCssPropertyMapper({
+export const fontWeightMapper = createHopperCssPropertyMapper({
   propertyName: "fontWeight",
   unsafePropertyName: "UNSAFE_fontWeight",
   targetValidKeys: HopperFontWeightMapping,

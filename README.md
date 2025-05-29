@@ -133,7 +133,11 @@ pnpm publish
 
 ### Local Testing
 
-To test changes locally before publishing:
+Run the `pnpm sample` to see the dry mode changes for a [sample file](/test/input.tsx). You can call `pnpm sample:write` to write the changes to type check them, but remember to revert it as this file is used for unit tests.
+
+#### Local Testing with External Repository
+
+To test changes locally with an external repository before publishing:
 
 ```bash
 codemod --source /path/to/your/local/copy

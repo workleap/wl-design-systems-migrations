@@ -1,9 +1,9 @@
-import { createCssPropertyMapper } from "../../helpers.ts";
+import { createHopperCssPropertyMapper } from "../../helpers.ts";
 
 import { BoxShadowMapping as HopperBoxShadowMapping } from "@hopper-ui/components";
 import { BoxShadowMapping as OrbiterBoxShadowMapping } from "@workleap/orbiter-ui";
 
-export const boxShadowMapper = createCssPropertyMapper({
+export const boxShadowMapper = createHopperCssPropertyMapper({
   propertyName: "boxShadow",
   unsafePropertyName: "UNSAFE_boxShadow",
   validGlobalValues: ["none"],
@@ -11,7 +11,7 @@ export const boxShadowMapper = createCssPropertyMapper({
   targetValidKeys: HopperBoxShadowMapping,
 });
 
-export const boxShadowActiveMapper = createCssPropertyMapper({
+export const boxShadowActiveMapper = createHopperCssPropertyMapper({
   propertyName: "boxShadowActive",
   unsafePropertyName: "UNSAFE_boxShadowActive",
   validGlobalValues: ["none"],
@@ -19,7 +19,7 @@ export const boxShadowActiveMapper = createCssPropertyMapper({
   targetValidKeys: HopperBoxShadowMapping,
 });
 
-export const boxShadowFocusMapper = createCssPropertyMapper({
+export const boxShadowFocusMapper = createHopperCssPropertyMapper({
   propertyName: "boxShadowFocus",
   unsafePropertyName: "UNSAFE_boxShadowFocus",
   validGlobalValues: ["none"],
@@ -27,7 +27,7 @@ export const boxShadowFocusMapper = createCssPropertyMapper({
   targetValidKeys: HopperBoxShadowMapping,
 });
 
-export const boxShadowHoverMapper = createCssPropertyMapper({
+export const boxShadowHoverMapper = createHopperCssPropertyMapper({
   propertyName: "boxShadowHover",
   unsafePropertyName: "UNSAFE_boxShadowHover",
   validGlobalValues: ["none"],

@@ -283,16 +283,22 @@ function createPropertyMapper<T extends string = string>(
   };
 }
 
-export const createCssPropertyMapper = (
-  options: Omit<
-    PropertyMapperOptions<HopperStyledSystemPropsKeys>,
-    "enumMapping"
-  > & {
-    sourceValidKeys?: EnumMapping["sourceValidKeys"];
-    targetValidKeys?: EnumMapping["targetValidKeys"];
-  }
+export const createHopperCssPropertyMapper = (
+  options: CssPropertyMapperOptions<HopperStyledSystemPropsKeys>
+) => createCssPropertyMapper<HopperStyledSystemPropsKeys>(options);
+
+type CssPropertyMapperOptions<T extends string = string> = Omit<
+  PropertyMapperOptions<T>,
+  "enumMapping"
+> & {
+  sourceValidKeys?: EnumMapping["sourceValidKeys"];
+  targetValidKeys?: EnumMapping["targetValidKeys"];
+};
+
+export const createCssPropertyMapper = <T extends string>(
+  options: CssPropertyMapperOptions<T>
 ) =>
-  createPropertyMapper<HopperStyledSystemPropsKeys>({
+  createPropertyMapper<T>({
     ...options,
     validGlobalValues: [
       "-moz-initial",

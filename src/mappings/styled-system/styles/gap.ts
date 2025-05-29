@@ -1,9 +1,9 @@
-import { createCssPropertyMapper } from "../../helpers.js";
+import { createHopperCssPropertyMapper } from "../../helpers.js";
 
 import { SimpleMarginMapping as HopperSimpleMarginMapping } from "@hopper-ui/components";
 import { SimpleMarginMapping as OrbiterSimpleMarginMapping } from "@workleap/orbiter-ui";
 
-export const gapMapper = createCssPropertyMapper({
+export const gapMapper = createHopperCssPropertyMapper({
   propertyName: "gap",
   unsafePropertyName: "UNSAFE_gap",
   validGlobalValues: ["normal", "0"],
@@ -11,7 +11,7 @@ export const gapMapper = createCssPropertyMapper({
   targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const rowGapMapper = createCssPropertyMapper({
+export const rowGapMapper = createHopperCssPropertyMapper({
   propertyName: "rowGap",
   unsafePropertyName: "UNSAFE_rowGap",
   validGlobalValues: ["normal", "0"],
@@ -19,7 +19,7 @@ export const rowGapMapper = createCssPropertyMapper({
   targetValidKeys: HopperSimpleMarginMapping,
 });
 
-export const columnGapMapper = createCssPropertyMapper({
+export const columnGapMapper = createHopperCssPropertyMapper({
   propertyName: "columnGap",
   unsafePropertyName: "UNSAFE_columnGap",
   validGlobalValues: ["normal", "0"],

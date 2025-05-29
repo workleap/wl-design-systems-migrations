@@ -1,9 +1,9 @@
-import { createCssPropertyMapper } from "../../helpers.js";
+import { createHopperCssPropertyMapper } from "../../helpers.js";
 
 import { BorderRadiusMapping as HopperBorderRadiusMapping } from "@hopper-ui/components";
 import { BorderRadiusMapping as OrbiterBorderRadiusMapping } from "@workleap/orbiter-ui";
 
-export const borderRadiusMapper = createCssPropertyMapper({
+export const borderRadiusMapper = createHopperCssPropertyMapper({
   propertyName: "borderRadius",
   unsafePropertyName: "UNSAFE_borderRadius",
   validGlobalValues: [0],
@@ -11,7 +11,7 @@ export const borderRadiusMapper = createCssPropertyMapper({
   targetValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderTopLeftRadiusMapper = createCssPropertyMapper({
+export const borderTopLeftRadiusMapper = createHopperCssPropertyMapper({
   propertyName: "borderTopLeftRadius",
   unsafePropertyName: "UNSAFE_borderTopLeftRadius",
   validGlobalValues: [0],
@@ -19,7 +19,7 @@ export const borderTopLeftRadiusMapper = createCssPropertyMapper({
   targetValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderTopRightRadiusMapper = createCssPropertyMapper({
+export const borderTopRightRadiusMapper = createHopperCssPropertyMapper({
   propertyName: "borderTopRightRadius",
   unsafePropertyName: "UNSAFE_borderTopRightRadius",
   validGlobalValues: [0],
@@ -27,7 +27,7 @@ export const borderTopRightRadiusMapper = createCssPropertyMapper({
   targetValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderBottomLeftRadiusMapper = createCssPropertyMapper({
+export const borderBottomLeftRadiusMapper = createHopperCssPropertyMapper({
   propertyName: "borderBottomLeftRadius",
   unsafePropertyName: "UNSAFE_borderBottomLeftRadius",
   validGlobalValues: [0],
@@ -35,7 +35,7 @@ export const borderBottomLeftRadiusMapper = createCssPropertyMapper({
   targetValidKeys: HopperBorderRadiusMapping,
 });
 
-export const borderBottomRightRadiusMapper = createCssPropertyMapper({
+export const borderBottomRightRadiusMapper = createHopperCssPropertyMapper({
   propertyName: "borderBottomRightRadius",
   unsafePropertyName: "UNSAFE_borderBottomRightRadius",
   validGlobalValues: [0],
