@@ -1,9 +1,19 @@
-import { JSXAttribute } from "jscodeshift";
-import { PropertyMapperFunction, Runtime } from "../utils/types.js";
+import {
+  JSXAttribute,
+  JSXExpressionContainer,
+  ObjectProperty,
+} from "jscodeshift";
+import {
+  PropertyMapperFunction,
+  PropertyMapResult,
+  ReviewMe,
+  REVIEWME_PREFIX,
+  Runtime,
+} from "../utils/types.js";
 import { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
 
 export function tryGettingLiteralValue(
-  value: JSXAttribute["value"]
+  value: JSXAttribute["value"] | ObjectProperty["value"]
 ): string | number | boolean | RegExp | null {
   if (value == null) {
     return null;
@@ -16,9 +26,7 @@ export function tryGettingLiteralValue(
     // Add support for StringLiteral type
     return value.value;
   } else if (value.type === "JSXExpressionContainer") {
-    if (value.expression.type === "Identifier") {
-      return value.expression.name;
-    } else if (value.expression.type === "Literal") {
+    if (value.expression.type === "Literal") {
       return value.expression.value;
     } else if (
       value.expression.type === "StringLiteral" ||
@@ -70,6 +78,110 @@ export function hasCoreVersionKey(key: string, source: object, target: object) {
   );
 }
 
+function parseResponsiveObjectValue<T extends string>(
+  originalValue: JSXExpressionContainer,
+  options: MapperOptions<T>,
+  runtime: Runtime
+): PropertyMapResult<T> | null {
+  const { j } = runtime;
+
+  if (originalValue.expression.type !== "ObjectExpression") {
+    return null;
+  }
+
+  const objectExpression = originalValue.expression;
+  const transformedProperties: any[] = [];
+  let hasChanges = false;
+
+  // each value may offer different property names. we keep track of them and use the one that has the highest priority
+  let offeredTargetPropertyNames: (T | ReviewMe<T>)[] = [];
+
+  // Process each property in the responsive object
+  for (const property of objectExpression.properties) {
+    if (
+      //tsx parser returns ObjectProperty, but codemod default parser returns Property
+      (property.type === "ObjectProperty" || property.type === "Property") &&
+      property.key &&
+      property.value
+    ) {
+      // Extract the literal value from the property value
+      const literalValue = tryGettingLiteralValue(property.value);
+
+      if (literalValue !== null) {
+        const mappedResult = parseLiteralValue(
+          literalValue,
+          property.value,
+          options,
+          runtime
+        );
+
+        if (!mappedResult.value) {
+          runtime.log(
+            `Error in parsing the object expression literal value for property: ${j(
+              property.key
+            ).toSource()}`,
+            property.value,
+            "\n",
+            "object expression: ",
+            j(objectExpression).toSource()
+          );
+
+          throw new Error(
+            "Mapped value is null or undefined. Check the log file for more details " +
+              j(objectExpression).toSource()
+          );
+        }
+        hasChanges = true;
+        offeredTargetPropertyNames.push(mappedResult.to);
+
+        transformedProperties.push(
+          j.objectProperty(property.key, mappedResult.value)
+        );
+      } else {
+        // Keep original if not a literal value
+        transformedProperties.push(property);
+      }
+    } else {
+      // Keep non-object properties as is
+      transformedProperties.push(property);
+    }
+  }
+
+  if (hasChanges) {
+    // Create new ObjectExpression with transformed properties
+    const newObjectExpression = j.objectExpression(transformedProperties);
+    const newJsxExpressionContainer =
+      j.jsxExpressionContainer(newObjectExpression);
+
+    // To know which property name we should use, we follow this priorities:
+    //1- Unsafe version has the highest priority
+    //2- the ReviewMe version is the second priority
+    //3- The original property name is the last priority
+    let finalPropertyName: T | ReviewMe<T> = options.propertyName;
+
+    if (
+      options.unsafePropertyName &&
+      offeredTargetPropertyNames.includes(options.unsafePropertyName)
+    )
+      finalPropertyName = options.unsafePropertyName;
+    else if (
+      offeredTargetPropertyNames.includes(
+        getReviewMePropertyName(options.propertyName)
+      )
+    )
+      finalPropertyName = getReviewMePropertyName(options.propertyName);
+    else if (offeredTargetPropertyNames.includes(options.propertyName))
+      finalPropertyName = options.propertyName;
+
+    return {
+      to: finalPropertyName,
+      value: newJsxExpressionContainer,
+    };
+  }
+
+  return null;
+}
+
 type MapperOptions<T extends string = string> = {
   propertyName: T;
   unsafePropertyName?: T | null;
@@ -78,64 +190,91 @@ type MapperOptions<T extends string = string> = {
   hopperValidKeys?: Object;
   customMapper?: (
     value: string | number | boolean | RegExp,
-    originalValue: JSXAttribute["value"],
+    originalValue: JSXAttribute["value"] | ObjectProperty["value"],
     runtime: Runtime
   ) => ReturnType<PropertyMapperFunction<T>>;
 };
 
-export function createMapper<T extends string = string>({
-  propertyName,
-  unsafePropertyName,
-  extraGlobalValues,
-  orbiterValidKeys = {},
-  hopperValidKeys = {},
-  customMapper,
-}: MapperOptions<T>): PropertyMapperFunction<T> {
+export function createMapper<T extends string = string>(
+  options: MapperOptions<T>
+): PropertyMapperFunction<T> {
   return (originalValue, runtime) => {
     const { j, log } = runtime;
     const value = tryGettingLiteralValue(originalValue);
+
     if (value !== null) {
-      if (isGlobalValue(value, extraGlobalValues)) {
-        return {
-          to: propertyName,
-          value: originalValue,
-        };
-      } else if (
-        (typeof value === "string" || typeof value === "number") &&
-        hasSameKey(value.toString(), orbiterValidKeys, hopperValidKeys)
-      ) {
-        return {
-          to: propertyName,
-          value: originalValue,
-        };
-      } else if (
-        (typeof value === "string" || typeof value === "number") &&
-        hasCoreVersionKey(value.toString(), orbiterValidKeys, hopperValidKeys)
-      ) {
-        return {
-          to: propertyName,
-          value: j.stringLiteral(`core_${value}`),
-        };
-      }
-
-      const customValue = customMapper?.(value, originalValue, runtime);
-      if (customValue) return customValue;
-
-      if (unsafePropertyName != null) {
-        return {
-          to: unsafePropertyName,
-          value: originalValue,
-        };
-      } else {
-        return {
-          to: `REVIEWME_${propertyName}`,
-          value: originalValue,
-        };
-      }
+      return parseLiteralValue(value, originalValue, options, runtime);
+    } else if (originalValue?.type === "JSXExpressionContainer") {
+      return parseResponsiveObjectValue(originalValue, options, runtime);
     }
+    log(
+      `Skipping property "${options.propertyName}" because its value is not literal or responsive object.`,
+      originalValue
+    );
 
     return null;
   };
+}
+
+function parseLiteralValue<T extends string>(
+  value: string | number | boolean | RegExp,
+  originalValue: JSXAttribute["value"] | ObjectProperty["value"],
+  options: MapperOptions<T>,
+  runtime: Runtime
+): PropertyMapResult<T> {
+  const {
+    propertyName,
+    unsafePropertyName,
+    extraGlobalValues,
+    orbiterValidKeys = {},
+    hopperValidKeys = {},
+    customMapper,
+  } = options;
+  const { j } = runtime;
+
+  if (isGlobalValue(value, extraGlobalValues)) {
+    return {
+      to: propertyName,
+      value: originalValue,
+    };
+  } else if (
+    (typeof value === "string" || typeof value === "number") &&
+    hasSameKey(value.toString(), orbiterValidKeys, hopperValidKeys)
+  ) {
+    return {
+      to: propertyName,
+      value: originalValue,
+    };
+  } else if (
+    (typeof value === "string" || typeof value === "number") &&
+    hasCoreVersionKey(value.toString(), orbiterValidKeys, hopperValidKeys)
+  ) {
+    return {
+      to: propertyName,
+      value: j.stringLiteral(`core_${value}`),
+    };
+  }
+
+  const customValue = customMapper?.(value, originalValue, runtime);
+  if (customValue) return customValue;
+
+  if (unsafePropertyName != null) {
+    return {
+      to: unsafePropertyName,
+      value: originalValue,
+    };
+  } else {
+    return {
+      to: getReviewMePropertyName(propertyName),
+      value: originalValue,
+    };
+  }
+}
+
+function getReviewMePropertyName<T extends string>(
+  propertyName: T
+): ReviewMe<T> {
+  return `${REVIEWME_PREFIX}${propertyName}`;
 }
 
 export const createStyleMapper = (

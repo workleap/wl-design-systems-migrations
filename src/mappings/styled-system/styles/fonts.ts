@@ -35,7 +35,6 @@ export const fontSizeMapper = createStyleMapper({
   },
 });
 
-// It is good to have it as it adds REVIEWME_ prefix for invalid values
 export const fontStyleMapper = createStyleMapper({
   propertyName: "fontStyle",
   extraGlobalValues: ["normal", "italic", "oblique"],
