@@ -12,7 +12,7 @@ import {
 } from "../utils/types.js";
 import { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
 
-export function tryGettingLiteralValue(
+function tryGettingLiteralValue(
   value: JSXAttribute["value"] | ObjectProperty["value"]
 ): string | number | boolean | RegExp | null {
   if (value == null) {
@@ -39,21 +39,14 @@ export function tryGettingLiteralValue(
   return null;
 }
 
-export function isGlobalValue(
+function isGlobalValue(
   value: string | boolean | number | RegExp,
-  extra?: (string | number)[]
+  validValues?: (string | number)[]
 ): boolean {
   return (
+    validValues !== undefined &&
     (typeof value === "string" || typeof value === "number") &&
-    [
-      "-moz-initial",
-      "inherit",
-      "initial",
-      "revert",
-      "revert-layer",
-      "unset",
-      ...(extra || []),
-    ].includes(value)
+    validValues.includes(value)
   );
 }
 
@@ -67,20 +60,90 @@ export function isFrValue(value: string | number | boolean | RegExp): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?fr$/.test(value);
 }
 
-export function hasSameKey(key: string, source: object, target: object) {
-  return Object.keys(source).includes(key) && Object.keys(target).includes(key);
+function hasSameKey(key: string, enumMapping: EnumMapping) {
+  const { sourceValidKeys, targetValidKeys } = enumMapping;
+  enumMapping || {};
+
+  return (
+    Object.keys(sourceValidKeys).includes(key) &&
+    Object.keys(targetValidKeys).includes(key)
+  );
 }
 
-export function hasCoreVersionKey(key: string, source: object, target: object) {
+function hasTransformedKey(key: string, enumMapping: EnumMapping) {
+  const { sourceValidKeys, targetValidKeys, getValidTransform } = enumMapping;
+
   return (
-    Object.keys(source).includes(key) &&
-    Object.keys(target).includes(`core_${key}`)
+    Object.keys(sourceValidKeys).includes(key) &&
+    Object.keys(targetValidKeys).includes(getValidTransform(key))
   );
+}
+
+function getReviewMePropertyName<T extends string>(
+  propertyName: T
+): ReviewMe<T> {
+  return `${REVIEWME_PREFIX}${propertyName}`;
+}
+
+function parseLiteralValue<T extends string>(
+  value: string | number | boolean | RegExp,
+  originalValue: JSXAttribute["value"] | ObjectProperty["value"],
+  options: PropertyMapperOptions<T>,
+  runtime: Runtime
+): PropertyMapResult<T> {
+  const {
+    propertyName,
+    unsafePropertyName,
+    validGlobalValues,
+    enumMapping,
+    customMapper,
+  } = options;
+  const { j } = runtime;
+
+  if (isGlobalValue(value, validGlobalValues)) {
+    return {
+      to: propertyName,
+      value: originalValue,
+    };
+  } else if (
+    enumMapping &&
+    (typeof value === "string" || typeof value === "number") &&
+    hasSameKey(value.toString(), enumMapping)
+  ) {
+    return {
+      to: propertyName,
+      value: originalValue,
+    };
+  } else if (
+    enumMapping &&
+    (typeof value === "string" || typeof value === "number") &&
+    hasTransformedKey(value.toString(), enumMapping)
+  ) {
+    return {
+      to: propertyName,
+      value: j.stringLiteral(enumMapping.getValidTransform(value)),
+    };
+  }
+
+  const customValue = customMapper?.(value, originalValue, runtime);
+  if (customValue) return customValue;
+
+  if (unsafePropertyName != null) {
+    return {
+      to: unsafePropertyName,
+      value: originalValue,
+    };
+  } else {
+    return {
+      to: getReviewMePropertyName(propertyName),
+      value: originalValue,
+    };
+  }
 }
 
 function parseResponsiveObjectValue<T extends string>(
   originalValue: JSXExpressionContainer,
-  options: MapperOptions<T>,
+  options: PropertyMapperOptions<T>,
   runtime: Runtime
 ): PropertyMapResult<T> | null {
   const { j } = runtime;
@@ -181,13 +244,17 @@ function parseResponsiveObjectValue<T extends string>(
 
   return null;
 }
+type EnumMapping = {
+  sourceValidKeys: Object;
+  targetValidKeys: Object;
+  getValidTransform: (sourceKey: string | number) => string;
+};
 
-type MapperOptions<T extends string = string> = {
+type PropertyMapperOptions<T extends string = string> = {
   propertyName: T;
   unsafePropertyName?: T | null;
-  extraGlobalValues?: (string | number)[];
-  orbiterValidKeys?: Object;
-  hopperValidKeys?: Object;
+  validGlobalValues?: (string | number)[];
+  enumMapping?: EnumMapping;
   customMapper?: (
     value: string | number | boolean | RegExp,
     originalValue: JSXAttribute["value"] | ObjectProperty["value"],
@@ -195,8 +262,8 @@ type MapperOptions<T extends string = string> = {
   ) => ReturnType<PropertyMapperFunction<T>>;
 };
 
-export function createMapper<T extends string = string>(
-  options: MapperOptions<T>
+function createPropertyMapper<T extends string = string>(
+  options: PropertyMapperOptions<T>
 ): PropertyMapperFunction<T> {
   return (originalValue, runtime) => {
     const { j, log } = runtime;
@@ -216,67 +283,34 @@ export function createMapper<T extends string = string>(
   };
 }
 
-function parseLiteralValue<T extends string>(
-  value: string | number | boolean | RegExp,
-  originalValue: JSXAttribute["value"] | ObjectProperty["value"],
-  options: MapperOptions<T>,
-  runtime: Runtime
-): PropertyMapResult<T> {
-  const {
-    propertyName,
-    unsafePropertyName,
-    extraGlobalValues,
-    orbiterValidKeys = {},
-    hopperValidKeys = {},
-    customMapper,
-  } = options;
-  const { j } = runtime;
-
-  if (isGlobalValue(value, extraGlobalValues)) {
-    return {
-      to: propertyName,
-      value: originalValue,
-    };
-  } else if (
-    (typeof value === "string" || typeof value === "number") &&
-    hasSameKey(value.toString(), orbiterValidKeys, hopperValidKeys)
-  ) {
-    return {
-      to: propertyName,
-      value: originalValue,
-    };
-  } else if (
-    (typeof value === "string" || typeof value === "number") &&
-    hasCoreVersionKey(value.toString(), orbiterValidKeys, hopperValidKeys)
-  ) {
-    return {
-      to: propertyName,
-      value: j.stringLiteral(`core_${value}`),
-    };
+export const createCssPropertyMapper = (
+  options: Omit<
+    PropertyMapperOptions<HopperStyledSystemPropsKeys>,
+    "enumMapping"
+  > & {
+    sourceValidKeys?: EnumMapping["sourceValidKeys"];
+    targetValidKeys?: EnumMapping["targetValidKeys"];
   }
-
-  const customValue = customMapper?.(value, originalValue, runtime);
-  if (customValue) return customValue;
-
-  if (unsafePropertyName != null) {
-    return {
-      to: unsafePropertyName,
-      value: originalValue,
-    };
-  } else {
-    return {
-      to: getReviewMePropertyName(propertyName),
-      value: originalValue,
-    };
-  }
-}
-
-function getReviewMePropertyName<T extends string>(
-  propertyName: T
-): ReviewMe<T> {
-  return `${REVIEWME_PREFIX}${propertyName}`;
-}
-
-export const createStyleMapper = (
-  options: MapperOptions<HopperStyledSystemPropsKeys>
-) => createMapper<HopperStyledSystemPropsKeys>(options);
+) =>
+  createPropertyMapper<HopperStyledSystemPropsKeys>({
+    ...options,
+    validGlobalValues: [
+      "-moz-initial",
+      "inherit",
+      "initial",
+      "revert",
+      "revert-layer",
+      "unset",
+      ...(options.validGlobalValues ?? []),
+    ],
+    enumMapping:
+      options.sourceValidKeys && options.targetValidKeys
+        ? {
+            sourceValidKeys: options.sourceValidKeys,
+            targetValidKeys: options.targetValidKeys,
+            getValidTransform: (sourceKey) => {
+              return `core_${sourceKey}`;
+            },
+          }
+        : undefined,
+  });

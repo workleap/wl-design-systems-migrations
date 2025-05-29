@@ -123,7 +123,7 @@ codemod --source /path/to/your/local/copy
 > [!TIP]
 > To run the latest modifications, the `cdmd_dist` folder should not exist. If you use the `pnpm deploy:codemod`, this folder is getting deleted after each deployment automatically.
 
-### Simple Modifications
+### Mappings Modifications
 
 Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just add the components and props to map.
 
@@ -155,3 +155,8 @@ Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just ad
   },
 };
 ```
+
+There are some [helper functions](/src/mappings/helpers.ts) that can help you write mappings more easily:
+
+- `createPropertyMapper`: A generic method to create mapping for properties.
+- `createCssPropertyMapper`: To create map for styled system properties between Orbiter and Hopper.

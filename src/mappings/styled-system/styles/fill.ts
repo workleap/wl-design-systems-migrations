@@ -1,36 +1,36 @@
-import { createStyleMapper } from "../../helpers.ts";
+import { createCssPropertyMapper } from "../../helpers.ts";
 
 import { IconColorMapping as HopperIconColorMapping } from "@hopper-ui/components";
 import { IconColorMapping as OrbiterIconColorMapping } from "@workleap/orbiter-ui";
 
-export const fillMapper = createStyleMapper({
+export const fillMapper = createCssPropertyMapper({
   propertyName: "fill",
   unsafePropertyName: "UNSAFE_fill",
-  extraGlobalValues: ["child", "context-fill", "context-stroke", "none"],
-  orbiterValidKeys: OrbiterIconColorMapping,
-  hopperValidKeys: HopperIconColorMapping,
+  validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
+  sourceValidKeys: OrbiterIconColorMapping,
+  targetValidKeys: HopperIconColorMapping,
 });
 
-export const fillHoverMapper = createStyleMapper({
+export const fillHoverMapper = createCssPropertyMapper({
   propertyName: "fillHover",
   unsafePropertyName: "UNSAFE_fillHover",
-  extraGlobalValues: ["child", "context-fill", "context-stroke", "none"],
-  orbiterValidKeys: OrbiterIconColorMapping,
-  hopperValidKeys: HopperIconColorMapping,
+  validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
+  sourceValidKeys: OrbiterIconColorMapping,
+  targetValidKeys: HopperIconColorMapping,
 });
 
-export const fillFocusMapper = createStyleMapper({
+export const fillFocusMapper = createCssPropertyMapper({
   propertyName: "fillFocus",
   unsafePropertyName: "UNSAFE_fillFocus",
-  extraGlobalValues: ["child", "context-fill", "context-stroke", "none"],
-  orbiterValidKeys: OrbiterIconColorMapping,
-  hopperValidKeys: HopperIconColorMapping,
+  validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
+  sourceValidKeys: OrbiterIconColorMapping,
+  targetValidKeys: HopperIconColorMapping,
 });
 
-export const strokeFocusMapper = createStyleMapper({
+export const strokeFocusMapper = createCssPropertyMapper({
   propertyName: "stroke",
   unsafePropertyName: "UNSAFE_stroke",
-  extraGlobalValues: [
+  validGlobalValues: [
     "child",
     "context-fill",
     "context-stroke",
@@ -38,6 +38,6 @@ export const strokeFocusMapper = createStyleMapper({
     "currentcolor",
     "transparent",
   ],
-  orbiterValidKeys: OrbiterIconColorMapping,
-  hopperValidKeys: HopperIconColorMapping,
+  sourceValidKeys: OrbiterIconColorMapping,
+  targetValidKeys: HopperIconColorMapping,
 });

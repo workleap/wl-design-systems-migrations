@@ -1,0 +1,2 @@
+- When creating a PR:
+- Make sure to update the version in the `.codemodrc.json` file. Just increment the minor version.
