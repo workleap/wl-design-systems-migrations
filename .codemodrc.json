@@ -1,7 +1,7 @@
 {
   "$schema": "https://codemod-utils.s3.us-west-1.amazonaws.com/configuration_schema.json",
   "name": "workleap/orbiter-to-hopper",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "engine": "jscodeshift",
   "private": false,
   "arguments": [
@@ -27,7 +27,7 @@
     }
   ],
   "meta": {
-    "tags": ["analytics"],
+    "tags": [],
     "git": "https://github.com/workleap/orbiter-to-hopper-codemods.git"
   }
 }
