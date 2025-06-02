@@ -6,11 +6,14 @@ export const flexMapping = {
   Flex: {
     props: {
       mappings: {
+        direction: "direction",
+        grow: "grow",
+        wrap: "wrap",
         flexGrow: "grow",
         flexShrink: "shrink",
         flexFlow: "direction",
         flexBasis: "basis",
-        fluid: (originalValue: JSXAttribute["value"], { j, log }) => {
+        fluid: (originalValue: JSXAttribute["value"], { j }) => {
           const value = tryGettingLiteralValue(originalValue);
           if (!originalValue || Boolean(value) != false)
             return {

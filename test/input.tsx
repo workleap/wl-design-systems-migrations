@@ -325,15 +325,21 @@ export function App() {
       <Inline gap={"invalid"}>text</Inline>
       <Inline fluid={true}>text</Inline>
       <Inline fluid={false}>text</Inline>
-
       <Stack padding={400}>text</Stack>
-      <Heading padding={400}>text</Heading>
-      <H1 padding={400}>text</H1>
-      <H2 padding={400}>text</H2>
-      <H3 padding={400}>text</H3>
-      <H4 padding={400}>text</H4>
-      <H5 padding={400}>text</H5>
-      <H6 padding={400}>text</H6>
+
+      <Heading>text</Heading>
+      <Heading size="xs">text</Heading>
+      <Heading margin={0}>text</Heading>
+      <Heading marginBottom={"inline-md"}>text</Heading>
+      <Heading size="3xl" marginBottom={"inline-md"}>
+        text
+      </Heading>
+      <H1 size="lg">text</H1>
+      <H2>text</H2>
+      <H3>text</H3>
+      <H4>text</H4>
+      <H5>text</H5>
+      <H6>text</H6>
       <HtmlH1 padding={400}>text</HtmlH1>
       <HtmlH2 padding={400}>text</HtmlH2>
       <HtmlH3 padding={400}>text</HtmlH3>

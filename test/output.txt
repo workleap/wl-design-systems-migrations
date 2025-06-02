@@ -11,6 +11,16 @@ import {
   H4,
   H5,
   H6,
+  Text,
+  Table,
+  Paragraph,
+  Content,
+  type ContentProps,
+  Footer,
+  Header,
+  HtmlButton,
+  HtmlFooter,
+  HtmlHeader,
   HtmlH1,
   HtmlH1Props,
   HtmlH2,
@@ -18,30 +28,20 @@ import {
   HtmlH4,
   HtmlH5,
   HtmlH6,
-  Text,
-  Paragraph,
-  Content,
-  type ContentProps,
-  Footer,
-  Header,
+  HtmlInput,
+  HtmlSection,
   A,
   Address,
   Article,
   Aside,
-  HtmlButton,
   Div,
-  HtmlFooter,
-  HtmlHeader,
   Img,
-  HtmlInput,
   UL,
   OL,
   LI,
   Main,
   Nav,
-  HtmlSection,
   Span,
-  Table,
   TextField,
 } from "@hopper-ui/components";
 import { useAccordionContext } from "@workleap/orbiter-ui";
@@ -346,13 +346,19 @@ export function App() {
       <Inline width="100%" UNSAFE_gap="1.25rem">text</Inline>
       <Inline fluid={false} UNSAFE_gap="1.25rem">text</Inline>
       <Stack padding="core_400">text</Stack>
-      <Heading padding="core_400">text</Heading>
-      <H1 padding="core_400">text</H1>
-      <H2 padding="core_400">text</H2>
-      <H3 padding="core_400">text</H3>
-      <H4 padding="core_400">text</H4>
-      <H5 padding="core_400">text</H5>
-      <H6 padding="core_400">text</H6>
+      <Heading marginBottom="calc(1.75rem * .5)">text</Heading>
+      <Heading size="xs" marginBottom="calc(1.125rem * .5)">text</Heading>
+      <Heading margin="core_0">text</Heading>
+      <Heading marginBottom={"inline-md"}>text</Heading>
+      <Heading size="3xl" marginBottom={"inline-md"}>
+        text
+      </Heading>
+      <H1 size="lg" marginBottom="calc(2rem * .5)">text</H1>
+      <H2 marginBottom="calc(1.75rem * .5)">text</H2>
+      <H3 marginBottom="calc(1.75rem * .5)">text</H3>
+      <H4 marginBottom="calc(1.75rem * .5)">text</H4>
+      <H5 marginBottom="calc(1.75rem * .5)">text</H5>
+      <H6 marginBottom="calc(1.75rem * .5)">text</H6>
       <HtmlH1 padding="core_400">text</HtmlH1>
       <HtmlH2 padding="core_400">text</HtmlH2>
       <HtmlH3 padding="core_400">text</HtmlH3>

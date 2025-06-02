@@ -52,7 +52,7 @@ export type PropertyAdderFunction<T extends string = string> = (
   runtime: Runtime
 ) => string | number | boolean | JSXAttribute["value"] | null;
 
-type PropsMapMetaData = {
+export type PropsMapMetaData = {
   mappings?: PropsMapping;
   additions?: {
     [key: string]: PropertyAdderFunction | string | number | boolean;
