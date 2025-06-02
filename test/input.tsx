@@ -320,7 +320,12 @@ export function App() {
       <Grid templateColumns="repeat(3, 1fr)">text</Grid>
       <Grid templateColumns="subgrid">text</Grid>
 
-      <Inline padding={400}>text</Inline>
+      <Inline>text</Inline>
+      <Inline gap={400}>text</Inline>
+      <Inline gap={"invalid"}>text</Inline>
+      <Inline fluid={true}>text</Inline>
+      <Inline fluid={false}>text</Inline>
+
       <Stack padding={400}>text</Stack>
       <Heading padding={400}>text</Heading>
       <H1 padding={400}>text</H1>

@@ -340,7 +340,11 @@ export function App() {
       <Grid templateRows="subgrid">text</Grid>
       <Grid UNSAFE_templateColumns="repeat(3, 1fr)">text</Grid>
       <Grid templateColumns="subgrid">text</Grid>
-      <Inline padding="core_400">text</Inline>
+      <Inline UNSAFE_gap="1.25rem">text</Inline>
+      <Inline gap="core_400">text</Inline>
+      <Inline UNSAFE_gap={"invalid"}>text</Inline>
+      <Inline width="100%" UNSAFE_gap="1.25rem">text</Inline>
+      <Inline fluid={false} UNSAFE_gap="1.25rem">text</Inline>
       <Stack padding="core_400">text</Stack>
       <Heading padding="core_400">text</Heading>
       <H1 padding="core_400">text</H1>

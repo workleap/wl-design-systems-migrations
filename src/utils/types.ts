@@ -1,7 +1,9 @@
 import core, {
   ASTNode,
+  ASTPath,
   Collection,
   JSXAttribute,
+  JSXOpeningElement,
   ObjectProperty,
 } from "jscodeshift/src/core.js";
 
@@ -31,7 +33,7 @@ export type PropertyMapperFunction<T extends string = string> = (
 ) => PropertyMapResult<T> | null;
 
 export type PropertyMapResult<
-  T extends string,
+  T extends string = string,
   Z = JSXAttribute["value"] | ObjectProperty["value"]
 > = {
   to: T | ReviewMe<T>;
@@ -45,10 +47,15 @@ export type PropsMapping<
   [K in S]: T | PropertyMapperFunction<T>;
 };
 
+export type PropertyAdderFunction<T extends string = string> = (
+  tag: ASTPath<JSXOpeningElement>,
+  runtime: Runtime
+) => string | number | boolean | JSXAttribute["value"] | null;
+
 type PropsMapMetaData = {
   mappings?: PropsMapping;
   additions?: {
-    [key: string]: string | number | boolean | null;
+    [key: string]: PropertyAdderFunction | string | number | boolean;
   };
 };
 

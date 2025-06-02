@@ -59,7 +59,16 @@ export function migrateComponent(
     Object.entries(propsMetadata?.additions || {}).forEach(
       ([newAttrName, newAttrValue]) => {
         instances.forEach((path) => {
-          addAttribute(path, newAttrName, newAttrValue, runtime);
+          if (typeof newAttrValue === "function") {
+            const newValue = newAttrValue(path, runtime);
+            if (newValue !== null)
+              addAttribute(
+                path,
+                newAttrName,
+                newAttrValue(path, runtime),
+                runtime
+              );
+          } else addAttribute(path, newAttrName, newAttrValue, runtime);
         });
       }
     );

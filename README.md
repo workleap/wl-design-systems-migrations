@@ -146,9 +146,9 @@ codemod --source /path/to/your/local/copy
 > [!TIP]
 > To run the latest modifications, the `cdmd_dist` folder should not exist. If you use the `pnpm deploy:codemod`, this folder is getting deleted after each deployment automatically.
 
-### Mappings Modifications
+### Mappings Structure
 
-Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just add the components and props to map.
+The [mappings.ts](/src/mappings/mappings.ts) contains all mappings information. Just add the rules there. For example:
 
 ```ts
 {
@@ -170,7 +170,7 @@ Modify the [mappings.ts](/src/mappings/mappings.ts) for simple mappings. Just ad
               }
           }
         }
-        additions: { //add these prop/values to the mapped component
+        additions: { //add these prop/values to the mapped component ONLY IF the property is not there already.
           "display" : "block"
         }
       },
@@ -183,3 +183,7 @@ There are some [helper functions](/src/mappings/helpers.ts) that can help you wr
 
 - `createPropertyMapper`: A generic method to create mapping for properties.
 - `createCssPropertyMapper`: To create map for styled system properties between Orbiter and Hopper.
+
+#### Adding property
+
+To add a new property to a component, you should use the `additions` filed. It accepts simple key/value data structure.

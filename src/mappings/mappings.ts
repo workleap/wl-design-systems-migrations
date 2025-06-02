@@ -1,6 +1,8 @@
 import { MapMetaData } from "../utils/types.js";
 import { flexMapping } from "./components/flex.ts";
 import { gridMappings } from "./components/grid.ts";
+import { inlineMapping } from "./components/inline.ts";
+import { stackMapping } from "./components/stack.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.js";
 
 const defaultPropsMappings = {
@@ -19,10 +21,8 @@ export const mappings = {
     //layout components
     ...flexMapping,
     ...gridMappings,
-    Inline: "Inline",
-    InlineProps: "InlineProps",
-    Stack: "Stack",
-    StackProps: "StackProps",
+    ...inlineMapping,
+    ...stackMapping,
 
     //content
     Heading: "Heading",
