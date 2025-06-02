@@ -1,6 +1,7 @@
 import {
   JSXAttribute,
   JSXExpressionContainer,
+  JSXSpreadAttribute,
   ObjectProperty,
 } from "jscodeshift";
 import {
@@ -11,6 +12,20 @@ import {
   Runtime,
 } from "../utils/types.js";
 import { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
+
+export function hasAttribute(
+  attributes: (JSXAttribute | JSXSpreadAttribute)[] | undefined,
+  keys: string[]
+): boolean {
+  return (
+    attributes?.find(
+      (attr) =>
+        attr.type == "JSXAttribute" &&
+        typeof attr.name.name == "string" &&
+        keys.includes(attr.name.name)
+    ) !== undefined
+  );
+}
 
 export function tryGettingLiteralValue(
   value: JSXAttribute["value"] | ObjectProperty["value"]

@@ -1,10 +1,10 @@
-import { ASTPath, JSXOpeningElement } from "jscodeshift";
+import { ASTPath, JSXAttribute, JSXOpeningElement } from "jscodeshift";
 import { Runtime } from "../utils/types.js";
 
 export function addAttribute(
   openingElement: ASTPath<JSXOpeningElement>,
   newAttrName: string,
-  newAttrValue: string | number | boolean | null,
+  newAttrValue: string | number | boolean | JSXAttribute["value"],
   runtime: Runtime
 ): void {
   const { j, root } = runtime;
@@ -26,10 +26,19 @@ export function addAttribute(
     return null;
   };
 
-  const newAttributeNode = j.jsxAttribute(
-    j.jsxIdentifier(newAttrName),
-    createAttributeValue(newAttrValue)
-  );
+  let value: JSXAttribute["value"] | null = null;
+
+  if (
+    typeof newAttrValue === "string" ||
+    typeof newAttrValue === "number" ||
+    typeof newAttrValue === "boolean"
+  ) {
+    value = createAttributeValue(newAttrValue);
+  } else {
+    value = newAttrValue;
+  }
+
+  const newAttributeNode = j.jsxAttribute(j.jsxIdentifier(newAttrName), value);
 
   attributes.push(newAttributeNode);
   openingElement.node.attributes = attributes;
