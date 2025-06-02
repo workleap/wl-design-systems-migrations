@@ -89,11 +89,13 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
 You can filter the analysis to focus on specific areas that need attention:
 
 **Analyze only unmapped components:**
+
 ```bash
 npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped components -n 1
 ```
 
 **Analyze only unmapped properties for mapped components:**
+
 ```bash
 npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped props -n 1
 ```
@@ -205,6 +207,12 @@ There are some [helper functions](/src/mappings/helpers.ts) that can help you wr
 
 - `createPropertyMapper`: A generic method to create mapping for properties.
 - `createCssPropertyMapper`: To create map for styled system properties between Orbiter and Hopper.
+- `createHopperCssPropertyMapper`: A specialized version of `createCssPropertyMapper` specifically for Hopper styled system properties.
+- `hasAttribute`: Check if a JSX element has specific attributes.
+- `getAttributeLiteralValue`: Extract literal values from JSX attributes.
+- `tryGettingLiteralValue`: Safely extract literal values from various AST node types.
+- `isPercentageValue`: Check if a value is a CSS percentage (e.g., "50%").
+- `isFrValue`: Check if a value is a CSS fr unit (e.g., "1fr").
 
 #### Adding new property
 
@@ -223,7 +231,7 @@ additions: {
 ```ts
 additions: {
   UNSAFE_gap: (tag, { j, log }) => {
-    return hasAttribute(tag.value.attributes, ["gap", "UNSAFE_gap"])
+    return hasAttribute(tag.node.attributes, ["gap", "UNSAFE_gap"])
       ? null
       : "1.25rem";
   }
