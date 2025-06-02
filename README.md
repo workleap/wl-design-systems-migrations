@@ -48,10 +48,18 @@ Migrate layout related components only (Flex, Grid, Div, ...). You can see the l
 npx codemod workleap/orbiter-to-hopper -c layout
 ```
 
-#### Migrate a Single Component Only
+#### Migrate Specific Components
+
+Migrate a single component:
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c Div
+```
+
+Migrate multiple specific components:
+
+```bash
+npx codemod workleap/orbiter-to-hopper -c Div,Text,Button
 ```
 
 #### Target a Specific Path
