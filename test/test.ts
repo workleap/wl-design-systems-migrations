@@ -1352,7 +1352,9 @@ describe("analyze file aggregation", () => {
       "disabled should be the fourth prop (1 usage)"
     );
   });
+});
 
+describe("components are strictly ordered by usage count in the returned object", () => {
   test("components are strictly ordered by usage count in the returned object", () => {
     const INPUT = `
       import { Div, Text, Button, Box, Alert } from "@workleap/orbiter-ui";
@@ -1531,5 +1533,195 @@ describe("JSON serialization", () => {
         restoredValues.includes("secondary"),
       "Set should contain original values"
     );
+  });
+});
+
+describe("analyze with filter-unmapped option", () => {
+  test("filter-unmapped: components - should only include unmapped components", () => {
+    // Div is mapped, UnmappedComponent is not mapped
+    const INPUT = `import { Div, Text, UnmappedComponent } from "@workleap/orbiter-ui"; 
+    export function App() { 
+      return (
+        <>
+          <Div border="1px" width="120px" />
+          <Text fontSize="14px" />
+          <UnmappedComponent customProp="value" />
+        </>
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      "filter-unmapped": "components",
+    });
+
+    // Should only include UnmappedComponent (unmapped)
+    assert.ok(
+      analysisResults.components.UnmappedComponent,
+      "UnmappedComponent should be present in results"
+    );
+    assert.ok(
+      !analysisResults.components.Div,
+      "Div should not be present in results (it's mapped)"
+    );
+    assert.ok(
+      !analysisResults.components.Text,
+      "Text should not be present in results (it's mapped)"
+    );
+
+    // Check UnmappedComponent details
+    assert.strictEqual(
+      analysisResults.components.UnmappedComponent.usage,
+      1,
+      "UnmappedComponent should have usage count of 1"
+    );
+    assert.strictEqual(
+      Object.keys(analysisResults.components.UnmappedComponent.props).length,
+      1,
+      "UnmappedComponent should have 1 prop"
+    );
+    assert.ok(
+      analysisResults.components.UnmappedComponent.props.customProp,
+      "UnmappedComponent should have customProp"
+    );
+  });
+
+  test("filter-unmapped: props - should only include unmapped props for mapped components", () => {
+    // Div is mapped, border is mapped to UNSAFE_border, but customProp is not mapped
+    const INPUT = `import { Div, UnmappedComponent } from "@workleap/orbiter-ui"; 
+    export function App() { 
+      return (
+        <>
+          <Div border="1px" width="120px" customProp="value" />
+          <UnmappedComponent someProp="value" />
+        </>
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      "filter-unmapped": "props",
+    });
+
+    // Should only include Div (mapped component) but exclude UnmappedComponent
+    assert.ok(
+      analysisResults.components.Div,
+      "Div should be present in results (it's mapped)"
+    );
+    assert.ok(
+      !analysisResults.components.UnmappedComponent,
+      "UnmappedComponent should not be present in results (it's unmapped)"
+    );
+
+    // Should only include unmapped props for Div
+    // border and width are mapped via styled-system, customProp is not mapped
+    const divProps = Object.keys(analysisResults.components.Div.props);
+    assert.ok(
+      divProps.includes("customProp"),
+      "customProp should be present (unmapped prop)"
+    );
+    assert.ok(
+      !divProps.includes("border"),
+      "border should not be present (mapped prop)"
+    );
+    assert.ok(
+      !divProps.includes("width"),
+      "width should not be present (mapped prop)"
+    );
+  });
+
+  test("filter-unmapped: components - with no unmapped components should return empty", () => {
+    // All components are mapped
+    const INPUT = `import { Div, Text } from "@workleap/orbiter-ui"; 
+    export function App() { 
+      return (
+        <>
+          <Div border="1px" />
+          <Text fontSize="14px" />
+        </>
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      "filter-unmapped": "components",
+    });
+
+    // Should be empty since all components are mapped
+    assert.strictEqual(
+      Object.keys(analysisResults.components).length,
+      0,
+      "Should have no components in results"
+    );
+    assert.strictEqual(
+      analysisResults.overall.usage.components,
+      0,
+      "Overall component usage should be 0"
+    );
+    assert.strictEqual(
+      analysisResults.overall.usage.props,
+      0,
+      "Overall prop usage should be 0"
+    );
+  });
+
+  test("filter-unmapped: props - with no unmapped props should return empty", () => {
+    // All props are mapped
+    const INPUT = `import { Div } from "@workleap/orbiter-ui"; 
+    export function App() { 
+      return <Div border="1px" width="120px" />; 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      "filter-unmapped": "props",
+    });
+
+    // Should include Div but with no props since all are mapped
+    assert.ok(
+      analysisResults.components.Div,
+      "Div should be present in results"
+    );
+    assert.strictEqual(
+      Object.keys(analysisResults.components.Div.props).length,
+      0,
+      "Div should have no props (all are mapped)"
+    );
+    assert.strictEqual(
+      analysisResults.components.Div.usage,
+      1,
+      "Div usage count should still be 1"
+    );
+  });
+
+  test("analyze without filter-unmapped should include all components and props", () => {
+    const INPUT = `import { Div, Text, UnmappedComponent } from "@workleap/orbiter-ui"; 
+    export function App() { 
+      return (
+        <>
+          <Div border="1px" width="120px" customProp="value" />
+          <Text fontSize="14px" />
+          <UnmappedComponent someProp="value" />
+        </>
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    // Should include all components
+    assert.ok(
+      analysisResults.components.Div,
+      "Div should be present in results"
+    );
+    assert.ok(
+      analysisResults.components.Text,
+      "Text should be present in results"
+    );
+    assert.ok(
+      analysisResults.components.UnmappedComponent,
+      "UnmappedComponent should be present in results"
+    );
+
+    // Should include all props for Div
+    const divProps = Object.keys(analysisResults.components.Div.props);
+    assert.ok(divProps.includes("border"), "border should be present");
+    assert.ok(divProps.includes("width"), "width should be present");
+    assert.ok(divProps.includes("customProp"), "customProp should be present");
   });
 });

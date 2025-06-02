@@ -33,7 +33,13 @@ export default function transform(
   try {
     if (options?.a !== undefined && options?.a !== "") {
       const outputPath = options.a as string;
-      const result = analyze(runtime, outputPath, options);
+      const result = analyze(runtime, outputPath, {
+        ...options,
+        "filter-unmapped": options["filter-unmapped"] as
+          | "components"
+          | "props"
+          | undefined,
+      });
       return result.source;
     } else {
       return migrate(runtime, options);

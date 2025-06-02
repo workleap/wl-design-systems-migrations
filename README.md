@@ -76,6 +76,20 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
 
 ⚠️ **Important**: The `-n 1` flag limits execution to a single thread, which ensures accurate output collection.
 
+#### Filtering Analysis Results
+
+You can filter the analysis to focus on specific areas that need attention:
+
+**Analyze only unmapped components:**
+```bash
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped components -n 1
+```
+
+**Analyze only unmapped properties for mapped components:**
+```bash
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped props -n 1
+```
+
 This command generates a JSON file (`orbiter-usage.json`) containing usage statistics ordered by frequency. The output format prioritizes frequently used components and their properties:
 
 ```json

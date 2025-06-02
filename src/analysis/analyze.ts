@@ -2,7 +2,50 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { Options } from "jscodeshift";
 import { setReplacer, setReviver } from "../utils/serialization.js";
-import { Runtime } from "../utils/types.js";
+import { ComponentMapMetaData, Runtime } from "../utils/types.js";
+
+/**
+ * Checks if a component has a mapping in the mappings configuration
+ */
+function isComponentMapped(
+  componentName: string,
+  mappings: Runtime["mappings"]
+): boolean {
+  return componentName in mappings.components;
+}
+
+/**
+ * Checks if a property has a mapping for a given component
+ */
+function isPropertyMapped(
+  componentName: string,
+  propName: string,
+  mappings: Runtime["mappings"]
+): boolean {
+  const componentMapping = mappings.components[componentName];
+
+  // If component doesn't exist in mappings, property is not mapped
+  if (!componentMapping) {
+    return false;
+  }
+
+  // Check if it's a string mapping (simple component mapping)
+  if (typeof componentMapping === "string") {
+    // Check in default props mappings
+    return propName in (mappings.propsDefaults?.mappings || {});
+  }
+
+  // Check component-specific prop mappings
+  if (
+    componentMapping.props?.mappings &&
+    propName in componentMapping.props.mappings
+  ) {
+    return true;
+  }
+
+  // Check in default props mappings
+  return propName in (mappings.propsDefaults?.mappings || {});
+}
 
 // Define the new structure for analysis results
 /**
@@ -185,10 +228,14 @@ export function mergeAnalysisResults(
 export function analyze(
   runtime: Runtime,
   outputPath: string | null,
-  options?: Options & { sourcePackage?: string }
+  options?: Options & {
+    sourcePackage?: string;
+    "filter-unmapped"?: "components" | "props";
+  }
 ): { source: string | undefined; analysisResults: AnalysisResults } {
   const { j, root, mappings } = runtime;
   const sourcePackage = options?.sourcePackage || mappings.sourcePackage;
+  const filterUnmapped = options?.["filter-unmapped"];
 
   // Store component usage with counts
   const componentUsageData: Record<
@@ -245,6 +292,24 @@ export function analyze(
 
     // If this potential component is actually used in JSX, then it's confirmed as a component
     if (jsxUsages.size() > 0) {
+      // Apply component filtering if specified
+      if (
+        filterUnmapped === "components" &&
+        isComponentMapped(originalName, mappings)
+      ) {
+        // Skip mapped components when filtering for unmapped components only
+        return;
+      }
+
+      // Apply property filtering - only include mapped components for props mode
+      if (
+        filterUnmapped === "props" &&
+        !isComponentMapped(originalName, mappings)
+      ) {
+        // Skip unmapped components when filtering for unmapped props only
+        return;
+      }
+
       confirmedComponents.add(originalName);
 
       // Initialize component usage data with count
@@ -271,6 +336,15 @@ export function analyze(
             attr.name.type === "JSXIdentifier"
           ) {
             const propName = attr.name.name;
+
+            // Apply property filtering if specified
+            if (
+              filterUnmapped === "props" &&
+              isPropertyMapped(originalName, propName, mappings)
+            ) {
+              // Skip mapped properties when filtering for unmapped props only
+              return;
+            }
 
             // Initialize property data if not exists
             if (!componentUsage.props[propName]) {
