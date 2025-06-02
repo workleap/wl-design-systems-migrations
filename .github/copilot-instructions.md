@@ -1,4 +1,4 @@
-# Crating new PR rules:
+# Creating new PR rules:
 
 - No need to rebase or checking the status.
 - If there are uncommitted changes, stop the process and ask the user to commit or stash them.
