@@ -184,6 +184,28 @@ There are some [helper functions](/src/mappings/helpers.ts) that can help you wr
 - `createPropertyMapper`: A generic method to create mapping for properties.
 - `createCssPropertyMapper`: To create map for styled system properties between Orbiter and Hopper.
 
-#### Adding property
+#### Adding new property
 
-To add a new property to a component, you should use the `additions` filed. It accepts simple key/value data structure.
+To add a new property to a component, you should use the `additions` field. It accepts either simple key/value pairs or functions for dynamic property generation.
+
+**Simple key/value:**
+
+```ts
+additions: {
+  "display": "block"
+}
+```
+
+**Function-based (for conditional logic):**
+
+```ts
+additions: {
+  UNSAFE_gap: (tag, { j, log }) => {
+    return hasAttribute(tag.value.attributes, ["gap", "UNSAFE_gap"])
+      ? null
+      : "1.25rem";
+  }
+}
+```
+
+Functions receive the JSX element and runtime context, allowing you to conditionally add properties based on existing attributes or other logic. Return `null` to skip adding the property.
