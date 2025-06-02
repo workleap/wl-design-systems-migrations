@@ -5,7 +5,7 @@
 - If branch is already there, just create a new PR based on it.
 - Make sure to update the version in the `.codemodrc.json` file only if the logic has changed.
   - Just increment the minor version.
-- Make sure to update the `README.md` file with any new features or changes if there are already there.
+- Make sure to update the `README.md` file with any new features or changes if there are related section in the file.
   - No need to add new sections about new features or updates.
   - Just update the existing sections if it is required.
 - Open the PR on Web at the end, or just share the PR's url.
