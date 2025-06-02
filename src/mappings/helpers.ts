@@ -1,6 +1,8 @@
+import { isArray } from "@hopper-ui/components";
 import {
   JSXAttribute,
   JSXExpressionContainer,
+  JSXOpeningElement,
   JSXSpreadAttribute,
   ObjectProperty,
 } from "jscodeshift";
@@ -14,17 +16,36 @@ import {
 import { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
 
 export function hasAttribute(
-  attributes: (JSXAttribute | JSXSpreadAttribute)[] | undefined,
-  keys: string[]
+  tag: JSXOpeningElement,
+  keys: string[] | string
 ): boolean {
   return (
-    attributes?.find(
+    tag.attributes?.find(
       (attr) =>
         attr.type == "JSXAttribute" &&
         typeof attr.name.name == "string" &&
-        keys.includes(attr.name.name)
+        (isArray(keys)
+          ? keys.includes(attr.name.name)
+          : attr.name.name === keys)
     ) !== undefined
   );
+}
+
+export function getAttributeLiteralValue(
+  tag: JSXOpeningElement,
+  attributeName: string
+) {
+  const attribute = tag.attributes?.find(
+    (attr) =>
+      attr.type === "JSXAttribute" &&
+      attr.name.name === attributeName &&
+      attr.value != null
+  );
+
+  if (attribute && attribute.type == "JSXAttribute") {
+    return tryGettingLiteralValue(attribute.value);
+  }
+  return null;
 }
 
 export function tryGettingLiteralValue(

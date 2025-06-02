@@ -11,7 +11,7 @@ export const inlineMapping = {
       },
       additions: {
         UNSAFE_gap: (tag, { j, log }) => {
-          return hasAttribute(tag.value.attributes, ["gap", "UNSAFE_gap"])
+          return hasAttribute(tag.value, ["gap", "UNSAFE_gap"])
             ? null
             : "1.25rem";
         },

@@ -9,23 +9,28 @@ export function migrate(
 ): string | undefined {
   // Easily migrate individual components by name
   const { mappings } = runtime;
-  const componentName = options?.c ?? "all";
+  const components = (options?.c ?? "all") as string;
 
-  if (componentName === "layout") {
+  if (components === "layout") {
     layoutComponents.forEach((sourceComponentName) => {
       if (mappings.components[sourceComponentName]) {
         migrateComponent(sourceComponentName, runtime);
       }
     });
-  } else if (componentName !== "all" && mappings.components[componentName]) {
-    migrateComponent(componentName, runtime);
-  } else if (componentName === "all") {
+  } else if (components === "all") {
     // Migrate all components in the map
     Object.keys(mappings.components).forEach((sourceComponentName) => {
       migrateComponent(sourceComponentName, runtime);
     });
   } else {
-    console.log(`Component ${componentName} not found in mappings.`);
+    components.split(",").forEach((name) => {
+      name = name.trim();
+      if (mappings.components[name]) {
+        migrateComponent(name, runtime);
+      } else {
+        console.log(`Component ${name} not found in mappings.`);
+      }
+    });
   }
   return runtime.root.toSource();
 }

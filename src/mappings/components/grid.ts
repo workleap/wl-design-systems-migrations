@@ -11,6 +11,7 @@ export const gridMappings = {
     to: "Grid",
     props: {
       mappings: {
+        areas: "areas",
         autoRows: createGridAutoRowsMapper("autoRows", "UNSAFE_autoRows"),
         autoColumns: createGridAutoColumnsMapper(
           "autoColumns",
