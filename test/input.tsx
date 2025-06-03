@@ -39,7 +39,13 @@ import {
   Span,
   Stack,
   Table,
+  TBody,
+  TD,
   Text,
+  TFoot,
+  TH,
+  THead,
+  TR,
   UL,
   useAccordionContext,
   type ContentProps,
@@ -344,28 +350,59 @@ export function App() {
       <HtmlH4 padding={400}>text</HtmlH4>
       <HtmlH5 padding={400}>text</HtmlH5>
       <HtmlH6 padding={400}>text</HtmlH6>
-      <Text padding={400}>text</Text>
-      <Content padding={400}>text</Content>
-      <Footer padding={400}>text</Footer>
-      <Header padding={400}>text</Header>
+      <Text size="xs" slot="ff">
+        text
+      </Text>
+      <Content padding={400} slot="sample">
+        text
+      </Content>
+      <Footer padding={400} slot="sample">
+        text
+      </Footer>
+      <Header padding={400} slot="sample">
+        text
+      </Header>
       <A padding={400}>text</A>
       <Address padding={400}>text</Address>
       <Article padding={400}>text</Article>
-      <Aside padding={400}>text</Aside>
-      <HtmlButton padding={400}>text</HtmlButton>
+      <Aside color="neutral-weak">text</Aside>
+      <HtmlButton border="rock-900" padding="1" type="button">
+        text
+      </HtmlButton>
       <Div padding={400}>text</Div>
       <HtmlFooter padding={400}>text</HtmlFooter>
       <HtmlHeader padding={400}>text</HtmlHeader>
-      <Img padding={400}>text</Img>
-      <HtmlInput padding={400}>text</HtmlInput>
-      <UL padding={400}>text</UL>
-      <OL padding={400}>text</OL>
-      <LI padding={400}>text</LI>
+      <Img border="rock-400" src="Planet" />
+      <HtmlInput type="email">text</HtmlInput>
+      <Nav flexWrap={"revert-layer"}>
+        <UL color="neutral-weak" marginLeft={"revert"}>
+          <LI color="sapphire-600">Colonize</LI>
+        </UL>
+        <OL color="neutral-weak">
+          <LI color="sapphire-600" backgroundColor={"amanita-400"}>
+            Colonize
+          </LI>
+        </OL>
+      </Nav>
       <Main padding={400}>text</Main>
       <Nav padding={400}>text</Nav>
       <HtmlSection padding={400}>text</HtmlSection>
       <Span padding={400}>text</Span>
-      <Table padding={400}>text</Table>
+      <Table cellPadding={5} color="neutral-weak" padding={400}>
+        <THead fontWeight={680} padding={400}>
+          <TR padding={400}>
+            <TH textAlign="left" padding={400}>
+              Company
+            </TH>
+          </TR>
+        </THead>
+        <TBody padding={400}>
+          <TR padding={400}>
+            <TD padding={400}>Space</TD>
+          </TR>
+        </TBody>
+        <TFoot padding={400}></TFoot>
+      </Table>
       {/* ------------------------------------------------------------------------------------------ */}
       <DivHopper padding={"core_400"}>text</DivHopper>
     </div>
