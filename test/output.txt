@@ -42,7 +42,6 @@ import {
   Main,
   Nav,
   Span,
-  TextField,
 } from "@hopper-ui/components";
 import { useAccordionContext } from "@workleap/orbiter-ui";
 
@@ -69,7 +68,6 @@ export function App() {
       <Div backgroundColor="warning" height={"-35%"} />
       <Div backgroundColor="warning" height="-moz-initial" />
       <Text color="neutral">Hello World!</Text>
-      <TextField isDisabled />
       <Paragraph size={"2xl"}>Hello World!</Paragraph>
       <Flex direction="row" gap="core_960" rowGap="core_0" columnGap="core_0">
         text 1

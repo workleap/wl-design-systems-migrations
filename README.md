@@ -42,7 +42,7 @@ npx codemod workleap/orbiter-to-hopper -c all
 
 #### Migrate Layout Components Only
 
-Migrate layout related components only (Flex, Grid, Div, ...). You can see the list in [layoutComponents.ts](/src/utils/layoutComponents.ts) file.
+Migrate layout related components only (Flex, Grid, Div, ...). You can see the list in [layout-components-mappings.ts](/src/mappings/layout-components-mappings.ts) file.
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c layout
@@ -91,13 +91,13 @@ You can filter the analysis to focus on specific areas that need attention:
 **Analyze only unmapped components:**
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped components -n 1
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-components.json --filter-unmapped components -n 1
 ```
 
 **Analyze only unmapped properties for mapped components:**
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped props -n 1
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-props.json --filter-unmapped props -n 1
 ```
 
 This command generates a JSON file (`orbiter-usage.json`) containing usage statistics ordered by frequency. The output format prioritizes frequently used components and their properties:
@@ -146,6 +146,28 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 1. First, [install the codemod CLI globally](https://docs.codemod.com/deploying-codemods/cli#installation).
 
 2. Make your modifications to the codebase.
+
+### Quick Analysis Scripts
+
+For development and testing purposes, you can use the predefined npm scripts that handle the analysis commands. These scripts analyze ALL the repos that are cloned locally:
+
+**Generate complete usage report:**
+
+```bash
+npm run analyze
+```
+
+**Analyze only unmapped components:**
+
+```bash
+npm run analyze:components
+```
+
+**Analyze only unmapped properties:**
+
+```bash
+npm run analyze:props
+```
 
 ### Publishing
 
