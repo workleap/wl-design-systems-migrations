@@ -1,0 +1,833 @@
+{
+  "overall": {
+    "usage": {
+      "components": 1249,
+      "props": 1170
+    }
+  },
+  "components": {
+    "Text": {
+      "usage": 582,
+      "props": {
+        "size": {
+          "usage": 466,
+          "values": [
+            "\"md\"",
+            "\"sm\"",
+            "\"xs\"",
+            "\"2xl\"",
+            "\"lg\"",
+            "fontSize",
+            "{ base: \"lg\", xs: \"2xl\" }",
+            "\"inherit\"",
+            "{ base: \"md\", xs: \"sm\" }",
+            "size",
+            "{ base: \"xs\", xs: \"md\" }"
+          ]
+        },
+        "title": {
+          "usage": 7,
+          "values": [
+            "description",
+            "jobTitle",
+            "identitiesJobTitles",
+            "fileName"
+          ]
+        },
+        "id": {
+          "usage": 6,
+          "values": [
+            "\"label-everyoneInMyIntegrationAccount\"",
+            "\"label-everyoneInTheFollowingIntegrationGroups\""
+          ]
+        },
+        "role": {
+          "usage": 4,
+          "values": [
+            "\"status\"",
+            "\"cell\"",
+            "\"columnheader\""
+          ]
+        },
+        "as": {
+          "usage": 2,
+          "values": [
+            "\"div\""
+          ]
+        },
+        "aria-live": {
+          "usage": 2,
+          "values": [
+            "durationInMs ? \"assertive\" : \"polite\""
+          ]
+        },
+        "aria-hidden": {
+          "usage": 1,
+          "values": [
+            "\"true\""
+          ]
+        },
+        "aria-readonly": {
+          "usage": 1,
+          "values": []
+        },
+        "dangerouslySetInnerHTML": {
+          "usage": 1,
+          "values": [
+            "introText"
+          ]
+        }
+      }
+    },
+    "Heading": {
+      "usage": 297,
+      "props": {
+        "size": {
+          "usage": 268,
+          "values": [
+            "\"xl\"",
+            "\"xs\"",
+            "\"md\"",
+            "\"2xl\"",
+            "\"lg\"",
+            "\"sm\"",
+            "{ base: \"lg\", sm: \"xl\" }",
+            "{ base: \"md\", md: \"lg\" }",
+            "headingSize",
+            "{ base: \"sm\", sm: \"lg\" }",
+            "{ base: \"lg\", xs: \"xl\" }",
+            "{ base: \"lg\", xs: \"3xl\" }",
+            "{ base: \"lg\", sm:\"2xl\" }",
+            "{ base: \"sm\", sm: \"xl\" }",
+            "{ base: \"lg\", xs: \"2xl\" }",
+            "\"3xl\"",
+            "{ base: \"md\", sm: \"2xl\" }"
+          ]
+        },
+        "id": {
+          "usage": 6,
+          "values": [
+            "`${popupId}-title`",
+            "\"themeLabel\"",
+            "\"st-billing-information-heading\"",
+            "\"planSelectionPage_featureComparisonTable\""
+          ]
+        },
+        "as": {
+          "usage": 1,
+          "values": [
+            "as"
+          ]
+        },
+        "data-wl-test-id": {
+          "usage": 1,
+          "values": [
+            "\"home-page-title\""
+          ]
+        },
+        "onMouseEnter": {
+          "usage": 1,
+          "values": [
+            "handleMouseEnter"
+          ]
+        },
+        "onMouseLeave": {
+          "usage": 1,
+          "values": [
+            "handleMouseLeave"
+          ]
+        }
+      }
+    },
+    "Div": {
+      "usage": 97,
+      "props": {
+        "min-width": {
+          "usage": 21,
+          "values": [
+            "\"100dvh\""
+          ]
+        },
+        "role": {
+          "usage": 16,
+          "values": [
+            "\"button\"",
+            "\"presentation\"",
+            "\"table\"",
+            "\"rowgroup\"",
+            "\"columnheader\""
+          ]
+        },
+        "id": {
+          "usage": 13,
+          "values": [
+            "reviewCycle.reviewCycleId",
+            "\"assign-user-product\"",
+            "\"column-logo-name-status\"",
+            "\"section-max-name-status\"",
+            "\"column-tenants-button\"",
+            "\"sticky-placeholder\"",
+            "\"assign-user-roles\"",
+            "\"wai-conversation-view-anchor\"",
+            "`hubspot-form-${hubspotFormId}`"
+          ]
+        },
+        "onClick": {
+          "usage": 7,
+          "values": [
+            "onClick",
+            "onOpen",
+            "handleClick"
+          ]
+        },
+        "onMouseEnter": {
+          "usage": 6,
+          "values": [
+            "() => setIsHover(true)",
+            "() => setIsPopoverOpen(true)",
+            "handleHoverRow",
+            "handleMouseEnter"
+          ]
+        },
+        "onMouseLeave": {
+          "usage": 6,
+          "values": [
+            "() => setIsHover(false)",
+            "() => setIsPopoverOpen(false)",
+            "handleMouseLeave"
+          ]
+        },
+        "title": {
+          "usage": 4,
+          "values": [
+            "userDisplayName",
+            "displayName",
+            "identitiesNames",
+            "`${conversationTitle} - ${detailedUpdatedAtDate}`"
+          ]
+        },
+        "onMouseDown": {
+          "usage": 2,
+          "values": [
+            "handleResize"
+          ]
+        },
+        "tabIndex": {
+          "usage": 2,
+          "values": [
+            "0"
+          ]
+        },
+        "onKeyDown": {
+          "usage": 2,
+          "values": [
+            "onClick ? event => {\n    if (event.key === \"Enter\") {\n        onClick();\n    }\n} : undefined",
+            "onKeyDown"
+          ]
+        },
+        "onScroll": {
+          "usage": 2,
+          "values": [
+            "e => fetchMoreOnBottomReached(e.currentTarget)"
+          ]
+        },
+        "margin-bottom": {
+          "usage": 1,
+          "values": [
+            "\"stack-sm\""
+          ]
+        }
+      }
+    },
+    "Flex": {
+      "usage": 75,
+      "props": {
+        "role": {
+          "usage": 13,
+          "values": [
+            "\"button\"",
+            "\"columnheader\"",
+            "\"cell\"",
+            "\"row\""
+          ]
+        },
+        "shrink": {
+          "usage": 7,
+          "values": [
+            "\"1\"",
+            "\"0\"",
+            "0"
+          ]
+        },
+        "onClick": {
+          "usage": 5,
+          "values": [
+            "handleOnClick",
+            "handleFocusInput",
+            "expandInfo"
+          ]
+        },
+        "id": {
+          "usage": 4,
+          "values": [
+            "\"sb-page\"",
+            "id",
+            "\"cell-inside-row\"",
+            "\"section-name-status\""
+          ]
+        },
+        "onDragEnter": {
+          "usage": 4,
+          "values": [
+            "handleDragEnter"
+          ]
+        },
+        "onDragOver": {
+          "usage": 4,
+          "values": [
+            "handleDragOver"
+          ]
+        },
+        "onDragLeave": {
+          "usage": 4,
+          "values": [
+            "handleDragLeave"
+          ]
+        },
+        "onDrop": {
+          "usage": 4,
+          "values": [
+            "handleDrop"
+          ]
+        },
+        "tabIndex": {
+          "usage": 3,
+          "values": [
+            "-1",
+            "0"
+          ]
+        },
+        "onFocus": {
+          "usage": 3,
+          "values": [
+            "() => setIsFocused(true)",
+            "() => onFocus?.()"
+          ]
+        },
+        "onBlur": {
+          "usage": 3,
+          "values": [
+            "event => {\n    if (editorRef.current && !editorRef.current.contains(event.relatedTarget) && !isLinkEditMode) {\n        // Blur method to handle tab navigation\n        handleOnBlur();\n    }\n}",
+            "() => onBlur?.()"
+          ]
+        },
+        "data-index": {
+          "usage": 2,
+          "values": [
+            "virtualRow.index",
+            "index"
+          ]
+        },
+        "inline": {
+          "usage": 1,
+          "values": []
+        },
+        "basis": {
+          "usage": 1,
+          "values": [
+            "\"0\""
+          ]
+        },
+        "onKeyPress": {
+          "usage": 1,
+          "values": [
+            "e => {\n    if (e.key === \"Enter\" || e.key === \" \") {\n        expandInfo();\n    }\n}"
+          ]
+        },
+        "onMouseEnter": {
+          "usage": 1,
+          "values": [
+            "() => handleMouseEnter(integration)"
+          ]
+        },
+        "onMouseLeave": {
+          "usage": 1,
+          "values": [
+            "handleMouseLeave"
+          ]
+        },
+        "padding-left": {
+          "usage": 1,
+          "values": [
+            "\"inset-md\""
+          ]
+        },
+        "padding-right": {
+          "usage": 1,
+          "values": [
+            "\"inset-md\""
+          ]
+        },
+        "reverse": {
+          "usage": 1,
+          "values": []
+        }
+      }
+    },
+    "Paragraph": {
+      "usage": 57,
+      "props": {
+        "size": {
+          "usage": 54,
+          "values": [
+            "\"sm\"",
+            "\"xs\"",
+            "\"lg\"",
+            "\"md\""
+          ]
+        }
+      }
+    },
+    "Inline": {
+      "usage": 27,
+      "props": {
+        "alignY": {
+          "usage": 25,
+          "values": [
+            "\"center\"",
+            "\"start\"",
+            "{ base: \"end\", xs: \"center\" }",
+            "\"end\""
+          ]
+        },
+        "alignX": {
+          "usage": 4,
+          "values": [
+            "align ? alignConverter[align] : \"start\"",
+            "\"start\"",
+            "{ base: \"center\", xs: \"start\" }"
+          ]
+        }
+      }
+    },
+    "Stack": {
+      "usage": 25,
+      "props": {
+        "alignX": {
+          "usage": 15,
+          "values": [
+            "\"center\""
+          ]
+        },
+        "alignY": {
+          "usage": 9,
+          "values": [
+            "\"center\""
+          ]
+        }
+      }
+    },
+    "H2": {
+      "usage": 16,
+      "props": {
+        "size": {
+          "usage": 16,
+          "values": [
+            "\"xs\"",
+            "\"sm\"",
+            "\"lg\""
+          ]
+        }
+      }
+    },
+    "H1": {
+      "usage": 12,
+      "props": {
+        "size": {
+          "usage": 12,
+          "values": [
+            "\"3xl\"",
+            "\"xl\"",
+            "\"2xl\"",
+            "\"xs\"",
+            "\"md\"",
+            "{ base: \"lg\", xs: \"3xl\" }"
+          ]
+        }
+      }
+    },
+    "Img": {
+      "usage": 9,
+      "props": {
+        "alt": {
+          "usage": 9,
+          "values": [
+            "\"Nathalie Jard, Product Manager\"",
+            "\"Jerome Gangloff, ShareGate Product Manager\"",
+            "\"\"",
+            "\"Workleap performance logo\"",
+            "\"Workleap\""
+          ]
+        },
+        "src": {
+          "usage": 9,
+          "values": [
+            "nathImageUrl",
+            "jeromeImageUrl",
+            "\"/protect.svg\"",
+            "\"https://cdn.platform.workleap.com/products/wpm/icon.svg\"",
+            "\"/workleap.svg\""
+          ]
+        }
+      }
+    },
+    "HtmlButton": {
+      "usage": 9,
+      "props": {
+        "onClick": {
+          "usage": 8,
+          "values": [
+            "handleColorSchemeToggle",
+            "handleResetLocalStorage",
+            "() => onExpandClick(row.id, !isExpanded)",
+            "handleClick",
+            "click",
+            "handleOnClick",
+            "onClick",
+            "onItemClick"
+          ]
+        },
+        "onMouseEnter": {
+          "usage": 3,
+          "values": [
+            "() => setHover(true)",
+            "handleMouseEnter"
+          ]
+        },
+        "onMouseLeave": {
+          "usage": 3,
+          "values": [
+            "() => setHover(false)",
+            "handleMouseLeave"
+          ]
+        },
+        "type": {
+          "usage": 3,
+          "values": [
+            "\"button\""
+          ]
+        }
+      }
+    },
+    "Span": {
+      "usage": 8,
+      "props": {
+        "id": {
+          "usage": 3,
+          "values": [
+            "\"st-pay-cta\"",
+            "organizationAuthenticationUrlControlId"
+          ]
+        },
+        "role": {
+          "usage": 1,
+          "values": [
+            "\"img\""
+          ]
+        },
+        "aria-hidden": {
+          "usage": 1,
+          "values": [
+            "label != null"
+          ]
+        }
+      }
+    },
+    "Content": {
+      "usage": 6,
+      "props": {
+        "as": {
+          "usage": 6,
+          "values": [
+            "\"div\""
+          ]
+        }
+      }
+    },
+    "A": {
+      "usage": 6,
+      "props": {
+        "href": {
+          "usage": 6,
+          "values": [
+            "sanitizeUrl(editedLinkUrl)",
+            "officeVibeLink",
+            "LMSLink",
+            "skillsLink",
+            "onboardingLink",
+            "pingboardLink"
+          ]
+        },
+        "target": {
+          "usage": 1,
+          "values": [
+            "\"_blank\""
+          ]
+        },
+        "rel": {
+          "usage": 1,
+          "values": [
+            "\"noopener noreferrer\""
+          ]
+        }
+      }
+    },
+    "HtmlInput": {
+      "usage": 6,
+      "props": {
+        "type": {
+          "usage": 6,
+          "values": [
+            "\"file\"",
+            "\"text\""
+          ]
+        },
+        "onChange": {
+          "usage": 6,
+          "values": [
+            "handleFileChange",
+            "handleChange",
+            "onChange"
+          ]
+        },
+        "id": {
+          "usage": 4,
+          "values": [
+            "\"file\"",
+            "field.id"
+          ]
+        },
+        "onKeyDown": {
+          "usage": 3,
+          "values": [
+            "handleKeyDown"
+          ]
+        },
+        "value": {
+          "usage": 3,
+          "values": [
+            "text",
+            "searchTerm"
+          ]
+        },
+        "placeholder": {
+          "usage": 3,
+          "values": [
+            "emails.length === 0 ? placeholder : undefined",
+            "placeholder",
+            "tags.length === 0 ? placeholder : undefined"
+          ]
+        },
+        "accept": {
+          "usage": 2,
+          "values": [
+            "\"image/*\""
+          ]
+        },
+        "hidden": {
+          "usage": 2,
+          "values": []
+        },
+        "name": {
+          "usage": 2,
+          "values": [
+            "name"
+          ]
+        },
+        "autoComplete": {
+          "usage": 2,
+          "values": [
+            "\"off\""
+          ]
+        },
+        "autoCapitalize": {
+          "usage": 2,
+          "values": [
+            "\"off\""
+          ]
+        },
+        "autoCorrect": {
+          "usage": 2,
+          "values": [
+            "\"off\""
+          ]
+        },
+        "spellCheck": {
+          "usage": 2,
+          "values": [
+            "false"
+          ]
+        },
+        "onFocus": {
+          "usage": 2,
+          "values": [
+            "handleFocus"
+          ]
+        },
+        "onBlur": {
+          "usage": 2,
+          "values": [
+            "handleBlur"
+          ]
+        },
+        "data-wl-test-id": {
+          "usage": 1,
+          "values": [
+            "\"emailListInput\""
+          ]
+        },
+        "multiple": {
+          "usage": 1,
+          "values": []
+        }
+      }
+    },
+    "Grid": {
+      "usage": 5,
+      "props": {
+        "role": {
+          "usage": 2,
+          "values": [
+            "\"row\""
+          ]
+        },
+        "onTransitionStart": {
+          "usage": 2,
+          "values": [
+            "handleTransitionStart"
+          ]
+        },
+        "onTransitionEnd": {
+          "usage": 2,
+          "values": [
+            "handleTransitionEnd"
+          ]
+        }
+      }
+    },
+    "Main": {
+      "usage": 3,
+      "props": {
+        "id": {
+          "usage": 3,
+          "values": [
+            "\"main-content\""
+          ]
+        }
+      }
+    },
+    "UL": {
+      "usage": 3,
+      "props": {
+        "onMouseEnter": {
+          "usage": 1,
+          "values": [
+            "handleMouseEnter"
+          ]
+        },
+        "onMouseLeave": {
+          "usage": 1,
+          "values": [
+            "handleMouseLeave"
+          ]
+        },
+        "onScroll": {
+          "usage": 1,
+          "values": [
+            "e => fetchMoreOnBottomReached(e.currentTarget)"
+          ]
+        },
+        "id": {
+          "usage": 1,
+          "values": [
+            "authorizedSlackWorkspacesControlId"
+          ]
+        }
+      }
+    },
+    "Table": {
+      "usage": 2,
+      "props": {
+        "cellPadding": {
+          "usage": 2,
+          "values": [
+            "cellPadding",
+            "8"
+          ]
+        },
+        "role": {
+          "usage": 1,
+          "values": [
+            "\"grid\""
+          ]
+        }
+      }
+    },
+    "H3": {
+      "usage": 1,
+      "props": {
+        "size": {
+          "usage": 1,
+          "values": [
+            "\"sm\""
+          ]
+        }
+      }
+    },
+    "TH": {
+      "usage": 1,
+      "props": {
+        "scope": {
+          "usage": 1,
+          "values": [
+            "scope"
+          ]
+        },
+        "aria-sort": {
+          "usage": 1,
+          "values": [
+            "ariaSort"
+          ]
+        }
+      }
+    },
+    "TD": {
+      "usage": 1,
+      "props": {
+        "colSpan": {
+          "usage": 1,
+          "values": [
+            "columnCount"
+          ]
+        },
+        "aria-colspan": {
+          "usage": 1,
+          "values": [
+            "columnCount"
+          ]
+        }
+      }
+    },
+    "TR": {
+      "usage": 1,
+      "props": {
+        "aria-rowindex": {
+          "usage": 1,
+          "values": [
+            "HEADER_ROWS_COUNT + rowCount + 1"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -42,7 +42,7 @@ npx codemod workleap/orbiter-to-hopper -c all
 
 #### Migrate Layout Components Only
 
-Migrate layout related components only (Flex, Grid, Div, ...). You can see the list in [layoutComponents.ts](/src/utils/layoutComponents.ts) file.
+Migrate layout related components only (Flex, Grid, Div, ...). You can see the list in [layout-components-mappings.ts](/src/mappings/layout-components-mappings.ts) file.
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c layout
@@ -91,13 +91,13 @@ You can filter the analysis to focus on specific areas that need attention:
 **Analyze only unmapped components:**
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped components -n 1
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-components.json --filter-unmapped components -n 1
 ```
 
 **Analyze only unmapped properties for mapped components:**
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --filter-unmapped props -n 1
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-props.json --filter-unmapped props -n 1
 ```
 
 This command generates a JSON file (`orbiter-usage.json`) containing usage statistics ordered by frequency. The output format prioritizes frequently used components and their properties:

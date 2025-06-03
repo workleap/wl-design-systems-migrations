@@ -406,6 +406,12 @@ export function analyze(
         };
       });
 
+    // When filtering for unmapped props only, exclude components that have no unmapped props
+    if (filterUnmapped === "props" && Object.keys(sortedProps).length === 0) {
+      // Skip this component entirely if it has no unmapped props
+      return;
+    }
+
     orderedComponents.set(componentName, {
       usage: data.count,
       props: sortedProps,

@@ -8,7 +8,7 @@ import {
   analyze,
   mergeAnalysisResults,
 } from "../src/analysis/analyze.js";
-import { mappings as initialMappings } from "../src/mappings/mappings.js";
+import { mappings as initialMappings } from "../src/mappings/index.ts";
 import { migrate } from "../src/migrations/migrate.js";
 import { setReplacer, setReviver } from "../src/utils/serialization.js";
 import { MapMetaData, Runtime } from "../src/utils/types.js";
@@ -1673,20 +1673,25 @@ describe("analyze with filter-unmapped option", () => {
       "filter-unmapped": "props",
     });
 
-    // Should include Div but with no props since all are mapped
+    // Should not include Div since all its props are mapped
     assert.ok(
-      analysisResults.components.Div,
-      "Div should be present in results"
+      !analysisResults.components.Div,
+      "Div should not be present in results (all props are mapped)"
     );
     assert.strictEqual(
-      Object.keys(analysisResults.components.Div.props).length,
+      Object.keys(analysisResults.components).length,
       0,
-      "Div should have no props (all are mapped)"
+      "Should have no components in results"
     );
     assert.strictEqual(
-      analysisResults.components.Div.usage,
-      1,
-      "Div usage count should still be 1"
+      analysisResults.overall.usage.components,
+      0,
+      "Overall component usage should be 0"
+    );
+    assert.strictEqual(
+      analysisResults.overall.usage.props,
+      0,
+      "Overall prop usage should be 0"
     );
   });
 

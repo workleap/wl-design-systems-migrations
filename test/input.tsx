@@ -40,7 +40,6 @@ import {
   Stack,
   Table,
   Text,
-  TextInput,
   UL,
   useAccordionContext,
   type ContentProps,
@@ -71,7 +70,6 @@ export function App() {
       <Div backgroundColor="warning" height="-moz-initial" />
 
       <Text color="neutral">Hello World!</Text>
-      <TextInput disabled />
       <Paragraph size={"2xl"}>Hello World!</Paragraph>
       <Flex direction="row" gap={960} rowGap={0} columnGap={0}>
         text 1
