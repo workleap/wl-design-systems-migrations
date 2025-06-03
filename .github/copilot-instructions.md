@@ -1,7 +1,10 @@
 # Creating new PR rules (only if requested by the user):
 
+- This repo has branch protection.
+  - If it is on the main branch, first create a new branch.
+  - Commit the changes to the branch.
 - No need to rebase or checking the status.
-- If branch is already there, just create a new PR based on it.
+- Create a new PR based on the branch.
 - Make sure to update the version in the `.codemodrc.json` file only if the logic has changed.
   - Just increment the minor version.
 - Make sure to update the `README.md` file with any new features or changes if there are related section in the file.

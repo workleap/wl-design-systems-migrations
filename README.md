@@ -147,6 +147,28 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 
 2. Make your modifications to the codebase.
 
+### Quick Analysis Scripts
+
+For development and testing purposes, you can use the predefined npm scripts that handle the analysis commands. These scripts analyze ALL the repos that are cloned locally:
+
+**Generate complete usage report:**
+
+```bash
+npm run analyze
+```
+
+**Analyze only unmapped components:**
+
+```bash
+npm run analyze:components
+```
+
+**Analyze only unmapped properties:**
+
+```bash
+npm run analyze:props
+```
+
 ### Publishing
 
 To publish a new version:
