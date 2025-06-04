@@ -18,6 +18,8 @@ const knownIgnoredProps = {
   key: "key",
   ref: "ref",
   slot: "slot",
+  id: "id",
+  role: "role",
 };
 
 const defaultPropsMappings = {
@@ -286,5 +288,5 @@ const todo = {
 /*
 - Divider is probably not 1:1, depending on what property is used.
 - Box will be a case by case basis. It's usually used to render a polymorphic component using the as props. We don't support that in hopper. It might be a case of manual migration for that one
-
+- Label: probably we don't use Label component as field have their own label prop in Hopper
 */

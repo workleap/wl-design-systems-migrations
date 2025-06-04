@@ -17,13 +17,11 @@ export const layoutComponentsMappings = {
   ...headingMappings,
   Text: "Text",
   TextProps: "TextProps",
+  Paragraph: "Paragraph",
+  ParagraphProps: "ParagraphProps",
 
   //table
   ...tableMapping,
-
-  //components
-  Paragraph: "Paragraph",
-  ParagraphProps: "ParagraphProps",
 
   //placeholders
   Content: "Content",

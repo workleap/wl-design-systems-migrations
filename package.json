@@ -25,7 +25,7 @@
     "test:watch": "vitest watch",
     "deploy:codemod": "codemod publish && pnpm dlx rimraf cdmd_dist",
     "sample": "codemod --source ./  -t test/input.tsx -d",
-    "sample:write": "codemod --source ./  -t test/input.tsx",
+    "sample:write": "codemod --source ./  -t test/input.tsx --no-interactive",
     "analyze": "./scripts/analyze.sh",
     "analyze:components": "./scripts/analyze.not-mapped-components.sh",
     "analyze:props": "./scripts/analyze.not-mapped-props.sh"

@@ -12,8 +12,14 @@ import {
   H5,
   H6,
   Text,
-  Table,
   Paragraph,
+  Table,
+  TR,
+  TD,
+  TH,
+  TBody,
+  THead,
+  TFoot,
   Content,
   type ContentProps,
   Footer,
@@ -329,6 +335,7 @@ export function App() {
       </Flex>
       <Flex width="100%">text</Flex>
       <Flex fluid={false}>text</Flex>
+      <Flex reverse/* TODO: Remove the "reverse" property, read this: https://hopper.workleap.design/components/Flex#migration-notes*/>text</Flex>
       <Grid padding="core_400">text</Grid>
       <Grid UNSAFE_autoRows="repeat(3, 1fr)">text</Grid>
       <Grid autoRows="min-content">text</Grid>
@@ -344,47 +351,78 @@ export function App() {
       <Inline width="100%" UNSAFE_gap="1.25rem">text</Inline>
       <Inline fluid={false} UNSAFE_gap="1.25rem">text</Inline>
       <Stack padding="core_400">text</Stack>
-      <Heading marginBottom="calc(1.75rem * .5)">text</Heading>
-      <Heading size="xs" marginBottom="calc(1.125rem * .5)">text</Heading>
+      <Heading UNSAFE_marginBottom="calc(1.75rem * .5)">text</Heading>
+      <Heading size="xs" UNSAFE_marginBottom="calc(1.125rem * .5)">text</Heading>
       <Heading margin="core_0">text</Heading>
       <Heading marginBottom={"inline-md"}>text</Heading>
       <Heading size="3xl" marginBottom={"inline-md"}>
         text
       </Heading>
-      <H1 size="lg" marginBottom="calc(2rem * .5)">text</H1>
-      <H2 marginBottom="calc(1.75rem * .5)">text</H2>
-      <H3 marginBottom="calc(1.75rem * .5)">text</H3>
-      <H4 marginBottom="calc(1.75rem * .5)">text</H4>
-      <H5 marginBottom="calc(1.75rem * .5)">text</H5>
-      <H6 marginBottom="calc(1.75rem * .5)">text</H6>
+      <H1 size="lg" UNSAFE_marginBottom="calc(2rem * .5)">text</H1>
+      <H2 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H2>
+      <H3 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H3>
+      <H4 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H4>
+      <H5 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H5>
+      <H6 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H6>
       <HtmlH1 padding="core_400">text</HtmlH1>
       <HtmlH2 padding="core_400">text</HtmlH2>
       <HtmlH3 padding="core_400">text</HtmlH3>
       <HtmlH4 padding="core_400">text</HtmlH4>
       <HtmlH5 padding="core_400">text</HtmlH5>
       <HtmlH6 padding="core_400">text</HtmlH6>
-      <Text padding="core_400">text</Text>
-      <Content padding="core_400">text</Content>
-      <Footer padding="core_400">text</Footer>
-      <Header padding="core_400">text</Header>
+      <Text size="xs" slot="ff">
+        text
+      </Text>
+      <Content padding="core_400" slot="sample">
+        text
+      </Content>
+      <Footer padding="core_400" slot="sample">
+        text
+      </Footer>
+      <Header padding="core_400" slot="sample">
+        text
+      </Header>
       <A padding="core_400">text</A>
       <Address padding="core_400">text</Address>
       <Article padding="core_400">text</Article>
-      <Aside padding="core_400">text</Aside>
-      <HtmlButton padding="core_400">text</HtmlButton>
+      <Aside color="neutral-weak">text</Aside>
+      <HtmlButton border="core_rock-900" UNSAFE_padding="1" type="button">
+        text
+      </HtmlButton>
       <Div padding="core_400">text</Div>
       <HtmlFooter padding="core_400">text</HtmlFooter>
       <HtmlHeader padding="core_400">text</HtmlHeader>
-      <Img padding="core_400">text</Img>
-      <HtmlInput padding="core_400">text</HtmlInput>
-      <UL padding="core_400">text</UL>
-      <OL padding="core_400">text</OL>
-      <LI padding="core_400">text</LI>
+      <Img border="core_rock-400" src="Planet" />
+      <HtmlInput type="email">text</HtmlInput>
+      <Nav flexWrap={"revert-layer"}>
+        <UL color="neutral-weak" marginLeft={"revert"}>
+          <LI color="core_sapphire-600">Colonize</LI>
+        </UL>
+        <OL color="neutral-weak">
+          <LI color="core_sapphire-600" backgroundColor="core_amanita-400">
+            Colonize
+          </LI>
+        </OL>
+      </Nav>
       <Main padding="core_400">text</Main>
       <Nav padding="core_400">text</Nav>
       <HtmlSection padding="core_400">text</HtmlSection>
       <Span padding="core_400">text</Span>
-      <Table padding="core_400">text</Table>
+      <Table cellPadding={5} color="neutral-weak" padding="core_400">
+        <THead fontWeight="core_680" padding="core_400">
+          <TR padding="core_400">
+            <TH textAlign="left" padding="core_400">
+              Company
+            </TH>
+          </TR>
+        </THead>
+        <TBody padding="core_400">
+          <TR padding="core_400">
+            <TD padding="core_400">Space</TD>
+          </TR>
+        </TBody>
+        <TFoot padding="core_400"></TFoot>
+      </Table>
       {/* ------------------------------------------------------------------------------------------ */}
       <DivHopper padding={"core_400"}>text</DivHopper>
     </div>

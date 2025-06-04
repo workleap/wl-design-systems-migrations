@@ -2,7 +2,7 @@ import { ComponentMapMetaData, PropsMapMetaData } from "../../utils/types.ts";
 import { getAttributeLiteralValue, hasAttribute } from "../helpers.ts";
 
 const additions = {
-  marginBottom: (tag) => {
+  UNSAFE_marginBottom: (tag) => {
     if (
       hasAttribute(tag.node, [
         "marginBottom",
