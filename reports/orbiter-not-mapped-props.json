@@ -1,22 +1,22 @@
 {
   "overall": {
     "usage": {
-      "components": 1249,
-      "props": 1170
+      "components": 1177,
+      "props": 1080
     }
   },
   "components": {
     "Text": {
-      "usage": 582,
+      "usage": 577,
       "props": {
         "size": {
           "usage": 466,
           "values": [
-            "\"md\"",
             "\"sm\"",
-            "\"xs\"",
-            "\"2xl\"",
             "\"lg\"",
+            "\"xs\"",
+            "\"md\"",
+            "\"2xl\"",
             "fontSize",
             "{ base: \"lg\", xs: \"2xl\" }",
             "\"inherit\"",
@@ -34,42 +34,11 @@
             "fileName"
           ]
         },
-        "id": {
-          "usage": 6,
-          "values": [
-            "\"label-everyoneInMyIntegrationAccount\"",
-            "\"label-everyoneInTheFollowingIntegrationGroups\""
-          ]
-        },
-        "role": {
-          "usage": 4,
-          "values": [
-            "\"status\"",
-            "\"cell\"",
-            "\"columnheader\""
-          ]
-        },
         "as": {
           "usage": 2,
           "values": [
             "\"div\""
           ]
-        },
-        "aria-live": {
-          "usage": 2,
-          "values": [
-            "durationInMs ? \"assertive\" : \"polite\""
-          ]
-        },
-        "aria-hidden": {
-          "usage": 1,
-          "values": [
-            "\"true\""
-          ]
-        },
-        "aria-readonly": {
-          "usage": 1,
-          "values": []
         },
         "dangerouslySetInnerHTML": {
           "usage": 1,
@@ -80,7 +49,7 @@
       }
     },
     "Heading": {
-      "usage": 297,
+      "usage": 296,
       "props": {
         "size": {
           "usage": 268,
@@ -94,35 +63,20 @@
             "{ base: \"lg\", sm: \"xl\" }",
             "{ base: \"md\", md: \"lg\" }",
             "headingSize",
-            "{ base: \"sm\", sm: \"lg\" }",
             "{ base: \"lg\", xs: \"xl\" }",
             "{ base: \"lg\", xs: \"3xl\" }",
             "{ base: \"lg\", sm:\"2xl\" }",
             "{ base: \"sm\", sm: \"xl\" }",
+            "{ base: \"sm\", sm: \"lg\" }",
             "{ base: \"lg\", xs: \"2xl\" }",
             "\"3xl\"",
             "{ base: \"md\", sm: \"2xl\" }"
-          ]
-        },
-        "id": {
-          "usage": 6,
-          "values": [
-            "`${popupId}-title`",
-            "\"themeLabel\"",
-            "\"st-billing-information-heading\"",
-            "\"planSelectionPage_featureComparisonTable\""
           ]
         },
         "as": {
           "usage": 1,
           "values": [
             "as"
-          ]
-        },
-        "data-wl-test-id": {
-          "usage": 1,
-          "values": [
-            "\"home-page-title\""
           ]
         },
         "onMouseEnter": {
@@ -140,36 +94,12 @@
       }
     },
     "Div": {
-      "usage": 97,
+      "usage": 69,
       "props": {
         "min-width": {
           "usage": 21,
           "values": [
             "\"100dvh\""
-          ]
-        },
-        "role": {
-          "usage": 16,
-          "values": [
-            "\"button\"",
-            "\"presentation\"",
-            "\"table\"",
-            "\"rowgroup\"",
-            "\"columnheader\""
-          ]
-        },
-        "id": {
-          "usage": 13,
-          "values": [
-            "reviewCycle.reviewCycleId",
-            "\"assign-user-product\"",
-            "\"column-logo-name-status\"",
-            "\"section-max-name-status\"",
-            "\"column-tenants-button\"",
-            "\"sticky-placeholder\"",
-            "\"assign-user-roles\"",
-            "\"wai-conversation-view-anchor\"",
-            "`hubspot-form-${hubspotFormId}`"
           ]
         },
         "onClick": {
@@ -239,18 +169,23 @@
         }
       }
     },
-    "Flex": {
-      "usage": 75,
+    "Paragraph": {
+      "usage": 57,
       "props": {
-        "role": {
-          "usage": 13,
+        "size": {
+          "usage": 54,
           "values": [
-            "\"button\"",
-            "\"columnheader\"",
-            "\"cell\"",
-            "\"row\""
+            "\"sm\"",
+            "\"xs\"",
+            "\"lg\"",
+            "\"md\""
           ]
-        },
+        }
+      }
+    },
+    "Flex": {
+      "usage": 52,
+      "props": {
         "shrink": {
           "usage": 7,
           "values": [
@@ -262,18 +197,9 @@
         "onClick": {
           "usage": 5,
           "values": [
-            "handleOnClick",
             "handleFocusInput",
+            "handleOnClick",
             "expandInfo"
-          ]
-        },
-        "id": {
-          "usage": 4,
-          "values": [
-            "\"sb-page\"",
-            "id",
-            "\"cell-inside-row\"",
-            "\"section-name-status\""
           ]
         },
         "onDragEnter": {
@@ -321,13 +247,6 @@
             "() => onBlur?.()"
           ]
         },
-        "data-index": {
-          "usage": 2,
-          "values": [
-            "virtualRow.index",
-            "index"
-          ]
-        },
         "inline": {
           "usage": 1,
           "values": []
@@ -344,18 +263,6 @@
             "e => {\n    if (e.key === \"Enter\" || e.key === \" \") {\n        expandInfo();\n    }\n}"
           ]
         },
-        "onMouseEnter": {
-          "usage": 1,
-          "values": [
-            "() => handleMouseEnter(integration)"
-          ]
-        },
-        "onMouseLeave": {
-          "usage": 1,
-          "values": [
-            "handleMouseLeave"
-          ]
-        },
         "padding-left": {
           "usage": 1,
           "values": [
@@ -368,22 +275,16 @@
             "\"inset-md\""
           ]
         },
-        "reverse": {
+        "onMouseEnter": {
           "usage": 1,
-          "values": []
-        }
-      }
-    },
-    "Paragraph": {
-      "usage": 57,
-      "props": {
-        "size": {
-          "usage": 54,
           "values": [
-            "\"sm\"",
-            "\"xs\"",
-            "\"lg\"",
-            "\"md\""
+            "() => handleMouseEnter(integration)"
+          ]
+        },
+        "onMouseLeave": {
+          "usage": 1,
+          "values": [
+            "handleMouseLeave"
           ]
         }
       }
@@ -433,8 +334,8 @@
         "size": {
           "usage": 16,
           "values": [
-            "\"xs\"",
             "\"sm\"",
+            "\"xs\"",
             "\"lg\""
           ]
         }
@@ -446,8 +347,8 @@
         "size": {
           "usage": 12,
           "values": [
-            "\"3xl\"",
             "\"xl\"",
+            "\"3xl\"",
             "\"2xl\"",
             "\"xs\"",
             "\"md\"",
@@ -519,30 +420,6 @@
         }
       }
     },
-    "Span": {
-      "usage": 8,
-      "props": {
-        "id": {
-          "usage": 3,
-          "values": [
-            "\"st-pay-cta\"",
-            "organizationAuthenticationUrlControlId"
-          ]
-        },
-        "role": {
-          "usage": 1,
-          "values": [
-            "\"img\""
-          ]
-        },
-        "aria-hidden": {
-          "usage": 1,
-          "values": [
-            "label != null"
-          ]
-        }
-      }
-    },
     "Content": {
       "usage": 6,
       "props": {
@@ -588,23 +465,16 @@
         "type": {
           "usage": 6,
           "values": [
-            "\"file\"",
-            "\"text\""
+            "\"text\"",
+            "\"file\""
           ]
         },
         "onChange": {
           "usage": 6,
           "values": [
-            "handleFileChange",
             "handleChange",
+            "handleFileChange",
             "onChange"
-          ]
-        },
-        "id": {
-          "usage": 4,
-          "values": [
-            "\"file\"",
-            "field.id"
           ]
         },
         "onKeyDown": {
@@ -680,12 +550,6 @@
             "handleBlur"
           ]
         },
-        "data-wl-test-id": {
-          "usage": 1,
-          "values": [
-            "\"emailListInput\""
-          ]
-        },
         "multiple": {
           "usage": 1,
           "values": []
@@ -693,14 +557,8 @@
       }
     },
     "Grid": {
-      "usage": 5,
+      "usage": 3,
       "props": {
-        "role": {
-          "usage": 2,
-          "values": [
-            "\"row\""
-          ]
-        },
         "onTransitionStart": {
           "usage": 2,
           "values": [
@@ -715,19 +573,8 @@
         }
       }
     },
-    "Main": {
-      "usage": 3,
-      "props": {
-        "id": {
-          "usage": 3,
-          "values": [
-            "\"main-content\""
-          ]
-        }
-      }
-    },
     "UL": {
-      "usage": 3,
+      "usage": 2,
       "props": {
         "onMouseEnter": {
           "usage": 1,
@@ -746,12 +593,6 @@
           "values": [
             "e => fetchMoreOnBottomReached(e.currentTarget)"
           ]
-        },
-        "id": {
-          "usage": 1,
-          "values": [
-            "authorizedSlackWorkspacesControlId"
-          ]
         }
       }
     },
@@ -763,12 +604,6 @@
           "values": [
             "cellPadding",
             "8"
-          ]
-        },
-        "role": {
-          "usage": 1,
-          "values": [
-            "\"grid\""
           ]
         }
       }
@@ -792,12 +627,6 @@
           "values": [
             "scope"
           ]
-        },
-        "aria-sort": {
-          "usage": 1,
-          "values": [
-            "ariaSort"
-          ]
         }
       }
     },
@@ -808,23 +637,6 @@
           "usage": 1,
           "values": [
             "columnCount"
-          ]
-        },
-        "aria-colspan": {
-          "usage": 1,
-          "values": [
-            "columnCount"
-          ]
-        }
-      }
-    },
-    "TR": {
-      "usage": 1,
-      "props": {
-        "aria-rowindex": {
-          "usage": 1,
-          "values": [
-            "HEADER_ROWS_COUNT + rowCount + 1"
           ]
         }
       }

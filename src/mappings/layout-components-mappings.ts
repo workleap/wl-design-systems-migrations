@@ -54,6 +54,7 @@ export const layoutComponentsMappings = {
   HtmlInputProps: "HtmlInputProps",
   HtmlSection: "HtmlSection",
   HtmlSectionProps: "HtmlSectionProps",
+  HtmlForm: "HtmlForm",
 
   //basic wrappers over html elements
   A: "A",

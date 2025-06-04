@@ -51,6 +51,7 @@ export function migrateComponent(
 
     Object.entries(propsMetadata?.mappings || {}).forEach(
       ([oldAttrName, newAttrName]) => {
+        if (oldAttrName === newAttrName) return; // Skip if no change
         migrateAttribute(instances, oldAttrName, newAttrName, runtime);
       }
     );

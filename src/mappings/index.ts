@@ -1,33 +1,21 @@
-import { MapMetaData } from "../utils/types.ts";
+import {
+  ComponentMapMetaData,
+  MapMetaData,
+  PropsMapping,
+} from "../utils/types.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
 
-//it is a list of known props that are ignored in the migration
-//but we keep them in the mappings so we can ignore reporting them as missing
-const knownIgnoredProps = {
-  "data-testid": "data-testid",
-  "aria-label": "aria-label",
-  "aria-labelledby": "aria-labelledby",
-  "aria-describedby": "aria-describedby",
-  "aria-disabled": "aria-disabled",
-  "aria-busy": "aria-busy",
-  "data-public": "data-public",
-  "data-private": "data-private",
-  className: "className",
-  style: "style",
-  key: "key",
-  ref: "ref",
-  slot: "slot",
-  id: "id",
-  role: "role",
-};
-
 const defaultPropsMappings = {
-  ...knownIgnoredProps,
   ...styledSystemPropsMappings,
   disabled: "isDisabled",
   readOnly: "isReadOnly",
-};
+  "min-width": (originalValue) => ({
+    to: "min-width",
+    value: originalValue,
+    comments: `TODO: It seems it is an invalid property. Remove it if not needed`,
+  }),
+} satisfies PropsMapping;
 
 export const mappings = {
   sourcePackage: "@workleap/orbiter-ui",
