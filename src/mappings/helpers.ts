@@ -115,7 +115,7 @@ function hasTransformedKey(key: string, enumMapping: EnumMapping) {
   );
 }
 
-function getReviewMePropertyName<T extends string>(
+export function getReviewMePropertyName<T extends string>(
   propertyName: T
 ): ReviewMe<T> {
   return `${REVIEWME_PREFIX}${propertyName}`;

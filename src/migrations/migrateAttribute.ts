@@ -23,17 +23,21 @@ export function migrateAttribute(
     );
 
     if (sourceAttribute && sourceAttribute.type === "JSXAttribute") {
-      const newAttribute: { name: string; value: any } = {
+      const newAttribute: { name: string; value: any; comments?: string } = {
         name: "",
         value: null,
       };
 
       if (typeof newAttributeMap === "function") {
-        const mapResult = newAttributeMap(sourceAttribute.value, runtime);
+        const mapResult = newAttributeMap(sourceAttribute.value, {
+          ...runtime,
+          tag: path,
+        });
         if (mapResult) {
-          const { to, value } = mapResult;
+          const { to, value, comments } = mapResult;
           newAttribute.name = to;
           newAttribute.value = value;
+          newAttribute.comments = comments;
         } else {
           return; // Skip if there is no mapping
         }
@@ -58,13 +62,18 @@ export function migrateAttribute(
       }
 
       // Replace just the source attribute in place
-      const sourceAttrIndex = attributes.indexOf(sourceAttribute);
+      const sourceAttributeIndex = attributes.indexOf(sourceAttribute);
 
-      if (sourceAttrIndex !== -1 && path.node.attributes) {
-        path.node.attributes[sourceAttrIndex] = j.jsxAttribute(
-          j.jsxIdentifier(newAttribute.name),
-          newAttribute.value
-        );
+      attributes[sourceAttributeIndex] = j.jsxAttribute(
+        j.jsxIdentifier(newAttribute.name),
+        newAttribute.value
+      );
+
+      // Add comments if provided
+      if (newAttribute.comments) {
+        attributes[sourceAttributeIndex].comments = [
+          j.commentBlock(newAttribute.comments, false, true),
+        ];
       }
     }
   });

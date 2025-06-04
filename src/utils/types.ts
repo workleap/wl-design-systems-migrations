@@ -19,17 +19,13 @@ export const REVIEWME_PREFIX = "REVIEWME_" as const;
 type REVIEWME_PREFIX_TYPE = typeof REVIEWME_PREFIX;
 export type ReviewMe<T extends string> = `${REVIEWME_PREFIX_TYPE}${T}`;
 
-/**
- * A function that maps a property from one value to another.
- *
- * @template T - The type of the target property name. Defaults to string.
- * @param {JSXAttribute["value"]} originalValue - The original value of the JSX attribute.
- * @param {Runtime} runtime - The runtime environment.
- * @returns {{ to: T; value: JSXAttribute["value"] } | null} - An object containing the target property name and its new value, or null if the property should be removed.
- */
+export type ExtendedRuntime = Runtime & {
+  tag: ASTPath<JSXOpeningElement>;
+};
+
 export type PropertyMapperFunction<T extends string = string> = (
   originalValue: JSXAttribute["value"],
-  runtime: Runtime
+  runtime: ExtendedRuntime
 ) => PropertyMapResult<T> | null;
 
 export type PropertyMapResult<
@@ -38,6 +34,7 @@ export type PropertyMapResult<
 > = {
   to: T | ReviewMe<T>;
   value: Z;
+  comments?: string;
 };
 
 export type PropsMapping<

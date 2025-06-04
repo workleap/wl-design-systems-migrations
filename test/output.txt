@@ -335,6 +335,7 @@ export function App() {
       </Flex>
       <Flex width="100%">text</Flex>
       <Flex fluid={false}>text</Flex>
+      <Flex reverse/* TODO: Remove the "reverse" property, read this: https://hopper.workleap.design/components/Flex#migration-notes*/>text</Flex>
       <Grid padding="core_400">text</Grid>
       <Grid UNSAFE_autoRows="repeat(3, 1fr)">text</Grid>
       <Grid autoRows="min-content">text</Grid>

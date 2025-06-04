@@ -314,6 +314,8 @@ export function App() {
       <Flex fluid={true}>text</Flex>
       <Flex fluid={false}>text</Flex>
 
+      <Flex reverse>text</Flex>
+
       <Grid padding={400}>text</Grid>
       <Grid autoRows="repeat(3, 1fr)">text</Grid>
       <Grid autoRows="min-content">text</Grid>
