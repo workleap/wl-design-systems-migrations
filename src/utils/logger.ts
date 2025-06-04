@@ -22,7 +22,7 @@ export async function logToFile(
       formattedMessage += " " + optionalParams.join(" ");
     }
 
-    const logEntry = `[${timestamp}]-[${fileName}] \n${formattedMessage}\n`;
+    const logEntry = `[${timestamp}]-${fileName} \n${formattedMessage}\n`;
     appendFileSync(join(process.cwd(), logFileName), logEntry);
   } catch (error) {
     console.error("Error writing to log file:", error);

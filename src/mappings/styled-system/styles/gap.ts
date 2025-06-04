@@ -6,7 +6,7 @@ import { SimpleMarginMapping as OrbiterSimpleMarginMapping } from "@workleap/orb
 export const gapMapper = createHopperCssPropertyMapper({
   propertyName: "gap",
   unsafePropertyName: "UNSAFE_gap",
-  validGlobalValues: ["normal", "0"],
+  validGlobalValues: ["normal"],
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
@@ -14,7 +14,7 @@ export const gapMapper = createHopperCssPropertyMapper({
 export const rowGapMapper = createHopperCssPropertyMapper({
   propertyName: "rowGap",
   unsafePropertyName: "UNSAFE_rowGap",
-  validGlobalValues: ["normal", "0"],
+  validGlobalValues: ["normal"],
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
@@ -22,7 +22,7 @@ export const rowGapMapper = createHopperCssPropertyMapper({
 export const columnGapMapper = createHopperCssPropertyMapper({
   propertyName: "columnGap",
   unsafePropertyName: "UNSAFE_columnGap",
-  validGlobalValues: ["normal", "0"],
+  validGlobalValues: ["normal"],
   sourceValidKeys: OrbiterSimpleMarginMapping,
   targetValidKeys: HopperSimpleMarginMapping,
 });
