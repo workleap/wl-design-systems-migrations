@@ -42,7 +42,7 @@ npx codemod workleap/orbiter-to-hopper -c all
 
 #### Migrate Layout Components Only
 
-Migrate layout related components only (Flex, Grid, Div, ...). You can see the list in [layout-components-mappings.ts](/src/mappings/layout-components-mappings.ts) file.
+Migrate layout and structural components only (Flex, Grid, Div, Span, Article, Nav, ...). This includes all layout containers, HTML wrapper components, content elements, and placeholders. You can see the complete list in [layout-components-mappings.ts](/src/mappings/layout-components-mappings.ts) file.
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c layout
@@ -261,3 +261,60 @@ additions: {
 ```
 
 Functions receive the JSX element and runtime context, allowing you to conditionally add properties based on existing attributes or other logic. Return `null` to skip adding the property.
+
+#### Mapping existing properties
+
+When mapping existing properties from Orbiter to Hopper, you can use simple string mappings or functions for more complex transformations.
+
+**Simple property mapping:**
+
+```ts
+mappings: {
+  width: "UNSAFE_width",
+  height: "UNSAFE_height",
+}
+```
+
+**Function-based mapping with transformation:**
+
+```ts
+mappings: {
+  fluid: (originalValue, { j, tag }) => {
+    const value = tryGettingLiteralValue(originalValue);
+    if (!originalValue || Boolean(value) != false) {
+      return {
+        to: "width",
+        value: j.stringLiteral("100%"),
+      };
+    }
+    return null;
+  },
+}
+```
+
+**Adding comments to transformations:**
+
+When creating property mapping functions, you can include helpful comments for developers by adding a `comments` field to the returned object. This is particularly useful for deprecated properties or when manual intervention is needed:
+
+```ts
+mappings: {
+  reverse: (originalValue, { j, tag }) => {
+    return {
+      to: "reverse",
+      value: originalValue,
+      comments: " TODO: Remove the \"reverse\" property, read this: https://hopper.workleap.design/components/Flex#migration-notes",
+    };
+  },
+}
+```
+
+The comments will be added as inline comments next to the transformed property, helping developers understand what changes were made and what actions they might need to take.
+
+**Function parameters:**
+
+Property mapping functions receive two parameters:
+1. `originalValue`: The original attribute value from the JSX element
+2. Context object containing:
+   - `j`: The jscodeshift API for creating new AST nodes
+   - `tag`: The JSX element being processed, giving you access to inspect other attributes or the element structure
+   - `log`: Logger instance for debugging (available in some contexts)
