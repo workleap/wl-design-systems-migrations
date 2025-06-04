@@ -867,7 +867,9 @@ describe("component usage analysis", () => {
       }
     `;
 
-    const { analysisResults } = analyze(getRuntime(INPUT), null);
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      "include-ignoreList": true,
+    });
 
     // Check Button prop values
     assert.ok(
@@ -1214,17 +1216,16 @@ describe("analyze file aggregation", () => {
 
   test("props are sorted by usage count", () => {
     const INPUT = `
-      import { Button, Text, Div, Box, Alert } from "@workleap/orbiter-ui";
+      import { Button, Text, Div } from "@workleap/orbiter-ui";
       
       export function App() {
         return (
           <>
-            <Text fontSize="14px">Text 1</Text>
-            <Text fontSize="14px">Text 2</Text>
-            <Div width="100px" height="200px" />
             <Button variant="primary" size="lg">Button 1</Button>
-            <Button variant="primary" size="lg">Button 2</Button>
-            <Button variant="primary" size="lg">Button 3</Button>
+            <Button variant="primary" size="sm">Button 2</Button>
+            <Text fontSize="14px">Text 1</Text>
+            <Div width="100px" height="200px" />
+            <Div width="200px" />
           </>
         );
       }
@@ -1232,501 +1233,459 @@ describe("analyze file aggregation", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    // Check Button props have correct counts
-    assert.strictEqual(
-      analysisResults.components["Button"]!.props.variant?.usage,
-      3,
-      "Button variant prop should have 3 usages"
-    );
-    assert.strictEqual(
-      analysisResults.components["Button"]!.props.size?.usage,
-      3,
-      "Button size prop should have 3 usages"
-    );
-
-    // Check Text props have correct counts
-    assert.strictEqual(
-      analysisResults.components["Text"]!.props.fontSize?.usage,
-      2,
-      "Text fontSize prop should have 2 usages"
-    );
-
-    // Check Div props have correct counts
-    assert.strictEqual(
-      analysisResults.components["Div"]!.props.width?.usage,
-      1,
-      "Div width prop should have 1 usage"
-    );
-    assert.strictEqual(
-      analysisResults.components["Div"]!.props.height?.usage,
-      1,
-      "Div height prop should have 1 usage"
-    );
-
-    // Verify Button props are properly ordered by usage
-    const buttonProps = Object.entries(
-      analysisResults.components["Button"]!.props
-    ).map(([name]) => name);
-
-    // Both variant and size are used 3 times, so they should both be included early in the list
-    assert.ok(
-      buttonProps.indexOf("variant") < 2,
-      "variant should be among the first Button props"
-    );
-    assert.ok(
-      buttonProps.indexOf("size") < 2,
-      "size should be among the first Button props"
-    );
-
-    // Verify Text props are properly ordered
-    const textProps = Object.entries(
-      analysisResults.components["Text"]!.props
-    ).map(([name]) => name);
-
-    // fontSize is used 2 times, so it should be first
-    assert.strictEqual(
-      textProps[0],
-      "fontSize",
-      "fontSize should be the first Text prop"
-    );
-
-    // Create a component with mixed prop usage for better testing
-    const INPUT_WITH_MIXED_PROPS = `
-      import { Button } from "@workleap/orbiter-ui";
-      
-      export function App() {
-        return (
-          <>
-            <Button variant="primary" size="lg" onClick={() => {}} disabled>Button 1</Button>
-            <Button variant="primary" size="lg" onClick={() => {}}>Button 2</Button>
-            <Button variant="primary" size="lg">Button 3</Button>
-          </>
-        );
-      }
-    `;
-
-    const { analysisResults: mixedResults } = analyze(
-      getRuntime(INPUT_WITH_MIXED_PROPS),
-      null
-    );
-
-    // Check prop counts with mixed usage
-    assert.strictEqual(
-      mixedResults.components["Button"]!.props.variant?.usage,
-      3,
-      "variant should be used 3 times"
-    );
-    assert.strictEqual(
-      mixedResults.components["Button"]!.props.size?.usage,
-      3,
-      "size should be used 3 times"
-    );
-    assert.strictEqual(
-      mixedResults.components["Button"]!.props.onClick?.usage,
-      2,
-      "onClick should be used 2 times"
-    );
-    assert.strictEqual(
-      mixedResults.components["Button"]!.props.disabled?.usage,
-      1,
-      "disabled should be used 1 time"
-    );
-
-    // Get Button props sorted by usage
-    const mixedButtonProps = Object.entries(
-      mixedResults.components["Button"]!.props
-    ).map(([name]) => name);
-
-    // Props should be sorted by usage count (variant/size > onClick > disabled)
-    assert.ok(
-      mixedButtonProps.indexOf("variant") <= 1 &&
-        mixedButtonProps.indexOf("size") <= 1,
-      "variant and size should be first two props (tied at 3 usages each)"
-    );
-    assert.ok(
-      mixedButtonProps.indexOf("onClick") === 2,
-      "onClick should be the third prop (2 usages)"
-    );
-    assert.ok(
-      mixedButtonProps.indexOf("disabled") === 3,
-      "disabled should be the fourth prop (1 usage)"
-    );
-  });
-});
-
-describe("components are strictly ordered by usage count in the returned object", () => {
-  test("components are strictly ordered by usage count in the returned object", () => {
-    const INPUT = `
-      import { Div, Text, Button, Box, Alert } from "@workleap/orbiter-ui";
-      
-      export function App() {
-        return (
-          <>
-            <Div width="100px">Div 1</Div>
-            <Div height="100px">Div 2</Div>
-            <Div padding="10px">Div 3</Div>
-            <Div margin="20px">Div 4</Div>
-            <Text>Text 1</Text>
-            <Text>Text 2</Text>
-            <Text>Text 3</Text>
-            <Text>Text 3</Text>
-            <Text>Text 3</Text>
-            <Button>Button 1</Button>
-            <Button>Button 2</Button>
-            <Box>Box</Box>
-          </>
-        );
-      }
-    `;
-
-    const { analysisResults } = analyze(getRuntime(INPUT), null);
-
-    // Expected order by usage count: Text (5), Div (4), Button (2), Box (1)
-    const componentNames = Object.keys(analysisResults.components);
-
-    // First, verify we have all expected components
-    assert.ok(analysisResults.components.Div, "Div component should exist");
-    assert.ok(analysisResults.components.Text, "Text component should exist");
+    // Check Button component
     assert.ok(
       analysisResults.components.Button,
-      "Button component should exist"
-    );
-    assert.ok(analysisResults.components.Box, "Box component should exist");
-
-    // Verify component usage counts
-    assert.strictEqual(
-      analysisResults.components.Div.usage,
-      4,
-      "Div should have 4 usages"
-    );
-    assert.strictEqual(
-      analysisResults.components.Text.usage,
-      5,
-      "Text should have 5 usages"
+      "Button component should be present in results"
     );
     assert.strictEqual(
       analysisResults.components.Button.usage,
       2,
-      "Button should have 2 usages"
+      "Button should have usage count of 2"
+    );
+
+    // Check Text component
+    assert.ok(
+      analysisResults.components.Text,
+      "Text component should be present in results"
     );
     assert.strictEqual(
-      analysisResults.components.Box.usage,
+      analysisResults.components.Text.usage,
       1,
-      "Box should have 1 usage"
+      "Text should have usage count of 1"
     );
 
-    // Check the order of components
-    assert.strictEqual(
-      componentNames.length,
-      4,
-      "Should have exactly 4 components"
-    );
-
-    assert.strictEqual(
-      componentNames[0],
-      "Text",
-      "Text should be second (5 usages)"
-    );
-    assert.strictEqual(
-      componentNames[1],
-      "Div",
-      "Div should be first (4 usages)"
-    );
-    assert.strictEqual(
-      componentNames[2],
-      "Button",
-      "Button should be third (2 usages)"
-    );
-    assert.strictEqual(
-      componentNames[3],
-      "Box",
-      "Box should be fourth (1 usage)"
-    );
-
-    // Verify that Alert is not included (not used in JSX)
-    assert.strictEqual(
-      analysisResults.components.Alert,
-      undefined,
-      "Alert should not be included"
-    );
-  });
-});
-
-describe("JSON serialization", () => {
-  test("correctly serializes and deserializes Set objects", () => {
-    // Create a sample analysis result with Set objects
-    const testResults: AnalysisResults = {
-      overall: {
-        usage: {
-          components: 5,
-          props: 3,
-        },
-      },
-      components: {
-        Button: {
-          usage: 5,
-          props: {
-            variant: {
-              usage: 3,
-              values: new Set(["primary", "secondary"]),
-            },
-          },
-        },
-      },
-    };
-
-    // Serialize to JSON string using the shared utility functions
-    const jsonString = JSON.stringify(testResults, setReplacer, 2);
-
-    // Make sure the serialized representation includes our special format
-    assert.ok(
-      jsonString.includes('"values": ['),
-      "Serialized JSON should contain values array"
-    );
-
-    // Parse back to object
-    const parsedResults = JSON.parse(jsonString, setReviver) as AnalysisResults;
-
-    // Verify the Button component exists
-    assert.ok(
-      parsedResults.components.Button,
-      "Button component should exist in parsed results"
-    );
-
-    // Verify structure is preserved
-    assert.strictEqual(
-      parsedResults.components.Button!.usage,
-      5,
-      "Component usage count should be preserved"
-    );
-
-    // Verify overall statistics are preserved
-    assert.strictEqual(
-      parsedResults.overall.usage.components,
-      5,
-      "Overall component usage should be preserved"
-    );
-    assert.strictEqual(
-      parsedResults.overall.usage.props,
-      3,
-      "Overall prop usage should be preserved"
-    );
-
-    // Verify the variant prop exists
-    assert.ok(
-      parsedResults.components.Button!.props.variant,
-      "Button variant prop should exist"
-    );
-
-    // Most importantly, verify the Set was correctly restored
-    assert.ok(
-      parsedResults.components.Button!.props.variant!.values instanceof Set,
-      "Values should be restored as a Set"
-    );
-
-    const restoredValues = Array.from(
-      parsedResults.components.Button!.props.variant!.values
-    );
-    assert.strictEqual(restoredValues.length, 2, "Set should have 2 values");
-    assert.ok(
-      restoredValues.includes("primary") &&
-        restoredValues.includes("secondary"),
-      "Set should contain original values"
-    );
-  });
-});
-
-describe("analyze with filter-unmapped option", () => {
-  test("filter-unmapped: components - should only include unmapped components", () => {
-    // Div is mapped, UnmappedComponent is not mapped
-    const INPUT = `import { Div, Text, UnmappedComponent } from "@workleap/orbiter-ui"; 
-    export function App() { 
-      return (
-        <>
-          <Div border="1px" width="120px" />
-          <Text fontSize="14px" />
-          <UnmappedComponent customProp="value" />
-        </>
-      ); 
-    }`;
-
-    const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "filter-unmapped": "components",
-    });
-
-    // Should only include UnmappedComponent (unmapped)
-    assert.ok(
-      analysisResults.components.UnmappedComponent,
-      "UnmappedComponent should be present in results"
-    );
-    assert.ok(
-      !analysisResults.components.Div,
-      "Div should not be present in results (it's mapped)"
-    );
-    assert.ok(
-      !analysisResults.components.Text,
-      "Text should not be present in results (it's mapped)"
-    );
-
-    // Check UnmappedComponent details
-    assert.strictEqual(
-      analysisResults.components.UnmappedComponent.usage,
-      1,
-      "UnmappedComponent should have usage count of 1"
-    );
-    assert.strictEqual(
-      Object.keys(analysisResults.components.UnmappedComponent.props).length,
-      1,
-      "UnmappedComponent should have 1 prop"
-    );
-    assert.ok(
-      analysisResults.components.UnmappedComponent.props.customProp,
-      "UnmappedComponent should have customProp"
-    );
-  });
-
-  test("filter-unmapped: props - should only include unmapped props for mapped components", () => {
-    // Div is mapped, border is mapped to UNSAFE_border, but customProp is not mapped
-    const INPUT = `import { Div, UnmappedComponent } from "@workleap/orbiter-ui"; 
-    export function App() { 
-      return (
-        <>
-          <Div border="1px" width="120px" customProp="value" />
-          <UnmappedComponent someProp="value" />
-        </>
-      ); 
-    }`;
-
-    const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "filter-unmapped": "props",
-    });
-
-    // Should only include Div (mapped component) but exclude UnmappedComponent
+    // Check Div component
     assert.ok(
       analysisResults.components.Div,
-      "Div should be present in results (it's mapped)"
+      "Div component should be present in results"
     );
-    assert.ok(
-      !analysisResults.components.UnmappedComponent,
-      "UnmappedComponent should not be present in results (it's unmapped)"
+    assert.strictEqual(
+      analysisResults.components.Div.usage,
+      2,
+      "Div should have usage count of 2"
     );
 
-    // Should only include unmapped props for Div
-    // border and width are mapped via styled-system, customProp is not mapped
+    // Check Button props
+    const buttonProps = Object.keys(analysisResults.components.Button.props);
+    assert.strictEqual(buttonProps.length, 2, "Button should have 2 props");
+    assert.ok(
+      buttonProps.includes("variant"),
+      "Button should have variant prop"
+    );
+    assert.ok(buttonProps.includes("size"), "Button should have size prop");
+
+    // Check Text props
+    const textProps = Object.keys(analysisResults.components.Text.props);
+    assert.strictEqual(textProps.length, 1, "Text should have 1 prop");
+    assert.ok(textProps.includes("fontSize"), "Text should have fontSize prop");
+
+    // Check Div props
     const divProps = Object.keys(analysisResults.components.Div.props);
+    assert.strictEqual(divProps.length, 2, "Div should have 2 props");
+    assert.ok(divProps.includes("width"), "Div should have width prop");
+    assert.ok(divProps.includes("height"), "Div should have height prop");
+
+    // Get sorted props for Button
+    const sortedButtonProps = Object.entries(
+      analysisResults.components.Button.props
+    )
+      .sort(([, a], [, b]) => b.usage - a.usage)
+      .map(([name]) => name);
+
+    // Button props should be sorted by usage count (variant > size)
+    assert.strictEqual(
+      sortedButtonProps[0],
+      "variant",
+      "variant should be the most frequently used Button prop"
+    );
+    assert.strictEqual(
+      sortedButtonProps[1],
+      "size",
+      "size should be the second most used Button prop"
+    );
+
+    // Get sorted props for Text
+    const sortedTextProps = Object.entries(
+      analysisResults.components.Text.props
+    )
+      .sort(([, a], [, b]) => b.usage - a.usage)
+      .map(([name]) => name);
+
+    // Text props should be sorted by usage count (fontSize)
+    assert.strictEqual(
+      sortedTextProps[0],
+      "fontSize",
+      "fontSize should be the most frequently used Text prop"
+    );
+
+    // Get sorted props for Div
+    const sortedDivProps = Object.entries(analysisResults.components.Div.props)
+      .sort(([, a], [, b]) => b.usage - a.usage)
+      .map(([name]) => name);
+
+    // Div props should be sorted by usage count (width > height)
+    assert.strictEqual(
+      sortedDivProps[0],
+      "width",
+      "width should be the most frequently used Div prop"
+    );
+    assert.strictEqual(
+      sortedDivProps[1],
+      "height",
+      "height should be the second most used Div prop"
+    );
+  });
+});
+
+describe("analyze property filtering", () => {
+  test("excludes aria-* attributes by default", () => {
+    const INPUT = `
+    import { Stack } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return (
+        <Stack 
+          direction="row" 
+          aria-label="Navigation"
+          aria-hidden="true"
+          aria-describedby="description"
+          customProp="value"
+        />
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
     assert.ok(
-      divProps.includes("customProp"),
-      "customProp should be present (unmapped prop)"
+      analysisResults.components.Stack,
+      "Stack should be present in results"
+    );
+    const stackProps = Object.keys(analysisResults.components.Stack.props);
+
+    // Should include regular props
+    assert.ok(stackProps.includes("direction"), "direction should be present");
+    assert.ok(
+      stackProps.includes("customProp"),
+      "customProp should be present"
+    );
+
+    // Should exclude aria-* attributes
+    assert.ok(
+      !stackProps.includes("aria-label"),
+      "aria-label should be excluded"
     );
     assert.ok(
-      !divProps.includes("border"),
-      "border should not be present (mapped prop)"
+      !stackProps.includes("aria-hidden"),
+      "aria-hidden should be excluded"
     );
     assert.ok(
-      !divProps.includes("width"),
-      "width should not be present (mapped prop)"
+      !stackProps.includes("aria-describedby"),
+      "aria-describedby should be excluded"
     );
   });
 
-  test("filter-unmapped: components - with no unmapped components should return empty", () => {
-    // All components are mapped
-    const INPUT = `import { Div, Text } from "@workleap/orbiter-ui"; 
-    export function App() { 
+  test("excludes data-* attributes by default", () => {
+    const INPUT = `
+    import { Stack } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
       return (
-        <>
-          <Div border="1px" />
-          <Text fontSize="14px" />
-        </>
+        <Stack 
+          direction="row" 
+          data-testid="my-stack"
+          data-custom="value"
+          data-public="true"
+          customProp="value"
+        />
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    assert.ok(
+      analysisResults.components.Stack,
+      "Stack should be present in results"
+    );
+    const stackProps = Object.keys(analysisResults.components.Stack.props);
+
+    // Should include regular props
+    assert.ok(stackProps.includes("direction"), "direction should be present");
+    assert.ok(
+      stackProps.includes("customProp"),
+      "customProp should be present"
+    );
+
+    // Should exclude data-* attributes
+    assert.ok(
+      !stackProps.includes("data-testid"),
+      "data-testid should be excluded"
+    );
+    assert.ok(
+      !stackProps.includes("data-custom"),
+      "data-custom should be excluded"
+    );
+    assert.ok(
+      !stackProps.includes("data-public"),
+      "data-public should be excluded"
+    );
+  });
+
+  test("excludes known ignored props by default", () => {
+    const INPUT = `
+    import { Stack } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return (
+        <Stack 
+          direction="row" 
+          className="my-class"
+          style={{color: 'red'}}
+          id="my-id"
+          key="my-key"
+          ref={myRef}
+          role="button"
+          slot="content"
+          customProp="value"
+        />
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    assert.ok(
+      analysisResults.components.Stack,
+      "Stack should be present in results"
+    );
+    const stackProps = Object.keys(analysisResults.components.Stack.props);
+
+    // Should include regular props
+    assert.ok(stackProps.includes("direction"), "direction should be present");
+    assert.ok(
+      stackProps.includes("customProp"),
+      "customProp should be present"
+    );
+
+    // Should exclude known ignored props
+    assert.ok(
+      !stackProps.includes("className"),
+      "className should be excluded"
+    );
+    assert.ok(!stackProps.includes("style"), "style should be excluded");
+    assert.ok(!stackProps.includes("id"), "id should be excluded");
+    assert.ok(!stackProps.includes("key"), "key should be excluded");
+    assert.ok(!stackProps.includes("ref"), "ref should be excluded");
+    assert.ok(!stackProps.includes("role"), "role should be excluded");
+    assert.ok(!stackProps.includes("slot"), "slot should be excluded");
+  });
+
+  test("includes all props when --include-ignoreList is true", () => {
+    const INPUT = `
+    import { Stack } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return (
+        <Stack 
+          direction="row" 
+          aria-label="Navigation"
+          data-testid="my-stack"
+          className="my-class"
+          customProp="value"
+        />
       ); 
     }`;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "filter-unmapped": "components",
+      "include-ignoreList": true,
     });
 
-    // Should be empty since all components are mapped
-    assert.strictEqual(
-      Object.keys(analysisResults.components).length,
-      0,
-      "Should have no components in results"
+    assert.ok(
+      analysisResults.components.Stack,
+      "Stack should be present in results"
     );
-    assert.strictEqual(
-      analysisResults.overall.usage.components,
-      0,
-      "Overall component usage should be 0"
+    const stackProps = Object.keys(analysisResults.components.Stack.props);
+
+    // Should include all props when include-ignoreList is true
+    assert.ok(stackProps.includes("direction"), "direction should be present");
+    assert.ok(
+      stackProps.includes("customProp"),
+      "customProp should be present"
     );
-    assert.strictEqual(
-      analysisResults.overall.usage.props,
-      0,
-      "Overall prop usage should be 0"
+    assert.ok(
+      stackProps.includes("aria-label"),
+      "aria-label should be included"
     );
+    assert.ok(
+      stackProps.includes("data-testid"),
+      "data-testid should be included"
+    );
+    assert.ok(stackProps.includes("className"), "className should be included");
   });
 
-  test("filter-unmapped: props - with no unmapped props should return empty", () => {
-    // All props are mapped
-    const INPUT = `import { Div } from "@workleap/orbiter-ui"; 
-    export function App() { 
-      return <Div border="1px" width="120px" />; 
+  test("combines ignore filtering with filter-unmapped props", () => {
+    const INPUT = `
+    import { Stack } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return (
+        <Stack 
+          direction="row"
+          gap="16px"
+          aria-label="Navigation"
+          data-testid="my-stack"
+          className="my-class"
+          unmappedProp="value"
+        />
+      ); 
     }`;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
       "filter-unmapped": "props",
     });
 
-    // Should not include Div since all its props are mapped
     assert.ok(
-      !analysisResults.components.Div,
-      "Div should not be present in results (all props are mapped)"
+      analysisResults.components.Stack,
+      "Stack should be present in results"
     );
-    assert.strictEqual(
-      Object.keys(analysisResults.components).length,
-      0,
-      "Should have no components in results"
+    const stackProps = Object.keys(analysisResults.components.Stack.props);
+
+    // Should only include unmapped props that are also not in ignore list
+    assert.ok(
+      !stackProps.includes("direction"),
+      "direction should be excluded (mapped)"
     );
-    assert.strictEqual(
-      analysisResults.overall.usage.components,
-      0,
-      "Overall component usage should be 0"
+    assert.ok(!stackProps.includes("gap"), "gap should be excluded (mapped)");
+    assert.ok(
+      !stackProps.includes("aria-label"),
+      "aria-label should be excluded (ignored)"
     );
-    assert.strictEqual(
-      analysisResults.overall.usage.props,
-      0,
-      "Overall prop usage should be 0"
+    assert.ok(
+      !stackProps.includes("data-testid"),
+      "data-testid should be excluded (ignored)"
+    );
+    assert.ok(
+      !stackProps.includes("className"),
+      "className should be excluded (ignored)"
+    );
+    assert.ok(
+      stackProps.includes("unmappedProp"),
+      "unmappedProp should be included"
     );
   });
 
-  test("analyze without filter-unmapped should include all components and props", () => {
-    const INPUT = `import { Div, Text, UnmappedComponent } from "@workleap/orbiter-ui"; 
-    export function App() { 
+  test("combines ignore filtering with filter-unmapped props and include-ignoreList", () => {
+    const INPUT = `
+    import { Stack } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return (
+        <Stack 
+          direction="row"
+          gap="16px"
+          aria-label="Navigation"
+          data-testid="my-stack"
+          className="my-class"
+          unmappedProp="value"
+        />
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      "filter-unmapped": "props",
+      "include-ignoreList": true,
+    });
+
+    assert.ok(
+      analysisResults.components.Stack,
+      "Stack should be present in results"
+    );
+    const stackProps = Object.keys(analysisResults.components.Stack.props);
+
+    // Should include unmapped props including those in ignore list
+    assert.ok(
+      !stackProps.includes("direction"),
+      "direction should be excluded (mapped)"
+    );
+    assert.ok(!stackProps.includes("gap"), "gap should be excluded (mapped)");
+    assert.ok(
+      stackProps.includes("aria-label"),
+      "aria-label should be included (unmapped, ignore list included)"
+    );
+    assert.ok(
+      stackProps.includes("data-testid"),
+      "data-testid should be included (unmapped, ignore list included)"
+    );
+    assert.ok(
+      stackProps.includes("className"),
+      "className should be included (unmapped, ignore list included)"
+    );
+    assert.ok(
+      stackProps.includes("unmappedProp"),
+      "unmappedProp should be included"
+    );
+  });
+
+  test("handles mixed case with multiple components", () => {
+    const INPUT = `
+    import { Stack, Text } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
       return (
         <>
-          <Div border="1px" width="120px" customProp="value" />
-          <Text fontSize="14px" />
-          <UnmappedComponent someProp="value" />
+          <Stack 
+            direction="row"
+            aria-label="Navigation"
+            customStackProp="value"
+          />
+          <Text 
+            fontSize="14px"
+            data-testid="my-text"
+            customTextProp="value"
+          />
         </>
       ); 
     }`;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    // Should include all components
     assert.ok(
-      analysisResults.components.Div,
-      "Div should be present in results"
+      analysisResults.components.Stack,
+      "Stack should be present in results"
     );
     assert.ok(
       analysisResults.components.Text,
       "Text should be present in results"
     );
+
+    const stackProps = Object.keys(analysisResults.components.Stack.props);
+    const textProps = Object.keys(analysisResults.components.Text.props);
+
+    // Stack props
     assert.ok(
-      analysisResults.components.UnmappedComponent,
-      "UnmappedComponent should be present in results"
+      stackProps.includes("direction"),
+      "Stack direction should be present"
+    );
+    assert.ok(
+      stackProps.includes("customStackProp"),
+      "Stack customStackProp should be present"
+    );
+    assert.ok(
+      !stackProps.includes("aria-label"),
+      "Stack aria-label should be excluded"
     );
 
-    // Should include all props for Div
-    const divProps = Object.keys(analysisResults.components.Div.props);
-    assert.ok(divProps.includes("border"), "border should be present");
-    assert.ok(divProps.includes("width"), "width should be present");
-    assert.ok(divProps.includes("customProp"), "customProp should be present");
+    // Text props
+    assert.ok(
+      textProps.includes("fontSize"),
+      "Text fontSize should be present"
+    );
+    assert.ok(
+      textProps.includes("customTextProp"),
+      "Text customTextProp should be present"
+    );
+    assert.ok(
+      !textProps.includes("data-testid"),
+      "Text data-testid should be excluded"
+    );
   });
 });

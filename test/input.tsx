@@ -19,6 +19,7 @@ import {
   Heading,
   HtmlButton,
   HtmlFooter,
+  HtmlForm,
   HtmlH1,
   HtmlH1Props,
   HtmlH2,
@@ -382,6 +383,11 @@ export function App() {
       <HtmlHeader padding={400}>text</HtmlHeader>
       <Img border="rock-400" src="Planet" />
       <HtmlInput type="email">text</HtmlInput>
+      <HtmlForm
+        aria-label="test"
+        data-testId="test"
+        min-width="100vdh"
+      ></HtmlForm>
       <Nav flexWrap={"revert-layer"}>
         <UL color="neutral-weak" marginLeft={"revert"}>
           <LI color="sapphire-600">Colonize</LI>

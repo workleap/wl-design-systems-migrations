@@ -36,6 +36,7 @@ import {
   HtmlH6,
   HtmlInput,
   HtmlSection,
+  HtmlForm,
   A,
   Address,
   Article,
@@ -400,6 +401,11 @@ export function App() {
       <HtmlHeader padding="core_400">text</HtmlHeader>
       <Img border="core_rock-400" src="Planet" />
       <HtmlInput type="email">text</HtmlInput>
+      <HtmlForm
+        aria-label="test"
+        data-testId="test"
+        min-width="100vdh"/*TODO: It seems it is an invalid property. Remove it if not needed*/
+      ></HtmlForm>
       <Nav flexWrap={"revert-layer"}>
         <UL color="neutral-weak" marginLeft={"revert"}>
           <LI color="core_sapphire-600">Colonize</LI>

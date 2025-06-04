@@ -39,6 +39,9 @@ export default function transform(
           | "components"
           | "props"
           | undefined,
+        "include-ignoreList": options["include-ignoreList"] as
+          | boolean
+          | undefined,
       });
       return result.source;
     } else {

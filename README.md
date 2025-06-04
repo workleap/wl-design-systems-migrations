@@ -100,6 +100,20 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-components.js
 npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-props.json --filter-unmapped props -n 1
 ```
 
+**Include ignored properties in analysis:**
+
+By default, the analysis excludes standard React/DOM properties like `aria-*`, `data-*`, `className`, `style`, etc. to focus on component-specific migration needs. To include these properties in the analysis, use the `--include-ignoreList` flag:
+
+```bash
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage-complete.json --include-ignoreList -n 1
+```
+
+This can be combined with other filters for comprehensive analysis:
+
+```bash
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage-all-unmapped.json --filter-unmapped props --include-ignoreList -n 1
+```
+
 This command generates a JSON file (`orbiter-usage.json`) containing usage statistics ordered by frequency. The output format prioritizes frequently used components and their properties:
 
 ```json
@@ -313,6 +327,7 @@ The comments will be added as inline comments next to the transformed property, 
 **Function parameters:**
 
 Property mapping functions receive two parameters:
+
 1. `originalValue`: The original attribute value from the JSX element
 2. Context object containing:
    - `j`: The jscodeshift API for creating new AST nodes

@@ -47,6 +47,40 @@ function isPropertyMapped(
   return propName in (mappings.propsDefaults?.mappings || {});
 }
 
+/**
+ * Checks if a property should be ignored during analysis
+ * This includes aria-* attributes, data-* attributes, and known ignored props
+ */
+function shouldIgnoreProperty(
+  propName: string,
+  mappings: Runtime["mappings"]
+): boolean {
+  // Check for aria-* attributes
+  if (propName.startsWith("aria-")) {
+    return true;
+  }
+
+  // Check for data-* attributes
+  if (propName.startsWith("data-")) {
+    return true;
+  }
+
+  // List of known ignored props that should be filtered out during analysis
+  // These are standard React/DOM props that don't need migration analysis
+  const knownIgnoredProps = [
+    "className",
+    "style",
+    "key",
+    "ref",
+    "slot",
+    "id",
+    "role",
+    "dangerouslySetInnerHTML",
+  ];
+
+  return knownIgnoredProps.includes(propName);
+}
+
 // Define the new structure for analysis results
 /**
  * Maps property names to their usage data including count and actual values used
@@ -231,11 +265,13 @@ export function analyze(
   options?: Options & {
     sourcePackage?: string;
     "filter-unmapped"?: "components" | "props";
+    "include-ignoreList"?: boolean;
   }
 ): { source: string | undefined; analysisResults: AnalysisResults } {
   const { j, root, mappings } = runtime;
   const sourcePackage = options?.sourcePackage || mappings.sourcePackage;
   const filterUnmapped = options?.["filter-unmapped"];
+  const includeignoredList = options?.["include-ignoreList"] || false;
 
   // Store component usage with counts
   const componentUsageData: Record<
@@ -337,12 +373,22 @@ export function analyze(
           ) {
             const propName = attr.name.name;
 
-            // Apply property filtering if specified
+            // Apply property filtering if specified (but only for non-ignored props)
             if (
               filterUnmapped === "props" &&
+              !shouldIgnoreProperty(propName, mappings) &&
               isPropertyMapped(originalName, propName, mappings)
             ) {
               // Skip mapped properties when filtering for unmapped props only
+              // But allow ignored properties through if include-ignoreList is true
+              return;
+            }
+
+            // Skip ignored properties unless explicitly included
+            if (
+              !includeignoredList &&
+              shouldIgnoreProperty(propName, mappings)
+            ) {
               return;
             }
 
