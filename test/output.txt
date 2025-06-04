@@ -92,7 +92,12 @@ export function App() {
       <Flex direction="row" UNSAFE_gap="35%" UNSAFE_rowGap="35%" UNSAFE_columnGap="35%">
         text 4
       </Flex>
-      <Flex padding={variable}>text</Flex>
+      <Stack gap="core_0" rowGap="core_0" columnGap="core_0">
+        text
+      </Stack>
+      <Inline gap="core_0" rowGap="core_0" columnGap="core_0">
+        text
+      </Inline>
       {/* ------------------------------------------------------------------------------------------ */}
       <Div UNSAFE_marginTop={"10px"}></Div>
       <Div marginBottom="inline-sm"></Div>
@@ -106,6 +111,7 @@ export function App() {
       <Div UNSAFE_margin="auto"></Div>
       <Div UNSAFE_margin="inline-lg inline-md"></Div>
       {/* ------------------------------------------------------------------------------------------ */}
+      <Flex padding={variable}>text</Flex>
       <Span UNSAFE_paddingTop={"10px"}></Span>
       <Span UNSAFE_paddingBottom="inline-sm"></Span>
       <Span UNSAFE_paddingLeft="25%"></Span>

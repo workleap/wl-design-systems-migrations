@@ -94,7 +94,12 @@ export function App() {
       <Flex direction="row" gap="35%" rowGap="35%" columnGap="35%">
         text 4
       </Flex>
-      <Flex padding={variable}>text</Flex>
+      <Stack gap={0} rowGap={0} columnGap={"0"}>
+        text
+      </Stack>
+      <Inline gap={"0"} rowGap="0" columnGap={"0"}>
+        text
+      </Inline>
       {/* ------------------------------------------------------------------------------------------ */}
       <Div marginTop={"10px"}></Div>
       <Div marginBottom="inline-sm"></Div>
@@ -108,6 +113,7 @@ export function App() {
       <Div margin="auto"></Div>
       <Div margin="inline-lg inline-md"></Div>
       {/* ------------------------------------------------------------------------------------------ */}
+      <Flex padding={variable}>text</Flex>
       <Span paddingTop={"10px"}></Span>
       <Span paddingBottom="inline-sm"></Span>
       <Span paddingLeft="25%"></Span>
