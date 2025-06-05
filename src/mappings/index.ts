@@ -96,6 +96,10 @@ const todo = {
   //TODO: Not direct map. Find appropriate component/type
   // IconLink: "Link",
   // IconLinkProps: "LinkProps",
+  // TextLinkAsButton: "LinkButton",
+  // TextLinkAsButtonProps: "LinkButtonProps",
+  // IconLinkAsButton: "LinkButton",
+  // IconLinkAsButtonProps: "LinkButtonProps",
 
   //overlays & modals
   Modal: "Modal",

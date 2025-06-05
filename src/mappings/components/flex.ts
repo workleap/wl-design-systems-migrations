@@ -1,4 +1,3 @@
-import { JSXAttribute } from "jscodeshift";
 import { ComponentMapMetaData } from "../../utils/types.ts";
 import { tryGettingLiteralValue } from "../helpers.ts";
 
@@ -13,7 +12,7 @@ export const flexMapping = {
         flexShrink: "shrink",
         flexFlow: "direction",
         flexBasis: "basis",
-        reverse: (originalValue: JSXAttribute["value"], { j }) => {
+        reverse: (originalValue, { j }) => {
           return {
             to: "reverse",
             value: originalValue,
@@ -21,8 +20,9 @@ export const flexMapping = {
               "Remove the `reverse` property, read this: https://hopper.workleap.design/components/Flex#migration-notes",
           };
         },
-        fluid: (originalValue: JSXAttribute["value"], { j }) => {
-          const value = tryGettingLiteralValue(originalValue);
+        fluid: (originalValue, runtime) => {
+          const { j } = runtime;
+          const value = tryGettingLiteralValue(originalValue, runtime);
           if (!originalValue || Boolean(value) != false)
             return {
               to: "width",

@@ -3,7 +3,7 @@ import { ComponentMapMetaData } from "../../utils/types.ts";
 import { tryGettingLiteralValue } from "../helpers.ts";
 import { flexMapping } from "./flex.ts";
 
-export const buttonMapping: Record<string, ComponentMapMetaData> = {
+export const buttonMapping = {
   Button: {
     props: {
       mappings: {
@@ -11,13 +11,13 @@ export const buttonMapping: Record<string, ComponentMapMetaData> = {
         fluid: "isFluid",
         loading: "isLoading",
         size: "size",
-        inherit: (originalValue) => ({
-          to: "inherit",
-          value: originalValue,
+        inherit: () => ({
           todoComments: "`inherit` is not supported anymore. Remove it.",
         }),
-        variant: (originalValue, { j }) => {
-          const value = tryGettingLiteralValue(originalValue);
+        variant: (originalValue, runtime) => {
+          const { j } = runtime;
+
+          const value = tryGettingLiteralValue(originalValue, runtime);
           if (value === "negative")
             return {
               to: "variant",
@@ -36,8 +36,4 @@ export const buttonMapping: Record<string, ComponentMapMetaData> = {
     },
   },
   ButtonProps: "ButtonProps",
-  Counter: {
-    todoComments:
-      "`Counter` is not supported anymore. You need to find an alternative.",
-  },
-};
+} satisfies Record<string, ComponentMapMetaData>;

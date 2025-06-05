@@ -32,8 +32,8 @@ export type PropertyMapResult<
   T extends string = string,
   Z = JSXAttribute["value"] | ObjectProperty["value"]
 > = {
-  to: T | ReviewMe<T>;
-  value: Z;
+  to?: T | ReviewMe<T>; //if not provided, original value will be used
+  value?: Z; //if not provided, original value will be used
   todoComments?: string;
 };
 
