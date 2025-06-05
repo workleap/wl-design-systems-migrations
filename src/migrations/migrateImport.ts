@@ -2,6 +2,27 @@ import { getComponentTargetName } from "../utils/mapping.js";
 import { Runtime } from "../utils/types.js";
 
 /**
+ * Sorts import specifiers alphabetically by their imported name
+ * @param specifiers - Array of import specifiers to sort
+ * @returns Sorted array of import specifiers
+ */
+function sortImportSpecifiers(specifiers: any[]): any[] {
+  return specifiers.sort((a, b) => {
+    // Handle ImportSpecifier nodes - sort by local name (what the import is called in the code)
+    if (a.imported && b.imported) {
+      const aLocalName = a.local?.name || a.imported.name;
+      const bLocalName = b.local?.name || b.imported.name;
+      return aLocalName.localeCompare(bLocalName);
+    }
+    // Handle other types of specifiers (like ImportDefaultSpecifier) - sort by local name
+    if (a.local && b.local) {
+      return a.local.name.localeCompare(b.local.name);
+    }
+    return 0;
+  });
+}
+
+/**
  * Migrates specific components from one package to another
  * @param j - jscodeshift API
  * @param root - AST root
@@ -96,7 +117,7 @@ export function migrateImport(
       // Update the original import declaration if there are remaining imports
       if (filteredSpecifiers.length > 0) {
         const newImportDeclaration = j.importDeclaration(
-          filteredSpecifiers,
+          sortImportSpecifiers(filteredSpecifiers),
           j.stringLiteral(sourcePackage)
         );
         // Preserve the original importKind (for import type declarations)
@@ -136,17 +157,54 @@ export function migrateImport(
 
     const existingIsTypeImport = targetImportPath.node.importKind === "type";
 
-    // If we have separate type imports and the existing import is not a type import,
-    // create a separate type import declaration instead of merging
-    if (allAreFromSeparateTypeImports && !existingIsTypeImport) {
-      const newImport = j.importDeclaration(
-        newImportSpecifiers,
-        j.stringLiteral(targetPackage)
-      );
-      newImport.importKind = "type";
+    // If we have separate type imports, handle them appropriately
+    if (allAreFromSeparateTypeImports) {
+      if (existingIsTypeImport) {
+        // Both existing and new are type imports - merge them
+        const targetSpecifiers = targetImportPath.node.specifiers || [];
+        
+        // Filter out duplicates - only add specifiers that don't already exist
+        const filteredNewSpecifiers = newImportSpecifiers.filter((newSpec) => {
+          const newLocalName = newSpec.local?.name || newSpec.imported.name;
+          return !targetSpecifiers.some(
+            (existingSpec: any) =>
+              j.ImportSpecifier.check(existingSpec) &&
+              existingSpec.imported &&
+              existingSpec.imported.name === newSpec.imported.name &&
+              (existingSpec.local?.name || existingSpec.imported.name) ===
+                newLocalName
+          );
+        });
 
-      // Insert after the existing import
-      j(targetImportPath).insertAfter(newImport);
+        if (filteredNewSpecifiers.length > 0) {
+          const combinedSpecifiers = [...targetSpecifiers, ...filteredNewSpecifiers];
+          const newImportDeclaration = j.importDeclaration(
+            sortImportSpecifiers(combinedSpecifiers),
+            j.stringLiteral(targetPackage)
+          );
+          // Set the import kind to type
+          newImportDeclaration.importKind = "type";
+          
+          // Add prettier-ignore comment if there are many imports
+          if (combinedSpecifiers.length > 10) {
+            newImportDeclaration.comments = [
+              j.commentLine(" prettier-ignore", true, false)
+            ];
+          }
+          
+          j(targetImportPath).replaceWith(newImportDeclaration);
+        }
+      } else {
+        // Existing is regular import, new are type imports - create separate type import
+        const newImport = j.importDeclaration(
+          sortImportSpecifiers(newImportSpecifiers),
+          j.stringLiteral(targetPackage)
+        );
+        newImport.importKind = "type";
+
+        // Insert after the existing import
+        j(targetImportPath).insertAfter(newImport);
+      }
     } else {
       // Add the specifiers to the existing import declaration
       // Access the node's specifiers safely
@@ -177,12 +235,11 @@ export function migrateImport(
             ? [...filteredNewSpecifiers, ...targetSpecifiers] // New first for multiple imports
             : [...targetSpecifiers, ...filteredNewSpecifiers]; // Existing first normally
 
-          j(targetImportPath).replaceWith(
-            j.importDeclaration(
-              combinedSpecifiers,
-              j.stringLiteral(targetPackage)
-            )
+          const newImportDeclaration = j.importDeclaration(
+            sortImportSpecifiers(combinedSpecifiers),
+            j.stringLiteral(targetPackage)
           );
+          j(targetImportPath).replaceWith(newImportDeclaration);
         }
       }
     } // Close the else block
@@ -193,13 +250,20 @@ export function migrateImport(
     );
 
     const newImport = j.importDeclaration(
-      newImportSpecifiers,
+      sortImportSpecifiers(newImportSpecifiers),
       j.stringLiteral(targetPackage)
     );
 
     // Set import kind for type imports
     if (allAreFromSeparateTypeImports) {
       newImport.importKind = "type";
+    }
+    
+    // Add prettier-ignore comment if there are many imports
+    if (newImportSpecifiers.length > 10) {
+      newImport.comments = [
+        j.commentLine(" prettier-ignore", true, false)
+      ];
     }
 
     // Find all import declarations to add it at the end of the imports section

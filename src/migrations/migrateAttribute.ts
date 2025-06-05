@@ -37,9 +37,10 @@ export function migrateAttribute(
         });
         if (mapResult) {
           const { to, value, todoComments } = mapResult;
-          newAttribute.name = to;
-          newAttribute.value = value;
-          newAttribute.todoComments = todoComments;
+          newAttribute.name = to ?? oldAttrName;
+          (newAttribute.value =
+            value === undefined ? sourceAttribute.value : value),
+            (newAttribute.todoComments = todoComments);
         } else {
           return; // Skip if there is no mapping
         }

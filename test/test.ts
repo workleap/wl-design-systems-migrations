@@ -80,7 +80,7 @@ describe("migrations", () => {
             );
           }`;
     const OUTPUT = `
-          import { Div, Div as DivOrbiter, Div as DivHopper } from "@hopper-ui/components";
+          import { Div, Div as DivHopper, Div as DivOrbiter } from "@hopper-ui/components";
           function App() {
             return (
               <>
@@ -116,7 +116,7 @@ describe("migrations", () => {
             );
           }`;
     const OUTPUT = `
-          import { Div, Div as DivOrbiter, Div as DivHopper } from "@hopper-ui/components";
+          import { Div, Div as DivHopper, Div as DivOrbiter } from "@hopper-ui/components";
           function App() {
             return (
               <>
@@ -171,7 +171,7 @@ describe("migrations", () => {
           import { Div, type ContentProps} from "@workleap/orbiter-ui";
           `;
     const OUTPUT = `
-          import { Div, type ContentProps } from "@hopper-ui/components";
+          import { type ContentProps, Div } from "@hopper-ui/components";
           `;
 
     const actualOutput = migrate(
@@ -226,7 +226,7 @@ describe("migrations", () => {
 
   test("when there is already an import for Hopper, add the migrated one to it", async () => {
     const INPUT = `import { Div } from "@workleap/orbiter-ui";import { Span } from "@hopper-ui/components";`;
-    const OUTPUT = `import { Span, Div } from "@hopper-ui/components";`;
+    const OUTPUT = `import { Div, Span } from "@hopper-ui/components";`;
 
     const actualOutput = migrate(getRuntime(INPUT));
 
@@ -238,6 +238,50 @@ describe("migrations", () => {
     const OUTPUT = `import { Div } from "external"; import { Div as Div2 } from "@hopper-ui/components"; export function App() { return <><Div width="120px" height="auto" /><Div/></>; }`;
 
     const actualOutput = migrate(getRuntime(INPUT));
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when imports are merged, they should be sorted alphabetically", async () => {
+    const INPUT = `import { Text, Div, Button } from "@workleap/orbiter-ui";`;
+    const OUTPUT = `import { Button, Div, Text } from "@hopper-ui/components";`;
+
+    const actualOutput = migrate(getRuntime(INPUT));
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when adding imports to existing import declaration, result should be sorted alphabetically", async () => {
+    const INPUT = `import { Text, Div } from "@workleap/orbiter-ui";import { Span, Button } from "@hopper-ui/components";`;
+    const OUTPUT = `import { Button, Div, Span, Text } from "@hopper-ui/components";`;
+
+    const actualOutput = migrate(getRuntime(INPUT));
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when multiple components with aliases are merged, they should be sorted alphabetically by imported name", async () => {
+    const INPUT = `import { Text as MyText, Div as MyDiv, Button as MyButton } from "@workleap/orbiter-ui";`;
+    const OUTPUT = `import { Button as MyButton, Div as MyDiv, Text as MyText } from "@hopper-ui/components";`;
+
+    const actualOutput = migrate(getRuntime(INPUT));
+
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
+  test("when type imports are sorted, they should be alphabetical by imported name", async () => {
+    const INPUT = `import type { TextProps, DivProps, ButtonProps } from "@workleap/orbiter-ui";`;
+    const OUTPUT = `import type { ButtonProps, DivProps, TextProps } from "@hopper-ui/components";`;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          TextProps: "TextProps",
+          DivProps: "DivProps",
+          ButtonProps: "ButtonProps",
+        },
+      })
+    );
 
     assert.deepEqual(actualOutput, OUTPUT);
   });
@@ -381,17 +425,20 @@ describe("migrations", () => {
     assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
   });
 
-  test("migrates input.tsx to match expected output.txt", () => {
+  test("migrates input.tsx to match expected output.tsx", () => {
     // Read the input and expected output files
     const INPUT = readFileSync(new URL("input.tsx", import.meta.url), "utf8");
     const EXPECTED_OUTPUT = readFileSync(
-      new URL("output.txt", import.meta.url),
+      new URL("output.tsx", import.meta.url),
       "utf8"
     );
 
     const actualOutput = migrate(getRuntime(INPUT));
 
-    assert.deepEqual(actualOutput, EXPECTED_OUTPUT);
+    assert.deepEqual(
+      actualOutput,
+      EXPECTED_OUTPUT.replace("// prettier-ignore\n", "")
+    );
   });
 });
 

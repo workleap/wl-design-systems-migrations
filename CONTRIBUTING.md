@@ -181,4 +181,4 @@ Key utilities from [`src/mappings/helpers.ts`](/src/mappings/helpers.ts):
    pnpm sample
    ```
 
-3. **Update `output.txt`** with the correct expected transformation result
+3. **Update `output.tsx`** with the correct expected transformation result

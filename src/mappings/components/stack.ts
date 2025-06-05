@@ -1,6 +1,4 @@
-import { JSXAttribute } from "jscodeshift";
 import { ComponentMapMetaData } from "../../utils/types.ts";
-import { tryGettingLiteralValue } from "../helpers.ts";
 import { flexMapping } from "./flex.ts";
 
 export const stackMapping = {

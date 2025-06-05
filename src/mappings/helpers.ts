@@ -1,6 +1,7 @@
 import { isArray } from "@hopper-ui/components";
 import {
   JSXAttribute,
+  JSXEmptyExpression,
   JSXExpressionContainer,
   JSXOpeningElement,
   JSXSpreadAttribute,
@@ -33,7 +34,8 @@ export function hasAttribute(
 
 export function getAttributeLiteralValue(
   tag: JSXOpeningElement,
-  attributeName: string
+  attributeName: string,
+  runtime: Runtime
 ) {
   const attribute = tag.attributes?.find(
     (attr) =>
@@ -43,35 +45,23 @@ export function getAttributeLiteralValue(
   );
 
   if (attribute && attribute.type == "JSXAttribute") {
-    return tryGettingLiteralValue(attribute.value);
+    return tryGettingLiteralValue(attribute.value, runtime);
   }
   return null;
 }
 
 export function tryGettingLiteralValue(
-  value: JSXAttribute["value"] | ObjectProperty["value"]
+  value: JSXAttribute["value"] | ObjectProperty["value"] | JSXEmptyExpression,
+  runtime: Runtime
 ): string | number | boolean | RegExp | null {
-  if (value == null) {
-    return null;
-  } else if (value.type === "Literal") {
+  const { j } = runtime;
+
+  if (j.Literal.check(value, true)) {
     return value.value;
-  } else if (
-    value.type === "StringLiteral" ||
-    value.type === "NumericLiteral"
-  ) {
-    // Add support for StringLiteral type
-    return value.value;
-  } else if (value.type === "JSXExpressionContainer") {
-    if (value.expression.type === "Literal") {
-      return value.expression.value;
-    } else if (
-      value.expression.type === "StringLiteral" ||
-      value.expression.type === "NumericLiteral"
-    ) {
-      // Add support for StringLiteral in expressions
-      return value.expression.value;
-    }
+  } else if (j.JSXExpressionContainer.check(value)) {
+    return tryGettingLiteralValue(value.expression, runtime);
   }
+
   return null;
 }
 
@@ -204,7 +194,7 @@ function parseResponsiveObjectValue<T extends string>(
       property.value
     ) {
       // Extract the literal value from the property value
-      const literalValue = tryGettingLiteralValue(property.value);
+      const literalValue = tryGettingLiteralValue(property.value, runtime);
 
       if (literalValue !== null) {
         const mappedResult = parseLiteralValue(
@@ -302,8 +292,8 @@ function createPropertyMapper<T extends string = string>(
   options: PropertyMapperOptions<T>
 ): PropertyMapperFunction<T> {
   return (originalValue, runtime) => {
-    const { j, log } = runtime;
-    const value = tryGettingLiteralValue(originalValue);
+    const { log } = runtime;
+    const value = tryGettingLiteralValue(originalValue, runtime);
 
     if (value !== null) {
       return parseLiteralValue(value, originalValue, options, runtime);

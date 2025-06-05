@@ -1,32 +1,30 @@
+// prettier-ignore
 import {
-  Div as HopperDiv,
+  A,
+  Address,
+  Article,
+  Aside,
+  Button,
+  ButtonGroup,
+  Content,
+  type ContentProps,
+  Counter,
+  Div,
   Flex,
+  Footer,
   Grid,
-  Inline,
-  Stack,
-  Heading,
   H1,
   H2,
   H3,
   H4,
   H5,
   H6,
-  Text,
-  Paragraph,
-  Table,
-  TR,
-  TD,
-  TH,
-  TBody,
-  THead,
-  TFoot,
-  Content,
-  type ContentProps,
-  Footer,
   Header,
+  Heading,
+  Div as HopperDiv,
   HtmlButton,
   HtmlFooter,
-  HtmlHeader,
+  HtmlForm,
   HtmlH1,
   HtmlH1Props,
   HtmlH2,
@@ -34,23 +32,31 @@ import {
   HtmlH4,
   HtmlH5,
   HtmlH6,
+  HtmlHeader,
   HtmlInput,
   HtmlSection,
-  HtmlForm,
-  A,
-  Address,
-  Article,
-  Aside,
-  Div,
   Img,
-  UL,
-  OL,
+  Inline,
   LI,
+  LinkButton,
   Main,
   Nav,
+  OL,
+  Paragraph,
   Span,
-  Button,
-  Counter,
+  Stack,
+  Table,
+  TBody,
+  TD,
+  Text,
+  TFoot,
+  TH,
+  THead,
+  Tile,
+  TileGroup,
+  TileLink,
+  TR,
+  UL,
 } from "@hopper-ui/components";
 import { useAccordionContext } from "@workleap/orbiter-ui";
 
@@ -451,6 +457,71 @@ export function App() {
       </Button>
       <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</Button>
       <Button variant="danger">text</Button>
+      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+      <LinkButton
+        isFluid={variable ? true : false}
+        loading={false}/* Migration TODO: `loading` is not supported anymore. Remove it. */
+        onPress={() => alert("Button clicked!")}
+        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        size="md"
+        isDisabled
+        href="https://example.com"
+        rel="noopener noreferrer"
+        download
+        referrerPolicy="origin-when-cross-origin">
+        text
+      </LinkButton>
+      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+      <LinkButton
+        variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</LinkButton>
+      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+      <LinkButton variant="danger">text</LinkButton>
+      <ButtonGroup inline/* Migration TODO: `inline` is not supported anymore. Remove it. */ reverse/* Migration TODO: `reverse` is not supported anymore. Remove it. */ size={{ base: "sm", xl: "md" }} wrap={false}>
+        <Button>text</Button>
+      </ButtonGroup>
+      <Tile
+        id="x"
+        isSelected
+        defaultSelected
+        defaultValue="y"/* Migration TODO: Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
+        orientation="horizontal"/* Migration TODO: Remove the `orientation` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
+        onPress={() => {
+          alert(1);
+        }}
+        type="reset"
+        cursorHover="nw-resize"
+      >
+        text
+      </Tile>
+      /* Migration TODO: `TileLink` is not supported yet. You can follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents  */
+      <TileLink
+        href="https://example.com"
+        external
+        target="ample"
+        defaultSelected
+        defaultValue="y"/* Migration TODO: Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
+        orientation="horizontal"/* Migration TODO: Remove the `orientation` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
+        onPress={() => {
+          alert(1);
+        }}
+        type="reset"
+        cursorHover="nw-resize">
+        text
+      </TileLink>
+      <TileGroup
+        alignItems="start"
+        selectionMode={undefined}
+        onSelectionChange={() => {}}
+        reverse/* Migration TODO: Remove the `reverse` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+        value={["10"]}/* Migration TODO: Remove the `value` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+        inline/* Migration TODO: Remove the `inline` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+        autoFocus/* Migration TODO: Remove the `autoFocus` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+        defaultChecked/* Migration TODO: Remove the `defaultChecked` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+        defaultValue={["12"]}/* Migration TODO: Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+        rowSize={3}/* Migration TODO: Remove the `rowSize` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+      >
+        items
+      </TileGroup>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>

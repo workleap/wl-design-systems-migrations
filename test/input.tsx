@@ -1,10 +1,15 @@
-import { Div as HopperDiv } from "@hopper-ui/components";
+// prettier-ignore
+import {
+  Div as HopperDiv
+} from "@hopper-ui/components";
 import {
   A,
   Address,
   Article,
   Aside,
   Button,
+  ButtonAsLink,
+  ButtonGroup,
   Content,
   Counter,
   Div,
@@ -48,6 +53,9 @@ import {
   TFoot,
   TH,
   THead,
+  Tile,
+  TileGroup,
+  TileLink,
   TR,
   UL,
   useAccordionContext,
@@ -435,6 +443,73 @@ export function App() {
       </Button>
       <Button variant="tertiary">text</Button>
       <Button variant="negative">text</Button>
+
+      <ButtonAsLink
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
+        size="md"
+        disabled
+        href="https://example.com"
+        rel="noopener noreferrer"
+        download
+        referrerPolicy="origin-when-cross-origin"
+      >
+        text
+      </ButtonAsLink>
+      <ButtonAsLink variant="tertiary">text</ButtonAsLink>
+      <ButtonAsLink variant="negative">text</ButtonAsLink>
+
+      <ButtonGroup inline reverse size={{ base: "sm", xl: "md" }} wrap={false}>
+        <Button>text</Button>
+      </ButtonGroup>
+
+      <Tile
+        value="x"
+        checked
+        defaultChecked
+        defaultValue="y"
+        orientation="horizontal"
+        onClick={() => {
+          alert(1);
+        }}
+        type="reset"
+        cursorHover="nw-resize"
+      >
+        text
+      </Tile>
+
+      <TileLink
+        href="https://example.com"
+        external
+        target="ample"
+        defaultChecked
+        defaultValue="y"
+        orientation="horizontal"
+        onClick={() => {
+          alert(1);
+        }}
+        type="reset"
+        cursorHover="nw-resize"
+      >
+        text
+      </TileLink>
+
+      <TileGroup
+        align="start"
+        selectionMode="none"
+        onChange={() => {}}
+        reverse
+        value={["10"]}
+        inline
+        autoFocus
+        defaultChecked
+        defaultValue={["12"]}
+        rowSize={3}
+      >
+        items
+      </TileGroup>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
