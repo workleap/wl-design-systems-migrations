@@ -221,7 +221,9 @@ function parseResponsiveObjectValue<T extends string>(
           );
         }
         hasChanges = true;
-        offeredTargetPropertyNames.push(mappedResult.to);
+        offeredTargetPropertyNames.push(
+          mappedResult.to ?? options.propertyName
+        );
 
         transformedProperties.push(
           j.objectProperty(property.key, mappedResult.value)
