@@ -8,7 +8,7 @@ export const fillMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_fill",
   validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
   sourceValidKeys: OrbiterIconColorMapping,
-  targetValidKeys: HopperIconColorMapping,
+  targetValidKeys: HopperIconColorMapping
 });
 
 export const fillHoverMapper = createHopperCssPropertyMapper({
@@ -16,7 +16,7 @@ export const fillHoverMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_fillHover",
   validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
   sourceValidKeys: OrbiterIconColorMapping,
-  targetValidKeys: HopperIconColorMapping,
+  targetValidKeys: HopperIconColorMapping
 });
 
 export const fillFocusMapper = createHopperCssPropertyMapper({
@@ -24,7 +24,7 @@ export const fillFocusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_fillFocus",
   validGlobalValues: ["child", "context-fill", "context-stroke", "none"],
   sourceValidKeys: OrbiterIconColorMapping,
-  targetValidKeys: HopperIconColorMapping,
+  targetValidKeys: HopperIconColorMapping
 });
 
 export const strokeFocusMapper = createHopperCssPropertyMapper({
@@ -36,8 +36,8 @@ export const strokeFocusMapper = createHopperCssPropertyMapper({
     "context-stroke",
     "none",
     "currentcolor",
-    "transparent",
+    "transparent"
   ],
   sourceValidKeys: OrbiterIconColorMapping,
-  targetValidKeys: HopperIconColorMapping,
+  targetValidKeys: HopperIconColorMapping
 });

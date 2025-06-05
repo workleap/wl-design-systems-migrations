@@ -8,7 +8,7 @@ export const boxShadowMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_boxShadow",
   validGlobalValues: ["none"],
   sourceValidKeys: OrbiterBoxShadowMapping,
-  targetValidKeys: HopperBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping
 });
 
 export const boxShadowActiveMapper = createHopperCssPropertyMapper({
@@ -16,7 +16,7 @@ export const boxShadowActiveMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_boxShadowActive",
   validGlobalValues: ["none"],
   sourceValidKeys: OrbiterBoxShadowMapping,
-  targetValidKeys: HopperBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping
 });
 
 export const boxShadowFocusMapper = createHopperCssPropertyMapper({
@@ -24,7 +24,7 @@ export const boxShadowFocusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_boxShadowFocus",
   validGlobalValues: ["none"],
   sourceValidKeys: OrbiterBoxShadowMapping,
-  targetValidKeys: HopperBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping
 });
 
 export const boxShadowHoverMapper = createHopperCssPropertyMapper({
@@ -32,5 +32,5 @@ export const boxShadowHoverMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_boxShadowHover",
   validGlobalValues: ["none"],
   sourceValidKeys: OrbiterBoxShadowMapping,
-  targetValidKeys: HopperBoxShadowMapping,
+  targetValidKeys: HopperBoxShadowMapping
 });

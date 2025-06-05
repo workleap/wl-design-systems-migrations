@@ -1,4 +1,4 @@
-import { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapMetaData } from "../../utils/types.ts";
 import { tryGettingLiteralValue } from "../helpers.ts";
 
 export const tileGroupMapping = {
@@ -11,42 +11,44 @@ export const tileGroupMapping = {
           const value = tryGettingLiteralValue(originalValue, runtime);
           const { j } = runtime;
 
-          if (value == "none")
+          if (value == "none") {
             return {
-              value: j.jsxExpressionContainer(j.identifier("undefined")),
+              value: j.jsxExpressionContainer(j.identifier("undefined"))
             };
+          }
+
           return null;
         },
         autoFocus: () => ({
           todoComments:
-            "Remove the `autoFocus` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes",
+            "Remove the `autoFocus` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
         }),
         inline: () => ({
           todoComments:
-            "Remove the `inline` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes",
+            "Remove the `inline` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
         }),
         reverse: () => ({
           todoComments:
-            "Remove the `reverse` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes",
+            "Remove the `reverse` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
         }),
         value: () => ({
           todoComments:
-            "Remove the `value` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes",
+            "Remove the `value` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
         }),
         defaultValue: () => ({
           todoComments:
-            "Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes",
+            "Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
         }),
         defaultChecked: () => ({
           todoComments:
-            "Remove the `defaultChecked` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes",
+            "Remove the `defaultChecked` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
         }),
         rowSize: () => ({
           todoComments:
-            "Remove the `rowSize` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes",
-        }),
-      },
-    },
+            "Remove the `rowSize` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+        })
+      }
+    }
   },
-  TileGroupProps: "TileGroupProps",
+  TileGroupProps: "TileGroupProps"
 } satisfies Record<string, ComponentMapMetaData>;

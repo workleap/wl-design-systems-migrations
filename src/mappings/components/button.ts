@@ -1,5 +1,5 @@
 import { JSXAttribute } from "jscodeshift";
-import { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapMetaData } from "../../utils/types.ts";
 import { tryGettingLiteralValue } from "../helpers.ts";
 import { flexMapping } from "./flex.ts";
 
@@ -12,28 +12,30 @@ export const buttonMapping = {
         loading: "isLoading",
         size: "size",
         inherit: () => ({
-          todoComments: "`inherit` is not supported anymore. Remove it.",
+          todoComments: "`inherit` is not supported anymore. Remove it."
         }),
         variant: (originalValue, runtime) => {
           const { j } = runtime;
 
           const value = tryGettingLiteralValue(originalValue, runtime);
-          if (value === "negative")
+          if (value === "negative") {
             return {
               to: "variant",
-              value: j.stringLiteral("danger"),
+              value: j.stringLiteral("danger")
             };
-          else if (value === "tertiary")
+          } else if (value === "tertiary") {
             return {
               to: "variant",
               value: j.stringLiteral("ghost-secondary"),
               todoComments:
-                "`tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`.",
+                "`tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`."
             };
+          }
+
           return null;
-        },
-      },
-    },
+        }
+      }
+    }
   },
-  ButtonProps: "ButtonProps",
+  ButtonProps: "ButtonProps"
 } satisfies Record<string, ComponentMapMetaData>;

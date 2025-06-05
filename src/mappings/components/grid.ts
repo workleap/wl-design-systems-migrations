@@ -1,9 +1,9 @@
-import { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapMetaData } from "../../utils/types.ts";
 import {
   createGridAutoColumnsMapper,
   createGridAutoRowsMapper,
   createGridTemplateColumnsMapper,
-  createGridTemplateRowsMapper,
+  createGridTemplateRowsMapper
 } from "../styled-system/styles/grid.ts";
 
 export const gridMappings = {
@@ -24,9 +24,9 @@ export const gridMappings = {
         templateColumns: createGridTemplateColumnsMapper(
           "templateColumns",
           "UNSAFE_templateColumns"
-        ),
-      },
-    },
+        )
+      }
+    }
   },
-  GridProps: "GridProps",
+  GridProps: "GridProps"
 } satisfies Record<string, ComponentMapMetaData>;

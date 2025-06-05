@@ -1,6 +1,6 @@
-import { Collection, JSXOpeningElement } from "jscodeshift";
+import type { Collection, JSXOpeningElement } from "jscodeshift";
 import { getTodoComment } from "../utils/mapping.ts";
-import { PropertyMapperFunction, Runtime } from "../utils/types.js";
+import type { PropertyMapperFunction, Runtime } from "../utils/types.js";
 
 /**
  * Renames JSX attributes for a specific component
@@ -17,7 +17,7 @@ export function migrateAttribute(
   runtime: Runtime
 ): void {
   const { j, log, filePath } = runtime;
-  instances.forEach((path) => {
+  instances.forEach(path => {
     const attributes = path.node.attributes || [];
     const sourceAttribute = attributes.find(
       (attr: any) => attr.name && attr.name.name === oldAttrName
@@ -27,20 +27,20 @@ export function migrateAttribute(
       const newAttribute: { name: string; value: any; todoComments?: string } =
         {
           name: "",
-          value: null,
+          value: null
         };
 
       if (typeof newAttributeMap === "function") {
         const mapResult = newAttributeMap(sourceAttribute.value, {
           ...runtime,
-          tag: path,
+          tag: path
         });
         if (mapResult) {
           const { to, value, todoComments } = mapResult;
           newAttribute.name = to ?? oldAttrName;
           (newAttribute.value =
             value === undefined ? sourceAttribute.value : value),
-            (newAttribute.todoComments = todoComments);
+          (newAttribute.todoComments = todoComments);
         } else {
           return; // Skip if there is no mapping
         }
@@ -61,6 +61,7 @@ export function migrateAttribute(
         log(
           `WARNING: Attribute '${newAttribute.name}' already exists, skipping migration of '${oldAttrName}'`
         );
+
         return;
       }
 
@@ -76,7 +77,7 @@ export function migrateAttribute(
       if (newAttribute.todoComments) {
         attributes[sourceAttributeIndex].comments = [
           ...(attributes[sourceAttributeIndex].comments || []),
-          getTodoComment(newAttribute.todoComments, runtime),
+          getTodoComment(newAttribute.todoComments, runtime)
         ];
       }
     }

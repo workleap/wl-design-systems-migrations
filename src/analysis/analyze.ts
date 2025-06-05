@@ -1,8 +1,8 @@
 // filepath: /Users/mahmoud.moravej/workleap/orbiter-to-hopper-codemods/src/utils/analyze.ts
 import { existsSync, readFileSync, writeFileSync } from "fs";
-import { Options } from "jscodeshift";
+import type { Options } from "jscodeshift";
 import { setReplacer, setReviver } from "../utils/serialization.js";
-import { ComponentMapMetaData, Runtime } from "../utils/types.js";
+import { ComponentMapMetaData, type Runtime } from "../utils/types.js";
 
 /**
  * Checks if a component has a mapping in the mappings configuration
@@ -75,7 +75,7 @@ function shouldIgnoreProperty(
     "slot",
     "id",
     "role",
-    "dangerouslySetInnerHTML",
+    "dangerouslySetInnerHTML"
   ];
 
   return knownIgnoredProps.includes(propName);
@@ -140,7 +140,7 @@ export function mergeAnalysisResults(
     ([componentName, componentData]) => {
       combinedData[componentName] = {
         usage: componentData.usage,
-        props: { ...componentData.props },
+        props: { ...componentData.props }
       };
     }
   );
@@ -162,7 +162,7 @@ export function mergeAnalysisResults(
               existingProp.usage += propData.usage;
 
               // Merge values sets
-              propData.values.forEach((value) => {
+              propData.values.forEach(value => {
                 existingProp.values.add(value);
               });
             }
@@ -170,7 +170,7 @@ export function mergeAnalysisResults(
             // Copy the property data with a new Set instance
             combinedComponentData.props[propName] = {
               usage: propData.usage,
-              values: new Set([...propData.values]),
+              values: new Set([...propData.values])
             };
           }
         });
@@ -184,13 +184,13 @@ export function mergeAnalysisResults(
         Object.entries(componentData.props).forEach(([propName, propData]) => {
           propsCopy[propName] = {
             usage: propData.usage,
-            values: new Set([...propData.values]),
+            values: new Set([...propData.values])
           };
         });
 
         combinedData[componentName] = {
           usage: componentData.usage,
-          props: propsCopy,
+          props: propsCopy
         };
       }
     }
@@ -212,13 +212,13 @@ export function mergeAnalysisResults(
         .forEach(([propName, propData]) => {
           sortedProps[propName] = {
             usage: propData.usage,
-            values: new Set([...propData.values]),
+            values: new Set([...propData.values])
           };
         });
 
       orderedComponents.set(componentName, {
         usage: data.usage,
-        props: sortedProps,
+        props: sortedProps
       });
     });
 
@@ -232,9 +232,9 @@ export function mergeAnalysisResults(
   let totalComponentUsage = 0;
   let totalPropUsage = 0;
 
-  Object.values(components).forEach((component) => {
+  Object.values(components).forEach(component => {
     totalComponentUsage += component.usage;
-    Object.values(component.props).forEach((prop) => {
+    Object.values(component.props).forEach(prop => {
       totalPropUsage += prop.usage;
     });
   });
@@ -243,10 +243,10 @@ export function mergeAnalysisResults(
     overall: {
       usage: {
         components: totalComponentUsage,
-        props: totalPropUsage,
-      },
+        props: totalPropUsage
+      }
     },
-    components,
+    components
   };
 }
 
@@ -284,7 +284,7 @@ export function analyze(
 
   // Find all import declarations from the source package
   const sourceImports = root.find(j.ImportDeclaration, {
-    source: { value: sourcePackage },
+    source: { value: sourcePackage }
   });
 
   // Extract locally imported component names
@@ -292,10 +292,10 @@ export function analyze(
   // Keep track of potential components (will be confirmed by JSX usage)
   const potentialComponents: Set<string> = new Set();
 
-  sourceImports.forEach((path) => {
+  sourceImports.forEach(path => {
     const specifiers = path.node.specifiers || [];
 
-    specifiers.forEach((specifier) => {
+    specifiers.forEach(specifier => {
       if (j.ImportSpecifier.check(specifier) && specifier.imported) {
         const importedName = specifier.imported.name;
         const localName = specifier.local?.name || importedName;
@@ -323,7 +323,7 @@ export function analyze(
   Object.entries(importedComponents).forEach(([localName, originalName]) => {
     // Find all JSX opening elements with the local component name
     const jsxUsages = root.find(j.JSXOpeningElement, {
-      name: { name: localName },
+      name: { name: localName }
     });
 
     // If this potential component is actually used in JSX, then it's confirmed as a component
@@ -352,7 +352,7 @@ export function analyze(
       if (!componentUsageData[originalName]) {
         componentUsageData[originalName] = {
           count: 0,
-          props: {},
+          props: {}
         };
       }
 
@@ -361,11 +361,11 @@ export function analyze(
       componentUsage.count += jsxUsages.size();
 
       // Collect all attributes used with this component
-      jsxUsages.forEach((path) => {
+      jsxUsages.forEach(path => {
         const attributes = path.node.attributes || [];
 
         // Collect attribute names for this component and their counts and values
-        attributes.forEach((attr) => {
+        attributes.forEach(attr => {
           if (
             attr.type === "JSXAttribute" &&
             attr.name &&
@@ -396,7 +396,7 @@ export function analyze(
             if (!componentUsage.props[propName]) {
               componentUsage.props[propName] = {
                 usage: 0,
-                values: new Set<string>(),
+                values: new Set<string>()
               };
             }
 
@@ -448,7 +448,7 @@ export function analyze(
       .forEach(([propName, propData]) => {
         sortedProps[propName] = {
           usage: propData.usage,
-          values: new Set([...propData.values]),
+          values: new Set([...propData.values])
         };
       });
 
@@ -460,7 +460,7 @@ export function analyze(
 
     orderedComponents.set(componentName, {
       usage: data.count,
-      props: sortedProps,
+      props: sortedProps
     });
   });
 
@@ -474,9 +474,9 @@ export function analyze(
   let totalComponentUsage = 0;
   let totalPropUsage = 0;
 
-  Object.values(components).forEach((component) => {
+  Object.values(components).forEach(component => {
     totalComponentUsage += component.usage;
-    Object.values(component.props).forEach((prop) => {
+    Object.values(component.props).forEach(prop => {
       totalPropUsage += prop.usage;
     });
   });
@@ -485,10 +485,10 @@ export function analyze(
     overall: {
       usage: {
         components: totalComponentUsage,
-        props: totalPropUsage,
-      },
+        props: totalPropUsage
+      }
     },
-    components,
+    components
   };
 
   // Write the output to a file
@@ -530,6 +530,6 @@ export function analyze(
 
   return {
     source: root.toSource(),
-    analysisResults: analysisResults,
+    analysisResults: analysisResults
   };
 }

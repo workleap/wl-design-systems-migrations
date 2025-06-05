@@ -1,5 +1,5 @@
-import { ASTPath, JSXAttribute, JSXOpeningElement } from "jscodeshift";
-import { Runtime } from "../utils/types.js";
+import type { ASTPath, JSXAttribute, JSXOpeningElement } from "jscodeshift";
+import type { Runtime } from "../utils/types.js";
 
 export function addAttribute(
   openingElement: ASTPath<JSXOpeningElement>,
@@ -14,15 +14,14 @@ export function addAttribute(
     (attr: any) => attr.name && attr.name.name === newAttrName
   );
 
-  if (sourceAttribute) return; // Skip if the attribute already exists
+  if (sourceAttribute) {return;} // Skip if the attribute already exists
 
   const createAttributeValue = (value: string | number | boolean | null) => {
-    if (value === null) return null;
-    if (typeof value === "string") return j.stringLiteral(value);
-    if (typeof value === "number")
-      return j.jsxExpressionContainer(j.literal(value));
-    if (typeof value === "boolean")
-      return j.jsxExpressionContainer(j.literal(value));
+    if (value === null) {return null;}
+    if (typeof value === "string") {return j.stringLiteral(value);}
+    if (typeof value === "number") {return j.jsxExpressionContainer(j.literal(value));}
+    if (typeof value === "boolean") {return j.jsxExpressionContainer(j.literal(value));}
+
     return null;
   };
 

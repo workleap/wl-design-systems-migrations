@@ -1,4 +1,4 @@
-import { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapMetaData } from "../../utils/types.ts";
 import { buttonMapping } from "./button.ts";
 
 export const buttonGroupMapping = {
@@ -7,13 +7,13 @@ export const buttonGroupMapping = {
       mappings: {
         fluid: "isFluid",
         inline: () => ({
-          todoComments: "`inline` is not supported anymore. Remove it.",
+          todoComments: "`inline` is not supported anymore. Remove it."
         }),
         reverse: () => ({
-          todoComments: "`reverse` is not supported anymore. Remove it.",
-        }),
-      },
-    },
+          todoComments: "`reverse` is not supported anymore. Remove it."
+        })
+      }
+    }
   },
-  ButtonGroupProps: "LinkButtonProps",
+  ButtonGroupProps: "LinkButtonProps"
 } satisfies Record<string, ComponentMapMetaData>;

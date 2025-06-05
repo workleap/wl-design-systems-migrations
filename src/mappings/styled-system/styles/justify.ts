@@ -14,8 +14,8 @@ export const justifyContentMapper = createHopperCssPropertyMapper({
     "space-between",
     "space-around",
     "space-evenly",
-    "stretch",
-  ],
+    "stretch"
+  ]
 });
 
 export const justifyItemsMapper = createHopperCssPropertyMapper({
@@ -33,8 +33,8 @@ export const justifyItemsMapper = createHopperCssPropertyMapper({
     "left",
     "right",
     "baseline",
-    "legacy",
-  ],
+    "legacy"
+  ]
 });
 
 export const justifySelfMapper = createHopperCssPropertyMapper({
@@ -52,6 +52,6 @@ export const justifySelfMapper = createHopperCssPropertyMapper({
     "self-end",
     "left",
     "right",
-    "baseline",
-  ],
+    "baseline"
+  ]
 });

@@ -1,4 +1,4 @@
-import { ComponentMapMetaData, PropsMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapMetaData, PropsMapMetaData } from "../../utils/types.ts";
 import { getAttributeLiteralValue, hasAttribute } from "../helpers.ts";
 
 const additions = {
@@ -8,7 +8,7 @@ const additions = {
         "marginBottom",
         "UNSAFE_marginBottom",
         "margin",
-        "UNSAFE_margin",
+        "UNSAFE_margin"
       ])
     ) {
       return null;
@@ -35,44 +35,44 @@ const additions = {
       default:
         return null;
     }
-  },
+  }
 } satisfies PropsMapMetaData["additions"];
 
 export const headingMappings = {
   Heading: {
     props: {
-      additions,
-    },
+      additions
+    }
   },
   HeadingProps: "HeadingProps",
   H1: {
     props: {
-      additions,
-    },
+      additions
+    }
   },
   H2: {
     props: {
-      additions,
-    },
+      additions
+    }
   },
   H3: {
     props: {
-      additions,
-    },
+      additions
+    }
   },
   H4: {
     props: {
-      additions,
-    },
+      additions
+    }
   },
   H5: {
     props: {
-      additions,
-    },
+      additions
+    }
   },
   H6: {
     props: {
-      additions,
-    },
-  },
+      additions
+    }
+  }
 } satisfies Record<string, ComponentMapMetaData>;

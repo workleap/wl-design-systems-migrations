@@ -1,7 +1,7 @@
 import {
   ComponentMapMetaData,
-  MapMetaData,
-  PropsMapping,
+  type MapMetaData,
+  type PropsMapping
 } from "../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
@@ -11,25 +11,25 @@ const defaultPropsMappings = {
   ...styledSystemPropsMappings,
   disabled: "isDisabled",
   readOnly: "isReadOnly",
-  "min-width": (originalValue) => ({
+  "min-width": originalValue => ({
     to: "min-width",
     value: originalValue,
-    todoComments: `It seems it is an invalid property. Remove it if not needed`,
-  }),
+    todoComments: "It seems it is an invalid property. Remove it if not needed"
+  })
 } satisfies PropsMapping;
 
 export const mappings = {
   sourcePackage: "@workleap/orbiter-ui",
   targetPackage: "@hopper-ui/components",
   propsDefaults: {
-    mappings: defaultPropsMappings,
+    mappings: defaultPropsMappings
   },
   components: {
     ...layoutComponentsMappings,
-    ...buttonComponentsMappings,
+    ...buttonComponentsMappings
 
     //TODO: move items from todo list here when they are implemented
-  },
+  }
 } satisfies MapMetaData;
 
 const todo = {
@@ -234,7 +234,7 @@ const todo = {
 
   //toolbar & utilities
   ThemeProvider: "HopperProvider",
-  ThemeProviderProps: "HopperProviderProps",
+  ThemeProviderProps: "HopperProviderProps"
   //TODO: Not direct map. Find appropriate component/type
   // Toolbar: "Toolbar",
   // ToolbarProps: "ToolbarProps",

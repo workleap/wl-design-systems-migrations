@@ -8,7 +8,7 @@ export const gapMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_gap",
   validGlobalValues: ["normal"],
   sourceValidKeys: OrbiterSimpleMarginMapping,
-  targetValidKeys: HopperSimpleMarginMapping,
+  targetValidKeys: HopperSimpleMarginMapping
 });
 
 export const rowGapMapper = createHopperCssPropertyMapper({
@@ -16,7 +16,7 @@ export const rowGapMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_rowGap",
   validGlobalValues: ["normal"],
   sourceValidKeys: OrbiterSimpleMarginMapping,
-  targetValidKeys: HopperSimpleMarginMapping,
+  targetValidKeys: HopperSimpleMarginMapping
 });
 
 export const columnGapMapper = createHopperCssPropertyMapper({
@@ -24,5 +24,5 @@ export const columnGapMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_columnGap",
   validGlobalValues: ["normal"],
   sourceValidKeys: OrbiterSimpleMarginMapping,
-  targetValidKeys: HopperSimpleMarginMapping,
+  targetValidKeys: HopperSimpleMarginMapping
 });
