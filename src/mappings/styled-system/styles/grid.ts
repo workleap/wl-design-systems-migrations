@@ -5,8 +5,7 @@ import {
 } from "../../helpers.js";
 
 import {
-  SizingMapping as HopperSizingMapping,
-  StyledSystemProps
+  SizingMapping as HopperSizingMapping
 } from "@hopper-ui/components";
 import { SizingMapping as OrbiterSizingMapping } from "@workleap/orbiter-ui";
 

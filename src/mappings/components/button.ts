@@ -1,7 +1,5 @@
-import { JSXAttribute } from "jscodeshift";
 import type { ComponentMapMetaData } from "../../utils/types.ts";
 import { tryGettingLiteralValue } from "../helpers.ts";
-import { flexMapping } from "./flex.ts";
 
 export const buttonMapping = {
   Button: {

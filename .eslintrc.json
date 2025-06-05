@@ -3,6 +3,8 @@
     "root": true,
     "extends": "plugin:@workleap/react-library",
     "rules": {
-        "@stylistic/ts/indent": ["error", 2]
+        "@stylistic/ts/indent": ["error", 2],
+        "eqeqeq": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }

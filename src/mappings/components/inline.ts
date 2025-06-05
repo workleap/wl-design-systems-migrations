@@ -1,4 +1,3 @@
-import { JSXAttribute } from "jscodeshift";
 import type { ComponentMapMetaData } from "../../utils/types.ts";
 import { hasAttribute } from "../helpers.ts";
 import { flexMapping } from "./flex.ts";
@@ -10,7 +9,7 @@ export const inlineMapping = {
         ...flexMapping.Flex.props.mappings
       },
       additions: {
-        UNSAFE_gap: (tag, { j, log }) => {
+        UNSAFE_gap: tag => {
           return hasAttribute(tag.value, ["gap", "UNSAFE_gap"])
             ? null
             : "1.25rem";

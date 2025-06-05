@@ -2,7 +2,7 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import type { Options } from "jscodeshift";
 import { setReplacer, setReviver } from "../utils/serialization.js";
-import { ComponentMapMetaData, type Runtime } from "../utils/types.js";
+import type { Runtime } from "../utils/types.js";
 
 /**
  * Checks if a component has a mapping in the mappings configuration
@@ -52,8 +52,7 @@ function isPropertyMapped(
  * This includes aria-* attributes, data-* attributes, and known ignored props
  */
 function shouldIgnoreProperty(
-  propName: string,
-  mappings: Runtime["mappings"]
+  propName: string
 ): boolean {
   // Check for aria-* attributes
   if (propName.startsWith("aria-")) {
@@ -376,7 +375,7 @@ export function analyze(
             // Apply property filtering if specified (but only for non-ignored props)
             if (
               filterUnmapped === "props" &&
-              !shouldIgnoreProperty(propName, mappings) &&
+              !shouldIgnoreProperty(propName) &&
               isPropertyMapped(originalName, propName, mappings)
             ) {
               // Skip mapped properties when filtering for unmapped props only
@@ -387,7 +386,7 @@ export function analyze(
             // Skip ignored properties unless explicitly included
             if (
               !includeignoredList &&
-              shouldIgnoreProperty(propName, mappings)
+              shouldIgnoreProperty(propName)
             ) {
               return;
             }

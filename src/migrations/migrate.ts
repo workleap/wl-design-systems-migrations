@@ -1,4 +1,4 @@
-import { mappings, type Options } from "jscodeshift";
+import type { Options } from "jscodeshift";
 import { layoutComponentsMappings } from "../mappings/layout-components-mappings.ts";
 import { getMappingKeys, type Runtime } from "../utils/types.js";
 import { migrateComponent } from "./migrateComponent.js";
@@ -24,6 +24,7 @@ export function migrate(
     });
   } else {
     components.split(",").forEach(name => {
+      // eslint-disable-next-line no-param-reassign
       name = name.trim();
       if (mappings.components[name]) {
         migrateComponent(name, runtime);

@@ -1,7 +1,6 @@
-import {
-  ComponentMapMetaData,
-  type MapMetaData,
-  type PropsMapping
+import type {
+  MapMetaData,
+  PropsMapping
 } from "../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
@@ -32,6 +31,7 @@ export const mappings = {
   }
 } satisfies MapMetaData;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const todo = {
   //form fields
   TextInput: "TextField",

@@ -1,11 +1,10 @@
 import { isArray } from "@hopper-ui/components";
-import {
-  type JSXAttribute,
-  type JSXEmptyExpression,
-  type JSXExpressionContainer,
-  type JSXOpeningElement,
-  JSXSpreadAttribute,
-  type ObjectProperty
+import type {
+  JSXAttribute,
+  JSXEmptyExpression,
+  JSXExpressionContainer,
+  JSXOpeningElement,
+  ObjectProperty
 } from "jscodeshift";
 import {
   type PropertyMapperFunction,
@@ -88,8 +87,7 @@ export function isFrValue(value: string | number | boolean | RegExp): boolean {
 }
 
 function hasSameKey(key: string, enumMapping: EnumMapping) {
-  const { sourceValidKeys, targetValidKeys } = enumMapping;
-  enumMapping || {};
+  const { sourceValidKeys, targetValidKeys } = enumMapping || {};
 
   return (
     Object.keys(sourceValidKeys).includes(key) &&

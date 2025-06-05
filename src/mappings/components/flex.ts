@@ -12,7 +12,7 @@ export const flexMapping = {
         flexShrink: "shrink",
         flexFlow: "direction",
         flexBasis: "basis",
-        reverse: (originalValue, { j }) => {
+        reverse: originalValue => {
           return {
             to: "reverse",
             value: originalValue,

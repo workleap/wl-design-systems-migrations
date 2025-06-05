@@ -1,10 +1,6 @@
 import type {
   API,
-  Block,
-  CommentBlock,
-  CommentLine,
   FileInfo,
-  Line,
   Options
 } from "jscodeshift";
 import { analyze } from "./analysis/analyze.js";
@@ -12,8 +8,6 @@ import { mappings } from "./mappings/index.ts";
 import { migrate } from "./migrations/migrate.js";
 import { logToFile } from "./utils/logger.js";
 import type { Runtime } from "./utils/types.js";
-
-type CommentKind = Block | Line | CommentBlock | CommentLine;
 
 export default function transform(
   file: FileInfo,

@@ -16,7 +16,7 @@ export function migrateAttribute(
   newAttributeMap: string | PropertyMapperFunction,
   runtime: Runtime
 ): void {
-  const { j, log, filePath } = runtime;
+  const { j, log } = runtime;
   instances.forEach(path => {
     const attributes = path.node.attributes || [];
     const sourceAttribute = attributes.find(
@@ -38,9 +38,8 @@ export function migrateAttribute(
         if (mapResult) {
           const { to, value, todoComments } = mapResult;
           newAttribute.name = to ?? oldAttrName;
-          (newAttribute.value =
-            value === undefined ? sourceAttribute.value : value),
-          (newAttribute.todoComments = todoComments);
+          newAttribute.value = value === undefined ? sourceAttribute.value : value;
+          newAttribute.todoComments = todoComments;
         } else {
           return; // Skip if there is no mapping
         }

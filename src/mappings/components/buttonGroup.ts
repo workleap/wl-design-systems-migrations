@@ -1,5 +1,4 @@
 import type { ComponentMapMetaData } from "../../utils/types.ts";
-import { buttonMapping } from "./button.ts";
 
 export const buttonGroupMapping = {
   ButtonGroup: {

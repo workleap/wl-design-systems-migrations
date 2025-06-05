@@ -1,4 +1,3 @@
-import { JSXIdentifier } from "jscodeshift";
 import { getComponentPropsMetadata, getTodoComment } from "../utils/mapping.js";
 import type { Runtime } from "../utils/types.js";
 import { addAttribute } from "./addAttribute.js";

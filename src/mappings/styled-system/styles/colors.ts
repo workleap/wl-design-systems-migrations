@@ -1,5 +1,4 @@
 import { createHopperCssPropertyMapper } from "../../helpers.js";
-import { HopperStyledSystemPropsKeys } from "../types.js";
 
 import {
   BackgroundColorMapping as HopperBackgroundColorMapping,

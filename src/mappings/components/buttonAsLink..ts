@@ -14,6 +14,7 @@ export const buttonAsLinkMapping = {
       }
     },
     todoComments:
+      // eslint-disable-next-line max-len
       "If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback"
   },
   ButtonAsLinkProps: "LinkButtonProps"

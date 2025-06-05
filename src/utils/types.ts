@@ -1,5 +1,5 @@
-import type { ASTNode, ASTPath, Collection, JSXAttribute, JSXOpeningElement, ObjectProperty } from "jscodeshift/src/core.js";
 import type core from "jscodeshift/src/core.js";
+import type { ASTNode, ASTPath, Collection, JSXAttribute, JSXOpeningElement, ObjectProperty } from "jscodeshift/src/core.js";
 
 export interface Runtime {
   j: core.JSCodeshift;
@@ -38,7 +38,7 @@ export type PropsMapping<
   [K in S]: T | PropertyMapperFunction<T>;
 };
 
-export type PropertyAdderFunction<T extends string = string> = (
+export type PropertyAdderFunction = (
   tag: ASTPath<JSXOpeningElement>,
   runtime: Runtime
 ) => string | number | boolean | JSXAttribute["value"] | null;

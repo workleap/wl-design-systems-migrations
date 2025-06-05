@@ -7,7 +7,7 @@ export function addAttribute(
   newAttrValue: string | number | boolean | JSXAttribute["value"],
   runtime: Runtime
 ): void {
-  const { j, root } = runtime;
+  const { j } = runtime;
 
   const attributes = openingElement.node.attributes || [];
   const sourceAttribute = attributes.find(

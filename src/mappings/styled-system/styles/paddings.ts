@@ -1,8 +1,4 @@
 import { createHopperCssPropertyMapper } from "../../helpers.js";
-import {
-  HopperStyledSystemPropsKeys,
-  StyledSystemPropertyMapper
-} from "../types.js";
 
 import {
   ComplexPaddingMapping as HopperComplexPaddingMapping,
