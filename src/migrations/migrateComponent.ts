@@ -1,5 +1,5 @@
 import { JSXIdentifier } from "jscodeshift";
-import { getComponentPropsMetadata } from "../utils/mapping.js";
+import { getComponentPropsMetadata, getTodoComment } from "../utils/mapping.js";
 import { Runtime } from "../utils/types.js";
 import { addAttribute } from "./addAttribute.js";
 import { migrateAttribute } from "./migrateAttribute.js";
@@ -73,5 +73,22 @@ export function migrateComponent(
         });
       }
     );
+
+    // Add todoComments if any
+    const componentMapData = mappings.components[componentName];
+
+    if (
+      typeof componentMapData === "object" &&
+      componentMapData.todoComments !== undefined
+    ) {
+      const comment = componentMapData.todoComments;
+
+      instances.forEach((path) => {
+        path.node.comments = [
+          ...(path.node.comments || []),
+          getTodoComment(comment, runtime, true),
+        ];
+      });
+    }
   });
 }

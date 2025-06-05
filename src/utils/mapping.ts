@@ -1,4 +1,4 @@
-import { MapMetaData } from "./types.js";
+import { MapMetaData, Runtime } from "./types.js";
 
 export function getComponentPropsMetadata(
   componentName: string,
@@ -39,4 +39,12 @@ export function getComponentTargetName(
   return typeof component === "string"
     ? component
     : component.to ?? componentName;
+}
+
+export function getTodoComment(
+  comment: string,
+  { j }: Runtime,
+  leading = false
+) {
+  return j.commentBlock(` Migration TODO: ${comment} `, leading, !leading);
 }

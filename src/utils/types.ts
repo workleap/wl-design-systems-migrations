@@ -34,7 +34,7 @@ export type PropertyMapResult<
 > = {
   to: T | ReviewMe<T>;
   value: Z;
-  comments?: string;
+  todoComments?: string;
 };
 
 export type PropsMapping<
@@ -60,7 +60,7 @@ export type ComponentMapMetaData =
   | {
       to?: string;
       props?: PropsMapMetaData;
-      tags?: string[];
+      todoComments?: string;
     }
   | string;
 

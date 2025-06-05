@@ -74,6 +74,7 @@ Main mapping object in [`src/mappings/index.ts`](/src/mappings/index.ts):
   components: {
     Div: {
       to: "Div",
+      todoComments: "Use Inline instead", //optional
       props: {
         mappings: { width: "UNSAFE_width" }
       }
@@ -116,7 +117,7 @@ mappings: {
   reverse: (originalValue, { j, tag }) => ({
     to: "reverse",
     value: originalValue,
-    comments: " TODO: Remove reverse prop, see: https://hopper.workleap.design/components/Flex#migration-notes"
+    todoComments: "Remove reverse prop, see: https://hopper.workleap.design/components/Flex#migration-notes"
   })
 }
 ```
@@ -130,6 +131,20 @@ additions: {
   display: "block",
   UNSAFE_gap: (tag, { j, log }) => 
     hasAttribute(tag.node.attributes, ["gap", "UNSAFE_gap"]) ? null : "1.25rem"
+}
+```
+
+### Component-Level Configuration
+
+**Adding developer comments:**
+
+For adding migration comments to a component, use the `todoComments` field. This will add TODO comments to any usage of the component.
+
+```ts
+components: {
+  Counter: {
+    todoComments: "`Counter` is not supported anymore. You need to find an alternative."
+  },
 }
 ```
 
