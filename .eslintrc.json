@@ -1,0 +1,8 @@
+{
+    "$schema": "https://json.schemastore.org/eslintrc",
+    "root": true,
+    "extends": "plugin:@workleap/react-library",
+    "rules": {
+        "@stylistic/ts/indent": ["error", 2]
+    }
+}
