@@ -355,6 +355,23 @@ describe("migrations", () => {
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
+  test("when the provided function for property map returns a custom map, use it", async () => {
+    const INPUT = `import { OldComp } from "@workleap/orbiter-ui"; export function App() { return <OldComp />; }`;
+    const OUTPUT = `import { OldComp } from "@hopper-ui/components"; export function App() { return ( /* Migration TODO: OldComp is deprecated */ <OldComp /> ); }`;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          OldComp: {
+            todoComments: "OldComp is deprecated",
+          },
+        },
+      })
+    )!;
+
+    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+  });
+
   test("when the provided value is ResponsiveProp, convert them properly", async () => {
     const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div padding={{ base: 400, sm: 20 }} margin={20} />; }`;
     const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return ( <Div padding={{ base: "core_400", sm: "core_20" }} margin="core_20" /> ); }`;

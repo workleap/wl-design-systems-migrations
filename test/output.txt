@@ -1,5 +1,5 @@
 import {
-  Div as DivHopper,
+  Div as HopperDiv,
   Flex,
   Grid,
   Inline,
@@ -49,6 +49,8 @@ import {
   Main,
   Nav,
   Span,
+  Button,
+  Counter,
 } from "@hopper-ui/components";
 import { useAccordionContext } from "@workleap/orbiter-ui";
 
@@ -342,7 +344,7 @@ export function App() {
       </Flex>
       <Flex width="100%">text</Flex>
       <Flex fluid={false}>text</Flex>
-      <Flex reverse/* TODO: Remove the "reverse" property, read this: https://hopper.workleap.design/components/Flex#migration-notes*/>text</Flex>
+      <Flex reverse/* Migration TODO: Remove the `reverse` property, read this: https://hopper.workleap.design/components/Flex#migration-notes */>text</Flex>
       <Grid padding="core_400">text</Grid>
       <Grid UNSAFE_autoRows="repeat(3, 1fr)">text</Grid>
       <Grid autoRows="min-content">text</Grid>
@@ -404,7 +406,7 @@ export function App() {
       <HtmlForm
         aria-label="test"
         data-testId="test"
-        min-width="100vdh"/*TODO: It seems it is an invalid property. Remove it if not needed*/
+        min-width="100vdh"/* Migration TODO: It seems it is an invalid property. Remove it if not needed */
       ></HtmlForm>
       <Nav flexWrap={"revert-layer"}>
         <UL color="neutral-weak" marginLeft={"revert"}>
@@ -435,8 +437,22 @@ export function App() {
         </TBody>
         <TFoot padding="core_400"></TFoot>
       </Table>
+      <Button
+        isFluid={variable ? true : false}
+        isLoading={false}
+        onPress={() => alert("Button clicked!")}
+        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        size="md"
+        isDisabled
+      >
+        text
+        /* Migration TODO: `Counter` is not supported anymore. You need to find an alternative. */
+        <Counter variant="divider">60</Counter>
+      </Button>
+      <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</Button>
+      <Button variant="danger">text</Button>
       {/* ------------------------------------------------------------------------------------------ */}
-      <DivHopper padding={"core_400"}>text</DivHopper>
+      <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
   );
 }

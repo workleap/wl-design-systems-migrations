@@ -1,10 +1,12 @@
-import { Div as DivHopper } from "@hopper-ui/components";
+import { Div as HopperDiv } from "@hopper-ui/components";
 import {
   A,
   Address,
   Article,
   Aside,
+  Button,
   Content,
+  Counter,
   Div,
   Flex,
   Footer,
@@ -388,6 +390,7 @@ export function App() {
         data-testId="test"
         min-width="100vdh"
       ></HtmlForm>
+
       <Nav flexWrap={"revert-layer"}>
         <UL color="neutral-weak" marginLeft={"revert"}>
           <LI color="sapphire-600">Colonize</LI>
@@ -402,6 +405,7 @@ export function App() {
       <Nav padding={400}>text</Nav>
       <HtmlSection padding={400}>text</HtmlSection>
       <Span padding={400}>text</Span>
+
       <Table cellPadding={5} color="neutral-weak" padding={400}>
         <THead fontWeight={680} padding={400}>
           <TR padding={400}>
@@ -417,8 +421,22 @@ export function App() {
         </TBody>
         <TFoot padding={400}></TFoot>
       </Table>
+
+      <Button
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
+        size="md"
+        disabled
+      >
+        text
+        <Counter variant="divider">60</Counter>
+      </Button>
+      <Button variant="tertiary">text</Button>
+      <Button variant="negative">text</Button>
       {/* ------------------------------------------------------------------------------------------ */}
-      <DivHopper padding={"core_400"}>text</DivHopper>
+      <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
   );
 }

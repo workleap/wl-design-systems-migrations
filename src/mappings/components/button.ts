@@ -1,0 +1,43 @@
+import { JSXAttribute } from "jscodeshift";
+import { ComponentMapMetaData } from "../../utils/types.ts";
+import { tryGettingLiteralValue } from "../helpers.ts";
+import { flexMapping } from "./flex.ts";
+
+export const buttonMapping: Record<string, ComponentMapMetaData> = {
+  Button: {
+    props: {
+      mappings: {
+        onClick: "onPress",
+        fluid: "isFluid",
+        loading: "isLoading",
+        size: "size",
+        inherit: (originalValue) => ({
+          to: "inherit",
+          value: originalValue,
+          todoComments: "`inherit` is not supported anymore. Remove it.",
+        }),
+        variant: (originalValue, { j }) => {
+          const value = tryGettingLiteralValue(originalValue);
+          if (value === "negative")
+            return {
+              to: "variant",
+              value: j.stringLiteral("danger"),
+            };
+          else if (value === "tertiary")
+            return {
+              to: "variant",
+              value: j.stringLiteral("ghost-secondary"),
+              todoComments:
+                "`tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`.",
+            };
+          return null;
+        },
+      },
+    },
+  },
+  ButtonProps: "ButtonProps",
+  Counter: {
+    todoComments:
+      "`Counter` is not supported anymore. You need to find an alternative.",
+  },
+};

@@ -1,4 +1,5 @@
 import { Collection, JSXOpeningElement } from "jscodeshift";
+import { getTodoComment } from "../utils/mapping.ts";
 import { PropertyMapperFunction, Runtime } from "../utils/types.js";
 
 /**
@@ -23,10 +24,11 @@ export function migrateAttribute(
     );
 
     if (sourceAttribute && sourceAttribute.type === "JSXAttribute") {
-      const newAttribute: { name: string; value: any; comments?: string } = {
-        name: "",
-        value: null,
-      };
+      const newAttribute: { name: string; value: any; todoComments?: string } =
+        {
+          name: "",
+          value: null,
+        };
 
       if (typeof newAttributeMap === "function") {
         const mapResult = newAttributeMap(sourceAttribute.value, {
@@ -34,10 +36,10 @@ export function migrateAttribute(
           tag: path,
         });
         if (mapResult) {
-          const { to, value, comments } = mapResult;
+          const { to, value, todoComments } = mapResult;
           newAttribute.name = to;
           newAttribute.value = value;
-          newAttribute.comments = comments;
+          newAttribute.todoComments = todoComments;
         } else {
           return; // Skip if there is no mapping
         }
@@ -70,9 +72,10 @@ export function migrateAttribute(
       );
 
       // Add comments if provided
-      if (newAttribute.comments) {
+      if (newAttribute.todoComments) {
         attributes[sourceAttributeIndex].comments = [
-          j.commentBlock(newAttribute.comments, false, true),
+          ...(attributes[sourceAttributeIndex].comments || []),
+          getTodoComment(newAttribute.todoComments, runtime),
         ];
       }
     }

@@ -3,6 +3,7 @@ import {
   MapMetaData,
   PropsMapping,
 } from "../utils/types.ts";
+import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
 
@@ -13,7 +14,7 @@ const defaultPropsMappings = {
   "min-width": (originalValue) => ({
     to: "min-width",
     value: originalValue,
-    comments: `TODO: It seems it is an invalid property. Remove it if not needed`,
+    todoComments: `It seems it is an invalid property. Remove it if not needed`,
   }),
 } satisfies PropsMapping;
 
@@ -25,6 +26,7 @@ export const mappings = {
   },
   components: {
     ...layoutComponentsMappings,
+    ...buttonComponentsMappings,
 
     //TODO: move items from todo list here when they are implemented
   },
@@ -86,37 +88,14 @@ const todo = {
   //TextAddon: "TextAddon",
   //TextAddonProps: "TextAddonProps",
 
-  //buttons
-  Button: "Button",
-  ButtonProps: "ButtonProps",
-  ButtonGroup: "ButtonGroup",
-  ButtonGroupProps: "ButtonGroupProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // ButtonAsLink: "LinkButton",
-  // ButtonAsLinkProps: "LinkButtonProps",
-  // IconButton: "Button",
-  // IconButtonProps: "ButtonProps",
-  // IconButtonAsLink: "LinkButton",
-  // IconButtonAsLinkProps: "LinkButtonProps",
-  // ToggleButton: "Button",
-  // ToggleButtonProps: "ButtonProps",
-  // ToggleIconButton: "Button",
-  // ToggleIconButtonProps: "ButtonProps",
-  // CrossButton: "CloseButton",
-  // CrossButtonProps: "CloseButtonProps",
-
   //navigation & links
   Link: "Link",
   LinkProps: "LinkProps",
   TextLink: "Link",
   TextLinkProps: "LinkProps",
   //TODO: Not direct map. Find appropriate component/type
-  // TextLinkAsButton: "LinkButton",
-  // TextLinkAsButtonProps: "LinkButtonProps",
   // IconLink: "Link",
   // IconLinkProps: "LinkProps",
-  // IconLinkAsButton: "LinkButton",
-  // IconLinkAsButtonProps: "LinkButtonProps",
 
   //overlays & modals
   Modal: "Modal",
@@ -245,10 +224,6 @@ const todo = {
   TagProps: "TagProps",
   TagList: "TagGroup",
   TagListProps: "TagGroupProps",
-  Tile: "Tile",
-  TileProps: "TileProps",
-  TileGroup: "TileGroup",
-  TileGroupProps: "TileGroupProps",
   //TODO: Not direct map. Find appropriate component/type
   // TileLink: "TileLink",
   // TileLinkProps: "TileLinkProps",
