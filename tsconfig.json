@@ -27,8 +27,8 @@
   "include": [
     "./src/**/*.ts",
     "./src/**/*.js",
-    "./test/**/*.ts",
-    "./test/**/*.js"
+    "tests/**/*.ts",
+    "tests/**/*.js"
   ],
   "exclude": ["node_modules", "./dist/**/*"],
   "ts-node": {

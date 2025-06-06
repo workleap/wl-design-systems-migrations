@@ -1,7 +1,7 @@
 import { defaultJSCodeshiftParser } from "@codemod.com/codemod-utils";
-import jscodeshift, { API } from "jscodeshift";
+import jscodeshift, { type API } from "jscodeshift";
 import { mappings as initialMappings } from "../src/mappings/index.ts";
-import { MapMetaData, Runtime } from "../src/utils/types.ts";
+import type { MapMetaData, Runtime } from "../src/utils/types.ts";
 
 export const buildApi = (parser?: string | jscodeshift.Parser): API => ({
   j: parser ? jscodeshift.withParser(parser) : jscodeshift,
@@ -15,7 +15,7 @@ export const buildApi = (parser?: string | jscodeshift.Parser): API => ({
     console.error(
       "The report function was called, which is not supported on purpose"
     );
-  },
+  }
 });
 
 export const getRuntime = (
@@ -23,15 +23,16 @@ export const getRuntime = (
   mappingsOverrides?: Partial<MapMetaData>
 ): Runtime => {
   const api = buildApi(defaultJSCodeshiftParser); //to make sure our tests work like the codemod parser
+
   return {
     root: api.jscodeshift(source),
     filePath: "test.tsx",
     j: api.j,
     mappings: {
       ...initialMappings,
-      ...mappingsOverrides,
+      ...mappingsOverrides
     },
-    log: console.log,
+    log: console.log
   };
 };
 

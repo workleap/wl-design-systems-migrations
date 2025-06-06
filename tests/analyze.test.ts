@@ -1,15 +1,15 @@
 import assert from "node:assert";
+import fs from "node:fs";
 import { describe, expect, test } from "vitest";
 import {
-  AnalysisResults,
   analyze,
-  mergeAnalysisResults,
+  mergeAnalysisResults
 } from "../src/analysis/analyze.ts";
 import { getRuntime } from "./utils.ts";
 
 describe("analyze basic functionality", () => {
   test("analyze basic component usage with new values structure", () => {
-    const INPUT = `import { Div, Text } from "@workleap/orbiter-ui"; export function App() { return <><Div border="1px" width="120px" /><Text fontSize="14px" /></>; }`;
+    const INPUT = "import { Div, Text } from \"@workleap/orbiter-ui\"; export function App() { return <><Div border=\"1px\" width=\"120px\" /><Text fontSize=\"14px\" /></>; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -51,10 +51,10 @@ describe("analyze basic functionality", () => {
   });
 
   test("analyze with project parameter tracks project-specific counts", () => {
-    const INPUT = `import { Button } from "@workleap/orbiter-ui"; export function App() { return <Button variant="primary" />; }`;
+    const INPUT = "import { Button } from \"@workleap/orbiter-ui\"; export function App() { return <Button variant=\"primary\" />; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      project: "projectA",
+      project: "projectA"
     });
 
     // Check component exists
@@ -72,7 +72,7 @@ describe("analyze basic functionality", () => {
   });
 
   test("analyze without project parameter only tracks total counts", () => {
-    const INPUT = `import { Button } from "@workleap/orbiter-ui"; export function App() { return <Button variant="secondary" />; }`;
+    const INPUT = "import { Button } from \"@workleap/orbiter-ui\"; export function App() { return <Button variant=\"secondary\" />; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -99,11 +99,10 @@ describe("analyze basic functionality", () => {
 
     // Clean up any existing test file
     try {
-      const fs = require("fs");
       if (fs.existsSync(tempFilePath)) {
         fs.unlinkSync(tempFilePath);
       }
-    } catch (error) {
+    } catch {
       // Ignore cleanup errors
     }
 
@@ -137,12 +136,12 @@ describe("analyze basic functionality", () => {
     try {
       // Run analysis for projectA
       analyze(getRuntime(INPUT_PROJECT_A), tempFilePath, {
-        project: "projectA",
+        project: "projectA"
       });
 
       // Run analysis for projectB - this should accumulate with projectA results
       analyze(getRuntime(INPUT_PROJECT_B), tempFilePath, {
-        project: "projectB",
+        project: "projectB"
       });
 
       // Run analysis for projectC - this should accumulate with projectA + projectB results
@@ -216,11 +215,10 @@ describe("analyze basic functionality", () => {
     } finally {
       // Clean up test file
       try {
-        const fs = require("fs");
         if (fs.existsSync(tempFilePath)) {
           fs.unlinkSync(tempFilePath);
         }
-      } catch (error) {
+      } catch {
         // Ignore cleanup errors
       }
     }
@@ -229,7 +227,7 @@ describe("analyze basic functionality", () => {
 
 describe("component usage analysis", () => {
   test("analyze basic component usage", () => {
-    const INPUT = `import { Div, Text } from "@workleap/orbiter-ui"; export function App() { return <><Div border="1px" width="120px" /><Text fontSize="14px" /></>; }`;
+    const INPUT = "import { Div, Text } from \"@workleap/orbiter-ui\"; export function App() { return <><Div border=\"1px\" width=\"120px\" /><Text fontSize=\"14px\" /></>; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -330,7 +328,7 @@ describe("component usage analysis", () => {
   });
 
   test("analyze component with alias", () => {
-    const INPUT = `import { Div as CustomDiv, Text } from "@workleap/orbiter-ui"; export function App() { return <CustomDiv border="1px" width="120px" />; }`;
+    const INPUT = "import { Div as CustomDiv, Text } from \"@workleap/orbiter-ui\"; export function App() { return <CustomDiv border=\"1px\" width=\"120px\" />; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -376,7 +374,7 @@ describe("component usage analysis", () => {
   });
 
   test("analyze includes non-mapped components", () => {
-    const INPUT = `import { UnknownComponent } from "@workleap/orbiter-ui"; export function App() { return <UnknownComponent prop1="value" prop2="value" />; }`;
+    const INPUT = "import { UnknownComponent } from \"@workleap/orbiter-ui\"; export function App() { return <UnknownComponent prop1=\"value\" prop2=\"value\" />; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -527,7 +525,7 @@ describe("component usage analysis", () => {
     `;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      sourcePackage: "@custom/package",
+      sourcePackage: "@custom/package"
     });
 
     assert.ok(
@@ -729,7 +727,7 @@ describe("component usage analysis", () => {
     `;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "include-ignoreList": true,
+      "include-ignoreList": true
     });
 
     // Check Button prop values
@@ -752,7 +750,7 @@ describe("component usage analysis", () => {
       analysisResults.components.Button.props.onClick?.values || {}
     );
     assert.ok(
-      onClickValues.some((value) => value.includes("console.log")),
+      onClickValues.some(value => value.includes("console.log")),
       "onClick should contain a function with console.log"
     );
 
@@ -761,7 +759,7 @@ describe("component usage analysis", () => {
       analysisResults.components.Button.props.disabled?.values || {}
     );
     assert.ok(
-      disabledValues.some((value) => value.includes("true")),
+      disabledValues.some(value => value.includes("true")),
       "disabled prop should contain true value"
     );
 
@@ -779,7 +777,7 @@ describe("component usage analysis", () => {
       analysisResults.components.Button.props["aria-label"]?.values || {}
     );
     assert.ok(
-      ariaLabelValues.some((value) => value.includes("dynamicValue")),
+      ariaLabelValues.some(value => value.includes("dynamicValue")),
       "aria-label should contain a template literal with dynamicValue"
     );
 
@@ -801,7 +799,7 @@ describe("component usage analysis", () => {
       analysisResults.components.Div.props.height?.values || {}
     );
     assert.ok(
-      heightValues.some((value) => value.includes("200")),
+      heightValues.some(value => value.includes("200")),
       "height should contain '200' value"
     );
 
@@ -811,7 +809,7 @@ describe("component usage analysis", () => {
     );
     assert.ok(
       marginValues.some(
-        (value) => value.includes("top") && value.includes("bottom")
+        value => value.includes("top") && value.includes("bottom")
       ),
       "margin should contain an object with top and bottom properties"
     );
@@ -821,7 +819,7 @@ describe("component usage analysis", () => {
       analysisResults.components.Div.props.padding?.values || {}
     );
     assert.ok(
-      paddingValues.some((value) => value.includes("[") && value.includes("]")),
+      paddingValues.some(value => value.includes("[") && value.includes("]")),
       "padding should contain an array value"
     );
 
@@ -834,7 +832,7 @@ describe("component usage analysis", () => {
       analysisResults.components.Text?.props.fontSize?.values || {}
     );
     assert.ok(
-      fontSizeValues.some((value) => value.includes("dynamicValue")),
+      fontSizeValues.some(value => value.includes("dynamicValue")),
       "fontSize should contain value referencing 'dynamicValue'"
     );
   });
@@ -908,8 +906,8 @@ describe("analyze file aggregation", () => {
       overall: {
         usage: {
           components: 13, // 5 + 8
-          props: 20, // 3 + 5 + 2 + 6 + 4
-        },
+          props: 20 // 3 + 5 + 2 + 6 + 4
+        }
       },
       components: {
         Button: {
@@ -917,34 +915,34 @@ describe("analyze file aggregation", () => {
           props: {
             variant: {
               usage: 3,
-              values: { primary: { total: 2 }, secondary: { total: 1 } },
+              values: { primary: { total: 2 }, secondary: { total: 1 } }
             },
             size: { usage: 5, values: { lg: { total: 3 }, sm: { total: 2 } } },
-            disabled: { usage: 2, values: { true: { total: 2 } } },
-          },
+            disabled: { usage: 2, values: { true: { total: 2 } } }
+          }
         },
         Text: {
           usage: 8,
           props: {
             fontSize: {
               usage: 6,
-              values: { "14px": { total: 3 }, "16px": { total: 3 } },
+              values: { "14px": { total: 3 }, "16px": { total: 3 } }
             },
             color: {
               usage: 4,
-              values: { red: { total: 2 }, blue: { total: 2 } },
-            },
-          },
-        },
-      },
+              values: { red: { total: 2 }, blue: { total: 2 } }
+            }
+          }
+        }
+      }
     };
 
     const newResults = {
       overall: {
         usage: {
           components: 7, // 3 + 4
-          props: 9, // 2 + 3 + 1 + 3
-        },
+          props: 9 // 2 + 3 + 1 + 3
+        }
       },
       components: {
         Button: {
@@ -952,26 +950,26 @@ describe("analyze file aggregation", () => {
           props: {
             variant: {
               usage: 2,
-              values: { primary: { total: 1 }, tertiary: { total: 1 } },
+              values: { primary: { total: 1 }, tertiary: { total: 1 } }
             },
             onClick: { usage: 3, values: { "() => {}": { total: 3 } } },
             "aria-label": {
               usage: 1,
-              values: { "Button label": { total: 1 } },
-            },
-          },
+              values: { "Button label": { total: 1 } }
+            }
+          }
         },
         Div: {
           usage: 4,
           props: {
             width: {
               usage: 3,
-              values: { "100px": { total: 2 }, auto: { total: 1 } },
+              values: { "100px": { total: 2 }, auto: { total: 1 } }
             },
-            padding: { usage: 2, values: { "10px": { total: 2 } } },
-          },
-        },
-      },
+            padding: { usage: 2, values: { "10px": { total: 2 } } }
+          }
+        }
+      }
     };
 
     const mergedResults = mergeAnalysisResults(existingResults, newResults);
@@ -1377,7 +1375,7 @@ describe("analyze property filtering", () => {
     }`;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "include-ignoreList": true,
+      "include-ignoreList": true
     });
 
     assert.ok(
@@ -1421,7 +1419,7 @@ describe("analyze property filtering", () => {
     }`;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "filter-unmapped": "props",
+      "filter-unmapped": "props"
     });
 
     assert.ok(
@@ -1473,7 +1471,7 @@ describe("analyze property filtering", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
       "filter-unmapped": "props",
-      "include-ignoreList": true,
+      "include-ignoreList": true
     });
 
     assert.ok(
