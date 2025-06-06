@@ -6,6 +6,7 @@ import {
   Aside,
   Button,
   ButtonGroup,
+  CloseButton,
   Content,
   type ContentProps,
   Counter,
@@ -58,6 +59,7 @@ import {
   TR,
   UL,
 } from "@hopper-ui/components";
+import { SparklesIcon } from "@hopper-ui/icons";
 import { useAccordionContext } from "@workleap/orbiter-ui";
 
 export function App() {
@@ -498,10 +500,10 @@ export function App() {
         href="https://example.com"
         external
         target="ample"
-        defaultSelected
-        defaultValue="y"/* Migration TODO: Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
-        orientation="horizontal"/* Migration TODO: Remove the `orientation` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
-        onPress={() => {
+        defaultChecked
+        defaultValue="y"
+        orientation="horizontal"
+        onClick={() => {
           alert(1);
         }}
         type="reset"
@@ -522,6 +524,57 @@ export function App() {
       >
         items
       </TileGroup>
+      <Button
+        isFluid={variable ? true : false}
+        isLoading={false}
+        onPress={() => alert("Button clicked!")}
+        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */
+        isDisabled
+        aria-label="Icon Button"
+        active
+      >
+        <SparklesIcon />
+      </Button>
+      <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+        <SparklesIcon />
+      </Button>
+      <Button variant="danger" aria-label="Icon Button" size="sm">
+        <SparklesIcon />
+      </Button>
+      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+      <LinkButton
+        isFluid={variable ? true : false}
+        loading={false}/* Migration TODO: `loading` is not supported anymore. Remove it. */
+        onPress={() => alert("Button clicked!")}
+        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        size="md"
+        isDisabled
+        href="https://example.com"
+        rel="noopener noreferrer"
+        download
+        referrerPolicy="origin-when-cross-origin">
+        <SparklesIcon />
+      </LinkButton>
+      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+      <LinkButton
+        variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */
+        size="xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+        <SparklesIcon />
+      </LinkButton>
+      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+      <LinkButton
+        variant="danger"
+        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+        <SparklesIcon />
+      </LinkButton>
+      <CloseButton
+        aria-label="Close"
+        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one, but if you're using this icon for implementing `Callout` or `ContextualHelp`, Hopper has built-in support for these cases: https://hopper.workleap.design/components/Callout */
+        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        autoFocus
+        onPress={() => {}}
+      />
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>

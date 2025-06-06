@@ -1,7 +1,9 @@
 // prettier-ignore
 import {
+  CloseButton,
   Div as HopperDiv
 } from "@hopper-ui/components";
+import { SparklesIcon } from "@hopper-ui/icons";
 import {
   A,
   Address,
@@ -12,6 +14,7 @@ import {
   ButtonGroup,
   Content,
   Counter,
+  CrossButton,
   Div,
   Flex,
   Footer,
@@ -37,6 +40,8 @@ import {
   HtmlHeader,
   HtmlInput,
   HtmlSection,
+  IconButton,
+  IconButtonAsLink,
   Img,
   Inline,
   LI,
@@ -510,6 +515,54 @@ export function App() {
       >
         items
       </TileGroup>
+
+      <IconButton
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
+        size="2xs"
+        disabled
+        aria-label="Icon Button"
+        active
+      >
+        <SparklesIcon />
+      </IconButton>
+      <IconButton variant="tertiary" aria-label="Icon Button" size="xs">
+        <SparklesIcon />
+      </IconButton>
+      <IconButton variant="negative" aria-label="Icon Button" size="sm">
+        <SparklesIcon />
+      </IconButton>
+
+      <IconButtonAsLink
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
+        size="md"
+        disabled
+        href="https://example.com"
+        rel="noopener noreferrer"
+        download
+        referrerPolicy="origin-when-cross-origin"
+      >
+        <SparklesIcon />
+      </IconButtonAsLink>
+      <IconButtonAsLink variant="tertiary" size="xs">
+        <SparklesIcon />
+      </IconButtonAsLink>
+      <IconButtonAsLink variant="negative" size="2xs">
+        <SparklesIcon />
+      </IconButtonAsLink>
+
+      <CrossButton
+        aria-label="Close"
+        size="2xs"
+        inherit
+        autoFocus
+        onClick={() => {}}
+      />
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>

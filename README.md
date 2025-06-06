@@ -84,6 +84,17 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
 
 ⚠️ **Important**: The `-n 1` flag limits execution to a single thread, which ensures accurate output collection.
 
+#### Project-Specific Analysis
+
+You can track component usage across different projects or teams using the `--project` parameter:
+
+```bash
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --project frontend-team -n 1
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --project mobile-app -n 1
+```
+
+The analysis automatically accumulates results across multiple project runs, providing both project-specific counts and overall totals in the output.
+
 #### Filtering Analysis Results
 
 You can filter the analysis to focus on specific areas that need attention:
@@ -130,9 +141,10 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
       "props": {
         "size": {
           "usage": 75,
-          "values": [
-            "\"lg\"",
-          ]
+          "values": {
+            "lg": { "total": 50, "frontend-team": 30, "mobile-app": 20 },
+            "md": { "total": 25, "frontend-team": 15, "mobile-app": 10 }
+          }
         }
       }
     },
@@ -141,11 +153,10 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
       "props": {
         "backgroundColor": {
           "usage": 5,
-          "values": [
-            "\"neutral-weakest\"",
-            "\"neutral-disabled\"",
-            "style.backgroundColor"
-          ]
+          "values": {
+            "neutral-weakest": { "total": 3, "frontend-team": 2, "mobile-app": 1 },
+            "neutral-disabled": { "total": 2, "frontend-team": 1, "mobile-app": 1 }
+          }
         }
       }
     }
