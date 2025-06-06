@@ -157,7 +157,7 @@ export function mergeAnalysisResults(
             ([propName, propData]) => {
               propsCopy[propName] = {
                 usage: propData.usage,
-                values: JSON.parse(JSON.stringify(propData.values)), // Deep copy values
+                values: JSON.parse(JSON.stringify(propData.values)) // Deep copy values
               };
             }
           );
@@ -166,8 +166,8 @@ export function mergeAnalysisResults(
             componentName,
             {
               usage: componentData.usage,
-              props: propsCopy,
-            },
+              props: propsCopy
+            }
           ];
         }
       )
@@ -194,7 +194,7 @@ export function mergeAnalysisResults(
             // Copy the property data with deep copy of values
             combinedComponentData.props[propName] = {
               usage: propData.usage,
-              values: JSON.parse(JSON.stringify(propData.values)),
+              values: JSON.parse(JSON.stringify(propData.values))
             };
           }
         });
@@ -204,7 +204,7 @@ export function mergeAnalysisResults(
         Object.entries(componentData.props).forEach(([propName, propData]) => {
           propsCopy[propName] = {
             usage: propData.usage,
-            values: JSON.parse(JSON.stringify(propData.values)),
+            values: JSON.parse(JSON.stringify(propData.values))
           };
         });
 
@@ -238,7 +238,7 @@ export function mergeAnalysisResults(
         props: totalPropUsage
       }
     },
-    components: combinedData,
+    components: combinedData
   };
 }
 
@@ -264,7 +264,7 @@ export function analyze(
   const { j, root, mappings } = runtime;
   const sourcePackage = options?.sourcePackage || mappings.sourcePackage;
   const filterUnmapped = options?.["filter-unmapped"];
-  const includeignoredList = options?.["include-ignoreList"] || false;
+  const includeIgnoredList = options?.["include-ignoreList"] || false;
   const project = options?.project;
 
   // Store component usage with counts
@@ -295,10 +295,10 @@ export function analyze(
   const potentialComponents: Set<string> = new Set();
 
   // Process all import declarations
-  sourceImports.forEach((path) => {
+  sourceImports.forEach(path => {
     const specifiers = path.value.specifiers;
     if (specifiers) {
-      specifiers.forEach((spec) => {
+      specifiers.forEach(spec => {
         if (spec.type === "ImportDefaultSpecifier") {
           const localName = spec.local?.name;
           if (localName) {
@@ -316,7 +316,7 @@ export function analyze(
   });
 
   // Find all JSX elements and track component usage
-  root.find(j.JSXElement).forEach((path) => {
+  root.find(j.JSXElement).forEach(path => {
     const elementName = path.value.openingElement.name;
     if (elementName.type === "JSXIdentifier") {
       const componentName = elementName.name;
@@ -326,7 +326,7 @@ export function analyze(
         if (!componentUsageData[originalComponentName]) {
           componentUsageData[originalComponentName] = {
             count: 0,
-            props: {},
+            props: {}
           };
         }
 
@@ -337,7 +337,7 @@ export function analyze(
 
         // Process props
         const attributes = path.value.openingElement.attributes || [];
-        attributes.forEach((attr) => {
+        attributes.forEach(attr => {
           if (
             attr.type === "JSXAttribute" &&
             attr.name.type === "JSXIdentifier"
@@ -346,7 +346,7 @@ export function analyze(
 
             // Skip ignored properties if not including ignore list
             if (
-              !includeignoredList &&
+              !includeIgnoredList &&
               shouldIgnoreProperty(propName)
             ) {
               return;
@@ -356,7 +356,7 @@ export function analyze(
             if (!componentData.props[propName]) {
               componentData.props[propName] = {
                 usage: 0,
-                values: {},
+                values: {}
               };
             }
 
@@ -465,13 +465,13 @@ export function analyze(
 
       props[propName] = {
         usage: propData.usage,
-        values: sortedValuesObj,
+        values: sortedValuesObj
       };
     });
 
     components[componentName] = {
       usage: data.count,
-      props,
+      props
     };
   });
 
@@ -507,7 +507,7 @@ export function analyze(
         props: totalPropUsage
       }
     },
-    components: sortedComponentsObj,
+    components: sortedComponentsObj
   };
 
   // Save or merge results if output path is provided
@@ -523,7 +523,7 @@ export function analyze(
           setReviver
         );
         finalResults = mergeAnalysisResults(existingResults, analysisResults);
-      } catch (error) {
+      } catch {
         console.warn(
           `Warning: Could not parse existing analysis file at ${outputPath}. Creating new file.`
         );
@@ -540,12 +540,12 @@ export function analyze(
     // Return the merged results when output path is provided
     return {
       source: root.toSource(),
-      analysisResults: finalResults,
+      analysisResults: finalResults
     };
   }
 
   return {
     source: root.toSource(),
-    analysisResults,
+    analysisResults
   };
 }

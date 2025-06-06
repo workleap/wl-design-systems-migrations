@@ -22,7 +22,7 @@ export const buttonComponentsMappings: Record<string, ComponentMapMetaData> = {
   ...tileGroupMapping,
   ...iconButtonMapping,
   ...iconButtonAsLinkMapping,
-  ...crossButtonMapping,
+  ...crossButtonMapping
   // ToggleButton: "Button",
   // ToggleButtonProps: "ButtonProps",
   // ToggleIconButton: "Button",

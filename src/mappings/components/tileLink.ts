@@ -1,5 +1,4 @@
 import type { ComponentMapMetaData } from "../../utils/types.ts";
-import { tileMapping } from "./tile.ts";
 
 export const tileLinkMapping = {
   TileLink: {
