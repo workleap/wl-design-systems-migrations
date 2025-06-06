@@ -54,7 +54,11 @@ src/
 
 test/
 ├── input.tsx          # Test cases (Orbiter components)
-└── output.txt         # Expected results (Hopper components)
+├── output.txt         # Expected results (Hopper components)
+├── analyze.test.ts    # Analysis functionality tests
+├── migrate.test.ts    # Migration functionality tests
+├── mappings.test.ts   # Mappings table tests
+└── utils.ts           # Test utilities and helpers
 ```
 
 ### Mapping Configuration
@@ -159,12 +163,10 @@ Key utilities from [`src/mappings/helpers.ts`](/src/mappings/helpers.ts):
 
 ## Testing
 
-### Test Structure
+### Test Mappings
 
 - **[`test/input.tsx`](/test/input.tsx)** - Orbiter component test cases
 - **[`test/output.txt`](/test/output.txt)** - Expected transformation results
-
-> **Note**: Output saved as `.txt` to prevent auto-formatting that affects test reliability.
 
 ### Adding Test Cases
 

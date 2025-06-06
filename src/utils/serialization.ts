@@ -1,36 +1,25 @@
 /**
- * Custom replacer function for JSON.stringify to handle Set objects
- * Transforms Set instances into a special format that can be reconstituted later
+ * Custom replacer function for JSON.stringify to handle the new values structure
+ * No longer needs to handle Set objects since we're using plain objects now
  *
  * @param key - The current key being processed
  * @param value - The value associated with the key
- * @returns The transformed value suitable for JSON serialization
+ * @returns The value as-is since we're using plain objects
  */
 export function setReplacer(key: string, value: any): any {
-  if (value instanceof Set) {
-    return Array.from(value);
-  }
-
+  // No transformation needed for the new structure
   return value;
 }
 
 /**
- * Custom reviver function for JSON.parse to restore Set objects
- * Reconstructs Set instances from the special format created by setReplacer
+ * Custom reviver function for JSON.parse to restore the values structure
+ * No longer needs to restore Set objects since we're using plain objects now
  *
  * @param key - The current key being processed
  * @param value - The value associated with the key
- * @returns The restored value, converting special Set objects back to actual Sets
+ * @returns The value as-is since we're using plain objects
  */
 export function setReviver(key: string, value: any): any {
-  if (
-    typeof value === "object" &&
-    value !== null &&
-    key === "values" &&
-    Array.isArray(value)
-  ) {
-    return new Set(value);
-  }
-
+  // No transformation needed for the new structure
   return value;
 }

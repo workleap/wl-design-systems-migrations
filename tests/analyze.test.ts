@@ -1,450 +1,233 @@
-import { defaultJSCodeshiftParser } from "@codemod.com/codemod-utils";
-import jscodeshift, { type API } from "jscodeshift";
 import assert from "node:assert";
-import { readFileSync } from "node:fs";
+import fs from "node:fs";
 import { describe, expect, test } from "vitest";
 import {
-  AnalysisResults,
   analyze,
-  mergeAnalysisResults,
-} from "../src/analysis/analyze.js";
-import { mappings as initialMappings } from "../src/mappings/index.ts";
-import { migrate } from "../src/migrations/migrate.js";
-import { setReplacer, setReviver } from "../src/utils/serialization.js";
-import { MapMetaData, Runtime } from "../src/utils/types.js";
+  mergeAnalysisResults
+} from "../src/analysis/analyze.ts";
+import { getRuntime } from "./utils.ts";
 
-function removeSpacesAndNewlines(str: string): string {
-  return str.replace(/\s+/g, " ").replace(/\n/g, " ").trim();
-}
+describe("analyze basic functionality", () => {
+  test("analyze basic component usage with new values structure", () => {
+    const INPUT = "import { Div, Text } from \"@workleap/orbiter-ui\"; export function App() { return <><Div border=\"1px\" width=\"120px\" /><Text fontSize=\"14px\" /></>; }";
 
-const buildApi = (parser?: string | jscodeshift.Parser): API => ({
-  j: parser ? jscodeshift.withParser(parser) : jscodeshift,
-  jscodeshift: parser ? jscodeshift.withParser(parser) : jscodeshift,
-  stats: () => {
-    console.error(
-      "The stats function was called, which is not supported on purpose"
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    // Check that components exist
+    expect(analysisResults.components.Div).toBeDefined();
+    expect(analysisResults.components.Text).toBeDefined();
+
+    // Check component usage counts
+    expect(analysisResults.components.Div!.usage).toBe(1);
+    expect(analysisResults.components.Text!.usage).toBe(1);
+
+    // Check that values are objects, not Sets
+    expect(typeof analysisResults.components.Div!.props.border?.values).toBe(
+      "object"
     );
-  },
-  report: () => {
-    console.error(
-      "The report function was called, which is not supported on purpose"
+    expect(
+      Array.isArray(analysisResults.components.Div!.props.border?.values)
+    ).toBe(false);
+
+    // Check actual values stored
+    const borderValues = Object.keys(
+      analysisResults.components.Div!.props.border?.values || {}
     );
-  },
-});
+    expect(borderValues).toEqual(["1px"]);
 
-const getRuntime = (
-  source: string,
-  mappingsOverrides?: Partial<MapMetaData>
-): Runtime => {
-  const api = buildApi(defaultJSCodeshiftParser); //to make sure our tests work like the codemod parser
-  return {
-    root: api.jscodeshift(source),
-    filePath: "test.tsx",
-    j: api.j,
-    mappings: {
-      ...initialMappings,
-      ...mappingsOverrides,
-    },
-    log: console.log,
-  };
-};
-
-describe("migrations", () => {
-  test("when an Orbiter import got an alter name, keep it with Hopper", async () => {
-    const INPUT = `import { Div as Div2, Text } from "@workleap/orbiter-ui";`;
-    const OUTPUT = `import { Div as Div2, Text } from "@hopper-ui/components";`;
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Div: "Div",
-          Text: "Text",
-        },
-      })
+    const widthValues = Object.keys(
+      analysisResults.components.Div!.props.width?.values || {}
     );
+    expect(widthValues).toEqual(["120px"]);
 
-    assert.deepEqual(actualOutput, OUTPUT);
+    // Check value counts
+    const borderValueData =
+      analysisResults.components.Div!.props.border?.values["1px"];
+    expect(borderValueData?.total).toBe(1);
+
+    // Check overall statistics
+    expect(analysisResults.overall.usage.components).toBe(2);
+    expect(analysisResults.overall.usage.props).toBe(3); // border + width + fontSize
   });
 
-  test("when migrating multiple imports of same component with different aliases and existing target import, merge all imports correctly", async () => {
-    const INPUT = `
-          import { Div, Div as DivOrbiter } from "@workleap/orbiter-ui";
-          import { Div as DivHopper } from "@hopper-ui/components";
-          function App() {
-            return (
-              <>
-                <Div />
-                <DivOrbiter />
-                <DivHopper />
-              </>
-            );
-          }`;
-    const OUTPUT = `
-          import { Div, Div as DivHopper, Div as DivOrbiter } from "@hopper-ui/components";
-          function App() {
-            return (
-              <>
-                <Div />
-                <DivOrbiter />
-                <DivHopper />
-              </>
-            );
-          }`;
+  test("analyze with project parameter tracks project-specific counts", () => {
+    const INPUT = "import { Button } from \"@workleap/orbiter-ui\"; export function App() { return <Button variant=\"primary\" />; }";
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Div: "Div",
-        },
-      })
-    );
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      project: "projectA"
+    });
 
-    assert.deepEqual(actualOutput, OUTPUT);
+    // Check component exists
+    expect(analysisResults.components.Button).toBeDefined();
+
+    // Check values structure
+    const variantValues =
+      analysisResults.components.Button!.props.variant?.values;
+    expect(variantValues).toBeDefined();
+
+    // Check project-specific tracking
+    const primaryValue = variantValues?.["primary"];
+    expect(primaryValue?.total).toBe(1);
+    expect(primaryValue?.projectA).toBe(1);
   });
 
-  test("when migrating multiple imports of same component, migrate all of the instances", async () => {
-    const INPUT = `
-          import { Div, Div as DivOrbiter } from "@workleap/orbiter-ui";
-          import { Div as DivHopper } from "@hopper-ui/components";
-          function App() {
-            return (
-              <>
-                <Div width="100px" />
-                <DivOrbiter width="100px" />
-                <DivHopper width="100px" />
-              </>
-            );
-          }`;
-    const OUTPUT = `
-          import { Div, Div as DivHopper, Div as DivOrbiter } from "@hopper-ui/components";
-          function App() {
-            return (
-              <>
-                <Div UNSAFE_width="100px" />
-                <DivOrbiter UNSAFE_width="100px" />
-                <DivHopper width="100px" />
-              </>
-            );
-          }`;
+  test("analyze without project parameter only tracks total counts", () => {
+    const INPUT = "import { Button } from \"@workleap/orbiter-ui\"; export function App() { return <Button variant=\"secondary\" />; }";
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Div: {
-            props: {
-              mappings: {
-                width: "UNSAFE_width",
-              },
-            },
-          },
-        },
-      })
-    );
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    assert.deepEqual(actualOutput, OUTPUT);
+    // Check component exists
+    expect(analysisResults.components.Button).toBeDefined();
+
+    // Check values structure
+    const variantValues =
+      analysisResults.components.Button!.props.variant?.values;
+    expect(variantValues).toBeDefined();
+
+    // Check only total count is tracked
+    const secondaryValue = variantValues?.["secondary"];
+    expect(secondaryValue?.total).toBe(1);
+
+    // Should not have project-specific keys (only total)
+    const keys = Object.keys(secondaryValue || {});
+    expect(keys).toEqual(["total"]);
   });
 
-  test("when imports have separate type declaration, migrate them correctly", async () => {
-    const INPUT = `
-          import { Div } from "@workleap/orbiter-ui";
-          import type { ContentProps } from "@workleap/orbiter-ui";
-          `;
-    const OUTPUT = `
-          import { Div } from "@hopper-ui/components";
-          import type { ContentProps } from "@hopper-ui/components";
-          `;
+  test("analyze accumulates values across different project names correctly", () => {
+    // Create a temporary file path for accumulating results
+    const tempFilePath = "./test_temp_analysis.json";
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Div: "Div",
-          ContentProps: "ContentProps",
-        },
-      })
-    );
+    // Clean up any existing test file
+    try {
+      if (fs.existsSync(tempFilePath)) {
+        fs.unlinkSync(tempFilePath);
+      }
+    } catch {
+      // Ignore cleanup errors
+    }
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+    // Test data with same and different values across projects
+    const INPUT_PROJECT_A = `import { Button, Div } from "@workleap/orbiter-ui"; 
+      export function App() { 
+        return (
+          <>
+            <Button variant="primary" size="large" />
+            <Div padding="10px" />
+          </>
+        ); 
+      }`;
 
-  test("when imports have inline type specifiers, migrate them correctly", async () => {
-    const INPUT = `
-          import { Div, type ContentProps} from "@workleap/orbiter-ui";
-          `;
-    const OUTPUT = `
-          import { type ContentProps, Div } from "@hopper-ui/components";
-          `;
+    const INPUT_PROJECT_B = `import { Button, Text } from "@workleap/orbiter-ui"; 
+      export function App() { 
+        return (
+          <>
+            <Button variant="primary" size="small" />
+            <Button variant="secondary" size="large" />
+            <Text fontSize="14px" />
+          </>
+        ); 
+      }`;
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Div: "Div",
-          ContentProps: "ContentProps",
-        },
-      })
-    );
+    const INPUT_PROJECT_C = `import { Button } from "@workleap/orbiter-ui"; 
+      export function App() { 
+        return <Button variant="primary" size="medium" />; 
+      }`;
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+    try {
+      // Run analysis for projectA
+      analyze(getRuntime(INPUT_PROJECT_A), tempFilePath, {
+        project: "projectA"
+      });
 
-  test("when all imports are from Orbiter, change them to Hopper", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui";`;
-    const OUTPUT = `import { Div } from "@hopper-ui/components";`;
+      // Run analysis for projectB - this should accumulate with projectA results
+      analyze(getRuntime(INPUT_PROJECT_B), tempFilePath, {
+        project: "projectB"
+      });
 
-    const actualOutput = migrate(getRuntime(INPUT));
+      // Run analysis for projectC - this should accumulate with projectA + projectB results
+      const { analysisResults: finalResults } = analyze(
+        getRuntime(INPUT_PROJECT_C),
+        tempFilePath,
+        { project: "projectC" }
+      );
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+      // Check Button component accumulation
+      const buttonComponent = finalResults.components.Button;
+      expect(buttonComponent).toBeDefined();
+      expect(buttonComponent!.usage).toBe(4); // 1 from A + 2 from B + 1 from C
 
-  test("when there is unknown import Orbiter, keep it as it", async () => {
-    const INPUT = `import { XYZ } from "@workleap/orbiter-ui";`;
-    const OUTPUT = `import { XYZ } from "@workleap/orbiter-ui";`;
+      // Check variant prop accumulation
+      const variantValues = buttonComponent!.props.variant?.values;
+      expect(variantValues).toBeDefined();
 
-    const actualOutput = migrate(getRuntime(INPUT));
+      // Check "primary" variant (appears in all projects)
+      const primaryValue = variantValues?.["primary"];
+      expect(primaryValue?.total).toBe(3); // 1 from A + 1 from B + 1 from C
+      expect(primaryValue?.projectA).toBe(1);
+      expect(primaryValue?.projectB).toBe(1);
+      expect(primaryValue?.projectC).toBe(1);
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+      // Check "secondary" variant (only in projectB)
+      const secondaryValue = variantValues?.["secondary"];
+      expect(secondaryValue?.total).toBe(1); // Only from B
+      expect(secondaryValue?.projectB).toBe(1);
+      expect(secondaryValue?.projectA).toBeUndefined();
+      expect(secondaryValue?.projectC).toBeUndefined();
 
-  test("when two components map to same component, import them only once", async () => {
-    const INPUT = `import { Text, Paragraph } from "@workleap/orbiter-ui";export function App() { return <><Paragraph><Text>Sample</Text></Paragraph></>; }`;
-    const OUTPUT = `import { Text } from "@hopper-ui/components";export function App() { return <><Text><Text>Sample</Text></Text></>; }`;
+      // Check size prop accumulation
+      const sizeValues = buttonComponent!.props.size?.values;
+      expect(sizeValues).toBeDefined();
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Text: {
-            to: "Text",
-          },
-          Paragraph: {
-            to: "Text",
-          },
-        },
-      })
-    );
+      // Check "large" size (appears in projectA and projectB)
+      const largeValue = sizeValues?.["large"];
+      expect(largeValue?.total).toBe(2); // 1 from A + 1 from B
+      expect(largeValue?.projectA).toBe(1);
+      expect(largeValue?.projectB).toBe(1);
+      expect(largeValue?.projectC).toBeUndefined();
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+      // Check "small" size (only in projectB)
+      const smallValue = sizeValues?.["small"];
+      expect(smallValue?.total).toBe(1);
+      expect(smallValue?.projectB).toBe(1);
+      expect(smallValue?.projectA).toBeUndefined();
 
-  test("when there is already an import for Hopper, add the migrated one to it", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui";import { Span } from "@hopper-ui/components";`;
-    const OUTPUT = `import { Div, Span } from "@hopper-ui/components";`;
+      // Check "medium" size (only in projectC)
+      const mediumValue = sizeValues?.["medium"];
+      expect(mediumValue?.total).toBe(1);
+      expect(mediumValue?.projectC).toBe(1);
+      expect(mediumValue?.projectA).toBeUndefined();
+      expect(mediumValue?.projectB).toBeUndefined();
 
-    const actualOutput = migrate(getRuntime(INPUT));
+      // Check that other components are also tracked correctly
+      expect(finalResults.components.Div).toBeDefined();
+      expect(finalResults.components.Div!.usage).toBe(1); // Only from projectA
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+      expect(finalResults.components.Text).toBeDefined();
+      expect(finalResults.components.Text!.usage).toBe(1); // Only from projectB
 
-  test("when a component has similar name, Don't touch it.", async () => {
-    const INPUT = `import { Div as Div2 } from "@workleap/orbiter-ui"; import { Div } from "external"; export function App() { return <><Div width="120px" height="auto" /><Div/></>; }`;
-    const OUTPUT = `import { Div } from "external"; import { Div as Div2 } from "@hopper-ui/components"; export function App() { return <><Div width="120px" height="auto" /><Div/></>; }`;
+      // Check overall statistics
+      expect(finalResults.overall.usage.components).toBe(6); // Total component instances
+      expect(finalResults.overall.usage.props).toBe(10); // All prop instances: Button(8) + Div(1) + Text(1) = 10
 
-    const actualOutput = migrate(getRuntime(INPUT));
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when imports are merged, they should be sorted alphabetically", async () => {
-    const INPUT = `import { Text, Div, Button } from "@workleap/orbiter-ui";`;
-    const OUTPUT = `import { Button, Div, Text } from "@hopper-ui/components";`;
-
-    const actualOutput = migrate(getRuntime(INPUT));
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when adding imports to existing import declaration, result should be sorted alphabetically", async () => {
-    const INPUT = `import { Text, Div } from "@workleap/orbiter-ui";import { Span, Button } from "@hopper-ui/components";`;
-    const OUTPUT = `import { Button, Div, Span, Text } from "@hopper-ui/components";`;
-
-    const actualOutput = migrate(getRuntime(INPUT));
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when multiple components with aliases are merged, they should be sorted alphabetically by imported name", async () => {
-    const INPUT = `import { Text as MyText, Div as MyDiv, Button as MyButton } from "@workleap/orbiter-ui";`;
-    const OUTPUT = `import { Button as MyButton, Div as MyDiv, Text as MyText } from "@hopper-ui/components";`;
-
-    const actualOutput = migrate(getRuntime(INPUT));
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when type imports are sorted, they should be alphabetical by imported name", async () => {
-    const INPUT = `import type { TextProps, DivProps, ButtonProps } from "@workleap/orbiter-ui";`;
-    const OUTPUT = `import type { ButtonProps, DivProps, TextProps } from "@hopper-ui/components";`;
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          TextProps: "TextProps",
-          DivProps: "DivProps",
-          ButtonProps: "ButtonProps",
-        },
-      })
-    );
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when an Orbiter component has attributes, use the map table to migrate them.", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120px" height="auto" />; }`;
-    const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div UNSAFE_width="120px" height="auto" />; }`;
-
-    const actualOutput = migrate(getRuntime(INPUT));
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when mapping has additional props for a mapping, add them to the result.", async () => {
-    const INPUT = `import { Paragraph } from "@workleap/orbiter-ui"; export function App() { return <Paragraph />; }`;
-    const OUTPUT = `import { Text } from "@hopper-ui/components"; export function App() { return <Text display="block" />; }`;
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Paragraph: {
-            to: "Text",
-            props: {
-              additions: {
-                display: "block",
-              },
-            },
-          },
-        },
-      })
-    );
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when the provided function for property map returns null, ignore the prop", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120px" />; }`;
-    const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div width="120px" />; }`;
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Div: {
-            props: {
-              mappings: {
-                width: () => null,
-              },
-            },
-          },
-        },
-      })
-    );
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when there are similar targets for two components, don't run migration twice for them", async () => {
-    const INPUT = `import { Text, Paragraph } from "@workleap/orbiter-ui"; export function App() { return <div><Paragraph fontFamily="tertiary"/><Text fontFamily="tertiary"></Text></div>; }`;
-    const OUTPUT = `import { Text } from "@hopper-ui/components"; export function App() { return <div><Text fontFamily="core_tertiary" elementType="p" /><Text fontFamily="core_tertiary"></Text></div>; }`;
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Text: "Text",
-          Paragraph: {
-            to: "Text",
-            props: {
-              mappings: {
-                fontFamily: (value: any) => {
-                  value.value = `core_${value.value}`;
-                  return {
-                    to: "fontFamily",
-                    value: value,
-                  };
-                },
-              },
-              additions: {
-                elementType: "p",
-              },
-            },
-          },
-        },
-      })
-    );
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when the provided function for property map returns a custom map, use it", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div width="120px" />; }`;
-    const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return <Div CUSTOM_width="120px_Custom" />; }`;
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Div: {
-            to: "Div",
-            props: {
-              mappings: {
-                width: (value) => {
-                  if (value?.type == "Literal") {
-                    value.value = `${value.value}_Custom`;
-                  }
-
-                  return {
-                    to: "CUSTOM_width",
-                    value: value,
-                  };
-                },
-              },
-            },
-          },
-        },
-      })
-    );
-
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
-
-  test("when the provided function for property map returns a custom map, use it", async () => {
-    const INPUT = `import { OldComp } from "@workleap/orbiter-ui"; export function App() { return <OldComp />; }`;
-    const OUTPUT = `import { OldComp } from "@hopper-ui/components"; export function App() { return ( /* Migration TODO: OldComp is deprecated */ <OldComp /> ); }`;
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          OldComp: {
-            todoComments: "OldComp is deprecated",
-          },
-        },
-      })
-    )!;
-
-    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
-  });
-
-  test("when the provided value is ResponsiveProp, convert them properly", async () => {
-    const INPUT = `import { Div } from "@workleap/orbiter-ui"; export function App() { return <Div padding={{ base: 400, sm: 20 }} margin={20} />; }`;
-    const OUTPUT = `import { Div } from "@hopper-ui/components"; export function App() { return ( <Div padding={{ base: "core_400", sm: "core_20" }} margin="core_20" /> ); }`;
-
-    const actualOutput = migrate(getRuntime(INPUT))!;
-
-    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
-  });
-
-  test("migrates input.tsx to match expected output.tsx", () => {
-    // Read the input and expected output files
-    const INPUT = readFileSync(new URL("input.tsx", import.meta.url), "utf8");
-    const EXPECTED_OUTPUT = readFileSync(
-      new URL("output.tsx", import.meta.url),
-      "utf8"
-    );
-
-    const actualOutput = migrate(getRuntime(INPUT));
-
-    assert.deepEqual(
-      actualOutput,
-      EXPECTED_OUTPUT.replace("// prettier-ignore\n", "")
-    );
+      // Verify values are sorted by total count (primary should come first with total=3)
+      const variantKeys = Object.keys(variantValues || {});
+      expect(variantKeys[0]).toBe("primary"); // Should be first due to highest total count (3)
+    } finally {
+      // Clean up test file
+      try {
+        if (fs.existsSync(tempFilePath)) {
+          fs.unlinkSync(tempFilePath);
+        }
+      } catch {
+        // Ignore cleanup errors
+      }
+    }
   });
 });
 
 describe("component usage analysis", () => {
   test("analyze basic component usage", () => {
-    const INPUT = `import { Div, Text } from "@workleap/orbiter-ui"; export function App() { return <><Div border="1px" width="120px" /><Text fontSize="14px" /></>; }`;
+    const INPUT = "import { Div, Text } from \"@workleap/orbiter-ui\"; export function App() { return <><Div border=\"1px\" width=\"120px\" /><Text fontSize=\"14px\" /></>; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -482,8 +265,9 @@ describe("component usage analysis", () => {
       "Div border prop should have usage count of 1"
     );
     assert.ok(
-      analysisResults.components.Div.props.border?.values instanceof Set,
-      "Div border prop values should be a Set"
+      typeof analysisResults.components.Div.props.border?.values === "object" &&
+        !Array.isArray(analysisResults.components.Div.props.border?.values),
+      "Div border prop values should be an object"
     );
     assert.strictEqual(
       analysisResults.components.Div.props.width?.usage,
@@ -491,19 +275,20 @@ describe("component usage analysis", () => {
       "Div width prop should have usage count of 1"
     );
     assert.ok(
-      analysisResults.components.Div.props.width?.values instanceof Set,
-      "Div width prop values should be a Set"
+      typeof analysisResults.components.Div.props.width?.values === "object" &&
+        !Array.isArray(analysisResults.components.Div.props.width?.values),
+      "Div width prop values should be an object"
     );
 
-    // Check actual values stored in the Set
+    // Check actual values stored in the object
     assert.deepStrictEqual(
-      Array.from(analysisResults.components.Div.props.border?.values || []),
-      ['"1px"'],
+      Object.keys(analysisResults.components.Div.props.border?.values || {}),
+      ["1px"],
       "Div border values should contain '1px'"
     );
     assert.deepStrictEqual(
-      Array.from(analysisResults.components.Div.props.width?.values || []),
-      ['"120px"'],
+      Object.keys(analysisResults.components.Div.props.width?.values || {}),
+      ["120px"],
       "Div width values should contain '120px'"
     );
 
@@ -518,12 +303,14 @@ describe("component usage analysis", () => {
       "Text fontSize prop should have usage count of 1"
     );
     assert.ok(
-      analysisResults.components.Text.props.fontSize?.values instanceof Set,
-      "Text fontSize prop values should be a Set"
+      typeof analysisResults.components.Text.props.fontSize?.values ===
+        "object" &&
+        !Array.isArray(analysisResults.components.Text.props.fontSize?.values),
+      "Text fontSize prop values should be an object"
     );
     assert.deepStrictEqual(
-      Array.from(analysisResults.components.Text.props.fontSize?.values || []),
-      ['"14px"'],
+      Object.keys(analysisResults.components.Text.props.fontSize?.values || {}),
+      ["14px"],
       "Text fontSize values should contain '14px'"
     );
 
@@ -541,7 +328,7 @@ describe("component usage analysis", () => {
   });
 
   test("analyze component with alias", () => {
-    const INPUT = `import { Div as CustomDiv, Text } from "@workleap/orbiter-ui"; export function App() { return <CustomDiv border="1px" width="120px" />; }`;
+    const INPUT = "import { Div as CustomDiv, Text } from \"@workleap/orbiter-ui\"; export function App() { return <CustomDiv border=\"1px\" width=\"120px\" />; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -570,8 +357,9 @@ describe("component usage analysis", () => {
       "Div border prop should have usage count of 1"
     );
     assert.ok(
-      analysisResults.components.Div.props.border?.values instanceof Set,
-      "Div border prop values should be a Set"
+      typeof analysisResults.components.Div.props.border?.values === "object" &&
+        !Array.isArray(analysisResults.components.Div.props.border?.values),
+      "Div border prop values should be an object"
     );
     assert.strictEqual(
       analysisResults.components.Div.props.width?.usage,
@@ -579,13 +367,14 @@ describe("component usage analysis", () => {
       "Div width prop should have usage count of 1"
     );
     assert.ok(
-      analysisResults.components.Div.props.width?.values instanceof Set,
-      "Div width prop values should be a Set"
+      typeof analysisResults.components.Div.props.width?.values === "object" &&
+        !Array.isArray(analysisResults.components.Div.props.width?.values),
+      "Div width prop values should be an object"
     );
   });
 
   test("analyze includes non-mapped components", () => {
-    const INPUT = `import { UnknownComponent } from "@workleap/orbiter-ui"; export function App() { return <UnknownComponent prop1="value" prop2="value" />; }`;
+    const INPUT = "import { UnknownComponent } from \"@workleap/orbiter-ui\"; export function App() { return <UnknownComponent prop1=\"value\" prop2=\"value\" />; }";
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
@@ -614,9 +403,12 @@ describe("component usage analysis", () => {
       "UnknownComponent prop1 should have usage count of 1"
     );
     assert.ok(
-      analysisResults.components.UnknownComponent.props.prop1?.values instanceof
-        Set,
-      "UnknownComponent prop1 values should be a Set"
+      typeof analysisResults.components.UnknownComponent.props.prop1?.values ===
+        "object" &&
+        !Array.isArray(
+          analysisResults.components.UnknownComponent.props.prop1?.values
+        ),
+      "UnknownComponent prop1 values should be an object"
     );
     assert.strictEqual(
       analysisResults.components.UnknownComponent.props.prop2?.usage,
@@ -624,9 +416,12 @@ describe("component usage analysis", () => {
       "UnknownComponent prop2 should have usage count of 1"
     );
     assert.ok(
-      analysisResults.components.UnknownComponent.props.prop2?.values instanceof
-        Set,
-      "UnknownComponent prop2 values should be a Set"
+      typeof analysisResults.components.UnknownComponent.props.prop2?.values ===
+        "object" &&
+        !Array.isArray(
+          analysisResults.components.UnknownComponent.props.prop2?.values
+        ),
+      "UnknownComponent prop2 values should be an object"
     );
   });
 
@@ -730,7 +525,7 @@ describe("component usage analysis", () => {
     `;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      sourcePackage: "@custom/package",
+      sourcePackage: "@custom/package"
     });
 
     assert.ok(
@@ -932,7 +727,7 @@ describe("component usage analysis", () => {
     `;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "include-ignoreList": true,
+      "include-ignoreList": true
     });
 
     // Check Button prop values
@@ -943,44 +738,46 @@ describe("component usage analysis", () => {
 
     // String literal value
     assert.deepStrictEqual(
-      Array.from(analysisResults.components.Button.props.variant?.values || []),
-      ['"primary"'],
+      Object.keys(
+        analysisResults.components.Button.props.variant?.values || {}
+      ),
+      ["primary"],
       "Button variant values should contain 'primary'"
     );
 
     // Function expression (partial match since it might include whitespace differences)
-    const onClickValues = Array.from(
-      analysisResults.components.Button.props.onClick?.values || []
+    const onClickValues = Object.keys(
+      analysisResults.components.Button.props.onClick?.values || {}
     );
     assert.ok(
-      onClickValues.some((value) => value.includes("console.log")),
+      onClickValues.some(value => value.includes("console.log")),
       "onClick should contain a function with console.log"
     );
 
     // Boolean expression
-    const disabledValues = Array.from(
-      analysisResults.components.Button.props.disabled?.values || []
+    const disabledValues = Object.keys(
+      analysisResults.components.Button.props.disabled?.values || {}
     );
     assert.ok(
-      disabledValues.some((value) => value.includes("true")),
+      disabledValues.some(value => value.includes("true")),
       "disabled prop should contain true value"
     );
 
     // String literal with hyphen
     assert.deepStrictEqual(
-      Array.from(
-        analysisResults.components.Button.props["data-testid"]?.values || []
+      Object.keys(
+        analysisResults.components.Button.props["data-testid"]?.values || {}
       ),
-      ['"test-button"'],
+      ["test-button"],
       "data-testid should contain 'test-button'"
     );
 
     // Template literal
-    const ariaLabelValues = Array.from(
-      analysisResults.components.Button.props["aria-label"]?.values || []
+    const ariaLabelValues = Object.keys(
+      analysisResults.components.Button.props["aria-label"]?.values || {}
     );
     assert.ok(
-      ariaLabelValues.some((value) => value.includes("dynamicValue")),
+      ariaLabelValues.some(value => value.includes("dynamicValue")),
       "aria-label should contain a template literal with dynamicValue"
     );
 
@@ -992,37 +789,37 @@ describe("component usage analysis", () => {
 
     // String literal (width)
     assert.deepStrictEqual(
-      Array.from(analysisResults.components.Div.props.width?.values || []),
-      ['"100px"'],
+      Object.keys(analysisResults.components.Div.props.width?.values || {}),
+      ["100px"],
       "Div width values should contain '100px'"
     );
 
     // Numeric literal
-    const heightValues = Array.from(
-      analysisResults.components.Div.props.height?.values || []
+    const heightValues = Object.keys(
+      analysisResults.components.Div.props.height?.values || {}
     );
     assert.ok(
-      heightValues.some((value) => value.includes("200")),
+      heightValues.some(value => value.includes("200")),
       "height should contain '200' value"
     );
 
     // Object expression
-    const marginValues = Array.from(
-      analysisResults.components.Div.props.margin?.values || []
+    const marginValues = Object.keys(
+      analysisResults.components.Div.props.margin?.values || {}
     );
     assert.ok(
       marginValues.some(
-        (value) => value.includes("top") && value.includes("bottom")
+        value => value.includes("top") && value.includes("bottom")
       ),
       "margin should contain an object with top and bottom properties"
     );
 
     // Array expression
-    const paddingValues = Array.from(
-      analysisResults.components.Div.props.padding?.values || []
+    const paddingValues = Object.keys(
+      analysisResults.components.Div.props.padding?.values || {}
     );
     assert.ok(
-      paddingValues.some((value) => value.includes("[") && value.includes("]")),
+      paddingValues.some(value => value.includes("[") && value.includes("]")),
       "padding should contain an array value"
     );
 
@@ -1031,11 +828,11 @@ describe("component usage analysis", () => {
       analysisResults.components.Text,
       "Text should be present in results"
     );
-    const fontSizeValues = Array.from(
-      analysisResults.components.Text?.props.fontSize?.values || []
+    const fontSizeValues = Object.keys(
+      analysisResults.components.Text?.props.fontSize?.values || {}
     );
     assert.ok(
-      fontSizeValues.some((value) => value.includes("dynamicValue")),
+      fontSizeValues.some(value => value.includes("dynamicValue")),
       "fontSize should contain value referencing 'dynamicValue'"
     );
   });
@@ -1076,12 +873,12 @@ describe("component usage analysis", () => {
       "variant prop should have usage count of 3"
     );
 
-    const variantValues = Array.from(
-      analysisResults.components.Button.props.variant?.values || []
+    const variantValues = Object.keys(
+      analysisResults.components.Button.props.variant?.values || {}
     ).sort();
     assert.deepStrictEqual(
       variantValues,
-      ['"primary"', '"secondary"', '"tertiary"'].sort(),
+      ["primary", "secondary", "tertiary"].sort(),
       "variant values should contain all three variants"
     );
 
@@ -1092,12 +889,12 @@ describe("component usage analysis", () => {
       "size prop should have usage count of 3"
     );
 
-    const sizeValues = Array.from(
-      analysisResults.components.Button.props.size?.values || []
+    const sizeValues = Object.keys(
+      analysisResults.components.Button.props.size?.values || {}
     ).sort();
     assert.deepStrictEqual(
       sizeValues,
-      ['"sm"', '"md"', '"lg"'].sort(),
+      ["sm", "md", "lg"].sort(),
       "size values should contain all three sizes"
     );
   });
@@ -1109,52 +906,70 @@ describe("analyze file aggregation", () => {
       overall: {
         usage: {
           components: 13, // 5 + 8
-          props: 20, // 3 + 5 + 2 + 6 + 4
-        },
+          props: 20 // 3 + 5 + 2 + 6 + 4
+        }
       },
       components: {
         Button: {
           usage: 5,
           props: {
-            variant: { usage: 3, values: new Set(["primary", "secondary"]) },
-            size: { usage: 5, values: new Set(["lg", "sm"]) },
-            disabled: { usage: 2, values: new Set(["true"]) },
-          },
+            variant: {
+              usage: 3,
+              values: { primary: { total: 2 }, secondary: { total: 1 } }
+            },
+            size: { usage: 5, values: { lg: { total: 3 }, sm: { total: 2 } } },
+            disabled: { usage: 2, values: { true: { total: 2 } } }
+          }
         },
         Text: {
           usage: 8,
           props: {
-            fontSize: { usage: 6, values: new Set(["14px", "16px"]) },
-            color: { usage: 4, values: new Set(["red", "blue"]) },
-          },
-        },
-      },
+            fontSize: {
+              usage: 6,
+              values: { "14px": { total: 3 }, "16px": { total: 3 } }
+            },
+            color: {
+              usage: 4,
+              values: { red: { total: 2 }, blue: { total: 2 } }
+            }
+          }
+        }
+      }
     };
 
     const newResults = {
       overall: {
         usage: {
           components: 7, // 3 + 4
-          props: 9, // 2 + 3 + 1 + 3
-        },
+          props: 9 // 2 + 3 + 1 + 3
+        }
       },
       components: {
         Button: {
           usage: 3,
           props: {
-            variant: { usage: 2, values: new Set(["primary", "tertiary"]) },
-            onClick: { usage: 3, values: new Set(["() => {}"]) },
-            "aria-label": { usage: 1, values: new Set(["Button label"]) },
-          },
+            variant: {
+              usage: 2,
+              values: { primary: { total: 1 }, tertiary: { total: 1 } }
+            },
+            onClick: { usage: 3, values: { "() => {}": { total: 3 } } },
+            "aria-label": {
+              usage: 1,
+              values: { "Button label": { total: 1 } }
+            }
+          }
         },
         Div: {
           usage: 4,
           props: {
-            width: { usage: 3, values: new Set(["100px", "auto"]) },
-            padding: { usage: 2, values: new Set(["10px"]) },
-          },
-        },
-      },
+            width: {
+              usage: 3,
+              values: { "100px": { total: 2 }, auto: { total: 1 } }
+            },
+            padding: { usage: 2, values: { "10px": { total: 2 } } }
+          }
+        }
+      }
     };
 
     const mergedResults = mergeAnalysisResults(existingResults, newResults);
@@ -1216,7 +1031,7 @@ describe("analyze file aggregation", () => {
       5,
       "Button variant prop usage should sum to 5"
     );
-    const mergedVariantValues = Array.from(buttonProps.variant!.values).sort();
+    const mergedVariantValues = Object.keys(buttonProps.variant!.values).sort();
     assert.deepEqual(
       mergedVariantValues,
       ["primary", "secondary", "tertiary"].sort(),
@@ -1560,7 +1375,7 @@ describe("analyze property filtering", () => {
     }`;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "include-ignoreList": true,
+      "include-ignoreList": true
     });
 
     assert.ok(
@@ -1604,7 +1419,7 @@ describe("analyze property filtering", () => {
     }`;
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
-      "filter-unmapped": "props",
+      "filter-unmapped": "props"
     });
 
     assert.ok(
@@ -1656,7 +1471,7 @@ describe("analyze property filtering", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, {
       "filter-unmapped": "props",
-      "include-ignoreList": true,
+      "include-ignoreList": true
     });
 
     assert.ok(
