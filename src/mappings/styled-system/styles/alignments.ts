@@ -13,8 +13,8 @@ export const alignContentMapper = createHopperCssPropertyMapper({
     "stretch",
     "space-between",
     "space-around",
-    "space-evenly",
-  ],
+    "space-evenly"
+  ]
 });
 
 export const alignItemsMapper = createHopperCssPropertyMapper({
@@ -27,8 +27,8 @@ export const alignItemsMapper = createHopperCssPropertyMapper({
     "flex-end",
     "normal",
     "baseline",
-    "stretch",
-  ],
+    "stretch"
+  ]
 });
 
 export const alignSelfMapper = createHopperCssPropertyMapper({
@@ -42,6 +42,6 @@ export const alignSelfMapper = createHopperCssPropertyMapper({
     "flex-end",
     "normal",
     "baseline",
-    "stretch",
-  ],
+    "stretch"
+  ]
 });

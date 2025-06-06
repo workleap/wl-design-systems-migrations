@@ -1,19 +1,13 @@
 import type {
   API,
-  Block,
-  CommentBlock,
-  CommentLine,
   FileInfo,
-  Line,
-  Options,
+  Options
 } from "jscodeshift";
 import { analyze } from "./analysis/analyze.js";
 import { mappings } from "./mappings/index.ts";
 import { migrate } from "./migrations/migrate.js";
 import { logToFile } from "./utils/logger.js";
-import { Runtime } from "./utils/types.js";
-
-type CommentKind = Block | Line | CommentBlock | CommentLine;
+import type { Runtime } from "./utils/types.js";
 
 export default function transform(
   file: FileInfo,
@@ -27,7 +21,7 @@ export default function transform(
     mappings: mappings,
     log: (...args) => {
       logToFile(file.path, ...args);
-    },
+    }
   };
 
   try {
@@ -41,8 +35,9 @@ export default function transform(
           | undefined,
         "include-ignoreList": options["include-ignoreList"] as
           | boolean
-          | undefined,
+          | undefined
       });
+
       return result.source;
     } else {
       return migrate(runtime, options);
@@ -50,6 +45,7 @@ export default function transform(
   } catch (error) {
     const errorMessage = `Error: ${error}`;
     runtime.log(errorMessage, "error");
+
     return errorMessage;
   }
 }

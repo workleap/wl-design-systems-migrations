@@ -8,7 +8,7 @@ export const borderRadiusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderRadius",
   validGlobalValues: [0],
   sourceValidKeys: OrbiterBorderRadiusMapping,
-  targetValidKeys: HopperBorderRadiusMapping,
+  targetValidKeys: HopperBorderRadiusMapping
 });
 
 export const borderTopLeftRadiusMapper = createHopperCssPropertyMapper({
@@ -16,7 +16,7 @@ export const borderTopLeftRadiusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderTopLeftRadius",
   validGlobalValues: [0],
   sourceValidKeys: OrbiterBorderRadiusMapping,
-  targetValidKeys: HopperBorderRadiusMapping,
+  targetValidKeys: HopperBorderRadiusMapping
 });
 
 export const borderTopRightRadiusMapper = createHopperCssPropertyMapper({
@@ -24,7 +24,7 @@ export const borderTopRightRadiusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderTopRightRadius",
   validGlobalValues: [0],
   sourceValidKeys: OrbiterBorderRadiusMapping,
-  targetValidKeys: HopperBorderRadiusMapping,
+  targetValidKeys: HopperBorderRadiusMapping
 });
 
 export const borderBottomLeftRadiusMapper = createHopperCssPropertyMapper({
@@ -32,7 +32,7 @@ export const borderBottomLeftRadiusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderBottomLeftRadius",
   validGlobalValues: [0],
   sourceValidKeys: OrbiterBorderRadiusMapping,
-  targetValidKeys: HopperBorderRadiusMapping,
+  targetValidKeys: HopperBorderRadiusMapping
 });
 
 export const borderBottomRightRadiusMapper = createHopperCssPropertyMapper({
@@ -40,5 +40,5 @@ export const borderBottomRightRadiusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderBottomRightRadius",
   validGlobalValues: [0],
   sourceValidKeys: OrbiterBorderRadiusMapping,
-  targetValidKeys: HopperBorderRadiusMapping,
+  targetValidKeys: HopperBorderRadiusMapping
 });

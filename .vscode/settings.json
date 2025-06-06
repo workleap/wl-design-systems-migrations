@@ -1,0 +1,18 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.sortImports": "explicit"
+    },
+    "editor.formatOnSave": true,
+    "typescript.format.enable": false, // Disables the default formatter to use ESLint instead
+    "javascript.format.enable": false, // Disables the default formatter to use ESLint instead
+    "json.format.enable": false, // Disables the default formatter to use ESLint instead
+
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "yaml"
+    ]
+}

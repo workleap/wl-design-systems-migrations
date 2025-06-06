@@ -1,15 +1,15 @@
 import {
   createHopperCssPropertyMapper,
-  isPercentageValue,
+  isPercentageValue
 } from "../../helpers.js";
 
 import {
   LineHeightMapping as HopperLineHeightMapping,
-  SizingMapping as HopperSizingMapping,
+  SizingMapping as HopperSizingMapping
 } from "@hopper-ui/components";
 import {
   LineHeightMapping as OrbiterLineHeightMapping,
-  SizingMapping as OrbiterSizingMapping,
+  SizingMapping as OrbiterSizingMapping
 } from "@workleap/orbiter-ui";
 
 export const widthMapper = createHopperCssPropertyMapper({
@@ -22,11 +22,12 @@ export const widthMapper = createHopperCssPropertyMapper({
     if (isPercentageValue(value)) {
       return {
         to: "width",
-        value: originalValue,
+        value: originalValue
       };
     }
+
     return null;
-  },
+  }
 });
 
 export const heightMapper = createHopperCssPropertyMapper({
@@ -39,11 +40,12 @@ export const heightMapper = createHopperCssPropertyMapper({
     if (isPercentageValue(value)) {
       return {
         to: "height",
-        value: originalValue,
+        value: originalValue
       };
     }
+
     return null;
-  },
+  }
 });
 
 export const minWidthMapper = createHopperCssPropertyMapper({
@@ -56,11 +58,12 @@ export const minWidthMapper = createHopperCssPropertyMapper({
     if (isPercentageValue(value)) {
       return {
         to: "minWidth",
-        value: originalValue,
+        value: originalValue
       };
     }
+
     return null;
-  },
+  }
 });
 
 export const minHeightMapper = createHopperCssPropertyMapper({
@@ -73,11 +76,12 @@ export const minHeightMapper = createHopperCssPropertyMapper({
     if (isPercentageValue(value)) {
       return {
         to: "minHeight",
-        value: originalValue,
+        value: originalValue
       };
     }
+
     return null;
-  },
+  }
 });
 
 export const maxWidthMapper = createHopperCssPropertyMapper({
@@ -90,11 +94,12 @@ export const maxWidthMapper = createHopperCssPropertyMapper({
     if (isPercentageValue(value)) {
       return {
         to: "maxWidth",
-        value: originalValue,
+        value: originalValue
       };
     }
+
     return null;
-  },
+  }
 });
 
 export const maxHeightMapper = createHopperCssPropertyMapper({
@@ -107,16 +112,17 @@ export const maxHeightMapper = createHopperCssPropertyMapper({
     if (isPercentageValue(value)) {
       return {
         to: "maxHeight",
-        value: originalValue,
+        value: originalValue
       };
     }
+
     return null;
-  },
+  }
 });
 
 export const lineHeightMapper = createHopperCssPropertyMapper({
   propertyName: "lineHeight",
   unsafePropertyName: "UNSAFE_lineHeight",
   sourceValidKeys: OrbiterLineHeightMapping,
-  targetValidKeys: HopperLineHeightMapping,
+  targetValidKeys: HopperLineHeightMapping
 });

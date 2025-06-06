@@ -10,6 +10,7 @@ export function setReplacer(key: string, value: any): any {
   if (value instanceof Set) {
     return Array.from(value);
   }
+
   return value;
 }
 
@@ -30,5 +31,6 @@ export function setReviver(key: string, value: any): any {
   ) {
     return new Set(value);
   }
+
   return value;
 }

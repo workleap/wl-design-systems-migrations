@@ -1,20 +1,19 @@
 import { isArray } from "@hopper-ui/components";
-import {
+import type {
   JSXAttribute,
   JSXEmptyExpression,
   JSXExpressionContainer,
   JSXOpeningElement,
-  JSXSpreadAttribute,
-  ObjectProperty,
+  ObjectProperty
 } from "jscodeshift";
 import {
-  PropertyMapperFunction,
-  PropertyMapResult,
-  ReviewMe,
+  type PropertyMapperFunction,
+  type PropertyMapResult,
+  type ReviewMe,
   REVIEWME_PREFIX,
-  Runtime,
+  type Runtime
 } from "../utils/types.js";
-import { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
+import type { HopperStyledSystemPropsKeys } from "./styled-system/types.ts";
 
 export function hasAttribute(
   tag: JSXOpeningElement,
@@ -22,7 +21,7 @@ export function hasAttribute(
 ): boolean {
   return (
     tag.attributes?.find(
-      (attr) =>
+      attr =>
         attr.type == "JSXAttribute" &&
         typeof attr.name.name == "string" &&
         (isArray(keys)
@@ -38,7 +37,7 @@ export function getAttributeLiteralValue(
   runtime: Runtime
 ) {
   const attribute = tag.attributes?.find(
-    (attr) =>
+    attr =>
       attr.type === "JSXAttribute" &&
       attr.name.name === attributeName &&
       attr.value != null
@@ -47,6 +46,7 @@ export function getAttributeLiteralValue(
   if (attribute && attribute.type == "JSXAttribute") {
     return tryGettingLiteralValue(attribute.value, runtime);
   }
+
   return null;
 }
 
@@ -87,8 +87,7 @@ export function isFrValue(value: string | number | boolean | RegExp): boolean {
 }
 
 function hasSameKey(key: string, enumMapping: EnumMapping) {
-  const { sourceValidKeys, targetValidKeys } = enumMapping;
-  enumMapping || {};
+  const { sourceValidKeys, targetValidKeys } = enumMapping || {};
 
   return (
     Object.keys(sourceValidKeys).includes(key) &&
@@ -122,14 +121,14 @@ function parseLiteralValue<T extends string>(
     unsafePropertyName,
     validGlobalValues,
     enumMapping,
-    customMapper,
+    customMapper
   } = options;
   const { j } = runtime;
 
   if (isGlobalValue(value, validGlobalValues)) {
     return {
       to: propertyName,
-      value: originalValue,
+      value: originalValue
     };
   } else if (
     enumMapping &&
@@ -138,7 +137,7 @@ function parseLiteralValue<T extends string>(
   ) {
     return {
       to: propertyName,
-      value: originalValue,
+      value: originalValue
     };
   } else if (
     enumMapping &&
@@ -147,22 +146,22 @@ function parseLiteralValue<T extends string>(
   ) {
     return {
       to: propertyName,
-      value: j.stringLiteral(enumMapping.getValidTransform(value)),
+      value: j.stringLiteral(enumMapping.getValidTransform(value))
     };
   }
 
   const customValue = customMapper?.(value, originalValue, runtime);
-  if (customValue) return customValue;
+  if (customValue) {return customValue;}
 
   if (unsafePropertyName != null) {
     return {
       to: unsafePropertyName,
-      value: originalValue,
+      value: originalValue
     };
   } else {
     return {
       to: getReviewMePropertyName(propertyName),
-      value: originalValue,
+      value: originalValue
     };
   }
 }
@@ -183,7 +182,7 @@ function parseResponsiveObjectValue<T extends string>(
   let hasChanges = false;
 
   // each value may offer different property names. we keep track of them and use the one that has the highest priority
-  let offeredTargetPropertyNames: (T | ReviewMe<T>)[] = [];
+  const offeredTargetPropertyNames: (T | ReviewMe<T>)[] = [];
 
   // Process each property in the responsive object
   for (const property of objectExpression.properties) {
@@ -253,32 +252,27 @@ function parseResponsiveObjectValue<T extends string>(
     if (
       options.unsafePropertyName &&
       offeredTargetPropertyNames.includes(options.unsafePropertyName)
-    )
-      finalPropertyName = options.unsafePropertyName;
-    else if (
+    ) {finalPropertyName = options.unsafePropertyName;} else if (
       offeredTargetPropertyNames.includes(
         getReviewMePropertyName(options.propertyName)
       )
-    )
-      finalPropertyName = getReviewMePropertyName(options.propertyName);
-    else if (offeredTargetPropertyNames.includes(options.propertyName))
-      finalPropertyName = options.propertyName;
+    ) {finalPropertyName = getReviewMePropertyName(options.propertyName);} else if (offeredTargetPropertyNames.includes(options.propertyName)) {finalPropertyName = options.propertyName;}
 
     return {
       to: finalPropertyName,
-      value: newJsxExpressionContainer,
+      value: newJsxExpressionContainer
     };
   }
 
   return null;
 }
-type EnumMapping = {
-  sourceValidKeys: Object;
-  targetValidKeys: Object;
+interface EnumMapping {
+  sourceValidKeys: object;
+  targetValidKeys: object;
   getValidTransform: (sourceKey: string | number) => string;
-};
+}
 
-type PropertyMapperOptions<T extends string = string> = {
+interface PropertyMapperOptions<T extends string = string> {
   propertyName: T;
   unsafePropertyName?: T | null;
   validGlobalValues?: (string | number)[];
@@ -288,7 +282,7 @@ type PropertyMapperOptions<T extends string = string> = {
     originalValue: JSXAttribute["value"] | ObjectProperty["value"],
     runtime: Runtime
   ) => ReturnType<PropertyMapperFunction<T>>;
-};
+}
 
 function createPropertyMapper<T extends string = string>(
   options: PropertyMapperOptions<T>
@@ -335,16 +329,16 @@ export const createCssPropertyMapper = <T extends string>(
       "revert",
       "revert-layer",
       "unset",
-      ...(options.validGlobalValues ?? []),
+      ...(options.validGlobalValues ?? [])
     ],
     enumMapping:
       options.sourceValidKeys && options.targetValidKeys
         ? {
-            sourceValidKeys: options.sourceValidKeys,
-            targetValidKeys: options.targetValidKeys,
-            getValidTransform: (sourceKey) => {
-              return `core_${sourceKey}`;
-            },
+          sourceValidKeys: options.sourceValidKeys,
+          targetValidKeys: options.targetValidKeys,
+          getValidTransform: sourceKey => {
+            return `core_${sourceKey}`;
           }
-        : undefined,
+        }
+        : undefined
   });

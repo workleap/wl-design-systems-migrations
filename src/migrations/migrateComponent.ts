@@ -1,6 +1,5 @@
-import { JSXIdentifier } from "jscodeshift";
 import { getComponentPropsMetadata, getTodoComment } from "../utils/mapping.js";
-import { Runtime } from "../utils/types.js";
+import type { Runtime } from "../utils/types.js";
 import { addAttribute } from "./addAttribute.js";
 import { migrateAttribute } from "./migrateAttribute.js";
 import { migrateImport } from "./migrateImport.js";
@@ -30,8 +29,8 @@ export function migrateComponent(
   migrateImportResults.forEach(({ oldLocalName, newLocalName }) => {
     const instances = root.find(j.JSXOpeningElement, {
       name: {
-        name: oldLocalName,
-      },
+        name: oldLocalName
+      }
     });
 
     if (newLocalName !== oldLocalName) {
@@ -39,9 +38,9 @@ export function migrateComponent(
       // Note: we cannot use instances because it is not including closing tags
       root
         .find(j.JSXIdentifier, {
-          name: oldLocalName,
+          name: oldLocalName
         })
-        .forEach((path) => {
+        .forEach(path => {
           path.node.name = newLocalName;
         });
     }
@@ -51,7 +50,7 @@ export function migrateComponent(
 
     Object.entries(propsMetadata?.mappings || {}).forEach(
       ([oldAttrName, newAttrName]) => {
-        if (oldAttrName === newAttrName) return; // Skip if no change
+        if (oldAttrName === newAttrName) {return;} // Skip if no change
         migrateAttribute(instances, oldAttrName, newAttrName, runtime);
       }
     );
@@ -59,17 +58,18 @@ export function migrateComponent(
     // Add additional attributes for this specific component alias
     Object.entries(propsMetadata?.additions || {}).forEach(
       ([newAttrName, newAttrValue]) => {
-        instances.forEach((path) => {
+        instances.forEach(path => {
           if (typeof newAttrValue === "function") {
             const newValue = newAttrValue(path, runtime);
-            if (newValue !== null)
+            if (newValue !== null) {
               addAttribute(
                 path,
                 newAttrName,
                 newAttrValue(path, runtime),
                 runtime
               );
-          } else addAttribute(path, newAttrName, newAttrValue, runtime);
+            }
+          } else {addAttribute(path, newAttrName, newAttrValue, runtime);}
         });
       }
     );
@@ -83,10 +83,10 @@ export function migrateComponent(
     ) {
       const comment = componentMapData.todoComments;
 
-      instances.forEach((path) => {
+      instances.forEach(path => {
         path.node.comments = [
           ...(path.node.comments || []),
-          getTodoComment(comment, runtime, true),
+          getTodoComment(comment, runtime, true)
         ];
       });
     }

@@ -1,4 +1,4 @@
-import { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapMetaData } from "../../utils/types.ts";
 
 export const tileMapping = {
   Tile: {
@@ -10,14 +10,14 @@ export const tileMapping = {
         defaultChecked: "defaultSelected",
         defaultValue: () => ({
           todoComments:
-            "Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/Tile#migration-notes",
+            "Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/Tile#migration-notes"
         }),
         orientation: () => ({
           todoComments:
-            "Remove the `orientation` property, read this: https://hopper.workleap.design/components/Tile#migration-notes",
-        }),
-      },
-    },
+            "Remove the `orientation` property, read this: https://hopper.workleap.design/components/Tile#migration-notes"
+        })
+      }
+    }
   },
-  TileProps: "TileProps",
+  TileProps: "TileProps"
 } satisfies Record<string, ComponentMapMetaData>;

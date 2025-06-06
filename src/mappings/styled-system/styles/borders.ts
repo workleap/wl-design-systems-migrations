@@ -8,7 +8,7 @@ export const borderMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_border",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderActiveMapper = createHopperCssPropertyMapper({
@@ -16,7 +16,7 @@ export const borderActiveMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderActive",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderFocusMapper = createHopperCssPropertyMapper({
@@ -24,7 +24,7 @@ export const borderFocusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderFocus",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderHoverMapper = createHopperCssPropertyMapper({
@@ -32,7 +32,7 @@ export const borderHoverMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderHover",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderBottomMapper = createHopperCssPropertyMapper({
@@ -40,7 +40,7 @@ export const borderBottomMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderBottom",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderBottomActiveMapper = createHopperCssPropertyMapper({
@@ -48,7 +48,7 @@ export const borderBottomActiveMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderBottomActive",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderBottomFocusMapper = createHopperCssPropertyMapper({
@@ -56,7 +56,7 @@ export const borderBottomFocusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderBottomFocus",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderBottomHoverMapper = createHopperCssPropertyMapper({
@@ -64,7 +64,7 @@ export const borderBottomHoverMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderBottomHover",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderLeftMapper = createHopperCssPropertyMapper({
@@ -72,7 +72,7 @@ export const borderLeftMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderLeft",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderLeftActiveMapper = createHopperCssPropertyMapper({
@@ -80,7 +80,7 @@ export const borderLeftActiveMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderLeftActive",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderLeftFocusMapper = createHopperCssPropertyMapper({
@@ -88,7 +88,7 @@ export const borderLeftFocusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderLeftFocus",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderLeftHoverMapper = createHopperCssPropertyMapper({
@@ -96,7 +96,7 @@ export const borderLeftHoverMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderLeftHover",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderRightMapper = createHopperCssPropertyMapper({
@@ -104,7 +104,7 @@ export const borderRightMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderRight",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderRightActiveMapper = createHopperCssPropertyMapper({
@@ -112,7 +112,7 @@ export const borderRightActiveMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderRightActive",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderRightFocusMapper = createHopperCssPropertyMapper({
@@ -120,7 +120,7 @@ export const borderRightFocusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderRightFocus",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderRightHoverMapper = createHopperCssPropertyMapper({
@@ -128,7 +128,7 @@ export const borderRightHoverMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderRightHover",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderTopMapper = createHopperCssPropertyMapper({
@@ -136,7 +136,7 @@ export const borderTopMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderTop",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderTopActiveMapper = createHopperCssPropertyMapper({
@@ -144,7 +144,7 @@ export const borderTopActiveMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderTopActive",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderTopFocusMapper = createHopperCssPropertyMapper({
@@ -152,7 +152,7 @@ export const borderTopFocusMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderTopFocus",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });
 
 export const borderTopHoverMapper = createHopperCssPropertyMapper({
@@ -160,5 +160,5 @@ export const borderTopHoverMapper = createHopperCssPropertyMapper({
   unsafePropertyName: "UNSAFE_borderTopHover",
   validGlobalValues: ["currentcolor", "transparent", 0],
   sourceValidKeys: OrbiterBorderMapping,
-  targetValidKeys: HopperBorderMapping,
+  targetValidKeys: HopperBorderMapping
 });

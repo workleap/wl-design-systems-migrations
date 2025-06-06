@@ -1,4 +1,4 @@
-import { MapMetaData, Runtime } from "./types.js";
+import type { MapMetaData, Runtime } from "./types.js";
 
 export function getComponentPropsMetadata(
   componentName: string,
@@ -10,21 +10,22 @@ export function getComponentPropsMetadata(
   }
 
   const map = mappings.components[componentName];
+
   return typeof map === "string"
     ? {
-        mappings: mappings.propsDefaults?.mappings,
-        additions: mappings.propsDefaults?.additions,
-      }
+      mappings: mappings.propsDefaults?.mappings,
+      additions: mappings.propsDefaults?.additions
+    }
     : {
-        mappings: {
-          ...mappings.propsDefaults?.mappings,
-          ...map?.props?.mappings,
-        },
-        additions: {
-          ...mappings.propsDefaults?.additions,
-          ...map?.props?.additions,
-        },
-      };
+      mappings: {
+        ...mappings.propsDefaults?.mappings,
+        ...map?.props?.mappings
+      },
+      additions: {
+        ...mappings.propsDefaults?.additions,
+        ...map?.props?.additions
+      }
+    };
 }
 
 export function getComponentTargetName(

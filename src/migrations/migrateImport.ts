@@ -1,5 +1,5 @@
 import { getComponentTargetName } from "../utils/mapping.js";
-import { Runtime } from "../utils/types.js";
+import type { Runtime } from "../utils/types.js";
 
 /**
  * Sorts import specifiers alphabetically by their imported name
@@ -12,12 +12,14 @@ function sortImportSpecifiers(specifiers: any[]): any[] {
     if (a.imported && b.imported) {
       const aLocalName = a.local?.name || a.imported.name;
       const bLocalName = b.local?.name || b.imported.name;
+
       return aLocalName.localeCompare(bLocalName);
     }
     // Handle other types of specifiers (like ImportDefaultSpecifier) - sort by local name
     if (a.local && b.local) {
       return a.local.name.localeCompare(b.local.name);
     }
+
     return 0;
   });
 }
@@ -36,9 +38,9 @@ export function migrateImport(
   runtime: Runtime
 ):
   | {
-      oldLocalName: string;
-      newLocalName: string;
-    }[]
+    oldLocalName: string;
+    newLocalName: string;
+  }[]
   | null {
   const { j, root, mappings } = runtime;
   const { sourcePackage, targetPackage } = mappings;
@@ -56,22 +58,22 @@ export function migrateImport(
   root
     .find(j.ImportDeclaration, {
       source: {
-        value: sourcePackage,
-      },
+        value: sourcePackage
+      }
     })
-    .forEach((path) => {
+    .forEach(path => {
       const importSpecifiers = path.node.specifiers || [];
 
       // Find ALL component specifiers matching the component name
       const componentSpecifiers = importSpecifiers.filter(
-        (specifier) =>
+        specifier =>
           j.ImportSpecifier.check(specifier) &&
           specifier.imported &&
           specifier.imported.name === componentName
       );
 
       // Process each matching component specifier
-      componentSpecifiers.forEach((componentSpecifier) => {
+      componentSpecifiers.forEach(componentSpecifier => {
         if (j.ImportSpecifier.check(componentSpecifier)) {
           // Get the local name (alias) of the component, or use the original name if no alias
           const localName = componentSpecifier.local?.name || componentName;
@@ -101,7 +103,7 @@ export function migrateImport(
 
           results.push({
             oldLocalName: localName,
-            newLocalName: isAliased ? localName : targetComponentName,
+            newLocalName: isAliased ? localName : targetComponentName
           });
         }
       });
@@ -139,14 +141,14 @@ export function migrateImport(
   // Check if there's already an import from the target package
   const existingTargetImport = root.find(j.ImportDeclaration, {
     source: {
-      value: targetPackage,
-    },
+      value: targetPackage
+    }
   });
 
   if (existingTargetImport.length > 0) {
     // Check if we need to handle type imports differently
     const allAreFromSeparateTypeImports = newImportSpecifiers.every(
-      (spec) => (spec as any)._isFromSeparateTypeImport
+      spec => (spec as any)._isFromSeparateTypeImport
     );
 
     const targetImportPath = existingTargetImport.paths()[0];
@@ -164,8 +166,9 @@ export function migrateImport(
         const targetSpecifiers = targetImportPath.node.specifiers || [];
         
         // Filter out duplicates - only add specifiers that don't already exist
-        const filteredNewSpecifiers = newImportSpecifiers.filter((newSpec) => {
+        const filteredNewSpecifiers = newImportSpecifiers.filter(newSpec => {
           const newLocalName = newSpec.local?.name || newSpec.imported.name;
+
           return !targetSpecifiers.some(
             (existingSpec: any) =>
               j.ImportSpecifier.check(existingSpec) &&
@@ -212,8 +215,9 @@ export function migrateImport(
         const targetSpecifiers = targetImportPath.node.specifiers || [];
 
         // Filter out duplicates - only add specifiers that don't already exist
-        const filteredNewSpecifiers = newImportSpecifiers.filter((newSpec) => {
+        const filteredNewSpecifiers = newImportSpecifiers.filter(newSpec => {
           const newLocalName = newSpec.local?.name || newSpec.imported.name;
+
           return !targetSpecifiers.some(
             (existingSpec: any) =>
               j.ImportSpecifier.check(existingSpec) &&
@@ -246,7 +250,7 @@ export function migrateImport(
   } else {
     // Create a new import declaration if one doesn't exist
     const allAreFromSeparateTypeImports = newImportSpecifiers.every(
-      (spec) => (spec as any)._isFromSeparateTypeImport
+      spec => (spec as any)._isFromSeparateTypeImport
     );
 
     const newImport = j.importDeclaration(

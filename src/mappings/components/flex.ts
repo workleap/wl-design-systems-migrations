@@ -1,4 +1,4 @@
-import { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapMetaData } from "../../utils/types.ts";
 import { tryGettingLiteralValue } from "../helpers.ts";
 
 export const flexMapping = {
@@ -12,26 +12,28 @@ export const flexMapping = {
         flexShrink: "shrink",
         flexFlow: "direction",
         flexBasis: "basis",
-        reverse: (originalValue, { j }) => {
+        reverse: originalValue => {
           return {
             to: "reverse",
             value: originalValue,
             todoComments:
-              "Remove the `reverse` property, read this: https://hopper.workleap.design/components/Flex#migration-notes",
+              "Remove the `reverse` property, read this: https://hopper.workleap.design/components/Flex#migration-notes"
           };
         },
         fluid: (originalValue, runtime) => {
           const { j } = runtime;
           const value = tryGettingLiteralValue(originalValue, runtime);
-          if (!originalValue || Boolean(value) != false)
+          if (!originalValue || Boolean(value) != false) {
             return {
               to: "width",
-              value: j.stringLiteral("100%"),
+              value: j.stringLiteral("100%")
             };
+          }
+
           return null;
-        },
-      },
-    },
+        }
+      }
+    }
   },
-  FlexProps: "FlexProps",
+  FlexProps: "FlexProps"
 } satisfies Record<string, ComponentMapMetaData>;

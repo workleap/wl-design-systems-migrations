@@ -1,12 +1,11 @@
 import {
   createCssPropertyMapper,
   isFrValue,
-  isPercentageValue,
+  isPercentageValue
 } from "../../helpers.js";
 
 import {
-  SizingMapping as HopperSizingMapping,
-  StyledSystemProps,
+  SizingMapping as HopperSizingMapping
 } from "@hopper-ui/components";
 import { SizingMapping as OrbiterSizingMapping } from "@workleap/orbiter-ui";
 
@@ -24,11 +23,12 @@ export const createGridAutoColumnsMapper = <T extends string = string>(
       if (isPercentageValue(value) || isFrValue(value)) {
         return {
           to: propertyName,
-          value: originalValue,
+          value: originalValue
         };
       }
+
       return null;
-    },
+    }
   });
 
 export const createGridAutoRowsMapper = <T extends string = string>(
@@ -45,11 +45,12 @@ export const createGridAutoRowsMapper = <T extends string = string>(
       if (isPercentageValue(value) || isFrValue(value)) {
         return {
           to: propertyName,
-          value: originalValue,
+          value: originalValue
         };
       }
+
       return null;
-    },
+    }
   });
 
 export const createGridTemplateColumnsMapper = <T extends string = string>(
@@ -64,7 +65,7 @@ export const createGridTemplateColumnsMapper = <T extends string = string>(
       "subgrid",
       "auto",
       "max-content",
-      "min-content",
+      "min-content"
     ],
     sourceValidKeys: OrbiterSizingMapping,
     targetValidKeys: HopperSizingMapping,
@@ -72,11 +73,12 @@ export const createGridTemplateColumnsMapper = <T extends string = string>(
       if (isPercentageValue(value) || isFrValue(value)) {
         return {
           to: propertyName,
-          value: originalValue,
+          value: originalValue
         };
       }
+
       return null;
-    },
+    }
   });
 
 export const createGridTemplateRowsMapper = <T extends string = string>(
@@ -91,7 +93,7 @@ export const createGridTemplateRowsMapper = <T extends string = string>(
       "subgrid",
       "auto",
       "max-content",
-      "min-content",
+      "min-content"
     ],
     sourceValidKeys: OrbiterSizingMapping,
     targetValidKeys: HopperSizingMapping,
@@ -99,11 +101,12 @@ export const createGridTemplateRowsMapper = <T extends string = string>(
       if (isPercentageValue(value) || isFrValue(value)) {
         return {
           to: propertyName,
-          value: originalValue,
+          value: originalValue
         };
       }
+
       return null;
-    },
+    }
   });
 
 export const gridAutoColumnsMapper = createGridAutoColumnsMapper(

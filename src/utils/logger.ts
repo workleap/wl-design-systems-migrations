@@ -1,5 +1,6 @@
 import { appendFileSync } from "fs";
 import { join } from "path";
+
 const logFileName = "debug.log";
 
 /**

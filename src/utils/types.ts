@@ -1,11 +1,5 @@
-import core, {
-  ASTNode,
-  ASTPath,
-  Collection,
-  JSXAttribute,
-  JSXOpeningElement,
-  ObjectProperty,
-} from "jscodeshift/src/core.js";
+import type core from "jscodeshift/src/core.js";
+import type { ASTNode, ASTPath, Collection, JSXAttribute, JSXOpeningElement, ObjectProperty } from "jscodeshift/src/core.js";
 
 export interface Runtime {
   j: core.JSCodeshift;
@@ -28,14 +22,14 @@ export type PropertyMapperFunction<T extends string = string> = (
   runtime: ExtendedRuntime
 ) => PropertyMapResult<T> | null;
 
-export type PropertyMapResult<
+export interface PropertyMapResult<
   T extends string = string,
   Z = JSXAttribute["value"] | ObjectProperty["value"]
-> = {
+> {
   to?: T | ReviewMe<T>; //if not provided, original value will be used
   value?: Z; //if not provided, original value will be used
   todoComments?: string;
-};
+}
 
 export type PropsMapping<
   S extends string = string,
@@ -44,32 +38,32 @@ export type PropsMapping<
   [K in S]: T | PropertyMapperFunction<T>;
 };
 
-export type PropertyAdderFunction<T extends string = string> = (
+export type PropertyAdderFunction = (
   tag: ASTPath<JSXOpeningElement>,
   runtime: Runtime
 ) => string | number | boolean | JSXAttribute["value"] | null;
 
-export type PropsMapMetaData = {
+export interface PropsMapMetaData {
   mappings?: PropsMapping;
   additions?: {
     [key: string]: PropertyAdderFunction | string | number | boolean;
   };
-};
+}
 
 export type ComponentMapMetaData =
   | {
-      to?: string;
-      props?: PropsMapMetaData;
-      todoComments?: string;
-    }
+    to?: string;
+    props?: PropsMapMetaData;
+    todoComments?: string;
+  }
   | string;
 
-export type MapMetaData = {
+export interface MapMetaData {
   sourcePackage: string;
   targetPackage: string;
   propsDefaults?: PropsMapMetaData;
   components: Record<string, ComponentMapMetaData>;
-};
+}
 
 export function getMappingKeys<T extends Record<string, ComponentMapMetaData>>(
   obj: T
