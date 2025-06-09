@@ -1,4 +1,4 @@
-import { getComponentTargetName } from "../utils/mapping.js";
+import { getComponentTargetName, getLocalNameFromImport } from "../utils/mapping.js";
 import type { Runtime } from "../utils/types.js";
 
 /**
@@ -76,7 +76,7 @@ export function migrateImport(
       componentSpecifiers.forEach(componentSpecifier => {
         if (j.ImportSpecifier.check(componentSpecifier)) {
           // Get the local name (alias) of the component, or use the original name if no alias
-          const localName = componentSpecifier.local?.name || componentName;
+          const localName = getLocalNameFromImport(componentSpecifier);
           const isAliased = localName !== componentName;
 
           // Check if this is a type import (either the whole import or this specific specifier)
