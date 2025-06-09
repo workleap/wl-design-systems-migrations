@@ -70,3 +70,6 @@ export function getMappingKeys<T extends Record<string, ComponentMapMetaData>>(
 ): Array<keyof T> {
   return Object.keys(obj) as Array<keyof T>;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-wrapper-object-types
+export type LiteralType = string | boolean | null | number | RegExp | BigInt;
