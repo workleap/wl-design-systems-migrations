@@ -61,6 +61,8 @@ import {
   Tile,
   TileGroup,
   TileLink,
+  ToggleButton,
+  ToggleIconButton,
   TR,
   UL,
   useAccordionContext,
@@ -481,6 +483,9 @@ export function App() {
         }}
         type="reset"
         cursorHover="nw-resize"
+        active
+        focus
+        hover
       >
         text
       </Tile>
@@ -497,6 +502,9 @@ export function App() {
         }}
         type="reset"
         cursorHover="nw-resize"
+        active
+        focus
+        hover
       >
         text
       </TileLink>
@@ -563,6 +571,45 @@ export function App() {
         autoFocus
         onClick={() => {}}
       />
+
+      <ToggleButton
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        onChange={() => {}}
+        inherit
+        size="md"
+        disabled
+        checked={false}
+        defaultChecked={true}
+        value="test"
+        active
+      >
+        text
+      </ToggleButton>
+      <ToggleButton variant="tertiary">text</ToggleButton>
+      <ToggleButton variant="upsell">text</ToggleButton>
+      <ToggleButton variant="primary">text</ToggleButton>
+      <ToggleButton variant="secondary">text</ToggleButton>
+
+      <ToggleIconButton
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
+        size="2xs"
+        disabled
+        aria-label="Icon Button"
+        active
+      >
+        <SparklesIcon />
+      </ToggleIconButton>
+      <ToggleIconButton variant="tertiary" aria-label="Icon Button" size="xs">
+        <SparklesIcon />
+      </ToggleIconButton>
+      <ToggleIconButton variant="secondary" aria-label="Icon Button" size="sm">
+        <SparklesIcon />
+      </ToggleIconButton>      
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
