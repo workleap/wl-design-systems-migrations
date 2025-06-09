@@ -56,6 +56,7 @@ import {
   Tile,
   TileGroup,
   TileLink,
+  ToggleButton,
   TR,
   UL,
 } from "@hopper-ui/components";
@@ -492,6 +493,9 @@ export function App() {
         }}
         type="reset"
         cursorHover="nw-resize"
+        active
+        focus
+        hover
       >
         text
       </Tile>
@@ -507,7 +511,10 @@ export function App() {
           alert(1);
         }}
         type="reset"
-        cursorHover="nw-resize">
+        cursorHover="nw-resize"
+        active
+        focus
+        hover>
         text
       </TileLink>
       <TileGroup
@@ -575,6 +582,43 @@ export function App() {
         autoFocus
         onPress={() => {}}
       />
+      <ToggleButton
+        isFluid={variable ? true : false}
+        isLoading={false}
+        onPress={() => alert("Button clicked!")}
+        onChange={() => {}}/* Migration TODO: `onChange` is not supported anymore. Remove it. More details: https://hopper.workleap.design/components/ToggleButton#migration-notes */
+        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        size="md"
+        isDisabled
+        isSelected={false}
+        defaultSelected={true}
+        id="test"
+        active
+      >
+        text
+      </ToggleButton>
+      <ToggleButton variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</ToggleButton>
+      <ToggleButton variant="upsell">text</ToggleButton>
+      <ToggleButton variant="primary">text</ToggleButton>
+      <ToggleButton variant="secondary">text</ToggleButton>
+      <ToggleButton
+        isFluid={variable ? true : false}
+        isLoading={false}
+        onPress={() => alert("Button clicked!")}
+        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */
+        isDisabled
+        aria-label="Icon Button"
+        active
+      >
+        <SparklesIcon />
+      </ToggleButton>
+      <ToggleButton variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+        <SparklesIcon />
+      </ToggleButton>
+      <ToggleButton variant="secondary" aria-label="Icon Button" size="sm">
+        <SparklesIcon />
+      </ToggleButton>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>

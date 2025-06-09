@@ -1,8 +1,8 @@
 {
   "overall": {
     "usage": {
-      "components": 2565,
-      "props": 4012
+      "components": 2554,
+      "props": 3961
     }
   },
   "components": {
@@ -40,35 +40,35 @@
               "total": 1,
               "SG Protect": 1
             },
-            "{handleTriggerClick}": {
+            "handleTriggerClick": {
               "total": 1,
               "Performance": 1
             },
-            "{formatOrderedList}": {
+            "formatOrderedList": {
               "total": 1,
               "Performance": 1
             },
-            "{formatUnorderedList}": {
+            "formatUnorderedList": {
               "total": 1,
               "Performance": 1
             },
-            "{indent}": {
+            "indent": {
               "total": 1,
               "Performance": 1
             },
-            "{outdent}": {
+            "outdent": {
               "total": 1,
               "Performance": 1
             },
-            "{handleReconnectClick}": {
+            "handleReconnectClick": {
               "total": 1,
               "Management App": 1
             },
-            "{handleDisconnectClick}": {
+            "handleDisconnectClick": {
               "total": 1,
               "Management App": 1
             },
-            "{onReconnect}": {
+            "onReconnect": {
               "total": 1,
               "Management App": 1
             },
@@ -80,11 +80,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{openEditModal}": {
+            "openEditModal": {
               "total": 1,
               "AI": 1
             },
-            "{openDeleteModal}": {
+            "openDeleteModal": {
               "total": 1,
               "AI": 1
             }
@@ -114,19 +114,23 @@
               "Performance": 2,
               "AI": 1
             },
-            "{BinaryExpression}": {
-              "total": 2,
-              "Management App": 2
-            },
-            "{UnaryExpression}": {
+            "!canAddQuestions": {
               "total": 1,
               "Performance": 1
             },
-            "{x.isDisabled}": {
+            "x.isDisabled": {
               "total": 1,
               "Management App": 1
             },
-            "{LogicalExpression}": {
+            "Number(key) < firstSelectableTeamSize": {
+              "total": 1,
+              "Management App": 1
+            },
+            "Number(range.end) < (options.minimumQuantity ?? PricingTier.From0to25)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "!countQuery.isSuccess || x.count === 0": {
               "total": 1,
               "Management App": 1
             }
@@ -139,19 +143,19 @@
               "total": 2,
               "Management App": 2
             },
-            "{country}": {
+            "country": {
               "total": 1,
               "Management App": 1
             },
-            "{x.value}": {
+            "x.value": {
               "total": 1,
               "Management App": 1
             },
-            "{option.value}": {
+            "option.value": {
               "total": 1,
               "Management App": 1
             },
-            "{option.countryCallingCode}": {
+            "option.countryCallingCode": {
               "total": 1,
               "Management App": 1
             },
@@ -159,7 +163,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{notificationChannel}": {
+            "notificationChannel": {
               "total": 1,
               "Management App": 1
             }
@@ -231,7 +235,7 @@
         "cursor": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "isCommandPending ? \"wait\" : \"default\"": {
               "total": 1,
               "Management App": 1
             }
@@ -240,7 +244,7 @@
         "title": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "showTooltip ? tooltip : undefined": {
               "total": 1,
               "AI": 1
             }
@@ -254,46 +258,278 @@
         "validationState": {
           "usage": 96,
           "values": {
-            "{ConditionalExpression}": {
-              "total": 56,
-              "SG One": 3,
-              "Performance": 18,
-              "Management App": 25,
-              "Administration Portal": 9,
-              "Activation": 1
+            "fieldState.error ? \"invalid\" : undefined": {
+              "total": 16,
+              "Management App": 16
             },
-            "{CallExpression}": {
-              "total": 34,
-              "SG One": 7,
-              "Management App": 20,
-              "Activation": 7
+            "fieldState.error ? FieldValidationStates.Invalid : FieldValidationStates.Valid": {
+              "total": 4,
+              "Management App": 4
             },
-            "{validationState}": {
+            "validationState": {
               "total": 4,
               "Management App": 2,
               "AI": 2
             },
-            "{titleValidationState}": {
+            "companyRoleOtherError ? \"invalid\" : undefined": {
+              "total": 2,
+              "SG One": 2
+            },
+            "getValidationState(formik, \"email\")": {
+              "total": 2,
+              "SG One": 2
+            },
+            "handleFieldStateValidation()": {
+              "total": 2,
+              "Management App": 2
+            },
+            "errors.products ? \"invalid\" : \"valid\"": {
+              "total": 2,
+              "Administration Portal": 2
+            },
+            "getValidationState(\"firstName\")": {
+              "total": 2,
+              "Activation": 2
+            },
+            "getValidationState(\"lastName\")": {
+              "total": 2,
+              "Activation": 2
+            },
+            "getValidationState(\"password\")": {
+              "total": 2,
+              "Activation": 2
+            },
+            "getValidationState(formik, \"firstName\")": {
+              "total": 1,
+              "SG One": 1
+            },
+            "getValidationState(formik, \"lastName\")": {
+              "total": 1,
+              "SG One": 1
+            },
+            "isError ? \"invalid\" : showSummary ? \"valid\" : undefined": {
+              "total": 1,
+              "SG One": 1
+            },
+            "getValidationState(formik, \"phoneNumber\")": {
+              "total": 1,
+              "SG One": 1
+            },
+            "getValidationState(formik, \"currentPassword\")": {
+              "total": 1,
+              "SG One": 1
+            },
+            "getPasswordSuccessState(getValidationState(formik, \"newPassword\"))": {
+              "total": 1,
+              "SG One": 1
+            },
+            "fieldState.error && shouldShowErrors ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "isInvalid ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "titleValidationState": {
+              "total": 1,
+              "Performance": 1
+            },
+            "hasAttemptedLaunch && launchValidationErrors.selfReviewDueDate ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "hasAttemptedLaunch && launchValidationErrors.peerReviewDueDate ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "hasAttemptedLaunch && launchValidationErrors.managerReviewDueDate ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "hasAttemptedLaunch && launchValidationErrors.recommendedPeerReviewsCount ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "maximumLengthValidation.errorMessage || hasError ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "errors.title || titleErrorMessage ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "(titleError || !!titleLaunchError) ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "nameError || sectionNameLaunchErrors ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "error ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "errors.title ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "errors.startDate ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "errors.endDate ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "errors.owner ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "errors.description || currentRatingScaleError?.description ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "errors.label || currentRatingScaleError?.label ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "labelError || launchError ? \"invalid\" : \"valid\"": {
               "total": 1,
               "Performance": 1
             },
             "invalid": {
               "total": 1,
               "Performance": 1
-            }
-          }
-        },
-        "required": {
-          "usage": 30,
-          "values": {
-            "true": {
-              "total": 30,
-              "SG Protect": 2,
-              "Performance": 3,
-              "Management App": 1,
-              "Management Shell": 2,
-              "Administration Portal": 16,
-              "Activation": 6
+            },
+            "(monthFieldState.error || yearFieldState.error) ? \"invalid\" : undefined": {
+              "total": 1,
+              "Management App": 1
+            },
+            "doesSubReasonExceedMaxLength ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Management App": 1
+            },
+            "doesOtherReasonExceedMaxLength ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(TeamFormFields.teamName)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(SegmentFormFields.displayName)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(AttributeFields.type)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldArrayValidationState(AttributeFields.options, index)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(AttributeFields.displayName)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(OrganizationFormFields.name)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(TeamFormFields.teamDescription)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidateState()": {
+              "total": 1,
+              "Management App": 1
+            },
+            "errors.root ? \"invalid\" : undefined": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(row.riskThreshold.name)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(RulePickerFormFields.ruleRelation)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePreferencesFields.language)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "notificationChannelValidation === FieldValidationStates.Valid ? undefined : FieldValidationStates.Invalid": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePersonalProfileFields.jobTitle)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePersonalProfileFields.firstName)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePersonalProfileFields.lastName)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePersonalProfileFields.preferredName)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePersonalProfileFields.usePreferredName)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePersonalProfileFields.timeZone)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getFieldValidationState(UpdatePersonalProfileFields.bio)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "errors.organizationName ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "errors.email ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "errors.administratorFirstName ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "errors.administratorLastName ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "errors.integrationAdminId ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "errors.accountToken ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "errors.dataset ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "formState.errors.displayName ? \"invalid\" : undefined": {
+              "total": 1,
+              "Activation": 1
+            },
+            "getValidationState(\"companySize\")": {
+              "total": 1,
+              "Activation": 1
             }
           }
         },
@@ -346,6 +582,20 @@
             "1.25rem": {
               "total": 1,
               "Management App": 1
+            }
+          }
+        },
+        "required": {
+          "usage": 30,
+          "values": {
+            "true": {
+              "total": 30,
+              "SG Protect": 2,
+              "Performance": 3,
+              "Management App": 1,
+              "Management Shell": 2,
+              "Administration Portal": 16,
+              "Activation": 6
             }
           }
         },
@@ -684,54 +934,124 @@
         "disabled": {
           "usage": 41,
           "values": {
-            "{UnaryExpression}": {
-              "total": 22,
-              "SG Protect": 7,
-              "SG One": 1,
-              "Performance": 4,
-              "Management App": 7,
-              "Management Shell": 2,
-              "AI": 1
+            "!tooltip": {
+              "total": 4,
+              "SG Protect": 1,
+              "Management App": 2,
+              "Management Shell": 1
             },
-            "{LogicalExpression}": {
-              "total": 6,
-              "Performance": 4,
-              "Management App": 2
+            "!isTruncated": {
+              "total": 3,
+              "SG Protect": 3
             },
-            "{isInRemainingTooltip}": {
+            "!isOverflowing": {
+              "total": 3,
+              "SG Protect": 1,
+              "Performance": 1,
+              "Management Shell": 1
+            },
+            "isInRemainingTooltip": {
               "total": 2,
               "Performance": 2
             },
-            "{hasProductsAssigned}": {
+            "!isDisabled": {
               "total": 2,
               "Management App": 2
             },
-            "{BinaryExpression}": {
+            "hasProductsAssigned": {
               "total": 2,
-              "Performance": 1,
-              "Management App": 1
+              "Management App": 2
             },
-            "{disabled}": {
+            "disabled": {
               "total": 2,
               "AI": 2
             },
-            "{CallExpression}": {
+            "!error": {
+              "total": 2,
+              "Management App": 1,
+              "AI": 1
+            },
+            "!isNameTruncated": {
+              "total": 1,
+              "SG Protect": 1
+            },
+            "!isJobTitleTruncated": {
+              "total": 1,
+              "SG Protect": 1
+            },
+            "!isOverflown": {
+              "total": 1,
+              "SG One": 1
+            },
+            "!formattedReviewDescription || isSingleRow": {
+              "total": 1,
+              "Performance": 1
+            },
+            "isMobile || !formattedReviewDescription": {
+              "total": 1,
+              "Performance": 1
+            },
+            "!submittedByIdentity && !sharedByIdentity": {
+              "total": 1,
+              "Performance": 1
+            },
+            "identities.length === 1 || !identitiesTooltip": {
+              "total": 1,
+              "Performance": 1
+            },
+            "!isSubmitButtonDisabled": {
+              "total": 1,
+              "Performance": 1
+            },
+            "!hasDetails": {
+              "total": 1,
+              "Performance": 1
+            },
+            "dateKey === \"dueDate\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "!savedDate": {
+              "total": 1,
+              "Performance": 1
+            },
+            "Boolean(taxExemptionCode)": {
               "total": 1,
               "Management App": 1
             },
-            "{canEditManagers}": {
+            "canEditManagers": {
               "total": 1,
               "Management App": 1
             },
-            "{disableTooltip}": {
+            "!isSyncedProperty && !isUsedByDynamicTeams": {
               "total": 1,
               "Management App": 1
             },
-            "{canActivate}": {
+            "!isSyncedProperty && !isUsed && !isUsedByDynamicTeams": {
               "total": 1,
               "Management App": 1
             },
-            "{canCreateNewWorkspace}": {
+            "!disableNextButton": {
+              "total": 1,
+              "Management App": 1
+            },
+            "disableTooltip": {
+              "total": 1,
+              "Management App": 1
+            },
+            "state !== ProgressiveDisclosureState.Pending": {
+              "total": 1,
+              "Management App": 1
+            },
+            "!featureFlags.includes(\"AutomaticTeamHierarchyReadOnly\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "canActivate": {
+              "total": 1,
+              "Management App": 1
+            },
+            "canCreateNewWorkspace": {
               "total": 1,
               "Activation": 1
             }
@@ -753,11 +1073,11 @@
               "total": 2,
               "SG Protect": 2
             },
-            "{isTooltipVisible}": {
+            "isTooltipVisible": {
               "total": 2,
               "Management App": 2
             },
-            "{hasCopied}": {
+            "hasCopied": {
               "total": 1,
               "SG One": 1
             }
@@ -793,7 +1113,7 @@
               "SG Protect": 1,
               "Activation": 1
             },
-            "{name}": {
+            "name": {
               "total": 2,
               "AI": 2
             },
@@ -817,15 +1137,15 @@
               "total": 1,
               "SG One": 1
             },
-            "{ModalPropertyFields.dataType}": {
+            "ModalPropertyFields.dataType": {
               "total": 1,
               "Management App": 1
             },
-            "{inputId}": {
+            "inputId": {
               "total": 1,
               "Management App": 1
             },
-            "{checkboxId}": {
+            "checkboxId": {
               "total": 1,
               "Management App": 1
             },
@@ -833,11 +1153,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{organizationAuthenticationUrlControlId}": {
+            "organizationAuthenticationUrlControlId": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{authorizedSlackWorkspacesControlId}": {
+            "authorizedSlackWorkspacesControlId": {
               "total": 1,
               "Administration Portal": 1
             },
@@ -951,10 +1271,6 @@
         "color": {
           "usage": 9,
           "values": {
-            "{ConditionalExpression}": {
-              "total": 3,
-              "SG Protect": 3
-            },
             "neutral": {
               "total": 3,
               "Management App": 3
@@ -962,6 +1278,18 @@
             "inherit": {
               "total": 2,
               "Management App": 2
+            },
+            "selectedTab === \"overview\" ? \"neutral\" : \"\"": {
+              "total": 1,
+              "SG Protect": 1
+            },
+            "selectedTab === \"oversharing\" ? \"neutral\" : \"\"": {
+              "total": 1,
+              "SG Protect": 1
+            },
+            "selectedTab === \"data-quality\" ? \"neutral\" : \"\"": {
+              "total": 1,
+              "SG Protect": 1
             },
             "primary": {
               "total": 1,
@@ -1120,9 +1448,13 @@
         "borderBottom": {
           "usage": 2,
           "values": {
-            "{ConditionalExpression}": {
-              "total": 2,
-              "Management App": 2
+            "index === frequencies.length - 1 ? undefined : \"neutral-weak\"": {
+              "total": 1,
+              "Management App": 1
+            },
+            "index === addOns.length - 1 ? undefined : \"neutral-weak\"": {
+              "total": 1,
+              "Management App": 1
             }
           }
         },
@@ -1383,7 +1715,7 @@
         "visibility": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "showTooltip ? \"visible\" : \"hidden\"": {
               "total": 1,
               "Performance": 1
             }
@@ -1415,11 +1747,11 @@
         "src": {
           "usage": 126,
           "values": {
-            "{ScoreMeter}": {
+            "ScoreMeter": {
               "total": 25,
               "Management App": 25
             },
-            "{src}": {
+            "src": {
               "total": 10,
               "SG Protect": 2,
               "SG One": 1,
@@ -1429,7 +1761,7 @@
               "Activation": 2,
               "Login": 1
             },
-            "{icon}": {
+            "icon": {
               "total": 8,
               "SG Protect": 1,
               "SG One": 1,
@@ -1437,224 +1769,235 @@
               "Management App": 1,
               "AI": 4
             },
-            "{ConfettiPopperIllustration}": {
+            "ConfettiPopperIllustration": {
               "total": 4,
               "Performance": 4
             },
-            "{ConditionalExpression}": {
-              "total": 4,
-              "SG One": 3,
-              "Management App": 1
-            },
-            "{SlackLogo}": {
+            "SlackLogo": {
               "total": 3,
               "Management App": 3
             },
-            "{illustration}": {
+            "illustration": {
               "total": 3,
               "Performance": 1,
               "Activation": 2
             },
-            "{MemberNotInvitedIllustration}": {
+            "MemberNotInvitedIllustration": {
               "total": 3,
               "Activation": 3
             },
-            "{EmailExpiredIllustration}": {
+            "EmailIllustration": {
               "total": 3,
               "Activation": 3
             },
-            "{EmailIllustration}": {
+            "EmailExpiredIllustration": {
               "total": 3,
               "Activation": 3
             },
-            "{logo}": {
+            "logo": {
               "total": 3,
               "Management App": 1,
               "AI": 2
             },
-            "{Logo365}": {
+            "MicrosoftLogo": {
               "total": 2,
               "SG One": 2
             },
-            "{ProtectIconSource}": {
+            "BrowserImage": {
               "total": 2,
               "SG One": 2
             },
-            "{MicrosoftLogo}": {
+            "Logo365": {
               "total": 2,
               "SG One": 2
             },
-            "{BrowserImage}": {
+            "ProtectIconSource": {
               "total": 2,
               "SG One": 2
             },
-            "{product.illustration}": {
+            "product.illustration": {
               "total": 2,
               "Management App": 2
             },
-            "{imageSrc}": {
+            "XlsxFile": {
+              "total": 2,
+              "Management App": 2
+            },
+            "imageSrc": {
               "total": 2,
               "SG Protect": 1,
               "Management App": 1
             },
-            "{XlsxFile}": {
-              "total": 2,
-              "Management App": 2
-            },
-            "{ExpiredEmailIllustration}": {
+            "ExpiredEmailIllustration": {
               "total": 2,
               "Activation": 2
             },
-            "{EmailNotConfirmedIllustration}": {
+            "EmailNotConfirmedIllustration": {
               "total": 2,
               "Activation": 2
             },
-            "{LineBackground}": {
+            "LineBackground": {
               "total": 2,
               "Activation": 1,
               "Login": 1
             },
-            "{SettingsIllustration}": {
+            "SettingsIllustration": {
               "total": 2,
               "AI": 2
             },
-            "{SharegateLogoSource}": {
+            "SharegateLogoSource": {
               "total": 1,
               "SG One": 1
             },
-            "{illustrationSrc}": {
+            "illustrationSrc": {
               "total": 1,
               "SG One": 1
             },
-            "{NoResults}": {
+            "NoResults": {
               "total": 1,
               "SG One": 1
             },
-            "{RocketImage}": {
+            "CatManImage": {
               "total": 1,
               "SG One": 1
             },
-            "{FunToUseImage}": {
+            "BoxManImage": {
               "total": 1,
               "SG One": 1
             },
-            "{StartExploringManagementImage}": {
+            "ChairLadyImage": {
               "total": 1,
               "SG One": 1
             },
-            "{CatManImage}": {
+            "FaceInHoleImage": {
               "total": 1,
               "SG One": 1
             },
-            "{ChairLadyImage}": {
+            "colorScheme === \"light\" ? ProtectLogoLight : ProtectLogoDark": {
               "total": 1,
               "SG One": 1
             },
-            "{FaceInHoleImage}": {
+            "colorScheme === \"light\" ? TenantAssessmentLogoLight : TenantAssessmentLogoDark": {
               "total": 1,
               "SG One": 1
             },
-            "{AttributeLicenseKeyImage}": {
+            "colorScheme === \"light\" ? ManagementLogoLight : ManagementLogoDark": {
               "total": 1,
               "SG One": 1
             },
-            "{BoxManImage}": {
+            "AttributeLicenseKeyImage": {
               "total": 1,
               "SG One": 1
             },
-            "{ClappingIllustration}": {
+            "StartExploringManagementImage": {
+              "total": 1,
+              "SG One": 1
+            },
+            "RocketImage": {
+              "total": 1,
+              "SG One": 1
+            },
+            "FunToUseImage": {
+              "total": 1,
+              "SG One": 1
+            },
+            "ClappingIllustration": {
               "total": 1,
               "Performance": 1
             },
-            "{image}": {
+            "image": {
               "total": 1,
               "Performance": 1
             },
-            "{FillingReviewIllustration}": {
+            "FillingReviewIllustration": {
               "total": 1,
               "Performance": 1
             },
-            "{OpenEnvelopeIllustration}": {
+            "OpenEnvelopeIllustration": {
               "total": 1,
               "Performance": 1
             },
-            "{iconMapping[cardKey]}": {
+            "isSearchApplied ? ResultNotFoundMedium : PropertiesMedium": {
               "total": 1,
               "Management App": 1
             },
-            "{PerformanceManagementModalIllustration}": {
+            "iconMapping[cardKey]": {
               "total": 1,
               "Management App": 1
             },
-            "{standaloneIntegrationLogos[integration.provisioningType]}": {
+            "PerformanceManagementModalIllustration": {
               "total": 1,
               "Management App": 1
             },
-            "{MsTeamsLogo}": {
+            "standaloneIntegrationLogos[integration.provisioningType]": {
               "total": 1,
               "Management App": 1
             },
-            "{productLogo}": {
+            "MsTeamsLogo": {
               "total": 1,
               "Management App": 1
             },
-            "{UploadCloud}": {
+            "productLogo": {
               "total": 1,
               "Management App": 1
             },
-            "{productIllustration}": {
+            "UploadCloud": {
               "total": 1,
               "Management App": 1
             },
-            "{EmailSentIllustration}": {
+            "productIllustration": {
+              "total": 1,
+              "Management App": 1
+            },
+            "EmailSentIllustration": {
               "total": 1,
               "Activation": 1
             },
-            "{NoProductAccessIllustration}": {
+            "NoProductAccessIllustration": {
               "total": 1,
               "Activation": 1
             },
-            "{NewConversationIcon}": {
+            "NewConversationIcon": {
               "total": 1,
               "AI": 1
             },
-            "{WaiBlueIcon}": {
+            "WaiBlueIcon": {
               "total": 1,
               "AI": 1
             },
-            "{connector.icon}": {
+            "connector.icon": {
               "total": 1,
               "AI": 1
             },
-            "{CallExpression}": {
+            "getFileTypeIcon(fileName)": {
               "total": 1,
               "AI": 1
             },
-            "{WaiLogo}": {
+            "WaiLogo": {
               "total": 1,
               "AI": 1
             },
-            "{OfficevibeLogo}": {
+            "OfficevibeLogo": {
               "total": 1,
               "AI": 1
             },
-            "{AnnouncementIllustration}": {
+            "AnnouncementIllustration": {
               "total": 1,
               "AI": 1
             },
-            "{channelTypeLogo}": {
+            "channelTypeLogo": {
               "total": 1,
               "AI": 1
             },
-            "{WorkleapIcon}": {
+            "WorkleapIcon": {
               "total": 1,
               "AI": 1
             },
-            "{WebsiteIcon}": {
+            "WebsiteIcon": {
               "total": 1,
               "AI": 1
             },
-            "{FileLibraryIcon}": {
+            "FileLibraryIcon": {
               "total": 1,
               "AI": 1
             }
@@ -1705,7 +2048,7 @@
               "Activation": 1,
               "Login": 1
             },
-            "{width}": {
+            "width": {
               "total": 2,
               "AI": 2
             },
@@ -1713,7 +2056,7 @@
               "total": 2,
               "AI": 2
             },
-            "{Sizes[size].width}": {
+            "Sizes[size].width": {
               "total": 1,
               "SG One": 1
             },
@@ -1784,7 +2127,7 @@
               "Activation": 1,
               "Login": 1
             },
-            "{height}": {
+            "height": {
               "total": 2,
               "AI": 2
             },
@@ -1792,11 +2135,11 @@
               "total": 2,
               "AI": 2
             },
-            "{imageHeight}": {
+            "imageHeight": {
               "total": 1,
               "SG Protect": 1
             },
-            "{Sizes[size].height}": {
+            "Sizes[size].height": {
               "total": 1,
               "SG One": 1
             },
@@ -1804,7 +2147,7 @@
               "total": 1,
               "SG One": 1
             },
-            "{imageSize}": {
+            "imageSize": {
               "total": 1,
               "SG One": 1
             },
@@ -1842,7 +2185,7 @@
               "Performance": 1,
               "Activation": 7
             },
-            "{imageMaxWidth}": {
+            "imageMaxWidth": {
               "total": 1,
               "Performance": 1
             }
@@ -1992,7 +2335,7 @@
         "bottom": {
           "usage": 1,
           "values": {
-            "{transform.bottom}": {
+            "transform.bottom": {
               "total": 1,
               "Performance": 1
             }
@@ -2001,7 +2344,7 @@
         "right": {
           "usage": 1,
           "values": {
-            "{transform.right}": {
+            "transform.right": {
               "total": 1,
               "Performance": 1
             }
@@ -2033,18 +2376,11 @@
         "placeholder": {
           "usage": 47,
           "values": {
-            "{CallExpression}": {
-              "total": 30,
-              "Performance": 3,
-              "Management App": 14,
-              "Activation": 1,
-              "AI": 12
-            },
             "Business email": {
               "total": 2,
               "SG One": 2
             },
-            "{placeholder}": {
+            "placeholder": {
               "total": 2,
               "Performance": 1,
               "Management App": 1
@@ -2057,29 +2393,105 @@
               "total": 2,
               "Administration Portal": 2
             },
-            "{domain}": {
+            "t(\"websites.urlPlaceholder\")": {
               "total": 2,
               "AI": 2
             },
-            "{userData.fullName}": {
+            "domain": {
+              "total": 2,
+              "AI": 2
+            },
+            "t(\"websites.excludePathsPlaceholder\")": {
+              "total": 2,
+              "AI": 2
+            },
+            "userData.fullName": {
               "total": 1,
               "SG One": 1
             },
-            "{roleLabel}": {
+            "roleLabel": {
               "total": 1,
               "SG One": 1
+            },
+            "label": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t(\"titlePlaceholder\")": {
+              "total": 1,
+              "Performance": 1
             },
             "https://": {
               "total": 1,
               "Performance": 1
             },
-            "{label}": {
+            "t(\"enterGoalTitle\")": {
               "total": 1,
               "Performance": 1
             },
-            "{labelPlaceholder}": {
+            "labelPlaceholder": {
               "total": 1,
               "Performance": 1
+            },
+            "t(\"choicePlaceholder\", { index: index + 1 })": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t(\"billingForm.emailAddressPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.firstNamePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.lastNamePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.organizationNamePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.street1Placeholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.street2Placeholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.cityPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.statePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"billingForm.postalCodePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"cancelAddOnModal.otherPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"teamDetails.teamNamePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"segmentForm.segmentNamePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"settings.namePlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"createUser.sms.emailAddressPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
             },
             "en-US": {
               "total": 1,
@@ -2088,17 +2500,53 @@
             "Account Token": {
               "total": 1,
               "Administration Portal": 1
+            },
+            "t(\"createWorkspacePage.displayName_placeholder\")": {
+              "total": 1,
+              "Activation": 1
+            },
+            "t(\"sharepoint.connect.domainName.placeholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"sharepoint.connect.clientId.placeholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"sharepoint.connect.microsoftTenantId.placeholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"sharepoint.connect.clientSecret.placeholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"confluence.connect.apiToken.placeholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"confluence.connect.domainName.placeholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"confluence.connect.email.placeholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "tShared(\"personalization.addMemoryPlaceholder\")": {
+              "total": 1,
+              "AI": 1
             }
           }
         },
         "value": {
           "usage": 41,
           "values": {
-            "{LogicalExpression}": {
+            "value ?? \"\"": {
               "total": 6,
               "Management App": 6
             },
-            "{value}": {
+            "value": {
               "total": 6,
               "Performance": 2,
               "Management App": 1,
@@ -2106,103 +2554,107 @@
               "Login": 1,
               "AI": 1
             },
-            "{tenantAccessRequestUrl}": {
+            "tenantAccessRequestUrl": {
               "total": 2,
               "SG Protect": 2
             },
-            "{companyRoleOther}": {
+            "companyRoleOther": {
               "total": 2,
               "SG One": 2
             },
-            "{formik.values.email}": {
+            "formik.values.email": {
               "total": 2,
               "SG One": 2
             },
-            "{ConditionalExpression}": {
-              "total": 2,
-              "Administration Portal": 2
-            },
-            "{sessionData!.user.email}": {
+            "userData?.email": {
               "total": 1,
               "SG One": 1
             },
-            "{ChainExpression}": {
+            "formik.values.firstName": {
               "total": 1,
               "SG One": 1
             },
-            "{formik.values.firstName}": {
+            "formik.values.lastName": {
               "total": 1,
               "SG One": 1
             },
-            "{formik.values.lastName}": {
+            "sessionData!.user.email": {
               "total": 1,
               "SG One": 1
             },
-            "{measurement.title}": {
+            "measurement.title": {
               "total": 1,
               "Performance": 1
             },
-            "{measurement.link}": {
+            "measurement.link": {
               "total": 1,
               "Performance": 1
             },
-            "{title}": {
+            "title": {
               "total": 1,
               "Performance": 1
             },
-            "{editedLinkDisplayText}": {
+            "editedLinkDisplayText": {
               "total": 1,
               "Performance": 1
             },
-            "{editedLinkUrl}": {
+            "editedLinkUrl": {
               "total": 1,
               "Performance": 1
             },
-            "{subReason}": {
+            "subReason": {
               "total": 1,
               "Management App": 1
             },
-            "{otherReason}": {
+            "otherReason": {
               "total": 1,
               "Management App": 1
             },
-            "{internalValue}": {
+            "internalValue": {
               "total": 1,
               "Management App": 1
             },
-            "{phoneNumber}": {
+            "phoneNumber": {
               "total": 1,
               "Management App": 1
             },
-            "{defaultLanguage}": {
+            "isTestOrganization ? \"Yes\" : \"No\"": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{deactivatedByMemberId}": {
+            "defaultLanguage": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{displayName}": {
+            "cleanupDeactivatedMembersAfterDelay ? \"Yes\" : \"No\"": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{id}": {
+            "deactivatedByMemberId": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{jiraLink}": {
+            "displayName": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{session.emailAddress}": {
+            "id": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "jiraLink": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "session.emailAddress": {
               "total": 1,
               "Activation": 1
             },
-            "{firstName}": {
+            "firstName": {
               "total": 1,
               "Activation": 1
             },
-            "{lastName}": {
+            "lastName": {
               "total": 1,
               "Activation": 1
             }
@@ -2282,19 +2734,15 @@
         "onChange": {
           "usage": 23,
           "values": {
-            "{formik.handleChange}": {
+            "formik.handleChange": {
               "total": 4,
               "SG One": 4
             },
-            "{handleUserNameChange}": {
+            "handleUserNameChange": {
               "total": 3,
               "SG Protect": 1,
               "Performance": 1,
               "Management Shell": 1
-            },
-            "{CallExpression}": {
-              "total": 2,
-              "Administration Portal": 2
             },
             "e => onChange({ ...measurement, title: e.target.value })": {
               "total": 1,
@@ -2312,13 +2760,21 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleInputChange}": {
+            "handleInputChange": {
               "total": 1,
               "Management App": 1
             },
-            "{handleOnChange}": {
+            "handleOnChange": {
               "total": 1,
               "Management App": 1
+            },
+            "handleInputChange(setUserId)": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "handleInputChange(setOrganizationId)": {
+              "total": 1,
+              "Administration Portal": 1
             },
             "e => setUserId(e.target.value)": {
               "total": 1,
@@ -2340,11 +2796,11 @@
               "total": 1,
               "Activation": 1
             },
-            "{handleFirstNameChange}": {
+            "handleFirstNameChange": {
               "total": 1,
               "Activation": 1
             },
-            "{handleLastNameChange}": {
+            "handleLastNameChange": {
               "total": 1,
               "Activation": 1
             },
@@ -2365,7 +2821,7 @@
               "Administration Portal": 1,
               "Activation": 1
             },
-            "{isSubmitting}": {
+            "isSubmitting": {
               "total": 1,
               "SG One": 1
             }
@@ -2381,23 +2837,27 @@
               "Administration Portal": 4,
               "Activation": 1
             },
-            "{UnaryExpression}": {
-              "total": 4,
-              "Management App": 4
-            },
-            "{isRestrictedView}": {
+            "isRestrictedView": {
               "total": 3,
               "Management App": 3
             },
-            "{isPending}": {
+            "!canEditIdentificationInProfile": {
+              "total": 3,
+              "Management App": 3
+            },
+            "isPending": {
               "total": 2,
               "SG One": 2
             },
-            "{isDisabled}": {
+            "isDisabled": {
               "total": 2,
               "Management App": 2
             },
-            "{disabled}": {
+            "!taxExemptionCode": {
+              "total": 1,
+              "Management App": 1
+            },
+            "disabled": {
               "total": 1,
               "Management App": 1
             }
@@ -2423,11 +2883,11 @@
               "total": 2,
               "SG One": 2
             },
-            "{handlePreferredNameChange}": {
+            "handlePreferredNameChange": {
               "total": 2,
               "Management App": 2
             },
-            "{onValueChange}": {
+            "onValueChange": {
               "total": 1,
               "Performance": 1
             },
@@ -2447,11 +2907,11 @@
               "total": 1,
               "Performance": 1
             },
-            "{handleSubReasonChange}": {
+            "handleSubReasonChange": {
               "total": 1,
               "Management App": 1
             },
-            "{handleOtherReasonChange}": {
+            "handleOtherReasonChange": {
               "total": 1,
               "Management App": 1
             },
@@ -2459,7 +2919,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{handlePhoneNumberChanged}": {
+            "handlePhoneNumberChanged": {
               "total": 1,
               "Management App": 1
             },
@@ -2471,7 +2931,7 @@
               "total": 1,
               "Administration Portal": 1
             },
-            "{handleValueChange}": {
+            "handleValueChange": {
               "total": 1,
               "Login": 1
             }
@@ -2480,15 +2940,15 @@
         "maxLength": {
           "usage": 11,
           "values": {
-            "{FIRST_NAME_MAX_LENGTH}": {
+            "FIRST_NAME_MAX_LENGTH": {
               "total": 2,
               "Management App": 2
             },
-            "{LAST_NAME_MAX_LENGTH}": {
+            "LAST_NAME_MAX_LENGTH": {
               "total": 2,
               "Management App": 2
             },
-            "{PREFERRED_NAME_MAX_LENGTH}": {
+            "PREFERRED_NAME_MAX_LENGTH": {
               "total": 2,
               "Management App": 2
             },
@@ -2496,19 +2956,19 @@
               "total": 1,
               "Management App": 1
             },
-            "{MaxCharacterLimit.RATING_SCALE_LABEL_MAX}": {
+            "MaxCharacterLimit.RATING_SCALE_LABEL_MAX": {
               "total": 1,
               "Performance": 1
             },
-            "{MaxCharacterLimit.MULTIPLE_CHOICE_OPTION_MAX}": {
+            "MaxCharacterLimit.MULTIPLE_CHOICE_OPTION_MAX": {
               "total": 1,
               "Performance": 1
             },
-            "{EMPLOYEE_IDENTIFIER_MAX_LENGTH}": {
+            "EMAIL_MAX_LENGTH": {
               "total": 1,
               "Management App": 1
             },
-            "{EMAIL_MAX_LENGTH}": {
+            "EMPLOYEE_IDENTIFIER_MAX_LENGTH": {
               "total": 1,
               "Management App": 1
             }
@@ -2517,19 +2977,23 @@
         "onBlur": {
           "usage": 9,
           "values": {
-            "{CallExpression}": {
-              "total": 4,
-              "Activation": 4
-            },
-            "{onBlur}": {
+            "onBlur": {
               "total": 2,
               "Management App": 2
+            },
+            "handleOnBlur(\"firstName\")": {
+              "total": 2,
+              "Activation": 2
+            },
+            "handleOnBlur(\"lastName\")": {
+              "total": 2,
+              "Activation": 2
             },
             "() => onRootUrlBlur(field.value)": {
               "total": 2,
               "AI": 2
             },
-            "{handleInputBlur}": {
+            "handleInputBlur": {
               "total": 1,
               "Management App": 1
             }
@@ -2543,7 +3007,7 @@
               "Performance": 3,
               "Management App": 1
             },
-            "{width}": {
+            "width": {
               "total": 1,
               "Management App": 1
             },
@@ -2570,15 +3034,15 @@
         "autoFocus": {
           "usage": 4,
           "values": {
-            "{autoFocus}": {
+            "autoFocus": {
               "total": 2,
               "Performance": 2
             },
-            "{UnaryExpression}": {
+            "!isLinkTextInputFocused": {
               "total": 1,
               "Performance": 1
             },
-            "{isLinkTextInputFocused}": {
+            "isLinkTextInputFocused": {
               "total": 1,
               "Performance": 1
             }
@@ -2587,10 +3051,17 @@
         "icon": {
           "usage": 4,
           "values": {
-            "{JSXElement}": {
-              "total": 4,
-              "Performance": 2,
+            "<WebsiteFavicon key={updatedRootUrl} url={updatedRootUrl} width=\"1.5rem\" height=\"1.5rem\" className=\"o-ui-input-icon\" />": {
+              "total": 2,
               "AI": 2
+            },
+            "<SearchIcon color=\"neutral-weakest\" />": {
+              "total": 1,
+              "Performance": 1
+            },
+            "<LinkIcon size=\"sm\" />": {
+              "total": 1,
+              "Performance": 1
             }
           }
         },
@@ -2614,12 +3085,12 @@
         "onKeyDown": {
           "usage": 3,
           "values": {
-            "{handleKeyDown}": {
+            "handleKeyDown": {
               "total": 2,
               "Management App": 1,
               "AI": 1
             },
-            "{handleOnKeyDown}": {
+            "handleOnKeyDown": {
               "total": 1,
               "Performance": 1
             }
@@ -2641,11 +3112,11 @@
         "defaultValue": {
           "usage": 2,
           "values": {
-            "{ratingScalePoint.label}": {
+            "ratingScalePoint.label": {
               "total": 1,
               "Performance": 1
             },
-            "{label}": {
+            "label": {
               "total": 1,
               "Performance": 1
             }
@@ -2654,11 +3125,11 @@
         "loading": {
           "usage": 2,
           "values": {
-            "{isFetching}": {
+            "isFetching": {
               "total": 1,
               "SG One": 1
             },
-            "{isTyping}": {
+            "isTyping": {
               "total": 1,
               "Management App": 1
             }
@@ -2686,19 +3157,19 @@
             }
           }
         },
-        "hidden": {
+        "textTransform": {
           "usage": 1,
           "values": {
-            "true": {
+            "uppercase": {
               "total": 1,
               "SG One": 1
             }
           }
         },
-        "textTransform": {
+        "hidden": {
           "usage": 1,
           "values": {
-            "uppercase": {
+            "true": {
               "total": 1,
               "SG One": 1
             }
@@ -2725,7 +3196,7 @@
         "button": {
           "usage": 1,
           "values": {
-            "{JSXElement}": {
+            "(<IconButton size=\"sm\"\n    aria-label=\"send\"\n    onClick={onSubmit}\n    backgroundColor={isButtonEnabled ? \"var(--hop-orchid-bloom-600)\" : undefined}\n    borderRadius=\"circle\"\n>\n    <ArrowUpIcon fill={isButtonEnabled ? \"neutral-strong\" : \"neutral-weakest\"} size=\"sm\" />\n</IconButton>)": {
               "total": 1,
               "Performance": 1
             }
@@ -2802,20 +3273,20 @@
         "onClose": {
           "usage": 61,
           "values": {
-            "{onClose}": {
+            "onClose": {
               "total": 16,
               "SG One": 1,
               "Performance": 9,
               "Management Shell": 1,
               "AI": 5
             },
-            "{close}": {
+            "close": {
               "total": 13,
               "Performance": 9,
               "Management App": 3,
               "AI": 1
             },
-            "{handleClose}": {
+            "handleClose": {
               "total": 6,
               "SG Protect": 1,
               "SG One": 1,
@@ -2823,23 +3294,23 @@
               "Management Shell": 1,
               "AI": 2
             },
-            "{onModalClose}": {
+            "onModalClose": {
               "total": 5,
               "Management App": 5
             },
-            "{handleModalClose}": {
+            "handleModalClose": {
               "total": 3,
               "Management App": 3
             },
-            "{handleOnClose}": {
+            "handleOnClose": {
               "total": 2,
               "Management App": 2
             },
-            "{onCloseModal}": {
+            "onCloseModal": {
               "total": 2,
               "Management App": 2
             },
-            "{onCancel}": {
+            "onCancel": {
               "total": 2,
               "Management App": 2
             },
@@ -2847,7 +3318,7 @@
               "total": 1,
               "SG Protect": 1
             },
-            "{onConfirmationCancelClick}": {
+            "onConfirmationCancelClick": {
               "total": 1,
               "Performance": 1
             },
@@ -2859,15 +3330,15 @@
               "total": 1,
               "Performance": 1
             },
-            "{closeLinkEditorModal}": {
+            "closeLinkEditorModal": {
               "total": 1,
               "Performance": 1
             },
-            "{handleCloseModal}": {
+            "handleCloseModal": {
               "total": 1,
               "Management App": 1
             },
-            "{closeModal}": {
+            "closeModal": {
               "total": 1,
               "Management App": 1
             },
@@ -2883,11 +3354,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{closeSidePanel}": {
+            "closeSidePanel": {
               "total": 1,
               "AI": 1
             },
-            "{closeMessageSources}": {
+            "closeMessageSources": {
               "total": 1,
               "AI": 1
             }
@@ -2896,11 +3367,11 @@
         "width": {
           "usage": 40,
           "values": {
-            "{ModalSize.md}": {
+            "ModalSize.md": {
               "total": 10,
               "Performance": 10
             },
-            "{ModalSize.sm}": {
+            "ModalSize.sm": {
               "total": 8,
               "Performance": 8
             },
@@ -2932,7 +3403,7 @@
               "total": 1,
               "SG One": 1
             },
-            "{ModalSize.lg}": {
+            "ModalSize.lg": {
               "total": 1,
               "Performance": 1
             },
@@ -2940,7 +3411,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{ModalSize.xl}": {
+            "ModalSize.xl": {
               "total": 1,
               "Performance": 1
             },
@@ -2976,7 +3447,7 @@
               "Performance": 3,
               "AI": 2
             },
-            "{dismissable}": {
+            "dismissable": {
               "total": 1,
               "Management App": 1
             }
@@ -3155,7 +3626,7 @@
               "total": 2,
               "SG One": 2
             },
-            "{ConditionalExpression}": {
+            "feature.isEnabled ? \"positive\" : \"negative\"": {
               "total": 2,
               "Management App": 1,
               "Activation": 1
@@ -3339,7 +3810,7 @@
         "show": {
           "usage": 70,
           "values": {
-            "{isOpen}": {
+            "isOpen": {
               "total": 26,
               "SG Protect": 4,
               "Performance": 2,
@@ -3347,102 +3818,109 @@
               "Management Shell": 1,
               "AI": 7
             },
-            "{BinaryExpression}": {
-              "total": 5,
-              "SG Protect": 1,
-              "Performance": 1,
-              "Management App": 3
-            },
-            "{isSelectReviewTypeModalOpen}": {
+            "isSelectReviewTypeModalOpen": {
               "total": 4,
               "Performance": 4
             },
-            "{isSelectPeerModalOpen}": {
+            "isSelectPeerModalOpen": {
               "total": 3,
               "Performance": 3
             },
-            "{isProgressUpdateModalOpen}": {
+            "isProgressUpdateModalOpen": {
               "total": 3,
               "Performance": 3
             },
-            "{isMissingReportingManagersModalOpen}": {
+            "isMissingReportingManagersModalOpen": {
               "total": 2,
               "Performance": 2
             },
-            "{isActiveParticipantsMissingSubscriptionModalOpen}": {
+            "isActiveParticipantsMissingSubscriptionModalOpen": {
               "total": 2,
               "Performance": 2
             },
-            "{isSubmittedModalOpen}": {
+            "isSubmittedModalOpen": {
               "total": 2,
               "Performance": 2
             },
-            "{isActionModalOpen}": {
+            "blocker.state === \"blocked\"": {
+              "total": 2,
+              "SG Protect": 1,
+              "Performance": 1
+            },
+            "isActionModalOpen": {
               "total": 2,
               "Performance": 2
             },
-            "{ConditionalExpression}": {
+            "shouldForceOpen ? shouldForceOpen : blocker.state === \"blocked\"": {
               "total": 2,
               "Management Shell": 1,
               "AI": 1
             },
-            "{isSidePanelOpen}": {
+            "isSidePanelOpen": {
               "total": 2,
               "AI": 2
             },
-            "{isModalOpen}": {
+            "isModalOpen": {
               "total": 1,
               "SG One": 1
             },
-            "{isAssignTemporaryManagerModalOpen}": {
+            "isAssignTemporaryManagerModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isSearchFilterOpen}": {
+            "isSearchFilterOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isStatusFilterOpen}": {
+            "isStatusFilterOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isSelectParticipantsModalOpen}": {
+            "isSelectParticipantsModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isMissingDirectManagerConfirmationModalOpen}": {
+            "isMissingDirectManagerConfirmationModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isWarningModalOpen}": {
+            "isWarningModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isDeleteSectionModalOpen}": {
+            "isDeleteSectionModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isLinkEditMode}": {
+            "isLinkEditMode": {
               "total": 1,
               "Performance": 1
             },
-            "{isMissingReviewTypeModalOpen}": {
+            "isMissingReviewTypeModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isShareReviewModalOpen}": {
+            "isShareReviewModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{showModal}": {
+            "modalVariant !== undefined": {
               "total": 1,
               "Management App": 1
             },
-            "{isRevokeKeyModalOpen}": {
+            "action !== undefined": {
               "total": 1,
               "Management App": 1
             },
-            "{isCreateKeyModalOpen}": {
+            "showModal": {
+              "total": 1,
+              "Management App": 1
+            },
+            "isRevokeKeyModalOpen": {
+              "total": 1,
+              "Management App": 1
+            },
+            "isCreateKeyModalOpen": {
               "total": 1,
               "Management App": 1
             },
@@ -3450,11 +3928,15 @@
               "total": 1,
               "Management App": 1
             },
-            "{show}": {
+            "userAction !== undefined": {
+              "total": 1,
+              "Management App": 1
+            },
+            "show": {
               "total": 1,
               "Management Shell": 1
             },
-            "{isEditModalOpen}": {
+            "isEditModalOpen": {
               "total": 1,
               "AI": 1
             }
@@ -3471,7 +3953,7 @@
               "Management Shell": 3,
               "AI": 8
             },
-            "{ZIndex.MODAL}": {
+            "ZIndex.MODAL": {
               "total": 26,
               "Performance": 26
             },
@@ -3499,9 +3981,13 @@
               "Performance": 2,
               "Management App": 19
             },
-            "{ConditionalExpression}": {
-              "total": 2,
-              "Administration Portal": 2
+            "!isProcessing && errorMessage !== \"\" ? \"block\" : \"none\"": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "(!isProcessing && errorMessage !== \"\") ? \"block\" : \"none\"": {
+              "total": 1,
+              "Administration Portal": 1
             }
           }
         },
@@ -3545,37 +4031,30 @@
         "name": {
           "usage": 65,
           "values": {
-            "{CallExpression}": {
-              "total": 15,
-              "SG One": 2,
-              "Performance": 13
-            },
-            "{LogicalExpression}": {
-              "total": 7,
-              "SG Protect": 1,
-              "Performance": 5,
-              "AI": 1
-            },
-            "{name}": {
+            "name": {
               "total": 6,
               "Management App": 3,
               "AI": 3
             },
-            "{displayName}": {
+            "displayName": {
               "total": 4,
               "SG Protect": 1,
               "Performance": 2,
               "Management App": 1
             },
-            "{member.displayName}": {
+            "member.displayName": {
               "total": 4,
               "Management App": 4
             },
-            "{manager.displayName}": {
+            "toDisplayName(identity)": {
+              "total": 3,
+              "Performance": 3
+            },
+            "manager.displayName": {
               "total": 3,
               "Management App": 3
             },
-            "{fullName}": {
+            "fullName": {
               "total": 3,
               "SG One": 1,
               "Management App": 1,
@@ -3585,22 +4064,30 @@
               "total": 2,
               "SG Protect": 2
             },
-            "{data.userDisplayName}": {
+            "data.userDisplayName": {
               "total": 2,
               "SG Protect": 2
             },
-            "{label}": {
+            "directManager.identity.displayName ?? \"\"": {
+              "total": 2,
+              "Performance": 2
+            },
+            "selectedMember?.displayName ?? \"\"": {
+              "total": 2,
+              "Performance": 2
+            },
+            "label": {
               "total": 2,
               "Management App": 2
             },
-            "{member.fullName}": {
+            "member.fullName": {
               "total": 2,
               "Management App": 1,
               "AI": 1
             },
-            "Jester Gamache": {
+            "member.displayName ?? \"Unknown\"": {
               "total": 1,
-              "SG One": 1
+              "SG Protect": 1
             },
             "Mathieu Charpenel": {
               "total": 1,
@@ -3610,15 +4097,71 @@
               "total": 1,
               "SG One": 1
             },
-            "{assignedSeat.fullName}": {
+            "assignedSeat.fullName": {
               "total": 1,
               "SG One": 1
             },
-            "{t.name}": {
+            "Jester Gamache": {
+              "total": 1,
+              "SG One": 1
+            },
+            "splitCamelCase(activity.operationType)": {
+              "total": 1,
+              "SG One": 1
+            },
+            "cleanupDisplayName(fullName)": {
+              "total": 1,
+              "SG One": 1
+            },
+            "toDisplayName(responseIdentity)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(reviewee)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(peer)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(peerReview.peerIdentity)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(peerReviewNomination.reviewer)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(member)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t.name": {
+              "total": 1,
+              "Performance": 1
+            },
+            "member.displayName ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(goal.owner)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(update.updatedBy)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(mostRecentUpdate.updatedBy)": {
               "total": 1,
               "Performance": 1
             },
             "`${goal.owner.displayName} ${goal.owner.lastName}`": {
+              "total": 1,
+              "Performance": 1
+            },
+            "toDisplayName(response.answer.identity)": {
               "total": 1,
               "Performance": 1
             },
@@ -3642,11 +4185,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{apiKey.publicApiKeyCreator}": {
+            "apiKey.publicApiKeyCreator": {
               "total": 1,
               "Management App": 1
             },
-            "{organization.displayName}": {
+            "organization.displayName": {
               "total": 1,
               "Activation": 1
             },
@@ -3654,7 +4197,11 @@
               "total": 1,
               "AI": 1
             },
-            "{author}": {
+            "studentName ?? tShared(\"errors.userNotFoundTitle\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "author": {
               "total": 1,
               "AI": 1
             }
@@ -3663,53 +4210,117 @@
         "src": {
           "usage": 45,
           "values": {
-            "{LogicalExpression}": {
-              "total": 24,
-              "Performance": 20,
-              "AI": 4
-            },
-            "{picture}": {
+            "picture": {
               "total": 6,
               "Management App": 4,
               "AI": 2
             },
-            "{member.imageUrl}": {
+            "member.imageUrl": {
               "total": 4,
               "Management App": 4
             },
-            "{manager.imageUrl}": {
+            "manager.imageUrl": {
               "total": 3,
               "Management App": 3
             },
-            "{pictureUrl}": {
+            "member.imageUrl ?? \"\"": {
+              "total": 3,
+              "Performance": 2,
+              "AI": 1
+            },
+            "identity.imageUrl ?? \"\"": {
+              "total": 2,
+              "Performance": 2
+            },
+            "directManager.identity.imageUrl ?? \"\"": {
+              "total": 2,
+              "Performance": 2
+            },
+            "memberImage ?? \"\"": {
+              "total": 2,
+              "Performance": 2
+            },
+            "imageUrl ?? \"\"": {
+              "total": 2,
+              "Performance": 2
+            },
+            "data?.member?.imageUrl ?? \"\"": {
+              "total": 2,
+              "AI": 2
+            },
+            "identity!.imageUrl ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "responseIdentity.imageUrl ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "reviewee.imageUrl ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "peer.imageUrl ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "peerReview.peerIdentity.imageUrl ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "peerReviewNomination.reviewer.imageUrl ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "goal.owner.imageUrl ?? undefined": {
+              "total": 1,
+              "Performance": 1
+            },
+            "update.updatedBy.imageUrl ?? undefined": {
+              "total": 1,
+              "Performance": 1
+            },
+            "mostRecentUpdate.updatedBy.imageUrl ?? undefined": {
+              "total": 1,
+              "Performance": 1
+            },
+            "response.answer.identity?.imageUrl ?? \"\"": {
+              "total": 1,
+              "Performance": 1
+            },
+            "pictureUrl": {
               "total": 1,
               "Management App": 1
             },
-            "{avatarUrl}": {
+            "avatarUrl": {
               "total": 1,
               "Management App": 1
             },
-            "{imageUrl}": {
+            "imageUrl": {
               "total": 1,
               "Management App": 1
             },
-            "{member.picture}": {
+            "member.picture": {
               "total": 1,
               "Management App": 1
             },
-            "{apiKey.avatarUrl}": {
+            "apiKey.avatarUrl": {
               "total": 1,
               "Management App": 1
             },
-            "{organization.imageUrl}": {
+            "organization.imageUrl": {
               "total": 1,
               "Activation": 1
             },
-            "{iconUrl}": {
+            "iconUrl": {
               "total": 1,
               "AI": 1
             },
-            "{(suggestion as UserSuggestion).imageUrl}": {
+            "imageUrl ?? undefined": {
+              "total": 1,
+              "AI": 1
+            },
+            "(suggestion as UserSuggestion).imageUrl": {
               "total": 1,
               "AI": 1
             }
@@ -3740,7 +4351,7 @@
               "total": 2,
               "Performance": 2
             },
-            "{avatarSize}": {
+            "avatarSize": {
               "total": 1,
               "Performance": 1
             }
@@ -3749,7 +4360,7 @@
         "onClick": {
           "usage": 4,
           "values": {
-            "{onClick}": {
+            "onClick": {
               "total": 2,
               "Performance": 2
             },
@@ -3774,7 +4385,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{size}": {
+            "size": {
               "total": 1,
               "Performance": 1
             },
@@ -3844,7 +4455,7 @@
         "marginLeft": {
           "usage": 1,
           "values": {
-            "{marginLeft}": {
+            "marginLeft": {
               "total": 1,
               "Performance": 1
             }
@@ -3862,7 +4473,7 @@
         "tabIndex": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "onClick ? 0 : undefined": {
               "total": 1,
               "Performance": 1
             }
@@ -3871,7 +4482,7 @@
         "onKeyDown": {
           "usage": 1,
           "values": {
-            "{onKeyDown}": {
+            "onKeyDown": {
               "total": 1,
               "Performance": 1
             }
@@ -3898,7 +4509,7 @@
         "top": {
           "usage": 1,
           "values": {
-            "{top}": {
+            "top": {
               "total": 1,
               "Performance": 1
             }
@@ -3907,7 +4518,7 @@
         "left": {
           "usage": 1,
           "values": {
-            "{left}": {
+            "left": {
               "total": 1,
               "Performance": 1
             }
@@ -3943,7 +4554,7 @@
               "total": 7,
               "Management App": 7
             },
-            "{LogicalExpression}": {
+            "size || \"md\"": {
               "total": 1,
               "Management App": 1
             }
@@ -3965,12 +4576,6 @@
         "backgroundColor": {
           "usage": 15,
           "values": {
-            "{ConditionalExpression}": {
-              "total": 5,
-              "Performance": 1,
-              "Management App": 2,
-              "AI": 2
-            },
             "var(--hop-status-caution-surface)": {
               "total": 2,
               "Management App": 2
@@ -3978,6 +4583,20 @@
             "primary": {
               "total": 2,
               "Administration Portal": 2
+            },
+            "error ? \"danger-weak\" : \"neutral-weakest\"": {
+              "total": 2,
+              "Management App": 1,
+              "AI": 1
+            },
+            "disabled || danger ? \"neutral-disabled\" : \"neutral\"": {
+              "total": 2,
+              "Management App": 1,
+              "AI": 1
+            },
+            "selected ? \"neutral-selected\" : \"neutral-weak\"": {
+              "total": 1,
+              "Performance": 1
             },
             "var(--hop-neutral-surface-strong)": {
               "total": 1,
@@ -3991,15 +4610,15 @@
               "total": 1,
               "Management App": 1
             },
-            "{LogicalExpression}": {
+            "({\n    \"neutral\": \"neutral\",\n    \"disabled\": \"neutral-disabled\"\n} as Record<string, string | undefined>)[variant] ?? `status-${variant}`": {
               "total": 1,
               "Management App": 1
             },
-            "{ChainExpression}": {
+            "tagDetails()?.backgroundColor": {
               "total": 1,
               "AI": 1
             },
-            "{cssToken.tagBackgroundColor}": {
+            "cssToken.tagBackgroundColor": {
               "total": 1,
               "AI": 1
             }
@@ -4016,7 +4635,7 @@
               "total": 2,
               "Administration Portal": 2
             },
-            "{ConditionalExpression}": {
+            "danger ? \"danger-strong\" : disabled ? \"neutral-weak\" : undefined": {
               "total": 2,
               "Management App": 1,
               "AI": 1
@@ -4029,11 +4648,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{LogicalExpression}": {
+            "({\n    \"neutral\": \"neutral-weak\",\n    \"disabled\": \"neutral-weak\"\n} as Record<string, string | undefined>)[variant] ?? \"1px solid transparent\"": {
               "total": 1,
               "Management App": 1
             },
-            "{ChainExpression}": {
+            "tagDetails()?.borderColor": {
               "total": 1,
               "AI": 1
             }
@@ -4071,13 +4690,13 @@
         "onRemove": {
           "usage": 10,
           "values": {
-            "{handleRemove}": {
+            "handleRemove": {
               "total": 3,
               "SG Protect": 1,
               "Performance": 1,
               "Management App": 1
             },
-            "{onRemove}": {
+            "onRemove": {
               "total": 2,
               "Performance": 2
             },
@@ -4121,7 +4740,7 @@
               "total": 2,
               "Administration Portal": 2
             },
-            "{ConditionalExpression}": {
+            "selected ? \"neutral-strong\" : \"neutral\"": {
               "total": 1,
               "Performance": 1
             },
@@ -4129,11 +4748,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{LogicalExpression}": {
+            "({\n    \"neutral\": \"neutral\",\n    \"disabled\": \"neutral-disabled\"\n} as Record<string, string | undefined>)[variant] ?? `status-${variant}`": {
               "total": 1,
               "Management App": 1
             },
-            "{ChainExpression}": {
+            "tagDetails()?.textColor": {
               "total": 1,
               "AI": 1
             },
@@ -4222,6 +4841,17 @@
             }
           }
         },
+        "validationState": {
+          "usage": 3,
+          "values": {
+            "error ? \"invalid\" : \"valid\"": {
+              "total": 3,
+              "Performance": 1,
+              "Management App": 1,
+              "AI": 1
+            }
+          }
+        },
         "marginLeft": {
           "usage": 3,
           "values": {
@@ -4243,17 +4873,6 @@
           "usage": 3,
           "values": {
             "0": {
-              "total": 3,
-              "Performance": 1,
-              "Management App": 1,
-              "AI": 1
-            }
-          }
-        },
-        "validationState": {
-          "usage": 3,
-          "values": {
-            "{ConditionalExpression}": {
               "total": 3,
               "Performance": 1,
               "Management App": 1,
@@ -4302,7 +4921,7 @@
         "borderHover": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "selected ? \"neutral-selected\" : \"neutral-hover\"": {
               "total": 1,
               "Performance": 1
             }
@@ -4311,7 +4930,7 @@
         "borderActive": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "selected ? \"neutral-selected\" : \"neutral-press\"": {
               "total": 1,
               "Performance": 1
             }
@@ -4320,7 +4939,7 @@
         "backgroundColorHover": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "selected ? \"neutral-selected\" : \"neutral-weak-hover\"": {
               "total": 1,
               "Performance": 1
             }
@@ -4329,7 +4948,7 @@
         "backgroundColorActive": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "selected ? \"neutral-selected\" : \"neutral-weak-press\"": {
               "total": 1,
               "Performance": 1
             }
@@ -4338,7 +4957,7 @@
         "colorHover": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "selected ? \"neutral-strong\" : \"neutral-hover\"": {
               "total": 1,
               "Performance": 1
             }
@@ -4347,7 +4966,7 @@
         "colorActive": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "selected ? \"neutral-strong\" : \"neutral-press\"": {
               "total": 1,
               "Performance": 1
             }
@@ -4356,7 +4975,7 @@
         "onClick": {
           "usage": 1,
           "values": {
-            "{onClick}": {
+            "onClick": {
               "total": 1,
               "Performance": 1
             }
@@ -4401,7 +5020,7 @@
         "title": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "showTooltip ? tooltip : undefined": {
               "total": 1,
               "AI": 1
             }
@@ -4422,13 +5041,7 @@
               "Management App": 1,
               "Management Shell": 5
             },
-            "{CallExpression}": {
-              "total": 7,
-              "Management App": 3,
-              "Activation": 2,
-              "AI": 2
-            },
-            "{shareGateHomeUrl}": {
+            "shareGateHomeUrl": {
               "total": 3,
               "SG Protect": 3
             },
@@ -4436,11 +5049,11 @@
               "total": 3,
               "SG Protect": 3
             },
-            "{CONTACT_SUPPORT_URL}": {
+            "CONTACT_SUPPORT_URL": {
               "total": 2,
               "SG Protect": 2
             },
-            "{tenantAccessRequestUrl}": {
+            "tenantAccessRequestUrl": {
               "total": 2,
               "SG Protect": 2
             },
@@ -4448,18 +5061,14 @@
               "total": 2,
               "SG Protect": 2
             },
-            "{documentationLinks.installDesktop}": {
+            "documentationLinks.installDesktop": {
               "total": 2,
               "SG One": 2
             },
-            "{actionHref}": {
+            "actionHref": {
               "total": 2,
               "Management App": 1,
               "Management Shell": 1
-            },
-            "https://go.sharegate.com/gjey": {
-              "total": 1,
-              "SG Protect": 1
             },
             "https://sharegate.com/terms": {
               "total": 1,
@@ -4473,35 +5082,43 @@
               "total": 1,
               "SG Protect": 1
             },
-            "{documentationLinks.securityFaq}": {
+            "https://go.sharegate.com/gjey": {
               "total": 1,
-              "SG One": 1
-            },
-            "{documentationLinks.contactUs}": {
-              "total": 1,
-              "SG One": 1
-            },
-            "{routes.addLicense}": {
-              "total": 1,
-              "SG One": 1
-            },
-            "{documentationLinks.licensing}": {
-              "total": 1,
-              "SG One": 1
+              "SG Protect": 1
             },
             "#": {
               "total": 1,
               "SG One": 1
             },
-            "{value.fullArticleUrl}": {
+            "documentationLinks.licensing": {
               "total": 1,
               "SG One": 1
             },
-            "{documentationLinks.manageSubscription}": {
+            "documentationLinks.contactUs": {
               "total": 1,
               "SG One": 1
             },
-            "{x.hostedInvoiceUrl}": {
+            "routes.addLicense": {
+              "total": 1,
+              "SG One": 1
+            },
+            "documentationLinks.securityFaq": {
+              "total": 1,
+              "SG One": 1
+            },
+            "value.fullArticleUrl": {
+              "total": 1,
+              "SG One": 1
+            },
+            "documentationLinks.manageSubscription": {
+              "total": 1,
+              "SG One": 1
+            },
+            "x.hostedInvoiceUrl": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"checkout.mailtoSalesLink\")": {
               "total": 1,
               "Management App": 1
             },
@@ -4513,6 +5130,14 @@
               "total": 1,
               "Management App": 1
             },
+            "t(\"csv.thresholdManagement.learnMoreHref\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"communication.helpMessageLink\")": {
+              "total": 1,
+              "Management App": 1
+            },
             "https://workleap.com/get/support": {
               "total": 1,
               "Management Shell": 1
@@ -4521,7 +5146,15 @@
               "total": 1,
               "Administration Portal": 1
             },
-            "{loginURL}": {
+            "t(\"updateProfilePage.workleapTermsLink\")": {
+              "total": 1,
+              "Activation": 1
+            },
+            "t(\"updateProfilePage.workleapPrivacyPolicyLink\")": {
+              "total": 1,
+              "Activation": 1
+            },
+            "loginURL": {
               "total": 1,
               "Login": 1
             },
@@ -4533,11 +5166,19 @@
               "total": 1,
               "Login": 1
             },
-            "{signupURL}": {
+            "signupURL": {
               "total": 1,
               "Login": 1
             },
-            "{url}": {
+            "url": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"disclaimer.betaServicesTermsLink\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"disclaimer.learnMoreLink\")": {
               "total": 1,
               "AI": 1
             }
@@ -4593,7 +5234,7 @@
               "Activation": 2,
               "Login": 4
             },
-            "{underline}": {
+            "underline": {
               "total": 1,
               "Management App": 1
             }
@@ -4646,11 +5287,11 @@
         "onClick": {
           "usage": 5,
           "values": {
-            "{onLinkClicked}": {
+            "onLinkClicked": {
               "total": 2,
               "SG Protect": 2
             },
-            "{handleTextLinkClick}": {
+            "handleTextLinkClick": {
               "total": 1,
               "SG Protect": 1
             },
@@ -4658,7 +5299,7 @@
               "total": 1,
               "SG One": 1
             },
-            "{onLinkClick}": {
+            "onLinkClick": {
               "total": 1,
               "AI": 1
             }
@@ -4685,7 +5326,7 @@
         "onMouseDown": {
           "usage": 2,
           "values": {
-            "{handleContactSupportClick}": {
+            "handleContactSupportClick": {
               "total": 2,
               "SG Protect": 2
             }
@@ -4748,11 +5389,7 @@
               "total": 2,
               "SG One": 2
             },
-            "{bgColor}": {
-              "total": 1,
-              "SG One": 1
-            },
-            "#3B57FF": {
+            "bgColor": {
               "total": 1,
               "SG One": 1
             },
@@ -4764,11 +5401,15 @@
               "total": 1,
               "SG One": 1
             },
+            "#3B57FF": {
+              "total": 1,
+              "SG One": 1
+            },
             "decorative-option6-weakest": {
               "total": 1,
               "Management App": 1
             },
-            "{ConditionalExpression}": {
+            "product.isTrialPlan ? \"decorative-option6-weakest\" : \"decorative-option5-weakest\"": {
               "total": 1,
               "Management App": 1
             },
@@ -4776,7 +5417,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{headingColor}": {
+            "headingColor": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -4898,7 +5539,7 @@
         "backgroundImage": {
           "usage": 1,
           "values": {
-            "{bgGradient}": {
+            "bgGradient": {
               "total": 1,
               "SG One": 1
             }
@@ -4983,7 +5624,7 @@
         "open": {
           "usage": 11,
           "values": {
-            "{isOpen}": {
+            "isOpen": {
               "total": 3,
               "Management App": 2,
               "Administration Portal": 1
@@ -4992,23 +5633,23 @@
               "total": 2,
               "SG One": 2
             },
-            "{isModalOpen}": {
+            "isModalOpen": {
               "total": 2,
               "Management App": 2
             },
-            "{isCloudCopyModalOpened}": {
+            "isCloudCopyModalOpened": {
               "total": 1,
               "SG Protect": 1
             },
-            "{open}": {
+            "open": {
               "total": 1,
               "Performance": 1
             },
-            "{isLaunchConfirmationModalOpen}": {
+            "isLaunchConfirmationModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{showConfirmationModal}": {
+            "showConfirmationModal": {
               "total": 1,
               "Management App": 1
             }
@@ -5017,7 +5658,7 @@
         "onOpenChange": {
           "usage": 7,
           "values": {
-            "{handleOpenChange}": {
+            "handleOpenChange": {
               "total": 2,
               "SG One": 1,
               "Management App": 1
@@ -5026,11 +5667,11 @@
               "total": 2,
               "Management App": 2
             },
-            "{onOpenChange}": {
+            "onOpenChange": {
               "total": 1,
               "Performance": 1
             },
-            "{handleModalOpenChange}": {
+            "handleModalOpenChange": {
               "total": 1,
               "Management App": 1
             },
@@ -5057,14 +5698,7 @@
         "onSubmit": {
           "usage": 43,
           "values": {
-            "{CallExpression}": {
-              "total": 17,
-              "Performance": 3,
-              "Management App": 8,
-              "Administration Portal": 4,
-              "AI": 2
-            },
-            "{handleSubmit}": {
+            "handleSubmit": {
               "total": 14,
               "SG Protect": 1,
               "SG One": 1,
@@ -5072,17 +5706,39 @@
               "Activation": 2,
               "AI": 1
             },
-            "{formik.handleSubmit}": {
+            "handleSubmit(onSubmit)": {
+              "total": 11,
+              "Management App": 5,
+              "Administration Portal": 4,
+              "AI": 2
+            },
+            "formik.handleSubmit": {
               "total": 5,
               "SG One": 5
             },
-            "{handleFormSubmit}": {
+            "handleSubmit(handleSave)": {
+              "total": 3,
+              "Management App": 3
+            },
+            "handleFormSubmit": {
               "total": 2,
               "Management App": 2
             },
-            "{onSubmit}": {
+            "onSubmit": {
               "total": 2,
               "Management App": 2
+            },
+            "handleSubmit(handleUpdateGoalSubmit)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "handleSubmit(handleCreateGoalSubmit)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "handleSubmit(handleProgressUpdateSubmit)": {
+              "total": 1,
+              "Performance": 1
             },
             "e => handleSubmit(data => handleConfirm(data, e))": {
               "total": 1,
@@ -5092,7 +5748,7 @@
               "total": 1,
               "Login": 1
             },
-            "{handleOnSubmit}": {
+            "handleOnSubmit": {
               "total": 1,
               "AI": 1
             }
@@ -5255,7 +5911,7 @@
         "padding": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "isMutating ? \"0\" : \"0.0625rem\"": {
               "total": 1,
               "AI": 1
             }
@@ -5264,7 +5920,7 @@
         "onClick": {
           "usage": 1,
           "values": {
-            "{handleFormClick}": {
+            "handleFormClick": {
               "total": 1,
               "AI": 1
             }
@@ -5315,7 +5971,7 @@
         "display": {
           "usage": 2,
           "values": {
-            "{ConditionalExpression}": {
+            "isProcessing ? \"block\" : \"none\"": {
               "total": 2,
               "Administration Portal": 2
             }
@@ -5329,12 +5985,12 @@
         "onSelectionChange": {
           "usage": 36,
           "values": {
-            "{handleChange}": {
+            "handleChange": {
               "total": 5,
               "SG One": 1,
               "Management App": 4
             },
-            "{handleSelectionChange}": {
+            "handleSelectionChange": {
               "total": 4,
               "Management App": 3,
               "Activation": 1
@@ -5351,15 +6007,15 @@
               "total": 2,
               "Management App": 2
             },
-            "{onChange}": {
+            "onChange": {
               "total": 2,
               "Management App": 2
             },
-            "{onUnitChange}": {
+            "onUnitChange": {
               "total": 1,
               "Performance": 1
             },
-            "{handleLanguageChange}": {
+            "handleLanguageChange": {
               "total": 1,
               "Performance": 1
             },
@@ -5367,11 +6023,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleTierChange}": {
+            "handleTierChange": {
               "total": 1,
               "Management App": 1
             },
-            "{handleTeamSizeSelection}": {
+            "handleTeamSizeSelection": {
               "total": 1,
               "Management App": 1
             },
@@ -5379,7 +6035,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleFilterChange}": {
+            "handleFilterChange": {
               "total": 1,
               "Management App": 1
             },
@@ -5407,7 +6063,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{onValueChange}": {
+            "onValueChange": {
               "total": 1,
               "Management App": 1
             },
@@ -5419,11 +6075,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleDefaultLanguageSelectionChange}": {
+            "handleDefaultLanguageSelectionChange": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{handleReasonChange}": {
+            "handleReasonChange": {
               "total": 1,
               "Administration Portal": 1
             },
@@ -5436,63 +6092,91 @@
         "selectedKey": {
           "usage": 33,
           "values": {
-            "{LogicalExpression}": {
+            "value": {
               "total": 7,
               "Management App": 7
             },
-            "{value}": {
-              "total": 7,
-              "Management App": 7
-            },
-            "{periodValue}": {
+            "periodValue": {
               "total": 3,
               "Management App": 3
             },
-            "{companyRole}": {
+            "companyRole": {
               "total": 2,
               "SG One": 2
             },
-            "{CallExpression}": {
+            "field.value": {
               "total": 2,
               "Management App": 2
             },
-            "{field.value}": {
+            "selectedKey": {
               "total": 2,
               "Management App": 2
             },
-            "{selectedKey}": {
-              "total": 2,
-              "Management App": 2
-            },
-            "{theme}": {
+            "theme": {
               "total": 1,
               "SG One": 1
             },
-            "{measurement.unit}": {
+            "measurement.unit": {
               "total": 1,
               "Performance": 1
             },
-            "{language}": {
+            "language": {
               "total": 1,
               "Performance": 1
             },
-            "{ruleRelationField.value}": {
+            "attribute?.value?.toString() ?? \"\"": {
               "total": 1,
               "Management App": 1
             },
-            "{languageField.value}": {
+            "value ?? null": {
               "total": 1,
               "Management App": 1
             },
-            "{notificationField.value}": {
+            "tier.endingQuantity?.toString() ?? highestTierQuantity.toString()": {
               "total": 1,
               "Management App": 1
             },
-            "{reason}": {
+            "teamSize.toString()": {
+              "total": 1,
+              "Management App": 1
+            },
+            "String(quantity)": {
+              "total": 1,
+              "Management App": 1
+            },
+            "filterValue ?? \"\"": {
+              "total": 1,
+              "Management App": 1
+            },
+            "attribute.value?.toString() ?? null": {
+              "total": 1,
+              "Management App": 1
+            },
+            "ruleRelationField.value": {
+              "total": 1,
+              "Management App": 1
+            },
+            "selectedPropertyId ?? null": {
+              "total": 1,
+              "Management App": 1
+            },
+            "selectedCondition ?? null": {
+              "total": 1,
+              "Management App": 1
+            },
+            "languageField.value": {
+              "total": 1,
+              "Management App": 1
+            },
+            "notificationField.value": {
+              "total": 1,
+              "Management App": 1
+            },
+            "reason": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{datasetField.value}": {
+            "datasetField.value": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -5501,7 +6185,7 @@
         "disabled": {
           "usage": 16,
           "values": {
-            "{isDisabled}": {
+            "isDisabled": {
               "total": 6,
               "Management App": 6
             },
@@ -5509,27 +6193,27 @@
               "total": 3,
               "Management App": 3
             },
-            "{isPending}": {
+            "isPending": {
               "total": 2,
               "SG One": 2
             },
-            "{ChainExpression}": {
+            "attribute?.isReadOnly": {
               "total": 1,
               "Management App": 1
             },
-            "{disabled}": {
+            "disabled": {
               "total": 1,
               "Management App": 1
             },
-            "{UnaryExpression}": {
+            "!tier.endingQuantity": {
               "total": 1,
               "Management App": 1
             },
-            "{attribute.isReadOnly}": {
+            "attribute.isReadOnly": {
               "total": 1,
               "Management App": 1
             },
-            "{LogicalExpression}": {
+            "isDisabled || properties.length <= 0": {
               "total": 1,
               "Management App": 1
             }
@@ -5571,10 +6255,6 @@
         "placeholder": {
           "usage": 13,
           "values": {
-            "{CallExpression}": {
-              "total": 7,
-              "Management App": 7
-            },
             "Select your role": {
               "total": 2,
               "SG One": 2
@@ -5583,7 +6263,35 @@
               "total": 1,
               "Performance": 1
             },
-            "{placeholder}": {
+            "t(\"cancelPlanModal.selectPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"memberMissingAttributesModal.selectPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"reconciliation.allTeams\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "getValuePlaceholder()": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"rulePicker.property_click_placeholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"rulePicker.condition_placeholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"rulePicker.property_placeholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "placeholder": {
               "total": 1,
               "Management App": 1
             },
@@ -5617,15 +6325,15 @@
         "onBlur": {
           "usage": 6,
           "values": {
-            "{onBlur}": {
+            "onBlur": {
               "total": 4,
               "Management App": 4
             },
-            "{languageField.onBlur}": {
+            "languageField.onBlur": {
               "total": 1,
               "Management App": 1
             },
-            "{notificationField.onBlur}": {
+            "notificationField.onBlur": {
               "total": 1,
               "Management App": 1
             }
@@ -5634,19 +6342,19 @@
         "name": {
           "usage": 5,
           "values": {
-            "{field.name}": {
+            "field.name": {
               "total": 2,
               "Management App": 2
             },
-            "{name}": {
+            "name": {
               "total": 1,
               "Management App": 1
             },
-            "{languageField.name}": {
+            "languageField.name": {
               "total": 1,
               "Management App": 1
             },
-            "{notificationField.name}": {
+            "notificationField.name": {
               "total": 1,
               "Management App": 1
             }
@@ -5665,7 +6373,7 @@
         "readOnly": {
           "usage": 3,
           "values": {
-            "{readOnly}": {
+            "readOnly": {
               "total": 3,
               "Management App": 3
             }
@@ -5674,7 +6382,7 @@
         "onOpenChange": {
           "usage": 3,
           "values": {
-            "{handleOnOpenChange}": {
+            "handleOnOpenChange": {
               "total": 3,
               "Management App": 3
             }
@@ -5683,7 +6391,7 @@
         "validationState": {
           "usage": 3,
           "values": {
-            "{validationState}": {
+            "validationState": {
               "total": 3,
               "Management App": 3
             }
@@ -5701,7 +6409,7 @@
         "icon": {
           "usage": 1,
           "values": {
-            "{JSXElement}": {
+            "<Spinner aria-hidden aria-label=\"\" />": {
               "total": 1,
               "Management App": 1
             }
@@ -5728,7 +6436,7 @@
         "defaultSelectedKey": {
           "usage": 1,
           "values": {
-            "{selectedLanguage}": {
+            "selectedLanguage": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -5737,7 +6445,7 @@
         "defaultValue": {
           "usage": 1,
           "values": {
-            "{selectedCompanySize}": {
+            "selectedCompanySize": {
               "total": 1,
               "Activation": 1
             }
@@ -5897,7 +6605,7 @@
               "total": 2,
               "Management App": 2
             },
-            "{filteredVariant}": {
+            "filteredVariant": {
               "total": 1,
               "Management App": 1
             },
@@ -5910,15 +6618,15 @@
         "onClick": {
           "usage": 24,
           "values": {
-            "{startAutomaticProvisioning}": {
+            "startAutomaticProvisioning": {
               "total": 3,
               "Management App": 3
             },
-            "{handleResend}": {
+            "handleResend": {
               "total": 3,
               "Activation": 3
             },
-            "{show}": {
+            "show": {
               "total": 2,
               "SG One": 2
             },
@@ -5926,11 +6634,11 @@
               "total": 2,
               "Management App": 2
             },
-            "{handleBookMeeting}": {
+            "handleBookMeeting": {
               "total": 1,
               "SG One": 1
             },
-            "{ConditionalExpression}": {
+            "isClamped ? expand : clamp": {
               "total": 1,
               "Performance": 1
             },
@@ -5938,7 +6646,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleClickSeeAllFeatures}": {
+            "handleClickSeeAllFeatures": {
               "total": 1,
               "Management App": 1
             },
@@ -5950,35 +6658,35 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleReuploadButtonClick}": {
+            "handleReuploadButtonClick": {
               "total": 1,
               "Management App": 1
             },
-            "{handleLogout}": {
+            "handleLogout": {
               "total": 1,
               "Activation": 1
             },
-            "{handleResendSignup}": {
+            "handleSignupAgain": {
               "total": 1,
               "Activation": 1
             },
-            "{handleSignupAgain}": {
+            "handleResendInvite": {
               "total": 1,
               "Activation": 1
             },
-            "{handleResendInvite}": {
+            "handleResendSignup": {
               "total": 1,
               "Activation": 1
             },
-            "{onNewSync}": {
+            "onNewSync": {
               "total": 1,
               "AI": 1
             },
-            "{handleShowMore}": {
+            "handleShowMore": {
               "total": 1,
               "AI": 1
             },
-            "{downloadFile}": {
+            "downloadFile": {
               "total": 1,
               "AI": 1
             }
@@ -6016,7 +6724,7 @@
               "total": 2,
               "Management App": 2
             },
-            "{isPending}": {
+            "isPending": {
               "total": 2,
               "Activation": 2
             }
@@ -6122,15 +6830,15 @@
         "zIndex": {
           "usage": 9,
           "values": {
-            "{ZIndex.DROPDOWN_OVERLAY}": {
+            "ZIndex.DROPDOWN_OVERLAY": {
               "total": 6,
               "Performance": 6
             },
-            "{ZIndex.FOOTER_BUTTON}": {
+            "ZIndex.FOOTER_BUTTON": {
               "total": 2,
               "Performance": 2
             },
-            "{ConditionalExpression}": {
+            "isOpen ? undefined : ZIndex.HIDDEN": {
               "total": 1,
               "Performance": 1
             }
@@ -6161,11 +6869,11 @@
         "onOpenChange": {
           "usage": 4,
           "values": {
-            "{handleOnOpenChange}": {
+            "handleOnOpenChange": {
               "total": 1,
               "Performance": 1
             },
-            "{handleOpenChange}": {
+            "handleOpenChange": {
               "total": 1,
               "Performance": 1
             },
@@ -6173,7 +6881,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{handleMenuOpenChange}": {
+            "handleMenuOpenChange": {
               "total": 1,
               "Management App": 1
             }
@@ -6182,15 +6890,15 @@
         "open": {
           "usage": 4,
           "values": {
-            "{isOpen}": {
+            "isOpen": {
               "total": 2,
               "Performance": 2
             },
-            "{isMenuOpen}": {
+            "isMenuOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{showMenu}": {
+            "showMenu": {
               "total": 1,
               "Management App": 1
             }
@@ -6214,91 +6922,95 @@
         "checked": {
           "usage": 30,
           "values": {
-            "{value}": {
+            "value": {
               "total": 5,
               "Management App": 5
             },
-            "{areTeamMappingsEnabledField.value}": {
+            "areTeamMappingsEnabledField.value": {
               "total": 4,
               "Management App": 4
             },
-            "{CallExpression}": {
-              "total": 2,
-              "Management App": 2
-            },
-            "{enabled}": {
+            "enabled": {
               "total": 1,
               "SG Protect": 1
             },
-            "{isOpen}": {
+            "isOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{autoAssignManagers}": {
+            "autoAssignManagers": {
               "total": 1,
               "Management App": 1
             },
-            "{createSubTeamsByReportingManager}": {
+            "createSubTeamsByReportingManager": {
               "total": 1,
               "Management App": 1
             },
-            "{areAttributeConfigurationsEnabledField.value}": {
+            "assignedProducts.includes(x.identifier)": {
               "total": 1,
               "Management App": 1
             },
-            "{autoAssignManagersField.value}": {
+            "areAttributeConfigurationsEnabledField.value": {
               "total": 1,
               "Management App": 1
             },
-            "{createSubTeamsByReportingManagerField.value}": {
+            "autoAssignManagersField.value": {
               "total": 1,
               "Management App": 1
             },
-            "{checked}": {
+            "createSubTeamsByReportingManagerField.value": {
               "total": 1,
               "Management App": 1
             },
-            "{BinaryExpression}": {
+            "value.includes(product.identifier)": {
               "total": 1,
               "Management App": 1
             },
-            "{usePreferredNameField.value}": {
+            "checked": {
               "total": 1,
               "Management App": 1
             },
-            "{data.isForceSsoEnabled}": {
+            "selectedFrequency === Frequency.Annual": {
+              "total": 1,
+              "Management App": 1
+            },
+            "usePreferredNameField.value": {
+              "total": 1,
+              "Management App": 1
+            },
+            "data.isForceSsoEnabled": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{canTeamManagerInviteMembers}": {
+            "canTeamManagerInviteMembers": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{canTeamManagerEditTeams}": {
+            "canTeamManagerEditTeams": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{canTeamManagerInviteManagers}": {
+            "canTeamManagerInviteManagers": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{canMemberEditTheirProfile}": {
+            "canMemberEditTheirProfile": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{ConditionalExpression}": {
+            "visibilityIsIncluding ? restrictedEntities.includes(organization.id) : !restrictedEntities.includes(organization.id)": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{inviteMembersProvisioningConfiguration.isInviteMembersOnCreateEnabled}": {
+            "inviteMembersProvisioningConfiguration.isInviteMembersOnCreateEnabled": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{isInviteMembersOnCreateEnabled}": {
+            "isInviteMembersOnCreateEnabled": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{isEnabled}": {
+            "isEnabled": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -6312,32 +7024,48 @@
               "Management App": 2,
               "Administration Portal": 6
             },
-            "{disabled}": {
+            "disabled": {
               "total": 7,
               "Management App": 7
             },
-            "{LogicalExpression}": {
-              "total": 5,
-              "Management App": 5
-            },
-            "{UnaryExpression}": {
+            "disabled || hasNoTeams": {
               "total": 2,
-              "Administration Portal": 2
+              "Management App": 2
             },
-            "{isDisabled}": {
+            "!initialAssignedProduct.includes(x.identifier) && x.seatsAvailable < 1": {
               "total": 1,
               "Management App": 1
+            },
+            "isDisabled": {
+              "total": 1,
+              "Management App": 1
+            },
+            "isRestrictedView || !preferredNameField.value": {
+              "total": 1,
+              "Management App": 1
+            },
+            "!canEditIdentificationInProfile || !preferredNameField.value": {
+              "total": 1,
+              "Management App": 1
+            },
+            "!data.isForceSsoEnabled": {
+              "total": 1,
+              "Administration Portal": 1
+            },
+            "!isEnabled": {
+              "total": 1,
+              "Administration Portal": 1
             }
           }
         },
         "onChange": {
           "usage": 13,
           "values": {
-            "{handleOnChange}": {
+            "handleOnChange": {
               "total": 5,
               "Management App": 5
             },
-            "{handleChange}": {
+            "handleChange": {
               "total": 2,
               "Management App": 2
             },
@@ -6345,11 +7073,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleAssignManagerChanged}": {
+            "handleAssignManagerChanged": {
               "total": 1,
               "Management App": 1
             },
-            "{handleCreateSubTeamsByReportingManagerChanged}": {
+            "handleCreateSubTeamsByReportingManagerChanged": {
               "total": 1,
               "Management App": 1
             },
@@ -6357,7 +7085,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{onChange}": {
+            "onChange": {
               "total": 1,
               "Management App": 1
             },
@@ -6387,11 +7115,11 @@
               "total": 2,
               "Management App": 2
             },
-            "{handleChange}": {
+            "handleChange": {
               "total": 1,
               "SG Protect": 1
             },
-            "{onChangeFrequency}": {
+            "onChangeFrequency": {
               "total": 1,
               "Management App": 1
             },
@@ -6413,20 +7141,24 @@
         "title": {
           "usage": 3,
           "values": {
-            "{CallExpression}": {
-              "total": 3,
-              "Management App": 3
+            "t(disabled || hasNoTeams ? \"disabled\" : \"enable\")": {
+              "total": 2,
+              "Management App": 2
+            },
+            "t(disabled ? \"disabled\" : \"enable\")": {
+              "total": 1,
+              "Management App": 1
             }
           }
         },
         "name": {
           "usage": 3,
           "values": {
-            "{name}": {
+            "name": {
               "total": 2,
               "Management App": 2
             },
-            "{usePreferredNameField.name}": {
+            "usePreferredNameField.name": {
               "total": 1,
               "Management App": 1
             }
@@ -6444,18 +7176,9 @@
         "tabIndex": {
           "usage": 1,
           "values": {
-            "{UnaryExpression}": {
+            "-1": {
               "total": 1,
               "Performance": 1
-            }
-          }
-        },
-        "marginTop": {
-          "usage": 1,
-          "values": {
-            "1.5rem": {
-              "total": 1,
-              "Management App": 1
             }
           }
         },
@@ -6463,6 +7186,15 @@
           "usage": 1,
           "values": {
             "flex-start": {
+              "total": 1,
+              "Management App": 1
+            }
+          }
+        },
+        "marginTop": {
+          "usage": 1,
+          "values": {
+            "1.5rem": {
               "total": 1,
               "Management App": 1
             }
@@ -6494,22 +7226,22 @@
         "onSelectionChange": {
           "usage": 18,
           "values": {
-            "{handleSelectionChange}": {
+            "handleSelectionChange": {
               "total": 7,
               "SG Protect": 3,
               "SG One": 2,
               "Management App": 1,
               "AI": 1
             },
-            "{handleOnMenuSelectionChange}": {
+            "handleOnMenuSelectionChange": {
               "total": 5,
               "Performance": 5
             },
-            "{handleOnSelectionChange}": {
+            "handleOnSelectionChange": {
               "total": 3,
               "Performance": 3
             },
-            "{onMenuSelectionChange}": {
+            "onMenuSelectionChange": {
               "total": 1,
               "Performance": 1
             },
@@ -6517,7 +7249,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{handleOnClick}": {
+            "handleOnClick": {
               "total": 1,
               "Management App": 1
             }
@@ -6551,11 +7283,11 @@
               "total": 1,
               "Performance": 1
             },
-            "{selectedKeys}": {
+            "selectedKeys": {
               "total": 1,
               "Performance": 1
             },
-            "{selectedFilters}": {
+            "selectedFilters": {
               "total": 1,
               "Performance": 1
             }
@@ -6573,7 +7305,7 @@
         "width": {
           "usage": 2,
           "values": {
-            "{LogicalExpression}": {
+            "menuWidth ?? width": {
               "total": 1,
               "Performance": 1
             },
@@ -6586,7 +7318,7 @@
         "maxWidth": {
           "usage": 1,
           "values": {
-            "{menuMaxWidth}": {
+            "menuMaxWidth": {
               "total": 1,
               "Performance": 1
             }
@@ -6608,7 +7340,7 @@
               "Login": 1,
               "AI": 3
             },
-            "{colorScheme}": {
+            "colorScheme": {
               "total": 9,
               "SG Protect": 1,
               "SG One": 2,
@@ -6618,13 +7350,13 @@
               "Activation": 1,
               "AI": 2
             },
-            "{LogicalExpression}": {
+            "colorScheme ?? \"light\"": {
               "total": 5,
               "Performance": 2,
               "Management App": 2,
               "Management Shell": 1
             },
-            "{context.globals.theme}": {
+            "context.globals.theme": {
               "total": 5,
               "SG Protect": 1,
               "Management App": 1,
@@ -6632,7 +7364,7 @@
               "Administration Portal": 1,
               "Login": 1
             },
-            "{globals.theme}": {
+            "globals.theme": {
               "total": 1,
               "SG One": 1
             }
@@ -6834,7 +7566,7 @@
         "border": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "includeBorder ? \"neutral-weak\" : undefined": {
               "total": 1,
               "Performance": 1
             }
@@ -6843,7 +7575,7 @@
         "borderRadius": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "includeBorder ? \"rounded-md\" : undefined": {
               "total": 1,
               "Performance": 1
             }
@@ -6875,27 +7607,27 @@
         "value": {
           "usage": 26,
           "values": {
-            "{value}": {
+            "value": {
               "total": 3,
               "Management App": 3
             },
-            "{FilterByGroupMembership.EveryoneInMyIntegrationAccount}": {
+            "FilterByGroupMembership.EveryoneInMyIntegrationAccount": {
               "total": 3,
               "Management App": 3
             },
-            "{FilterByGroupMembership.EveryoneInTheFollowingIntegrationGroups}": {
+            "FilterByGroupMembership.EveryoneInTheFollowingIntegrationGroups": {
               "total": 3,
               "Management App": 3
-            },
-            "true": {
-              "total": 3,
-              "AI": 3
             },
             "false": {
               "total": 3,
               "AI": 3
             },
-            "{reason}": {
+            "true": {
+              "total": 3,
+              "AI": 3
+            },
+            "reason": {
               "total": 2,
               "Management App": 2
             },
@@ -6919,11 +7651,11 @@
               "total": 1,
               "SG One": 1
             },
-            "{Role.Member}": {
+            "Role.Member": {
               "total": 1,
               "Management App": 1
             },
-            "{Role.Manager}": {
+            "Role.Manager": {
               "total": 1,
               "Management App": 1
             },
@@ -6948,7 +7680,7 @@
               "total": 3,
               "Management App": 3
             },
-            "{handleCheck}": {
+            "handleCheck": {
               "total": 2,
               "Management App": 2
             },
@@ -6965,17 +7697,25 @@
         "checked": {
           "usage": 9,
           "values": {
-            "{BinaryExpression}": {
-              "total": 7,
-              "Management App": 7
+            "filterByGroupMembershipValue === FilterByGroupMembership.EveryoneInMyIntegrationAccount": {
+              "total": 3,
+              "Management App": 3
             },
-            "{UnaryExpression}": {
+            "filterByGroupMembershipValue === FilterByGroupMembership.EveryoneInTheFollowingIntegrationGroups": {
+              "total": 3,
+              "Management App": 3
+            },
+            "!innerUseAllOrganization": {
               "total": 1,
               "Performance": 1
             },
-            "{innerUseAllOrganization}": {
+            "innerUseAllOrganization": {
               "total": 1,
               "Performance": 1
+            },
+            "frequency === field.value": {
+              "total": 1,
+              "Management App": 1
             }
           }
         },
@@ -7033,57 +7773,65 @@
         "checked": {
           "usage": 17,
           "values": {
-            "{CallExpression}": {
-              "total": 3,
-              "Management App": 3
-            },
-            "{isSelected}": {
+            "isSelected": {
               "total": 3,
               "SG Protect": 1,
               "Management App": 1,
               "Management Shell": 1
             },
-            "{createAnother}": {
+            "createAnother": {
               "total": 1,
               "Performance": 1
             },
-            "{isCompleted}": {
+            "isCompleted": {
               "total": 1,
               "Performance": 1
             },
-            "{pingboardLiteAccepted}": {
+            "defaultProductAssignation.has(product.identifier)": {
               "total": 1,
               "Management App": 1
             },
-            "{productAssignation.isEnabled}": {
+            "pingboardLiteAccepted": {
               "total": 1,
               "Management App": 1
             },
-            "{BinaryExpression}": {
+            "field.value.includes(addOn)": {
               "total": 1,
               "Management App": 1
             },
-            "{x.isEnabled}": {
+            "productAssignation.isEnabled": {
               "total": 1,
               "Management App": 1
             },
-            "{value}": {
+            "value === CheckboxState.Checked": {
               "total": 1,
               "Management App": 1
             },
-            "{hasConsented}": {
+            "userAccess.includes(activeProduct.identifier)": {
               "total": 1,
               "Management App": 1
             },
-            "{isSandboxOrganization}": {
+            "x.isEnabled": {
+              "total": 1,
+              "Management App": 1
+            },
+            "value": {
+              "total": 1,
+              "Management App": 1
+            },
+            "hasConsented": {
+              "total": 1,
+              "Management App": 1
+            },
+            "isSandboxOrganization": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{isDemoOrganization}": {
+            "isDemoOrganization": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{LogicalExpression}": {
+            "member.assignExec || false": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -7092,7 +7840,7 @@
         "value": {
           "usage": 12,
           "values": {
-            "{p.identifier}": {
+            "p.identifier": {
               "total": 2,
               "Administration Portal": 2
             },
@@ -7116,15 +7864,15 @@
               "total": 1,
               "SG One": 1
             },
-            "{x.machineCode}": {
+            "x.machineCode": {
               "total": 1,
               "SG One": 1
             },
-            "{product.identifier}": {
+            "product.identifier": {
               "total": 1,
               "Management App": 1
             },
-            "{productAssignation.identifier}": {
+            "productAssignation.identifier": {
               "total": 1,
               "Management App": 1
             },
@@ -7132,7 +7880,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{activeProduct.identifier}": {
+            "activeProduct.identifier": {
               "total": 1,
               "Management App": 1
             }
@@ -7141,21 +7889,21 @@
         "disabled": {
           "usage": 8,
           "values": {
-            "{isDisabled}": {
+            "isDisabled": {
               "total": 4,
               "SG Protect": 1,
               "Management App": 2,
               "Management Shell": 1
             },
-            "{disabled}": {
+            "disabled": {
               "total": 2,
               "Management App": 2
             },
-            "{UnaryExpression}": {
+            "!match": {
               "total": 1,
               "Management App": 1
             },
-            "{isToggleDisabled}": {
+            "isToggleDisabled": {
               "total": 1,
               "Management App": 1
             }
@@ -7179,7 +7927,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{onYesNoChange}": {
+            "onYesNoChange": {
               "total": 1,
               "Performance": 1
             },
@@ -7187,7 +7935,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleChange}": {
+            "handleChange": {
               "total": 1,
               "Management App": 1
             },
@@ -7195,11 +7943,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleIsSandboxChange}": {
+            "handleIsSandboxChange": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{handleIsDemoOrganizationChange}": {
+            "handleIsDemoOrganizationChange": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -7212,7 +7960,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{handlePingboardLiteAcceptedFieldChange}": {
+            "handlePingboardLiteAcceptedFieldChange": {
               "total": 1,
               "Management App": 1
             },
@@ -7237,17 +7985,17 @@
         "indeterminate": {
           "usage": 5,
           "values": {
-            "{isIndeterminate}": {
+            "isIndeterminate": {
               "total": 3,
               "SG Protect": 1,
               "Management App": 1,
               "Management Shell": 1
             },
-            "{BinaryExpression}": {
+            "value === CheckboxState.Indeterminate": {
               "total": 1,
               "Management App": 1
             },
-            "{indeterminate}": {
+            "indeterminate": {
               "total": 1,
               "Management App": 1
             }
@@ -7328,7 +8076,7 @@
         "onBlur": {
           "usage": 1,
           "values": {
-            "{field.onBlur}": {
+            "field.onBlur": {
               "total": 1,
               "Management App": 1
             }
@@ -7378,10 +8126,6 @@
         "placeholder": {
           "usage": 23,
           "values": {
-            "{CallExpression}": {
-              "total": 5,
-              "Management App": 5
-            },
             "Search": {
               "total": 4,
               "SG Protect": 4
@@ -7394,11 +8138,11 @@
               "total": 2,
               "SG Protect": 2
             },
-            "Search by name...": {
+            "`Search by ${useAllWorkspaceTypesInWorkspaceAccess ? \"workspace\" : \"group\"} name or owner`": {
               "total": 2,
               "SG Protect": 2
             },
-            "`Search by ${useAllWorkspaceTypesInWorkspaceAccess ? \"workspace\" : \"group\"} name or owner`": {
+            "Search by name...": {
               "total": 2,
               "SG Protect": 2
             },
@@ -7414,6 +8158,26 @@
               "total": 1,
               "SG Protect": 1
             },
+            "t(\"memberMissingAttributesModal.searchPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"previewTeamCompositionModal.searchPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"preview.searchPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"reconciliation.searchPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "t(\"integrationsTable.searchFilterPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
+            },
             "`${t(\"teamMappingsSection.searchByName\")}...`": {
               "total": 1,
               "Management App": 1
@@ -7427,24 +8191,24 @@
         "value": {
           "usage": 17,
           "values": {
-            "{searchTerm}": {
+            "searchTerm": {
               "total": 11,
               "SG Protect": 6,
               "Management App": 5
             },
-            "{teamSearchTerm}": {
+            "teamSearchTerm": {
               "total": 3,
               "Management App": 3
             },
-            "{searchInput}": {
+            "searchInput": {
               "total": 1,
               "Management App": 1
             },
-            "{searchTermValue}": {
+            "value": {
               "total": 1,
               "Management App": 1
             },
-            "{value}": {
+            "searchTermValue": {
               "total": 1,
               "Management App": 1
             }
@@ -7453,27 +8217,27 @@
         "onValueChange": {
           "usage": 17,
           "values": {
-            "{handleTextInput}": {
+            "handleTextInput": {
               "total": 6,
               "Management App": 6
             },
-            "{handleSearchChange}": {
+            "handleSearchChange": {
               "total": 5,
               "SG Protect": 5
             },
-            "{handleSearchTermChange}": {
+            "handleSearchTermChange": {
               "total": 3,
               "Management App": 3
             },
-            "{handleSearch}": {
+            "handleSearch": {
               "total": 1,
               "SG Protect": 1
             },
-            "{onSearchInputChange}": {
+            "onSearchInputChange": {
               "total": 1,
               "Management App": 1
             },
-            "{handleOnValueChange}": {
+            "handleOnValueChange": {
               "total": 1,
               "Management App": 1
             }
@@ -7492,9 +8256,13 @@
         "icon": {
           "usage": 11,
           "values": {
-            "{JSXElement}": {
-              "total": 11,
-              "Management App": 11
+            "<SearchIcon />": {
+              "total": 7,
+              "Management App": 7
+            },
+            "<SearchIcon size=\"sm\" color=\"neutral-weak\" />": {
+              "total": 4,
+              "Management App": 4
             }
           }
         },
@@ -7561,7 +8329,7 @@
               "total": 3,
               "Management App": 3
             },
-            "{maxLength}": {
+            "maxLength": {
               "total": 1,
               "Management App": 1
             }
@@ -7575,7 +8343,7 @@
         "onSelectionChange": {
           "usage": 9,
           "values": {
-            "{handleTabChange}": {
+            "handleTabChange": {
               "total": 4,
               "SG Protect": 3,
               "Performance": 1
@@ -7588,7 +8356,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{handleSelectionChange}": {
+            "handleSelectionChange": {
               "total": 1,
               "Management App": 1
             },
@@ -7601,20 +8369,20 @@
         "selectedKey": {
           "usage": 7,
           "values": {
-            "{selectedTab}": {
+            "selectedTab": {
               "total": 3,
               "SG Protect": 2,
               "Management App": 1
             },
-            "{selectedKey}": {
+            "selectedKey": {
               "total": 2,
               "Management App": 2
             },
-            "{tab}": {
+            "tab": {
               "total": 1,
               "Performance": 1
             },
-            "{view}": {
+            "view": {
               "total": 1,
               "Performance": 1
             }
@@ -7734,19 +8502,19 @@
         "open": {
           "usage": 6,
           "values": {
-            "{isOpen}": {
+            "isOpen": {
               "total": 3,
               "Performance": 3
             },
-            "{open}": {
+            "open": {
               "total": 1,
               "Performance": 1
             },
-            "{show}": {
+            "!isSidebarCollapsed": {
               "total": 1,
               "Performance": 1
             },
-            "{UnaryExpression}": {
+            "show": {
               "total": 1,
               "Performance": 1
             }
@@ -7755,11 +8523,11 @@
         "color": {
           "usage": 4,
           "values": {
-            "neutral-weak": {
+            "primary": {
               "total": 2,
               "Performance": 2
             },
-            "primary": {
+            "neutral-weak": {
               "total": 2,
               "Performance": 2
             }
@@ -7852,7 +8620,7 @@
         "size": {
           "usage": 2,
           "values": {
-            "{size}": {
+            "size": {
               "total": 1,
               "Administration Portal": 1
             },
@@ -7910,7 +8678,7 @@
         "zIndex": {
           "usage": 1,
           "values": {
-            "{ZIndex.MODAL}": {
+            "ZIndex.MODAL": {
               "total": 1,
               "Performance": 1
             }
@@ -7924,32 +8692,32 @@
         "src": {
           "usage": 15,
           "values": {
-            "{image}": {
+            "image": {
               "total": 3,
               "SG One": 2,
               "Administration Portal": 1
             },
-            "{illustrationUrl}": {
+            "illustrationUrl": {
               "total": 2,
               "Management App": 2
             },
-            "{faviconUrl}": {
+            "faviconUrl": {
               "total": 2,
               "AI": 2
             },
-            "{logoUrl}": {
+            "logoUrl": {
               "total": 1,
               "Management App": 1
             },
-            "{integration.squareImage}": {
+            "integration.squareImage": {
               "total": 1,
               "Management App": 1
             },
-            "{squareImage}": {
+            "squareImage": {
               "total": 1,
               "Management App": 1
             },
-            "{imgUrl}": {
+            "imgUrl": {
               "total": 1,
               "Management App": 1
             },
@@ -7957,15 +8725,15 @@
               "total": 1,
               "Administration Portal": 1
             },
-            "{image.url}": {
+            "image.url": {
               "total": 1,
               "Administration Portal": 1
             },
-            "{CallExpression}": {
+            "getCdnAssetUrl(asset)": {
               "total": 1,
               "AI": 1
             },
-            "{imageSrc}": {
+            "imageSrc": {
               "total": 1,
               "AI": 1
             }
@@ -7978,27 +8746,23 @@
               "total": 2,
               "SG One": 2
             },
-            "{CallExpression}": {
-              "total": 2,
-              "AI": 2
-            },
-            "{cardKey}": {
+            "cardKey": {
               "total": 1,
               "Management App": 1
             },
-            "{fileName}": {
+            "fileName": {
               "total": 1,
               "Management App": 1
             },
-            "{LogicalExpression}": {
+            "integration.name ?? \"\"": {
               "total": 1,
               "Management App": 1
             },
-            "{integrationName}": {
+            "integrationName": {
               "total": 1,
               "Management App": 1
             },
-            "{name}": {
+            "name": {
               "total": 1,
               "Management App": 1
             },
@@ -8010,7 +8774,7 @@
               "total": 1,
               "Administration Portal": 1
             },
-            "{image.alt}": {
+            "image.alt": {
               "total": 1,
               "Administration Portal": 1
             },
@@ -8018,7 +8782,15 @@
               "total": 1,
               "Administration Portal": 1
             },
-            "{imageAlt}": {
+            "tShared(\"websiteIcon\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"websiteRow.websiteIcon\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "imageAlt": {
               "total": 1,
               "AI": 1
             }
@@ -8027,7 +8799,7 @@
         "width": {
           "usage": 4,
           "values": {
-            "{width}": {
+            "width": {
               "total": 2,
               "AI": 2
             },
@@ -8044,7 +8816,7 @@
         "height": {
           "usage": 3,
           "values": {
-            "{height}": {
+            "height": {
               "total": 2,
               "AI": 2
             },
@@ -8105,7 +8877,7 @@
         "onLoad": {
           "usage": 1,
           "values": {
-            "{handleLoad}": {
+            "handleLoad": {
               "total": 1,
               "AI": 1
             }
@@ -8137,28 +8909,28 @@
         "value": {
           "usage": 9,
           "values": {
-            "{text}": {
+            "text": {
               "total": 2,
               "SG Protect": 2
             },
-            "{feedback}": {
+            "feedback": {
               "total": 2,
               "Management App": 2
             },
-            "{value}": {
+            "value": {
               "total": 2,
               "Performance": 1,
               "AI": 1
             },
-            "{CallExpression}": {
+            "watch(\"comment\")": {
               "total": 1,
               "Performance": 1
             },
-            "{bioField.value}": {
+            "bioField.value": {
               "total": 1,
               "Management App": 1
             },
-            "{explanation}": {
+            "explanation": {
               "total": 1,
               "AI": 1
             }
@@ -8167,22 +8939,37 @@
         "placeholder": {
           "usage": 9,
           "values": {
-            "{CallExpression}": {
-              "total": 5,
-              "Performance": 2,
-              "AI": 3
-            },
             "Can you tell us why?": {
               "total": 2,
               "SG Protect": 2
             },
-            "{placeholder}": {
+            "placeholder": {
               "total": 1,
               "Performance": 1
             },
-            "{descriptionPlaceholder}": {
+            "getTitlePlaceHolder()": {
               "total": 1,
               "Performance": 1
+            },
+            "t(\"commentPlaceholder\")": {
+              "total": 1,
+              "Performance": 1
+            },
+            "descriptionPlaceholder": {
+              "total": 1,
+              "Performance": 1
+            },
+            "tShared(\"personalization.editMemoryPlaceholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "tShared(\"personalization.personalityPlaceholder\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "tShared(\"rating.placeholder\")": {
+              "total": 1,
+              "AI": 1
             }
           }
         },
@@ -8239,7 +9026,7 @@
         "autoFocus": {
           "usage": 6,
           "values": {
-            "{autoFocus}": {
+            "autoFocus": {
               "total": 3,
               "Performance": 3
             },
@@ -8257,7 +9044,7 @@
               "total": 2,
               "SG Protect": 2
             },
-            "{handleFeedbackChange}": {
+            "handleFeedbackChange": {
               "total": 2,
               "Management App": 2
             },
@@ -8265,7 +9052,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{handleChange}": {
+            "handleChange": {
               "total": 1,
               "AI": 1
             }
@@ -8299,19 +9086,19 @@
         "maxLength": {
           "usage": 5,
           "values": {
-            "{MaxCharacterLimit.QUESTION_TITLE_MAX}": {
+            "MaxCharacterLimit.QUESTION_TITLE_MAX": {
               "total": 2,
               "Performance": 2
             },
-            "{maxLength}": {
+            "maxLength": {
               "total": 1,
               "Performance": 1
             },
-            "{MaxCharacterLimit.RATING_SCALE_DESCRIPTION_MAX}": {
+            "MaxCharacterLimit.RATING_SCALE_DESCRIPTION_MAX": {
               "total": 1,
               "Performance": 1
             },
-            "{BIO_MAX_LENGTH}": {
+            "BIO_MAX_LENGTH": {
               "total": 1,
               "Management App": 1
             }
@@ -8320,15 +9107,15 @@
         "defaultValue": {
           "usage": 3,
           "values": {
-            "{translatedTitle}": {
+            "translatedTitle": {
               "total": 1,
               "Performance": 1
             },
-            "{title}": {
+            "title": {
               "total": 1,
               "Performance": 1
             },
-            "{ratingScalePoint.description}": {
+            "ratingScalePoint.description": {
               "total": 1,
               "Performance": 1
             }
@@ -8350,11 +9137,11 @@
         "disabled": {
           "usage": 2,
           "values": {
-            "{disabled}": {
+            "disabled": {
               "total": 1,
               "Performance": 1
             },
-            "{disableLogoAndDescriptionModification}": {
+            "disableLogoAndDescriptionModification": {
               "total": 1,
               "Management App": 1
             }
@@ -8363,11 +9150,11 @@
         "onKeyDown": {
           "usage": 2,
           "values": {
-            "{preventEnter}": {
+            "preventEnter": {
               "total": 1,
               "Performance": 1
             },
-            "{handleKeyDown}": {
+            "handleKeyDown": {
               "total": 1,
               "AI": 1
             }
@@ -8394,7 +9181,7 @@
         "validationState": {
           "usage": 1,
           "values": {
-            "{validationState}": {
+            "validationState": {
               "total": 1,
               "Performance": 1
             }
@@ -8403,7 +9190,7 @@
         "name": {
           "usage": 1,
           "values": {
-            "{bioField.name}": {
+            "bioField.name": {
               "total": 1,
               "Management App": 1
             }
@@ -8417,7 +9204,7 @@
         "onChange": {
           "usage": 9,
           "values": {
-            "{handleChange}": {
+            "handleChange": {
               "total": 4,
               "SG One": 1,
               "Management App": 3
@@ -8426,11 +9213,11 @@
               "total": 3,
               "AI": 3
             },
-            "(_, selectedKey) => {\n    if (selectedKey != null) {\n        onChange(selectedKey as Role);\n    }\n}": {
+            "handleChangesAccessType": {
               "total": 1,
               "Management App": 1
             },
-            "{handleChangesAccessType}": {
+            "(_, selectedKey) => {\n    if (selectedKey != null) {\n        onChange(selectedKey as Role);\n    }\n}": {
               "total": 1,
               "Management App": 1
             }
@@ -8439,19 +9226,19 @@
         "value": {
           "usage": 8,
           "values": {
-            "{filterByGroupMembershipValue}": {
+            "filterByGroupMembershipValue": {
               "total": 3,
               "Management App": 3
             },
-            "{CallExpression}": {
+            "value.toString()": {
               "total": 3,
               "AI": 3
             },
-            "{value}": {
+            "value": {
               "total": 1,
               "Management App": 1
             },
-            "{accessType}": {
+            "accessType": {
               "total": 1,
               "Management App": 1
             }
@@ -8501,7 +9288,7 @@
         "disabled": {
           "usage": 3,
           "values": {
-            "{disabled}": {
+            "disabled": {
               "total": 3,
               "Management App": 3
             }
@@ -8510,7 +9297,7 @@
         "defaultValue": {
           "usage": 2,
           "values": {
-            "{value}": {
+            "value": {
               "total": 1,
               "Management App": 1
             },
@@ -8545,7 +9332,7 @@
               "total": 2,
               "Performance": 2
             },
-            "{avatarSize}": {
+            "avatarSize": {
               "total": 2,
               "Performance": 2
             },
@@ -8558,7 +9345,7 @@
         "marginLeft": {
           "usage": 2,
           "values": {
-            "{marginLeft}": {
+            "marginLeft": {
               "total": 2,
               "Performance": 2
             }
@@ -8572,30 +9359,40 @@
         "href": {
           "usage": 13,
           "values": {
-            "{CallExpression}": {
-              "total": 4,
-              "Performance": 1,
-              "Management App": 1,
-              "AI": 2
-            },
-            "{href}": {
+            "href": {
               "total": 3,
               "SG One": 1,
               "AI": 2
             },
-            "{link}": {
+            "link": {
               "total": 2,
               "AI": 2
             },
-            "{to}": {
+            "to": {
               "total": 1,
               "SG One": 1
             },
-            "{rootUrl}": {
+            "ensureProtocol(measurement.link)": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t(\"addSeatsModal.maxSeatsSupportLink\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "tShared(\"learnMoreLink\")": {
               "total": 1,
               "AI": 1
             },
-            "{url}": {
+            "Routes.Home()": {
+              "total": 1,
+              "AI": 1
+            },
+            "rootUrl": {
+              "total": 1,
+              "AI": 1
+            },
+            "url": {
               "total": 1,
               "AI": 1
             },
@@ -8659,7 +9456,7 @@
         "onClick": {
           "usage": 5,
           "values": {
-            "{onClick}": {
+            "onClick": {
               "total": 3,
               "AI": 3
             },
@@ -8702,11 +9499,11 @@
         "title": {
           "usage": 2,
           "values": {
-            "{title}": {
+            "title": {
               "total": 1,
               "SG One": 1
             },
-            "{measurement.link}": {
+            "measurement.link": {
               "total": 1,
               "Performance": 1
             }
@@ -8760,7 +9557,7 @@
         "onAuxClick": {
           "usage": 2,
           "values": {
-            "{onAuxClick}": {
+            "onAuxClick": {
               "total": 2,
               "AI": 2
             }
@@ -8769,7 +9566,7 @@
         "onMouseEnter": {
           "usage": 2,
           "values": {
-            "{onMouseEnter}": {
+            "onMouseEnter": {
               "total": 2,
               "AI": 2
             }
@@ -8778,7 +9575,7 @@
         "onMouseLeave": {
           "usage": 2,
           "values": {
-            "{onMouseLeave}": {
+            "onMouseLeave": {
               "total": 2,
               "AI": 2
             }
@@ -8909,16 +9706,12 @@
         "open": {
           "usage": 10,
           "values": {
-            "{isPopoverOpen}": {
+            "isPopoverOpen": {
               "total": 3,
               "Performance": 1,
               "Management App": 2
             },
-            "{isOpen}": {
-              "total": 2,
-              "Performance": 2
-            },
-            "{UnaryExpression}": {
+            "isOpen": {
               "total": 2,
               "Performance": 2
             },
@@ -8926,11 +9719,19 @@
               "total": 1,
               "Performance": 1
             },
-            "{open}": {
+            "open": {
               "total": 1,
               "Performance": 1
             },
-            "{BinaryExpression}": {
+            "!isSafetyReviewCyclePopoverDismissed": {
+              "total": 1,
+              "Performance": 1
+            },
+            "!isSafetyReviewPopoverDismissed": {
+              "total": 1,
+              "Performance": 1
+            },
+            "isPopoverOpenForProvisioningId === x.provisioningId": {
               "total": 1,
               "Management App": 1
             }
@@ -8943,7 +9744,7 @@
               "total": 2,
               "Performance": 2
             },
-            "{popoverPosition}": {
+            "popoverPosition": {
               "total": 1,
               "SG One": 1
             },
@@ -8951,7 +9752,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{position}": {
+            "position": {
               "total": 1,
               "Performance": 1
             }
@@ -8964,15 +9765,15 @@
               "total": 1,
               "Performance": 1
             },
-            "{onOpenChange}": {
+            "onOpenChange": {
+              "total": 1,
+              "Performance": 1
+            },
+            "handleOpenChange": {
               "total": 1,
               "Performance": 1
             },
             "(_, newIsOpen) => setIsOpen(newIsOpen)": {
-              "total": 1,
-              "Performance": 1
-            },
-            "{handleOpenChange}": {
               "total": 1,
               "Performance": 1
             }
@@ -8981,7 +9782,7 @@
         "zIndex": {
           "usage": 1,
           "values": {
-            "{ZIndex.DROPDOWN_OVERLAY}": {
+            "ZIndex.DROPDOWN_OVERLAY": {
               "total": 1,
               "Performance": 1
             }
@@ -8995,7 +9796,7 @@
         "selectionMode": {
           "usage": 10,
           "values": {
-            "{selectionMode}": {
+            "selectionMode": {
               "total": 6,
               "SG Protect": 1,
               "Performance": 4,
@@ -9015,18 +9816,18 @@
         "selectedKeys": {
           "usage": 10,
           "values": {
-            "{selectedKeys}": {
+            "selectedKeys": {
               "total": 6,
               "SG Protect": 1,
               "Performance": 4,
               "Management App": 1
             },
-            "{selectedFilters}": {
+            "selectedFilters": {
               "total": 2,
               "SG Protect": 1,
               "Management App": 1
             },
-            "{selectedFilterValues}": {
+            "selectedFilterValues": {
               "total": 1,
               "SG Protect": 1
             },
@@ -9039,11 +9840,11 @@
         "onSelectionChange": {
           "usage": 10,
           "values": {
-            "{handleOnChange}": {
+            "handleOnChange": {
               "total": 3,
               "Performance": 3
             },
-            "{onSelectionChange}": {
+            "onSelectionChange": {
               "total": 3,
               "SG Protect": 1,
               "Performance": 1,
@@ -9109,7 +9910,7 @@
         "nodes": {
           "usage": 1,
           "values": {
-            "{nodes}": {
+            "nodes": {
               "total": 1,
               "Performance": 1
             }
@@ -9231,7 +10032,7 @@
         "onSearch": {
           "usage": 11,
           "values": {
-            "{searchExcludingSelected}": {
+            "searchExcludingSelected": {
               "total": 3,
               "Performance": 1,
               "Management App": 1,
@@ -9241,11 +10042,11 @@
               "total": 2,
               "Management App": 2
             },
-            "{handleSearch}": {
+            "handleSearch": {
               "total": 2,
               "Management App": 2
             },
-            "{handleOnSearch}": {
+            "handleOnSearch": {
               "total": 1,
               "Performance": 1
             },
@@ -9253,11 +10054,11 @@
               "total": 1,
               "Management App": 1
             },
-            "{search}": {
+            "search": {
               "total": 1,
               "Management App": 1
             },
-            "{fetcher.search}": {
+            "fetcher.search": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -9266,16 +10067,16 @@
         "onSelectionChange": {
           "usage": 11,
           "values": {
-            "{handleSelectionChange}": {
+            "handleSelectionChange": {
               "total": 4,
               "Management App": 4
             },
-            "{handleSelect}": {
+            "handleSelect": {
               "total": 3,
               "Management App": 2,
               "AI": 1
             },
-            "{handleOnSelectionChange}": {
+            "handleOnSelectionChange": {
               "total": 2,
               "Performance": 2
             },
@@ -9283,7 +10084,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{handleMemberSelectionChange}": {
+            "handleMemberSelectionChange": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -9299,15 +10100,23 @@
               "Administration Portal": 1,
               "AI": 1
             },
-            "{LogicalExpression}": {
-              "total": 3,
-              "Management App": 3
-            },
-            "{ConditionalExpression}": {
+            "selectedMember ? toDisplayNameWithStatus(selectedMember) : \"\"": {
               "total": 1,
               "Performance": 1
             },
-            "{displayName}": {
+            "getName(value, languageAlpha2Code) ?? \"\"": {
+              "total": 1,
+              "Management App": 1
+            },
+            "displayName": {
+              "total": 1,
+              "Management App": 1
+            },
+            "value?.displayName ?? null": {
+              "total": 1,
+              "Management App": 1
+            },
+            "value ?? null": {
               "total": 1,
               "Management App": 1
             },
@@ -9320,13 +10129,13 @@
         "loading": {
           "usage": 9,
           "values": {
-            "{isLoading}": {
+            "isLoading": {
               "total": 5,
               "Performance": 1,
               "Management App": 3,
               "AI": 1
             },
-            "{fetcher.isLoading}": {
+            "fetcher.isLoading": {
               "total": 4,
               "Management App": 3,
               "Administration Portal": 1
@@ -9336,17 +10145,21 @@
         "placeholder": {
           "usage": 7,
           "values": {
-            "{placeholder}": {
+            "placeholder": {
               "total": 3,
               "Performance": 1,
               "Management App": 1,
               "AI": 1
             },
-            "{CallExpression}": {
-              "total": 2,
-              "Management App": 2
+            "t(\"createUser.addTeamPlaceholder\")": {
+              "total": 1,
+              "Management App": 1
             },
-            "{label}": {
+            "t(\"rulePicker.guidInput_searchHere\")": {
+              "total": 1,
+              "Management App": 1
+            },
+            "label": {
               "total": 1,
               "Management App": 1
             },
@@ -9386,16 +10199,16 @@
         "disabled": {
           "usage": 5,
           "values": {
-            "{isDisabled}": {
+            "isDisabled": {
               "total": 2,
               "Management App": 2
             },
-            "{disabled}": {
+            "disabled": {
               "total": 2,
               "Management App": 1,
               "AI": 1
             },
-            "{ChainExpression}": {
+            "attribute?.isReadOnly": {
               "total": 1,
               "Management App": 1
             }
@@ -9426,15 +10239,18 @@
         "noResultsMessage": {
           "usage": 4,
           "values": {
-            "{CallExpression}": {
-              "total": 2,
-              "Performance": 1,
-              "Management App": 1
-            },
-            "{noResultsMessage}": {
+            "noResultsMessage": {
               "total": 2,
               "Management App": 1,
               "AI": 1
+            },
+            "t(\"noResultsMessage\")": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t(\"rulePicker.guidInput_noSearchResult\")": {
+              "total": 1,
+              "Management App": 1
             }
           }
         },
@@ -9445,7 +10261,7 @@
               "total": 2,
               "Management App": 2
             },
-            "{ConditionalExpression}": {
+            "fluid ? \"100%\" : { base: \"22rem\", lg: shrinkOnLargeScreen ? \"18rem\" : \"22rem\", xl: \"22rem\" }": {
               "total": 1,
               "Performance": 1
             }
@@ -9467,11 +10283,11 @@
               "total": 1,
               "Administration Portal": 1
             },
-            "{SearchInput.MIN_SEARCH_TERM_LENGTH}": {
+            "SearchInput.MIN_SEARCH_TERM_LENGTH": {
               "total": 1,
               "Performance": 1
             },
-            "{minCharacters}": {
+            "minCharacters": {
               "total": 1,
               "AI": 1
             }
@@ -9484,7 +10300,7 @@
               "total": 1,
               "Performance": 1
             },
-            "{autoFocus}": {
+            "autoFocus": {
               "total": 1,
               "Performance": 1
             }
@@ -9493,9 +10309,22 @@
         "open": {
           "usage": 2,
           "values": {
-            "{open}": {
+            "open": {
               "total": 2,
               "Performance": 1,
+              "Management App": 1
+            }
+          }
+        },
+        "validationState": {
+          "usage": 2,
+          "values": {
+            "(errorMessage && !value) ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "Management App": 1
+            },
+            "validationState": {
+              "total": 1,
               "Management App": 1
             }
           }
@@ -9503,31 +10332,21 @@
         "onBlur": {
           "usage": 2,
           "values": {
-            "{onBlur}": {
+            "onBlur": {
               "total": 2,
               "Management App": 2
-            }
-          }
-        },
-        "validationState": {
-          "usage": 2,
-          "values": {
-            "{ConditionalExpression}": {
-              "total": 1,
-              "Management App": 1
-            },
-            "{validationState}": {
-              "total": 1,
-              "Management App": 1
             }
           }
         },
         "icon": {
           "usage": 2,
           "values": {
-            "{JSXElement}": {
-              "total": 2,
-              "Performance": 1,
+            "<SearchIcon size=\"sm\" color=\"neutral-weak\" />": {
+              "total": 1,
+              "Performance": 1
+            },
+            "<PlusIcon />": {
+              "total": 1,
               "Management App": 1
             }
           }
@@ -9544,7 +10363,7 @@
         "allowFlip": {
           "usage": 1,
           "values": {
-            "{allowFlip}": {
+            "allowFlip": {
               "total": 1,
               "Performance": 1
             }
@@ -9553,7 +10372,7 @@
         "size": {
           "usage": 1,
           "values": {
-            "{size}": {
+            "size": {
               "total": 1,
               "Performance": 1
             }
@@ -9580,7 +10399,7 @@
         "zIndex": {
           "usage": 1,
           "values": {
-            "{LogicalExpression}": {
+            "zIndex ?? (isDesktop ? ZIndex.DROPDOWN_OVERLAY : ZIndex.MODAL)": {
               "total": 1,
               "Performance": 1
             }
@@ -9598,7 +10417,7 @@
         "onKeyDownCapture": {
           "usage": 1,
           "values": {
-            "{handleKeyPress}": {
+            "handleKeyPress": {
               "total": 1,
               "Performance": 1
             }
@@ -9607,7 +10426,7 @@
         "onKeyUpCapture": {
           "usage": 1,
           "values": {
-            "{handleKeyPress}": {
+            "handleKeyPress": {
               "total": 1,
               "Performance": 1
             }
@@ -9625,7 +10444,7 @@
         "onChange": {
           "usage": 1,
           "values": {
-            "{undefined}": {
+            "undefined": {
               "total": 1,
               "Management App": 1
             }
@@ -9634,7 +10453,7 @@
         "readOnly": {
           "usage": 1,
           "values": {
-            "{readOnly}": {
+            "readOnly": {
               "total": 1,
               "Management App": 1
             }
@@ -9648,23 +10467,23 @@
         "open": {
           "usage": 5,
           "values": {
-            "{isDeleteQuestionModalOpen}": {
+            "isDeleteQuestionModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isDeleteDialogOpen}": {
+            "isSubmitAlertOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isSubmitAlertOpen}": {
+            "isDeleteDialogOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{isUpdateLaunchedCycleModalOpen}": {
+            "isUpdateLaunchedCycleModalOpen": {
               "total": 1,
               "Performance": 1
             },
-            "{CallExpression}": {
+            "canOpenModal(field.value)": {
               "total": 1,
               "Management App": 1
             }
@@ -9681,176 +10500,12 @@
         }
       }
     },
-    "ToggleButton": {
-      "usage": 9,
-      "props": {
-        "checked": {
-          "usage": 9,
-          "values": {
-            "{isOpen}": {
-              "total": 4,
-              "SG Protect": 2,
-              "Performance": 1,
-              "Management App": 1
-            },
-            "{selected}": {
-              "total": 3,
-              "SG Protect": 1,
-              "Management App": 1,
-              "Management Shell": 1
-            },
-            "{LogicalExpression}": {
-              "total": 1,
-              "Performance": 1
-            },
-            "{showMenu}": {
-              "total": 1,
-              "Management App": 1
-            }
-          }
-        },
-        "variant": {
-          "usage": 9,
-          "values": {
-            "secondary": {
-              "total": 9,
-              "SG Protect": 3,
-              "Performance": 2,
-              "Management App": 3,
-              "Management Shell": 1
-            }
-          }
-        },
-        "size": {
-          "usage": 7,
-          "values": {
-            "sm": {
-              "total": 7,
-              "SG Protect": 3,
-              "Performance": 1,
-              "Management App": 2,
-              "Management Shell": 1
-            }
-          }
-        },
-        "borderRadius": {
-          "usage": 4,
-          "values": {
-            "circle": {
-              "total": 4,
-              "SG Protect": 1,
-              "Performance": 1,
-              "Management App": 1,
-              "Management Shell": 1
-            }
-          }
-        },
-        "width": {
-          "usage": 4,
-          "values": {
-            "32px": {
-              "total": 3,
-              "SG Protect": 1,
-              "Management App": 1,
-              "Management Shell": 1
-            },
-            "{avatarWidth[responsiveSize]}": {
-              "total": 1,
-              "Performance": 1
-            }
-          }
-        },
-        "padding": {
-          "usage": 3,
-          "values": {
-            "0": {
-              "total": 3,
-              "SG Protect": 1,
-              "Management App": 1,
-              "Management Shell": 1
-            }
-          }
-        },
-        "border": {
-          "usage": 3,
-          "values": {
-            "none": {
-              "total": 3,
-              "SG Protect": 1,
-              "Management App": 1,
-              "Management Shell": 1
-            }
-          }
-        },
-        "disabled": {
-          "usage": 3,
-          "values": {
-            "{disabled}": {
-              "total": 3,
-              "SG Protect": 1,
-              "Management App": 1,
-              "Management Shell": 1
-            }
-          }
-        },
-        "onClick": {
-          "usage": 1,
-          "values": {
-            "{onClick}": {
-              "total": 1,
-              "Performance": 1
-            }
-          }
-        },
-        "active": {
-          "usage": 1,
-          "values": {
-            "{active}": {
-              "total": 1,
-              "Performance": 1
-            }
-          }
-        },
-        "minHeight": {
-          "usage": 1,
-          "values": {
-            "0": {
-              "total": 1,
-              "Performance": 1
-            }
-          }
-        },
-        "height": {
-          "usage": 1,
-          "values": {
-            "{avatarWidth[responsiveSize]}": {
-              "total": 1,
-              "Performance": 1
-            }
-          }
-        },
-        "fluid": {
-          "usage": 1,
-          "values": {
-            "true": {
-              "total": 1,
-              "Management App": 1
-            }
-          }
-        }
-      }
-    },
     "Alert": {
       "usage": 9,
       "props": {
         "primaryButtonLabel": {
           "usage": 9,
           "values": {
-            "{CallExpression}": {
-              "total": 3,
-              "Performance": 2,
-              "Management App": 1
-            },
             "Delete": {
               "total": 1,
               "SG Protect": 1
@@ -9863,13 +10518,25 @@
               "total": 1,
               "SG Protect": 1
             },
+            "Yes": {
+              "total": 1,
+              "SG One": 1
+            },
             "Cancel invite": {
               "total": 1,
               "SG One": 1
             },
-            "Yes": {
+            "t(\"confirm\")": {
               "total": 1,
-              "SG One": 1
+              "Performance": 1
+            },
+            "t(\"deleteLanguageAlertCTAButton\")": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t(\"billingForm.inCanadaConfirmCta\")": {
+              "total": 1,
+              "Management App": 1
             },
             "Close": {
               "total": 1,
@@ -9880,11 +10547,11 @@
         "onPrimaryButtonClick": {
           "usage": 9,
           "values": {
-            "{handleDelete}": {
+            "handleDelete": {
               "total": 1,
               "SG Protect": 1
             },
-            "{handleRestore}": {
+            "handleRestore": {
               "total": 1,
               "SG Protect": 1
             },
@@ -9892,27 +10559,27 @@
               "total": 1,
               "SG Protect": 1
             },
-            "{handleCancelInviteConfirm}": {
-              "total": 1,
-              "SG One": 1
-            },
             "() => {\n    removeLicense(license.key)\n        .then(() => {\n            addToast({\n                message: \"License removed.\",\n                variant: \"positive\"\n            });\n        })\n        .catch(() => {\n            addToast({\n                message: `Failed to remove license. ${removeLicenseError}`,\n                variant: \"negative\"\n            });\n        });\n}": {
               "total": 1,
               "SG One": 1
             },
-            "{onConfirm}": {
+            "handleCancelInviteConfirm": {
+              "total": 1,
+              "SG One": 1
+            },
+            "onConfirm": {
               "total": 1,
               "Performance": 1
             },
-            "{handleOnAlertCTA}": {
+            "handleOnAlertCTA": {
               "total": 1,
               "Performance": 1
             },
-            "{setCurrencyToCanadian}": {
+            "setCurrencyToCanadian": {
               "total": 1,
               "Management App": 1
             },
-            "{closeAlert}": {
+            "closeAlert": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -9925,14 +10592,21 @@
               "total": 3,
               "SG Protect": 3
             },
-            "{CallExpression}": {
-              "total": 3,
-              "Performance": 2,
-              "Management App": 1
-            },
             "No": {
               "total": 2,
               "SG One": 2
+            },
+            "t(\"cancel\")": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t(\"deleteLanguageAlertCancelButton\")": {
+              "total": 1,
+              "Performance": 1
+            },
+            "t(\"billingForm.inCanadaCancelCta\")": {
+              "total": 1,
+              "Management App": 1
             }
           }
         },
@@ -9955,11 +10629,11 @@
         "onCancelButtonClick": {
           "usage": 3,
           "values": {
-            "{onClose}": {
+            "onClose": {
               "total": 1,
               "Performance": 1
             },
-            "{handleOnAlertCancel}": {
+            "handleOnAlertCancel": {
               "total": 1,
               "Performance": 1
             },
@@ -9972,11 +10646,11 @@
         "onClose": {
           "usage": 2,
           "values": {
-            "{onClose}": {
+            "onClose": {
               "total": 1,
               "Performance": 1
             },
-            "{handleOnAlertCancel}": {
+            "handleOnAlertCancel": {
               "total": 1,
               "Performance": 1
             }
@@ -10011,24 +10685,24 @@
         "onChange": {
           "usage": 7,
           "values": {
-            "{handleChange}": {
+            "handleChange": {
               "total": 2,
               "SG One": 1,
               "Performance": 1
             },
-            "{handleProductSelectionChange}": {
+            "handleProductSelectionChange": {
               "total": 2,
               "Administration Portal": 2
             },
-            "{handleCheckboxChange}": {
+            "handleCheckboxChange": {
               "total": 1,
               "SG One": 1
             },
-            "{handleOnValueChange}": {
+            "handleOnValueChange": {
               "total": 1,
               "Performance": 1
             },
-            "{handleChangeProductCheckBox}": {
+            "handleChangeProductCheckBox": {
               "total": 1,
               "Management App": 1
             }
@@ -10037,20 +10711,20 @@
         "value": {
           "usage": 6,
           "values": {
-            "{value}": {
+            "value": {
               "total": 2,
               "SG One": 1,
               "Performance": 1
             },
-            "{selectedProducts}": {
+            "selectedProducts": {
               "total": 2,
               "Administration Portal": 2
             },
-            "{reviewTypes}": {
+            "reviewTypes": {
               "total": 1,
               "Performance": 1
             },
-            "{userAccess}": {
+            "userAccess": {
               "total": 1,
               "Management App": 1
             }
@@ -10085,11 +10759,11 @@
         "disabled": {
           "usage": 2,
           "values": {
-            "{isRemovingSeat}": {
+            "isRemovingSeat": {
               "total": 1,
               "SG One": 1
             },
-            "{LogicalExpression}": {
+            "isSandboxOrganization || isDemoOrganization": {
               "total": 1,
               "Administration Portal": 1
             }
@@ -10115,13 +10789,45 @@
         }
       }
     },
+    "HelpMessage": {
+      "usage": 9,
+      "props": {
+        "display": {
+          "usage": 3,
+          "values": {
+            "flex": {
+              "total": 3,
+              "Management App": 3
+            }
+          }
+        },
+        "gap": {
+          "usage": 3,
+          "values": {
+            "40": {
+              "total": 3,
+              "Management App": 3
+            }
+          }
+        },
+        "alignItems": {
+          "usage": 3,
+          "values": {
+            "center": {
+              "total": 3,
+              "Management App": 3
+            }
+          }
+        }
+      }
+    },
     "Section": {
       "usage": 9,
       "props": {
         "title": {
           "usage": 9,
           "values": {
-            "{key}": {
+            "key": {
               "total": 3,
               "Performance": 1,
               "Management App": 1,
@@ -10132,13 +10838,17 @@
               "SG Protect": 1,
               "SG One": 1
             },
-            "{title}": {
+            "title": {
               "total": 2,
               "Performance": 2
             },
-            "{CallExpression}": {
-              "total": 2,
-              "AI": 2
+            "t(\"connections.available\")": {
+              "total": 1,
+              "AI": 1
+            },
+            "t(\"connections.comingSoon\")": {
+              "total": 1,
+              "AI": 1
             }
           }
         },
@@ -10224,65 +10934,33 @@
         }
       }
     },
-    "HelpMessage": {
-      "usage": 9,
-      "props": {
-        "display": {
-          "usage": 3,
-          "values": {
-            "flex": {
-              "total": 3,
-              "Management App": 3
-            }
-          }
-        },
-        "gap": {
-          "usage": 3,
-          "values": {
-            "40": {
-              "total": 3,
-              "Management App": 3
-            }
-          }
-        },
-        "alignItems": {
-          "usage": 3,
-          "values": {
-            "center": {
-              "total": 3,
-              "Management App": 3
-            }
-          }
-        }
-      }
-    },
     "NumberInput": {
       "usage": 8,
       "props": {
         "value": {
           "usage": 7,
           "values": {
-            "{field.value}": {
+            "field.value": {
               "total": 2,
               "Management App": 2
             },
-            "{measurement.startState}": {
+            "measurement.startState": {
               "total": 1,
               "Performance": 1
             },
-            "{measurement.targetState}": {
+            "measurement.targetState": {
               "total": 1,
               "Performance": 1
             },
-            "{LogicalExpression}": {
+            "quantity ?? options.minimumQuantity ?? (productIdentifier === ProductIdentifier.Officevibe ? OV_DEFAULT_QUANTITY : 1)": {
               "total": 1,
               "Management App": 1
             },
-            "{ConditionalExpression}": {
+            "attribute.value ? parseInt(attribute.value.toString()) : null": {
               "total": 1,
               "Management App": 1
             },
-            "{row.riskThreshold.value}": {
+            "row.riskThreshold.value": {
               "total": 1,
               "Management App": 1
             }
@@ -10316,9 +10994,13 @@
         "onChange": {
           "usage": 2,
           "values": {
-            "{CallExpression}": {
-              "total": 2,
-              "Performance": 2
+            "onValueChange(\"start\")": {
+              "total": 1,
+              "Performance": 1
+            },
+            "onValueChange(\"target\")": {
+              "total": 1,
+              "Performance": 1
             }
           }
         },
@@ -10329,7 +11011,7 @@
               "total": 1,
               "Management App": 1
             },
-            "{LogicalExpression}": {
+            "options.minimumQuantity ?? 1": {
               "total": 1,
               "Management App": 1
             }
@@ -10338,11 +11020,11 @@
         "onBlur": {
           "usage": 2,
           "values": {
-            "{onBlur}": {
+            "onBlur": {
               "total": 1,
               "Management App": 1
             },
-            "{row.riskThreshold.onBlur}": {
+            "row.riskThreshold.onBlur": {
               "total": 1,
               "Management App": 1
             }
@@ -10351,7 +11033,7 @@
         "disabled": {
           "usage": 1,
           "values": {
-            "{attribute.isReadOnly}": {
+            "attribute.isReadOnly": {
               "total": 1,
               "Management App": 1
             }
@@ -10360,7 +11042,7 @@
         "onKeyDown": {
           "usage": 1,
           "values": {
-            "{onKeyDown}": {
+            "onKeyDown": {
               "total": 1,
               "Management App": 1
             }
@@ -10419,11 +11101,11 @@
         "as": {
           "usage": 2,
           "values": {
-            "{motion.div}": {
+            "motion.div": {
               "total": 1,
               "SG Protect": 1
             },
-            "{as}": {
+            "as": {
               "total": 1,
               "SG One": 1
             }
@@ -10436,15 +11118,6 @@
               "total": 2,
               "SG Protect": 1,
               "Management App": 1
-            }
-          }
-        },
-        "marginBottom": {
-          "usage": 1,
-          "values": {
-            "stack-md": {
-              "total": 1,
-              "SG Protect": 1
             }
           }
         },
@@ -10466,10 +11139,19 @@
             }
           }
         },
+        "marginBottom": {
+          "usage": 1,
+          "values": {
+            "stack-md": {
+              "total": 1,
+              "SG Protect": 1
+            }
+          }
+        },
         "onClick": {
           "usage": 1,
           "values": {
-            "{handleClick}": {
+            "handleClick": {
               "total": 1,
               "SG One": 1
             }
@@ -10519,13 +11201,13 @@
         "onChange": {
           "usage": 7,
           "values": {
-            "{handlePasswordChange}": {
+            "handlePasswordChange": {
               "total": 3,
               "SG Protect": 1,
               "Performance": 1,
               "Management Shell": 1
             },
-            "{formik.handleChange}": {
+            "formik.handleChange": {
               "total": 2,
               "SG One": 2
             },
@@ -10552,11 +11234,11 @@
         "value": {
           "usage": 2,
           "values": {
-            "{formik.values.currentPassword}": {
+            "formik.values.currentPassword": {
               "total": 1,
               "SG One": 1
             },
-            "{formik.values.newPassword}": {
+            "formik.values.newPassword": {
               "total": 1,
               "SG One": 1
             }
@@ -10574,9 +11256,13 @@
         "placeholder": {
           "usage": 2,
           "values": {
-            "{CallExpression}": {
-              "total": 2,
-              "Activation": 2
+            "t(\"updateProfilePage.passwordPlaceholder\")": {
+              "total": 1,
+              "Activation": 1
+            },
+            "t(\"inviteUpdateProfilePage.passwordPlaceholder\")": {
+              "total": 1,
+              "Activation": 1
             }
           }
         },
@@ -10597,12 +11283,12 @@
         "open": {
           "usage": 7,
           "values": {
-            "{isOpen}": {
+            "isOpen": {
               "total": 5,
               "Performance": 4,
               "Management App": 1
             },
-            "{open}": {
+            "open": {
               "total": 2,
               "Performance": 1,
               "AI": 1
@@ -10612,16 +11298,16 @@
         "onOpenChange": {
           "usage": 5,
           "values": {
-            "{handleOpenChange}": {
+            "handleOpenChange": {
               "total": 2,
               "Performance": 1,
               "Management App": 1
             },
-            "(_, newValue) => handleOnOpenChange(newValue)": {
+            "onOpenChange": {
               "total": 1,
               "Performance": 1
             },
-            "{onOpenChange}": {
+            "(_, newValue) => handleOnOpenChange(newValue)": {
               "total": 1,
               "Performance": 1
             },
@@ -10643,7 +11329,7 @@
               "total": 3,
               "AI": 3
             },
-            "{disabled}": {
+            "disabled": {
               "total": 2,
               "Management App": 1,
               "AI": 1
@@ -10658,7 +11344,7 @@
               "Management App": 1,
               "AI": 1
             },
-            "{handleOnRemove}": {
+            "handleOnRemove": {
               "total": 1,
               "Performance": 1
             }
@@ -10699,7 +11385,7 @@
         "paddingBottom": {
           "usage": 1,
           "values": {
-            "{ConditionalExpression}": {
+            "disabled ? \"inset-sm\" : undefined": {
               "total": 1,
               "Performance": 1
             }
@@ -10809,7 +11495,7 @@
         "presets": {
           "usage": 4,
           "values": {
-            "{datePresets}": {
+            "datePresets": {
               "total": 4,
               "AI": 4
             }
@@ -10832,15 +11518,15 @@
         "href": {
           "usage": 3,
           "values": {
-            "{TSNonNullExpression}": {
+            "workspaceUrl!": {
               "total": 1,
               "SG Protect": 1
             },
-            "{documentUrl}": {
+            "documentUrl": {
               "total": 1,
               "SG Protect": 1
             },
-            "{x.pdfHostedInvoiceUrl}": {
+            "x.pdfHostedInvoiceUrl": {
               "total": 1,
               "Management App": 1
             }
@@ -10906,7 +11592,7 @@
         "expandedKeys": {
           "usage": 1,
           "values": {
-            "{expandedQuestions}": {
+            "expandedQuestions": {
               "total": 1,
               "SG One": 1
             }
@@ -10915,7 +11601,7 @@
         "onExpansionChange": {
           "usage": 1,
           "values": {
-            "{handleExpansionChange}": {
+            "handleExpansionChange": {
               "total": 1,
               "SG One": 1
             }
@@ -10968,53 +11654,17 @@
         }
       }
     },
-    "ToggleIconButton": {
-      "usage": 2,
-      "props": {
-        "checked": {
-          "usage": 2,
-          "values": {
-            "{isOpened}": {
-              "total": 1,
-              "SG One": 1
-            },
-            "{showMenu}": {
-              "total": 1,
-              "Management App": 1
-            }
-          }
-        },
-        "variant": {
-          "usage": 1,
-          "values": {
-            "tertiary": {
-              "total": 1,
-              "SG One": 1
-            }
-          }
-        },
-        "onClick": {
-          "usage": 1,
-          "values": {
-            "{openBeamer}": {
-              "total": 1,
-              "SG One": 1
-            }
-          }
-        }
-      }
-    },
     "Transition": {
       "usage": 2,
       "props": {
         "show": {
           "usage": 2,
           "values": {
-            "{isAnimationShowed}": {
+            "isAnimationShowed": {
               "total": 1,
               "Performance": 1
             },
-            "{visible}": {
+            "visible": {
               "total": 1,
               "Management App": 1
             }
@@ -11046,7 +11696,7 @@
         "size": {
           "usage": 2,
           "values": {
-            "{size}": {
+            "size": {
               "total": 2,
               "Performance": 1,
               "Management App": 1
@@ -11059,36 +11709,13 @@
       "usage": 2,
       "props": {}
     },
-    "Dot": {
-      "usage": 1,
-      "props": {
-        "marginRight": {
-          "usage": 1,
-          "values": {
-            "5px": {
-              "total": 1,
-              "SG Protect": 1
-            }
-          }
-        },
-        "color": {
-          "usage": 1,
-          "values": {
-            "{dotColor}": {
-              "total": 1,
-              "SG Protect": 1
-            }
-          }
-        }
-      }
-    },
     "Underlay": {
       "usage": 1,
       "props": {
         "zIndex": {
           "usage": 1,
           "values": {
-            "{zIndex}": {
+            "zIndex": {
               "total": 1,
               "SG Protect": 1
             }
@@ -11105,43 +11732,30 @@
         }
       }
     },
-    "VisuallyHidden": {
-      "usage": 1,
-      "props": {}
-    },
-    "InputGroup": {
+    "Dot": {
       "usage": 1,
       "props": {
-        "fluid": {
+        "marginRight": {
           "usage": 1,
           "values": {
-            "true": {
+            "5px": {
               "total": 1,
-              "Management App": 1
+              "SG Protect": 1
             }
           }
         },
-        "disabled": {
+        "color": {
           "usage": 1,
           "values": {
-            "{disabled}": {
+            "dotColor": {
               "total": 1,
-              "Management App": 1
-            }
-          }
-        },
-        "onBlur": {
-          "usage": 1,
-          "values": {
-            "{onBlur}": {
-              "total": 1,
-              "Management App": 1
+              "SG Protect": 1
             }
           }
         }
       }
     },
-    "Group": {
+    "VisuallyHidden": {
       "usage": 1,
       "props": {}
     },
@@ -11194,6 +11808,42 @@
           }
         }
       }
+    },
+    "InputGroup": {
+      "usage": 1,
+      "props": {
+        "fluid": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "Management App": 1
+            }
+          }
+        },
+        "disabled": {
+          "usage": 1,
+          "values": {
+            "disabled": {
+              "total": 1,
+              "Management App": 1
+            }
+          }
+        },
+        "onBlur": {
+          "usage": 1,
+          "values": {
+            "onBlur": {
+              "total": 1,
+              "Management App": 1
+            }
+          }
+        }
+      }
+    },
+    "Group": {
+      "usage": 1,
+      "props": {}
     }
   }
 }

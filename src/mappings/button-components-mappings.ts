@@ -8,6 +8,8 @@ import { iconButtonAsLinkMapping } from "./components/iconButtonAsLink.ts";
 import { tileMapping } from "./components/tile.ts";
 import { tileGroupMapping } from "./components/tileGroup.ts";
 import { tileLinkMapping } from "./components/tileLink.ts";
+import { toggleButtonMapping } from "./components/toggleButton.ts";
+import { toggleIconButtonMapping } from "./components/toggleIconButton.ts";
 
 export const buttonComponentsMappings: Record<string, ComponentMapMetaData> = {
   Counter: {
@@ -22,9 +24,7 @@ export const buttonComponentsMappings: Record<string, ComponentMapMetaData> = {
   ...tileGroupMapping,
   ...iconButtonMapping,
   ...iconButtonAsLinkMapping,
-  ...crossButtonMapping
-  // ToggleButton: "Button",
-  // ToggleButtonProps: "ButtonProps",
-  // ToggleIconButton: "Button",
-  // ToggleIconButtonProps: "ButtonProps",
+  ...crossButtonMapping,
+  ...toggleButtonMapping,
+  ...toggleIconButtonMapping
 };

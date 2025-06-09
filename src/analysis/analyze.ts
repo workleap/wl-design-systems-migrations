@@ -429,32 +429,8 @@ export function analyze(
                 propValue = String(attr.value.value);
               } else if (attr.value.type === "JSXExpressionContainer") {
                 const expression = attr.value.expression;
-                if (expression.type === "Literal") {
-                  propValue = String(expression.value);
-                } else if (expression.type === "Identifier") {
-                  propValue = `{${expression.name}}`;
-                } else if (expression.type === "MemberExpression") {
-                  // Handle member expressions like obj.prop
-                  propValue = `{${j(expression).toSource()}}`;
-                } else if (
-                  expression.type === "ArrowFunctionExpression" ||
-                  expression.type === "FunctionExpression"
-                ) {
-                  // For function expressions, capture the source code
-                  propValue = j(expression).toSource();
-                } else if (expression.type === "TemplateLiteral") {
-                  // For template literals, capture the source code
-                  propValue = j(expression).toSource();
-                } else if (
-                  expression.type === "ObjectExpression" ||
-                  expression.type === "ArrayExpression"
-                ) {
-                  // For object and array expressions, capture the source code
-                  propValue = j(expression).toSource();
-                } else {
-                  // For other complex expressions, use a generic placeholder
-                  propValue = `{${expression.type}}`;
-                }
+
+                propValue = j(expression).toSource();
               }
             }
 
