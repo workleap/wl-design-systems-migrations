@@ -10,6 +10,7 @@
 - Make sure to update the `README.md` or `CONTRIBUTING.md` files with any new features or changes if there are related section in the file.
   - Just update the existing sections if it is required.
   - It is an important step before final step.
+  - Note that some changes come from `package.json` changes.
 - At the end:
   - Open the PR on Web using `gh pr view --web`, or just share the PR's url.
   - Generate a short summary of the changes so I can share it in Slack.
