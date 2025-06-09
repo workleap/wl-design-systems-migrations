@@ -1,6 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import type { Options } from "jscodeshift";
-import { setReplacer, setReviver } from "../utils/serialization.js";
 import type { Runtime } from "../utils/types.js";
 
 /**
@@ -86,12 +85,14 @@ function shouldIgnoreProperty(
 export interface PropertyUsage {
   [propName: string]: {
     usage: number;
-    values: {
-      [value: string]: {
-        total: number;
-        [project: string]: number;
-      };
-    };
+    values: Values;
+  };
+}
+
+interface Values {
+  [value: string]: {
+    total: number;
+    [project: string]: number;
   };
 }
 
@@ -115,6 +116,21 @@ export interface AnalysisResults {
     };
   };
   components: Record<string, ComponentAnalysisData>;
+}
+
+/**
+ * Helper function to deep clone property values (just the count objects)
+ */
+function clonePropertyValues(values: {
+  [value: string]: { total: number; [project: string]: number };
+}): { [value: string]: { total: number; [project: string]: number } } {
+  const cloned: { [value: string]: { total: number; [project: string]: number } } = {};
+  
+  Object.entries(values).forEach(([value, counts]) => {
+    cloned[value] = { ...counts }; // Clone each count object
+  });
+  
+  return cloned;
 }
 
 /**
@@ -157,7 +173,7 @@ export function mergeAnalysisResults(
             ([propName, propData]) => {
               propsCopy[propName] = {
                 usage: propData.usage,
-                values: JSON.parse(JSON.stringify(propData.values)) // Deep copy values
+                values: clonePropertyValues(propData.values) // Deep clone count objects
               };
             }
           );
@@ -191,10 +207,10 @@ export function mergeAnalysisResults(
             // Merge values with project counts
             mergeProjectValues(existingProp.values, propData.values);
           } else {
-            // Copy the property data with deep copy of values
+            // Copy the property data with deep clone of count objects
             combinedComponentData.props[propName] = {
               usage: propData.usage,
-              values: JSON.parse(JSON.stringify(propData.values))
+              values: clonePropertyValues(propData.values)
             };
           }
         });
@@ -204,7 +220,7 @@ export function mergeAnalysisResults(
         Object.entries(componentData.props).forEach(([propName, propData]) => {
           propsCopy[propName] = {
             usage: propData.usage,
-            values: JSON.parse(JSON.stringify(propData.values))
+            values: clonePropertyValues(propData.values)
           };
         });
 
@@ -216,12 +232,53 @@ export function mergeAnalysisResults(
     }
   );
 
+  // Apply sorting to the merged results
+  const sortedCombinedData: Record<string, ComponentAnalysisData> = {};
+
+  // Sort components by usage count (descending)
+  const sortedComponents = Object.entries(combinedData).sort(
+    ([, a], [, b]) => b.usage - a.usage
+  );
+
+  sortedComponents.forEach(([componentName, componentData]) => {
+    const sortedProps: PropertyUsage = {};
+
+    // Sort properties by usage count (descending)
+    const sortedPropsEntries = Object.entries(componentData.props).sort(
+      ([, a], [, b]) => b.usage - a.usage
+    );
+
+    sortedPropsEntries.forEach(([propName, propData]) => {
+      // Sort values by total count (descending)
+      const sortedValues = Object.entries(propData.values).sort(
+        ([, a], [, b]) => b.total - a.total
+      );
+
+      const sortedValuesObj: {
+        [value: string]: { total: number; [project: string]: number };
+      } = {};
+      sortedValues.forEach(([value, counts]) => {
+        sortedValuesObj[value] = counts;
+      });
+
+      sortedProps[propName] = {
+        usage: propData.usage,
+        values: sortedValuesObj
+      };
+    });
+
+    sortedCombinedData[componentName] = {
+      usage: componentData.usage,
+      props: sortedProps
+    };
+  });
+
   // Calculate combined totals
-  const totalComponentUsage = Object.values(combinedData).reduce(
+  const totalComponentUsage = Object.values(sortedCombinedData).reduce(
     (sum, comp) => sum + comp.usage,
     0
   );
-  const totalPropUsage = Object.values(combinedData).reduce(
+  const totalPropUsage = Object.values(sortedCombinedData).reduce(
     (sum, comp) =>
       sum +
       Object.values(comp.props).reduce(
@@ -238,7 +295,7 @@ export function mergeAnalysisResults(
         props: totalPropUsage
       }
     },
-    components: combinedData
+    components: sortedCombinedData
   };
 }
 
@@ -519,8 +576,7 @@ export function analyze(
       try {
         const existingContent = readFileSync(outputPath, "utf-8");
         const existingResults: AnalysisResults = JSON.parse(
-          existingContent,
-          setReviver
+          existingContent
         );
         finalResults = mergeAnalysisResults(existingResults, analysisResults);
       } catch {
@@ -533,7 +589,7 @@ export function analyze(
     // Write merged results to file
     writeFileSync(
       outputPath,
-      JSON.stringify(finalResults, setReplacer, 2),
+      customStringify(finalResults), //customStringify(finalResults),
       "utf-8"
     );
 
@@ -548,4 +604,77 @@ export function analyze(
     source: root.toSource(),
     analysisResults
   };
+}
+
+/**
+We need this to make sure keys are sorted properly.
+In default JSON.stringify, the numeric keys are sorted before string keys,
+but we want to ensure a consistent order for our custom objects.
+ */
+export function customStringify(value: any, indent = 2) {
+  // Internal helper to walk with current indent level
+  function walk(val: any, relatedKey: string, level: number): string {
+    const pad = " ".repeat(level * indent);
+    const padInner = " ".repeat((level + 1) * indent);
+
+    // Detect array-of-pairs → custom object
+    if (
+      Array.isArray(val) &&
+      val.length > 0 &&
+      val.every(item =>
+        Array.isArray(item) &&
+        item.length === 2 &&
+        typeof item[0] === "string"
+      )
+    ) {
+      const parts = val.map(
+        ([k, v]) => `${padInner}${JSON.stringify(k)}: ${walk(v, k, level + 1)}`
+      );
+
+      return `{\n${parts.join(",\n")}\n${pad}}`;
+    }
+
+    // Regular arrays
+    if (Array.isArray(val)) {
+      if (val.length === 0) {return "[]";}
+      const parts = val.map(item => `${padInner}${walk(item, relatedKey, level + 1)}`);
+
+      return `[\n${parts.join(",\n")}\n${pad}]`;
+    }
+
+    // Plain object
+    if (val !== null && typeof val === "object") {
+      const keys = getSortedKeys(relatedKey, val);
+
+      if (keys.length === 0) {return "{}";}
+      const parts = keys.map(
+        k => `${padInner}${JSON.stringify(k)}: ${walk(val[k], k, level + 1)}`
+      );
+
+      return `{\n${parts.join(",\n")}\n${pad}}`;
+    }
+
+    // Primitives
+    return JSON.stringify(val);
+  }
+
+  return walk(value, "", 0);
+}
+
+export function getSortedKeys(key: string, value: object): string[] {
+  if (key == "values") {
+    return Object.entries(value as Record<string, any>)
+      .sort((a, b) => b[1].total - a[1].total)
+      .map(([k]) => k);
+  } else if (key == "props") {
+    return Object.entries(value as Record<string, any>)
+      .sort((a, b) => b[1].usage - a[1].usage)
+      .map(([k]) => k);
+  } else if (key == "components") {
+    return Object.entries(value as Record<string, any>)
+      .sort((a, b) => b[1].usage - a[1].usage)
+      .map(([k]) => k);
+  } else {
+    return Object.keys(value);
+  }
 }
