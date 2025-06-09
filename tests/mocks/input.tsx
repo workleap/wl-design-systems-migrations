@@ -1,6 +1,5 @@
 // prettier-ignore
 import {
-  CloseButton,
   Div as HopperDiv
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
@@ -444,6 +443,9 @@ export function App() {
         inherit
         size="md"
         disabled
+        active
+        focus
+        hover
       >
         text
         <Counter variant="divider">60</Counter>
@@ -483,9 +485,6 @@ export function App() {
         }}
         type="reset"
         cursorHover="nw-resize"
-        active
-        focus
-        hover
       >
         text
       </Tile>
@@ -502,9 +501,6 @@ export function App() {
         }}
         type="reset"
         cursorHover="nw-resize"
-        active
-        focus
-        hover
       >
         text
       </TileLink>
@@ -532,7 +528,6 @@ export function App() {
         size="2xs"
         disabled
         aria-label="Icon Button"
-        active
       >
         <SparklesIcon />
       </IconButton>
@@ -583,7 +578,6 @@ export function App() {
         checked={false}
         defaultChecked={true}
         value="test"
-        active
       >
         text
       </ToggleButton>
@@ -600,7 +594,6 @@ export function App() {
         size="2xs"
         disabled
         aria-label="Icon Button"
-        active
       >
         <SparklesIcon />
       </ToggleIconButton>

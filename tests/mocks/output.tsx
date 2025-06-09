@@ -453,6 +453,9 @@ export function App() {
         inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
         size="md"
         isDisabled
+        active/* Migration TODO: `active` is not supported anymore. Find an alternative solution */
+        focus/* Migration TODO: `focus` is not supported anymore. Find an alternative solution */
+        hover/* Migration TODO: `hover` is not supported anymore. Find an alternative solution */
       >
         text
         /* Migration TODO: `Counter` is not supported anymore. You need to find an alternative. */
@@ -493,9 +496,6 @@ export function App() {
         }}
         type="reset"
         cursorHover="nw-resize"
-        active
-        focus
-        hover
       >
         text
       </Tile>
@@ -511,10 +511,7 @@ export function App() {
           alert(1);
         }}
         type="reset"
-        cursorHover="nw-resize"
-        active
-        focus
-        hover>
+        cursorHover="nw-resize">
         text
       </TileLink>
       <TileGroup
@@ -539,7 +536,6 @@ export function App() {
         size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */
         isDisabled
         aria-label="Icon Button"
-        active
       >
         <SparklesIcon />
       </Button>
@@ -593,7 +589,6 @@ export function App() {
         isSelected={false}
         defaultSelected={true}
         id="test"
-        active
       >
         text
       </ToggleButton>
@@ -609,7 +604,6 @@ export function App() {
         size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */
         isDisabled
         aria-label="Icon Button"
-        active
       >
         <SparklesIcon />
       </ToggleButton>

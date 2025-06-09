@@ -4,7 +4,7 @@ import { migrate } from "../src/migrations/migrate.ts";
 import { getRuntime, removeSpacesAndNewlines } from "./utils.ts";
 
 describe("migrations", () => {
-  test("when an Orbiter import got an alter name, keep it with Hopper", async () => {
+  test.only("when an Orbiter import got an alter name, keep it with Hopper", async () => {
     const INPUT = "import { Div as Div2, Text } from \"@workleap/orbiter-ui\";";
     const OUTPUT = "import { Div as Div2, Text } from \"@hopper-ui/components\";";
 

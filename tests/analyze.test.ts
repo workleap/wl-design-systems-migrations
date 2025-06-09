@@ -730,8 +730,6 @@ describe("component usage analysis", () => {
       "include-ignoreList": true
     });
 
-    console.log(JSON.stringify(analysisResults));
-
     // Check Button prop values
     assert.ok(
       analysisResults.components.Button,
