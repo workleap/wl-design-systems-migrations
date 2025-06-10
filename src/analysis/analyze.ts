@@ -93,7 +93,9 @@ export interface PropertyUsage {
 interface Values {
   [value: string]: {
     total: number;
-    [project: string]: number;
+    projects?: {
+      [project: string]: number;
+    };
   };
 }
 
@@ -123,12 +125,15 @@ export interface AnalysisResults {
  * Helper function to deep clone property values (just the count objects)
  */
 function clonePropertyValues(values: {
-  [value: string]: { total: number; [project: string]: number };
-}): { [value: string]: { total: number; [project: string]: number } } {
-  const cloned: { [value: string]: { total: number; [project: string]: number } } = {};
+  [value: string]: { total: number; projects?: { [project: string]: number } };
+}): { [value: string]: { total: number; projects?: { [project: string]: number } } } {
+  const cloned: { [value: string]: { total: number; projects?: { [project: string]: number } } } = {};
   
   Object.entries(values).forEach(([value, counts]) => {
-    cloned[value] = { ...counts }; // Clone each count object
+    cloned[value] = { 
+      total: counts.total,
+      ...(counts.projects && { projects: { ...counts.projects } })
+    };
   });
   
   return cloned;
@@ -138,21 +143,28 @@ function clonePropertyValues(values: {
  * Helper function to merge project values
  */
 function mergeProjectValues(
-  target: { [value: string]: { total: number; [project: string]: number } },
-  source: { [value: string]: { total: number; [project: string]: number } }
+  target: { [value: string]: { total: number; projects?: { [project: string]: number } } },
+  source: { [value: string]: { total: number; projects?: { [project: string]: number } } }
 ): void {
   Object.entries(source).forEach(([value, counts]) => {
     if (target[value]) {
       // Merge counts
       target[value].total += counts.total;
-      Object.entries(counts).forEach(([project, count]) => {
-        if (project !== "total" && target[value]) {
-          target[value][project] = (target[value][project] || 0) + count;
+      if (counts.projects) {
+        if (!target[value].projects) {
+          target[value].projects = {};
         }
-      });
+        const targetProjects = target[value].projects!;
+        Object.entries(counts.projects).forEach(([project, count]) => {
+          targetProjects[project] = (targetProjects[project] || 0) + count;
+        });
+      }
     } else {
       // Copy the value with all its project counts
-      target[value] = { ...counts };
+      target[value] = { 
+        total: counts.total,
+        ...(counts.projects && { projects: { ...counts.projects } })
+      };
     }
   });
 }
@@ -256,7 +268,7 @@ export function mergeAnalysisResults(
       );
 
       const sortedValuesObj: {
-        [value: string]: { total: number; [project: string]: number };
+        [value: string]: { total: number; projects?: { [project: string]: number } };
       } = {};
       sortedValues.forEach(([value, counts]) => {
         sortedValuesObj[value] = counts;
@@ -335,7 +347,7 @@ export function analyze(
         {
           usage: number;
           values: {
-            [value: string]: { total: number; [project: string]: number };
+            [value: string]: { total: number; projects?: { [project: string]: number } };
           };
         }
       >;
@@ -446,7 +458,10 @@ export function analyze(
 
               // If project is specified, also track project-specific count
               if (project) {
-                valueData[project] = (valueData[project] || 0) + 1;
+                if (!valueData.projects) {
+                  valueData.projects = {};
+                }
+                valueData.projects[project] = (valueData.projects[project] || 0) + 1;
               }
             }
           }
@@ -489,7 +504,7 @@ export function analyze(
       );
 
       const sortedValuesObj: {
-        [value: string]: { total: number; [project: string]: number };
+        [value: string]: { total: number; projects?: { [project: string]: number } };
       } = {};
       sortedValues.forEach(([value, counts]) => {
         sortedValuesObj[value] = counts;

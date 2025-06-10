@@ -30,7 +30,7 @@
     "deploy:codemod": "codemod publish && pnpm dlx rimraf cdmd_dist",
     "sample": "codemod --source ./  -t test/input.tsx -d",
     "sample:write": "codemod --source ./  -t tests/mocks/input.tsx --no-interactive",
-    "analyze": "pnpm analyze:state && pnpm analyze:components && pnpm analyze:props",
+    "analyze:all": "pnpm analyze:state && pnpm analyze:components && pnpm analyze:props",
     "analyze:components": "./scripts/analyze.not-mapped-components.sh",
     "analyze:props": "./scripts/analyze.not-mapped-props.sh",
     "analyze:state": "./scripts/analyze-state.sh",

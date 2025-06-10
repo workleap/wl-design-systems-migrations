@@ -68,7 +68,7 @@ describe("analyze basic functionality", () => {
     // Check project-specific tracking
     const primaryValue = variantValues?.["primary"];
     expect(primaryValue?.total).toBe(1);
-    expect(primaryValue?.projectA).toBe(1);
+    expect(primaryValue?.projects?.projectA).toBe(1);
   });
 
   test("analyze without project parameter only tracks total counts", () => {
@@ -163,16 +163,16 @@ describe("analyze basic functionality", () => {
       // Check "primary" variant (appears in all projects)
       const primaryValue = variantValues?.["primary"];
       expect(primaryValue?.total).toBe(3); // 1 from A + 1 from B + 1 from C
-      expect(primaryValue?.projectA).toBe(1);
-      expect(primaryValue?.projectB).toBe(1);
-      expect(primaryValue?.projectC).toBe(1);
+      expect(primaryValue?.projects?.projectA).toBe(1);
+      expect(primaryValue?.projects?.projectB).toBe(1);
+      expect(primaryValue?.projects?.projectC).toBe(1);
 
       // Check "secondary" variant (only in projectB)
       const secondaryValue = variantValues?.["secondary"];
       expect(secondaryValue?.total).toBe(1); // Only from B
-      expect(secondaryValue?.projectB).toBe(1);
-      expect(secondaryValue?.projectA).toBeUndefined();
-      expect(secondaryValue?.projectC).toBeUndefined();
+      expect(secondaryValue?.projects?.projectB).toBe(1);
+      expect(secondaryValue?.projects?.projectA).toBeUndefined();
+      expect(secondaryValue?.projects?.projectC).toBeUndefined();
 
       // Check size prop accumulation
       const sizeValues = buttonComponent!.props.size?.values;
@@ -181,22 +181,22 @@ describe("analyze basic functionality", () => {
       // Check "large" size (appears in projectA and projectB)
       const largeValue = sizeValues?.["large"];
       expect(largeValue?.total).toBe(2); // 1 from A + 1 from B
-      expect(largeValue?.projectA).toBe(1);
-      expect(largeValue?.projectB).toBe(1);
-      expect(largeValue?.projectC).toBeUndefined();
+      expect(largeValue?.projects?.projectA).toBe(1);
+      expect(largeValue?.projects?.projectB).toBe(1);
+      expect(largeValue?.projects?.projectC).toBeUndefined();
 
       // Check "small" size (only in projectB)
       const smallValue = sizeValues?.["small"];
       expect(smallValue?.total).toBe(1);
-      expect(smallValue?.projectB).toBe(1);
-      expect(smallValue?.projectA).toBeUndefined();
+      expect(smallValue?.projects?.projectB).toBe(1);
+      expect(smallValue?.projects?.projectA).toBeUndefined();
 
       // Check "medium" size (only in projectC)
       const mediumValue = sizeValues?.["medium"];
       expect(mediumValue?.total).toBe(1);
-      expect(mediumValue?.projectC).toBe(1);
-      expect(mediumValue?.projectA).toBeUndefined();
-      expect(mediumValue?.projectB).toBeUndefined();
+      expect(mediumValue?.projects?.projectC).toBe(1);
+      expect(mediumValue?.projects?.projectA).toBeUndefined();
+      expect(mediumValue?.projects?.projectB).toBeUndefined();
 
       // Check that other components are also tracked correctly
       expect(finalResults.components.Div).toBeDefined();
