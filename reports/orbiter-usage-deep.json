@@ -1,0 +1,3079 @@
+{
+  "overall": {
+    "usage": {
+      "components": 218,
+      "props": 348
+    }
+  },
+  "components": {
+    "Text": {
+      "usage": 48,
+      "props": {
+        "fontWeight": {
+          "usage": 9,
+          "values": {
+            "body-md-medium": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.stories.tsx&version=GBmain&line=48&lineEnd=49&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=183&lineEnd=184&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=33&lineEnd=34&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "body-md-semibold": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=160&lineEnd=161&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=189&lineEnd=190&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=23&lineEnd=24&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "body-sm-semibold": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpercentage-card%2FPercentageCard.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "overline": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Foverline%2FOverline.tsx&version=GBmain&line=9&lineEnd=10&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "body-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=25&lineEnd=26&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "size": {
+          "usage": 9,
+          "values": {
+            "md": {
+              "total": 4,
+              "projects": {
+                "SG Protect": 4
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=160&lineEnd=161&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=183&lineEnd=184&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=189&lineEnd=190&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=23&lineEnd=24&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "sm": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=146&lineEnd=147&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=25&lineEnd=26&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=28&lineEnd=29&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "xs": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=260&lineEnd=261&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=264&lineEnd=265&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "color": {
+          "usage": 5,
+          "values": {
+            "neutral-weak": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=146&lineEnd=147&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=25&lineEnd=26&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "neutral": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpercentage-card%2FPercentageCard.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=23&lineEnd=24&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "danger": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=260&lineEnd=261&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fontSize": {
+          "usage": 3,
+          "values": {
+            "body-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpercentage-card%2FPercentageCard.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "overline": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Foverline%2FOverline.tsx&version=GBmain&line=8&lineEnd=9&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "inherit": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=22&lineEnd=23&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginLeft": {
+          "usage": 2,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "4px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=146&lineEnd=147&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fontFamily": {
+          "usage": 2,
+          "values": {
+            "overline": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Foverline%2FOverline.tsx&version=GBmain&line=7&lineEnd=8&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=21&lineEnd=22&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "whiteSpace": {
+          "usage": 1,
+          "values": {
+            "normal": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=71&lineEnd=72&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fontStyle": {
+          "usage": 1,
+          "values": {
+            "italic": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=264&lineEnd=265&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "letterSpacing": {
+          "usage": 1,
+          "values": {
+            "0.015rem": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Foverline%2FOverline.tsx&version=GBmain&line=10&lineEnd=11&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "lineHeight": {
+          "usage": 1,
+          "values": {
+            "overline": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Foverline%2FOverline.tsx&version=GBmain&line=11&lineEnd=12&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "textTransform": {
+          "usage": 1,
+          "values": {
+            "uppercase": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Foverline%2FOverline.tsx&version=GBmain&line=12&lineEnd=13&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "position": {
+          "usage": 1,
+          "values": {
+            "absolute": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=13&lineEnd=14&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "display": {
+          "usage": 1,
+          "values": {
+            "flex": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=14&lineEnd=15&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "top": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=15&lineEnd=16&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "width": {
+          "usage": 1,
+          "values": {
+            "100%": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=17&lineEnd=18&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "height": {
+          "usage": 1,
+          "values": {
+            "100%": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=18&lineEnd=19&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "justifyContent": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "alignItems": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=20&lineEnd=21&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginBottom": {
+          "usage": 1,
+          "values": {
+            "stack-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=28&lineEnd=29&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Flex": {
+      "usage": 33,
+      "props": {
+        "alignItems": {
+          "usage": 19,
+          "values": {
+            "center": {
+              "total": 14,
+              "projects": {
+                "SG Protect": 14
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=103&lineEnd=104&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=85&lineEnd=86&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=86&lineEnd=87&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=180&lineEnd=181&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=39&lineEnd=40&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=17&lineEnd=18&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageLoader.tsx&version=GBmain&line=6&lineEnd=7&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageBreadcrumbs.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=109&lineEnd=110&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=214&lineEnd=215&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=229&lineEnd=230&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=236&lineEnd=237&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "start": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=102&lineEnd=103&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=137&lineEnd=138&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=165&lineEnd=166&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "size === \"md\" ? \"initial\" : \"center\"": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=145&lineEnd=146&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "{ base: \"start\", sm: \"end\" }": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "gap": {
+          "usage": 17,
+          "values": {
+            "inline-md": {
+              "total": 5,
+              "projects": {
+                "SG Protect": 5
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=32&lineEnd=33&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=100&lineEnd=101&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=135&lineEnd=136&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=163&lineEnd=164&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.stories.tsx&version=GBmain&line=106&lineEnd=107&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "inline-sm": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=86&lineEnd=87&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=39&lineEnd=40&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageBreadcrumbs.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "stack-xs": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=102&lineEnd=103&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=137&lineEnd=138&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=165&lineEnd=166&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "stack-md": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=13&lineEnd=14&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.tsx&version=GBmain&line=24&lineEnd=25&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "40": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=178&lineEnd=179&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "160": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=191&lineEnd=192&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "size === \"md\" ? 80 : 160": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=143&lineEnd=144&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=109&lineEnd=110&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "justifyContent": {
+          "usage": 9,
+          "values": {
+            "center": {
+              "total": 6,
+              "projects": {
+                "SG Protect": 6
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=179&lineEnd=180&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageLoader.tsx&version=GBmain&line=6&lineEnd=7&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=102&lineEnd=103&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=137&lineEnd=138&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=165&lineEnd=166&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=215&lineEnd=216&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "space-between": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=85&lineEnd=86&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.tsx&version=GBmain&line=25&lineEnd=26&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "direction": {
+          "usage": 7,
+          "values": {
+            "reversedContent ? \"column-reverse\" : \"column\"": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=102&lineEnd=103&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=137&lineEnd=138&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=165&lineEnd=166&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "column": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=35&lineEnd=36&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "size === \"md\" ? \"column\" : \"row\"": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=144&lineEnd=145&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "{ base: \"column\", sm: \"row\" }": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.tsx&version=GBmain&line=23&lineEnd=24&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "height": {
+          "usage": 6,
+          "values": {
+            "100%": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageLoader.tsx&version=GBmain&line=6&lineEnd=7&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=34&lineEnd=35&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "21px": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=229&lineEnd=230&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=236&lineEnd=237&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "40px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=216&lineEnd=217&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "padding": {
+          "usage": 4,
+          "values": {
+            "var(--hop-space-stack-sm) var(--hop-space-inset-md)": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=177&lineEnd=178&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "inset-lg": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageLoader.tsx&version=GBmain&line=6&lineEnd=7&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageFooter.tsx&version=GBmain&line=10&lineEnd=11&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "{ base: \"inset-stretch-sm\", sm: \"inset-xl\" }": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=37&lineEnd=38&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "width": {
+          "usage": 4,
+          "values": {
+            "100%": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageFooter.tsx&version=GBmain&line=8&lineEnd=9&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=33&lineEnd=34&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=51&lineEnd=52&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "40px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=217&lineEnd=218&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "backgroundColor": {
+          "usage": 3,
+          "values": {
+            "neutral-weakest": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=9&lineEnd=10&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "neutral": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=50&lineEnd=51&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "neutral-disabled": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=213&lineEnd=214&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "minHeight": {
+          "usage": 2,
+          "values": {
+            "3rem": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "4.5rem": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageFooter.tsx&version=GBmain&line=9&lineEnd=10&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "borderRadius": {
+          "usage": 2,
+          "values": {
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=11&lineEnd=12&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "circle": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=212&lineEnd=213&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "border": {
+          "usage": 1,
+          "values": {
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=10&lineEnd=11&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginBottom": {
+          "usage": 1,
+          "values": {
+            "stack-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=12&lineEnd=13&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "paddingY": {
+          "usage": 1,
+          "values": {
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=14&lineEnd=15&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "paddingX": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTabGroup.tsx&version=GBmain&line=15&lineEnd=16&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "wrap": {
+          "usage": 1,
+          "values": {
+            "wrap ? \"wrap\" : undefined": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageActions.tsx&version=GBmain&line=13&lineEnd=14&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "rowGap": {
+          "usage": 1,
+          "values": {
+            "rowGap": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "position": {
+          "usage": 1,
+          "values": {
+            "sticky": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=47&lineEnd=48&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "zIndex": {
+          "usage": 1,
+          "values": {
+            "footerZIndex": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=48&lineEnd=49&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "bottom": {
+          "usage": 1,
+          "values": {
+            "0px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=49&lineEnd=50&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "borderTop": {
+          "usage": 1,
+          "values": {
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.tsx&version=GBmain&line=52&lineEnd=53&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "color": {
+          "usage": 1,
+          "values": {
+            "neutral": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=211&lineEnd=212&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Button": {
+      "usage": 33,
+      "props": {
+        "variant": {
+          "usage": 28,
+          "values": {
+            "secondary": {
+              "total": 16,
+              "projects": {
+                "SG Protect": 16
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.stories.tsx&version=GBmain&line=27&lineEnd=28&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackPopup.stories.tsx&version=GBmain&line=25&lineEnd=26&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.stories.tsx&version=GBmain&line=25&lineEnd=26&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=121&lineEnd=122&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=40&lineEnd=41&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=58&lineEnd=59&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=77&lineEnd=78&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=97&lineEnd=98&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=117&lineEnd=118&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=144&lineEnd=145&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=81&lineEnd=82&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=107&lineEnd=108&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=138&lineEnd=139&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=145&lineEnd=146&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=170&lineEnd=171&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=177&lineEnd=178&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "negative": {
+              "total": 10,
+              "projects": {
+                "SG Protect": 10
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=59&lineEnd=60&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=78&lineEnd=79&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=98&lineEnd=99&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=118&lineEnd=119&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=145&lineEnd=146&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=82&lineEnd=83&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=108&lineEnd=109&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=139&lineEnd=140&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=171&lineEnd=172&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "primary": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=251&lineEnd=252&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "tertiary": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=9&lineEnd=10&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "onClick": {
+          "usage": 7,
+          "values": {
+            "async () => {\n    localStorage.clear();\n    window.dispatchEvent(new Event(\"storage\"));\n    setCount(count + 1);\n}": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.stories.tsx&version=GBmain&line=28&lineEnd=29&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackPopup.stories.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.stories.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "() => {}": {
+              "total": 3,
+              "projects": {
+                "SG Protect": 3
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=111&lineEnd=112&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=121&lineEnd=122&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=122&lineEnd=123&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "handleSend": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=252&lineEnd=253&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fluid": {
+          "usage": 5,
+          "values": {
+            "{ base: true, sm: false }": {
+              "total": 4,
+              "projects": {
+                "SG Protect": 4
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=145&lineEnd=146&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=146&lineEnd=147&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=177&lineEnd=178&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=178&lineEnd=179&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "size === \"md\"": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=249&lineEnd=250&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "type": {
+          "usage": 4,
+          "values": {
+            "reset": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=145&lineEnd=146&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=177&lineEnd=178&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "submit": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=146&lineEnd=147&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=178&lineEnd=179&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "size": {
+          "usage": 4,
+          "values": {
+            "sm": {
+              "total": 4,
+              "projects": {
+                "SG Protect": 4
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.stories.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackPopup.stories.tsx&version=GBmain&line=24&lineEnd=25&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.stories.tsx&version=GBmain&line=24&lineEnd=25&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=9&lineEnd=10&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "alignSelf": {
+          "usage": 1,
+          "values": {
+            "end": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=250&lineEnd=251&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "loading": {
+          "usage": 1,
+          "values": {
+            "isPending": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=253&lineEnd=254&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "active": {
+          "usage": 1,
+          "values": {
+            "isOpen": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=9&lineEnd=10&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "paddingX": {
+          "usage": 1,
+          "values": {
+            "inset-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=9&lineEnd=10&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Lozenge": {
+      "usage": 16,
+      "props": {}
+    },
+    "TooltipTrigger": {
+      "usage": 13,
+      "props": {
+        "position": {
+          "usage": 10,
+          "values": {
+            "top": {
+              "total": 10,
+              "projects": {
+                "SG Protect": 10
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=148&lineEnd=149&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=153&lineEnd=154&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=192&lineEnd=193&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=203&lineEnd=204&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=214&lineEnd=215&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=225&lineEnd=226&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=35&lineEnd=36&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=40&lineEnd=41&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=37&lineEnd=38&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=237&lineEnd=238&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "disabled": {
+          "usage": 1,
+          "values": {
+            "!isOverflowing": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=38&lineEnd=39&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Tooltip": {
+      "usage": 13,
+      "props": {}
+    },
+    "Div": {
+      "usage": 8,
+      "props": {
+        "height": {
+          "usage": 5,
+          "values": {
+            "100%": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=17&lineEnd=18&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageContent.tsx&version=GBmain&line=7&lineEnd=8&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "20px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "100dvh": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=21&lineEnd=22&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "48px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=10&lineEnd=11&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "width": {
+          "usage": 4,
+          "values": {
+            "100%": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageContainer.tsx&version=GBmain&line=15&lineEnd=16&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "`${(progress / maxProgress) * 100}%`": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=17&lineEnd=18&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "48px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=10&lineEnd=11&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "backgroundColor": {
+          "usage": 2,
+          "values": {
+            "neutral-disabled": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "primary-strong": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=17&lineEnd=18&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "borderRadius": {
+          "usage": 2,
+          "values": {
+            "rounded-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpercentage-card%2FPercentageCard.tsx&version=GBmain&line=18&lineEnd=19&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "overflow": {
+          "usage": 1,
+          "values": {
+            "hidden": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fprogress-bar%2FProgressBar.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "border": {
+          "usage": 1,
+          "values": {
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpercentage-card%2FPercentageCard.tsx&version=GBmain&line=18&lineEnd=19&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpercentage-card%2FPercentageCard.tsx&version=GBmain&line=18&lineEnd=19&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "color": {
+          "usage": 1,
+          "values": {
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpercentage-card%2FPercentageCard.tsx&version=GBmain&line=18&lineEnd=19&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "paddingX": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageContainer.tsx&version=GBmain&line=16&lineEnd=17&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "maxWidth": {
+          "usage": 1,
+          "values": {
+            "76rem": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageContainer.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginX": {
+          "usage": 1,
+          "values": {
+            "auto": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageContainer.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "position": {
+          "usage": 1,
+          "values": {
+            "relative": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=10&lineEnd=11&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fontSize": {
+          "usage": 1,
+          "values": {
+            "fontSize": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fgraphs%2FRadialPercentage.tsx&version=GBmain&line=10&lineEnd=11&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "TextLink": {
+      "usage": 7,
+      "props": {
+        "variant": {
+          "usage": 7,
+          "values": {
+            "accent": {
+              "total": 7,
+              "projects": {
+                "SG Protect": 7
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=165&lineEnd=166&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=63&lineEnd=64&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=138&lineEnd=139&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=197&lineEnd=198&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=214&lineEnd=215&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=231&lineEnd=232&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=139&lineEnd=140&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "href": {
+          "usage": 7,
+          "values": {
+            "https://help.officevibe.com/hc/en-us/articles/360042491212-Officevibe-Team-Segmentation": {
+              "total": 6,
+              "projects": {
+                "SG Protect": 6
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=62&lineEnd=63&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=137&lineEnd=138&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=196&lineEnd=197&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=213&lineEnd=214&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.stories.tsx&version=GBmain&line=230&lineEnd=231&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.stories.tsx&version=GBmain&line=138&lineEnd=139&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "https://outlook.office365.com/book/ShareGateUserInterview@gsoft.com/s/YxPorqK1okGULpa9Iz36BQ2": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=168&lineEnd=169&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginLeft": {
+          "usage": 1,
+          "values": {
+            "inline-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=164&lineEnd=165&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "onClick": {
+          "usage": 1,
+          "values": {
+            "onLinkClicked": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=166&lineEnd=167&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "external": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=167&lineEnd=168&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "LI": {
+      "usage": 4,
+      "props": {}
+    },
+    "Img": {
+      "usage": 4,
+      "props": {
+        "height": {
+          "usage": 4,
+          "values": {
+            "60px": {
+              "total": 4,
+              "projects": {
+                "SG Protect": 4
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=149&lineEnd=150&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=154&lineEnd=155&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "width": {
+          "usage": 4,
+          "values": {
+            "60px": {
+              "total": 4,
+              "projects": {
+                "SG Protect": 4
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=149&lineEnd=150&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=154&lineEnd=155&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "borderRadius": {
+          "usage": 4,
+          "values": {
+            "circle": {
+              "total": 4,
+              "projects": {
+                "SG Protect": 4
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=149&lineEnd=150&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=154&lineEnd=155&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "alt": {
+          "usage": 4,
+          "values": {
+            "Nathalie Jard, Product Manager": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=149&lineEnd=150&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "Jerome Gangloff, ShareGate Product Manager": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=154&lineEnd=155&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "src": {
+          "usage": 4,
+          "values": {
+            "nathImageUrl": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=149&lineEnd=150&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "jeromeImageUrl": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=154&lineEnd=155&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginRight": {
+          "usage": 2,
+          "values": {
+            "-10px": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=149&lineEnd=150&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Content": {
+      "usage": 4,
+      "props": {
+        "fontWeight": {
+          "usage": 2,
+          "values": {
+            "body-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=178&lineEnd=179&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "body-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=29&lineEnd=30&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fontFamily": {
+          "usage": 2,
+          "values": {
+            "body-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=179&lineEnd=180&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "body-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=29&lineEnd=30&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fontSize": {
+          "usage": 2,
+          "values": {
+            "body-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=180&lineEnd=181&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "body-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=29&lineEnd=30&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "color": {
+          "usage": 2,
+          "values": {
+            "neutral-weak-selected": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=181&lineEnd=182&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=29&lineEnd=30&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "colorActive": {
+          "usage": 1,
+          "values": {
+            "neutral-weak-press": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=182&lineEnd=183&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "textAlign": {
+          "usage": 1,
+          "values": {
+            "left": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=183&lineEnd=184&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "lineHeight": {
+          "usage": 1,
+          "values": {
+            "body-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=29&lineEnd=30&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Tag": {
+      "usage": 3,
+      "props": {
+        "tabIndex": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=38&lineEnd=39&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "cursor": {
+          "usage": 1,
+          "values": {
+            "pointer": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "onRemove": {
+          "usage": 1,
+          "values": {
+            "handleRemove": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=42&lineEnd=43&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "onKeyDown": {
+          "usage": 1,
+          "values": {
+            "(e: BaseSyntheticEvent<KeyboardEvent, HTMLDivElement, HTMLButtonElement>) => {\n    if (e.target?.classList.contains(\"o-ui-tag-remove-button\")) {\n        if (e.nativeEvent.key === \" \" || e.nativeEvent.key === \"Enter\") {\n            e.preventDefault();\n            handleRemove(e);\n        }\n    } else {\n        // eslint-disable-next-line @typescript-eslint/ban-ts-comment\n        // @ts-ignore\n        triggerProps.onKeyDown(e);\n    }\n}": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=56&lineEnd=57&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ButtonGroup": {
+      "usage": 3,
+      "props": {
+        "orientation": {
+          "usage": 2,
+          "values": {
+            "{ base: \"vertical\", sm: \"horizontal\" }": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=144&lineEnd=145&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=176&lineEnd=177&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fluid": {
+          "usage": 2,
+          "values": {
+            "{ base: true, sm:false }": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=144&lineEnd=145&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPage.stories.tsx&version=GBmain&line=176&lineEnd=177&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Heading": {
+      "usage": 3,
+      "props": {
+        "fontWeight": {
+          "usage": 2,
+          "values": {
+            "overline": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=91&lineEnd=92&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "heading-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=200&lineEnd=201&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fontSize": {
+          "usage": 2,
+          "values": {
+            "overline": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=92&lineEnd=93&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "heading-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=199&lineEnd=200&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "margin": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=90&lineEnd=91&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "lineHeight": {
+          "usage": 1,
+          "values": {
+            "overline": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=93&lineEnd=94&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "textTransform": {
+          "usage": 1,
+          "values": {
+            "uppercase": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=94&lineEnd=95&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginBottom": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=197&lineEnd=198&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "color": {
+          "usage": 1,
+          "values": {
+            "neutral": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=198&lineEnd=199&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "as": {
+          "usage": 1,
+          "values": {
+            "as": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=23&lineEnd=24&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "IconButton": {
+      "usage": 2,
+      "props": {
+        "variant": {
+          "usage": 2,
+          "values": {
+            "tertiary": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPrevButton.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FNextButton.tsx&version=GBmain&line=19&lineEnd=20&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "size": {
+          "usage": 2,
+          "values": {
+            "sm": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPrevButton.tsx&version=GBmain&line=20&lineEnd=21&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FNextButton.tsx&version=GBmain&line=20&lineEnd=21&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "disabled": {
+          "usage": 2,
+          "values": {
+            "hasReachedBeginning || disabled": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPrevButton.tsx&version=GBmain&line=22&lineEnd=23&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            },
+            "hasReachedEnd || disabled": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FNextButton.tsx&version=GBmain&line=22&lineEnd=23&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SearchInput": {
+      "usage": 2,
+      "props": {
+        "size": {
+          "usage": 2,
+          "values": {
+            "sm": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffilters%2FTableFilters.stories.tsx&version=GBmain&line=87&lineEnd=88&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffilters%2FTableFilters.stories.tsx&version=GBmain&line=105&lineEnd=106&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "placeholder": {
+          "usage": 2,
+          "values": {
+            "Search by name...": {
+              "total": 2,
+              "projects": {
+                "SG Protect": 2
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffilters%2FTableFilters.stories.tsx&version=GBmain&line=87&lineEnd=88&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents",
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffilters%2FTableFilters.stories.tsx&version=GBmain&line=105&lineEnd=106&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Overlay": {
+      "usage": 1,
+      "props": {
+        "show": {
+          "usage": 1,
+          "values": {
+            "isOpen": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=78&lineEnd=79&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Listbox": {
+      "usage": 1,
+      "props": {
+        "minWidth": {
+          "usage": 1,
+          "values": {
+            "fit-content": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=85&lineEnd=86&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "selectionMode": {
+          "usage": 1,
+          "values": {
+            "selectionMode": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=86&lineEnd=87&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "zIndex": {
+          "usage": 1,
+          "values": {
+            "1": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=87&lineEnd=88&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "selectedKeys": {
+          "usage": 1,
+          "values": {
+            "selectedKeys": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=88&lineEnd=89&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "onSelectionChange": {
+          "usage": 1,
+          "values": {
+            "onSelectionChange": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fselector-tag%2FSelectorTag.tsx&version=GBmain&line=89&lineEnd=90&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Item": {
+      "usage": 1,
+      "props": {}
+    },
+    "Nav": {
+      "usage": 1,
+      "props": {}
+    },
+    "UL": {
+      "usage": 1,
+      "props": {
+        "display": {
+          "usage": 1,
+          "values": {
+            "flex": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=106&lineEnd=107&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "alignItems": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=107&lineEnd=108&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "margin": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=108&lineEnd=109&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=109&lineEnd=110&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "gap": {
+          "usage": 1,
+          "values": {
+            "inline-xs": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=111&lineEnd=112&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "OL": {
+      "usage": 1,
+      "props": {
+        "display": {
+          "usage": 1,
+          "values": {
+            "flex": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=122&lineEnd=123&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "border": {
+          "usage": 1,
+          "values": {
+            "neutral": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=124&lineEnd=125&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "borderRadius": {
+          "usage": 1,
+          "values": {
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=125&lineEnd=126&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "4px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPager.tsx&version=GBmain&line=126&lineEnd=127&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ToggleButton": {
+      "usage": 1,
+      "props": {
+        "checked": {
+          "usage": 1,
+          "values": {
+            "selected": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=32&lineEnd=33&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "variant": {
+          "usage": 1,
+          "values": {
+            "secondary": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=33&lineEnd=34&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "size": {
+          "usage": 1,
+          "values": {
+            "sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=34&lineEnd=35&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "borderRadius": {
+          "usage": 1,
+          "values": {
+            "circle": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=36&lineEnd=37&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "width": {
+          "usage": 1,
+          "values": {
+            "32px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=37&lineEnd=38&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=38&lineEnd=39&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "border": {
+          "usage": 1,
+          "values": {
+            "none": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=39&lineEnd=40&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "disabled": {
+          "usage": 1,
+          "values": {
+            "disabled": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpager%2FPageButton.tsx&version=GBmain&line=41&lineEnd=42&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "CrossButton": {
+      "usage": 1,
+      "props": {
+        "onClick": {
+          "usage": 1,
+          "values": {
+            "handleDismiss": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FPopup.tsx&version=GBmain&line=97&lineEnd=98&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "TextArea": {
+      "usage": 1,
+      "props": {
+        "autoFocus": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=240&lineEnd=241&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "fluid": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=241&lineEnd=242&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "rows": {
+          "usage": 1,
+          "values": {
+            "3": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=242&lineEnd=243&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "resize": {
+          "usage": 1,
+          "values": {
+            "none": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=243&lineEnd=244&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "placeholder": {
+          "usage": 1,
+          "values": {
+            "Can you tell us why?": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=244&lineEnd=245&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "value": {
+          "usage": 1,
+          "values": {
+            "text": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=245&lineEnd=246&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "onChange": {
+          "usage": 1,
+          "values": {
+            "e => setText(e.target.value)": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FFeedbackForm.tsx&version=GBmain&line=246&lineEnd=247&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "ButtonAsLink": {
+      "usage": 1,
+      "props": {
+        "fluid": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=46&lineEnd=47&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "href": {
+          "usage": 1,
+          "values": {
+            "https://outlook.office365.com/book/ShareGateUserInterview@gsoft.com/s/YxPorqK1okGULpa9Iz36BQ2": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=46&lineEnd=47&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "onClick": {
+          "usage": 1,
+          "values": {
+            "handleBookMeeting": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=46&lineEnd=47&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "target": {
+          "usage": 1,
+          "values": {
+            "_blank": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpopup%2FBookAMeetingPopup.tsx&version=GBmain&line=46&lineEnd=47&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Stack": {
+      "usage": 1,
+      "props": {
+        "gap": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=35&lineEnd=36&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "minWidth": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=35&lineEnd=36&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "width": {
+          "usage": 1,
+          "values": {
+            "100%": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=35&lineEnd=36&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Inline": {
+      "usage": 1,
+      "props": {
+        "alignY": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=37&lineEnd=38&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "gap": {
+          "usage": 1,
+          "values": {
+            "inline-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=37&lineEnd=38&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "wrap": {
+          "usage": 1,
+          "values": {
+            "false": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=37&lineEnd=38&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "H1": {
+      "usage": 1,
+      "props": {
+        "size": {
+          "usage": 1,
+          "values": {
+            "2xl": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=44&lineEnd=45&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "height": {
+          "usage": 1,
+          "values": {
+            "100%": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=45&lineEnd=46&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "overflow": {
+          "usage": 1,
+          "values": {
+            "hidden": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=46&lineEnd=47&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "textOverflow": {
+          "usage": 1,
+          "values": {
+            "ellipsis": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=47&lineEnd=48&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginBottom": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageTitle.tsx&version=GBmain&line=48&lineEnd=49&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Spinner": {
+      "usage": 1,
+      "props": {}
+    },
+    "StyleProvider": {
+      "usage": 1,
+      "props": {
+        "value": {
+          "usage": 1,
+          "values": {
+            "{\n    button: {\n        fluid: { base: true, sm: false }\n    }\n}": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fpage%2FPageHeader.tsx&version=GBmain&line=30&lineEnd=31&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Dot": {
+      "usage": 1,
+      "props": {
+        "marginRight": {
+          "usage": 1,
+          "values": {
+            "5px": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=188&lineEnd=189&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "color": {
+          "usage": 1,
+          "values": {
+            "dotColor": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fmetric-card%2FMetricCard.tsx&version=GBmain&line=189&lineEnd=190&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "IllustratedMessage": {
+      "usage": 1,
+      "props": {
+        "paddingTop": {
+          "usage": 1,
+          "values": {
+            "3.5rem": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=21&lineEnd=22&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "paddingBottom": {
+          "usage": 1,
+          "values": {
+            "7rem": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=21&lineEnd=22&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "SvgImage": {
+      "usage": 1,
+      "props": {
+        "src": {
+          "usage": 1,
+          "values": {
+            "imageSrc": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=22&lineEnd=23&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "height": {
+          "usage": 1,
+          "values": {
+            "imageHeight": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=22&lineEnd=23&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "stroke": {
+          "usage": 1,
+          "values": {
+            "alias-primary": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Fillustrated-message%2FIllustratedMessage.tsx&version=GBmain&line=22&lineEnd=23&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "HtmlButton": {
+      "usage": 1,
+      "props": {}
+    },
+    "PopoverTrigger": {
+      "usage": 1,
+      "props": {}
+    },
+    "Popover": {
+      "usage": 1,
+      "props": {
+        "padding": {
+          "usage": 1,
+          "values": {
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=12&lineEnd=13&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "marginLeft": {
+          "usage": 1,
+          "values": {
+            "inline-sm": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=12&lineEnd=13&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "TileLink": {
+      "usage": 1,
+      "props": {
+        "href": {
+          "usage": 1,
+          "values": {
+            "https://outlook.office365.com/book/ShareGateUserInterview@gsoft.com/s/YxPorqK1okGULpa9Iz36BQ2": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=25&lineEnd=26&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        },
+        "target": {
+          "usage": 1,
+          "values": {
+            "_blank": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              },
+              "files": [
+                "https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web?path=%2Fpackages%2Fcomponents%2Fsrc%2Ffeedback-button%2FFeedbackButton.tsx&version=GBmain&line=26&lineEnd=27&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

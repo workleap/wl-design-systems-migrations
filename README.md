@@ -97,7 +97,7 @@ To include detailed file location information for each property value, use the `
 npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true --project frontend-team -n 1
 ```
 
-When deep analysis is enabled, each property value will include a `files` array containing the full file paths where that specific value is used.
+When deep analysis is enabled, each property value will include a `files` array containing repository URLs (GitHub or Azure DevOps) with line numbers where that specific value is used. For repositories that are not supported, file paths are used as fallback.
 
 #### Filtering Analysis Results
 
@@ -153,8 +153,8 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
                 "mobile-app": 20 
               },
               "files": [ //if --deep true is passed
-                "/src/components/Header.tsx",
-                "/src/components/Hero.tsx",
+                "https://github.com/myorg/myrepo/blob/main/src/components/Header.tsx#L15",
+                "https://dev.azure.com/myorg/myproject/_git/myrepo?path=%2Fsrc%2Fcomponents%2FHero.tsx&version=GBmain&line=23",
                 "/src/pages/Dashboard.tsx"] 
             },
             "md": { 

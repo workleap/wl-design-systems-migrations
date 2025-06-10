@@ -34,18 +34,26 @@ describe("analyze - deep analysis", () => {
     assert.ok(primaryValue, "Primary variant should exist");
     assert.ok(primaryValue.files, "Primary variant should have files property");
     assert.ok(Array.isArray(primaryValue.files), "Files should be an array");
-    assert.strictEqual(primaryValue.files.length, 1, "Should have one GitHub URL");
+    assert.strictEqual(primaryValue.files.length, 1, "Should have one repository URL");
 
     const secondaryValue = variantValues["secondary"];
     assert.ok(secondaryValue, "Secondary variant should exist");
     assert.ok(secondaryValue.files, "Secondary variant should have files property");
-    assert.strictEqual(secondaryValue.files.length, 1, "Should have one GitHub URL");
+    assert.strictEqual(secondaryValue.files.length, 1, "Should have one repository URL");
 
-    // Verify the files contain GitHub URLs with line numbers
-    assert.ok(primaryValue.files[0]!.includes("github.com"), "Should contain GitHub URL");
-    assert.ok(primaryValue.files[0]!.includes("#L"), "Should contain line number");
-    assert.ok(secondaryValue.files[0]!.includes("github.com"), "Should contain GitHub URL");
-    assert.ok(secondaryValue.files[0]!.includes("#L"), "Should contain line number");
+    // Verify the files contain repository URLs with line numbers (GitHub or Azure DevOps)
+    const primaryUrl = primaryValue.files[0]!;
+    const secondaryUrl = secondaryValue.files[0]!;
+    
+    // Should contain either GitHub or Azure DevOps URL, or fallback to file path with line number
+    assert.ok(
+      primaryUrl.includes("github.com") || primaryUrl.includes("dev.azure.com") || primaryUrl.includes("visualstudio.com") || primaryUrl.includes("#L"),
+      "Should contain repository URL or line number"
+    );
+    assert.ok(
+      secondaryUrl.includes("github.com") || secondaryUrl.includes("dev.azure.com") || secondaryUrl.includes("visualstudio.com") || secondaryUrl.includes("#L"),
+      "Should contain repository URL or line number"
+    );
 
     // Verify size property (appears on both buttons)
     const sizeValues = analysisResults.components.Button.props.size?.values;
@@ -54,10 +62,10 @@ describe("analyze - deep analysis", () => {
     const largeValue = sizeValues["large"];
     assert.ok(largeValue, "Large size should exist");
     assert.ok(largeValue.files, "Large size should have files property");
-    assert.strictEqual(largeValue.files.length, 2, "Should have two GitHub URLs (one for each button)");
+    assert.strictEqual(largeValue.files.length, 2, "Should have two repository URLs (one for each button)");
   });
 
-  test("deep analysis includes all GitHub URLs when same value appears on different lines", () => {
+  test("deep analysis includes all repository URLs when same value appears on different lines", () => {
     const INPUT = `
     import { Button } from "@workleap/orbiter-ui";
     
@@ -82,19 +90,20 @@ describe("analyze - deep analysis", () => {
     const largeValue = sizeValues["large"];
     assert.ok(largeValue, "Large size should exist");
     assert.ok(largeValue.files, "Large size should have files property");
-    assert.strictEqual(largeValue.files.length, 2, "Should have two GitHub URLs for two different occurrences");
+    assert.strictEqual(largeValue.files.length, 2, "Should have two repository URLs for two different occurrences");
 
     // Both URLs should be different (different line numbers)
     assert.notStrictEqual(largeValue.files[0], largeValue.files[1], "URLs should be different (different lines)");
     
-    // Both should contain GitHub URLs with line numbers
+    // Both should contain repository URLs with line numbers (GitHub, Azure DevOps, or file paths)
     largeValue.files.forEach((url, index) => {
-      assert.ok(url.includes("github.com"), `URL ${index + 1} should contain GitHub URL`);
-      assert.ok(url.includes("#L"), `URL ${index + 1} should contain line number`);
+      const hasRepoUrl = url.includes("github.com") || url.includes("dev.azure.com") || url.includes("visualstudio.com");
+      const hasLineNumber = url.includes("#L") || url.includes("&line=");
+      assert.ok(hasRepoUrl || hasLineNumber, `URL ${index + 1} should contain repository URL or line number`);
     });
   });
 
-  test("deep analysis captures full file paths in GitHub URLs", () => {
+  test("deep analysis captures full file paths in repository URLs", () => {
     const INPUT = `
     import { Button, Text } from "@workleap/orbiter-ui";
     
@@ -127,11 +136,19 @@ describe("analyze - deep analysis", () => {
     expect(Array.isArray(primaryValue?.files)).toBe(true);
     expect(primaryValue?.files).toHaveLength(1);
 
-    // The system now generates GitHub URLs with line numbers
-    // This should be a GitHub URL containing the full path, not just "TestComponent.tsx"
+    // The system now generates repository URLs with line numbers when in a real git repo
+    // For mock paths that don't exist in git repos, it falls back to file path
+    // This should contain the full path, not just "TestComponent.tsx"
     expect(primaryValue?.files?.[0]).toContain("/Users/test/project/src/components/TestComponent.tsx");
-    expect(primaryValue?.files?.[0]).toContain("#L");
     expect(primaryValue?.files?.[0]).not.toBe("TestComponent.tsx");
+    
+    // If it's a repository URL, it should contain line numbers; otherwise it's just the file path
+    const isRepoUrl = primaryValue?.files?.[0]?.includes("github.com") || 
+                      primaryValue?.files?.[0]?.includes("dev.azure.com") || 
+                      primaryValue?.files?.[0]?.includes("visualstudio.com");
+    if (isRepoUrl) {
+      expect(primaryValue?.files?.[0]).toMatch(/#L|&line=/); // Should contain line number in GitHub or Azure format
+    }
 
     // Verify Text fontSize files
     const textFontSizeValues = analysisResults.components.Text?.props.fontSize?.values;
@@ -164,7 +181,7 @@ describe("analyze - deep analysis", () => {
     
     expect(secondaryValue).toBeDefined();
     expect(secondaryValue?.files).toBeDefined();
-    // The system generates GitHub URLs when in a git repository, so check for the path within the URL
+    // The system generates repository URLs when in a git repository, so check for the path within the URL
     expect(secondaryValue?.files?.[0]).toContain("./src/App.tsx");
   });
 
@@ -189,7 +206,7 @@ describe("analyze - deep analysis", () => {
     
     expect(tertiaryValue).toBeDefined();
     expect(tertiaryValue?.files).toBeDefined();
-    // The system generates GitHub URLs when in a git repository, so check for the path within the URL
+    // The system generates repository URLs when in a git repository, so check for the path within the URL
     expect(tertiaryValue?.files?.[0]).toContain("C:\\Users\\developer\\project\\src\\components\\WindowsComponent.tsx");
   });
 

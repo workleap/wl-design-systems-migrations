@@ -32,7 +32,7 @@ export const getRuntime = (
       ...initialMappings,
       ...mappingsOverrides
     },
-    log: console.log
+    log: () => {}
   };
 };
 

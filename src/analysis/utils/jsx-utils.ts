@@ -5,13 +5,28 @@ import type { ComponentUsageData } from "../types.js";
 import { shouldIgnoreProperty } from "./mapping-utils.js";
 
 /**
- * Gets the GitHub repository URL from git remote
+ * Gets the repository URL and type from git remote for a specific file path
  */
-function getGitHubRepoUrl(): string | null {
+function getRepoInfo(filePath: string): { url: string; type: "github" | "azure" | "unknown"; projectRoot: string } | null {
   try {
-    const remoteUrl = execSync("git remote get-url origin", { encoding: "utf8" }).trim();
+    // First, find the git repository root for this specific file
+    const fileDir = filePath.includes("/") ? filePath.substring(0, filePath.lastIndexOf("/")) : ".";
+    const projectRoot = execSync("git rev-parse --show-toplevel", { 
+      encoding: "utf8",
+      cwd: fileDir 
+    }).trim();
     
-    // Convert SSH or HTTPS git URL to GitHub web URL
+    // Get the remote URL for this specific repository
+    let remoteUrl = execSync("git remote get-url origin", { 
+      encoding: "utf8",
+      cwd: projectRoot 
+    }).trim();
+
+    // we need tie sed to remove the username if there is any. Azure Devops have it which is not required.
+    // Remove `username@` part (e.g., sharegate@)
+    remoteUrl = remoteUrl.replace(/^https:\/\/[^@]+@/, "https://");
+    
+    // GitHub repository
     if (remoteUrl.includes("github.com")) {
       let repoUrl = remoteUrl;
       
@@ -23,48 +38,85 @@ function getGitHubRepoUrl(): string | null {
       // Remove .git suffix
       repoUrl = repoUrl.replace(/\.git$/, "");
       
-      return repoUrl;
+      return { url: repoUrl, type: "github", projectRoot };
     }
     
-    return null;
-  } catch {
-    console.warn("Could not determine GitHub repository URL");
+    // Azure DevOps repository
+    if (remoteUrl.includes("dev.azure.com") || remoteUrl.includes("visualstudio.com")) {
+      let repoUrl = remoteUrl;
+      
+      // Convert SSH format to HTTPS for Azure DevOps
+      if (repoUrl.startsWith("git@ssh.dev.azure.com:")) {
+        // SSH format: git@ssh.dev.azure.com:v3/org/project/repo
+        repoUrl = repoUrl.replace("git@ssh.dev.azure.com:v3/", "https://dev.azure.com/");
+      } else if (repoUrl.startsWith("git@vs-ssh.visualstudio.com:")) {
+        // Old SSH format: git@vs-ssh.visualstudio.com:v3/org/project/repo
+        const parts = repoUrl.replace("git@vs-ssh.visualstudio.com:v3/", "").split("/");
+        if (parts.length >= 3) {
+          repoUrl = `https://${parts[0]}.visualstudio.com/${parts[1]}/_git/${parts[2]}`;
+        }
+      }
+      
+      // Remove .git suffix
+      repoUrl = repoUrl.replace(/\.git$/, "");
+      
+      return { url: repoUrl, type: "azure", projectRoot };
+    }
     
+    return { url: remoteUrl, type: "unknown", projectRoot };
+  } catch {
     return null;
   }
 }
 
 /**
- * Gets the current git branch name
+ * Gets the current git branch name for a specific file path
  */
-function getCurrentBranch(): string {
+function getCurrentBranch(filePath: string): string {
   try {
-    return execSync("git branch --show-current", { encoding: "utf8" }).trim() || "main";
+    const fileDir = filePath.includes("/") ? filePath.substring(0, filePath.lastIndexOf("/")) : ".";
+
+    return execSync("git branch --show-current", { 
+      encoding: "utf8",
+      cwd: fileDir 
+    }).trim() || "main";
   } catch {
     return "main";
   }
 }
 
 /**
- * Constructs a GitHub URL with line number for a specific file location
+ * Constructs a repository URL with line number for a specific file location
  */
-function buildGitHubUrl(filePath: string, lineNumber: number): string | null {
-  const repoUrl = getGitHubRepoUrl();
-  if (!repoUrl) {
+function buildRepoUrl(filePath: string, lineNumber: number): string | null {
+  const repoInfo = getRepoInfo(filePath);
+  if (!repoInfo) {
     return null;
   }
   
-  const branch = getCurrentBranch();
+  const branch = getCurrentBranch(filePath);
   
-  // Get relative path from project root
+  // Get relative path from the specific project root
   try {
-    const projectRoot = execSync("git rev-parse --show-toplevel", { encoding: "utf8" }).trim();
-    const relativePath = filePath.replace(projectRoot + "/", "");
+    const relativePath = filePath.replace(repoInfo.projectRoot + "/", "");
     
-    return `${repoUrl}/blob/${branch}/${relativePath}#L${lineNumber}`;
+    // Build URL based on repository type
+    switch (repoInfo.type) {
+      case "github":
+        return `${repoInfo.url}/blob/${branch}/${relativePath}#L${lineNumber}`;
+      
+      case "azure": {
+        // Azure DevOps URL format: https://dev.azure.com/org/project/_git/repo?path=%2Fpath%2Fto%2Ffile&version=GBbranch&line=lineNumber&lineEnd=lineNumber&lineStartColumn=1&lineEndColumn=1
+        const encodedPath = encodeURIComponent("/" + relativePath);
+
+        return `${repoInfo.url}?path=${encodedPath}&version=GB${branch}&line=${lineNumber}&lineEnd=${lineNumber + 1}&lineStartColumn=1&lineEndColumn=1&lineStyle=plain&_a=contents`;
+      }
+      
+      default:
+        // For unknown repository types, return null to fall back to file path
+        return filePath;
+    }
   } catch {
-    console.warn("Could not construct GitHub URL");
-    
     return null;
   }
 }
@@ -189,19 +241,19 @@ export function processJSXAttributes(
           valueData.projects[project] = (valueData.projects[project] || 0) + 1;
         }
 
-        // If deep analysis is enabled, track GitHub URLs with line numbers (fallback to file paths)
+        // If deep analysis is enabled, track repository URLs with line numbers (fallback to file paths)
         if (deep) {
           if (!valueData.files) {
             valueData.files = [];
           }
           
-          // Try to generate GitHub URL with line number, fall back to file path
+          // Try to generate repository URL with line number, fall back to file path
           let urlOrPath = filePath;
           if (attr.loc && attr.loc.start && attr.loc.start.line) {
-            const githubUrl = buildGitHubUrl(filePath, attr.loc.start.line);
+            const repoUrl = buildRepoUrl(filePath, attr.loc.start.line);
 
-            if (githubUrl) {
-              urlOrPath = githubUrl;
+            if (repoUrl) {
+              urlOrPath = repoUrl;
             }
           }
           
