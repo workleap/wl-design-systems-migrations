@@ -331,7 +331,7 @@ export const createCssPropertyMapper = <T extends string>(
       "revert",
       "revert-layer",
       "unset",
-      ...(options.validGlobalValues ?? [])
+      ...options.validGlobalValues ?? []
     ],
     enumMapping:
       options.sourceValidKeys && options.targetValidKeys

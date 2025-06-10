@@ -5,6 +5,18 @@
     "rules": {
         "@stylistic/ts/indent": ["error", 2],
         "eqeqeq": "off",
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
+        "no-extra-parens": ["error", "all", {
+          "conditionalAssign": false,
+          "returnAssign": false,
+          "nestedBinaryExpressions": false,
+          "ternaryOperandBinaryExpressions": false,
+          "ignoreJSX": "none",
+          "enforceForArrowConditionals": false,
+          "enforceForSequenceExpressions": false,
+          "enforceForNewInMemberExpressions": false,
+          "enforceForFunctionPrototypeMethods": false,
+          "allowParensAfterCommentPattern": "any-string-pattern"
+        }]
     }
 }

@@ -75,7 +75,7 @@ export function migrateAttribute(
       // Add comments if provided
       if (newAttribute.todoComments) {
         attributes[sourceAttributeIndex].comments = [
-          ...(attributes[sourceAttributeIndex].comments || []),
+          ...attributes[sourceAttributeIndex].comments || [],
           getTodoComment(newAttribute.todoComments, runtime)
         ];
       }
