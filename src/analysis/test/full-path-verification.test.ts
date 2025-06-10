@@ -48,7 +48,6 @@ describe("full file path verification", () => {
     expect(fontSize14Value).toBeDefined();
     expect(fontSize14Value?.files).toBeDefined();
     expect(fontSize14Value?.files?.[0]).toBe("/Users/test/project/src/components/TestComponent.tsx");
-
   });
 
   test("deep analysis captures relative paths correctly", () => {
@@ -73,7 +72,6 @@ describe("full file path verification", () => {
     expect(secondaryValue).toBeDefined();
     expect(secondaryValue?.files).toBeDefined();
     expect(secondaryValue?.files?.[0]).toBe("./src/App.tsx");
-
   });
 
   test("deep analysis captures Windows-style paths correctly", () => {
@@ -98,6 +96,5 @@ describe("full file path verification", () => {
     expect(tertiaryValue).toBeDefined();
     expect(tertiaryValue?.files).toBeDefined();
     expect(tertiaryValue?.files?.[0]).toBe("C:\\Users\\developer\\project\\src\\components\\WindowsComponent.tsx");
-
   });
 });

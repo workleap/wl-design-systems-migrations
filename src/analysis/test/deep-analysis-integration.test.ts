@@ -63,6 +63,5 @@ describe("deep analysis CLI integration", () => {
     assert.ok(fontSize14Value, "14px fontSize should exist");
     assert.ok(fontSize14Value.files, "14px fontSize should have files property");
     assert.strictEqual(fontSize14Value.files.length, 1, "Should have one file");
-
   });
 });
