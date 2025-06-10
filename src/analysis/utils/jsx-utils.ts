@@ -1,100 +1,15 @@
-import { execSync } from "child_process";
 import { getLocalNameFromImport } from "../../utils/mapping.js";
 import type { Runtime } from "../../utils/types.js";
 import type { ComponentUsageData } from "../types.js";
 import { shouldIgnoreProperty } from "./mapping-utils.js";
 
 /**
- * Gets the repository URL and type from git remote for a specific file path
- */
-function getRepoInfo(filePath: string): { url: string; type: "github" | "azure" | "unknown"; projectRoot: string } | null {
-  try {
-    // First, find the git repository root for this specific file
-    const fileDir = filePath.includes("/") ? filePath.substring(0, filePath.lastIndexOf("/")) : ".";
-    const projectRoot = execSync("git rev-parse --show-toplevel", { 
-      encoding: "utf8",
-      cwd: fileDir 
-    }).trim();
-    
-    // Get the remote URL for this specific repository
-    let remoteUrl = execSync("git remote get-url origin", { 
-      encoding: "utf8",
-      cwd: projectRoot 
-    }).trim();
-
-    // we need tie sed to remove the username if there is any. Azure Devops have it which is not required.
-    // Remove `username@` part (e.g., sharegate@)
-    remoteUrl = remoteUrl.replace(/^https:\/\/[^@]+@/, "https://");
-    
-    // GitHub repository
-    if (remoteUrl.includes("github.com")) {
-      let repoUrl = remoteUrl;
-      
-      // Convert SSH format to HTTPS
-      if (repoUrl.startsWith("git@github.com:")) {
-        repoUrl = repoUrl.replace("git@github.com:", "https://github.com/");
-      }
-      
-      // Remove .git suffix
-      repoUrl = repoUrl.replace(/\.git$/, "");
-      
-      return { url: repoUrl, type: "github", projectRoot };
-    }
-    
-    // Azure DevOps repository
-    if (remoteUrl.includes("dev.azure.com") || remoteUrl.includes("visualstudio.com")) {
-      let repoUrl = remoteUrl;
-      
-      // Convert SSH format to HTTPS for Azure DevOps
-      if (repoUrl.startsWith("git@ssh.dev.azure.com:")) {
-        // SSH format: git@ssh.dev.azure.com:v3/org/project/repo
-        repoUrl = repoUrl.replace("git@ssh.dev.azure.com:v3/", "https://dev.azure.com/");
-      } else if (repoUrl.startsWith("git@vs-ssh.visualstudio.com:")) {
-        // Old SSH format: git@vs-ssh.visualstudio.com:v3/org/project/repo
-        const parts = repoUrl.replace("git@vs-ssh.visualstudio.com:v3/", "").split("/");
-        if (parts.length >= 3) {
-          repoUrl = `https://${parts[0]}.visualstudio.com/${parts[1]}/_git/${parts[2]}`;
-        }
-      }
-      
-      // Remove .git suffix
-      repoUrl = repoUrl.replace(/\.git$/, "");
-      
-      return { url: repoUrl, type: "azure", projectRoot };
-    }
-    
-    return { url: remoteUrl, type: "unknown", projectRoot };
-  } catch {
-    return null;
-  }
-}
-
-/**
- * Gets the current git branch name for a specific file path
- */
-function getCurrentBranch(filePath: string): string {
-  try {
-    const fileDir = filePath.includes("/") ? filePath.substring(0, filePath.lastIndexOf("/")) : ".";
-
-    return execSync("git branch --show-current", { 
-      encoding: "utf8",
-      cwd: fileDir 
-    }).trim() || "main";
-  } catch {
-    return "main";
-  }
-}
-
-/**
  * Constructs a repository URL with line number for a specific file location
  */
-function buildRepoUrl(filePath: string, lineNumber: number): string | null {
-  const repoInfo = getRepoInfo(filePath);
+function buildRepoUrl(filePath: string, lineNumber: number, repoInfo: { url: string; type: "github" | "azure" | "unknown"; projectRoot: string }, branch: string): string | null {
   if (!repoInfo) {
     return null;
   }
-  
-  const branch = getCurrentBranch(filePath);
   
   // Get relative path from the specific project root
   try {
@@ -193,9 +108,11 @@ export function processJSXAttributes(
     project?: string;
     deep: boolean;
     filePath: string;
+    getRepoInfo: Runtime["getRepoInfo"];
+    getBranch: Runtime["getBranch"];
   }
 ): void {
-  const { j, includeIgnoredList, project, deep, filePath } = options;
+  const { j, includeIgnoredList, project, deep, filePath, getRepoInfo, getBranch } = options;
 
   attributes.forEach(attr => {
     if (attr.type === "JSXAttribute" && attr.name.type === "JSXIdentifier") {
@@ -247,13 +164,25 @@ export function processJSXAttributes(
             valueData.files = [];
           }
           
-          // Try to generate repository URL with line number, fall back to file path
+          // Try to generate repository URL with line number, fall back to file path with line number
           let urlOrPath = filePath;
           if (attr.loc && attr.loc.start && attr.loc.start.line) {
-            const repoUrl = buildRepoUrl(filePath, attr.loc.start.line);
+            // Lazy-load repository information only when needed
+            const repoInfo = getRepoInfo();
+            const branch = getBranch();
+            
+            if (repoInfo && branch) {
+              const repoUrl = buildRepoUrl(filePath, attr.loc.start.line, repoInfo, branch);
 
-            if (repoUrl) {
-              urlOrPath = repoUrl;
+              if (repoUrl) {
+                urlOrPath = repoUrl;
+              } else {
+                // Fallback: add line number to file path
+                urlOrPath = `${filePath}#L${attr.loc.start.line}`;
+              }
+            } else {
+              // No repository info: add line number to file path
+              urlOrPath = `${filePath}#L${attr.loc.start.line}`;
             }
           }
           

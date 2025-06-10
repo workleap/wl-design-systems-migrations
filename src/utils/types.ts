@@ -7,6 +7,8 @@ export interface Runtime {
   mappings: MapMetaData;
   filePath: string;
   log: (message: string, ...optionalParams: any[]) => void;
+  getRepoInfo: () => { url: string; type: "github" | "azure" | "unknown"; projectRoot: string } | null;
+  getBranch: () => string;
 }
 
 export const REVIEWME_PREFIX = "REVIEWME_" as const;

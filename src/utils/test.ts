@@ -32,6 +32,8 @@ export const getRuntime = (
       ...initialMappings,
       ...mappingsOverrides
     },
+    getRepoInfo: () => null, // No git info in tests
+    getBranch: () => "main", // Default branch for tests
     log: () => {}
   };
 };
