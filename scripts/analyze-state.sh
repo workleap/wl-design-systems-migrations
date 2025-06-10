@@ -2,19 +2,29 @@
 
 # IMPORTANT! You must have cloned the target repositories locally before running this script.
 
-rm -f ./reports/orbiter-usage.json
+DEEP_ANALYSIS_FLAG=""
+OUTPUT_FILE_NAME="./reports/orbiter-usage.json" # Default output file name
 
-npx codemod -s ./ -t ../ShareGate.Protect.Web -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "SG Protect"
-npx codemod -s ./ -t ../ShareGate.One -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "SG One"
+if [ "$1" == "--deep" ] && [ "$2" == "true" ]; then
+  DEEP_ANALYSIS_FLAG="--deep true"
+  OUTPUT_FILE_NAME="./reports/orbiter-usage-deep.json" # Output file name for deep analysis
+elif [ "$1" == "--deep" ] && [ "$2" == "false" ]; then
+  DEEP_ANALYSIS_FLAG="--deep false"
+fi
 
-npx codemod -s ./ -t ../workleap-performance-app -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "Performance"
+rm -f "$OUTPUT_FILE_NAME"
 
-npx codemod -s ./ -t ../workleap-management-app -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "Management App"
-npx codemod -s ./ -t ../workleap-management-shell -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "Management Shell"
-npx codemod -s ./ -t ../workleap-administration-portal -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "Administration Portal"
-npx codemod -s ./ -t ../workleap-activation-app -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "Activation"
-npx codemod -s ./ -t ../workleap-login-app -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "Login"
+npx codemod -s ./ -t ../ShareGate.Protect.Web -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "SG Protect" $DEEP_ANALYSIS_FLAG
+npx codemod -s ./ -t ../ShareGate.One -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "SG One" $DEEP_ANALYSIS_FLAG
 
-npx codemod -s ./ -t ../workleap-ai-app -a ./reports/orbiter-usage.json -n 1 --no-interactive --project "AI"
+npx codemod -s ./ -t ../workleap-performance-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Performance" $DEEP_ANALYSIS_FLAG
 
-echo "✅ Analysis complete! Check ./reports/orbiter-usage.json for results."
+npx codemod -s ./ -t ../workleap-management-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Management App" $DEEP_ANALYSIS_FLAG
+npx codemod -s ./ -t ../workleap-management-shell -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Management Shell" $DEEP_ANALYSIS_FLAG
+npx codemod -s ./ -t ../workleap-administration-portal -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Administration Portal" $DEEP_ANALYSIS_FLAG
+npx codemod -s ./ -t ../workleap-activation-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Activation" $DEEP_ANALYSIS_FLAG
+npx codemod -s ./ -t ../workleap-login-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Login" $DEEP_ANALYSIS_FLAG
+
+npx codemod -s ./ -t ../workleap-ai-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "AI" $DEEP_ANALYSIS_FLAG
+
+echo "✅ Analysis complete! Check $OUTPUT_FILE_NAME for results."

@@ -31,9 +31,13 @@
     "sample": "codemod --source ./  -t test/input.tsx -d",
     "sample:write": "codemod --source ./  -t tests/mocks/input.tsx --no-interactive",
     "analyze:all": "pnpm analyze:state && pnpm analyze:components && pnpm analyze:props",
+    "analyze:all:deep": "pnpm analyze:state:deep && pnpm analyze:components:deep && pnpm analyze:props:deep",
     "analyze:components": "./scripts/analyze.not-mapped-components.sh",
+    "analyze:components:deep": "./scripts/analyze.not-mapped-components.sh --deep true",
     "analyze:props": "./scripts/analyze.not-mapped-props.sh",
+    "analyze:props:deep": "./scripts/analyze.not-mapped-props.sh --deep true",
     "analyze:state": "./scripts/analyze-state.sh",
+    "analyze:state:deep": "./scripts/analyze-state.sh --deep true",
     "lint:eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint"
   },
   "files": [

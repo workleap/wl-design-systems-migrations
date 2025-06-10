@@ -7,6 +7,7 @@
     "typescript.format.enable": false, // Disables the default formatter to use ESLint instead
     "javascript.format.enable": false, // Disables the default formatter to use ESLint instead
     "json.format.enable": false, // Disables the default formatter to use ESLint instead
+    "shellcheck.enable": false, 
 
     "eslint.validate": [
         "javascript",
