@@ -263,18 +263,10 @@ export function migrateImport(
       newImport.importKind = "type";
     }
     
-    // Add prettier-ignore comment if there are many imports
-    if (newImportSpecifiers.length > 10) {
-      newImport.comments = [
-        j.commentLine(" prettier-ignore", true, false)
-      ];
-    }
-
     // Find all import declarations to add it at the end of the imports section
     const allImports = root.find(j.ImportDeclaration);
-    if (allImports.length > 0) {
-      // Get the last import and insert after it
-      allImports.at(allImports.length - 1).insertAfter(newImport);
+    if (allImports.length > 0) {          
+      allImports.at(0).insertBefore(newImport);//We put it at beginning because insertAfter uses empty lines wrongly
     } else {
       // If there are no imports, add it to the beginning of the file
       root.get().node.program.body.unshift(newImport);
