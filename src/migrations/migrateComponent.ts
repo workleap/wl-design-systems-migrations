@@ -85,7 +85,7 @@ export function migrateComponent(
 
       instances.forEach(path => {
         path.node.comments = [
-          ...(path.node.comments || []),
+          ...path.node.comments || [],
           getTodoComment(comment, runtime, true)
         ];
       });

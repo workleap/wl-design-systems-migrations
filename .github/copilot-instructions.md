@@ -1,4 +1,4 @@
-# Creating new PR rules (only if requested by the user):
+# Creating new PR rules (only if requested by the user)
 
 - This repo has branch protection.
   - If it is on the main branch, first create a new branch.
@@ -21,20 +21,24 @@
       - Item 2: <description of item 2> (try to include an example if possible)
       ```
 
-## PR Review Guidelines:
+## PR Review Guidelines
 
-### Tests:
+### Tests
 
 - Test descriptions are clear and follow other tests' style.
 - The tests are comprehensive and cover all edge cases.
 - The documentation is updated if there are any changes in functionality.
 - The `input.tsx` and related `output.txt` are tests for mappings rules, not the main logic.
 
-### Code structure:
+### Code structure
 
 - The core logic is in the `src/migrations` folder.
 - Mapping rules are in the `src/mappings` folder.
 
-### Code quality:
+### Code quality
 
 - If the changes are related to logic, make sure they are comprehensive and they cover different coding styles.
+
+## Writing tests Guidelines
+- Put tests in the `test` folder close to the related logic.
+- Don't add `console.log` statements in the final code.

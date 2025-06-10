@@ -36,7 +36,8 @@ export default function transform(
         "include-ignoreList": options["include-ignoreList"] as
           | boolean
           | undefined,
-        project: options.project as string | undefined
+        project: options.project as string | undefined,
+        deep: options.deep as boolean | undefined
       });
 
       return result.source;

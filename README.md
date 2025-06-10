@@ -34,12 +34,6 @@ export function App() {
 npx codemod workleap/orbiter-to-hopper
 ```
 
-Or explicitly specify all components:
-
-```bash
-npx codemod workleap/orbiter-to-hopper -c all
-```
-
 #### Migrate Layout Components Only
 
 Migrate layout and structural components only (Flex, Grid, Div, Span, Article, Nav, ...). This includes all layout containers, HTML wrapper components, content elements, and placeholders. You can see the complete list in [layout-components-mappings.ts](/src/mappings/layout-components-mappings.ts) file.
@@ -95,6 +89,16 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --project mobile-ap
 
 The analysis automatically accumulates results across multiple project runs, providing both project-specific counts and overall totals in the output.
 
+#### Deep Analysis
+
+To include detailed file location information for each property value, use the `--deep` parameter:
+
+```bash
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true --project frontend-team -n 1
+```
+
+When deep analysis is enabled, each property value will include a `files` array containing repository URLs (GitHub or Azure DevOps) with line numbers where that specific value is used. For repositories that are not supported, file paths are used as fallback.
+
 #### Filtering Analysis Results
 
 You can filter the analysis to focus on specific areas that need attention:
@@ -142,27 +146,53 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
         "size": {
           "usage": 75,
           "values": {
-            "lg": { "total": 50, "frontend-team": 30, "mobile-app": 20 },
-            "md": { "total": 25, "frontend-team": 15, "mobile-app": 10 }
+            "lg": { 
+              "total": 50, 
+              "projects": { 
+                "frontend-team": 30, 
+                "mobile-app": 20 
+              },
+              "files": [ //if --deep true is passed
+                "https://github.com/myorg/myrepo/blob/main/src/components/Header.tsx#L15",
+                "https://dev.azure.com/myorg/myproject/_git/myrepo?path=%2Fsrc%2Fcomponents%2FHero.tsx&version=GBmain&line=23",
+                "/src/pages/Dashboard.tsx"] 
+            },
+            "md": { 
+              "total": 25, 
+              "projects": { 
+                "frontend-team": 15, 
+                "mobile-app": 10 
+              },
+            }
           }
         }
       }
     },
     "Div": {
       "usage": 5,
-      "props": {
-        "backgroundColor": {
-          "usage": 5,
-          "values": {
-            "neutral-weakest": { "total": 3, "frontend-team": 2, "mobile-app": 1 },
-            "neutral-disabled": { "total": 2, "frontend-team": 1, "mobile-app": 1 }
-          }
-        }
-      }
+      ...
     }
   }
 }
 ```
+
+### Analysis Parameters
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `-a <filename>` | Output analysis results to a JSON file | `-a orbiter-usage.json` |
+| `--project <name>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
+| `--deep true` | Include file paths for each property value | `--deep true` |
+| `--filter-unmapped <type>` | Filter to show only unmapped items (`components` or `props`) | `--filter-unmapped props` |
+| `--include-ignoreList` | Include ignored properties (aria-*, data-*, etc.) in analysis | `--include-ignoreList` |
+| `-n 1` | Use single thread for accurate output collection | `-n 1` |
+
+**⚠️ Important Notes:**
+
+- Always use `-n 1` when generating analysis output to ensure accuracy
+- Project-specific analysis accumulates results across multiple runs
+- Deep analysis provides detailed file location tracking but may increase processing time
+- Results are automatically sorted by usage frequency (most used first)
 
 ## Contributing
 
