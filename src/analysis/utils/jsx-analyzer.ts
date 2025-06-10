@@ -56,7 +56,9 @@ export function performJSXAnalysis(
           includeIgnoredList,
           project,
           deep,
-          filePath
+          filePath,
+          getRepoInfo: runtime.getRepoInfo,
+          getBranch: runtime.getBranch
         });
       }
     }

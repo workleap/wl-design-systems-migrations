@@ -7,6 +7,7 @@ import { analyze } from "./analysis/analyze.js";
 import { mappings } from "./mappings/index.ts";
 import { migrate } from "./migrations/migrate.js";
 import { logToFile } from "./utils/logger.js";
+import { createLazyRepoInfo } from "./utils/repo-cache.js";
 import type { Runtime } from "./utils/types.js";
 
 export default function transform(
@@ -14,11 +15,16 @@ export default function transform(
   api: API,
   options?: Options
 ): string | undefined {
+  // Create lazy-loaded repository information getters
+  const { getRepoInfo, getBranch } = createLazyRepoInfo(file.path);
+
   const runtime: Runtime = {
     j: api.jscodeshift,
     root: api.jscodeshift(file.source),
     filePath: file.path,
     mappings: mappings,
+    getRepoInfo,
+    getBranch,
     log: (...args) => {
       logToFile(file.path, ...args);
     }
