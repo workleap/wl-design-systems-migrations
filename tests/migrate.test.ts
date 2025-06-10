@@ -120,6 +120,47 @@ describe("migrations", () => {
     assert.deepEqual(actualOutput, OUTPUT);
   });
 
+  test("when the lines are too long, don't wrap the lines", async () => {
+    const INPUT = `
+          import { InfoIcon } from "@hopper-ui/icons";
+          import { Skeleton } from "@sg-protect/components/skeleton";
+          import { X, Button, Button as Content, Button as Flex, Button as Header, Button as Item, Button as LongLongLongLongLongClassName, Button as LongLongLongLongLongClassName2 } from "@workleap/orbiter-ui";
+          import { LostIllustratedMessage } from "../assets/illustrations/index.tsx";
+          import { TeamsIcon, TeamSitesIcon } from "../assets/index.ts";
+
+
+          function App() {}
+          `;
+
+    //three is a bug in codemod or react that adds one empty line after the import statement. 
+    const OUTPUT = `
+          import {
+                    Button,
+                    Button as Content,
+                    Button as Flex,
+                    Button as Header,
+                    Button as Item,
+                    Button as LongLongLongLongLongClassName,
+                    Button as LongLongLongLongLongClassName2,
+          } from "@hopper-ui/components";
+
+          import { InfoIcon } from "@hopper-ui/icons";
+          import { Skeleton } from "@sg-protect/components/skeleton";
+          import { X } from "@workleap/orbiter-ui";
+          import { LostIllustratedMessage } from "../assets/illustrations/index.tsx";
+          import { TeamsIcon, TeamSitesIcon } from "../assets/index.ts";
+
+
+          function App() {}
+          `;
+
+    const actualOutput = migrate(
+      getRuntime(INPUT)
+    );
+    
+    assert.deepEqual(actualOutput, OUTPUT);
+  });
+
   test("when imports have inline type specifiers, migrate them correctly", async () => {
     const INPUT = `
           import { Div, type ContentProps} from "@workleap/orbiter-ui";
@@ -189,7 +230,7 @@ describe("migrations", () => {
 
   test("when a component has similar name, Don't touch it.", async () => {
     const INPUT = "import { Div as Div2 } from \"@workleap/orbiter-ui\"; import { Div } from \"external\"; export function App() { return <><Div width=\"120px\" height=\"auto\" /><Div/></>; }";
-    const OUTPUT = "import { Div } from \"external\"; import { Div as Div2 } from \"@hopper-ui/components\"; export function App() { return <><Div width=\"120px\" height=\"auto\" /><Div/></>; }";
+    const OUTPUT = "import { Div as Div2 } from \"@hopper-ui/components\"; import { Div } from \"external\"; export function App() { return <><Div width=\"120px\" height=\"auto\" /><Div/></>; }";
 
     const actualOutput = migrate(getRuntime(INPUT));
 

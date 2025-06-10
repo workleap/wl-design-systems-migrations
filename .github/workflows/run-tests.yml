@@ -42,7 +42,7 @@ jobs:
 
       - name: Type check
         run: pnpm lint:typecheck
-      - name: Run tests
-        run: pnpm test
       - name: Run lint
         run: pnpm lint:eslint
+      - name: Run tests
+        run: pnpm test

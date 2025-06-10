@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import type { Options } from "jscodeshift";
+import { getLocalNameFromImport } from "../utils/mapping.js";
 import type { Runtime } from "../utils/types.js";
 
 /**
@@ -357,14 +358,12 @@ export function analyze(
     if (specifiers) {
       specifiers.forEach(spec => {
         if (spec.type === "ImportDefaultSpecifier") {
-          const localName = spec.local?.name;
-          if (localName) {
-            importedComponents[localName] = localName;
-            potentialComponents.add(localName);
-          }
+          const localName = getLocalNameFromImport(spec);
+          importedComponents[localName] = localName;
+          potentialComponents.add(localName);
         } else if (spec.type === "ImportSpecifier") {
-          const importedName = spec.imported.name;
-          const localName = spec.local?.name || importedName;
+          const importedName = typeof spec.imported.name === "string" ? spec.imported.name : "";
+          const localName = getLocalNameFromImport(spec);
           importedComponents[localName] = importedName;
           potentialComponents.add(localName);
         }

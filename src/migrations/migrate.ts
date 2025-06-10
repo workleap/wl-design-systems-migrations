@@ -34,5 +34,8 @@ export function migrate(
     });
   }
 
+  // The following is not working as expected: 
+  // For some components, it ignores the previous formatting and put everything in one line.
+  //return runtime.root.toSource({ wrapColumn:Number.MAX_SAFE_INTEGER });
   return runtime.root.toSource();
 }

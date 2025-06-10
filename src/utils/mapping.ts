@@ -1,3 +1,4 @@
+import type { ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier } from "jscodeshift";
 import type { MapMetaData, Runtime } from "./types.js";
 
 export function getComponentPropsMetadata(
@@ -48,4 +49,12 @@ export function getTodoComment(
   leading = false
 ) {
   return j.commentBlock(` Migration TODO: ${comment} `, leading, !leading);
+}
+
+export function getLocalNameFromImport(  
+  importSpecifier: ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier
+): string {
+  const localName = importSpecifier.local?.name;
+  
+  return typeof localName === "string" ? localName : "";
 }

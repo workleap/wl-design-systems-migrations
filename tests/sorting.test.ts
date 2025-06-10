@@ -56,10 +56,6 @@ describe("sorting verification", () => {
     // For equal usage, they could be in any order but let's check that higher usage comes first
     expect(flexPropUsages[0]!).toBeGreaterThanOrEqual(flexPropUsages[1]!);
     expect(flexPropUsages[1]!).toBeGreaterThanOrEqual(flexPropUsages[2]!);
-
-    console.log("Merged components order:", componentNames);
-    console.log("Merged Flex props order:", flexProps);
-    console.log("Merged Flex prop usages:", flexPropUsages);
   });
 });
 

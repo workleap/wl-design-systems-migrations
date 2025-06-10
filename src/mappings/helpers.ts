@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-wrapper-object-types */
 import { isArray } from "@hopper-ui/components";
 import type {
   JSXAttribute,
@@ -7,6 +8,7 @@ import type {
   ObjectProperty
 } from "jscodeshift";
 import {
+  type LiteralType,
   type PropertyMapperFunction,
   type PropertyMapResult,
   type ReviewMe,
@@ -53,7 +55,7 @@ export function getAttributeLiteralValue(
 export function tryGettingLiteralValue(
   value: JSXAttribute["value"] | ObjectProperty["value"] | JSXEmptyExpression,
   runtime: Runtime
-): string | number | boolean | RegExp | null {
+): LiteralType | null {
   const { j } = runtime;
 
   if (j.Literal.check(value, true)) {
@@ -66,7 +68,7 @@ export function tryGettingLiteralValue(
 }
 
 function isGlobalValue(
-  value: string | boolean | number | RegExp,
+  value: LiteralType,
   validValues?: (string | number)[]
 ): boolean {
   return (
@@ -77,12 +79,12 @@ function isGlobalValue(
 }
 
 export function isPercentageValue(
-  value: string | number | boolean | RegExp
+  value: LiteralType
 ): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?%$/.test(value);
 }
 
-export function isFrValue(value: string | number | boolean | RegExp): boolean {
+export function isFrValue(value: LiteralType): boolean {
   return typeof value === "string" && /^-?\d+(\.\d+)?fr$/.test(value);
 }
 
@@ -111,7 +113,7 @@ export function getReviewMePropertyName<T extends string>(
 }
 
 function parseLiteralValue<T extends string>(
-  value: string | number | boolean | RegExp,
+  value: LiteralType,
   originalValue: JSXAttribute["value"] | ObjectProperty["value"],
   options: PropertyMapperOptions<T>,
   runtime: Runtime
@@ -278,7 +280,7 @@ interface PropertyMapperOptions<T extends string = string> {
   validGlobalValues?: (string | number)[];
   enumMapping?: EnumMapping;
   customMapper?: (
-    value: string | number | boolean | RegExp,
+    value: LiteralType,
     originalValue: JSXAttribute["value"] | ObjectProperty["value"],
     runtime: Runtime
   ) => ReturnType<PropertyMapperFunction<T>>;

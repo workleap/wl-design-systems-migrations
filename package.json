@@ -7,18 +7,19 @@
     "@hopper-ui/components": "^1.8.0",
     "@hopper-ui/icons": "^2.9.2",
     "@hopper-ui/styled-system": "^2.5.7",
-    "@types/jscodeshift": "^0.11.10",
+    "@types/jscodeshift": "^17.3.0",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
-    "@typescript-eslint/parser": "8.33.1",
+    "@typescript-eslint/parser": "8.34.0",
     "@workleap/eslint-plugin": "3.4.2",
     "@workleap/orbiter-ui": "^5.6.10",
     "eslint": "8.57.1",
-    "jscodeshift": "^0.15.1",
+    "jscodeshift": "^17.3.0",
     "react": "^19.1.0",
     "react-aria": "^3.39.0",
     "react-aria-components": "^1.8.0",
     "react-dom": "^19.1.0",
+    "recast": "^0.23.11",
     "typescript": "^5.2.2",
     "vitest": "^3.2.0"
   },
@@ -28,7 +29,7 @@
     "test:watch": "vitest watch",
     "deploy:codemod": "codemod publish && pnpm dlx rimraf cdmd_dist",
     "sample": "codemod --source ./  -t test/input.tsx -d",
-    "sample:write": "codemod --source ./  -t test/input.tsx --no-interactive",
+    "sample:write": "codemod --source ./  -t tests/mocks/input.tsx --no-interactive",
     "analyze": "pnpm analyze:state && pnpm analyze:components && pnpm analyze:props",
     "analyze:components": "./scripts/analyze.not-mapped-components.sh",
     "analyze:props": "./scripts/analyze.not-mapped-props.sh",
@@ -40,6 +41,11 @@
     ".codemodrc.json",
     "/dist/index.cjs"
   ],
+  "pnpm": {
+    "overrides": {
+      "recast": "0.23.11"
+    }
+  },
   "type": "module",
   "author": "mahmoudmoravej"
 }
