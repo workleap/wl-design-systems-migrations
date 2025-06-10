@@ -36,8 +36,10 @@ describe("full file path verification", () => {
     expect(Array.isArray(primaryValue?.files)).toBe(true);
     expect(primaryValue?.files).toHaveLength(1);
 
-    // This should be the full path, not just "TestComponent.tsx"
-    expect(primaryValue?.files?.[0]).toBe("/Users/test/project/src/components/TestComponent.tsx");
+    // The system now generates GitHub URLs with line numbers
+    // This should be a GitHub URL containing the full path, not just "TestComponent.tsx"
+    expect(primaryValue?.files?.[0]).toContain("/Users/test/project/src/components/TestComponent.tsx");
+    expect(primaryValue?.files?.[0]).toContain("#L");
     expect(primaryValue?.files?.[0]).not.toBe("TestComponent.tsx");
 
     // Verify Text fontSize files
@@ -47,7 +49,7 @@ describe("full file path verification", () => {
     const fontSize14Value = textFontSizeValues!["14px"];
     expect(fontSize14Value).toBeDefined();
     expect(fontSize14Value?.files).toBeDefined();
-    expect(fontSize14Value?.files?.[0]).toBe("/Users/test/project/src/components/TestComponent.tsx");
+    expect(fontSize14Value?.files?.[0]).toContain("/Users/test/project/src/components/TestComponent.tsx");
   });
 
   test("deep analysis captures relative paths correctly", () => {
@@ -71,7 +73,8 @@ describe("full file path verification", () => {
     
     expect(secondaryValue).toBeDefined();
     expect(secondaryValue?.files).toBeDefined();
-    expect(secondaryValue?.files?.[0]).toBe("./src/App.tsx");
+    // The system generates GitHub URLs when in a git repository, so check for the path within the URL
+    expect(secondaryValue?.files?.[0]).toContain("./src/App.tsx");
   });
 
   test("deep analysis captures Windows-style paths correctly", () => {
@@ -95,6 +98,7 @@ describe("full file path verification", () => {
     
     expect(tertiaryValue).toBeDefined();
     expect(tertiaryValue?.files).toBeDefined();
-    expect(tertiaryValue?.files?.[0]).toBe("C:\\Users\\developer\\project\\src\\components\\WindowsComponent.tsx");
+    // The system generates GitHub URLs when in a git repository, so check for the path within the URL
+    expect(tertiaryValue?.files?.[0]).toContain("C:\\Users\\developer\\project\\src\\components\\WindowsComponent.tsx");
   });
 });

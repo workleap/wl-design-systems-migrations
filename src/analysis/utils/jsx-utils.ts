@@ -1,7 +1,73 @@
+import { execSync } from "child_process";
 import { getLocalNameFromImport } from "../../utils/mapping.js";
 import type { Runtime } from "../../utils/types.js";
 import type { ComponentUsageData } from "../types.js";
 import { shouldIgnoreProperty } from "./mapping-utils.js";
+
+/**
+ * Gets the GitHub repository URL from git remote
+ */
+function getGitHubRepoUrl(): string | null {
+  try {
+    const remoteUrl = execSync("git remote get-url origin", { encoding: "utf8" }).trim();
+    
+    // Convert SSH or HTTPS git URL to GitHub web URL
+    if (remoteUrl.includes("github.com")) {
+      let repoUrl = remoteUrl;
+      
+      // Convert SSH format to HTTPS
+      if (repoUrl.startsWith("git@github.com:")) {
+        repoUrl = repoUrl.replace("git@github.com:", "https://github.com/");
+      }
+      
+      // Remove .git suffix
+      repoUrl = repoUrl.replace(/\.git$/, "");
+      
+      return repoUrl;
+    }
+    
+    return null;
+  } catch {
+    console.warn("Could not determine GitHub repository URL");
+    
+    return null;
+  }
+}
+
+/**
+ * Gets the current git branch name
+ */
+function getCurrentBranch(): string {
+  try {
+    return execSync("git branch --show-current", { encoding: "utf8" }).trim() || "main";
+  } catch {
+    return "main";
+  }
+}
+
+/**
+ * Constructs a GitHub URL with line number for a specific file location
+ */
+function buildGitHubUrl(filePath: string, lineNumber: number): string | null {
+  const repoUrl = getGitHubRepoUrl();
+  if (!repoUrl) {
+    return null;
+  }
+  
+  const branch = getCurrentBranch();
+  
+  // Get relative path from project root
+  try {
+    const projectRoot = execSync("git rev-parse --show-toplevel", { encoding: "utf8" }).trim();
+    const relativePath = filePath.replace(projectRoot + "/", "");
+    
+    return `${repoUrl}/blob/${branch}/${relativePath}#L${lineNumber}`;
+  } catch {
+    console.warn("Could not construct GitHub URL");
+    
+    return null;
+  }
+}
 
 /**
  * Extracts imported components from source imports
@@ -123,15 +189,26 @@ export function processJSXAttributes(
           valueData.projects[project] = (valueData.projects[project] || 0) + 1;
         }
 
-        // If deep analysis is enabled, track file information
+        // If deep analysis is enabled, track GitHub URLs with line numbers (fallback to file paths)
         if (deep) {
           if (!valueData.files) {
             valueData.files = [];
           }
-          // Use Set to avoid duplicates, then convert back to array
-          const fileSet = new Set(valueData.files);
-          fileSet.add(filePath);
-          valueData.files = Array.from(fileSet);
+          
+          // Try to generate GitHub URL with line number, fall back to file path
+          let urlOrPath = filePath;
+          if (attr.loc && attr.loc.start && attr.loc.start.line) {
+            const githubUrl = buildGitHubUrl(filePath, attr.loc.start.line);
+
+            if (githubUrl) {
+              urlOrPath = githubUrl;
+            }
+          }
+          
+          // Check if we already have this exact URL/path (including line numbers)
+          if (!valueData.files.includes(urlOrPath)) {
+            valueData.files.push(urlOrPath);
+          }
         }
       }
     }

@@ -3,8 +3,8 @@ import fs from "node:fs";
 import { describe, expect, test } from "vitest";
 import { getRuntime } from "../../utils/test.ts";
 import {
-  analyze,
-  mergeAnalysisResults
+    analyze,
+    mergeAnalysisResults
 } from "../analyze.ts";
 
 describe("analyze basic functionality", () => {
@@ -1619,7 +1619,7 @@ describe("deep analysis", () => {
     assert.ok(largeValue, "Large size should exist");
     assert.ok(largeValue.files, "Large size should have files property");
     assert.strictEqual(largeValue.total, 2, "Large size should have total count of 2");
-    assert.strictEqual(largeValue.files.length, 1, "Should have one file (no duplicates)");
+    assert.strictEqual(largeValue.files.length, 2, "Should have two GitHub URLs for different lines");
 
     // Check Text component
     const textValues = analysisResults.components.Text?.props.fontSize?.values;
