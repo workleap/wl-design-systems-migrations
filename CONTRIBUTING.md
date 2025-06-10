@@ -34,9 +34,9 @@ codemod --source /path/to/your/local/copy
 Analyze component usage across all locally cloned repositories:
 
 ```bash
-pnpm analyze                # Complete usage report
+pnpm analyze:state          # Complete usage report
 pnpm analyze:components     # Unmapped components only
-pnpm analyze:props         # Unmapped properties only
+pnpm analyze:props          # Unmapped properties only
 ```
 
 ## Architecture Overview

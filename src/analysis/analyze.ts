@@ -96,6 +96,7 @@ interface Values {
     projects?: {
       [project: string]: number;
     };
+    files?: string[];
   };
 }
 
@@ -125,14 +126,15 @@ export interface AnalysisResults {
  * Helper function to deep clone property values (just the count objects)
  */
 function clonePropertyValues(values: {
-  [value: string]: { total: number; projects?: { [project: string]: number } };
-}): { [value: string]: { total: number; projects?: { [project: string]: number } } } {
-  const cloned: { [value: string]: { total: number; projects?: { [project: string]: number } } } = {};
+  [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
+}): { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } } {
+  const cloned: { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } } = {};
   
   Object.entries(values).forEach(([value, counts]) => {
     cloned[value] = { 
       total: counts.total,
-      ...(counts.projects && { projects: { ...counts.projects } })
+      ...(counts.projects && { projects: { ...counts.projects } }),
+      ...(counts.files && { files: [...counts.files] })
     };
   });
   
@@ -143,8 +145,8 @@ function clonePropertyValues(values: {
  * Helper function to merge project values
  */
 function mergeProjectValues(
-  target: { [value: string]: { total: number; projects?: { [project: string]: number } } },
-  source: { [value: string]: { total: number; projects?: { [project: string]: number } } }
+  target: { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } },
+  source: { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } }
 ): void {
   Object.entries(source).forEach(([value, counts]) => {
     if (target[value]) {
@@ -159,11 +161,20 @@ function mergeProjectValues(
           targetProjects[project] = (targetProjects[project] || 0) + count;
         });
       }
+      if (counts.files) {
+        if (!target[value].files) {
+          target[value].files = [];
+        }
+        // Merge files using Set to avoid duplicates
+        const fileSet = new Set([...target[value].files!, ...counts.files]);
+        target[value].files = Array.from(fileSet);
+      }
     } else {
-      // Copy the value with all its project counts
+      // Copy the value with all its project counts and files
       target[value] = { 
         total: counts.total,
-        ...(counts.projects && { projects: { ...counts.projects } })
+        ...(counts.projects && { projects: { ...counts.projects } }),
+        ...(counts.files && { files: [...counts.files] })
       };
     }
   });
@@ -268,7 +279,7 @@ export function mergeAnalysisResults(
       );
 
       const sortedValuesObj: {
-        [value: string]: { total: number; projects?: { [project: string]: number } };
+        [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
       } = {};
       sortedValues.forEach(([value, counts]) => {
         sortedValuesObj[value] = counts;
@@ -329,6 +340,7 @@ export function analyze(
     "filter-unmapped"?: "components" | "props";
     "include-ignoreList"?: boolean;
     project?: string;
+    deep?: boolean;
   }
 ): { source: string | undefined; analysisResults: AnalysisResults } {
   const { j, root, mappings } = runtime;
@@ -336,6 +348,7 @@ export function analyze(
   const filterUnmapped = options?.["filter-unmapped"];
   const includeIgnoredList = options?.["include-ignoreList"] || false;
   const project = options?.project;
+  const deep = options?.deep || false;
 
   // Store component usage with counts
   const componentUsageData: Record<
@@ -347,7 +360,7 @@ export function analyze(
         {
           usage: number;
           values: {
-            [value: string]: { total: number; projects?: { [project: string]: number } };
+            [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
           };
         }
       >;
@@ -463,6 +476,19 @@ export function analyze(
                 }
                 valueData.projects[project] = (valueData.projects[project] || 0) + 1;
               }
+
+              // If deep analysis is enabled, track file information
+              if (deep) {
+                if (!valueData.files) {
+                  valueData.files = [];
+                }
+                // Use full file path instead of just filename
+                const filePath = runtime.filePath;
+                // Use Set to avoid duplicates, then convert back to array
+                const fileSet = new Set(valueData.files);
+                fileSet.add(filePath);
+                valueData.files = Array.from(fileSet);
+              }
             }
           }
         });
@@ -504,7 +530,7 @@ export function analyze(
       );
 
       const sortedValuesObj: {
-        [value: string]: { total: number; projects?: { [project: string]: number } };
+        [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
       } = {};
       sortedValues.forEach(([value, counts]) => {
         sortedValuesObj[value] = counts;

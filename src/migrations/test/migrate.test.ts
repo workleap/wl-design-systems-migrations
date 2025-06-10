@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, test } from "vitest";
-import { migrate } from "../src/migrations/migrate.ts";
-import { getRuntime, removeSpacesAndNewlines } from "./utils.ts";
+import { getRuntime, removeSpacesAndNewlines } from "../../utils/test.ts";
+import { migrate } from "../migrate.ts";
 
 describe("migrations", () => {
   test("when an Orbiter import got an alter name, keep it with Hopper", async () => {

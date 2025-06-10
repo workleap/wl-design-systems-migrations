@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
-import { analyze, customStringify, getSortedKeys, mergeAnalysisResults } from "../src/analysis/analyze.ts";
-import { getRuntime } from "./utils.ts";
+import { getRuntime } from "../../utils/test.ts";
+import { analyze, customStringify, getSortedKeys, mergeAnalysisResults } from "../analyze.ts";
 
 describe("sorting verification", () => {
   test("mergeAnalysisResults produces sorted output", () => {

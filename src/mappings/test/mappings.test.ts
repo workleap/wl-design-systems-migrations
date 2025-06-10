@@ -1,8 +1,8 @@
 import assert from "node:assert";
 import { readFileSync } from "node:fs";
 import { test } from "vitest";
-import { migrate } from "../src/migrations/migrate.ts";
-import { getRuntime } from "./utils.ts";
+import { migrate } from "../../migrations/migrate.ts";
+import { getRuntime } from "../../utils/test.ts";
 
 test("migrates input.tsx to match expected output.tsx", () => {
   // Read the input and expected output files

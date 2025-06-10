@@ -1,11 +1,11 @@
 import assert from "node:assert";
 import fs from "node:fs";
 import { describe, expect, test } from "vitest";
+import { getRuntime } from "../../utils/test.ts";
 import {
   analyze,
   mergeAnalysisResults
-} from "../src/analysis/analyze.ts";
-import { getRuntime } from "./utils.ts";
+} from "../analyze.ts";
 
 describe("analyze basic functionality", () => {
   test("analyze basic component usage with new values structure", () => {
@@ -1566,5 +1566,259 @@ describe("analyze property filtering", () => {
       !textProps.includes("data-testid"),
       "Text data-testid should be excluded"
     );
+  });
+});
+
+describe("deep analysis", () => {
+  test("includes files property when deep option is enabled", () => {
+    const INPUT = `
+    import { Button, Text } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return (
+        <>
+          <Button variant="primary" size="large">Primary Button</Button>
+          <Button variant="secondary" size="large">Secondary Button</Button>
+          <Text fontSize="14px">Some text</Text>
+        </>
+      ); 
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      deep: true
+    });
+
+    // Check that files property exists
+    assert.ok(
+      analysisResults.components.Button,
+      "Button should be present in results"
+    );
+
+    const variantValues = analysisResults.components.Button.props.variant?.values;
+    assert.ok(variantValues, "Button variant values should exist");
+
+    const primaryValue = variantValues["primary"];
+    assert.ok(primaryValue, "Primary variant should exist");
+    assert.ok(primaryValue.files, "Primary variant should have files property");
+    assert.ok(Array.isArray(primaryValue.files), "Files should be an array");
+    assert.strictEqual(primaryValue.files.length, 1, "Should have one file");
+    // Verify that the file path is stored (not just filename)
+    assert.ok(primaryValue.files && primaryValue.files[0] && primaryValue.files[0].includes("test.tsx"), "Should contain full file path");
+
+    const secondaryValue = variantValues["secondary"];
+    assert.ok(secondaryValue, "Secondary variant should exist");
+    assert.ok(secondaryValue.files, "Secondary variant should have files property");
+    assert.ok(Array.isArray(secondaryValue.files), "Files should be an array");
+    assert.strictEqual(secondaryValue.files.length, 1, "Should have one file");
+
+    // Check size values that appear in both buttons
+    const sizeValues = analysisResults.components.Button.props.size?.values;
+    assert.ok(sizeValues, "Button size values should exist");
+
+    const largeValue = sizeValues["large"];
+    assert.ok(largeValue, "Large size should exist");
+    assert.ok(largeValue.files, "Large size should have files property");
+    assert.strictEqual(largeValue.total, 2, "Large size should have total count of 2");
+    assert.strictEqual(largeValue.files.length, 1, "Should have one file (no duplicates)");
+
+    // Check Text component
+    const textValues = analysisResults.components.Text?.props.fontSize?.values;
+    assert.ok(textValues, "Text fontSize values should exist");
+
+    const fontSize14Value = textValues["14px"];
+    assert.ok(fontSize14Value, "14px fontSize should exist");
+    assert.ok(fontSize14Value.files, "14px fontSize should have files property");
+    assert.strictEqual(fontSize14Value.files.length, 1, "Should have one file");
+  });
+
+  test("does not include files property when deep option is disabled", () => {
+    const INPUT = `
+    import { Button } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return <Button variant="primary">Primary Button</Button>;
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      deep: false
+    });
+
+    const variantValues = analysisResults.components.Button?.props.variant?.values;
+    assert.ok(variantValues, "Button variant values should exist");
+
+    const primaryValue = variantValues["primary"];
+    assert.ok(primaryValue, "Primary variant should exist");
+    assert.ok(!primaryValue.files, "Primary variant should not have files property");
+  });
+
+  test("does not include files property when deep option is omitted (default)", () => {
+    const INPUT = `
+    import { Button } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return <Button variant="primary">Primary Button</Button>;
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null);
+
+    const variantValues = analysisResults.components.Button?.props.variant?.values;
+    assert.ok(variantValues, "Button variant values should exist");
+
+    const primaryValue = variantValues["primary"];
+    assert.ok(primaryValue, "Primary variant should exist");
+    assert.ok(!primaryValue.files, "Primary variant should not have files property when deep is not specified");
+  });
+
+  test("deep analysis with project parameter includes both files and projects", () => {
+    const INPUT = `
+    import { Button } from "@workleap/orbiter-ui";
+    
+    export function MyComponent() {
+      return <Button variant="primary">Primary Button</Button>;
+    }`;
+
+    const { analysisResults } = analyze(getRuntime(INPUT), null, {
+      deep: true,
+      project: "test-project"
+    });
+
+    const variantValues = analysisResults.components.Button?.props.variant?.values;
+    assert.ok(variantValues, "Button variant values should exist");
+
+    const primaryValue = variantValues["primary"];
+    assert.ok(primaryValue, "Primary variant should exist");
+    assert.ok(primaryValue.files, "Primary variant should have files property");
+    assert.ok(primaryValue.projects, "Primary variant should have projects property");
+    assert.strictEqual(primaryValue.projects["test-project"], 1, "Should track project count");
+    assert.strictEqual(primaryValue.files.length, 1, "Should have one file");
+  });
+
+  test("mergeAnalysisResults correctly merges files arrays", () => {
+    const existingResults = {
+      overall: {
+        usage: {
+          components: 1,
+          props: 1
+        }
+      },
+      components: {
+        Button: {
+          usage: 1,
+          props: {
+            variant: {
+              usage: 1,
+              values: {
+                primary: { 
+                  total: 1, 
+                  projects: { "project1": 1 },
+                  files: ["/path/to/file1.tsx"]
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const newResults = {
+      overall: {
+        usage: {
+          components: 1,
+          props: 1
+        }
+      },
+      components: {
+        Button: {
+          usage: 1,
+          props: {
+            variant: {
+              usage: 1,
+              values: {
+                primary: { 
+                  total: 1, 
+                  projects: { "project2": 1 },
+                  files: ["/path/to/file2.tsx"]
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const merged = mergeAnalysisResults(existingResults, newResults);
+
+    const primaryValue = merged.components.Button?.props.variant?.values.primary;
+    assert.ok(primaryValue, "Primary variant should exist in merged results");
+    assert.strictEqual(primaryValue.total, 2, "Total should be merged");
+    assert.ok(primaryValue.projects, "Projects should be merged");
+    assert.strictEqual(primaryValue.projects["project1"], 1, "Project1 count should be preserved");
+    assert.strictEqual(primaryValue.projects["project2"], 1, "Project2 count should be added");
+    assert.ok(primaryValue.files, "Files should be merged");
+    assert.strictEqual(primaryValue.files.length, 2, "Should have both files");
+    assert.ok(primaryValue.files.includes("/path/to/file1.tsx"), "Should include file1.tsx");
+    assert.ok(primaryValue.files.includes("/path/to/file2.tsx"), "Should include file2.tsx");
+  });
+
+  test("mergeAnalysisResults avoids duplicate files", () => {
+    const existingResults = {
+      overall: {
+        usage: {
+          components: 1,
+          props: 1
+        }
+      },
+      components: {
+        Button: {
+          usage: 1,
+          props: {
+            variant: {
+              usage: 1,
+              values: {
+                primary: { 
+                  total: 1,
+                  files: ["/path/to/file1.tsx", "/path/to/file2.tsx"]
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const newResults = {
+      overall: {
+        usage: {
+          components: 1,
+          props: 1
+        }
+      },
+      components: {
+        Button: {
+          usage: 1,
+          props: {
+            variant: {
+              usage: 1,
+              values: {
+                primary: { 
+                  total: 1,
+                  files: ["/path/to/file2.tsx", "/path/to/file3.tsx"]
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const merged = mergeAnalysisResults(existingResults, newResults);
+
+    const primaryValue = merged.components.Button?.props.variant?.values.primary;
+    assert.ok(primaryValue, "Primary variant should exist in merged results");
+    assert.ok(primaryValue.files, "Files should be merged");
+    assert.strictEqual(primaryValue.files.length, 3, "Should have three unique files");
+    assert.ok(primaryValue.files.includes("/path/to/file1.tsx"), "Should include file1.tsx");
+    assert.ok(primaryValue.files.includes("/path/to/file2.tsx"), "Should include file2.tsx (no duplicate)");
+    assert.ok(primaryValue.files.includes("/path/to/file3.tsx"), "Should include file3.tsx");
   });
 });

@@ -30,6 +30,13 @@
       "kind": "string",
       "description": "Put props values usage count in this project. It is good only when you run the script with different project names.",
       "required": false
+    },
+    {
+      "name": "deep",
+      "kind": "boolean",
+      "description": "Enable deep analysis to include file information for each prop value. When enabled, adds a 'files' property containing filenames where each value is used.",
+      "required": false,
+      "default": false
     }
   ],
   "meta": {
