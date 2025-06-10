@@ -5,3 +5,4 @@ package-lock.json
 *.md
 // For the moment ignore these test files
 /tests/mocks/**
+/reports/**

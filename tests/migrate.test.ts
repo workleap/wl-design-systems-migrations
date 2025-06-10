@@ -132,7 +132,7 @@ describe("migrations", () => {
           function App() {}
           `;
 
-          //three is a bug in codemod or react that adds one empty line after the import statement. 
+    //three is a bug in codemod or react that adds one empty line after the import statement. 
     const OUTPUT = `
           import {
                     Button,
