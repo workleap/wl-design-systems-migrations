@@ -1,6 +1,5 @@
 import type { Options } from "jscodeshift";
-import { layoutComponentsMappings } from "../mappings/layout-components-mappings.ts";
-import { getMappingKeys, type Runtime } from "../utils/types.js";
+import { isMappingCategoryKey, type Runtime } from "../utils/types.js";
 import { migrateComponent } from "./migrateComponent.js";
 
 export function migrate(
@@ -11,16 +10,16 @@ export function migrate(
   const { mappings } = runtime;
   const components = (options?.c ?? "all") as string;
 
-  if (components === "layout") {
-    getMappingKeys(layoutComponentsMappings).forEach(sourceComponentName => {
-      if (mappings.components[sourceComponentName]) {
-        migrateComponent(sourceComponentName, runtime);
-      }
-    });
-  } else if (components === "all") {
+  if (components === "all") {
     // Migrate all components in the map
     Object.keys(mappings.components).forEach(sourceComponentName => {
       migrateComponent(sourceComponentName, runtime);
+    });
+  } else if (isMappingCategoryKey(components, mappings)) {
+    mappings.categories[components].forEach(sourceComponentName => {
+      if (mappings.components[sourceComponentName]) {
+        migrateComponent(sourceComponentName, runtime);
+      }
     });
   } else {
     components.split(",").forEach(name => {
