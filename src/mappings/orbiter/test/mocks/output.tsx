@@ -2,14 +2,18 @@
 import {
   A,
   Address,
+  AnonymousAvatar,
   Article,
   Aside,
+  Avatar,
+  AvatarGroup,
   Button,
   ButtonGroup,
   CloseButton,
   Content,
   type ContentProps,
   Counter,
+  DeletedAvatar,
   Div,
   Flex,
   Footer,
@@ -45,6 +49,7 @@ import {
   OL,
   Paragraph,
   Span,
+  Spinner,
   Stack,
   Table,
   TBody,
@@ -62,6 +67,18 @@ import {
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 import { useAccordionContext } from "@workleap/orbiter-ui";
+
+const ConditionalContent = ({ children, ...rest }: ContentProps) => {
+  if (!children) {
+    return null;
+  }
+
+  return <Content {...rest}>{children}</Content>;
+};
+
+interface PageProps extends HtmlH1Props {
+  footerZIndex?: number;
+}
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
@@ -458,7 +475,7 @@ export function App() {
         hover/* Migration TODO: `hover` is not supported anymore. Find an alternative solution */
       >
         text
-        /* Migration TODO: `Counter` is not supported anymore. You need to find an alternative. */
+        /* Migration TODO: `Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files */
         <Counter variant="divider">60</Counter>
       </Button>
       <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</Button>
@@ -533,13 +550,13 @@ export function App() {
         isLoading={false}
         onPress={() => alert("Button clicked!")}
         inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
-        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */
+        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one. */
         isDisabled
         aria-label="Icon Button"
       >
         <SparklesIcon />
       </Button>
-      <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+      <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs">
         <SparklesIcon />
       </Button>
       <Button variant="danger" aria-label="Icon Button" size="sm">
@@ -562,21 +579,25 @@ export function App() {
       /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
       <LinkButton
         variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */
-        size="xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+        size="xs">
         <SparklesIcon />
       </LinkButton>
       /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
       <LinkButton
         variant="danger"
-        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one. */>
         <SparklesIcon />
       </LinkButton>
       <CloseButton
         aria-label="Close"
-        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one, but if you're using this icon for implementing `Callout` or `ContextualHelp`, Hopper has built-in support for these cases: https://hopper.workleap.design/components/Callout */
+        size="xs"
         inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
         autoFocus
         onPress={() => {}}
+      />
+      <CloseButton
+        aria-label="Close"
+        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one, but if you're using this icon for implementing `Callout` or `ContextualHelp`, Hopper has built-in support for these cases: https://hopper.workleap.design/components/Callout */
       />
       <ToggleButton
         isFluid={variable ? true : false}
@@ -601,32 +622,34 @@ export function App() {
         isLoading={false}
         onPress={() => alert("Button clicked!")}
         inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
-        size="2xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */
+        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one. */
         isDisabled
         aria-label="Icon Button"
       >
         <SparklesIcon />
       </ToggleButton>
-      <ToggleButton variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs"/* Migration TODO: `xs` and `2xs` are not supported anymore. `sm` is the closest one. */>
+      <ToggleButton variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs">
         <SparklesIcon />
       </ToggleButton>
       <ToggleButton variant="secondary" aria-label="Icon Button" size="sm">
         <SparklesIcon />
       </ToggleButton>
+      <Avatar
+        name="John Doe"
+        onPress={() => {}}
+        size="2xl"
+        retryCount={0}/* Migration TODO: `retryCount` is not supported anymore. Remove it. */        
+        src="https://example.com/avatar.jpg"/>
+      <AvatarGroup size="xs" wrap reverse align="center">
+        <Avatar name="test" />
+      </AvatarGroup>
+      <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onPress={() => {}}/>
+      <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onPress={() => {}}/>
+      <Spinner size="sm" />
+      <Spinner size="md" color="core_toad-500"/* Migration TODO: The `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
+      <Spinner size="lg" color="decorative-option2"/* Migration TODO: The `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
   );
-}
-
-const ConditionalContent = ({ children, ...rest }: ContentProps) => {
-  if (!children) {
-    return null;
-  }
-
-  return <Content {...rest}>{children}</Content>;
-};
-
-interface PageProps extends HtmlH1Props {
-  footerZIndex?: number;
 }

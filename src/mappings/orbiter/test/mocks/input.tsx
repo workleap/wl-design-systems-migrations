@@ -6,14 +6,18 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import {
   A,
   Address,
+  AnonymousAvatar,
   Article,
   Aside,
+  Avatar,
+  AvatarGroup,
   Button,
   ButtonAsLink,
   ButtonGroup,
   Content,
   Counter,
   CrossButton,
+  DeletedAvatar,
   Div,
   Flex,
   Footer,
@@ -49,6 +53,7 @@ import {
   OL,
   Paragraph,
   Span,
+  Spinner,
   Stack,
   Table,
   TBody,
@@ -67,6 +72,18 @@ import {
   useAccordionContext,
   type ContentProps,
 } from "@workleap/orbiter-ui";
+
+const ConditionalContent = ({ children, ...rest }: ContentProps) => {
+  if (!children) {
+    return null;
+  }
+
+  return <Content {...rest}>{children}</Content>;
+};
+
+interface PageProps extends HtmlH1Props {
+  footerZIndex?: number;
+}
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
@@ -561,10 +578,14 @@ export function App() {
 
       <CrossButton
         aria-label="Close"
-        size="2xs"
+        size="xs"
         inherit
         autoFocus
         onClick={() => {}}
+      />
+      <CrossButton
+        aria-label="Close"
+        size="2xs"
       />
 
       <ToggleButton
@@ -603,20 +624,26 @@ export function App() {
       <ToggleIconButton variant="secondary" aria-label="Icon Button" size="sm">
         <SparklesIcon />
       </ToggleIconButton>      
+
+      <Avatar
+        name="John Doe"
+        onClick={() => {}}
+        size="2xl"
+        retryCount={0}        
+        src="https://example.com/avatar.jpg"/>        
+        <AvatarGroup size="xs" wrap reverse align="center">
+          <Avatar name="test" />
+        </AvatarGroup>
+        <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onClick={() => {}}/>
+        <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onClick={() => {}}/>
+
+        <Spinner size="sm" />
+        <Spinner size="md" color="toad-500">Loading...</Spinner>
+        <Spinner size="lg" color="decorative-option2">Loading...</Spinner>
+
       {/* ------------------------------------------------------------------------------------------ */}
-      <HopperDiv padding={"core_400"}>text</HopperDiv>
+      <HopperDiv padding={"core_400"}>text</HopperDiv>      
+      
     </div>
   );
-}
-
-const ConditionalContent = ({ children, ...rest }: ContentProps) => {
-  if (!children) {
-    return null;
-  }
-
-  return <Content {...rest}>{children}</Content>;
-};
-
-interface PageProps extends HtmlH1Props {
-  footerZIndex?: number;
 }

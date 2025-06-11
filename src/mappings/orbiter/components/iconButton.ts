@@ -10,10 +10,10 @@ export const iconButtonMapping = {
         ...buttonMapping.Button.props.mappings,
         size: (originalValue, runtime) => {
           const value = tryGettingLiteralValue(originalValue, runtime);
-          if (value === "xs" || value === "2xs") {
+          if (value === "2xs") {
             return {
               todoComments:
-                "`xs` and `2xs` are not supported anymore. `sm` is the closest one."
+                "`2xs` is not supported anymore. `xs` is the closest one."
             };
           }
 
