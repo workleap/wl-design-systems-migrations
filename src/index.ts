@@ -4,7 +4,7 @@ import type {
   Options
 } from "jscodeshift";
 import { analyze } from "./analysis/analyze.js";
-import { mappings } from "./mappings/index.ts";
+import { mappings } from "./mappings/orbiter/index.ts";
 import { migrate } from "./migrations/migrate.js";
 import { logToFile } from "./utils/logger.js";
 import { createLazyRepoInfo } from "./utils/repo-cache.js";

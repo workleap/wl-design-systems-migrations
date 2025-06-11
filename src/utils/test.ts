@@ -1,6 +1,6 @@
 import { defaultJSCodeshiftParser } from "@codemod.com/codemod-utils";
 import jscodeshift, { type API } from "jscodeshift";
-import { mappings as initialMappings } from "../mappings/index.ts";
+import { mappings as initialMappings } from "../mappings/orbiter/index.ts";
 import type { MapMetaData, Runtime } from "./types.ts";
 
 export const buildApi = (parser?: string | jscodeshift.Parser): API => ({

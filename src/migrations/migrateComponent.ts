@@ -1,4 +1,4 @@
-import { getComponentPropsMetadata, getTodoComment } from "../utils/mapping.js";
+import { getComponentPropsMetadata, getTodoComment } from "../utils/migration.ts";
 import type { Runtime } from "../utils/types.js";
 import { addAttribute } from "./addAttribute.js";
 import { migrateAttribute } from "./migrateAttribute.js";

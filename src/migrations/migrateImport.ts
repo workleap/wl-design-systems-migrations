@@ -1,4 +1,4 @@
-import { getComponentTargetName, getLocalNameFromImport } from "../utils/mapping.js";
+import { getComponentTargetName, getLocalNameFromImport } from "../utils/migration.ts";
 import type { Runtime } from "../utils/types.js";
 
 /**

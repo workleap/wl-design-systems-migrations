@@ -36,10 +36,18 @@ npx codemod workleap/orbiter-to-hopper
 
 #### Migrate Layout Components Only
 
-Migrate layout and structural components only (Flex, Grid, Div, Span, Article, Nav, ...). This includes all layout containers, HTML wrapper components, content elements, and placeholders. You can see the complete list in [layout-components-mappings.ts](/src/mappings/layout-components-mappings.ts) file.
+Migrate layout and structural components only (Flex, Grid, Div, Span, Article, Nav, ...). This includes all layout containers, HTML wrapper components, content elements, and placeholders. You can see the complete list in [layout-components-mappings.ts](/src/mappings/orbiter/layout-components-mappings.ts) file.
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c layout
+```
+
+#### Migrate Button Components Only
+
+Migrate buttons components only. You can see the complete list in [button-components-mappings.ts](/src/mappings/orbiter/button-components-mappings.ts) file.
+
+```bash
+npx codemod workleap/orbiter-to-hopper -c buttons
 ```
 
 #### Migrate Specific Components

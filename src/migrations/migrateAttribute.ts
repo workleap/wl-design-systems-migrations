@@ -1,5 +1,5 @@
 import type { Collection, JSXOpeningElement } from "jscodeshift";
-import { getTodoComment } from "../utils/mapping.ts";
+import { getTodoComment } from "../utils/migration.ts";
 import type { PropertyMapperFunction, Runtime } from "../utils/types.js";
 
 /**

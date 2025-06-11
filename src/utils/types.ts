@@ -1,5 +1,7 @@
+import type { StyledSystemProps as HopperStyledSystemProps } from "@hopper-ui/components";
 import type core from "jscodeshift/src/core.js";
 import type { ASTNode, ASTPath, Collection, JSXAttribute, JSXOpeningElement, ObjectProperty } from "jscodeshift/src/core.js";
+
 
 export interface Runtime {
   j: core.JSCodeshift;
@@ -64,6 +66,10 @@ export interface MapMetaData {
   sourcePackage: string;
   targetPackage: string;
   propsDefaults?: PropsMapMetaData;
+  categories: {
+    layout: string[];
+    buttons: string[];
+  };
   components: Record<string, ComponentMapMetaData>;
 }
 
@@ -73,5 +79,15 @@ export function getMappingKeys<T extends Record<string, ComponentMapMetaData>>(
   return Object.keys(obj) as Array<keyof T>;
 }
 
+export function isMappingCategoryKey(
+  key: string,
+  mapping: MapMetaData
+): key is keyof MapMetaData["categories"] {
+  return key in mapping.categories;
+}
+
 // eslint-disable-next-line @typescript-eslint/no-wrapper-object-types
 export type LiteralType = string | boolean | null | number | RegExp | BigInt;
+
+export type HopperStyledSystemPropsKeys = keyof HopperStyledSystemProps;
+

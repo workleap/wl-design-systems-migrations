@@ -1,4 +1,4 @@
-import { getLocalNameFromImport } from "../../utils/mapping.js";
+import { getLocalNameFromImport } from "../../utils/migration.ts";
 import type { Runtime } from "../../utils/types.js";
 import type { ComponentUsageData } from "../types.js";
 import { shouldIgnoreProperty } from "./mapping-utils.js";
