@@ -1,7 +1,7 @@
 import {
-    getMappingKeys,
-    type MapMetaData,
-    type PropsMapping
+  getMappingKeys,
+  type MapMetaData,
+  type PropsMapping
 } from "../../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
