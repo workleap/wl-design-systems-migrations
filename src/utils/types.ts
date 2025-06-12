@@ -45,20 +45,22 @@ export type PropsMapping<
 export type PropertyAdderFunction = (
   tag: ASTPath<JSXOpeningElement>,
   runtime: Runtime
-) => string | number | boolean | JSXAttribute["value"] | null;
+) => string | number | boolean | object | JSXAttribute["value"] | null;
 
 export interface PropsMapMetaData {
   mappings?: PropsMapping;
   additions?: {
-    [key: string]: PropertyAdderFunction | string | number | boolean;
+    [key: string]: PropertyAdderFunction | string | number | boolean | object;
   };
 }
+
+export type TodoComment = string | string[] | ((tag: ASTPath<JSXOpeningElement>, runtime: Runtime) => string | string[] | undefined);
 
 export type ComponentMapMetaData =
   | {
     to?: string;
     props?: PropsMapMetaData;
-    todoComments?: string;
+    todoComments?: TodoComment;
   }
   | string;
 
@@ -66,7 +68,7 @@ export interface MapMetaData {
   sourcePackage: string;
   targetPackage: string;
   propsDefaults?: PropsMapMetaData;
-  categories: {
+  categories?: {
     layout: string[];
     buttons: string[];
   };
@@ -83,7 +85,7 @@ export function isMappingCategoryKey(
   key: string,
   mapping: MapMetaData
 ): key is keyof MapMetaData["categories"] {
-  return key in mapping.categories;
+  return key in (mapping.categories ?? {});
 }
 
 // eslint-disable-next-line @typescript-eslint/no-wrapper-object-types

@@ -12,8 +12,7 @@ export const spinnerMapping = {
             todoComments: "The `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes"
           };
         }
-      },
-      additions: {}
+      }
     }
   },
   SpinnerProps: "SpinnerProps"

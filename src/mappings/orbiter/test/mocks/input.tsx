@@ -11,6 +11,7 @@ import {
   Aside,
   Avatar,
   AvatarGroup,
+  AvatarText,
   Button,
   ButtonAsLink,
   ButtonGroup,
@@ -19,6 +20,7 @@ import {
   CrossButton,
   DeletedAvatar,
   Div,
+  Dot,
   Flex,
   Footer,
   Grid,
@@ -45,6 +47,9 @@ import {
   HtmlSection,
   IconButton,
   IconButtonAsLink,
+  IllustratedMessage,
+  Illustration,
+  Image,
   Img,
   Inline,
   LI,
@@ -55,6 +60,7 @@ import {
   Span,
   Spinner,
   Stack,
+  SvgImage,
   Table,
   TBody,
   TD,
@@ -641,6 +647,29 @@ export function App() {
         <Spinner size="md" color="toad-500">Loading...</Spinner>
         <Spinner size="lg" color="decorative-option2">Loading...</Spinner>
 
+        <AvatarText size="md">Avatar Text</AvatarText>
+        <AvatarText size="invalid">Avatar Text</AvatarText>
+
+        <Image 
+          src="src"
+          alt="alt"
+          shape="circular"
+          onError={() => {}}
+          onLoad={() => {}}
+          objectFit="cover"
+        />
+
+        <SvgImage src={SparklesIcon} aria-label="test" stroke="invalid" fill="invalid" />
+        <SvgImage src="blockquote" aria-label="test" stroke="invalid" fill="invalid" />
+
+        <Illustration>test</Illustration>
+        <Illustration display={{base: "block", sm: "none"}}>test</Illustration>
+
+        <IllustratedMessage>test</IllustratedMessage>
+        <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
+        <IllustratedMessage orientation="vertical" width="120px">test</IllustratedMessage>
+
+        <Dot />
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>      
       

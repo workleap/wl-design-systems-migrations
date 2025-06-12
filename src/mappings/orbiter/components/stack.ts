@@ -6,8 +6,7 @@ export const stackMapping = {
     props: {
       mappings: {
         ...flexMapping.Flex.props.mappings
-      },
-      additions: {}
+      }
     }
   },
   StackProps: "StackProps"

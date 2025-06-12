@@ -1,5 +1,8 @@
 import type { ComponentMapMetaData } from "../../utils/types.ts";
 import { avatarMapping } from "./components/avatar.ts";
+import { avatarTextMapping } from "./components/avatarText.ts";
+import { illustrationMapping } from "./components/illustration.ts";
+import { imageMapping } from "./components/image.ts";
 import { spinnerMapping } from "./components/spinner.ts";
 
 export const visualComponentsMappings: Record<string, ComponentMapMetaData> = {
@@ -7,32 +10,27 @@ export const visualComponentsMappings: Record<string, ComponentMapMetaData> = {
   AvatarGroup: "AvatarGroup",
   AvatarGroupProps: "AvatarGroupProps",
 
-  Badge: "Badge", //usage: 0
+  Badge: "Badge",
   BadgeProps: "BadgeProps",
+  Dot: {
+    todoComments: "`Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate />"
+  },
+  DotProps: "DotProps",
 
-  ...spinnerMapping
+  ...spinnerMapping,
+  ...avatarTextMapping,
+  ...imageMapping,
+  ...illustrationMapping
 
-  // //TODO: Not direct map. Find appropriate component/type
-  // // AvatarText: "AvatarText", //usage: 2
-
-  // // Dot: "Dot", //usage: 1
-  // // DotProps: "DotProps",
 
   // // Lozenge: "Badge", //usage: 90
   // // LozengeProps: "BadgeProps",
 
-  // //media & illustration - total usage: 197
-  // Image: "Image", //usage: 15
-  // ImageProps: "ImageProps",
-  // SvgImage: "SvgImage", //usage: 133
-  // SvgImageProps: "SvgImageProps",
-  // IllustratedMessage: "IllustratedMessage", //usage: 29
-  // IllustratedMessageProps: "IllustratedMessageProps",
+
   // IconList: "IconList", //usage: 0
   // IconListProps: "IconListProps"
   // //TODO: Not direct map. Find appropriate component/type
   // // AsyncImage: "Image",
   // // AsyncImageProps: "ImageProps",
-  // // Illustration: "Illustration", //usage: 49
-  // // IllustrationProps: "IllustrationProps",
+
 };

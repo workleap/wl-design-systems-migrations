@@ -81,12 +81,25 @@ export function migrateComponent(
       typeof componentMapData === "object" &&
       componentMapData.todoComments !== undefined
     ) {
-      const comment = componentMapData.todoComments;
+      const todoComment = componentMapData.todoComments;
 
       instances.forEach(path => {
+        let comments : string | string[] | undefined = [];
+        if (typeof todoComment === "function") {
+          comments = todoComment(path, runtime);
+        } else {
+          comments = todoComment;
+        }
+
+        if (typeof comments === "string") {
+          comments = [comments];
+        } else if (comments === undefined) {
+          comments = [];
+        }           
+
         path.node.comments = [
           ...path.node.comments || [],
-          getTodoComment(comment, runtime, true)
+          ...comments.map(msg => getTodoComment(msg, runtime, true))
         ];
       });
     }
