@@ -1,7 +1,7 @@
 import {
-  getMappingKeys,
-  type MapMetaData,
-  type PropsMapping
+    getMappingKeys,
+    type MapMetaData,
+    type PropsMapping
 } from "../../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
@@ -36,7 +36,8 @@ export const mappings = {
   },
   categories: {
     layout: getMappingKeys(layoutComponentsMappings),
-    buttons: getMappingKeys(buttonComponentsMappings)
+    buttons: getMappingKeys(buttonComponentsMappings),
+    visual: getMappingKeys(visualComponentsMappings)
   },
   components: {
     ...layoutComponentsMappings,
