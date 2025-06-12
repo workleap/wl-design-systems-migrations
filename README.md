@@ -129,10 +129,10 @@ By default, analysis is performed using Orbiter mappings. You can specify which 
 
 ```bash
 # Default (orbiter mappings)
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true -n 1
 
 # Using hopper mappings
-npx codemod workleap/orbiter-to-hopper -a hopper-usage.json --mappings hopper -n 1
+npx codemod workleap/orbiter-to-hopper -a hopper-usage.json --mappings hopper --deep true -n 1
 ```
 
 The output file name will automatically reflect the mapping type used.
