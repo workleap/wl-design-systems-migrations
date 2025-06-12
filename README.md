@@ -1,16 +1,6 @@
 # Orbiter to Hopper Codemod
 
-This codemod automates the migration of components from [Orbiter](https://github.com/workleap/wl-orbiter) to the [Hopper](https://github.com/workleap/wl-hopper) design sys### Analysis Parameters
-
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `-a <filename>` | Output analysis results to a JSON file | `-a orbiter-usage.json` |
-| `--project <n>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
-| `--deep true` | Include file paths for each property value | `--deep true` |
-| `--filter-unmapped <type>` | Filter to show only unmapped items (`components` or `props`) | `--filter-unmapped props` |
-| `--include-ignoreList` | Include ignored properties (aria-*, data-*, etc.) in analysis | `--include-ignoreList` |
-| `--mappings <type>` | Specify which mapping to use for analysis (`orbiter` or `hopper`) | `--mappings hopper` |
-| `-n 1` | Use single thread for accurate output collection | `-n 1` |xamples
+This codemod automates the migration of components from [Orbiter](https://github.com/workleap/wl-orbiter) to the [Hopper](https://github.com/workleap/wl-hopper) design system.
 
 ### Before Migration
 
@@ -214,16 +204,16 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 }
 ```
 
-### Analysis Parameters
+## Allowed Parameters
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | `-a <filename>` | Output analysis results to a JSON file | `-a orbiter-usage.json` |
-| `--project <name>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
+| `--project <n>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
 | `--deep true` | Include file paths for each property value | `--deep true` |
 | `--filter-unmapped <type>` | Filter to show only unmapped items (`components` or `props`) | `--filter-unmapped props` |
 | `--include-ignoreList` | Include ignored properties (aria-*, data-*, etc.) in analysis | `--include-ignoreList` |
-| `--mappings <type>` | Specify which mapping to use for analysis (`orbiter` or `hopper`) | `--mappings hopper` |
+| `--mappings <type>` | Specify which mapping to use for analysis or migration (`orbiter` or `hopper`) | `--mappings hopper` |
 | `-n 1` | Use single thread for accurate output collection | `-n 1` |
 
 **⚠️ Important Notes:**
