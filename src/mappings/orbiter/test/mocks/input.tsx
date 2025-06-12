@@ -6,15 +6,21 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import {
   A,
   Address,
+  AnonymousAvatar,
   Article,
   Aside,
+  Avatar,
+  AvatarGroup,
+  AvatarText,
   Button,
   ButtonAsLink,
   ButtonGroup,
   Content,
   Counter,
   CrossButton,
+  DeletedAvatar,
   Div,
+  Dot,
   Flex,
   Footer,
   Grid,
@@ -41,6 +47,9 @@ import {
   HtmlSection,
   IconButton,
   IconButtonAsLink,
+  IllustratedMessage,
+  Illustration,
+  Image,
   Img,
   Inline,
   LI,
@@ -49,7 +58,9 @@ import {
   OL,
   Paragraph,
   Span,
+  Spinner,
   Stack,
+  SvgImage,
   Table,
   TBody,
   TD,
@@ -67,6 +78,18 @@ import {
   useAccordionContext,
   type ContentProps,
 } from "@workleap/orbiter-ui";
+
+const ConditionalContent = ({ children, ...rest }: ContentProps) => {
+  if (!children) {
+    return null;
+  }
+
+  return <Content {...rest}>{children}</Content>;
+};
+
+interface PageProps extends HtmlH1Props {
+  footerZIndex?: number;
+}
 
 export function App() {
   const { expandedKeys } = useAccordionContext();
@@ -561,10 +584,14 @@ export function App() {
 
       <CrossButton
         aria-label="Close"
-        size="2xs"
+        size="xs"
         inherit
         autoFocus
         onClick={() => {}}
+      />
+      <CrossButton
+        aria-label="Close"
+        size="2xs"
       />
 
       <ToggleButton
@@ -603,20 +630,49 @@ export function App() {
       <ToggleIconButton variant="secondary" aria-label="Icon Button" size="sm">
         <SparklesIcon />
       </ToggleIconButton>      
+
+      <Avatar
+        name="John Doe"
+        onClick={() => {}}
+        size="2xl"
+        retryCount={0}        
+        src="https://example.com/avatar.jpg"/>        
+        <AvatarGroup size="xs" wrap reverse align="center">
+          <Avatar name="test" />
+        </AvatarGroup>
+        <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onClick={() => {}}/>
+        <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onClick={() => {}}/>
+
+        <Spinner size="sm" />
+        <Spinner size="md" color="toad-500">Loading...</Spinner>
+        <Spinner size="lg" color="decorative-option2">Loading...</Spinner>
+
+        <AvatarText size="md">Avatar Text</AvatarText>
+        <AvatarText size="invalid">Avatar Text</AvatarText>
+
+        <Image 
+          src="src"
+          alt="alt"
+          shape="circular"
+          onError={() => {}}
+          onLoad={() => {}}
+          objectFit="cover"
+        />
+
+        <SvgImage src={SparklesIcon} aria-label="test" stroke="invalid" fill="invalid" />
+        <SvgImage src="blockquote" aria-label="test" stroke="invalid" fill="invalid" />
+
+        <Illustration>test</Illustration>
+        <Illustration display={{base: "block", sm: "none"}}>test</Illustration>
+
+        <IllustratedMessage>test</IllustratedMessage>
+        <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
+        <IllustratedMessage orientation="vertical" width="120px">test</IllustratedMessage>
+
+        <Dot />
       {/* ------------------------------------------------------------------------------------------ */}
-      <HopperDiv padding={"core_400"}>text</HopperDiv>
+      <HopperDiv padding={"core_400"}>text</HopperDiv>      
+      
     </div>
   );
-}
-
-const ConditionalContent = ({ children, ...rest }: ContentProps) => {
-  if (!children) {
-    return null;
-  }
-
-  return <Content {...rest}>{children}</Content>;
-};
-
-interface PageProps extends HtmlH1Props {
-  footerZIndex?: number;
 }

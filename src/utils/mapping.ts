@@ -1,9 +1,12 @@
 /* eslint-disable @typescript-eslint/no-wrapper-object-types */
 import type {
   JSXAttribute,
+  JSXElement,
   JSXEmptyExpression,
   JSXExpressionContainer,
+  JSXFragment,
   JSXOpeningElement,
+  Literal,
   ObjectProperty
 } from "jscodeshift";
 import {
@@ -31,6 +34,48 @@ export function hasAttribute(
     ) !== undefined
   );
 }
+
+export function createObjectExpression(obj: Record<string, any>, runtime: Runtime) {
+  const { j } = runtime;
+
+  return j.jsxExpressionContainer(
+    j.objectExpression(
+      Object.entries(obj).map(([key, value]) =>
+        j.property("init", j.identifier(key), j.literal(value))
+      )
+    )
+  );
+}
+
+export const isAttributeValueType = (
+  val: any
+): val is Literal | JSXExpressionContainer | JSXElement | JSXFragment | null => {
+  if (val === null) {
+    return true; // `null` is valid (e.g., for boolean attributes like <button disabled />)
+  }
+  if (typeof val !== "object" || !val || typeof val.type !== "string") {
+    return false; // Must be an object with a 'type' property
+  }
+
+  // Valid AST node types for JSXAttribute["value"]
+  // (Literal includes StringLiteral, NumericLiteral, BooleanLiteral, NullLiteral)
+  const validTypes: string[] = [
+    "BigIntLiteral",
+    "DecimalLiteral",
+    "Literal",
+    "StringLiteral",
+    "NumericLiteral",
+    "RegExpLiteral",
+    "BooleanLiteral",
+    "NullLiteral",
+    "JSXExpressionContainer",
+    "JSXElement",
+    "JSXFragment",
+    "JSXText"
+  ];
+
+  return validTypes.includes(val.type);
+};
 
 export function getAttributeLiteralValue(
   tag: JSXOpeningElement,

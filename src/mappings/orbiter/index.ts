@@ -6,6 +6,7 @@ import {
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
+import { visualComponentsMappings } from "./visual-components-mappings.ts";
 
 const defaultPropsMappings = {
   ...styledSystemPropsMappings,
@@ -35,11 +36,13 @@ export const mappings = {
   },
   categories: {
     layout: getMappingKeys(layoutComponentsMappings),
-    buttons: getMappingKeys(buttonComponentsMappings)
+    buttons: getMappingKeys(buttonComponentsMappings),
+    visual: getMappingKeys(visualComponentsMappings)
   },
   components: {
     ...layoutComponentsMappings,
-    ...buttonComponentsMappings
+    ...buttonComponentsMappings,
+    ...visualComponentsMappings
 
     //TODO: move items from todo list here when they are implemented
   }
@@ -191,45 +194,6 @@ const todo = {
   // Group: "Group", //usage: 1
   // GroupProps: "GroupProps",
 
-  //visual elements - total usage: 223
-  Avatar: "Avatar", //usage: 67
-  AvatarProps: "AvatarProps",
-  AvatarGroup: "AvatarGroup", //usage: 8
-  AvatarGroupProps: "AvatarGroupProps",
-  DeletedAvatar: "DeletedAvatar", //usage: 13
-  DeletedAvatarProps: "DeletedAvatarProps",
-  AnonymousAvatar: "AnonymousAvatar", //usage: 2
-  AnonymousAvatarProps: "AnonymousAvatarProps",
-  Badge: "Badge", //usage: 0
-  BadgeProps: "BadgeProps",
-  Spinner: "Spinner", //usage: 43
-  SpinnerProps: "SpinnerProps",
-
-  //TODO: Not direct map. Find appropriate component/type
-  // AvatarText: "AvatarText", //usage: 2
-  // Counter: "Badge", //usage: 4
-  // CounterProps: "BadgeProps",
-  // Dot: "Dot", //usage: 1
-  // DotProps: "DotProps",
-  // Loader: "Spinner",
-  // LoaderProps: "SpinnerProps",
-  // Lozenge: "Badge", //usage: 90
-  // LozengeProps: "BadgeProps",
-
-  //media & illustration - total usage: 197
-  Image: "Image", //usage: 15
-  ImageProps: "ImageProps",
-  SvgImage: "SvgImage", //usage: 133
-  SvgImageProps: "SvgImageProps",
-  IllustratedMessage: "IllustratedMessage", //usage: 29
-  IllustratedMessageProps: "IllustratedMessageProps",
-  IconList: "IconList", //usage: 0
-  IconListProps: "IconListProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // AsyncImage: "Image",
-  // AsyncImageProps: "ImageProps",
-  // Illustration: "Illustration", //usage: 49
-  // IllustrationProps: "IllustrationProps",
 
   //messaging & feedback - total usage: 19
   Alert: "Alert", //usage: 9

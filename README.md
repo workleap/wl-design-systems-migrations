@@ -2,8 +2,6 @@
 
 This codemod automates the migration of components from [Orbiter](https://github.com/workleap/wl-orbiter) to the [Hopper](https://github.com/workleap/wl-hopper) design system.
 
-## Examples
-
 ### Before Migration
 
 ```tsx
@@ -48,6 +46,14 @@ Migrate buttons components only. You can see the complete list in [button-compon
 
 ```bash
 npx codemod workleap/orbiter-to-hopper -c buttons
+```
+
+#### Migrate Visual Components Only
+
+Migrate visual components only (Avatar, AvatarText, Badge, Image, Illustration, Spinner, ...). This includes visual elements that often represent data or provide feedback. You can see the complete list in [visual-components-mappings.ts](/src/mappings/orbiter/visual-components-mappings.ts) file.
+
+```bash
+npx codemod workleap/orbiter-to-hopper -c visual
 ```
 
 #### Migrate Specific Components
@@ -106,6 +112,20 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true --proje
 ```
 
 When deep analysis is enabled, each property value will include a `files` array containing repository URLs (GitHub or Azure DevOps) with line numbers where that specific value is used. For repositories that are not supported, file paths are used as fallback.
+
+#### Specifying Mapping Table
+
+By default, analysis is performed using Orbiter mappings. You can specify which mapping table to use with the `--mappings` parameter:
+
+```bash
+# Default (orbiter mappings)
+npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true -n 1
+
+# Using hopper mappings
+npx codemod workleap/orbiter-to-hopper -a hopper-usage.json --mappings hopper --deep true -n 1
+```
+
+The output file name will automatically reflect the mapping type used.
 
 #### Filtering Analysis Results
 
@@ -184,15 +204,16 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 }
 ```
 
-### Analysis Parameters
+## Allowed Parameters
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | `-a <filename>` | Output analysis results to a JSON file | `-a orbiter-usage.json` |
-| `--project <name>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
+| `--project <n>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
 | `--deep true` | Include file paths for each property value | `--deep true` |
 | `--filter-unmapped <type>` | Filter to show only unmapped items (`components` or `props`) | `--filter-unmapped props` |
 | `--include-ignoreList` | Include ignored properties (aria-*, data-*, etc.) in analysis | `--include-ignoreList` |
+| `--mappings <type>` | Specify which mapping to use for analysis or migration (`orbiter` or `hopper`) | `--mappings hopper` |
 | `-n 1` | Use single thread for accurate output collection | `-n 1` |
 
 **⚠️ Important Notes:**

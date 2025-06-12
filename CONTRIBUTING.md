@@ -34,9 +34,22 @@ codemod --source /path/to/your/local/copy
 Analyze component usage across all locally cloned repositories:
 
 ```bash
-pnpm analyze:state          # Complete usage report
-pnpm analyze:components     # Unmapped components only
-pnpm analyze:props          # Unmapped properties only
+# For orbiter mappings (default)
+pnpm analyze:orbiter:state          # Complete usage report
+pnpm analyze:orbiter:components     # Unmapped components only
+pnpm analyze:orbiter:props          # Unmapped properties only
+
+# For hopper mappings
+pnpm analyze:hopper:state           # Complete usage report with hopper mappings
+pnpm analyze:hopper:state:deep      # Deep analysis with hopper mappings
+```
+
+You can also use the scripts with custom parameters:
+
+```bash
+# Using custom parameters
+./scripts/analyze-state.sh --mappings hopper
+./scripts/analyze.not-mapped-components.sh --deep true --mappings hopper
 ```
 
 ## Architecture Overview

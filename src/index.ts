@@ -4,11 +4,12 @@ import type {
   Options
 } from "jscodeshift";
 import { analyze } from "./analysis/analyze.js";
-import { mappings } from "./mappings/orbiter/index.ts";
+import { mappings as hopper2HopperMappings } from "./mappings/hopper-to-hopper/index.js";
+import { mappings as orbiter2HopperMappings } from "./mappings/orbiter/index.ts";
 import { migrate } from "./migrations/migrate.js";
 import { logToFile } from "./utils/logger.js";
 import { createLazyRepoInfo } from "./utils/repo-cache.js";
-import type { Runtime } from "./utils/types.js";
+import type { MapMetaData, Runtime } from "./utils/types.js";
 
 export default function transform(
   file: FileInfo,
@@ -17,6 +18,8 @@ export default function transform(
 ): string | undefined {
   // Create lazy-loaded repository information getters
   const { getRepoInfo, getBranch } = createLazyRepoInfo(file.path);
+
+  const mappings = getMappingTable(options);
 
   const runtime: Runtime = {
     j: api.jscodeshift,
@@ -57,3 +60,15 @@ export default function transform(
     return errorMessage;
   }
 }
+function getMappingTable(options: Options | undefined) : MapMetaData {
+  const target = options?.mappings ?? "orbiter2hopper";
+  switch (target) {
+    case "hopper":
+      return hopper2HopperMappings;
+    case "orbiter":
+      return orbiter2HopperMappings;
+    default:
+      throw new Error(`Unknown mapping target: ${target}`);
+  }
+}
+

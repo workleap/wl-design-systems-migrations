@@ -15,7 +15,7 @@ export function migrate(
     Object.keys(mappings.components).forEach(sourceComponentName => {
       migrateComponent(sourceComponentName, runtime);
     });
-  } else if (isMappingCategoryKey(components, mappings)) {
+  } else if (mappings.categories && isMappingCategoryKey(components, mappings.categories)) {
     mappings.categories[components].forEach(sourceComponentName => {
       if (mappings.components[sourceComponentName]) {
         migrateComponent(sourceComponentName, runtime);

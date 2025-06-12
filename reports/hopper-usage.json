@@ -1,0 +1,2213 @@
+{
+  "overall": {
+    "usage": {
+      "components": 139,
+      "props": 266
+    }
+  },
+  "components": {
+    "Tag": {
+      "usage": 23,
+      "props": {
+        "variant": {
+          "usage": 20,
+          "values": {
+            "neutral": {
+              "total": 7,
+              "projects": {
+                "Management App": 7
+              }
+            },
+            "caution": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            },
+            "negative": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            },
+            "positive": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            },
+            "option6": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "progress": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "isAutoAssignManagers ? \"neutral\" : \"caution\"": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "size": {
+          "usage": 9,
+          "values": {
+            "sm": {
+              "total": 5,
+              "projects": {
+                "Management App": 5
+              }
+            },
+            "lg": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "md": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "display": {
+          "usage": 3,
+          "values": {
+            "{ base: \"none\", sm: \"flex\" }": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "{ base: \"none\", md: \"flex\" }": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "{ base: \"none\", lg: \"flex\" }": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "minWidth": {
+          "usage": 2,
+          "values": {
+            "fit-content": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "cursor": {
+          "usage": 2,
+          "values": {
+            "default": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "paddingX": {
+          "usage": 1,
+          "values": {
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "marginRight": {
+          "usage": 1,
+          "values": {
+            "inline-xl": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "flexShrink": {
+          "usage": 1,
+          "values": {
+            "0": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Text": {
+      "usage": 15,
+      "props": {
+        "size": {
+          "usage": 7,
+          "values": {
+            "sm": {
+              "total": 4,
+              "projects": {
+                "Management App": 4
+              }
+            },
+            "xl": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "lg": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "color": {
+          "usage": 4,
+          "values": {
+            "oldPriceTextColor": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "textColor": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "display": {
+          "usage": 3,
+          "values": {
+            "block": {
+              "total": 2,
+              "projects": {
+                "AI": 2
+              }
+            },
+            "flex": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "opacity": {
+          "usage": 2,
+          "values": {
+            "0.8": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "fontWeight": {
+          "usage": 2,
+          "values": {
+            "body-sm-semibold": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "body-xs-bold": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
+        "fontSize": {
+          "usage": 2,
+          "values": {
+            "body-xs": {
+              "total": 2,
+              "projects": {
+                "AI": 2
+              }
+            }
+          }
+        },
+        "flexDirection": {
+          "usage": 1,
+          "values": {
+            "column": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "justifyContent": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_lineHeight": {
+          "usage": 1,
+          "values": {
+            "2rem": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_height": {
+          "usage": 1,
+          "values": {
+            "3.5rem": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "textDecoration": {
+          "usage": 1,
+          "values": {
+            "line-through": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "marginTop": {
+          "usage": 1,
+          "values": {
+            "stack-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "marginLeft": {
+          "usage": 1,
+          "values": {
+            "inline-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingBottom": {
+          "usage": 1,
+          "values": {
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "fontFamily": {
+          "usage": 1,
+          "values": {
+            "body-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Flex": {
+      "usage": 13,
+      "props": {
+        "alignItems": {
+          "usage": 10,
+          "values": {
+            "center": {
+              "total": 10,
+              "projects": {
+                "Management App": 10
+              }
+            }
+          }
+        },
+        "justifyContent": {
+          "usage": 5,
+          "values": {
+            "space-between": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            },
+            "flex-end": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "center": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "gap": {
+          "usage": 5,
+          "values": {
+            "inline-md": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "inline-xs": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "inline-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "wrap": {
+          "usage": 1,
+          "values": {
+            "wrap": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingTop": {
+          "usage": 1,
+          "values": {
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingBottom": {
+          "usage": 1,
+          "values": {
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "backgroundColor": {
+          "usage": 1,
+          "values": {
+            "neutral-disabled": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "borderRadius": {
+          "usage": 1,
+          "values": {
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Div": {
+      "usage": 9,
+      "props": {
+        "width": {
+          "usage": 1,
+          "values": {
+            "core_640": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "height": {
+          "usage": 1,
+          "values": {
+            "core_640": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "position": {
+          "usage": 1,
+          "values": {
+            "absolute": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "top": {
+          "usage": 1,
+          "values": {
+            "-1rem": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "left": {
+          "usage": 1,
+          "values": {
+            "-13rem": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_width": {
+          "usage": 1,
+          "values": {
+            "200%": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_height": {
+          "usage": 1,
+          "values": {
+            "200%": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "zIndex": {
+          "usage": 1,
+          "values": {
+            "-1": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingTop": {
+          "usage": 1,
+          "values": {
+            "inset-lg": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_marginTop": {
+          "usage": 1,
+          "values": {
+            "auto": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingY": {
+          "usage": 1,
+          "values": {
+            "inset-lg": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingX": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "border": {
+          "usage": 1,
+          "values": {
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "borderBottomLeftRadius": {
+          "usage": 1,
+          "values": {
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "borderBottomRightRadius": {
+          "usage": 1,
+          "values": {
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "textAlign": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "ComboBoxItem": {
+      "usage": 7,
+      "props": {
+        "textValue": {
+          "usage": 1,
+          "values": {
+            "team.displayName": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isDisabled": {
+          "usage": 1,
+          "values": {
+            "item.alreadyUsed": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Stack": {
+      "usage": 7,
+      "props": {
+        "gap": {
+          "usage": 6,
+          "values": {
+            "inline-sm": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "stack-xs": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "normal": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "stack-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "stack-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "height": {
+          "usage": 2,
+          "values": {
+            "100%": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "marginLeft": {
+          "usage": 1,
+          "values": {
+            "inline-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_marginRight": {
+          "usage": 1,
+          "values": {
+            "auto": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "color": {
+          "usage": 1,
+          "values": {
+            "textColor": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "inset-lg": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "alignX": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingY": {
+          "usage": 1,
+          "values": {
+            "inset-lg": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingX": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "border": {
+          "usage": 1,
+          "values": {
+            "neutral-weak": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "borderTop": {
+          "usage": 1,
+          "values": {
+            "initial": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "borderBottomLeftRadius": {
+          "usage": 1,
+          "values": {
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "borderBottomRightRadius": {
+          "usage": 1,
+          "values": {
+            "rounded-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "textAlign": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Header": {
+      "usage": 5,
+      "props": {}
+    },
+    "ComboBoxSection": {
+      "usage": 4,
+      "props": {}
+    },
+    "Link": {
+      "usage": 4,
+      "props": {
+        "isQuiet": {
+          "usage": 4,
+          "values": {
+            "true": {
+              "total": 4,
+              "projects": {
+                "Management App": 4
+              }
+            }
+          }
+        },
+        "href": {
+          "usage": 4,
+          "values": {
+            "/settings/properties/add": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "t(\"helpLinkUrl\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "t(\"customFieldsTableEmptyStateLinkUrl\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "target": {
+          "usage": 2,
+          "values": {
+            "_blank": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "variant": {
+          "usage": 2,
+          "values": {
+            "secondary": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "isExternal": {
+          "usage": 2,
+          "values": {
+            "true": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "paddingX": {
+          "usage": 1,
+          "values": {
+            "inset-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "paddingY": {
+          "usage": 1,
+          "values": {
+            "inset-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "size": {
+          "usage": 1,
+          "values": {
+            "sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "HopperProvider": {
+      "usage": 4,
+      "props": {
+        "locale": {
+          "usage": 1,
+          "values": {
+            "language": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Heading": {
+      "usage": 3,
+      "props": {
+        "size": {
+          "usage": 2,
+          "values": {
+            "sm": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "color": {
+          "usage": 2,
+          "values": {
+            "neutral-weak": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    "TooltipTrigger": {
+      "usage": 3,
+      "props": {}
+    },
+    "Tooltip": {
+      "usage": 3,
+      "props": {
+        "UNSAFE_maxWidth": {
+          "usage": 3,
+          "values": {
+            "10rem": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            }
+          }
+        },
+        "UNSAFE_lineHeight": {
+          "usage": 3,
+          "values": {
+            "1": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            }
+          }
+        },
+        "textAlign": {
+          "usage": 3,
+          "values": {
+            "center": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            }
+          }
+        }
+      }
+    },
+    "LinkButton": {
+      "usage": 3,
+      "props": {
+        "onPress": {
+          "usage": 3,
+          "values": {
+            "() => onBannerButtonClicked()": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "onPress": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "handlePress": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
+        "href": {
+          "usage": 3,
+          "values": {
+            "t(\"readonly.bannerLink\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "href": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "`${managementAppBaseUrl}/settings/ai`": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
+        "variant": {
+          "usage": 2,
+          "values": {
+            "secondary": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "target": {
+          "usage": 2,
+          "values": {
+            "_blank": {
+              "total": 2,
+              "projects": {
+                "Management App": 1,
+                "AI": 1
+              }
+            }
+          }
+        },
+        "marginLeft": {
+          "usage": 1,
+          "values": {
+            "inline-xl": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isFluid": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "backgroundColor": {
+          "usage": 1,
+          "values": {
+            "transparent": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
+        "position": {
+          "usage": 1,
+          "values": {
+            "relative": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
+        "border": {
+          "usage": 1,
+          "values": {
+            "unset": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
+        "rel": {
+          "usage": 1,
+          "values": {
+            "noopener noreferrer": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Badge": {
+      "usage": 2,
+      "props": {
+        "variant": {
+          "usage": 2,
+          "values": {
+            "subdued": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        }
+      }
+    },
+    "H1": {
+      "usage": 2,
+      "props": {
+        "color": {
+          "usage": 2,
+          "values": {
+            "textColor": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "UNSAFE_fontSize": {
+          "usage": 1,
+          "values": {
+            "6rem": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_lineHeight": {
+          "usage": 1,
+          "values": {
+            "5.5rem": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "UNSAFE_fontWeight": {
+          "usage": 1,
+          "values": {
+            "200": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "size": {
+          "usage": 1,
+          "values": {
+            "xl": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "marginBottom": {
+          "usage": 1,
+          "values": {
+            "stack-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Collection": {
+      "usage": 2,
+      "props": {
+        "items": {
+          "usage": 2,
+          "values": {
+            "autoDetectedTeams": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "flattenedData": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "ComboBox": {
+      "usage": 2,
+      "props": {
+        "placeholder": {
+          "usage": 2,
+          "values": {
+            "t(\"teamProperties.selectPlaceholder\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "t(\"workleapPropertyDropdownPlaceholder\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isFluid": {
+          "usage": 2,
+          "values": {
+            "true": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "onSelectionChange": {
+          "usage": 2,
+          "values": {
+            "onSelectionChange": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "handleSelectionChange": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "size": {
+          "usage": 2,
+          "values": {
+            "sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "menuTrigger": {
+          "usage": 2,
+          "values": {
+            "focus": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "input": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "onBlur": {
+          "usage": 1,
+          "values": {
+            "onBlur": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "inputRef": {
+          "usage": 1,
+          "values": {
+            "comboBoxRef": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "selectedKey": {
+          "usage": 1,
+          "values": {
+            "selectedProperty?.id": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "inputValue": {
+          "usage": 1,
+          "values": {
+            "filterValue": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "onInputChange": {
+          "usage": 1,
+          "values": {
+            "setFilterValue": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "items": {
+          "usage": 1,
+          "values": {
+            "filteredItems": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "footer": {
+          "usage": 1,
+          "values": {
+            "(<Link isQuiet variant=\"secondary\" href=\"/settings/properties/add\" target=\"_blank\" paddingX=\"inset-md\" paddingY=\"inset-sm\">\n    <PlusIcon size=\"sm\" slot=\"start-icon\" />\n    <Text>{t(\"workleapPropertyDropdownEmptyStateCta\")}</Text>\n</Link>)": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Popover": {
+      "usage": 2,
+      "props": {
+        "isAutoWidth": {
+          "usage": 2,
+          "values": {
+            "isAutoMenuWidth": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "true": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isNonDialog": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "placement": {
+          "usage": 1,
+          "values": {
+            "`${direction} ${align}`": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "shouldFlip": {
+          "usage": 1,
+          "values": {
+            "shouldFlip": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "triggerRef": {
+          "usage": 1,
+          "values": {
+            "triggerRef": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Select": {
+      "usage": 2,
+      "props": {
+        "size": {
+          "usage": 2,
+          "values": {
+            "md": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "isFluid": {
+          "usage": 2,
+          "values": {
+            "true": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "renderValue": {
+          "usage": 1,
+          "values": {
+            "renderSelectedValue": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "placeholder": {
+          "usage": 1,
+          "values": {
+            "placeholder": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Button": {
+      "usage": 2,
+      "props": {
+        "variant": {
+          "usage": 2,
+          "values": {
+            "secondary": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            }
+          }
+        },
+        "onPress": {
+          "usage": 2,
+          "values": {
+            "onPress": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "onCreateNewMappingClick": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isFluid": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "size": {
+          "usage": 1,
+          "values": {
+            "md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Span": {
+      "usage": 2,
+      "props": {}
+    },
+    "SlotProvider": {
+      "usage": 2,
+      "props": {
+        "values": {
+          "usage": 2,
+          "values": {
+            "[\n    [BadgeContext, {\n        variant: \"secondary\"\n    }]\n]": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "[\n    [TextContext, {\n        size: \"xs\"\n    }]\n]": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "TagGroup": {
+      "usage": 1,
+      "props": {
+        "selectionMode": {
+          "usage": 1,
+          "values": {
+            "single": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "disallowEmptySelection": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "selectedKeys": {
+          "usage": 1,
+          "values": {
+            "selectedView": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "onSelectionChange": {
+          "usage": 1,
+          "values": {
+            "setSelectedView": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Inline": {
+      "usage": 1,
+      "props": {
+        "gap": {
+          "usage": 1,
+          "values": {
+            "stack-xs": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "alignX": {
+          "usage": 1,
+          "values": {
+            "center": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Grid": {
+      "usage": 1,
+      "props": {
+        "columnGap": {
+          "usage": 1,
+          "values": {
+            "inline-lg": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "rowGap": {
+          "usage": 1,
+          "values": {
+            "inline-md": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "templateColumns": {
+          "usage": 1,
+          "values": {
+            "showOvWpmBundleCard ? { base: \"1fr\", lg: [\"1fr\", \"1fr\"] } : \"1fr\"": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Card": {
+      "usage": 1,
+      "props": {
+        "gap": {
+          "usage": 1,
+          "values": {
+            "inline-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "padding": {
+          "usage": 1,
+          "values": {
+            "inset-xl": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "position": {
+          "usage": 1,
+          "values": {
+            "relative": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "backgroundColor": {
+          "usage": 1,
+          "values": {
+            "transparent": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "overflow": {
+          "usage": 1,
+          "values": {
+            "hidden": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "borderRadius": {
+          "usage": 1,
+          "values": {
+            "core_4": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "ClearButton": {
+      "usage": 1,
+      "props": {
+        "onPress": {
+          "usage": 1,
+          "values": {
+            "() => state?.setSelectedKey(null)": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Label": {
+      "usage": 1,
+      "props": {
+        "isRequired": {
+          "usage": 1,
+          "values": {
+            "isRequired": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "necessityIndicator": {
+          "usage": 1,
+          "values": {
+            "necessityIndicator": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "InputGroup": {
+      "usage": 1,
+      "props": {
+        "isFluid": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isDisabled": {
+          "usage": 1,
+          "values": {
+            "isDisabled": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isInvalid": {
+          "usage": 1,
+          "values": {
+            "isInvalid": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Input": {
+      "usage": 1,
+      "props": {
+        "placeholder": {
+          "usage": 1,
+          "values": {
+            "placeholder": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "size": {
+          "usage": 1,
+          "values": {
+            "size": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "ToggleArrow": {
+      "usage": 1,
+      "props": {
+        "isExpanded": {
+          "usage": 1,
+          "values": {
+            "isOpen": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "ListBox": {
+      "usage": 1,
+      "props": {
+        "size": {
+          "usage": 1,
+          "values": {
+            "size": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isInvalid": {
+          "usage": 1,
+          "values": {
+            "isInvalid": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "items": {
+          "usage": 1,
+          "values": {
+            "items": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isLoading": {
+          "usage": 1,
+          "values": {
+            "isLoading": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "onLoadMore": {
+          "usage": 1,
+          "values": {
+            "onLoadMore": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "selectionIndicator": {
+          "usage": 1,
+          "values": {
+            "selectionIndicator": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Disclosure": {
+      "usage": 1,
+      "props": {}
+    },
+    "DisclosureHeader": {
+      "usage": 1,
+      "props": {
+        "buttonProps": {
+          "usage": 1,
+          "values": {
+            "{ paddingRight: \"inset-xl\" }": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "DisclosurePanel": {
+      "usage": 1,
+      "props": {}
+    },
+    "Switch": {
+      "usage": 1,
+      "props": {
+        "isDisabled": {
+          "usage": 1,
+          "values": {
+            "!canMappingBeDisabled": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "isSelected": {
+          "usage": 1,
+          "values": {
+            "isMappingEnabled": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "onChange": {
+          "usage": 1,
+          "values": {
+            "onChange": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "SelectItem": {
+      "usage": 1,
+      "props": {}
+    },
+    "PopoverTrigger": {
+      "usage": 1,
+      "props": {}
+    },
+    "SvgImage": {
+      "usage": 1,
+      "props": {
+        "UNSAFE_width": {
+          "usage": 1,
+          "values": {
+            "64px": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "src": {
+          "usage": 1,
+          "values": {
+            "NotFoundIllustration": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "Image": {
+      "usage": 1,
+      "props": {
+        "alt": {
+          "usage": 1,
+          "values": {
+            "t(\"workleapAi\")": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
+        "src": {
+          "usage": 1,
+          "values": {
+            "isHovered ? `${cdnBaseUrl}${IconAssets.TeaserHover}` : `${cdnBaseUrl}${IconAssets.Teaser}`": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
