@@ -71,6 +71,7 @@ export interface MapMetaData {
   categories?: {
     layout: string[];
     buttons: string[];
+    visual: string[];
   };
   components: Record<string, ComponentMapMetaData>;
 }
@@ -83,9 +84,9 @@ export function getMappingKeys<T extends Record<string, ComponentMapMetaData>>(
 
 export function isMappingCategoryKey(
   key: string,
-  mapping: MapMetaData
-): key is keyof MapMetaData["categories"] {
-  return key in (mapping.categories ?? {});
+  categories: NonNullable<MapMetaData["categories"]>
+): key is keyof NonNullable<MapMetaData["categories"]> {
+  return key in categories;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-wrapper-object-types

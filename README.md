@@ -58,6 +58,14 @@ Migrate buttons components only. You can see the complete list in [button-compon
 npx codemod workleap/orbiter-to-hopper -c buttons
 ```
 
+#### Migrate Visual Components Only
+
+Migrate visual components only (Avatar, AvatarText, Badge, Image, Illustration, Spinner, ...). This includes visual elements that often represent data or provide feedback. You can see the complete list in [visual-components-mappings.ts](/src/mappings/orbiter/visual-components-mappings.ts) file.
+
+```bash
+npx codemod workleap/orbiter-to-hopper -c visual
+```
+
 #### Migrate Specific Components
 
 Migrate a single component:
