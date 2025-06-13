@@ -28,9 +28,8 @@ export const textLinkMapping = {
         underline: () => ({
           todoComments: "`underline` is not supported anymore. Remove it."
         }),
-        "onMouseDown":  (originalValue, runtime) => {
-          const { j } = runtime;
-          if (hasAttribute(runtime.tag.node, "onPress")) {
+        "onMouseDown":  (_, { tag }) => {          
+          if (hasAttribute(tag.node, "onPress")) {
             return {
               todoComments: "`onMouseDown` is not supported anymore. Use `onPress` instead."
             };
