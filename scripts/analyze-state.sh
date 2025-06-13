@@ -33,17 +33,17 @@ fi
 
 rm -f "$OUTPUT_FILE_NAME"
 
-npx codemod -s ./ -t ../ShareGate.Protect.Web -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "SG Protect" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-npx codemod -s ./ -t ../ShareGate.One -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "SG One" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../ShareGate.Protect.Web -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "SG Protect" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../ShareGate.One -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "SG One" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
 
-npx codemod -s ./ -t ../workleap-performance-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Performance" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../workleap-performance-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Performance" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
 
-npx codemod -s ./ -t ../workleap-management-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Management App" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-npx codemod -s ./ -t ../workleap-management-shell -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Management Shell" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-npx codemod -s ./ -t ../workleap-administration-portal -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Administration Portal" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-npx codemod -s ./ -t ../workleap-activation-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Activation" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-npx codemod -s ./ -t ../workleap-login-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Login" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../workleap-management-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Management App" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../workleap-management-shell -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Management Shell" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../workleap-administration-portal -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Administration Portal" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../workleap-activation-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Activation" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../workleap-login-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "Login" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
 
-npx codemod -s ./ -t ../workleap-ai-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "AI" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpx codemod -s ./ -t ../workleap-ai-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --project "AI" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
 
 echo "✅ Analysis complete! Check $OUTPUT_FILE_NAME for results."

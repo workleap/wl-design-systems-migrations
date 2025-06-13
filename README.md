@@ -29,7 +29,7 @@ export function App() {
 #### Migrate All Components
 
 ```bash
-npx codemod workleap/orbiter-to-hopper
+pnpx codemod workleap/orbiter-to-hopper
 ```
 
 #### Migrate Layout Components Only
@@ -37,7 +37,7 @@ npx codemod workleap/orbiter-to-hopper
 Migrate layout and structural components only (Flex, Grid, Div, Span, Article, Nav, ...). This includes all layout containers, HTML wrapper components, content elements, and placeholders. You can see the complete list in [layout-components-mappings.ts](/src/mappings/orbiter/layout-components-mappings.ts) file.
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -c layout
+pnpx codemod workleap/orbiter-to-hopper -c layout
 ```
 
 #### Migrate Button Components Only
@@ -45,7 +45,7 @@ npx codemod workleap/orbiter-to-hopper -c layout
 Migrate buttons components only. You can see the complete list in [button-components-mappings.ts](/src/mappings/orbiter/button-components-mappings.ts) file.
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -c buttons
+pnpx codemod workleap/orbiter-to-hopper -c buttons
 ```
 
 #### Migrate Visual Components Only
@@ -53,7 +53,7 @@ npx codemod workleap/orbiter-to-hopper -c buttons
 Migrate visual components only (Avatar, AvatarText, Badge, Image, Illustration, Spinner, ...). This includes visual elements that often represent data or provide feedback. You can see the complete list in [visual-components-mappings.ts](/src/mappings/orbiter/visual-components-mappings.ts) file.
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -c visual
+pnpx codemod workleap/orbiter-to-hopper -c visual
 ```
 
 #### Migrate Specific Components
@@ -61,13 +61,13 @@ npx codemod workleap/orbiter-to-hopper -c visual
 Migrate a single component:
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -c Div
+pnpx codemod workleap/orbiter-to-hopper -c Div
 ```
 
 Migrate multiple specific components:
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -c Div,Text,Button
+pnpx codemod workleap/orbiter-to-hopper -c Div,Text,Button
 ```
 
 #### Target a Specific Path
@@ -75,7 +75,7 @@ npx codemod workleap/orbiter-to-hopper -c Div,Text,Button
 Run the command in the desire path or pass the target path with the `-t` argument.
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -t /app/users
+pnpx codemod workleap/orbiter-to-hopper -t /app/users
 ```
 
 #### Additional Options
@@ -87,7 +87,7 @@ For more configuration options, refer to the [Codemod CLI options documentation]
 To generate a report of Orbiter component usage patterns, use the following command:
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
 ```
 
 ⚠️ **Important**: The `-n 1` flag limits execution to a single thread, which ensures accurate output collection.
@@ -97,8 +97,8 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
 You can track component usage across different projects or teams using the `--project` parameter:
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --project frontend-team -n 1
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --project mobile-app -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --project frontend-team -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --project mobile-app -n 1
 ```
 
 The analysis automatically accumulates results across multiple project runs, providing both project-specific counts and overall totals in the output.
@@ -108,7 +108,7 @@ The analysis automatically accumulates results across multiple project runs, pro
 To include detailed file location information for each property value, use the `--deep` parameter:
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true --project frontend-team -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true --project frontend-team -n 1
 ```
 
 When deep analysis is enabled, each property value will include a `files` array containing repository URLs (GitHub or Azure DevOps) with line numbers where that specific value is used. For repositories that are not supported, file paths are used as fallback.
@@ -119,10 +119,10 @@ By default, analysis is performed using Orbiter mappings. You can specify which 
 
 ```bash
 # Default (orbiter mappings)
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage.json --deep true -n 1
 
 # Using hopper mappings
-npx codemod workleap/orbiter-to-hopper -a hopper-usage.json --mappings hopper --deep true -n 1
+pnpx codemod workleap/orbiter-to-hopper -a hopper-usage.json --mappings hopper --deep true -n 1
 ```
 
 The output file name will automatically reflect the mapping type used.
@@ -134,13 +134,13 @@ You can filter the analysis to focus on specific areas that need attention:
 **Analyze only unmapped components:**
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-components.json --filter-unmapped components -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-components.json --filter-unmapped components -n 1
 ```
 
 **Analyze only unmapped properties for mapped components:**
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-props.json --filter-unmapped props -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-props.json --filter-unmapped props -n 1
 ```
 
 **Include ignored properties in analysis:**
@@ -148,13 +148,13 @@ npx codemod workleap/orbiter-to-hopper -a orbiter-usage-not-mapped-props.json --
 By default, the analysis excludes standard React/DOM properties like `aria-*`, `data-*`, `className`, `style`, etc. to focus on component-specific migration needs. To include these properties in the analysis, use the `--include-ignoreList` flag:
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage-complete.json --include-ignoreList -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage-complete.json --include-ignoreList -n 1
 ```
 
 This can be combined with other filters for comprehensive analysis:
 
 ```bash
-npx codemod workleap/orbiter-to-hopper -a orbiter-usage-all-unmapped.json --filter-unmapped props --include-ignoreList -n 1
+pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage-all-unmapped.json --filter-unmapped props --include-ignoreList -n 1
 ```
 
 This command generates a JSON file (`orbiter-usage.json`) containing usage statistics ordered by frequency. The output format prioritizes frequently used components and their properties:
@@ -209,7 +209,9 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 | Parameter | Description | Example |
 |-----------|-------------|---------|
 | `-a <filename>` | Output analysis results to a JSON file | `-a orbiter-usage.json` |
-| `--project <n>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
+| `-c <components>` | Specify which components to migrate (`all`, category name, or comma-separated list) | `-c layout`, `-c Div,Text,Button` |
+| `-t <path>` | Target path for migration (use current directory if not specified) | `-t /app/users` |
+| `--project <name>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
 | `--deep true` | Include file paths for each property value | `--deep true` |
 | `--filter-unmapped <type>` | Filter to show only unmapped items (`components` or `props`) | `--filter-unmapped props` |
 | `--include-ignoreList` | Include ignored properties (aria-*, data-*, etc.) in analysis | `--include-ignoreList` |

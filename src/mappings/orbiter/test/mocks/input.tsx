@@ -47,12 +47,15 @@ import {
   HtmlSection,
   IconButton,
   IconButtonAsLink,
+  IconLink,
+  IconLinkAsButton,
   IllustratedMessage,
   Illustration,
   Image,
   Img,
   Inline,
   LI,
+  Link,
   Main,
   Nav,
   OL,
@@ -65,6 +68,8 @@ import {
   TBody,
   TD,
   Text,
+  TextLink,
+  TextLinkAsButton,
   TFoot,
   TH,
   THead,
@@ -636,7 +641,8 @@ export function App() {
         onClick={() => {}}
         size="2xl"
         retryCount={0}        
-        src="https://example.com/avatar.jpg"/>        
+        src="https://example.com/avatar.jpg"
+      />        
         <AvatarGroup size="xs" wrap reverse align="center">
           <Avatar name="test" />
         </AvatarGroup>
@@ -662,17 +668,84 @@ export function App() {
         <SvgImage src={SparklesIcon} aria-label="test" stroke="invalid" fill="invalid" />
         <SvgImage src="blockquote" aria-label="test" stroke="invalid" fill="invalid" />
 
-        <Illustration>test</Illustration>
-        <Illustration display={{base: "block", sm: "none"}}>test</Illustration>
+        <Illustration orientation="vertical" shape="rounded">test</Illustration>
+        <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
 
-        <IllustratedMessage>test</IllustratedMessage>
         <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
         <IllustratedMessage orientation="vertical" width="120px">test</IllustratedMessage>
+        <IllustratedMessage>test</IllustratedMessage>
 
         <Dot />
+
+        <Link 
+          href="test" 
+          target="_blank" 
+          rel="test" 
+          shape="box" 
+          autoFocus 
+          disabled 
+          external 
+          onClick={() => {}}
+          onAuxClick={() => {}}
+          onMouseEnter={() => {}}
+          onMouseLeave={() => {}}
+          colorHover="quetzal-25"          
+        >
+          Link Text
+        </Link>
+
+        <TextLink 
+          href="test" 
+          onClick={() => {}}
+          onMouseDown={() => {}}
+          onKeyPress={() => {}}
+          variant="primary"
+          size="inherit"
+          underline="dotted"
+        >
+          Link Text
+        </TextLink>
+        <TextLink href="test" variant="accent" size="sm">
+          Link Text
+        </TextLink>
+        <TextLink href="test" variant="negative" size="md">
+          Link Text
+        </TextLink>
+        <TextLink href="test" onMouseDown={() => {}}>text</TextLink>
+
+      <IconLink href="test" aria-label="test" variant="accent">
+        <SparklesIcon />
+      </IconLink>
+      <IconLink href="test" aria-label="test" external onClick={() => {}} variant="negative">
+        <SparklesIcon />
+      </IconLink>
+
+      <TextLinkAsButton 
+        href="test" 
+        variant="accent" 
+        underline="dotted" 
+        size="sm"
+      >
+        Link Text
+      </TextLinkAsButton>
+      <TextLinkAsButton 
+        href="test" 
+        variant="negative" 
+        underline="solid" 
+        size="inherit"
+      >
+        Link Text
+      </TextLinkAsButton>
+
+      <IconLinkAsButton href="test" variant="accent">
+        <SparklesIcon />
+      </IconLinkAsButton>
+      <IconLinkAsButton href="test" external onClick={() => {}} variant="negative">
+        <SparklesIcon />
+      </IconLinkAsButton>
       {/* ------------------------------------------------------------------------------------------ */}
-      <HopperDiv padding={"core_400"}>text</HopperDiv>      
-      
+      <HopperDiv padding={"core_400"}>text</HopperDiv>
+
     </div>
   );
 }

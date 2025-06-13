@@ -42,10 +42,12 @@ import {
   HtmlInput,
   HtmlSection,
   IllustratedMessage,
+  Illustration,
   Image,
   Img,
   Inline,
   LI,
+  Link,
   LinkButton,
   Main,
   Nav,
@@ -643,7 +645,8 @@ export function App() {
         onPress={() => {}}
         size="2xl"
         retryCount={0}/* Migration TODO: `retryCount` is not supported anymore. Remove it. */        
-        src="https://example.com/avatar.jpg"/>
+        src="https://example.com/avatar.jpg"
+      />
       <AvatarGroup size="xs" wrap reverse align="center">
         <Avatar name="test" />
       </AvatarGroup>
@@ -684,19 +687,78 @@ export function App() {
       />
       <SvgImage src={SparklesIcon} aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
       <SvgImage src="blockquote" aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
-      <Div display="flex" justifyContent="center" alignItems="center">test</Div>
-      <Div
-        display={{base: "block", sm: "none"}}
-        justifyContent="center"
-        alignItems="center">test</Div>
-      <IllustratedMessage>test</IllustratedMessage>
+      <Illustration orientation="vertical" shape="rounded">test</Illustration>
+      <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
       /* Migration TODO: orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
       <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
       /* Migration TODO: orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
       /* Migration TODO: width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes */
       <IllustratedMessage orientation="vertical" UNSAFE_width="120px">test</IllustratedMessage>
+      <IllustratedMessage>test</IllustratedMessage>
       /* Migration TODO: `Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate /> */
       <Dot />
+      <Link 
+        href="test" 
+        target="_blank" 
+        rel="test" 
+        shape="box"/* Migration TODO: `shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes */ 
+        autoFocus 
+        isDisabled 
+        isExternal 
+        onPress={() => {}}
+        onAuxClick={() => {}}/* Migration TODO: `onAuxClick` is not supported anymore. Probably `onPress` could be used instead. https://hopper.workleap.design/components/Link#migration-notes */
+        onHoverStart={() => {}}
+        onHoverEnd={() => {}}
+        colorHover="core_quetzal-25"          
+      >
+        Link Text
+      </Link>
+      <Link 
+        href="test" 
+        onPress={() => {}}
+        onMouseDown={() => {}}/* Migration TODO: `onMouseDown` is not supported anymore. Use `onPress` instead. */
+        onKeyDown={() => {}}
+        variant="primary"
+        size="inherit"
+        underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */
+      >
+        Link Text
+      </Link>
+      <Link href="test" variant="secondary" size="sm">
+        Link Text
+      </Link>
+      <Link href="test" variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */ size="md">
+        Link Text
+      </Link>
+      <Link href="test" onPress={() => {}}>text</Link>
+      <Link href="test" aria-label="test" variant="secondary">
+        <SparklesIcon />
+      </Link>
+      <Link href="test" aria-label="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
+        <SparklesIcon />
+      </Link>
+      <Link 
+        href="test" 
+        variant="secondary" 
+        underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */ 
+        size="sm"
+      >
+        Link Text
+      </Link>
+      <Link 
+        href="test" 
+        variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */ 
+        underline="solid"/* Migration TODO: `underline` is not supported anymore. Remove it. */ 
+        size="inherit"
+      >
+        Link Text
+      </Link>
+      <Link href="test" variant="secondary">
+        <SparklesIcon />
+      </Link>
+      <Link href="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
+        <SparklesIcon />
+      </Link>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>

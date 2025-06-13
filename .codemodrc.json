@@ -48,6 +48,13 @@
       "description": "Enable deep analysis to include file information for each prop value. When enabled, adds a 'files' property containing filenames where each value is used.",
       "required": false,
       "default": false
+    },
+    {
+      "name": "include-ignoreList",
+      "kind": "boolean",
+      "description": "Include ignored properties (aria-*, data-*, className, style, etc.) in analysis. By default, these properties are excluded to focus on component-specific migration needs.",
+      "required": false,
+      "default": false
     }
   ],
   "meta": {

@@ -105,18 +105,6 @@ const todo = {
   //TextAddon: "TextAddon",
   //TextAddonProps: "TextAddonProps",
 
-  //navigation & links - total usage: 115
-  Link: "Link", //usage: 13
-  LinkProps: "LinkProps",
-  TextLink: "Link", //usage: 63
-  TextLinkProps: "LinkProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // IconLink: "Link", //usage: 3
-  // IconLinkProps: "LinkProps",
-  // TextLinkAsButton: "LinkButton", //usage: 36
-  // TextLinkAsButtonProps: "LinkButtonProps",
-  // IconLinkAsButton: "LinkButton",
-  // IconLinkAsButtonProps: "LinkButtonProps",
 
   //overlays & modals - total usage: 543
   Modal: "Modal", //usage: 95

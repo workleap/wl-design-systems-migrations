@@ -76,7 +76,7 @@ test/
 
 ### Mapping Configuration
 
-Main mapping object in [`src/mappings/index.ts`](/src/mappings/index.ts):
+Main mapping object in [`src/mappings/orbiter/index.ts`](/src/mappings/orbiter/index.ts):
 
 ```ts
 {
@@ -91,9 +91,10 @@ Main mapping object in [`src/mappings/index.ts`](/src/mappings/index.ts):
   components: {
     Div: {
       to: "Div",
-      todoComments: "Use Inline instead", //optional
+      todoComments: "Use Inline instead", // string | string[] | function
       props: {
-        mappings: { width: "UNSAFE_width" }
+        mappings: { width: "UNSAFE_width" },
+        additions: { display: "block" } // new properties to add
       }
     }
   }
@@ -117,10 +118,10 @@ mappings: {
 
 ```ts
 mappings: {
-  fluid: (originalValue, { j, tag }) => {
-    const value = tryGettingLiteralValue(originalValue);
+  fluid: (originalValue, runtime) => {
+    const value = tryGettingLiteralValue(originalValue, runtime);
     if (!originalValue || Boolean(value) !== false) {
-      return { to: "width", value: j.stringLiteral("100%") };
+      return { to: "width", value: runtime.j.stringLiteral("100%") };
     }
     return null;
   }
@@ -131,7 +132,7 @@ mappings: {
 
 ```ts
 mappings: {
-  reverse: (originalValue, { j, tag }) => ({
+  reverse: (originalValue, runtime) => ({
     to: "reverse",
     value: originalValue,
     todoComments: "Remove reverse prop, see: https://hopper.workleap.design/components/Flex#migration-notes"
@@ -141,13 +142,42 @@ mappings: {
 
 ### Adding New Properties
 
-Use the `additions` field for new properties:
+Use the `additions` field for new properties. You can provide static values or functions:
 
 ```ts
 additions: {
-  display: "block",
-  UNSAFE_gap: (tag, { j, log }) => 
-    hasAttribute(tag.node.attributes, ["gap", "UNSAFE_gap"]) ? null : "1.25rem"
+  display: "block", // static value
+  UNSAFE_gap: (tag, runtime) => 
+    hasAttribute(tag.node, ["gap", "UNSAFE_gap"]) ? null : "1.25rem"
+}
+```
+
+**PropertyAdderFunction signature:**
+
+```ts
+type PropertyAdderFunction = (
+  tag: ASTPath<JSXOpeningElement>,
+  runtime: Runtime
+) => string | number | boolean | object | JSXAttribute["value"] | null;
+```
+
+**Important:** Use `tag.node` to access the JSX opening element when calling helper functions like `hasAttribute(tag.node, ...)` or `getAttributeLiteralValue(tag.node, ...)`.
+
+**Real-world example:**
+
+```ts
+additions: {
+  UNSAFE_marginBottom: (tag, runtime) => {
+    if (hasAttribute(tag.node, ["marginBottom", "UNSAFE_marginBottom"])) {
+      return null; // Don't add if already exists
+    }
+    
+    const size = hasAttribute(tag.node, "size")
+      ? getAttributeLiteralValue(tag.node, "size", runtime)
+      : "md";
+    
+    return `calc(1.75rem * .5)`; // Default margin for md size
+  }
 }
 ```
 
@@ -155,24 +185,83 @@ additions: {
 
 **Adding developer comments:**
 
-For adding migration comments to a component, use the `todoComments` field. This will add TODO comments to any usage of the component.
+The `todoComments` field supports multiple formats for maximum flexibility:
 
 ```ts
 components: {
+  // Simple string comment
   Counter: {
     todoComments: "`Counter` is not supported anymore. You need to find an alternative."
   },
+  
+  // Array of comments
+  OldComponent: {
+    todoComments: [
+      "This component is deprecated",
+      "Consider using NewComponent instead"
+    ]
+  },
+  
+  // Dynamic function-based comments
+  IllustratedMessage: {
+    todoComments: (tag, runtime) => {
+      const msgs = [];
+      if (hasAttribute(tag.node, "orientation")) {
+        msgs.push("orientation has been removed.");
+      }
+      if (hasAttribute(tag.node, ["width", "height"])) {
+        msgs.push("width and height props now affect the whole wrapper.");
+      }
+      return msgs; // returns string[] or undefined
+    }
+  }
 }
 ```
 
 ### Helper Functions
 
-Key utilities from [`src/mappings/helpers.ts`](/src/mappings/helpers.ts):
+Key utilities from [`src/utils/mapping.ts`](/src/utils/mapping.ts):
 
-- `tryGettingLiteralValue()` - Extract literal values (most common)
-- `hasAttribute()` - Check if element has specific attributes
-- `createPropertyMapper()` - Generic property mapping
-- `createHopperCssPropertyMapper()` - CSS property mapping
+**Core extraction functions:**
+
+- `tryGettingLiteralValue(value, runtime)` - Extract literal values from JSX attributes (most common)
+- `hasAttribute(tag, keys)` - Check if JSX element has specific attributes
+- `getAttributeLiteralValue(tag, attributeName, runtime)` - Extract literal value from a specific attribute
+
+**Property mapping functions:**
+
+- `createHopperCssPropertyMapper(options)` - CSS property mapping for Hopper styled system
+- `createCssPropertyMapper(options)` - Generic CSS property mapping
+
+**Value validation utilities:**
+
+- `isPercentageValue(value)` - Check if value is a percentage (e.g., "50%")
+- `isFrValue(value)` - Check if value is a fractional unit (e.g., "1fr")
+- `isAttributeValueType(val)` - Validate if value is a valid JSX attribute value
+
+### Runtime Interface
+
+The `runtime` parameter provides access to transformation utilities:
+
+```ts
+interface Runtime {
+  j: core.JSCodeshift;              // jscodeshift API
+  root: Collection<ASTNode>;        // AST root collection
+  mappings: MapMetaData;            // Current mappings configuration
+  filePath: string;                 // Current file being processed
+  log: (message: string, ...args: any[]) => void;  // Logging function
+  getRepoInfo: () => RepoInfo | null;  // Repository information
+  getBranch: () => string;          // Current git branch
+}
+```
+
+Common usage:
+
+```ts
+const { j, log } = runtime;
+const value = j.stringLiteral("100%");
+log("Applied fluid transformation");
+```
 
 ## Testing
 
@@ -196,4 +285,4 @@ Key utilities from [`src/mappings/helpers.ts`](/src/mappings/helpers.ts):
    pnpm sample
    ```
 
-3. **Update `output.tsx`** with the correct expected transformation result
+3. **Update `output.txt`** with the correct expected transformation result
