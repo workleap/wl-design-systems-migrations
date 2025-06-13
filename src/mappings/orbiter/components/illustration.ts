@@ -3,14 +3,7 @@ import type { ComponentMapMetaData } from "../../../utils/types.ts";
 
 export const illustrationMapping = {
   Illustration: {
-    to: "Div",
-    props:{
-      additions:{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-      }
-    }
+    to: "Illustration"   
   },
   IllustrationProps: "IllustrationProps",
 
