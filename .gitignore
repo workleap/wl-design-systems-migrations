@@ -1,3 +1,4 @@
 node_modules
 cdmd_dist
 **/*.log
+**/*.tmp

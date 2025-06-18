@@ -91,7 +91,8 @@ Main mapping object in [`src/mappings/orbiter/index.ts`](/src/mappings/orbiter/i
   components: {
     Div: {
       to: "Div",
-      todoComments: "Use Inline instead", // string | string[] | function
+      todoComments: "Use Inline instead",
+      migrationNotes: "The new component will have a different padding. Related Chromatic tests will be affected.",
       props: {
         mappings: { width: "UNSAFE_width" },
         additions: { display: "block" } // new properties to add
@@ -139,6 +140,42 @@ mappings: {
   })
 }
 ```
+
+**Adding Migration Notes:**
+
+The `migrationNotes` field generates a consolidated `migration-notes.md` file that provides guidance for developers about migration-related changes. Unlike `todoComments` which add inline comments to the code, migration notes create a separate documentation file:
+
+```ts
+components: {
+  // Component-level migration notes
+  Button: {
+    to: "Button",
+    migrationNotes: [
+      "Button component has been migrated from Orbiter to Hopper.",
+      "Please review the implementation for any breaking changes."
+    ]
+  },
+  
+  // Property-level migration notes
+  Flex: {
+    to: "Flex",
+    props: {
+      mappings: {
+        reverse: (originalValue, runtime) => ({
+          to: "reverse",
+          value: originalValue,
+          migrationNotes: "The reverse prop behavior may have changed in Hopper. Please verify the layout."
+        })
+      }
+    }
+  }
+}
+```
+
+**When to use `migrationNotes` vs `todoComments`:**
+
+- **Use `migrationNotes`** for high-level guidance, breaking changes, and general migration information
+- **Use `todoComments`** for specific code changes that need immediate developer attention
 
 ### Adding New Properties
 

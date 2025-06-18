@@ -17,7 +17,7 @@ export function migrateComponent(
   runtime: Runtime
 ): void {
   const migrateImportResults = migrateImport(componentName, runtime);
-  const { mappings } = runtime;
+  const { mappings, filePath } = runtime;
 
   if (!migrateImportResults) {
     return; // No mapping found, exit early
@@ -51,7 +51,7 @@ export function migrateComponent(
     Object.entries(propsMetadata?.mappings || {}).forEach(
       ([oldAttrName, newAttrName]) => {
         if (oldAttrName === newAttrName) {return;} // Skip if no change
-        migrateAttribute(instances, oldAttrName, newAttrName, runtime);
+        migrateAttribute(instances, oldAttrName, newAttrName, componentName, runtime);
       }
     );
 
@@ -74,9 +74,17 @@ export function migrateComponent(
       }
     );
 
-    // Add todoComments if any
+    // Handle component-level migration notes
     const componentMapData = mappings.components[componentName];
+    if (typeof componentMapData === "object" && componentMapData.migrationNotes) {
+      try {
+        runtime.getMigrationNotesManager().addMigrationNotes(componentName, componentMapData.migrationNotes, filePath);
+      } catch (error) {
+        runtime.log(String(error));
+      }
+    }
 
+    // Add todoComments if any
     if (
       typeof componentMapData === "object" &&
       componentMapData.todoComments !== undefined

@@ -22,7 +22,7 @@ export const modalTriggerMapping = {
     props: {
       mappings: {
         "open": "isOpen",
-        "dismissable": () => ({ todoComments: "`dismissable` is not supported anymore. User `isDismissible` prop at related `Modal` component instead." })       
+        "dismissable": () => ({ todoComments: "`dismissable` is not supported anymore. Use `isDismissible` prop at related `Modal` component instead." })       
       }
     }
   },

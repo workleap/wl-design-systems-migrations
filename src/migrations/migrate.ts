@@ -28,10 +28,14 @@ export function migrate(
       if (mappings.components[name]) {
         migrateComponent(name, runtime);
       } else {
-        console.log(`Component ${name} not found in mappings.`);
+        runtime.log(`Component ${name} not found in mappings.`);
       }
     });
   }
+
+  // Automatically generate migration notes and cleanup
+  runtime.getMigrationNotesManager().generateMigrationNotesFile()    
+    .catch(error => runtime.log(`Migration notes error: ${error}`, "error"));
 
   // The following is not working as expected: 
   // For some components, it ignores the previous formatting and put everything in one line.
