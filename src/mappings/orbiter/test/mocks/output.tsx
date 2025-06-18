@@ -75,7 +75,7 @@ import {
   UL,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import { Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
+import { Alert, Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -772,7 +772,7 @@ export function App() {
       >
         test
       </Modal>
-      <ModalTrigger isOpen onOpenChange={()=>{}} dismissable/* Migration TODO: `dismissable` is not supported anymore. User `isDismissible` prop at related `Modal` component instead. */>test</ModalTrigger>
+      <ModalTrigger isOpen onOpenChange={()=>{}} dismissable/* Migration TODO: `dismissable` is not supported anymore. Use `isDismissible` prop at related `Modal` component instead. */>test</ModalTrigger>
       <Popover dismissable/* Migration TODO: `dismissable` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */ focus/* Migration TODO: `focus` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */>test</Popover>
       <PopoverTrigger 
         isOpen 
@@ -795,6 +795,10 @@ export function App() {
       </TooltipTrigger>
       /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
       <Overlay show>text</Overlay>
+      {/* Alert */}
+      <Alert variant="confirmation" primaryButtonLabel="Confirm">
+        This is an important alert message.
+      </Alert>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>

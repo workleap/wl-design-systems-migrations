@@ -8,6 +8,7 @@ The codemod handles various migration scenarios including:
 - ✅ **Property transformations** - Maps old properties to new equivalents (e.g., `disabled` → `isDisabled`)
 - ✅ **Deprecated component handling** - Keeps deprecated components in original package with todo comments for manual migration
 - ✅ **Todo comment generation** - Adds contextual migration guidance directly in your code
+- ✅ **Migration notes collection** - Generates comprehensive notes about important changes that require manual review
 
 ## Before Migration
 
@@ -88,6 +89,10 @@ pnpx codemod workleap/orbiter-to-hopper -t /app/users
 #### Additional Options
 
 For more configuration options, refer to the [Codemod CLI options documentation](https://docs.codemod.com/deploying-codemods/cli#options).
+
+### Migration Notes
+
+The codemod automatically generates migration notes to help track important changes that require manual review. These notes are collected during the transformation process and aggregated into a `migration-notes.md` file.
 
 ### Analyzing Component Usage
 

@@ -6,6 +6,7 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import {
   A,
   Address,
+  Alert,
   AnonymousAvatar,
   Article,
   Aside,
@@ -786,6 +787,12 @@ export function App() {
       </TooltipTrigger>
 
       <Overlay show>text</Overlay>
+      
+      {/* Alert */}
+      <Alert variant="confirmation" primaryButtonLabel="Confirm">
+        This is an important alert message.
+      </Alert>
+      
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
 

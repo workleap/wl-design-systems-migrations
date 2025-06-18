@@ -8,6 +8,7 @@ import { mappings as hopper2HopperMappings } from "./mappings/hopper-to-hopper/i
 import { mappings as orbiter2HopperMappings } from "./mappings/orbiter/index.ts";
 import { migrate } from "./migrations/migrate.js";
 import { logToFile } from "./utils/logger.js";
+import { createLazyMigrationNotesManager } from "./utils/migration-notes.js";
 import { createLazyRepoInfo } from "./utils/repo-cache.js";
 import type { MapMetaData, Runtime } from "./utils/types.js";
 
@@ -18,6 +19,9 @@ export default function transform(
 ): string | undefined {
   // Create lazy-loaded repository information getters
   const { getRepoInfo, getBranch } = createLazyRepoInfo(file.path);
+  
+  // Create lazy-loaded migration notes manager getter
+  const { getMigrationNotesManager } = createLazyMigrationNotesManager();
 
   const mappings = getMappingTable(options);
 
@@ -28,6 +32,7 @@ export default function transform(
     mappings: mappings,
     getRepoInfo,
     getBranch,
+    getMigrationNotesManager,
     log: (...args) => {
       logToFile(file.path, ...args);
     }

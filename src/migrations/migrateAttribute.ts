@@ -2,18 +2,11 @@ import type { Collection, JSXOpeningElement } from "jscodeshift";
 import { getTodoComment } from "../utils/migration.ts";
 import type { PropertyMapperFunction, Runtime } from "../utils/types.js";
 
-/**
- * Renames JSX attributes for a specific component
- * @param j - jscodeshift API
- * @param root - AST root
- * @param componentName - Component name to modify
- * @param oldAttrName - Old attribute name
- * @param newAttrName - New attribute name
- */
 export function migrateAttribute(
   instances: Collection<JSXOpeningElement>,
   oldAttrName: string,
   newAttributeMap: string | PropertyMapperFunction,
+  oldComponentName: string,
   runtime: Runtime
 ): void {
   const { j, log } = runtime;
@@ -24,7 +17,7 @@ export function migrateAttribute(
     );
 
     if (sourceAttribute && sourceAttribute.type === "JSXAttribute") {
-      const newAttribute: { name: string; value: any; todoComments?: string } =
+      const newAttribute: { name: string; value: any; todoComments?: string; migrationNotes?: string | string[] } =
         {
           name: "",
           value: null
@@ -36,10 +29,11 @@ export function migrateAttribute(
           tag: path
         });
         if (mapResult) {
-          const { to, value, todoComments } = mapResult;
+          const { to, value, todoComments, migrationNotes } = mapResult;
           newAttribute.name = to ?? oldAttrName;
           newAttribute.value = value === undefined ? sourceAttribute.value : value;
           newAttribute.todoComments = todoComments;
+          newAttribute.migrationNotes = migrationNotes;
         } else {
           return; // Skip if there is no mapping
         }
@@ -78,6 +72,16 @@ export function migrateAttribute(
           ...attributes[sourceAttributeIndex].comments || [],
           getTodoComment(newAttribute.todoComments, runtime)
         ];
+      }
+
+
+      // Handle property-level migration notes
+      if (newAttribute.migrationNotes) {
+        try {
+          runtime.getMigrationNotesManager().addMigrationNotes(`${oldComponentName}.${oldAttrName}`, newAttribute.migrationNotes, runtime.filePath);
+        } catch (error) {
+          runtime.log(String(error));
+        }
       }
     }
   });
