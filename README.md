@@ -2,7 +2,14 @@
 
 This codemod automates the migration of components from [Orbiter](https://github.com/workleap/wl-orbiter) to the [Hopper](https://github.com/workleap/wl-hopper) design system.
 
-### Before Migration
+The codemod handles various migration scenarios including:
+
+- ✅ **Component migrations** - Automatically updates import statements and component names
+- ✅ **Property transformations** - Maps old properties to new equivalents (e.g., `disabled` → `isDisabled`)
+- ✅ **Deprecated component handling** - Keeps deprecated components in original package with todo comments for manual migration
+- ✅ **Todo comment generation** - Adds contextual migration guidance directly in your code
+
+## Before Migration
 
 ```tsx
 import { Div } from "@workleap/orbiter-ui";
@@ -12,7 +19,7 @@ export function App() {
 }
 ```
 
-### After Migration
+## After Migration
 
 ```tsx
 import { Div } from "@hopper-ui/components";

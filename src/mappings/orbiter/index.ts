@@ -5,6 +5,7 @@ import {
 } from "../../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
+import { overlayComponentsMappings } from "./overlay-components-mappings copy.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
 import { visualComponentsMappings } from "./visual-components-mappings.ts";
 
@@ -18,7 +19,7 @@ const defaultPropsMappings = {
     todoComments: "It seems it is an invalid property. Remove it if not needed"
   }),
   active: () => ({
-    todoComments: "`active` is not supported anymore. Find an alternative solution"
+    todoComments: "`active` is not supported anymore. Find an alternative solution. If the use case is to implement the toggle status, you can use the ToggleButton. More details: https://hopper.workleap.design/components/ToggleButton"
   }),
   focus: () => ({
     todoComments: "`focus` is not supported anymore. Find an alternative solution"
@@ -42,7 +43,8 @@ export const mappings = {
   components: {
     ...layoutComponentsMappings,
     ...buttonComponentsMappings,
-    ...visualComponentsMappings
+    ...visualComponentsMappings,
+    ...overlayComponentsMappings
 
     //TODO: move items from todo list here when they are implemented
   }
@@ -50,6 +52,86 @@ export const mappings = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const todo = {
+ 
+  //menus & lists - total usage: 74
+  Menu: "Menu", //usage: 31
+  MenuProps: "MenuProps",
+  MenuItem: "MenuItem", //usage: 0 (Item: 326)
+  MenuItemProps: "MenuItemProps",
+  MenuSection: "MenuSection", //usage: 0 (Section: 9)
+  MenuSectionProps: "MenuSectionProps",
+  MenuTrigger: "MenuTrigger", //usage: 32
+  MenuTriggerProps: "MenuTriggerProps",
+  // TODO: Not a direct mapping. Find the appropriate component/type.
+  // Listbox: "ListBox", //usage: 11
+  // ListboxProps: "ListBoxProps",
+  // ListboxSection: "ListBoxSection",
+  // ListboxSectionProps: "ListBoxSectionProps",
+  // ListboxOption: "ListBoxItem",
+  // ListboxOptionProps: "ListBoxItemProps",
+
+  //disclosure & accordion - total usage: 28
+  Disclosure: "Disclosure", //usage: 7
+  DisclosureProps: "DisclosureProps",
+  Accordion: "Accordion", //usage: 3
+  AccordionProps: "AccordionProps",
+  // TODO: Not a direct mapping. Find the appropriate component/type.
+  // DisclosureArrow: "ToggleArrow", //usage: 18
+  // DisclosureArrowProps: "ToggleArrowProps",
+  // AccordionHeader: "DisclosureHeader",
+  // AccordionHeaderProps: "DisclosureHeaderProps",
+  // AccordionPanel: "DisclosurePanel",
+  // AccordionPanelProps: "DisclosurePanelProps",
+
+  //tabs - total usage: 18
+  Tabs: "Tabs", //usage: 18
+  TabsProps: "TabsProps",
+  Tab: "Tab", //usage: 0
+  TabProps: "TabProps",
+  TabList: "TabList", //usage: 0
+  TabListProps: "TabListProps",
+  TabPanel: "TabPanel", //usage: 0
+  TabPanelProps: "TabPanelProps",
+
+  //layout & containers - total usage: 64
+  Card: "Card", //usage: 16
+  CardProps: "CardProps",
+  Divider: "Divider", //usage: 40
+  DividerProps: "DividerProps",
+  // TODO: Not a direct mapping. Find the appropriate component/type.
+  // Box: "Box", //usage: 7
+  // BoxProps: "BoxProps",
+  // Group: "Group", //usage: 1
+  // GroupProps: "GroupProps",
+
+
+  //messaging & feedback - total usage: 19
+  Alert: "Alert", //usage: 9
+  AlertProps: "AlertProps",
+  AlertTrigger: "AlertTrigger", //usage: 10
+  AlertTriggerProps: "AlertTriggerProps",
+
+  //tags & tiles - total usage: 74
+  Tag: "Tag", //usage: 64
+  TagProps: "TagProps",
+  TagList: "TagGroup", //usage: 6
+  TagListProps: "TagGroupProps",
+  // TODO: Not a direct mapping. Find the appropriate component/type.
+  // TileLink: "TileLink", //usage: 4
+  // TileLinkProps: "TileLinkProps",
+
+  //toolbar & utilities - total usage: 33
+  ThemeProvider: "HopperProvider", //usage: 30
+  ThemeProviderProps: "HopperProviderProps",
+  // TODO: Not a direct mapping. Find the appropriate component/type.
+  // Toolbar: "Toolbar",
+  // ToolbarProps: "ToolbarProps",
+  // VisuallyHidden: "VisuallyHidden", //usage: 1
+  // VisuallyHiddenProps: "VisuallyHiddenProps",
+  // Transition: "Transition", //usage: 2
+  // TransitionProps: "TransitionProps",
+
+
   //form fields - total usage: 777
   TextInput: "TextField", //usage: 111
   TextInputProps: "TextFieldProps",
@@ -80,8 +162,8 @@ const todo = {
   Form: "Form", //usage: 46
   FormProps: "FormProps",
   InputGroup: "InputGroup", //usage: 1
-  InputGroupProps: "InputGroupProps",
-  //TODO: Not direct map. Find appropriate component/type
+  InputGroupProps: "InputGroupProps"
+  // TODO: Not a direct mapping. Find the appropriate component/type.
   //HiddenSelect: "HiddenSelect",
   //HiddenSelectProps: "HiddenSelectProps",
   //HiddenAutocomplete: "HiddenAutocomplete",
@@ -106,111 +188,8 @@ const todo = {
   //TextAddonProps: "TextAddonProps",
 
 
-  //overlays & modals - total usage: 543
-  Modal: "Modal", //usage: 95
-  ModalProps: "ModalProps",
-  ModalTrigger: "ModalTrigger", //usage: 48
-  ModalTriggerProps: "ModalTriggerProps",
-  Popover: "Popover", //usage: 11
-  PopoverProps: "PopoverProps",
-  PopoverTrigger: "PopoverTrigger", //usage: 12
-  PopoverTriggerProps: "PopoverTriggerProps",
-  Tooltip: "Tooltip", //usage: 142
-  TooltipProps: "TooltipProps",
-  TooltipTrigger: "TooltipTrigger", //usage: 161
-  TooltipTriggerProps: "TooltipTriggerProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // Dialog: "Modal",
-  // DialogProps: "ModalProps",
-  // DialogTrigger: "ModalTrigger",
-  // DialogTriggerProps: "ModalTriggerProps",
-  // Overlay: "Overlay", //usage: 74
-  // OverlayProps: "OverlayProps",
-  // OverlayArrow: "OverlayArrow",
-  // OverlayArrowProps: "OverlayArrowProps",
-  // Underlay: "Underlay", //usage: 1
-  // UnderlayProps: "UnderlayProps",
-
-  //menus & lists - total usage: 74
-  Menu: "Menu", //usage: 31
-  MenuProps: "MenuProps",
-  MenuItem: "MenuItem", //usage: 0 (Item: 326)
-  MenuItemProps: "MenuItemProps",
-  MenuSection: "MenuSection", //usage: 0 (Section: 9)
-  MenuSectionProps: "MenuSectionProps",
-  MenuTrigger: "MenuTrigger", //usage: 32
-  MenuTriggerProps: "MenuTriggerProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // Listbox: "ListBox", //usage: 11
-  // ListboxProps: "ListBoxProps",
-  // ListboxSection: "ListBoxSection",
-  // ListboxSectionProps: "ListBoxSectionProps",
-  // ListboxOption: "ListBoxItem",
-  // ListboxOptionProps: "ListBoxItemProps",
-
-  //disclosure & accordion - total usage: 28
-  Disclosure: "Disclosure", //usage: 7
-  DisclosureProps: "DisclosureProps",
-  Accordion: "Accordion", //usage: 3
-  AccordionProps: "AccordionProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // DisclosureArrow: "ToggleArrow", //usage: 18
-  // DisclosureArrowProps: "ToggleArrowProps",
-  // AccordionHeader: "DisclosureHeader",
-  // AccordionHeaderProps: "DisclosureHeaderProps",
-  // AccordionPanel: "DisclosurePanel",
-  // AccordionPanelProps: "DisclosurePanelProps",
-
-  //tabs - total usage: 18
-  Tabs: "Tabs", //usage: 18
-  TabsProps: "TabsProps",
-  Tab: "Tab", //usage: 0
-  TabProps: "TabProps",
-  TabList: "TabList", //usage: 0
-  TabListProps: "TabListProps",
-  TabPanel: "TabPanel", //usage: 0
-  TabPanelProps: "TabPanelProps",
-
-  //layout & containers - total usage: 64
-  Card: "Card", //usage: 16
-  CardProps: "CardProps",
-  Divider: "Divider", //usage: 40
-  DividerProps: "DividerProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // Box: "Box", //usage: 7
-  // BoxProps: "BoxProps",
-  // Group: "Group", //usage: 1
-  // GroupProps: "GroupProps",
-
-
-  //messaging & feedback - total usage: 19
-  Alert: "Alert", //usage: 9
-  AlertProps: "AlertProps",
-  AlertTrigger: "AlertTrigger", //usage: 10
-  AlertTriggerProps: "AlertTriggerProps",
-
-  //tags & tiles - total usage: 74
-  Tag: "Tag", //usage: 64
-  TagProps: "TagProps",
-  TagList: "TagGroup", //usage: 6
-  TagListProps: "TagGroupProps",
-  //TODO: Not direct map. Find appropriate component/type
-  // TileLink: "TileLink", //usage: 4
-  // TileLinkProps: "TileLinkProps",
-
-  //toolbar & utilities - total usage: 33
-  ThemeProvider: "HopperProvider", //usage: 30
-  ThemeProviderProps: "HopperProviderProps"
-  //TODO: Not direct map. Find appropriate component/type
-  // Toolbar: "Toolbar",
-  // ToolbarProps: "ToolbarProps",
-  // VisuallyHidden: "VisuallyHidden", //usage: 1
-  // VisuallyHiddenProps: "VisuallyHiddenProps",
-  // Transition: "Transition", //usage: 2
-  // TransitionProps: "TransitionProps",
-
   //collection components - total usage: 335
-  //TODO: Not direct map. Find appropriate component/type
+  // TODO: Not a direct mapping. Find the appropriate component/type.
   // Item: "Item", //usage: 326
   // ItemProps: "ItemProps",
   // Section: "Section", //usage: 9

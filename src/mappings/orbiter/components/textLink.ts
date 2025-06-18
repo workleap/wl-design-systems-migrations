@@ -19,15 +19,30 @@ export const textLinkMapping = {
             };
           } else if (value === "accent") {
             return {            
+              value: j.stringLiteral("primary")
+            };
+          } else if (value === "primary") {
+            return {            
               value: j.stringLiteral("secondary")
             };
-          }          
+          }             
         
           return null;
         },
-        underline: () => ({
-          todoComments: "`underline` is not supported anymore. Remove it."
-        }),
+        underline: (originalValue, runtime) => {
+          const { j } = runtime;
+          const value = tryGettingLiteralValue(originalValue, runtime);
+          if (value === "none") {
+            return {
+              to: "isQuiet",
+              value: j.jsxExpressionContainer(j.booleanLiteral(true))
+            };
+          } else {
+            return {            
+              todoComments: "`underline` is not supported anymore. Remove it."
+            };
+          }
+        },
         "onMouseDown":  (_, { tag }) => {          
           if (hasAttribute(tag.node, "onPress")) {
             return {
@@ -39,7 +54,17 @@ export const textLinkMapping = {
             };
           }
         },
-        "onKeyPress": "onKeyDown"
+        "onKeyPress": (_, { tag }) => {          
+          if (hasAttribute(tag.node, "onPress")) {
+            return {
+              todoComments: "`onKeyPress` is not supported anymore. Use `onPress` instead."
+            };
+          } else {
+            return {
+              to: "onPress"
+            };
+          }
+        }
       }
     }
   },

@@ -420,4 +420,91 @@ describe("migrations", () => {
 
     assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
   });
+
+  test("when skipImport is true, the import should not be migrated but props should be transformed", async () => {
+    const INPUT = "import { DeprecatedComponent } from \"@workleap/orbiter-ui\"; export function App() { return <DeprecatedComponent oldProp=\"value\" />; }";
+    const OUTPUT = "import { DeprecatedComponent } from \"@workleap/orbiter-ui\"; export function App() { return ( /* Migration TODO: This component is deprecated */ <DeprecatedComponent newProp=\"value\" /> ); }";
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          DeprecatedComponent: {
+            skipImport: true,
+            props: {
+              mappings: {
+                oldProp: "newProp"
+              }
+            },
+            todoComments: "This component is deprecated"
+          }
+        }
+      })
+    )!;
+
+    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+  });
+
+  test("when skipImport is true, mixed imports should keep the skipped component in original package", async () => {
+    const INPUT = "import { DeprecatedComponent, NormalComponent } from \"@workleap/orbiter-ui\"; export function App() { return <><DeprecatedComponent /><NormalComponent /></>; }";
+    const OUTPUT = "import { NormalComponent } from \"@hopper-ui/components\"; import { DeprecatedComponent } from \"@workleap/orbiter-ui\"; export function App() { return ( <>/* Migration TODO: This component is deprecated */ <DeprecatedComponent /><NormalComponent /></> ); }";
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          DeprecatedComponent: {
+            skipImport: true,
+            todoComments: "This component is deprecated"
+          },
+          NormalComponent: "NormalComponent"
+        }
+      })
+    )!;
+
+    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+  });
+
+  test("when skipImport is true with alias, the import should not be migrated", async () => {
+    const INPUT = "import { DeprecatedComponent as DC } from \"@workleap/orbiter-ui\"; export function App() { return <DC oldProp=\"value\" />; }";
+    const OUTPUT = "import { DeprecatedComponent as DC } from \"@workleap/orbiter-ui\"; export function App() { return ( /* Migration TODO: This component is deprecated */ <DC newProp=\"value\" /> ); }";
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          DeprecatedComponent: {
+            skipImport: true,
+            props: {
+              mappings: {
+                oldProp: "newProp"
+              }
+            },
+            todoComments: "This component is deprecated"
+          }
+        }
+      })
+    )!;
+
+    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+  });
+
+  test("when skipImport is false (default), the import should be migrated normally", async () => {
+    const INPUT = "import { NormalComponent } from \"@workleap/orbiter-ui\"; export function App() { return <NormalComponent oldProp=\"value\" />; }";
+    const OUTPUT = "import { NormalComponent } from \"@hopper-ui/components\"; export function App() { return <NormalComponent newProp=\"value\" />; }";
+
+    const actualOutput = migrate(
+      getRuntime(INPUT, {
+        components: {
+          NormalComponent: {
+            skipImport: false, // explicitly set to false to test
+            props: {
+              mappings: {
+                oldProp: "newProp"
+              }
+            }
+          }
+        }
+      })
+    )!;
+
+    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+  });
 });

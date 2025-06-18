@@ -51,6 +51,46 @@ export function migrateImport(
     return null; // No target component name found, exit early
   }
 
+  // Check if import should be skipped
+  const componentMapData = mappings.components[componentName];
+  const shouldSkipImport = typeof componentMapData === "object" && componentMapData.skipImport === true;
+  
+  if (shouldSkipImport) {
+    // Even if we skip import migration, we still need to return local names for component transformation
+    const localNames: { oldLocalName: string; newLocalName: string }[] = [];
+    
+    root
+      .find(j.ImportDeclaration, {
+        source: {
+          value: sourcePackage
+        }
+      })
+      .forEach(path => {
+        const importSpecifiers = path.node.specifiers || [];
+        
+        // Find ALL component specifiers matching the component name
+        const componentSpecifiers = importSpecifiers.filter(
+          specifier =>
+            j.ImportSpecifier.check(specifier) &&
+            specifier.imported &&
+            specifier.imported.name === componentName
+        );
+        
+        // Collect local names without migrating imports
+        componentSpecifiers.forEach(componentSpecifier => {
+          if (j.ImportSpecifier.check(componentSpecifier)) {
+            const localName = getLocalNameFromImport(componentSpecifier);
+            localNames.push({
+              oldLocalName: localName,
+              newLocalName: localName // Keep the same name when skipping import
+            });
+          }
+        });
+      });
+    
+    return localNames.length > 0 ? localNames : null;
+  }
+
   // Collect all import specifiers that need to be migrated
   const newImportSpecifiers: any[] = [];
 

@@ -61,6 +61,7 @@ export type ComponentMapMetaData =
     to?: string;
     props?: PropsMapMetaData;
     todoComments?: TodoComment;
+    skipImport?: boolean; // if true, the component import will be skipped
   }
   | string;
 

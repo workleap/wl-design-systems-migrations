@@ -1,8 +1,8 @@
 {
   "overall": {
     "usage": {
-      "components": 2554,
-      "props": 3961
+      "components": 2077,
+      "props": 2959
     }
   },
   "components": {
@@ -84,6 +84,12 @@
                 "Performance": 1
               }
             },
+            "() => handleOpenRevokeKeyModal(apiKey.publicApiKeyId)": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
             "handleReconnectClick": {
               "total": 1,
               "projects": {
@@ -103,12 +109,6 @@
               }
             },
             "() => onDisconnectModalOpen(account)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "() => handleOpenRevokeKeyModal(apiKey.publicApiKeyId)": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -164,13 +164,13 @@
                 "Performance": 1
               }
             },
-            "Number(key) < firstSelectableTeamSize": {
+            "x.isDisabled": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "x.isDisabled": {
+            "Number(key) < firstSelectableTeamSize": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -199,12 +199,6 @@
                 "Management App": 2
               }
             },
-            "country": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "x.value": {
               "total": 1,
               "projects": {
@@ -212,6 +206,12 @@
               }
             },
             "option.value": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "country": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -240,13 +240,13 @@
         "height": {
           "usage": 4,
           "values": {
-            "2.5rem": {
+            "unset": {
               "total": 2,
               "projects": {
                 "Performance": 2
               }
             },
-            "unset": {
+            "2.5rem": {
               "total": 2,
               "projects": {
                 "Performance": 2
@@ -365,13 +365,13 @@
                 "AI": 2
               }
             },
-            "companyRoleOtherError ? \"invalid\" : undefined": {
+            "getValidationState(formik, \"email\")": {
               "total": 2,
               "projects": {
                 "SG One": 2
               }
             },
-            "getValidationState(formik, \"email\")": {
+            "companyRoleOtherError ? \"invalid\" : undefined": {
               "total": 2,
               "projects": {
                 "SG One": 2
@@ -441,12 +441,6 @@
               "total": 1,
               "projects": {
                 "SG One": 1
-              }
-            },
-            "fieldState.error && shouldShowErrors ? \"invalid\" : \"valid\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
               }
             },
             "isInvalid ? \"invalid\" : \"valid\"": {
@@ -557,31 +551,25 @@
                 "Performance": 1
               }
             },
+            "fieldState.error && shouldShowErrors ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
+              }
+            },
             "invalid": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "(monthFieldState.error || yearFieldState.error) ? \"invalid\" : undefined": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "doesSubReasonExceedMaxLength ? \"invalid\" : \"valid\"": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "doesOtherReasonExceedMaxLength ? \"invalid\" : \"valid\"": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "getFieldValidationState(TeamFormFields.teamName)": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "getFieldValidationState(SegmentFormFields.displayName)": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -605,12 +593,6 @@
                 "Management App": 1
               }
             },
-            "getFieldValidationState(SegmentFormFields.displayName)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "getFieldValidationState(OrganizationFormFields.name)": {
               "total": 1,
               "projects": {
@@ -623,13 +605,13 @@
                 "Management App": 1
               }
             },
-            "errors.root ? \"invalid\" : undefined": {
+            "getFieldValidateState()": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "getFieldValidateState()": {
+            "errors.root ? \"invalid\" : undefined": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -641,7 +623,37 @@
                 "Management App": 1
               }
             },
+            "(monthFieldState.error || yearFieldState.error) ? \"invalid\" : undefined": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "doesSubReasonExceedMaxLength ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "doesOtherReasonExceedMaxLength ? \"invalid\" : \"valid\"": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
             "getFieldValidationState(RulePickerFormFields.ruleRelation)": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "getFieldValidationState(UpdatePreferencesFields.language)": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "notificationChannelValidation === FieldValidationStates.Valid ? undefined : FieldValidationStates.Invalid": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -684,18 +696,6 @@
               }
             },
             "getFieldValidationState(UpdatePersonalProfileFields.bio)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "getFieldValidationState(UpdatePreferencesFields.language)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "notificationChannelValidation === FieldValidationStates.Valid ? undefined : FieldValidationStates.Invalid": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -1005,27 +1005,16 @@
             }
           }
         },
-        "marginY": {
-          "usage": 2,
-          "values": {
-            "stack-sm": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            }
-          }
-        },
         "marginLeft": {
           "usage": 2,
           "values": {
-            "stack-sm": {
+            "{ base: 0, sm: \"auto\" }": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "{ base: 0, sm: \"auto\" }": {
+            "stack-sm": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -1036,16 +1025,27 @@
         "marginRight": {
           "usage": 2,
           "values": {
-            "stack-sm": {
+            "4rem": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "4rem": {
+            "stack-sm": {
               "total": 1,
               "projects": {
                 "Management App": 1
+              }
+            }
+          }
+        },
+        "marginY": {
+          "usage": 2,
+          "values": {
+            "stack-sm": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
               }
             }
           }
@@ -1106,28 +1106,6 @@
             }
           }
         },
-        "gridColumnStart": {
-          "usage": 1,
-          "values": {
-            "1": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "gridColumnSpan": {
-          "usage": 1,
-          "values": {
-            "2": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
         "alignSelf": {
           "usage": 1,
           "values": {
@@ -1143,6 +1121,28 @@
           "usage": 1,
           "values": {
             "neut": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "gridColumnStart": {
+          "usage": 1,
+          "values": {
+            "1": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "gridColumnSpan": {
+          "usage": 1,
+          "values": {
+            "2": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -1255,13 +1255,13 @@
                 "SG Protect": 2
               }
             },
-            "top-end": {
+            "bottom": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "bottom": {
+            "top-end": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -1355,30 +1355,6 @@
                 "SG One": 1
               }
             },
-            "!formattedReviewDescription || isSingleRow": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "isMobile || !formattedReviewDescription": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "!submittedByIdentity && !sharedByIdentity": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "identities.length === 1 || !identitiesTooltip": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
             "!isSubmitButtonDisabled": {
               "total": 1,
               "projects": {
@@ -1403,10 +1379,28 @@
                 "Performance": 1
               }
             },
-            "Boolean(taxExemptionCode)": {
+            "identities.length === 1 || !identitiesTooltip": {
               "total": 1,
               "projects": {
-                "Management App": 1
+                "Performance": 1
+              }
+            },
+            "!formattedReviewDescription || isSingleRow": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
+              }
+            },
+            "isMobile || !formattedReviewDescription": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
+              }
+            },
+            "!submittedByIdentity && !sharedByIdentity": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
               }
             },
             "canEditManagers": {
@@ -1428,6 +1422,12 @@
               }
             },
             "!disableNextButton": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "Boolean(taxExemptionCode)": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -1734,13 +1734,13 @@
                 "Management App": 3
               }
             },
-            "inline-flex": {
+            "grid": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "grid": {
+            "inline-flex": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -1801,29 +1801,6 @@
             }
           }
         },
-        "gap": {
-          "usage": 5,
-          "values": {
-            "160": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "inline-xs": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "40": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
         "fontWeight": {
           "usage": 5,
           "values": {
@@ -1840,6 +1817,29 @@
               }
             },
             "body-md-medium": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "gap": {
+          "usage": 5,
+          "values": {
+            "160": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "inline-xs": {
+              "total": 2,
+              "projects": {
+                "Performance": 2
+              }
+            },
+            "40": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -1955,29 +1955,6 @@
             }
           }
         },
-        "alignItems": {
-          "usage": 2,
-          "values": {
-            "center": {
-              "total": 2,
-              "projects": {
-                "Performance": 1,
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "marginY": {
-          "usage": 2,
-          "values": {
-            "stack-sm": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            }
-          }
-        },
         "hidden": {
           "usage": 2,
           "values": {
@@ -2002,6 +1979,29 @@
               "total": 1,
               "projects": {
                 "Management App": 1
+              }
+            }
+          }
+        },
+        "alignItems": {
+          "usage": 2,
+          "values": {
+            "center": {
+              "total": 2,
+              "projects": {
+                "Performance": 1,
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "marginY": {
+          "usage": 2,
+          "values": {
+            "stack-sm": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
               }
             }
           }
@@ -2229,13 +2229,13 @@
                 "AI": 2
               }
             },
-            "12.5rem": {
+            "14.625rem": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "14.625rem": {
+            "12.5rem": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -2363,881 +2363,6 @@
         }
       }
     },
-    "SvgImage": {
-      "usage": 133,
-      "props": {
-        "src": {
-          "usage": 126,
-          "values": {
-            "ScoreMeter": {
-              "total": 25,
-              "projects": {
-                "Management App": 25
-              }
-            },
-            "src": {
-              "total": 10,
-              "projects": {
-                "SG Protect": 2,
-                "SG One": 1,
-                "Performance": 1,
-                "Management App": 2,
-                "Management Shell": 1,
-                "Activation": 2,
-                "Login": 1
-              }
-            },
-            "icon": {
-              "total": 8,
-              "projects": {
-                "SG Protect": 1,
-                "SG One": 1,
-                "Performance": 1,
-                "Management App": 1,
-                "AI": 4
-              }
-            },
-            "ConfettiPopperIllustration": {
-              "total": 4,
-              "projects": {
-                "Performance": 4
-              }
-            },
-            "SlackLogo": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            },
-            "illustration": {
-              "total": 3,
-              "projects": {
-                "Performance": 1,
-                "Activation": 2
-              }
-            },
-            "EmailExpiredIllustration": {
-              "total": 3,
-              "projects": {
-                "Activation": 3
-              }
-            },
-            "EmailIllustration": {
-              "total": 3,
-              "projects": {
-                "Activation": 3
-              }
-            },
-            "MemberNotInvitedIllustration": {
-              "total": 3,
-              "projects": {
-                "Activation": 3
-              }
-            },
-            "logo": {
-              "total": 3,
-              "projects": {
-                "Management App": 1,
-                "AI": 2
-              }
-            },
-            "MicrosoftLogo": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "BrowserImage": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "Logo365": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "ProtectIconSource": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "product.illustration": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "imageSrc": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 1,
-                "Management App": 1
-              }
-            },
-            "XlsxFile": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "EmailNotConfirmedIllustration": {
-              "total": 2,
-              "projects": {
-                "Activation": 2
-              }
-            },
-            "ExpiredEmailIllustration": {
-              "total": 2,
-              "projects": {
-                "Activation": 2
-              }
-            },
-            "LineBackground": {
-              "total": 2,
-              "projects": {
-                "Activation": 1,
-                "Login": 1
-              }
-            },
-            "SettingsIllustration": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "SharegateLogoSource": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "illustrationSrc": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "NoResults": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "CatManImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "colorScheme === \"light\" ? ProtectLogoLight : ProtectLogoDark": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "colorScheme === \"light\" ? TenantAssessmentLogoLight : TenantAssessmentLogoDark": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "colorScheme === \"light\" ? ManagementLogoLight : ManagementLogoDark": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "BoxManImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "AttributeLicenseKeyImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "ChairLadyImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "StartExploringManagementImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "FaceInHoleImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "RocketImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "FunToUseImage": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "ClappingIllustration": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "image": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "FillingReviewIllustration": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "OpenEnvelopeIllustration": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "isSearchApplied ? ResultNotFoundMedium : PropertiesMedium": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "iconMapping[cardKey]": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "PerformanceManagementModalIllustration": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "standaloneIntegrationLogos[integration.provisioningType]": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "MsTeamsLogo": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "productLogo": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "UploadCloud": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "productIllustration": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "NoProductAccessIllustration": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "EmailSentIllustration": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "NewConversationIcon": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "WaiBlueIcon": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "connector.icon": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "WaiLogo": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "OfficevibeLogo": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "getFileTypeIcon(fileName)": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "AnnouncementIllustration": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "channelTypeLogo": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "WorkleapIcon": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "WebsiteIcon": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "FileLibraryIcon": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "width": {
-          "usage": 53,
-          "values": {
-            "6rem": {
-              "total": 7,
-              "projects": {
-                "Performance": 6,
-                "AI": 1
-              }
-            },
-            "{ base: \"8rem\", sm: \"16rem\" }": {
-              "total": 6,
-              "projects": {
-                "Activation": 6
-              }
-            },
-            "2rem": {
-              "total": 6,
-              "projects": {
-                "AI": 6
-              }
-            },
-            "auto": {
-              "total": 4,
-              "projects": {
-                "SG One": 4
-              }
-            },
-            "{ base: \"8rem\", sm: \"12.25rem\" }": {
-              "total": 4,
-              "projects": {
-                "Activation": 4
-              }
-            },
-            "218px": {
-              "total": 3,
-              "projects": {
-                "SG One": 3
-              }
-            },
-            "{ base: \"5.6rem\", sm: \"12.5rem\" }": {
-              "total": 3,
-              "projects": {
-                "Activation": 3
-              }
-            },
-            "var(--hop-space-160)": {
-              "total": 3,
-              "projects": {
-                "AI": 3
-              }
-            },
-            "{ base: \"8rem\", sm: \"12.5rem\" }": {
-              "total": 2,
-              "projects": {
-                "Activation": 2
-              }
-            },
-            "100%": {
-              "total": 2,
-              "projects": {
-                "Activation": 1,
-                "Login": 1
-              }
-            },
-            "width": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "20px": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "Sizes[size].width": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "50px": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "180px": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "400px": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "9.8175rem": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "{ base: \"8rem\", sm: \"16.2rem\" }": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "var(--hop-space-400)": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "3rem": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "var(--hop-space-320)": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "height": {
-          "usage": 41,
-          "values": {
-            "6rem": {
-              "total": 7,
-              "projects": {
-                "Performance": 6,
-                "AI": 1
-              }
-            },
-            "2rem": {
-              "total": 6,
-              "projects": {
-                "AI": 6
-              }
-            },
-            "39px": {
-              "total": 4,
-              "projects": {
-                "SG One": 4
-              }
-            },
-            "320px": {
-              "total": 3,
-              "projects": {
-                "SG One": 3
-              }
-            },
-            "var(--hop-space-160)": {
-              "total": 3,
-              "projects": {
-                "AI": 3
-              }
-            },
-            "{ sm: \"324px\" }": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "25rem": {
-              "total": 2,
-              "projects": {
-                "Activation": 1,
-                "Login": 1
-              }
-            },
-            "height": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "20px": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "imageHeight": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "Sizes[size].height": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "230px": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "226px": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "imageSize": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "{ base: \"180px\", sm: \"260px\" }": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "3.125rem": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "var(--hop-space-400)": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "3rem": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "var(--hop-space-320)": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "maxWidth": {
-          "usage": 9,
-          "values": {
-            "100%": {
-              "total": 8,
-              "projects": {
-                "Performance": 1,
-                "Activation": 7
-              }
-            },
-            "imageMaxWidth": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "marginBottom": {
-          "usage": 6,
-          "values": {
-            "stack-sm": {
-              "total": 5,
-              "projects": {
-                "Activation": 5
-              }
-            },
-            "30px": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "display": {
-          "usage": 6,
-          "values": {
-            "{ base: \"none\", sm: \"block\" }": {
-              "total": 4,
-              "projects": {
-                "SG Protect": 1,
-                "SG One": 1,
-                "Performance": 1,
-                "Management App": 1
-              }
-            },
-            "{ base: \"none\", xs: \"block\" }": {
-              "total": 2,
-              "projects": {
-                "Activation": 1,
-                "Login": 1
-              }
-            }
-          }
-        },
-        "flexShrink": {
-          "usage": 6,
-          "values": {
-            "0": {
-              "total": 6,
-              "projects": {
-                "SG One": 1,
-                "AI": 5
-              }
-            }
-          }
-        },
-        "stroke": {
-          "usage": 5,
-          "values": {
-            "alias-primary": {
-              "total": 4,
-              "projects": {
-                "SG Protect": 1,
-                "SG One": 2,
-                "Management App": 1
-              }
-            },
-            "primary": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "overflow": {
-          "usage": 4,
-          "values": {
-            "visible": {
-              "total": 4,
-              "projects": {
-                "SG Protect": 1,
-                "SG One": 1,
-                "Performance": 1,
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "transform": {
-          "usage": 2,
-          "values": {
-            "{ base: `scale(${transform.scale.base})`, sm: `scale(${transform.scale.sm})` }": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "rotate(-45deg)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "gridColumnStart": {
-          "usage": 2,
-          "values": {
-            "1": {
-              "total": 2,
-              "projects": {
-                "Activation": 1,
-                "Login": 1
-              }
-            }
-          }
-        },
-        "gridRowStart": {
-          "usage": 2,
-          "values": {
-            "1": {
-              "total": 2,
-              "projects": {
-                "Activation": 1,
-                "Login": 1
-              }
-            }
-          }
-        },
-        "alignSelf": {
-          "usage": 2,
-          "values": {
-            "end": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "center": {
-              "total": 1,
-              "projects": {
-                "Login": 1
-              }
-            }
-          }
-        },
-        "preserveAspectRatio": {
-          "usage": 2,
-          "values": {
-            "none": {
-              "total": 2,
-              "projects": {
-                "Activation": 1,
-                "Login": 1
-              }
-            }
-          }
-        },
-        "fill": {
-          "usage": 1,
-          "values": {
-            "neutral": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "position": {
-          "usage": 1,
-          "values": {
-            "absolute": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "bottom": {
-          "usage": 1,
-          "values": {
-            "transform.bottom": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "right": {
-          "usage": 1,
-          "values": {
-            "transform.right": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "padding": {
-          "usage": 1,
-          "values": {
-            "inset-md": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "opacity": {
-          "usage": 1,
-          "values": {
-            "0.4": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "TextInput": {
       "usage": 111,
       "props": {
@@ -3335,6 +2460,30 @@
                 "Performance": 1
               }
             },
+            "t(\"teamDetails.teamNamePlaceholder\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "t(\"segmentForm.segmentNamePlaceholder\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "t(\"settings.namePlaceholder\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "t(\"createUser.sms.emailAddressPlaceholder\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
             "t(\"billingForm.emailAddressPlaceholder\")": {
               "total": 1,
               "projects": {
@@ -3395,30 +2544,6 @@
                 "Management App": 1
               }
             },
-            "t(\"teamDetails.teamNamePlaceholder\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "t(\"segmentForm.segmentNamePlaceholder\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "t(\"settings.namePlaceholder\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "t(\"createUser.sms.emailAddressPlaceholder\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "en-US": {
               "total": 1,
               "projects": {
@@ -3435,30 +2560,6 @@
               "total": 1,
               "projects": {
                 "Activation": 1
-              }
-            },
-            "t(\"sharepoint.connect.domainName.placeholder\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "t(\"sharepoint.connect.clientId.placeholder\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "t(\"sharepoint.connect.microsoftTenantId.placeholder\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "t(\"sharepoint.connect.clientSecret.placeholder\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
               }
             },
             "t(\"confluence.connect.apiToken.placeholder\")": {
@@ -3480,6 +2581,30 @@
               }
             },
             "tShared(\"personalization.addMemoryPlaceholder\")": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            },
+            "t(\"sharepoint.connect.domainName.placeholder\")": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            },
+            "t(\"sharepoint.connect.clientId.placeholder\")": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            },
+            "t(\"sharepoint.connect.microsoftTenantId.placeholder\")": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            },
+            "t(\"sharepoint.connect.clientSecret.placeholder\")": {
               "total": 1,
               "projects": {
                 "AI": 1
@@ -3512,25 +2637,19 @@
                 "SG Protect": 2
               }
             },
-            "companyRoleOther": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
             "formik.values.email": {
               "total": 2,
               "projects": {
                 "SG One": 2
               }
             },
-            "sessionData!.user.email": {
-              "total": 1,
+            "companyRoleOther": {
+              "total": 2,
               "projects": {
-                "SG One": 1
+                "SG One": 2
               }
             },
-            "userData?.email": {
+            "sessionData!.user.email": {
               "total": 1,
               "projects": {
                 "SG One": 1
@@ -3548,16 +2667,10 @@
                 "SG One": 1
               }
             },
-            "editedLinkDisplayText": {
+            "userData?.email": {
               "total": 1,
               "projects": {
-                "Performance": 1
-              }
-            },
-            "editedLinkUrl": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
+                "SG One": 1
               }
             },
             "measurement.title": {
@@ -3578,6 +2691,24 @@
                 "Performance": 1
               }
             },
+            "editedLinkDisplayText": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
+              }
+            },
+            "editedLinkUrl": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
+              }
+            },
+            "internalValue": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
             "subReason": {
               "total": 1,
               "projects": {
@@ -3585,12 +2716,6 @@
               }
             },
             "otherReason": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "internalValue": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -3644,6 +2769,12 @@
                 "Administration Portal": 1
               }
             },
+            "session.emailAddress": {
+              "total": 1,
+              "projects": {
+                "Activation": 1
+              }
+            },
             "firstName": {
               "total": 1,
               "projects": {
@@ -3651,12 +2782,6 @@
               }
             },
             "lastName": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "session.emailAddress": {
               "total": 1,
               "projects": {
                 "Activation": 1
@@ -3844,18 +2969,6 @@
                 "Administration Portal": 1
               }
             },
-            "handleFirstNameChange": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "handleLastNameChange": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
             "() => resetValidation(\"firstName\")": {
               "total": 1,
               "projects": {
@@ -3863,6 +2976,18 @@
               }
             },
             "() => resetValidation(\"lastName\")": {
+              "total": 1,
+              "projects": {
+                "Activation": 1
+              }
+            },
+            "handleFirstNameChange": {
+              "total": 1,
+              "projects": {
+                "Activation": 1
+              }
+            },
+            "handleLastNameChange": {
               "total": 1,
               "projects": {
                 "Activation": 1
@@ -3933,13 +3058,13 @@
                 "Management App": 2
               }
             },
-            "!taxExemptionCode": {
+            "disabled": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "disabled": {
+            "!taxExemptionCode": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -4009,6 +3134,12 @@
                 "Performance": 1
               }
             },
+            "(_, v) => { field.onChange(v); }": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
             "handleSubReasonChange": {
               "total": 1,
               "projects": {
@@ -4016,12 +3147,6 @@
               }
             },
             "handleOtherReasonChange": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "(_, v) => { field.onChange(v); }": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -4092,13 +3217,13 @@
                 "Performance": 1
               }
             },
-            "EMPLOYEE_IDENTIFIER_MAX_LENGTH": {
+            "EMAIL_MAX_LENGTH": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "EMAIL_MAX_LENGTH": {
+            "EMPLOYEE_IDENTIFIER_MAX_LENGTH": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -4415,17 +3540,6 @@
             }
           }
         },
-        "maxWidth": {
-          "usage": 1,
-          "values": {
-            "100%": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
         "textAlign": {
           "usage": 1,
           "values": {
@@ -4441,6 +3555,17 @@
           "usage": 1,
           "values": {
             "inline-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "maxWidth": {
+          "usage": 1,
+          "values": {
+            "100%": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -4528,13 +3653,13 @@
                 "Management App": 3
               }
             },
-            "handleOnClose": {
+            "onCloseModal": {
               "total": 2,
               "projects": {
                 "Management App": 2
               }
             },
-            "onCloseModal": {
+            "handleOnClose": {
               "total": 2,
               "projects": {
                 "Management App": 2
@@ -4576,12 +3701,6 @@
                 "Performance": 1
               }
             },
-            "handleCloseModal": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "closeModal": {
               "total": 1,
               "projects": {
@@ -4595,6 +3714,12 @@
               }
             },
             "() => trackAddSeatsModalClosed(\"Dismissed\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "handleCloseModal": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -4647,12 +3772,6 @@
                 "Management App": 3
               }
             },
-            "40rem": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
             "28.75rem": {
               "total": 2,
               "projects": {
@@ -4660,6 +3779,12 @@
               }
             },
             "28.875rem": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
+              }
+            },
+            "40rem": {
               "total": 2,
               "projects": {
                 "Management App": 2
@@ -4839,10 +3964,10 @@
             }
           }
         },
-        "paddingBottom": {
+        "backgroundColor": {
           "usage": 1,
           "values": {
-            "inset-md": {
+            "transparent": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -4850,10 +3975,10 @@
             }
           }
         },
-        "backgroundColor": {
+        "paddingBottom": {
           "usage": 1,
           "values": {
-            "transparent": {
+            "inset-md": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -5228,6 +4353,12 @@
                 "Performance": 3
               }
             },
+            "isActionModalOpen": {
+              "total": 2,
+              "projects": {
+                "Performance": 2
+              }
+            },
             "isMissingReportingManagersModalOpen": {
               "total": 2,
               "projects": {
@@ -5240,12 +4371,6 @@
                 "Performance": 2
               }
             },
-            "isSubmittedModalOpen": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
             "blocker.state === \"blocked\"": {
               "total": 2,
               "projects": {
@@ -5253,7 +4378,7 @@
                 "Performance": 1
               }
             },
-            "isActionModalOpen": {
+            "isSubmittedModalOpen": {
               "total": 2,
               "projects": {
                 "Performance": 2
@@ -5276,6 +4401,12 @@
               "total": 1,
               "projects": {
                 "SG One": 1
+              }
+            },
+            "isMissingReviewTypeModalOpen": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
               }
             },
             "isAssignTemporaryManagerModalOpen": {
@@ -5326,16 +4457,22 @@
                 "Performance": 1
               }
             },
-            "isMissingReviewTypeModalOpen": {
+            "isShareReviewModalOpen": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "isShareReviewModalOpen": {
+            "isRevokeKeyModalOpen": {
               "total": 1,
               "projects": {
-                "Performance": 1
+                "Management App": 1
+              }
+            },
+            "isCreateKeyModalOpen": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
               }
             },
             "modalVariant !== undefined": {
@@ -5351,18 +4488,6 @@
               }
             },
             "showModal": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "isRevokeKeyModalOpen": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "isCreateKeyModalOpen": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -5493,714 +4618,6 @@
               "total": 1,
               "projects": {
                 "SG Protect": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "Avatar": {
-      "usage": 67,
-      "props": {
-        "name": {
-          "usage": 65,
-          "values": {
-            "name": {
-              "total": 6,
-              "projects": {
-                "Management App": 3,
-                "AI": 3
-              }
-            },
-            "displayName": {
-              "total": 4,
-              "projects": {
-                "SG Protect": 1,
-                "Performance": 2,
-                "Management App": 1
-              }
-            },
-            "member.displayName": {
-              "total": 4,
-              "projects": {
-                "Management App": 4
-              }
-            },
-            "toDisplayName(identity)": {
-              "total": 3,
-              "projects": {
-                "Performance": 3
-              }
-            },
-            "manager.displayName": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            },
-            "fullName": {
-              "total": 3,
-              "projects": {
-                "SG One": 1,
-                "Management App": 1,
-                "AI": 1
-              }
-            },
-            "⚠": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            },
-            "data.userDisplayName": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            },
-            "directManager.identity.displayName ?? \"\"": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "selectedMember?.displayName ?? \"\"": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "label": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "member.fullName": {
-              "total": 2,
-              "projects": {
-                "Management App": 1,
-                "AI": 1
-              }
-            },
-            "member.displayName ?? \"Unknown\"": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "Mathieu Charpenel": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "Anthony Simmons": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "assignedSeat.fullName": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "Jester Gamache": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "splitCamelCase(activity.operationType)": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "cleanupDisplayName(fullName)": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "toDisplayName(response.answer.identity)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(responseIdentity)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(reviewee)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(peer)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(member)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(peerReview.peerIdentity)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(peerReviewNomination.reviewer)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "t.name": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "member.displayName ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(goal.owner)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(update.updatedBy)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "toDisplayName(mostRecentUpdate.updatedBy)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "`${goal.owner.displayName} ${goal.owner.lastName}`": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "Strawberry Shortcake": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "Plum Puddin'": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "The Peculiar Purple Pieman of Porcupine": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "Orange Blossom": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "Huckleberry Pie": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "apiKey.publicApiKeyCreator": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "organization.displayName": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "`${suggestion.display}`": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "studentName ?? tShared(\"errors.userNotFoundTitle\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "author": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "src": {
-          "usage": 45,
-          "values": {
-            "picture": {
-              "total": 6,
-              "projects": {
-                "Management App": 4,
-                "AI": 2
-              }
-            },
-            "member.imageUrl": {
-              "total": 4,
-              "projects": {
-                "Management App": 4
-              }
-            },
-            "manager.imageUrl": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            },
-            "member.imageUrl ?? \"\"": {
-              "total": 3,
-              "projects": {
-                "Performance": 2,
-                "AI": 1
-              }
-            },
-            "identity.imageUrl ?? \"\"": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "directManager.identity.imageUrl ?? \"\"": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "memberImage ?? \"\"": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "imageUrl ?? \"\"": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "data?.member?.imageUrl ?? \"\"": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "response.answer.identity?.imageUrl ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "identity!.imageUrl ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "responseIdentity.imageUrl ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "reviewee.imageUrl ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "peer.imageUrl ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "peerReview.peerIdentity.imageUrl ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "peerReviewNomination.reviewer.imageUrl ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "goal.owner.imageUrl ?? undefined": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "update.updatedBy.imageUrl ?? undefined": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "mostRecentUpdate.updatedBy.imageUrl ?? undefined": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "pictureUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "avatarUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "imageUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "apiKey.avatarUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "member.picture": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "organization.imageUrl": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "iconUrl": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "imageUrl ?? undefined": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "(suggestion as UserSuggestion).imageUrl": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "size": {
-          "usage": 23,
-          "values": {
-            "md": {
-              "total": 9,
-              "projects": {
-                "SG Protect": 1,
-                "SG One": 1,
-                "Performance": 7
-              }
-            },
-            "xs": {
-              "total": 7,
-              "projects": {
-                "Performance": 2,
-                "Management App": 1,
-                "AI": 4
-              }
-            },
-            "lg": {
-              "total": 4,
-              "projects": {
-                "Performance": 1,
-                "Activation": 1,
-                "AI": 2
-              }
-            },
-            "sm": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "avatarSize": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "onClick": {
-          "usage": 4,
-          "values": {
-            "onClick": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "() => setSelectedReviewer(reviewee)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "() => setSelectedReviewer(peer)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "width": {
-          "usage": 4,
-          "values": {
-            "9rem": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "{ base: \"7rem\", xs: \"9rem\" }": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "size": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "6rem": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "height": {
-          "usage": 3,
-          "values": {
-            "9rem": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "{ base: \"7rem\", xs: \"9rem\" }": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "6rem": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "textDecoration": {
-          "usage": 3,
-          "values": {
-            "none": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            }
-          }
-        },
-        "marginX": {
-          "usage": 2,
-          "values": {
-            "auto": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            }
-          }
-        },
-        "borderRadius": {
-          "usage": 2,
-          "values": {
-            "rounded-md": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "circle": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "border": {
-          "usage": 1,
-          "values": {
-            "0.0625rem solid var(--hop-neutral-surface)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "marginLeft": {
-          "usage": 1,
-          "values": {
-            "marginLeft": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "cursor": {
-          "usage": 1,
-          "values": {
-            "pointer": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "tabIndex": {
-          "usage": 1,
-          "values": {
-            "onClick ? 0 : undefined": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "onKeyDown": {
-          "usage": 1,
-          "values": {
-            "onKeyDown": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "aspectRatio": {
-          "usage": 1,
-          "values": {
-            "1 / 1": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "position": {
-          "usage": 1,
-          "values": {
-            "absolute": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "top": {
-          "usage": 1,
-          "values": {
-            "top": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "left": {
-          "usage": 1,
-          "values": {
-            "left": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "pointerEvents": {
-          "usage": 1,
-          "values": {
-            "none": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
               }
             }
           }
@@ -6611,6 +5028,29 @@
             }
           }
         },
+        "marginLeft": {
+          "usage": 3,
+          "values": {
+            "40": {
+              "total": 1,
+              "projects": {
+                "SG One": 1
+              }
+            },
+            "stack-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "inline-sm": {
+              "total": 1,
+              "projects": {
+                "AI": 1
+              }
+            }
+          }
+        },
         "margin": {
           "usage": 3,
           "values": {
@@ -6632,29 +5072,6 @@
               "projects": {
                 "Performance": 1,
                 "Management App": 1,
-                "AI": 1
-              }
-            }
-          }
-        },
-        "marginLeft": {
-          "usage": 3,
-          "values": {
-            "40": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "stack-sm": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "inline-sm": {
-              "total": 1,
-              "projects": {
                 "AI": 1
               }
             }
@@ -6840,763 +5257,6 @@
         }
       }
     },
-    "TextLink": {
-      "usage": 63,
-      "props": {
-        "href": {
-          "usage": 61,
-          "values": {
-            "https://help.officevibe.com/hc/en-us/articles/360042491212-Officevibe-Team-Segmentation": {
-              "total": 17,
-              "projects": {
-                "SG Protect": 6,
-                "Performance": 5,
-                "Management App": 1,
-                "Management Shell": 5
-              }
-            },
-            "shareGateHomeUrl": {
-              "total": 3,
-              "projects": {
-                "SG Protect": 3
-              }
-            },
-            "https://help.sharegate.com/en/articles/10236088-contact-our-technical-support-team": {
-              "total": 3,
-              "projects": {
-                "SG Protect": 3
-              }
-            },
-            "CONTACT_SUPPORT_URL": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            },
-            "tenantAccessRequestUrl": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            },
-            "https://outlook.office365.com/book/ShareGateUserInterview@gsoft.com/s/YxPorqK1okGULpa9Iz36BQ2": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            },
-            "documentationLinks.installDesktop": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "actionHref": {
-              "total": 2,
-              "projects": {
-                "Management App": 1,
-                "Management Shell": 1
-              }
-            },
-            "https://sharegate.com/terms": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "https://help.sharegate.com/en/articles/10535832-required-permissions-to-use-the-copilot-readiness-assessment": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "https://help.sharegate.com/en/articles/10547804-access-sharegate-s-copilot-readiness-assessment": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "https://go.sharegate.com/gjey": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "#": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "documentationLinks.licensing": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "documentationLinks.contactUs": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "documentationLinks.manageSubscription": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "routes.addLicense": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "documentationLinks.securityFaq": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "value.fullArticleUrl": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "x.hostedInvoiceUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "t(\"checkout.mailtoSalesLink\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "https://officevibe.workleap.com/portal/settings/integrations/survey-delivery": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            " https://onboarding.workleap.com/remote-settings/organization-integrations-preferences": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "t(\"csv.thresholdManagement.learnMoreHref\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "t(\"communication.helpMessageLink\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "https://workleap.com/get/support": {
-              "total": 1,
-              "projects": {
-                "Management Shell": 1
-              }
-            },
-            "`https://www.google.ca/search?q=${user.name}`": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            },
-            "t(\"updateProfilePage.workleapTermsLink\")": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "t(\"updateProfilePage.workleapPrivacyPolicyLink\")": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "loginURL": {
-              "total": 1,
-              "projects": {
-                "Login": 1
-              }
-            },
-            "https://workleap.com/trust-center/terms/": {
-              "total": 1,
-              "projects": {
-                "Login": 1
-              }
-            },
-            "https://workleap.com/trust-center/privacy/": {
-              "total": 1,
-              "projects": {
-                "Login": 1
-              }
-            },
-            "signupURL": {
-              "total": 1,
-              "projects": {
-                "Login": 1
-              }
-            },
-            "url": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "t(\"disclaimer.betaServicesTermsLink\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "t(\"disclaimer.learnMoreLink\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "variant": {
-          "usage": 39,
-          "values": {
-            "accent": {
-              "total": 37,
-              "projects": {
-                "SG Protect": 12,
-                "SG One": 5,
-                "Performance": 5,
-                "Management App": 3,
-                "Management Shell": 6,
-                "Activation": 2,
-                "Login": 4
-              }
-            },
-            "primary": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            }
-          }
-        },
-        "size": {
-          "usage": 20,
-          "values": {
-            "sm": {
-              "total": 14,
-              "projects": {
-                "SG Protect": 1,
-                "SG One": 2,
-                "Management App": 6,
-                "Management Shell": 1,
-                "AI": 4
-              }
-            },
-            "inherit": {
-              "total": 6,
-              "projects": {
-                "SG One": 2,
-                "Activation": 2,
-                "Login": 2
-              }
-            }
-          }
-        },
-        "underline": {
-          "usage": 17,
-          "values": {
-            "none": {
-              "total": 16,
-              "projects": {
-                "SG Protect": 2,
-                "SG One": 1,
-                "Management App": 6,
-                "Management Shell": 1,
-                "Activation": 2,
-                "Login": 4
-              }
-            },
-            "underline": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "target": {
-          "usage": 16,
-          "values": {
-            "_blank": {
-              "total": 16,
-              "projects": {
-                "SG Protect": 5,
-                "Management App": 5,
-                "Management Shell": 1,
-                "Administration Portal": 1,
-                "AI": 4
-              }
-            }
-          }
-        },
-        "color": {
-          "usage": 14,
-          "values": {
-            "primary": {
-              "total": 9,
-              "projects": {
-                "SG Protect": 4,
-                "Management App": 4,
-                "AI": 1
-              }
-            },
-            "neutral-weak": {
-              "total": 4,
-              "projects": {
-                "SG Protect": 2,
-                "AI": 2
-              }
-            },
-            "#795695": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            }
-          }
-        },
-        "external": {
-          "usage": 10,
-          "values": {
-            "true": {
-              "total": 10,
-              "projects": {
-                "SG Protect": 2,
-                "SG One": 7,
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "onClick": {
-          "usage": 5,
-          "values": {
-            "onLinkClicked": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            },
-            "handleTextLinkClick": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "() => handleReadFullArticleClick(id)": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "onLinkClick": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "gap": {
-          "usage": 2,
-          "values": {
-            "inline-xs": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            }
-          }
-        },
-        "alignItems": {
-          "usage": 2,
-          "values": {
-            "center": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            }
-          }
-        },
-        "onMouseDown": {
-          "usage": 2,
-          "values": {
-            "handleContactSupportClick": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            }
-          }
-        },
-        "marginLeft": {
-          "usage": 2,
-          "values": {
-            "inline-xs": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 2
-              }
-            }
-          }
-        },
-        "fontWeight": {
-          "usage": 2,
-          "values": {
-            "body-sm-medium": {
-              "total": 2,
-              "projects": {
-                "Activation": 2
-              }
-            }
-          }
-        },
-        "textAlign": {
-          "usage": 1,
-          "values": {
-            "end": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "onKeyPress": {
-          "usage": 1,
-          "values": {
-            "e => {\n    if (e.key === \"Enter\" || e.key === \" \") {\n        onLinkClick();\n    }\n}": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "tabIndex": {
-          "usage": 1,
-          "values": {
-            "0": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "Illustration": {
-      "usage": 49,
-      "props": {
-        "backgroundColor": {
-          "usage": 10,
-          "values": {
-            "success": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "bgColor": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "primary-weak": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "alias-accent-light": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "#3B57FF": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "decorative-option6-weakest": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "product.isTrialPlan ? \"decorative-option6-weakest\" : \"decorative-option5-weakest\"": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "decorative-option5-weakest": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "headingColor": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            }
-          }
-        },
-        "borderRadius": {
-          "usage": 8,
-          "values": {
-            "rounded-md": {
-              "total": 4,
-              "projects": {
-                "Management App": 4
-              }
-            },
-            "circle": {
-              "total": 3,
-              "projects": {
-                "SG One": 3
-              }
-            },
-            "2": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "width": {
-          "usage": 5,
-          "values": {
-            "160": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "400": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "100%": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "height": {
-          "usage": 5,
-          "values": {
-            "160": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "400": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "100%": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "paddingBottom": {
-          "usage": 5,
-          "values": {
-            "inset-lg": {
-              "total": 5,
-              "projects": {
-                "Performance": 5
-              }
-            }
-          }
-        },
-        "maxWidth": {
-          "usage": 2,
-          "values": {
-            "320": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            }
-          }
-        },
-        "marginBottom": {
-          "usage": 2,
-          "values": {
-            "320": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "stack-md": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "shape": {
-          "usage": 2,
-          "values": {
-            "straight": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "rounded": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "orientation": {
-          "usage": 1,
-          "values": {
-            "vertical": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "padding": {
-          "usage": 1,
-          "values": {
-            "0.75rem": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "backgroundImage": {
-          "usage": 1,
-          "values": {
-            "bgGradient": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "borderTopLeftRadius": {
-          "usage": 1,
-          "values": {
-            "3": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "borderBottomLeftRadius": {
-          "usage": 1,
-          "values": {
-            "3": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "display": {
-          "usage": 1,
-          "values": {
-            "{ base: \"none\", sm:\"flex\" }": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "paddingY": {
-          "usage": 1,
-          "values": {
-            "inset-xl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "paddingX": {
-          "usage": 1,
-          "values": {
-            "inset-md": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "marginTop": {
-          "usage": 1,
-          "values": {
-            "stack-sm": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "ModalTrigger": {
       "usage": 48,
       "props": {
@@ -7651,13 +5311,13 @@
                 "SG Protect": 1
               }
             },
-            "open": {
+            "isLaunchConfirmationModalOpen": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "isLaunchConfirmationModalOpen": {
+            "open": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -8020,67 +5680,6 @@
         }
       }
     },
-    "Spinner": {
-      "usage": 43,
-      "props": {
-        "size": {
-          "usage": 25,
-          "values": {
-            "sm": {
-              "total": 15,
-              "projects": {
-                "SG Protect": 1,
-                "SG One": 1,
-                "Performance": 2,
-                "Management App": 11
-              }
-            },
-            "lg": {
-              "total": 10,
-              "projects": {
-                "SG Protect": 1,
-                "Administration Portal": 2,
-                "Activation": 6,
-                "AI": 1
-              }
-            }
-          }
-        },
-        "color": {
-          "usage": 4,
-          "values": {
-            "primary": {
-              "total": 4,
-              "projects": {
-                "Management App": 4
-              }
-            }
-          }
-        },
-        "marginRight": {
-          "usage": 2,
-          "values": {
-            "inline-sm": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            }
-          }
-        },
-        "display": {
-          "usage": 2,
-          "values": {
-            "isProcessing ? \"block\" : \"none\"": {
-              "total": 2,
-              "projects": {
-                "Administration Portal": 2
-              }
-            }
-          }
-        }
-      }
-    },
     "Select": {
       "usage": 40,
       "props": {
@@ -8125,13 +5724,13 @@
                 "Management App": 2
               }
             },
-            "onUnitChange": {
+            "handleLanguageChange": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "handleLanguageChange": {
+            "onUnitChange": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -8143,13 +5742,13 @@
                 "Management App": 1
               }
             },
-            "handleTeamSizeSelection": {
+            "handleTierChange": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "handleTierChange": {
+            "handleTeamSizeSelection": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -8280,13 +5879,13 @@
                 "SG One": 1
               }
             },
-            "measurement.unit": {
+            "language": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "language": {
+            "measurement.unit": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -8304,13 +5903,13 @@
                 "Management App": 1
               }
             },
-            "teamSize.toString()": {
+            "tier.endingQuantity?.toString() ?? highestTierQuantity.toString()": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "tier.endingQuantity?.toString() ?? highestTierQuantity.toString()": {
+            "teamSize.toString()": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -8493,12 +6092,6 @@
                 "Performance": 1
               }
             },
-            "t(\"cancelPlanModal.selectPlaceholder\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "t(\"memberMissingAttributesModal.selectPlaceholder\")": {
               "total": 1,
               "projects": {
@@ -8506,6 +6099,12 @@
               }
             },
             "t(\"reconciliation.allTeams\")": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "t(\"cancelPlanModal.selectPlaceholder\")": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -8893,322 +6492,6 @@
         }
       }
     },
-    "TextLinkAsButton": {
-      "usage": 36,
-      "props": {
-        "underline": {
-          "usage": 28,
-          "values": {
-            "none": {
-              "total": 28,
-              "projects": {
-                "SG Protect": 2,
-                "Performance": 1,
-                "Management App": 17,
-                "Activation": 5,
-                "AI": 3
-              }
-            }
-          }
-        },
-        "variant": {
-          "usage": 25,
-          "values": {
-            "accent": {
-              "total": 21,
-              "projects": {
-                "SG One": 2,
-                "Management App": 12,
-                "Activation": 6,
-                "AI": 1
-              }
-            },
-            "negative": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "filteredVariant": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "primary": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "onClick": {
-          "usage": 24,
-          "values": {
-            "startAutomaticProvisioning": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            },
-            "handleResend": {
-              "total": 3,
-              "projects": {
-                "Activation": 3
-              }
-            },
-            "show": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "() => handlePurchaseAddOn(name!)": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "handleBookMeeting": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "isClamped ? expand : clamp": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "() => handleCancelAddOn(name!)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "handleClickSeeAllFeatures": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "() => trackCalloutAction(\"TryPro\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "() => setOpenCollapse && setOpenCollapse(role)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "handleReuploadButtonClick": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "handleLogout": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "handleSignupAgain": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "handleResendInvite": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "handleResendSignup": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            },
-            "onNewSync": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "handleShowMore": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "downloadFile": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "size": {
-          "usage": 23,
-          "values": {
-            "sm": {
-              "total": 19,
-              "projects": {
-                "SG Protect": 2,
-                "Performance": 1,
-                "Management App": 10,
-                "Activation": 4,
-                "AI": 2
-              }
-            },
-            "inherit": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "md": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "{ base: \"sm\", sm: \"md\" }": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "disabled": {
-          "usage": 4,
-          "values": {
-            "true": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "isPending": {
-              "total": 2,
-              "projects": {
-                "Activation": 2
-              }
-            }
-          }
-        },
-        "type": {
-          "usage": 4,
-          "values": {
-            "button": {
-              "total": 4,
-              "projects": {
-                "Activation": 3,
-                "AI": 1
-              }
-            }
-          }
-        },
-        "external": {
-          "usage": 2,
-          "values": {
-            "true": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            }
-          }
-        },
-        "marginTop": {
-          "usage": 2,
-          "values": {
-            "stack-sm": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "stack-lg": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "color": {
-          "usage": 2,
-          "values": {
-            "primary": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "neutral": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "cursor": {
-          "usage": 1,
-          "values": {
-            "default": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "alignSelf": {
-          "usage": 1,
-          "values": {
-            "center": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "width": {
-          "usage": 1,
-          "values": {
-            "{ base: \"100%\", sm: \"auto\" }": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "marginBottom": {
-          "usage": 1,
-          "values": {
-            "160": {
-              "total": 1,
-              "projects": {
-                "Activation": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "MenuTrigger": {
       "usage": 32,
       "props": {
@@ -9414,13 +6697,13 @@
                 "Management App": 1
               }
             },
-            "selectedFrequency === Frequency.Annual": {
+            "checked": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "checked": {
+            "selectedFrequency === Frequency.Annual": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -9714,10 +6997,10 @@
             }
           }
         },
-        "marginTop": {
+        "alignItems": {
           "usage": 1,
           "values": {
-            "1.5rem": {
+            "flex-start": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -9725,10 +7008,10 @@
             }
           }
         },
-        "alignItems": {
+        "marginTop": {
           "usage": 1,
           "values": {
-            "flex-start": {
+            "1.5rem": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -10076,169 +7359,6 @@
         }
       }
     },
-    "IllustratedMessage": {
-      "usage": 29,
-      "props": {
-        "orientation": {
-          "usage": 8,
-          "values": {
-            "{ base: \"vertical\", sm:\"horizontal\" }": {
-              "total": 6,
-              "projects": {
-                "SG One": 6
-              }
-            },
-            "horizontal": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            }
-          }
-        },
-        "alignSelf": {
-          "usage": 4,
-          "values": {
-            "center": {
-              "total": 4,
-              "projects": {
-                "SG One": 4
-              }
-            }
-          }
-        },
-        "paddingTop": {
-          "usage": 3,
-          "values": {
-            "3.5rem": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 1,
-                "Management App": 1
-              }
-            },
-            "2rem": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "marginTop": {
-          "usage": 2,
-          "values": {
-            "400": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            }
-          }
-        },
-        "maxWidth": {
-          "usage": 2,
-          "values": {
-            "864px": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            }
-          }
-        },
-        "paddingX": {
-          "usage": 2,
-          "values": {
-            "{ base: \"inset-md\", xs: \"inset-xl\" }": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "inset-md": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "paddingY": {
-          "usage": 2,
-          "values": {
-            "{ base: \"inset-xl\", xs: \"3.5rem\" }": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "3.5rem": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "paddingBottom": {
-          "usage": 2,
-          "values": {
-            "7rem": {
-              "total": 2,
-              "projects": {
-                "SG Protect": 1,
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "border": {
-          "usage": 1,
-          "values": {
-            "includeBorder ? \"neutral-weak\" : undefined": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "borderRadius": {
-          "usage": 1,
-          "values": {
-            "includeBorder ? \"rounded-md\" : undefined": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "gap": {
-          "usage": 1,
-          "values": {
-            "stack-lg": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "padding": {
-          "usage": 1,
-          "values": {
-            "5rem": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "Radio": {
       "usage": 29,
       "props": {
@@ -10263,13 +7383,13 @@
                 "Management App": 3
               }
             },
-            "false": {
+            "true": {
               "total": 3,
               "projects": {
                 "AI": 3
               }
             },
-            "true": {
+            "false": {
               "total": 3,
               "projects": {
                 "AI": 3
@@ -10491,6 +7611,18 @@
                 "Performance": 1
               }
             },
+            "value": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "hasConsented": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
             "defaultProductAssignation.has(product.identifier)": {
               "total": 1,
               "projects": {
@@ -10528,18 +7660,6 @@
               }
             },
             "x.isEnabled": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "value": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "hasConsented": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -10695,12 +7815,6 @@
                 "Performance": 1
               }
             },
-            "() => onChange(value !== CheckboxState.Checked ? CheckboxState.Checked : CheckboxState.Unchecked)": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "handleChange": {
               "total": 1,
               "projects": {
@@ -10708,6 +7822,12 @@
               }
             },
             "() => setHasConsented(x => !x)": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "() => onChange(value !== CheckboxState.Checked ? CheckboxState.Checked : CheckboxState.Unchecked)": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -10779,13 +7899,13 @@
                 "Management Shell": 1
               }
             },
-            "value === CheckboxState.Indeterminate": {
+            "indeterminate": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "indeterminate": {
+            "value === CheckboxState.Indeterminate": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -10870,6 +7990,17 @@
             }
           }
         },
+        "gap": {
+          "usage": 1,
+          "values": {
+            "inline-sm": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
         "color": {
           "usage": 1,
           "values": {
@@ -10907,17 +8038,6 @@
           "usage": 1,
           "values": {
             "middle": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "gap": {
-          "usage": 1,
-          "values": {
-            "inline-sm": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -11004,13 +8124,13 @@
                 "Management App": 1
               }
             },
-            "t(\"reconciliation.searchPlaceholder\")": {
+            "t(\"preview.searchPlaceholder\")": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "t(\"preview.searchPlaceholder\")": {
+            "t(\"reconciliation.searchPlaceholder\")": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -11058,13 +8178,13 @@
                 "Management App": 1
               }
             },
-            "searchTermValue": {
+            "value": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "value": {
+            "searchTermValue": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -11458,13 +8578,13 @@
                 "Performance": 1
               }
             },
-            "show": {
+            "!isSidebarCollapsed": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "!isSidebarCollapsed": {
+            "show": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -11475,13 +8595,13 @@
         "color": {
           "usage": 4,
           "values": {
-            "neutral-weak": {
+            "primary": {
               "total": 2,
               "projects": {
                 "Performance": 2
               }
             },
-            "primary": {
+            "neutral-weak": {
               "total": 2,
               "projects": {
                 "Performance": 2
@@ -11670,301 +8790,6 @@
               "total": 1,
               "projects": {
                 "Performance": 1
-              }
-            }
-          }
-        }
-      }
-    },
-    "Image": {
-      "usage": 15,
-      "props": {
-        "src": {
-          "usage": 15,
-          "values": {
-            "image": {
-              "total": 3,
-              "projects": {
-                "SG One": 2,
-                "Administration Portal": 1
-              }
-            },
-            "illustrationUrl": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            },
-            "faviconUrl": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "logoUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "integration.squareImage": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "squareImage": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "imgUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "https://cdn.platform.workleap.com/login/workleap-logo.svg": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            },
-            "image.url": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            },
-            "getCdnAssetUrl(asset)": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "imageSrc": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "alt": {
-          "usage": 14,
-          "values": {
-            "demo-image": {
-              "total": 2,
-              "projects": {
-                "SG One": 2
-              }
-            },
-            "cardKey": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "fileName": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "integration.name ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "integrationName": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "name": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "Org Chart": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "Workleap logo": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            },
-            "image.alt": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            },
-            "`${name} sso logo`": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            },
-            "tShared(\"websiteIcon\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "t(\"websiteRow.websiteIcon\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "imageAlt": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "width": {
-          "usage": 4,
-          "values": {
-            "width": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "100%": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "2rem": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            }
-          }
-        },
-        "height": {
-          "usage": 3,
-          "values": {
-            "height": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "2rem": {
-              "total": 1,
-              "projects": {
-                "Administration Portal": 1
-              }
-            }
-          }
-        },
-        "maxWidth": {
-          "usage": 3,
-          "values": {
-            "4.5rem": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "`${scalingRatio * 100}%`": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "{ base: \"100%\", xs: \"12.5rem\", md: \"100%\" }": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "onError": {
-          "usage": 2,
-          "values": {
-            "() => setIsError(true)": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "objectFit": {
-          "usage": 2,
-          "values": {
-            "contain": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "cover": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "aspectRatio": {
-          "usage": 1,
-          "values": {
-            "8 / 3": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "onLoad": {
-          "usage": 1,
-          "values": {
-            "handleLoad": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "border": {
-          "usage": 1,
-          "values": {
-            "orchid-bloom-75": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "borderRadius": {
-          "usage": 1,
-          "values": {
-            "rounded-md": {
-              "total": 1,
-              "projects": {
-                "AI": 1
               }
             }
           }
@@ -12383,13 +9208,13 @@
                 "AI": 3
               }
             },
-            "(_, selectedKey) => {\n    if (selectedKey != null) {\n        onChange(selectedKey as Role);\n    }\n}": {
+            "handleChangesAccessType": {
               "total": 1,
               "projects": {
                 "Management App": 1
               }
             },
-            "handleChangesAccessType": {
+            "(_, selectedKey) => {\n    if (selectedKey != null) {\n        onChange(selectedKey as Role);\n    }\n}": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -12467,6 +9292,17 @@
             }
           }
         },
+        "disabled": {
+          "usage": 3,
+          "values": {
+            "disabled": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            }
+          }
+        },
         "orientation": {
           "usage": 3,
           "values": {
@@ -12475,17 +9311,6 @@
               "projects": {
                 "SG One": 1,
                 "Management App": 2
-              }
-            }
-          }
-        },
-        "disabled": {
-          "usage": 3,
-          "values": {
-            "disabled": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
               }
             }
           }
@@ -12520,494 +9345,6 @@
         }
       }
     },
-    "DeletedAvatar": {
-      "usage": 13,
-      "props": {
-        "size": {
-          "usage": 9,
-          "values": {
-            "md": {
-              "total": 3,
-              "projects": {
-                "Performance": 3
-              }
-            },
-            "sm": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "avatarSize": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            },
-            "xs": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            }
-          }
-        },
-        "marginLeft": {
-          "usage": 2,
-          "values": {
-            "marginLeft": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            }
-          }
-        }
-      }
-    },
-    "Link": {
-      "usage": 13,
-      "props": {
-        "href": {
-          "usage": 13,
-          "values": {
-            "href": {
-              "total": 3,
-              "projects": {
-                "SG One": 1,
-                "AI": 2
-              }
-            },
-            "link": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            },
-            "to": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "ensureProtocol(measurement.link)": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "t(\"addSeatsModal.maxSeatsSupportLink\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
-            "Routes.Home()": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "tShared(\"learnMoreLink\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "rootUrl": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "url": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "https://officevibe.workleap.com": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "color": {
-          "usage": 6,
-          "values": {
-            "primary": {
-              "total": 3,
-              "projects": {
-                "Performance": 1,
-                "AI": 2
-              }
-            },
-            "neutral": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "orchid-bloom-600": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "neutral-weak": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "target": {
-          "usage": 6,
-          "values": {
-            "_blank": {
-              "total": 6,
-              "projects": {
-                "Performance": 1,
-                "AI": 5
-              }
-            }
-          }
-        },
-        "display": {
-          "usage": 5,
-          "values": {
-            "flex": {
-              "total": 2,
-              "projects": {
-                "SG One": 1,
-                "AI": 1
-              }
-            },
-            "inline-flex": {
-              "total": 2,
-              "projects": {
-                "Performance": 1,
-                "AI": 1
-              }
-            },
-            "block": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "onClick": {
-          "usage": 5,
-          "values": {
-            "onClick": {
-              "total": 3,
-              "projects": {
-                "AI": 3
-              }
-            },
-            "() => onClick(trackingLabel)": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "() => onClick(\"Officevibe\")": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "external": {
-          "usage": 3,
-          "values": {
-            "true": {
-              "total": 3,
-              "projects": {
-                "AI": 3
-              }
-            }
-          }
-        },
-        "fontWeight": {
-          "usage": 3,
-          "values": {
-            "body-xs-medium": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "body-md": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            },
-            "body-md-medium": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "title": {
-          "usage": 2,
-          "values": {
-            "title": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            },
-            "measurement.link": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        },
-        "borderRadius": {
-          "usage": 2,
-          "values": {
-            "0": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "border": {
-          "usage": 2,
-          "values": {
-            "0.125rem solid transparent": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "borderFocus": {
-          "usage": 2,
-          "values": {
-            "0.125rem solid var(--o-ui-focus-ring-color-alias-default)": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "boxShadowFocus": {
-          "usage": 2,
-          "values": {
-            "none": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "backgroundColorHover": {
-          "usage": 2,
-          "values": {
-            "neutral-weakest": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "onAuxClick": {
-          "usage": 2,
-          "values": {
-            "onAuxClick": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "onMouseEnter": {
-          "usage": 2,
-          "values": {
-            "onMouseEnter": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "onMouseLeave": {
-          "usage": 2,
-          "values": {
-            "onMouseLeave": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "fontFamily": {
-          "usage": 2,
-          "values": {
-            "body-md": {
-              "total": 2,
-              "projects": {
-                "AI": 2
-              }
-            }
-          }
-        },
-        "height": {
-          "usage": 1,
-          "values": {
-            "100%": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "alignItems": {
-          "usage": 1,
-          "values": {
-            "center": {
-              "total": 1,
-              "projects": {
-                "SG One": 1
-              }
-            }
-          }
-        },
-        "top": {
-          "usage": 1,
-          "values": {
-            "{ base: \"1rem\", sm: \"2rem\" }": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "left": {
-          "usage": 1,
-          "values": {
-            "{ base: \"1rem\", sm: \"2rem\" }": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "position": {
-          "usage": 1,
-          "values": {
-            "absolute": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "width": {
-          "usage": 1,
-          "values": {
-            "{ base: \"8.75rem\", sm: \"9.375rem\" }": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "colorHover": {
-          "usage": 1,
-          "values": {
-            "primary": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "padding": {
-          "usage": 1,
-          "values": {
-            "inset-md": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "cursor": {
-          "usage": 1,
-          "values": {
-            "pointer": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "textDecoration": {
-          "usage": 1,
-          "values": {
-            "none": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "fontSize": {
-          "usage": 1,
-          "values": {
-            "body-md": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        },
-        "textTransform": {
-          "usage": 1,
-          "values": {
-            "lowercase": {
-              "total": 1,
-              "projects": {
-                "AI": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "PopoverTrigger": {
       "usage": 12,
       "props": {
@@ -13027,6 +9364,12 @@
                 "Performance": 2
               }
             },
+            "!isSafetyReviewCyclePopoverDismissed": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
+              }
+            },
             "true": {
               "total": 1,
               "projects": {
@@ -13040,12 +9383,6 @@
               }
             },
             "!isSafetyReviewPopoverDismissed": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "!isSafetyReviewCyclePopoverDismissed": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -13103,13 +9440,13 @@
                 "Performance": 1
               }
             },
-            "(_, newIsOpen) => setIsOpen(newIsOpen)": {
+            "handleOpenChange": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "handleOpenChange": {
+            "(_, newIsOpen) => setIsOpen(newIsOpen)": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -13536,12 +9873,6 @@
                 "Performance": 1
               }
             },
-            "getName(value, languageAlpha2Code) ?? \"\"": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            },
             "displayName": {
               "total": 1,
               "projects": {
@@ -13549,6 +9880,12 @@
               }
             },
             "value?.displayName ?? null": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            },
+            "getName(value, languageAlpha2Code) ?? \"\"": {
               "total": 1,
               "projects": {
                 "Management App": 1
@@ -13812,17 +10149,6 @@
             }
           }
         },
-        "onBlur": {
-          "usage": 2,
-          "values": {
-            "onBlur": {
-              "total": 2,
-              "projects": {
-                "Management App": 2
-              }
-            }
-          }
-        },
         "validationState": {
           "usage": 2,
           "values": {
@@ -13836,6 +10162,17 @@
               "total": 1,
               "projects": {
                 "Management App": 1
+              }
+            }
+          }
+        },
+        "onBlur": {
+          "usage": 2,
+          "values": {
+            "onBlur": {
+              "total": 2,
+              "projects": {
+                "Management App": 2
               }
             }
           }
@@ -13997,6 +10334,12 @@
         "open": {
           "usage": 5,
           "values": {
+            "isUpdateLaunchedCycleModalOpen": {
+              "total": 1,
+              "projects": {
+                "Performance": 1
+              }
+            },
             "isDeleteQuestionModalOpen": {
               "total": 1,
               "projects": {
@@ -14010,12 +10353,6 @@
               }
             },
             "isDeleteDialogOpen": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            },
-            "isUpdateLaunchedCycleModalOpen": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -14429,44 +10766,6 @@
         }
       }
     },
-    "HelpMessage": {
-      "usage": 9,
-      "props": {
-        "display": {
-          "usage": 3,
-          "values": {
-            "flex": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            }
-          }
-        },
-        "gap": {
-          "usage": 3,
-          "values": {
-            "40": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            }
-          }
-        },
-        "alignItems": {
-          "usage": 3,
-          "values": {
-            "center": {
-              "total": 3,
-              "projects": {
-                "Management App": 3
-              }
-            }
-          }
-        }
-      }
-    },
     "Section": {
       "usage": 9,
       "props": {
@@ -14604,6 +10903,44 @@
               "total": 1,
               "projects": {
                 "Performance": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "HelpMessage": {
+      "usage": 9,
+      "props": {
+        "display": {
+          "usage": 3,
+          "values": {
+            "flex": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            }
+          }
+        },
+        "gap": {
+          "usage": 3,
+          "values": {
+            "40": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
+              }
+            }
+          }
+        },
+        "alignItems": {
+          "usage": 3,
+          "values": {
+            "center": {
+              "total": 3,
+              "projects": {
+                "Management App": 3
               }
             }
           }
@@ -14764,33 +11101,6 @@
         }
       }
     },
-    "AvatarGroup": {
-      "usage": 8,
-      "props": {
-        "flexShrink": {
-          "usage": 2,
-          "values": {
-            "0": {
-              "total": 2,
-              "projects": {
-                "Performance": 2
-              }
-            }
-          }
-        },
-        "marginRight": {
-          "usage": 1,
-          "values": {
-            "inline-sm": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "Box": {
       "usage": 7,
       "props": {
@@ -14851,6 +11161,17 @@
             }
           }
         },
+        "marginBottom": {
+          "usage": 1,
+          "values": {
+            "stack-md": {
+              "total": 1,
+              "projects": {
+                "SG Protect": 1
+              }
+            }
+          }
+        },
         "tabIndex": {
           "usage": 1,
           "values": {
@@ -14866,17 +11187,6 @@
           "usage": 1,
           "values": {
             "auto": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            }
-          }
-        },
-        "marginBottom": {
-          "usage": 1,
-          "values": {
-            "stack-md": {
               "total": 1,
               "projects": {
                 "SG Protect": 1
@@ -15018,13 +11328,13 @@
         "placeholder": {
           "usage": 2,
           "values": {
-            "t(\"inviteUpdateProfilePage.passwordPlaceholder\")": {
+            "t(\"updateProfilePage.passwordPlaceholder\")": {
               "total": 1,
               "projects": {
                 "Activation": 1
               }
             },
-            "t(\"updateProfilePage.passwordPlaceholder\")": {
+            "t(\"inviteUpdateProfilePage.passwordPlaceholder\")": {
               "total": 1,
               "projects": {
                 "Activation": 1
@@ -15077,13 +11387,13 @@
                 "Management App": 1
               }
             },
-            "(_, newValue) => handleOnOpenChange(newValue)": {
+            "onOpenChange": {
               "total": 1,
               "projects": {
                 "Performance": 1
               }
             },
-            "onOpenChange": {
+            "(_, newValue) => handleOnOpenChange(newValue)": {
               "total": 1,
               "projects": {
                 "Performance": 1
@@ -15334,57 +11644,6 @@
         }
       }
     },
-    "IconLink": {
-      "usage": 3,
-      "props": {
-        "href": {
-          "usage": 3,
-          "values": {
-            "workspaceUrl!": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "documentUrl": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            },
-            "x.pdfHostedInvoiceUrl": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "external": {
-          "usage": 3,
-          "values": {
-            "true": {
-              "total": 3,
-              "projects": {
-                "SG Protect": 2,
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "onClick": {
-          "usage": 1,
-          "values": {
-            "() => trackButtonClicked(\"DownloadInvoice\", \"BillingHistory\")": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "Accordion": {
       "usage": 3,
       "props": {
@@ -15492,22 +11751,6 @@
         }
       }
     },
-    "AnonymousAvatar": {
-      "usage": 2,
-      "props": {
-        "size": {
-          "usage": 1,
-          "values": {
-            "lg": {
-              "total": 1,
-              "projects": {
-                "Performance": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "Transition": {
       "usage": 2,
       "props": {
@@ -15552,23 +11795,6 @@
         }
       }
     },
-    "AvatarText": {
-      "usage": 2,
-      "props": {
-        "size": {
-          "usage": 2,
-          "values": {
-            "size": {
-              "total": 2,
-              "projects": {
-                "Performance": 1,
-                "Management App": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "GroupField": {
       "usage": 2,
       "props": {}
@@ -15600,74 +11826,9 @@
         }
       }
     },
-    "Dot": {
-      "usage": 1,
-      "props": {
-        "marginRight": {
-          "usage": 1,
-          "values": {
-            "5px": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            }
-          }
-        },
-        "color": {
-          "usage": 1,
-          "values": {
-            "dotColor": {
-              "total": 1,
-              "projects": {
-                "SG Protect": 1
-              }
-            }
-          }
-        }
-      }
-    },
     "VisuallyHidden": {
       "usage": 1,
       "props": {}
-    },
-    "InputGroup": {
-      "usage": 1,
-      "props": {
-        "fluid": {
-          "usage": 1,
-          "values": {
-            "true": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "disabled": {
-          "usage": 1,
-          "values": {
-            "disabled": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        },
-        "onBlur": {
-          "usage": 1,
-          "values": {
-            "onBlur": {
-              "total": 1,
-              "projects": {
-                "Management App": 1
-              }
-            }
-          }
-        }
-      }
     },
     "Group": {
       "usage": 1,
@@ -15724,6 +11885,44 @@
           "usage": 1,
           "values": {
             "none": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "InputGroup": {
+      "usage": 1,
+      "props": {
+        "fluid": {
+          "usage": 1,
+          "values": {
+            "true": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "disabled": {
+          "usage": 1,
+          "values": {
+            "disabled": {
+              "total": 1,
+              "projects": {
+                "Management App": 1
+              }
+            }
+          }
+        },
+        "onBlur": {
+          "usage": 1,
+          "values": {
+            "onBlur": {
               "total": 1,
               "projects": {
                 "Management App": 1

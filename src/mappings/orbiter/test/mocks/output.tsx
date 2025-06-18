@@ -12,10 +12,8 @@ import {
   CloseButton,
   Content,
   type ContentProps,
-  Counter,
   DeletedAvatar,
   Div,
-  Dot,
   Flex,
   Footer,
   Grid,
@@ -50,9 +48,13 @@ import {
   Link,
   LinkButton,
   Main,
+  Modal,
+  ModalTrigger,
   Nav,
   OL,
   Paragraph,
+  Popover,
+  PopoverTrigger,
   Span,
   Spinner,
   Stack,
@@ -66,13 +68,14 @@ import {
   THead,
   Tile,
   TileGroup,
-  TileLink,
   ToggleButton,
+  Tooltip,
+  TooltipTrigger,
   TR,
   UL,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import { useAccordionContext } from "@workleap/orbiter-ui";
+import { Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -476,7 +479,7 @@ export function App() {
         inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
         size="md"
         isDisabled
-        active/* Migration TODO: `active` is not supported anymore. Find an alternative solution */
+        active/* Migration TODO: `active` is not supported anymore. Find an alternative solution. If the use case is to implement the toggle status, you can use the ToggleButton. More details: https://hopper.workleap.design/components/ToggleButton */
         focus/* Migration TODO: `focus` is not supported anymore. Find an alternative solution */
         hover/* Migration TODO: `hover` is not supported anymore. Find an alternative solution */
       >
@@ -713,25 +716,28 @@ export function App() {
       >
         Link Text
       </Link>
+      {/* TextLink */}
       <Link 
         href="test" 
         onPress={() => {}}
         onMouseDown={() => {}}/* Migration TODO: `onMouseDown` is not supported anymore. Use `onPress` instead. */
-        onKeyDown={() => {}}
-        variant="primary"
+        onKeyPress={() => {}}/* Migration TODO: `onKeyPress` is not supported anymore. Use `onPress` instead. */
+        variant="secondary"
         size="inherit"
         underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */
       >
         Link Text
       </Link>
-      <Link href="test" variant="secondary" size="sm">
+      <Link href="test" variant="primary" size="sm" isQuiet={true}>
         Link Text
       </Link>
       <Link href="test" variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */ size="md">
         Link Text
       </Link>
       <Link href="test" onPress={() => {}}>text</Link>
-      <Link href="test" aria-label="test" variant="secondary">
+      <Link onPress={() => {}}>text</Link>
+      {/* IconLink */}
+      <Link href="test" aria-label="test" variant="primary">
         <SparklesIcon />
       </Link>
       <Link href="test" aria-label="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
@@ -739,7 +745,7 @@ export function App() {
       </Link>
       <Link 
         href="test" 
-        variant="secondary" 
+        variant="primary" 
         underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */ 
         size="sm"
       >
@@ -753,12 +759,42 @@ export function App() {
       >
         Link Text
       </Link>
-      <Link href="test" variant="secondary">
+      <Link href="test" variant="primary">
         <SparklesIcon />
       </Link>
       <Link href="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
         <SparklesIcon />
       </Link>
+      <Modal 
+        isDismissible 
+        overlayProps={{ className: "test" }} 
+        REVIEWME_onOpenChange={(e) => {}}/* Migration TODO: `onClose` is not supported anymore. Use `onOpenChange` instead. */
+      >
+        test
+      </Modal>
+      <ModalTrigger isOpen onOpenChange={()=>{}} dismissable/* Migration TODO: `dismissable` is not supported anymore. User `isDismissible` prop at related `Modal` component instead. */>test</ModalTrigger>
+      <Popover dismissable/* Migration TODO: `dismissable` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */ focus/* Migration TODO: `focus` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */>test</Popover>
+      <PopoverTrigger 
+        isOpen 
+        position="left-start"/* Migration TODO: The `position` property has been moved to the `Popover` component and renamed to `placement`. More details: https://hopper.workleap.design/components/Popover#migration-notes  */ 
+        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Popover` component instead. */
+      >
+        test
+      </PopoverTrigger>
+      <Tooltip onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore. Hopper has ContextualHelp component if it is used for this purpose. More details: https://hopper.workleap.design/components/ContextualHelp */>
+        text
+      </Tooltip>
+      <TooltipTrigger
+        isOpen={true}
+        placement="top-end"
+        isDisabled
+        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead. */
+        onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore. Hopper has ContextualHelp component if it is used for this purpose. More details: https://hopper.workleap.design/components/ContextualHelp */
+      >
+        text
+      </TooltipTrigger>
+      /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
+      <Overlay show>text</Overlay>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
