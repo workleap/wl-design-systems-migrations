@@ -218,6 +218,28 @@ components: {
 }
 ```
 
+**Skipping import migration:**
+
+Use the `skipImport` field when you want to prevent a component from being migrated to the target package while still applying property transformations and todo comments:
+
+```ts
+components: {
+  // Skip import migration but still transform props and add comments
+  Overlay: {
+    skipImport: true,
+    todoComments: "This component is deprecated. Use Modal instead.",
+  }, 
+}
+```
+
+**Behavior with `skipImport: true`:**
+
+- ✅ Component import remains in the original package (`@workleap/orbiter-ui`)
+- ✅ Property transformations are still applied
+- ✅ Todo comments are still added to guide developers
+- ✅ Component usage analysis still works
+- ❌ Component name won't be changed (even if `to` field is specified)
+
 ### Helper Functions
 
 Key utilities from [`src/utils/mapping.ts`](/src/utils/mapping.ts):

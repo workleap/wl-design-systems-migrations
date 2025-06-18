@@ -57,9 +57,14 @@ import {
   LI,
   Link,
   Main,
+  Modal,
+  ModalTrigger,
   Nav,
   OL,
+  Overlay,
   Paragraph,
+  Popover,
+  PopoverTrigger,
   Span,
   Spinner,
   Stack,
@@ -78,6 +83,8 @@ import {
   TileLink,
   ToggleButton,
   ToggleIconButton,
+  Tooltip,
+  TooltipTrigger,
   TR,
   UL,
   useAccordionContext,
@@ -643,76 +650,79 @@ export function App() {
         retryCount={0}        
         src="https://example.com/avatar.jpg"
       />        
-        <AvatarGroup size="xs" wrap reverse align="center">
-          <Avatar name="test" />
-        </AvatarGroup>
-        <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onClick={() => {}}/>
-        <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onClick={() => {}}/>
+      <AvatarGroup size="xs" wrap reverse align="center">
+        <Avatar name="test" />
+      </AvatarGroup>
+      <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onClick={() => {}}/>
+      <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onClick={() => {}}/>
 
-        <Spinner size="sm" />
-        <Spinner size="md" color="toad-500">Loading...</Spinner>
-        <Spinner size="lg" color="decorative-option2">Loading...</Spinner>
+      <Spinner size="sm" />
+      <Spinner size="md" color="toad-500">Loading...</Spinner>
+      <Spinner size="lg" color="decorative-option2">Loading...</Spinner>
 
-        <AvatarText size="md">Avatar Text</AvatarText>
-        <AvatarText size="invalid">Avatar Text</AvatarText>
+      <AvatarText size="md">Avatar Text</AvatarText>
+      <AvatarText size="invalid">Avatar Text</AvatarText>
 
-        <Image 
-          src="src"
-          alt="alt"
-          shape="circular"
-          onError={() => {}}
-          onLoad={() => {}}
-          objectFit="cover"
-        />
+      <Image 
+        src="src"
+        alt="alt"
+        shape="circular"
+        onError={() => {}}
+        onLoad={() => {}}
+        objectFit="cover"
+      />
 
-        <SvgImage src={SparklesIcon} aria-label="test" stroke="invalid" fill="invalid" />
-        <SvgImage src="blockquote" aria-label="test" stroke="invalid" fill="invalid" />
+      <SvgImage src={SparklesIcon} aria-label="test" stroke="invalid" fill="invalid" />
+      <SvgImage src="blockquote" aria-label="test" stroke="invalid" fill="invalid" />
 
-        <Illustration orientation="vertical" shape="rounded">test</Illustration>
-        <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
+      <Illustration orientation="vertical" shape="rounded">test</Illustration>
+      <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
 
-        <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
-        <IllustratedMessage orientation="vertical" width="120px">test</IllustratedMessage>
-        <IllustratedMessage>test</IllustratedMessage>
+      <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
+      <IllustratedMessage orientation="vertical" width="120px">test</IllustratedMessage>
+      <IllustratedMessage>test</IllustratedMessage>
 
-        <Dot />
+      <Dot />
 
-        <Link 
-          href="test" 
-          target="_blank" 
-          rel="test" 
-          shape="box" 
-          autoFocus 
-          disabled 
-          external 
-          onClick={() => {}}
-          onAuxClick={() => {}}
-          onMouseEnter={() => {}}
-          onMouseLeave={() => {}}
-          colorHover="quetzal-25"          
-        >
-          Link Text
-        </Link>
+      <Link 
+        href="test" 
+        target="_blank" 
+        rel="test" 
+        shape="box" 
+        autoFocus 
+        disabled 
+        external 
+        onClick={() => {}}
+        onAuxClick={() => {}}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+        colorHover="quetzal-25"          
+      >
+        Link Text
+      </Link>
+        
+      {/* TextLink */}
+      <TextLink 
+        href="test" 
+        onClick={() => {}}
+        onMouseDown={() => {}}
+        onKeyPress={() => {}}
+        variant="primary"
+        size="inherit"
+        underline="dotted"
+      >
+        Link Text
+      </TextLink>
+      <TextLink href="test" variant="accent" size="sm" underline="none">
+        Link Text
+      </TextLink>
+      <TextLink href="test" variant="negative" size="md">
+        Link Text
+      </TextLink>
+      <TextLink href="test" onMouseDown={() => {}}>text</TextLink>
+      <TextLink onKeyPress={() => {}}>text</TextLink>
 
-        <TextLink 
-          href="test" 
-          onClick={() => {}}
-          onMouseDown={() => {}}
-          onKeyPress={() => {}}
-          variant="primary"
-          size="inherit"
-          underline="dotted"
-        >
-          Link Text
-        </TextLink>
-        <TextLink href="test" variant="accent" size="sm">
-          Link Text
-        </TextLink>
-        <TextLink href="test" variant="negative" size="md">
-          Link Text
-        </TextLink>
-        <TextLink href="test" onMouseDown={() => {}}>text</TextLink>
-
+      {/* IconLink */}
       <IconLink href="test" aria-label="test" variant="accent">
         <SparklesIcon />
       </IconLink>
@@ -743,6 +753,39 @@ export function App() {
       <IconLinkAsButton href="test" external onClick={() => {}} variant="negative">
         <SparklesIcon />
       </IconLinkAsButton>
+
+      <Modal 
+        dismissable 
+        wrapperProps={{ className: "test" }} 
+        onClose={(e) => {}}
+      >
+        test
+      </Modal>
+      <ModalTrigger open onOpenChange={()=>{}} dismissable>test</ModalTrigger>
+
+      <Popover dismissable focus>test</Popover>
+      <PopoverTrigger 
+        open 
+        position="left-start" 
+        zIndex={1000}
+      >
+        test
+      </PopoverTrigger>
+
+      <Tooltip onMouseLeave={() => {}}>
+        text
+      </Tooltip>
+      <TooltipTrigger
+        open={true}
+        position="top-end"
+        disabled
+        zIndex={1000}
+        onMouseLeave={() => {}}
+      >
+        text
+      </TooltipTrigger>
+
+      <Overlay show>text</Overlay>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
 
