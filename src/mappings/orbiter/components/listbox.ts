@@ -1,0 +1,39 @@
+import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
+import type { ComponentMapMetaData } from "../../../utils/types.ts";
+
+export const listboxMapping = {
+  Listbox: {
+    to: "ListBox",
+    props: {
+      mappings: {
+        onSelectionChange: "onSelectionChange",
+        zIndex: "zIndex",
+        fluid: "isFluid",
+        nodes: () => ({
+          todoComments: "`nodes` is removed. Use dynamic list instead. An example: https://hopper.workleap.design/components/Listbox#usage-dynamic-lists" 
+        }),
+
+        validationState: (originalValue, runtime) => {
+          const { j } = runtime;
+          const value = tryGettingLiteralValue(originalValue, runtime);
+          if (value === "invalid") {
+            return {
+              to: "isInvalid",
+              value: j.jsxExpressionContainer(j.booleanLiteral(true))
+            };
+          } else if (value === "valid") {
+            return {            
+              to: "isInvalid",
+              value: j.jsxExpressionContainer(j.booleanLiteral(false))
+            };
+          } else {
+            return {             
+              todoComments: "The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes"
+            };
+          }
+        }
+      }
+    }
+  },
+  ListboxProps: "ListboxProps"
+} satisfies Record<string, ComponentMapMetaData>;

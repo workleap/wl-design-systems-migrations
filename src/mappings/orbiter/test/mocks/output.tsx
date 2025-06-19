@@ -47,6 +47,7 @@ import {
   LI,
   Link,
   LinkButton,
+  ListBox,
   Main,
   Modal,
   ModalTrigger,
@@ -799,6 +800,20 @@ export function App() {
       <Alert variant="confirmation" primaryButtonLabel="Confirm">
         This is an important alert message.
       </Alert>
+      {/* Listbox */}
+      <ListBox
+        isInvalid={true}
+        isFluid
+        zIndex={1000}
+        nodes={[]}/* Migration TODO: `nodes` is removed. Use dynamic list instead. An example: https://hopper.workleap.design/components/Listbox#usage-dynamic-lists */
+        selectedKeys={["1", "2"]}
+        selectionMode="multiple"
+        onSelectionChange={() => {}}
+      >
+        text
+      </ListBox>
+      <ListBox isInvalid={false}>text</ListBox>
+      <ListBox validationState={variable as any}/* Migration TODO: The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes */>text</ListBox>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
