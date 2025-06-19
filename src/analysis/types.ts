@@ -11,9 +11,11 @@ export interface PropertyUsage {
 
 export interface Values {
   [value: string]: {
-    total: number;
-    projects?: {
-      [project: string]: number;
+    usage: {
+      total: number;
+      projects?: {
+        [project: string]: number;
+      };
     };
     files?: string[];
   };
@@ -51,7 +53,13 @@ export interface ComponentUsageData {
     {
       usage: number;
       values: {
-        [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
+        [value: string]: { 
+          usage: {
+            total: number; 
+            projects?: { [project: string]: number };
+          };  
+          files?: string[]; 
+        };
       };
     }
   >;

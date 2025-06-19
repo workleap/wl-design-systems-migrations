@@ -56,7 +56,7 @@ export function customStringify(value: any, indent = 2) {
 export function getSortedKeys(key: string, value: object): string[] {
   if (key == "values") {
     return Object.entries(value as Record<string, any>)
-      .sort((a, b) => b[1].total - a[1].total)
+      .sort((a, b) => b[1].usage.total - a[1].usage.total)
       .map(([k]) => k);
   } else if (key == "props") {
     return Object.entries(value as Record<string, any>)

@@ -39,11 +39,11 @@ export function convertToAnalysisResults(
 
       // Sort values by total count (descending)
       const sortedValues = Object.entries(propData.values).sort(
-        ([, a], [, b]) => b.total - a.total
+        ([, a], [, b]) => b.usage.total - a.usage.total
       );
 
       const sortedValuesObj: {
-        [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
+        [value: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] };
       } = {};
       sortedValues.forEach(([value, counts]) => {
         sortedValuesObj[value] = counts;
