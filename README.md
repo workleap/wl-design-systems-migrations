@@ -181,7 +181,13 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
   },  
   "components": {  
     "Text": {
-      "usage": 15,
+      "usage": {
+        "total": 15,
+        "projects": {
+          "frontend-team": 10,
+          "mobile-app": 5
+        }
+      },
       "props": {
         "size": {
           "usage": 75,
@@ -213,7 +219,13 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
       }
     },
     "Div": {
-      "usage": 5,
+      "usage": {
+        "total": 5,
+        "projects": {
+          "frontend-team": 3,
+          "mobile-app": 2
+        }
+      },
       ...
     }
   }

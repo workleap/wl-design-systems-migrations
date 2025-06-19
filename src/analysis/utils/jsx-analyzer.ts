@@ -39,7 +39,10 @@ export function performJSXAnalysis(
         // Initialize component data if not exists
         if (!componentUsageData[originalComponentName]) {
           componentUsageData[originalComponentName] = {
-            count: 0,
+            count: {
+              total: 0,
+              ...project && { projects: {} }
+            },
             props: {}
           };
         }
@@ -47,7 +50,13 @@ export function performJSXAnalysis(
         const componentData = componentUsageData[originalComponentName];
 
         // Increment component usage count
-        componentData.count++;
+        componentData.count.total++;
+        if (project) {
+          if (!componentData.count.projects) {
+            componentData.count.projects = {};
+          }
+          componentData.count.projects[project] = (componentData.count.projects[project] || 0) + 1;
+        }
 
         // Process props
         const attributes = path.value.openingElement.attributes || [];

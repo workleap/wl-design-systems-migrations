@@ -63,7 +63,7 @@ export function convertToAnalysisResults(
 
   // Sort components by usage count (descending)
   const sortedComponents = Object.entries(components).sort(
-    ([, a], [, b]) => b.usage - a.usage
+    ([, a], [, b]) => b.usage.total - a.usage.total
   );
 
   const sortedComponentsObj: Record<string, ComponentAnalysisData> = {};
@@ -73,7 +73,7 @@ export function convertToAnalysisResults(
 
   // Calculate totals
   const totalComponentUsage = Object.values(components).reduce(
-    (sum, comp) => sum + comp.usage,
+    (sum, comp) => sum + comp.usage.total,
     0
   );
   const totalPropUsage = Object.values(components).reduce(

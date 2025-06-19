@@ -14,8 +14,8 @@ describe("analyze - basic functionality", () => {
     expect(analysisResults.components.Text).toBeDefined();
 
     // Check component usage counts
-    expect(analysisResults.components.Div!.usage).toBe(1);
-    expect(analysisResults.components.Text!.usage).toBe(1);
+    expect(analysisResults.components.Div!.usage.total).toBe(1);
+    expect(analysisResults.components.Text!.usage.total).toBe(1);
 
     // Check that values are objects, not Sets
     expect(typeof analysisResults.components.Div!.props.border?.values).toBe("object");
@@ -33,7 +33,7 @@ describe("analyze - basic functionality", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(1);
     expect(analysisResults.components.Div!.props.width?.usage).toBe(1);
   });
@@ -43,7 +43,7 @@ describe("analyze - basic functionality", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(2);
     expect(analysisResults.components.Div!.props.border?.values["1px"]?.usage.total).toBe(1);
     expect(analysisResults.components.Div!.props.border?.values["2px"]?.usage.total).toBe(1);
@@ -54,7 +54,7 @@ describe("analyze - basic functionality", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(2);
     expect(analysisResults.components.Div!.props.border?.values["1px"]?.usage.total).toBe(2);
   });
@@ -104,7 +104,7 @@ describe("analyze - merging results", () => {
 
     const merged = mergeAnalysisResults(result1.analysisResults, result2.analysisResults);
 
-    expect(merged.components.Div!.usage).toBe(2);
+    expect(merged.components.Div!.usage.total).toBe(2);
     expect(merged.components.Div!.props.border?.usage).toBe(2);
     expect(merged.components.Div!.props.border?.values["1px"]?.usage.total).toBe(1);
     expect(merged.components.Div!.props.border?.values["2px"]?.usage.total).toBe(1);
@@ -121,7 +121,7 @@ describe("analyze - merging results", () => {
 
     const merged = mergeAnalysisResults(result1.analysisResults, result2.analysisResults);
 
-    expect(merged.components.Div!.usage).toBe(2);
+    expect(merged.components.Div!.usage.total).toBe(2);
     expect(merged.components.Div!.props.border?.usage).toBe(2);
     expect(merged.components.Div!.props.border?.values["1px"]?.usage.total).toBe(2);
   });
@@ -147,7 +147,7 @@ describe("analyze - merging results", () => {
 
     // Check expected component is present
     expect(analysisResults.components.Div).toBeDefined();
-    expect(analysisResults.components.Div!.usage).toBe(1);
+    expect(analysisResults.components.Div!.usage.total).toBe(1);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(1);
     expect(analysisResults.components.Div!.props.width?.usage).toBe(1);
   });
@@ -159,7 +159,7 @@ describe("analyze - merging results", () => {
 
     // Should include the unknown component and its props
     expect(analysisResults.components.UnknownComponent).toBeDefined();
-    expect(analysisResults.components.UnknownComponent!.usage).toBe(1);
+    expect(analysisResults.components.UnknownComponent!.usage.total).toBe(1);
     expect(Object.keys(analysisResults.components.UnknownComponent!.props)).toHaveLength(2);
     expect(analysisResults.components.UnknownComponent!.props.prop1?.usage).toBe(1);
     expect(analysisResults.components.UnknownComponent!.props.prop2?.usage).toBe(1);
@@ -189,7 +189,7 @@ describe("analyze - merging results", () => {
 
     // Check Div component
     expect(analysisResults.components.Div).toBeDefined();
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
 
     // Check Div props
     const divProps = Object.keys(analysisResults.components.Div!.props);
@@ -204,7 +204,7 @@ describe("analyze - merging results", () => {
 
     // Check Text component
     expect(analysisResults.components.Text).toBeDefined();
-    expect(analysisResults.components.Text!.usage).toBe(2);
+    expect(analysisResults.components.Text!.usage.total).toBe(2);
 
     // Check Text props
     const textProps = Object.keys(analysisResults.components.Text!.props);
@@ -229,7 +229,7 @@ describe("analyze - merging results", () => {
     });
 
     expect(analysisResults.components.CustomComponent).toBeDefined();
-    expect(analysisResults.components.CustomComponent!.usage).toBe(1);
+    expect(analysisResults.components.CustomComponent!.usage.total).toBe(1);
     expect(Object.keys(analysisResults.components.CustomComponent!.props)).toHaveLength(2);
     expect(analysisResults.components.CustomComponent!.props.prop1?.usage).toBe(1);
     expect(analysisResults.components.CustomComponent!.props.prop2?.usage).toBe(1);
@@ -257,14 +257,14 @@ describe("analyze - merging results", () => {
 
     // Check Button component
     expect(analysisResults.components.Button).toBeDefined();
-    expect(analysisResults.components.Button!.usage).toBe(1);
+    expect(analysisResults.components.Button!.usage.total).toBe(1);
     expect(Object.keys(analysisResults.components.Button!.props)).toHaveLength(2);
     expect(analysisResults.components.Button!.props.onClick?.usage).toBe(1);
     expect(analysisResults.components.Button!.props.size?.usage).toBe(1);
 
     // Check Text component
     expect(analysisResults.components.Text).toBeDefined();
-    expect(analysisResults.components.Text!.usage).toBe(1);
+    expect(analysisResults.components.Text!.usage.total).toBe(1);
 
     // Verify hooks and utility functions are not included
     expect(analysisResults.components.useHook).toBeUndefined();
@@ -289,7 +289,7 @@ describe("analyze - merging results", () => {
 
     // Check button component exists
     expect(analysisResults.components.Button).toBeDefined();
-    expect(analysisResults.components.Button!.usage).toBe(3);
+    expect(analysisResults.components.Button!.usage.total).toBe(3);
 
     // Check variant values
     expect(analysisResults.components.Button!.props.variant?.usage).toBe(3);
@@ -510,7 +510,7 @@ describe("analyze - merging results", () => {
       // Check Button component accumulation
       const buttonComponent = finalResults.components.Button;
       expect(buttonComponent).toBeDefined();
-      expect(buttonComponent!.usage).toBe(4); // 1 from A + 2 from B + 1 from C
+      expect(buttonComponent!.usage.total).toBe(4); // 1 from A + 2 from B + 1 from C
 
       // Check variant prop accumulation
       const variantValues = buttonComponent!.props.variant?.values;
@@ -556,10 +556,10 @@ describe("analyze - merging results", () => {
 
       // Check that other components are also tracked correctly
       expect(finalResults.components.Div).toBeDefined();
-      expect(finalResults.components.Div!.usage).toBe(1); // Only from projectA
+      expect(finalResults.components.Div!.usage.total).toBe(1); // Only from projectA
 
       expect(finalResults.components.Text).toBeDefined();
-      expect(finalResults.components.Text!.usage).toBe(1); // Only from projectB
+      expect(finalResults.components.Text!.usage.total).toBe(1); // Only from projectB
 
       // Check overall statistics
       expect(finalResults.overall.usage.components).toBe(6); // Total component instances
@@ -599,7 +599,7 @@ describe("analyze - merging results", () => {
 
     // Check that the Div component exists with correct usage count
     expect(analysisResults.components.Div).toBeDefined();
-    expect(analysisResults.components.Div!.usage).toBe(3);
+    expect(analysisResults.components.Div!.usage.total).toBe(3);
 
     // Check that properties have correct counts
     expect(analysisResults.components.Div!.props.width?.usage).toBe(3);

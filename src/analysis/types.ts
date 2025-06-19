@@ -26,7 +26,12 @@ export interface Values {
  * Components are sorted by usage count (most used first)
  */
 export interface ComponentAnalysisData {
-  usage: number;
+  usage: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
   props: PropertyUsage;
 }
 
@@ -47,7 +52,12 @@ export interface AnalysisResults {
  * Internal data structure used during analysis before converting to final format
  */
 export interface ComponentUsageData {
-  count: number;
+  count: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
   props: Record<
     string,
     {

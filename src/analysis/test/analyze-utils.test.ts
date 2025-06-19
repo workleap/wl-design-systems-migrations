@@ -76,7 +76,7 @@ describe("analyze - utility functions", () => {
       const nextComponent = merged.components[componentKeys[i + 1]!];
       expect(currentComponent).toBeDefined();
       expect(nextComponent).toBeDefined();
-      expect(currentComponent!.usage).toBeGreaterThanOrEqual(nextComponent!.usage);
+      expect(currentComponent!.usage.total).toBeGreaterThanOrEqual(nextComponent!.usage.total);
     }
 
     // Test that props within components are sorted by usage (descending)

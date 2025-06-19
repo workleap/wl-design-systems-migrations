@@ -63,6 +63,24 @@ function mergeProjectValues(
 }
 
 /**
+ * Helper function to merge component usage counts
+ */
+function mergeComponentUsage(
+  target: { total: number; projects?: { [project: string]: number } },
+  source: { total: number; projects?: { [project: string]: number } }
+): void {
+  target.total += source.total;
+  if (source.projects) {
+    if (!target.projects) {
+      target.projects = {};
+    }
+    Object.entries(source.projects).forEach(([project, count]) => {
+      target.projects![project] = (target.projects![project] || 0) + count;
+    });
+  }
+}
+
+/**
  * Applies sorting to analysis results based on usage counts
  */
 function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>): Record<string, ComponentAnalysisData> {
@@ -70,7 +88,7 @@ function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>
 
   // Sort components by usage count (descending)
   const sortedComponents = Object.entries(combinedData).sort(
-    ([, a], [, b]) => b.usage - a.usage
+    ([, a], [, b]) => b.usage.total - a.usage.total
   );
 
   sortedComponents.forEach(([componentName, componentData]) => {
@@ -114,7 +132,7 @@ function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>
  */
 function calculateTotals(components: Record<string, ComponentAnalysisData>): { components: number; props: number } {
   const totalComponentUsage = Object.values(components).reduce(
-    (sum, comp) => sum + comp.usage,
+    (sum, comp) => sum + comp.usage.total,
     0
   );
   const totalPropUsage = Object.values(components).reduce(
@@ -171,8 +189,8 @@ export function mergeAnalysisResults(
     ([componentName, componentData]) => {
       const combinedComponentData = combinedData[componentName];
       if (combinedComponentData) {
-        // Add component usage count
-        combinedComponentData.usage += componentData.usage;
+        // Merge component usage counts
+        mergeComponentUsage(combinedComponentData.usage, componentData.usage);
 
         // Merge property usage counts and values
         Object.entries(componentData.props).forEach(([propName, propData]) => {
