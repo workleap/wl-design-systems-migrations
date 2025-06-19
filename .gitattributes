@@ -1,0 +1,2 @@
+# Set the CODEOWNERS file to not be treated as markdown
+.github/CODEOWNERS linguist-language=Text
