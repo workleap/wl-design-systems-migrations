@@ -11,9 +11,11 @@ export interface PropertyUsage {
 
 export interface Values {
   [value: string]: {
-    total: number;
-    projects?: {
-      [project: string]: number;
+    usage: {
+      total: number;
+      projects?: {
+        [project: string]: number;
+      };
     };
     files?: string[];
   };
@@ -24,7 +26,12 @@ export interface Values {
  * Components are sorted by usage count (most used first)
  */
 export interface ComponentAnalysisData {
-  usage: number;
+  usage: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
   props: PropertyUsage;
 }
 
@@ -45,13 +52,24 @@ export interface AnalysisResults {
  * Internal data structure used during analysis before converting to final format
  */
 export interface ComponentUsageData {
-  count: number;
+  count: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
   props: Record<
     string,
     {
       usage: number;
       values: {
-        [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
+        [value: string]: { 
+          usage: {
+            total: number; 
+            projects?: { [project: string]: number };
+          };  
+          files?: string[]; 
+        };
       };
     }
   >;

@@ -142,20 +142,20 @@ export function processJSXAttributes(
       // Track value with project-specific counts
       const valuesObj = propData.values;
       if (!valuesObj[propValue]) {
-        valuesObj[propValue] = { total: 0 };
+        valuesObj[propValue] = { usage: { total: 0 } };
       }
 
       const valueData = valuesObj[propValue];
       if (valueData) {
         // Increment total count
-        valueData.total++;
+        valueData.usage.total++;
 
         // If project is specified, also track project-specific count
         if (project) {
-          if (!valueData.projects) {
-            valueData.projects = {};
+          if (!valueData.usage.projects) {
+            valueData.usage.projects = {};
           }
-          valueData.projects[project] = (valueData.projects[project] || 0) + 1;
+          valueData.usage.projects[project] = (valueData.usage.projects[project] || 0) + 1;
         }
 
         // If deep analysis is enabled, track repository URLs with line numbers (fallback to file paths)

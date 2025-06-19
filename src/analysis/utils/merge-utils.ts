@@ -4,14 +4,16 @@ import type { AnalysisResults, ComponentAnalysisData, PropertyUsage } from "../t
  * Helper function to deep clone property values (just the count objects)
  */
 function clonePropertyValues(values: {
-  [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
-}): { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } } {
-  const cloned: { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } } = {};
+  [value: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] };
+}): { [value: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] } } {
+  const cloned: { [value: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] } } = {};
   
   Object.entries(values).forEach(([value, counts]) => {
     cloned[value] = { 
-      total: counts.total,
-      ...counts.projects && { projects: { ...counts.projects } },
+      usage: {
+        total: counts.usage.total,
+        ...counts.usage.projects && { projects: { ...counts.usage.projects } }
+      },
       ...counts.files && { files: [...counts.files] }
     };
   });
@@ -23,19 +25,19 @@ function clonePropertyValues(values: {
  * Helper function to merge project values
  */
 function mergeProjectValues(
-  target: { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } },
-  source: { [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] } }
+  target: { [value: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] } },
+  source: { [value: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] } }
 ): void {
   Object.entries(source).forEach(([value, counts]) => {
     if (target[value]) {
       // Merge counts
-      target[value].total += counts.total;
-      if (counts.projects) {
-        if (!target[value].projects) {
-          target[value].projects = {};
+      target[value].usage.total += counts.usage.total;
+      if (counts.usage.projects) {
+        if (!target[value].usage.projects) {
+          target[value].usage.projects = {};
         }
-        const targetProjects = target[value].projects!;
-        Object.entries(counts.projects).forEach(([project, count]) => {
+        const targetProjects = target[value].usage.projects!;
+        Object.entries(counts.usage.projects).forEach(([project, count]) => {
           targetProjects[project] = (targetProjects[project] || 0) + count;
         });
       }
@@ -50,12 +52,32 @@ function mergeProjectValues(
     } else {
       // Copy the value with all its project counts and files
       target[value] = { 
-        total: counts.total,
-        ...counts.projects && { projects: { ...counts.projects } },
+        usage: {
+          total: counts.usage.total,
+          ...counts.usage.projects && { projects: { ...counts.usage.projects } }
+        },
         ...counts.files && { files: [...counts.files] }
       };
     }
   });
+}
+
+/**
+ * Helper function to merge component usage counts
+ */
+function mergeComponentUsage(
+  target: { total: number; projects?: { [project: string]: number } },
+  source: { total: number; projects?: { [project: string]: number } }
+): void {
+  target.total += source.total;
+  if (source.projects) {
+    if (!target.projects) {
+      target.projects = {};
+    }
+    Object.entries(source.projects).forEach(([project, count]) => {
+      target.projects![project] = (target.projects![project] || 0) + count;
+    });
+  }
 }
 
 /**
@@ -66,7 +88,7 @@ function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>
 
   // Sort components by usage count (descending)
   const sortedComponents = Object.entries(combinedData).sort(
-    ([, a], [, b]) => b.usage - a.usage
+    ([, a], [, b]) => b.usage.total - a.usage.total
   );
 
   sortedComponents.forEach(([componentName, componentData]) => {
@@ -80,11 +102,11 @@ function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>
     sortedPropsEntries.forEach(([propName, propData]) => {
       // Sort values by total count (descending)
       const sortedValues = Object.entries(propData.values).sort(
-        ([, a], [, b]) => b.total - a.total
+        ([, a], [, b]) => b.usage.total - a.usage.total
       );
 
       const sortedValuesObj: {
-        [value: string]: { total: number; projects?: { [project: string]: number }; files?: string[] };
+        [value: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] };
       } = {};
       sortedValues.forEach(([value, counts]) => {
         sortedValuesObj[value] = counts;
@@ -110,7 +132,7 @@ function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>
  */
 function calculateTotals(components: Record<string, ComponentAnalysisData>): { components: number; props: number } {
   const totalComponentUsage = Object.values(components).reduce(
-    (sum, comp) => sum + comp.usage,
+    (sum, comp) => sum + comp.usage.total,
     0
   );
   const totalPropUsage = Object.values(components).reduce(
@@ -167,8 +189,8 @@ export function mergeAnalysisResults(
     ([componentName, componentData]) => {
       const combinedComponentData = combinedData[componentName];
       if (combinedComponentData) {
-        // Add component usage count
-        combinedComponentData.usage += componentData.usage;
+        // Merge component usage counts
+        mergeComponentUsage(combinedComponentData.usage, componentData.usage);
 
         // Merge property usage counts and values
         Object.entries(componentData.props).forEach(([propName, propData]) => {

@@ -181,16 +181,24 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
   },  
   "components": {  
     "Text": {
-      "usage": 15,
+      "usage": {
+        "total": 15,
+        "projects": {
+          "frontend-team": 10,
+          "mobile-app": 5
+        }
+      },
       "props": {
         "size": {
           "usage": 75,
           "values": {
             "lg": { 
-              "total": 50, 
-              "projects": { 
-                "frontend-team": 30, 
-                "mobile-app": 20 
+              "usage": {
+                "total": 50, 
+                "projects": { 
+                  "frontend-team": 30, 
+                  "mobile-app": 20 
+                }
               },
               "files": [ //if --deep true is passed
                 "https://github.com/myorg/myrepo/blob/main/src/components/Header.tsx#L15",
@@ -198,18 +206,26 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
                 "/src/pages/Dashboard.tsx"] 
             },
             "md": { 
-              "total": 25, 
-              "projects": { 
-                "frontend-team": 15, 
-                "mobile-app": 10 
-              },
+              "usage": {
+                "total": 25, 
+                "projects": { 
+                  "frontend-team": 15, 
+                  "mobile-app": 10 
+                }
+              }
             }
           }
         }
       }
     },
     "Div": {
-      "usage": 5,
+      "usage": {
+        "total": 5,
+        "projects": {
+          "frontend-team": 3,
+          "mobile-app": 2
+        }
+      },
       ...
     }
   }

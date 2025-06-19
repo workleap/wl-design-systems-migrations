@@ -76,7 +76,7 @@ describe("analyze - utility functions", () => {
       const nextComponent = merged.components[componentKeys[i + 1]!];
       expect(currentComponent).toBeDefined();
       expect(nextComponent).toBeDefined();
-      expect(currentComponent!.usage).toBeGreaterThanOrEqual(nextComponent!.usage);
+      expect(currentComponent!.usage.total).toBeGreaterThanOrEqual(nextComponent!.usage.total);
     }
 
     // Test that props within components are sorted by usage (descending)
@@ -156,7 +156,7 @@ describe("analyze - utility functions", () => {
             for (let i = 0; i < valueKeys.length - 1; i++) {
               const currentValue = prop.values[valueKeys[i]!];
               const nextValue = prop.values[valueKeys[i + 1]!];
-              expect(currentValue.total).toBeGreaterThanOrEqual(nextValue.total);
+              expect(currentValue.usage.total).toBeGreaterThanOrEqual(nextValue.usage.total);
             }
           }
         });
@@ -188,10 +188,10 @@ describe("analyze - utility functions", () => {
     expect(merged.components.Flex).toBeDefined();
     expect(merged.components.Flex!.props.gap).toBeDefined();
     expect(merged.components.Flex!.props.direction).toBeDefined();
-    expect(merged.components.Flex!.props.gap!.values["apple"]?.total).toBe(1);
-    expect(merged.components.Flex!.props.gap!.values["zebra"]?.total).toBe(1);
-    expect(merged.components.Flex!.props.direction!.values["apple"]?.total).toBe(1);
-    expect(merged.components.Flex!.props.direction!.values["zebra"]?.total).toBe(1);
+    expect(merged.components.Flex!.props.gap!.values["apple"]?.usage.total).toBe(1);
+    expect(merged.components.Flex!.props.gap!.values["zebra"]?.usage.total).toBe(1);
+    expect(merged.components.Flex!.props.direction!.values["apple"]?.usage.total).toBe(1);
+    expect(merged.components.Flex!.props.direction!.values["zebra"]?.usage.total).toBe(1);
 
     // Values should be sorted by total count (when equal, order may vary)
     const gapValueKeys = Object.keys(merged.components.Flex!.props.gap!.values);
@@ -203,5 +203,73 @@ describe("analyze - utility functions", () => {
     expect(directionValueKeys).toContain("apple");
     expect(directionValueKeys).toContain("zebra");
     expect(directionValueKeys).toHaveLength(2);
+  });
+
+  test("numeric string values are sorted by usage total, not lexicographically", () => {
+    const INPUT1 = `
+      import { Div } from "@workleap/orbiter-ui";
+      export function App1() {
+        return (
+          <>
+            <Div display="block" />
+            <Div display="block" />
+            <Div display="block" />
+            <Div display="40" />
+          </>
+        );
+      }
+    `;
+
+    const INPUT2 = `
+      import { Div } from "@workleap/orbiter-ui";
+      export function App2() {
+        return (
+          <>
+            <Div display="block" />
+            <Div display="flex" />
+            <Div display="flex" />
+          </>
+        );
+      }
+    `;
+
+    const result1 = analyze(getRuntime(INPUT1), null);
+    const result2 = analyze(getRuntime(INPUT2), null);
+
+    const merged = mergeAnalysisResults(result1.analysisResults, result2.analysisResults);
+
+    // Verify the display prop exists and has the correct values
+    expect(merged.components.Div).toBeDefined();
+    expect(merged.components.Div!.props.display).toBeDefined();
+    
+    const displayValues = merged.components.Div!.props.display!.values;
+    expect(displayValues["block"]?.usage.total).toBe(4); // 3 from INPUT1 + 1 from INPUT2
+    expect(displayValues["flex"]?.usage.total).toBe(2); // 2 from INPUT2
+    expect(displayValues["40"]?.usage.total).toBe(1); // 1 from INPUT1
+
+    // Convert to JSON string using customStringify to test sorting
+    const jsonString = customStringify(merged, 2);
+    
+    // Instead of parsing and checking Object.keys (which reorders), 
+    // check the position of keys in the raw JSON string
+    const blockIndex = jsonString.indexOf("\"block\"");
+    const flexIndex = jsonString.indexOf("\"flex\"");
+    const fortyIndex = jsonString.indexOf("\"40\"");
+    
+    // Values should be sorted by usage total (descending): "block" (4), "flex" (2), "40" (1)
+    // So in the JSON string, "block" should appear before "flex", and "flex" before "40"
+    expect(blockIndex).toBeLessThan(flexIndex);
+    expect(flexIndex).toBeLessThan(fortyIndex);
+    
+    // Also verify that all values are present
+    expect(blockIndex).toBeGreaterThan(-1);
+    expect(flexIndex).toBeGreaterThan(-1);
+    expect(fortyIndex).toBeGreaterThan(-1);
+    
+    // Verify the usage totals are correct by parsing (just for validation, not order checking)
+    const parsed = JSON.parse(jsonString);
+    expect(parsed.components.Div.props.display.values["block"].usage.total).toBe(4);
+    expect(parsed.components.Div.props.display.values["flex"].usage.total).toBe(2);
+    expect(parsed.components.Div.props.display.values["40"].usage.total).toBe(1);
   });
 });

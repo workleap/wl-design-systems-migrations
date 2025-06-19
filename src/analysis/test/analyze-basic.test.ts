@@ -14,8 +14,8 @@ describe("analyze - basic functionality", () => {
     expect(analysisResults.components.Text).toBeDefined();
 
     // Check component usage counts
-    expect(analysisResults.components.Div!.usage).toBe(1);
-    expect(analysisResults.components.Text!.usage).toBe(1);
+    expect(analysisResults.components.Div!.usage.total).toBe(1);
+    expect(analysisResults.components.Text!.usage.total).toBe(1);
 
     // Check that values are objects, not Sets
     expect(typeof analysisResults.components.Div!.props.border?.values).toBe("object");
@@ -23,9 +23,9 @@ describe("analyze - basic functionality", () => {
 
     // Check specific values
     expect(analysisResults.components.Div!.props.border?.values["1px"]).toBeDefined();
-    expect(analysisResults.components.Div!.props.border?.values["1px"]?.total).toBe(1);
-    expect(analysisResults.components.Div!.props.width?.values["120px"]?.total).toBe(1);
-    expect(analysisResults.components.Text!.props.fontSize?.values["14px"]?.total).toBe(1);
+    expect(analysisResults.components.Div!.props.border?.values["1px"]?.usage.total).toBe(1);
+    expect(analysisResults.components.Div!.props.width?.values["120px"]?.usage.total).toBe(1);
+    expect(analysisResults.components.Text!.props.fontSize?.values["14px"]?.usage.total).toBe(1);
   });
 
   test("multiple components same type different props", () => {
@@ -33,7 +33,7 @@ describe("analyze - basic functionality", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(1);
     expect(analysisResults.components.Div!.props.width?.usage).toBe(1);
   });
@@ -43,10 +43,10 @@ describe("analyze - basic functionality", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(2);
-    expect(analysisResults.components.Div!.props.border?.values["1px"]?.total).toBe(1);
-    expect(analysisResults.components.Div!.props.border?.values["2px"]?.total).toBe(1);
+    expect(analysisResults.components.Div!.props.border?.values["1px"]?.usage.total).toBe(1);
+    expect(analysisResults.components.Div!.props.border?.values["2px"]?.usage.total).toBe(1);
   });
 
   test("multiple components same prop same value", () => {
@@ -54,9 +54,9 @@ describe("analyze - basic functionality", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(2);
-    expect(analysisResults.components.Div!.props.border?.values["1px"]?.total).toBe(2);
+    expect(analysisResults.components.Div!.props.border?.values["1px"]?.usage.total).toBe(2);
   });
 
   test("analyze overall usage counts", () => {
@@ -73,8 +73,8 @@ describe("analyze - basic functionality", () => {
 
     const { analysisResults } = analyze(getRuntime(INPUT), null, { project: "test-project" });
 
-    expect(analysisResults.components.Div!.props.border?.values["1px"]?.projects).toBeDefined();
-    expect(analysisResults.components.Div!.props.border?.values["1px"]?.projects!["test-project"]).toBe(1);
+    expect(analysisResults.components.Div!.props.border?.values["1px"]?.usage.projects).toBeDefined();
+    expect(analysisResults.components.Div!.props.border?.values["1px"]?.usage.projects!["test-project"]).toBe(1);
   });
 
   test("handles components not in mapping gracefully", () => {
@@ -104,10 +104,10 @@ describe("analyze - merging results", () => {
 
     const merged = mergeAnalysisResults(result1.analysisResults, result2.analysisResults);
 
-    expect(merged.components.Div!.usage).toBe(2);
+    expect(merged.components.Div!.usage.total).toBe(2);
     expect(merged.components.Div!.props.border?.usage).toBe(2);
-    expect(merged.components.Div!.props.border?.values["1px"]?.total).toBe(1);
-    expect(merged.components.Div!.props.border?.values["2px"]?.total).toBe(1);
+    expect(merged.components.Div!.props.border?.values["1px"]?.usage.total).toBe(1);
+    expect(merged.components.Div!.props.border?.values["2px"]?.usage.total).toBe(1);
     expect(merged.overall.usage.components).toBe(2);
     expect(merged.overall.usage.props).toBe(2);
   });
@@ -121,9 +121,9 @@ describe("analyze - merging results", () => {
 
     const merged = mergeAnalysisResults(result1.analysisResults, result2.analysisResults);
 
-    expect(merged.components.Div!.usage).toBe(2);
+    expect(merged.components.Div!.usage.total).toBe(2);
     expect(merged.components.Div!.props.border?.usage).toBe(2);
-    expect(merged.components.Div!.props.border?.values["1px"]?.total).toBe(2);
+    expect(merged.components.Div!.props.border?.values["1px"]?.usage.total).toBe(2);
   });
 
   test("mergeAnalysisResults with project parameters", () => {
@@ -135,9 +135,9 @@ describe("analyze - merging results", () => {
 
     const merged = mergeAnalysisResults(result1.analysisResults, result2.analysisResults);
 
-    expect(merged.components.Div!.props.border?.values["1px"]?.projects!["project1"]).toBe(1);
-    expect(merged.components.Div!.props.border?.values["1px"]?.projects!["project2"]).toBe(1);
-    expect(merged.components.Div!.props.border?.values["1px"]?.total).toBe(2);
+    expect(merged.components.Div!.props.border?.values["1px"]?.usage.projects!["project1"]).toBe(1);
+    expect(merged.components.Div!.props.border?.values["1px"]?.usage.projects!["project2"]).toBe(1);
+    expect(merged.components.Div!.props.border?.values["1px"]?.usage.total).toBe(2);
   });
 
   test("analyze component with alias", () => {
@@ -147,7 +147,7 @@ describe("analyze - merging results", () => {
 
     // Check expected component is present
     expect(analysisResults.components.Div).toBeDefined();
-    expect(analysisResults.components.Div!.usage).toBe(1);
+    expect(analysisResults.components.Div!.usage.total).toBe(1);
     expect(analysisResults.components.Div!.props.border?.usage).toBe(1);
     expect(analysisResults.components.Div!.props.width?.usage).toBe(1);
   });
@@ -159,7 +159,7 @@ describe("analyze - merging results", () => {
 
     // Should include the unknown component and its props
     expect(analysisResults.components.UnknownComponent).toBeDefined();
-    expect(analysisResults.components.UnknownComponent!.usage).toBe(1);
+    expect(analysisResults.components.UnknownComponent!.usage.total).toBe(1);
     expect(Object.keys(analysisResults.components.UnknownComponent!.props)).toHaveLength(2);
     expect(analysisResults.components.UnknownComponent!.props.prop1?.usage).toBe(1);
     expect(analysisResults.components.UnknownComponent!.props.prop2?.usage).toBe(1);
@@ -189,7 +189,7 @@ describe("analyze - merging results", () => {
 
     // Check Div component
     expect(analysisResults.components.Div).toBeDefined();
-    expect(analysisResults.components.Div!.usage).toBe(2);
+    expect(analysisResults.components.Div!.usage.total).toBe(2);
 
     // Check Div props
     const divProps = Object.keys(analysisResults.components.Div!.props);
@@ -204,7 +204,7 @@ describe("analyze - merging results", () => {
 
     // Check Text component
     expect(analysisResults.components.Text).toBeDefined();
-    expect(analysisResults.components.Text!.usage).toBe(2);
+    expect(analysisResults.components.Text!.usage.total).toBe(2);
 
     // Check Text props
     const textProps = Object.keys(analysisResults.components.Text!.props);
@@ -229,7 +229,7 @@ describe("analyze - merging results", () => {
     });
 
     expect(analysisResults.components.CustomComponent).toBeDefined();
-    expect(analysisResults.components.CustomComponent!.usage).toBe(1);
+    expect(analysisResults.components.CustomComponent!.usage.total).toBe(1);
     expect(Object.keys(analysisResults.components.CustomComponent!.props)).toHaveLength(2);
     expect(analysisResults.components.CustomComponent!.props.prop1?.usage).toBe(1);
     expect(analysisResults.components.CustomComponent!.props.prop2?.usage).toBe(1);
@@ -257,14 +257,14 @@ describe("analyze - merging results", () => {
 
     // Check Button component
     expect(analysisResults.components.Button).toBeDefined();
-    expect(analysisResults.components.Button!.usage).toBe(1);
+    expect(analysisResults.components.Button!.usage.total).toBe(1);
     expect(Object.keys(analysisResults.components.Button!.props)).toHaveLength(2);
     expect(analysisResults.components.Button!.props.onClick?.usage).toBe(1);
     expect(analysisResults.components.Button!.props.size?.usage).toBe(1);
 
     // Check Text component
     expect(analysisResults.components.Text).toBeDefined();
-    expect(analysisResults.components.Text!.usage).toBe(1);
+    expect(analysisResults.components.Text!.usage.total).toBe(1);
 
     // Verify hooks and utility functions are not included
     expect(analysisResults.components.useHook).toBeUndefined();
@@ -289,7 +289,7 @@ describe("analyze - merging results", () => {
 
     // Check button component exists
     expect(analysisResults.components.Button).toBeDefined();
-    expect(analysisResults.components.Button!.usage).toBe(3);
+    expect(analysisResults.components.Button!.usage.total).toBe(3);
 
     // Check variant values
     expect(analysisResults.components.Button!.props.variant?.usage).toBe(3);
@@ -422,8 +422,8 @@ describe("analyze - merging results", () => {
 
     // Check project-specific tracking
     const primaryValue = variantValues?.["primary"];
-    expect(primaryValue?.total).toBe(1);
-    expect(primaryValue?.projects?.projectA).toBe(1);
+    expect(primaryValue?.usage.total).toBe(1);
+    expect(primaryValue?.usage.projects?.projectA).toBe(1);
   });
 
   test("analyze without project parameter only tracks total counts", () => {
@@ -441,11 +441,12 @@ describe("analyze - merging results", () => {
 
     // Check only total count is tracked
     const secondaryValue = variantValues?.["secondary"];
-    expect(secondaryValue?.total).toBe(1);
+    expect(secondaryValue?.usage.total).toBe(1);
 
-    // Should not have project-specific keys (only total)
+    // Should not have project-specific keys (only usage with total)
     const keys = Object.keys(secondaryValue || {});
-    expect(keys).toEqual(["total"]);
+    expect(keys).toEqual(["usage"]);
+    expect(Object.keys(secondaryValue?.usage || {})).toEqual(["total"]);
   });
 
   test("analyze accumulates values across different project names correctly", () => {
@@ -509,7 +510,7 @@ describe("analyze - merging results", () => {
       // Check Button component accumulation
       const buttonComponent = finalResults.components.Button;
       expect(buttonComponent).toBeDefined();
-      expect(buttonComponent!.usage).toBe(4); // 1 from A + 2 from B + 1 from C
+      expect(buttonComponent!.usage.total).toBe(4); // 1 from A + 2 from B + 1 from C
 
       // Check variant prop accumulation
       const variantValues = buttonComponent!.props.variant?.values;
@@ -517,17 +518,17 @@ describe("analyze - merging results", () => {
 
       // Check "primary" variant (appears in all projects)
       const primaryValue = variantValues?.["primary"];
-      expect(primaryValue?.total).toBe(3); // 1 from A + 1 from B + 1 from C
-      expect(primaryValue?.projects?.projectA).toBe(1);
-      expect(primaryValue?.projects?.projectB).toBe(1);
-      expect(primaryValue?.projects?.projectC).toBe(1);
+      expect(primaryValue?.usage.total).toBe(3); // 1 from A + 1 from B + 1 from C
+      expect(primaryValue?.usage.projects?.projectA).toBe(1);
+      expect(primaryValue?.usage.projects?.projectB).toBe(1);
+      expect(primaryValue?.usage.projects?.projectC).toBe(1);
 
       // Check "secondary" variant (only in projectB)
       const secondaryValue = variantValues?.["secondary"];
-      expect(secondaryValue?.total).toBe(1); // Only from B
-      expect(secondaryValue?.projects?.projectB).toBe(1);
-      expect(secondaryValue?.projects?.projectA).toBeUndefined();
-      expect(secondaryValue?.projects?.projectC).toBeUndefined();
+      expect(secondaryValue?.usage.total).toBe(1); // Only from B
+      expect(secondaryValue?.usage.projects?.projectB).toBe(1);
+      expect(secondaryValue?.usage.projects?.projectA).toBeUndefined();
+      expect(secondaryValue?.usage.projects?.projectC).toBeUndefined();
 
       // Check size prop accumulation
       const sizeValues = buttonComponent!.props.size?.values;
@@ -535,30 +536,30 @@ describe("analyze - merging results", () => {
 
       // Check "large" size (appears in projectA and projectB)
       const largeValue = sizeValues?.["large"];
-      expect(largeValue?.total).toBe(2); // 1 from A + 1 from B
-      expect(largeValue?.projects?.projectA).toBe(1);
-      expect(largeValue?.projects?.projectB).toBe(1);
-      expect(largeValue?.projects?.projectC).toBeUndefined();
+      expect(largeValue?.usage.total).toBe(2); // 1 from A + 1 from B
+      expect(largeValue?.usage.projects?.projectA).toBe(1);
+      expect(largeValue?.usage.projects?.projectB).toBe(1);
+      expect(largeValue?.usage.projects?.projectC).toBeUndefined();
 
       // Check "small" size (only in projectB)
       const smallValue = sizeValues?.["small"];
-      expect(smallValue?.total).toBe(1);
-      expect(smallValue?.projects?.projectB).toBe(1);
-      expect(smallValue?.projects?.projectA).toBeUndefined();
+      expect(smallValue?.usage.total).toBe(1);
+      expect(smallValue?.usage.projects?.projectB).toBe(1);
+      expect(smallValue?.usage.projects?.projectA).toBeUndefined();
 
       // Check "medium" size (only in projectC)
       const mediumValue = sizeValues?.["medium"];
-      expect(mediumValue?.total).toBe(1);
-      expect(mediumValue?.projects?.projectC).toBe(1);
-      expect(mediumValue?.projects?.projectA).toBeUndefined();
-      expect(mediumValue?.projects?.projectB).toBeUndefined();
+      expect(mediumValue?.usage.total).toBe(1);
+      expect(mediumValue?.usage.projects?.projectC).toBe(1);
+      expect(mediumValue?.usage.projects?.projectA).toBeUndefined();
+      expect(mediumValue?.usage.projects?.projectB).toBeUndefined();
 
       // Check that other components are also tracked correctly
       expect(finalResults.components.Div).toBeDefined();
-      expect(finalResults.components.Div!.usage).toBe(1); // Only from projectA
+      expect(finalResults.components.Div!.usage.total).toBe(1); // Only from projectA
 
       expect(finalResults.components.Text).toBeDefined();
-      expect(finalResults.components.Text!.usage).toBe(1); // Only from projectB
+      expect(finalResults.components.Text!.usage.total).toBe(1); // Only from projectB
 
       // Check overall statistics
       expect(finalResults.overall.usage.components).toBe(6); // Total component instances
@@ -598,7 +599,7 @@ describe("analyze - merging results", () => {
 
     // Check that the Div component exists with correct usage count
     expect(analysisResults.components.Div).toBeDefined();
-    expect(analysisResults.components.Div!.usage).toBe(3);
+    expect(analysisResults.components.Div!.usage.total).toBe(3);
 
     // Check that properties have correct counts
     expect(analysisResults.components.Div!.props.width?.usage).toBe(3);
