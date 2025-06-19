@@ -49,6 +49,7 @@ import {
   LinkButton,
   ListBox,
   Main,
+  Menu,
   Modal,
   ModalTrigger,
   Nav,
@@ -76,7 +77,7 @@ import {
   UL,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import { Alert, Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
+import { Alert, Counter, Dot, Item, Overlay, Section, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -814,6 +815,28 @@ export function App() {
       </ListBox>
       <ListBox isInvalid={false}>text</ListBox>
       <ListBox validationState={variable as any}/* Migration TODO: The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes */>text</ListBox>
+      <ListBox>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Item>Item 3</Item>
+      </ListBox>
+      <Menu>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Item>Item 3</Item>
+      </Menu>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
     </div>
