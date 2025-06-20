@@ -48,6 +48,8 @@ import {
   Link,
   LinkButton,
   ListBox,
+  ListBoxItem as ListboxItem,
+  ListBoxItem,
   Main,
   Menu,
   Modal,
@@ -817,14 +819,15 @@ export function App() {
       <ListBox validationState={variable as any}/* Migration TODO: The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes */>text</ListBox>
       <ListBox>
         <Section title="Section 1">
-          <Item>Item 1</Item>
-          <Item>Item 2</Item>
+          <ListBoxItem>Item 1</ListBoxItem>
+          <ListBoxItem>Item 2</ListBoxItem>
         </Section>
         <Section title="Section 1">
-          <Item>Item 1</Item>
-          <Item>Item 2</Item>
+          <ListBoxItem>Item 1</ListBoxItem>
+          <ListBoxItem>Item 2</ListBoxItem>
         </Section>
-        <Item>Item 3</Item>
+        <ListBoxItem>Item 3</ListBoxItem>
+        <ListboxItem>Item 4</ListboxItem>
       </ListBox>
       <Menu>
         <Section title="Section 1">

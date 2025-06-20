@@ -1,4 +1,4 @@
-import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
+import { isWithinComponent, tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const listboxMapping = {
@@ -35,5 +35,16 @@ export const listboxMapping = {
       }
     }
   },
-  ListboxProps: "ListboxProps"
+  ListboxProps: "ListboxProps",
+  ListItemMappings: []
+} satisfies Record<string, ComponentMapping>;
+
+export const listItemMappings = {
+  Item: [(tag, runtime) => {
+    if (tag && isWithinComponent(tag, ["ListBox"], runtime)) {
+      return {
+        to: "ListBoxItem"
+      };
+    }
+  }]
 } satisfies Record<string, ComponentMapping>;

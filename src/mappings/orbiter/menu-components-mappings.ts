@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../utils/types.ts";
+import { itemMapping } from "./components/item.ts";
 import { listboxMapping } from "./components/listbox.ts";
 
 
@@ -14,14 +15,11 @@ export const menuComponentsMappings: Record<string, ComponentMapping> = {
   MenuTrigger: "MenuTrigger", //usage: 32
   MenuTriggerProps: "MenuTriggerProps",
 
-  ...listboxMapping,
+  ...listboxMapping
   // ListboxSection: "ListBoxSection", // usage: 0
   // ListboxSectionProps: "ListBoxSectionProps",
   // ListboxOption: "ListBoxItem",// usage: 0
   // ListboxOptionProps: "ListBoxItemProps",
-
-  Item: [() => ({
-    to: "MenuItem"
-  })]
+ 
 
 };

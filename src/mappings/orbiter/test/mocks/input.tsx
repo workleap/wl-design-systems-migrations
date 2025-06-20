@@ -58,6 +58,7 @@ import {
   LI,
   Link,
   Listbox,
+  Item as ListboxItem,
   Main,
   Menu,
   Modal,
@@ -820,6 +821,7 @@ export function App() {
           <Item>Item 2</Item>
         </Section>
         <Item>Item 3</Item>
+        <ListboxItem>Item 4</ListboxItem>
       </Listbox>
 
       <Menu>

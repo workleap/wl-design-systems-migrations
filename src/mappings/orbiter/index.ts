@@ -4,6 +4,7 @@ import {
   type PropsMapping
 } from "../../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
+import { itemMapping } from "./components/item.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { menuComponentsMappings } from "./menu-components-mappings.ts";
 import { overlayComponentsMappings } from "./overlay-components-mappings.ts";
@@ -46,7 +47,8 @@ export const mappings = {
     ...buttonComponentsMappings,
     ...visualComponentsMappings,
     ...overlayComponentsMappings,
-    ...menuComponentsMappings
+    ...menuComponentsMappings,
+    ...itemMapping//TODO: the map should be filtered based on categories. currently it maps in all cases
 
     //TODO: move items from todo list here when they are implemented
   }
