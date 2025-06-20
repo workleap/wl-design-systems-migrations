@@ -1,5 +1,4 @@
 import type { ComponentMapping } from "../../utils/types.ts";
-import { itemMapping } from "./components/item.ts";
 import { listboxMapping } from "./components/listbox.ts";
 
 
