@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const imageMapping = {
   Image: "Image",
@@ -6,4 +6,4 @@ export const imageMapping = {
 
   SvgImage: "SvgImage",
   SvgImageProps: "SvgImageProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

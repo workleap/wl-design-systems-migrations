@@ -1,5 +1,5 @@
 import { getAttributeLiteralValue, hasAttribute } from "../../../utils/mapping.ts";
-import type { ComponentMapMetaData, PropsMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping, PropsMapMetaData } from "../../../utils/types.ts";
 
 const additions = {
   UNSAFE_marginBottom: (tag, runtime) => {
@@ -75,4 +75,4 @@ export const headingMappings = {
       additions
     }
   }
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

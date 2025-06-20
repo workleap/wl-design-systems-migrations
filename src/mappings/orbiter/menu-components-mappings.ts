@@ -1,8 +1,8 @@
-import type { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapping } from "../../utils/types.ts";
 import { listboxMapping } from "./components/listbox.ts";
 
 
-export const menuComponentsMappings: Record<string, ComponentMapMetaData> = {
+export const menuComponentsMappings: Record<string, ComponentMapping> = {
  
   //menus & lists - total usage: 74
   Menu: "Menu", //usage: 31
@@ -20,12 +20,8 @@ export const menuComponentsMappings: Record<string, ComponentMapMetaData> = {
   // ListboxOption: "ListBoxItem",// usage: 0
   // ListboxOptionProps: "ListBoxItemProps",
 
-  item: [() => ({
-    component: "MenuItem",
-    props: {
-      role: "menuitem",
-      tabIndex: 0
-    }
+  Item: [() => ({
+    to: "MenuItem"
   })]
 
 };

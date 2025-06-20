@@ -1,11 +1,11 @@
-import type { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapping } from "../../utils/types.ts";
 import { modalMapping, modalTriggerMapping } from "./components/modal.ts";
 import { overlayMapping } from "./components/overlay.ts";
 import { popoverMapping, popoverTriggerMapping } from "./components/popover.ts";
 import { tooltipMapping, tooltipTriggerMapping } from "./components/tooltip.ts";
 
 
-export const overlayComponentsMappings: Record<string, ComponentMapMetaData> = {
+export const overlayComponentsMappings: Record<string, ComponentMapping> = {
 
   ...modalMapping,
   ...modalTriggerMapping,

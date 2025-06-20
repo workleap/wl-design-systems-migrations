@@ -1,5 +1,5 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { buttonMapping } from "./button.ts";
 
 export const iconButtonMapping = {
@@ -23,4 +23,4 @@ export const iconButtonMapping = {
     }
   },
   IconButtonProps: "IconButtonProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

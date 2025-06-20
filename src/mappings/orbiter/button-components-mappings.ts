@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapping } from "../../utils/types.ts";
 import { buttonMapping } from "./components/button.ts";
 import { buttonAsLinkMapping } from "./components/buttonAsLink..ts";
 import { buttonGroupMapping } from "./components/buttonGroup.ts";
@@ -14,7 +14,7 @@ import { tileLinkMapping } from "./components/tileLink.ts";
 import { toggleButtonMapping } from "./components/toggleButton.ts";
 import { toggleIconButtonMapping } from "./components/toggleIconButton.ts";
 
-export const buttonComponentsMappings: Record<string, ComponentMapMetaData> = {
+export const buttonComponentsMappings: Record<string, ComponentMapping> = {
   ...buttonMapping,
   ...buttonAsLinkMapping,
   ...buttonGroupMapping,

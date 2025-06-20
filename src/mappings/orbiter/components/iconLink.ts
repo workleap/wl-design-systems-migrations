@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { linkMapping } from "./link.ts";
 import { textLinkMapping } from "./textLink.ts";
 
@@ -13,11 +13,11 @@ export const iconLinkMapping = {
     }
   },
   IconLinkProps: "LinkProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;
 
 export const iconLinkAsButtonMapping = {
   IconLinkAsButton: {
     ...iconLinkMapping.IconLink
   },
   IconLinkAsButtonProps: "LinkProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

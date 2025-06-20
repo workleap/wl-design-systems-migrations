@@ -1,5 +1,5 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const listboxMapping = {
   Listbox: {
@@ -36,4 +36,4 @@ export const listboxMapping = {
     }
   },
   ListboxProps: "ListboxProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

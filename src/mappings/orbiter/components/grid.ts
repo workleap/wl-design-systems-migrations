@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import {
   createGridAutoColumnsMapper,
   createGridAutoRowsMapper,
@@ -29,4 +29,4 @@ export const gridMappings = {
     }
   },
   GridProps: "GridProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

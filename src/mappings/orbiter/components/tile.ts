@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const tileMapping = {
   Tile: {
@@ -20,4 +20,4 @@ export const tileMapping = {
     }
   },
   TileProps: "TileProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

@@ -1,5 +1,5 @@
 import { getReviewMePropertyName } from "../../../utils/mapping.ts";
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const modalMapping = {
   Modal: {
@@ -15,7 +15,7 @@ export const modalMapping = {
     }
   },
   ModalProps: "ModalProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;
 
 export const modalTriggerMapping = {
   ModalTrigger: {
@@ -27,4 +27,4 @@ export const modalTriggerMapping = {
     }
   },
   ModalTriggerProps: "ModalTriggerProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;
