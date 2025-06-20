@@ -1,96 +1,18 @@
-import { getComponentTargetName, getLocalNameFromImport } from "../utils/migration.ts";
+import { getLocalNameFromImport } from "../utils/migration.ts";
 import type { Runtime } from "../utils/types.js";
 
-/**
- * Sorts import specifiers alphabetically by their imported name
- * @param specifiers - Array of import specifiers to sort
- * @returns Sorted array of import specifiers
- */
-function sortImportSpecifiers(specifiers: any[]): any[] {
-  return specifiers.sort((a, b) => {
-    // Handle ImportSpecifier nodes - sort by local name (what the import is called in the code)
-    if (a.imported && b.imported) {
-      const aLocalName = a.local?.name || a.imported.name;
-      const bLocalName = b.local?.name || b.imported.name;
-
-      return aLocalName.localeCompare(bLocalName);
-    }
-    // Handle other types of specifiers (like ImportDefaultSpecifier) - sort by local name
-    if (a.local && b.local) {
-      return a.local.name.localeCompare(b.local.name);
-    }
-
-    return 0;
-  });
-}
-
-/**
- * Migrates specific components from one package to another
- * @param j - jscodeshift API
- * @param root - AST root
- * @param sourcePackage - Package to migrate from
- * @param targetPackage - Package to migrate to
- * @param sourceComponentName - Component name to migrate
- * @returns void
- */
 export function migrateImport(
   componentName: string,
+  localName: string,
+  targetComponentName: string,
+  targetLocalName: string,
   runtime: Runtime
-):
-  | {
-    oldLocalName: string;
-    newLocalName: string;
-  }[]
-  | null {
+) {
   const { j, root, mappings } = runtime;
   const { sourcePackage, targetPackage } = mappings;
-  const targetComponentName = getComponentTargetName(componentName, mappings);
-  const results: { oldLocalName: string; newLocalName: string }[] = [];
+  //console.log("parameters", componentName, localName, targetComponentName, targetLocalName, sourcePackage, targetPackage);
 
-  if (!targetComponentName) {
-    return null; // No target component name found, exit early
-  }
-
-  // Check if import should be skipped
-  const componentMapData = mappings.components[componentName];
-  const shouldSkipImport = typeof componentMapData === "object" && componentMapData.skipImport === true;
-  
-  if (shouldSkipImport) {
-    // Even if we skip import migration, we still need to return local names for component transformation
-    const localNames: { oldLocalName: string; newLocalName: string }[] = [];
-    
-    root
-      .find(j.ImportDeclaration, {
-        source: {
-          value: sourcePackage
-        }
-      })
-      .forEach(path => {
-        const importSpecifiers = path.node.specifiers || [];
-        
-        // Find ALL component specifiers matching the component name
-        const componentSpecifiers = importSpecifiers.filter(
-          specifier =>
-            j.ImportSpecifier.check(specifier) &&
-            specifier.imported &&
-            specifier.imported.name === componentName
-        );
-        
-        // Collect local names without migrating imports
-        componentSpecifiers.forEach(componentSpecifier => {
-          if (j.ImportSpecifier.check(componentSpecifier)) {
-            const localName = getLocalNameFromImport(componentSpecifier);
-            localNames.push({
-              oldLocalName: localName,
-              newLocalName: localName // Keep the same name when skipping import
-            });
-          }
-        });
-      });
-    
-    return localNames.length > 0 ? localNames : null;
-  }
-
+ 
   // Collect all import specifiers that need to be migrated
   const newImportSpecifiers: any[] = [];
 
@@ -104,20 +26,20 @@ export function migrateImport(
     .forEach(path => {
       const importSpecifiers = path.node.specifiers || [];
 
-      // Find ALL component specifiers matching the component name
+      // Find ALL component specifiers matching the component name and local name
       const componentSpecifiers = importSpecifiers.filter(
         specifier =>
           j.ImportSpecifier.check(specifier) &&
           specifier.imported &&
-          specifier.imported.name === componentName
+          specifier.imported.name === componentName && 
+          getLocalNameFromImport(specifier) === localName
       );
 
       // Process each matching component specifier
       componentSpecifiers.forEach(componentSpecifier => {
         if (j.ImportSpecifier.check(componentSpecifier)) {
           // Get the local name (alias) of the component, or use the original name if no alias
-          const localName = getLocalNameFromImport(componentSpecifier);
-          const isAliased = localName !== componentName;
+          const isAliased = targetLocalName !== targetComponentName;
 
           // Check if this is a type import (either the whole import or this specific specifier)
           const isTypeImport =
@@ -127,7 +49,7 @@ export function migrateImport(
           // Create a new import specifier for the target package
           const newImportSpecifier = j.importSpecifier(
             j.identifier(targetComponentName),
-            isAliased ? j.identifier(localName) : null
+            isAliased ? j.identifier(targetLocalName) : null
           );
 
           // Set the importKind for inline type imports only (not for separate import type declarations)
@@ -140,11 +62,6 @@ export function migrateImport(
           // Store whether this specifier came from a separate type import declaration
           (newImportSpecifier as any)._isFromSeparateTypeImport =
             path.node.importKind === "type";
-
-          results.push({
-            oldLocalName: localName,
-            newLocalName: isAliased ? localName : targetComponentName
-          });
         }
       });
 
@@ -153,8 +70,9 @@ export function migrateImport(
         (specifier: any) =>
           !j.ImportSpecifier.check(specifier) ||
           !specifier.imported ||
-          specifier.imported.name !== componentName
-      );
+          !(specifier.imported.name === componentName && 
+          getLocalNameFromImport(specifier) === localName)
+      );//TODO: we should not remove it if it is used 
 
       // Update the original import declaration if there are remaining imports
       if (filteredSpecifiers.length > 0) {
@@ -162,6 +80,7 @@ export function migrateImport(
           sortImportSpecifiers(filteredSpecifiers),
           j.stringLiteral(sourcePackage)
         );
+
         // Preserve the original importKind (for import type declarations)
         if (path.node.importKind) {
           newImportDeclaration.importKind = path.node.importKind;
@@ -175,7 +94,7 @@ export function migrateImport(
 
   // Only proceed if we have imports to migrate
   if (newImportSpecifiers.length === 0) {
-    return results.length > 0 ? results : null;
+    return ;
   }
 
   // Check if there's already an import from the target package
@@ -194,7 +113,7 @@ export function migrateImport(
     const targetImportPath = existingTargetImport.paths()[0];
 
     if (!targetImportPath) {
-      return results.length > 0 ? results : null;
+      return;
     }
 
     const existingIsTypeImport = targetImportPath.node.importKind === "type";
@@ -312,6 +231,27 @@ export function migrateImport(
       root.get().node.program.body.unshift(newImport);
     }
   }
+}
 
-  return results.length > 0 ? results : null;
+/**
+ * Sorts import specifiers alphabetically by their imported name
+ * @param specifiers - Array of import specifiers to sort
+ * @returns Sorted array of import specifiers
+ */
+function sortImportSpecifiers(specifiers: any[]): any[] {
+  return specifiers.sort((a, b) => {
+    // Handle ImportSpecifier nodes - sort by local name (what the import is called in the code)
+    if (a.imported && b.imported) {
+      const aLocalName = a.local?.name || a.imported.name;
+      const bLocalName = b.local?.name || b.imported.name;
+
+      return aLocalName.localeCompare(bLocalName);
+    }
+    // Handle other types of specifiers (like ImportDefaultSpecifier) - sort by local name
+    if (a.local && b.local) {
+      return a.local.name.localeCompare(b.local.name);
+    }
+
+    return 0;
+  });
 }

@@ -1,46 +1,39 @@
-import type { ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier } from "jscodeshift";
-import type { MapMetaData, Runtime } from "./types.ts";
+import type { ASTPath, ImportDefaultSpecifier, ImportNamespaceSpecifier, ImportSpecifier, JSXOpeningElement } from "jscodeshift";
+import type { ComponentMapMetaData, Runtime } from "./types.ts";
 
-export function getComponentPropsMetadata(
-  componentName: string,
-  mappings: MapMetaData
-) {
-  const component = mappings.components[componentName];
-  if (!component) {
-    return null;
-  }
-
-  const map = mappings.components[componentName];
-
+export function getFullComponentMappings(
+  map: ComponentMapMetaData,
+  { mappings }: Runtime
+): Exclude< ComponentMapMetaData, string> {
   return typeof map === "string"
     ? {
-      mappings: mappings.propsDefaults?.mappings,
-      additions: mappings.propsDefaults?.additions
+      props: {
+        mappings: mappings.propsDefaults?.mappings,
+        additions: mappings.propsDefaults?.additions
+      }
     }
     : {
-      mappings: {
-        ...mappings.propsDefaults?.mappings,
-        ...map?.props?.mappings
-      },
-      additions: {
-        ...mappings.propsDefaults?.additions,
-        ...map?.props?.additions
+      ...map,
+      props: {
+        ...map.props,
+        mappings: {
+          ...mappings.propsDefaults?.mappings,
+          ...map?.props?.mappings
+        },
+        additions: {
+          ...mappings.propsDefaults?.additions,
+          ...map?.props?.additions
+        } 
       }
     };
 }
 
-export function getComponentTargetName(
-  componentName: string,
-  mappings: MapMetaData
+export function getComponentTargetName(  
+  mappings: ComponentMapMetaData
 ) {
-  const component = mappings.components[componentName];
-  if (!component) {
-    return null;
-  }
-
-  return typeof component === "string"
-    ? component
-    : component.to ?? componentName;
+  return typeof mappings === "string"
+    ? mappings
+    : mappings.to ?? mappings;
 }
 
 export function getTodoComment(
@@ -56,5 +49,35 @@ export function getLocalNameFromImport(
 ): string {
   const localName = importSpecifier.local?.name;
   
-  return typeof localName === "string" ? localName : "";
+  if (typeof localName === "string") {return localName ;}
+
+  throw new Error("Invalid import specifier: local name is not a string [This error should never happen]");
+}
+
+export function resolveComponentMapping(
+  componentName: string,
+  tag: ASTPath<JSXOpeningElement> | undefined,
+  runtime: Runtime
+): ComponentMapMetaData | null {
+  const { mappings } = runtime;
+  const componentMapping = mappings.components[componentName];
+
+  if (!componentMapping) {
+    return null;
+  }
+
+  const mappingItems = Array.isArray(componentMapping) ? componentMapping : [componentMapping];
+
+  for (const mappingItem of mappingItems) {
+    if (typeof mappingItem === "function") {
+      const result = mappingItem(tag, runtime);
+      if (result) {
+        return result;
+      }
+    } else {
+      return mappingItem;
+    }
+  }
+
+  return null;
 }

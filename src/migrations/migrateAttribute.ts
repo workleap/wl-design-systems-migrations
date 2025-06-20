@@ -1,9 +1,9 @@
-import type { Collection, JSXOpeningElement } from "jscodeshift";
+import type { ASTPath, JSXOpeningElement } from "jscodeshift";
 import { getTodoComment } from "../utils/migration.ts";
 import type { PropertyMapperFunction, Runtime } from "../utils/types.js";
 
 export function migrateAttribute(
-  instances: Collection<JSXOpeningElement>,
+  instances: ASTPath<JSXOpeningElement>[],
   oldAttrName: string,
   newAttributeMap: string | PropertyMapperFunction,
   oldComponentName: string,

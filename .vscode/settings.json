@@ -4,6 +4,8 @@
         "source.sortImports": "explicit"
     },
     "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
     "typescript.format.enable": false, // Disables the default formatter to use ESLint instead
     "javascript.format.enable": false, // Disables the default formatter to use ESLint instead
     "json.format.enable": false, // Disables the default formatter to use ESLint instead

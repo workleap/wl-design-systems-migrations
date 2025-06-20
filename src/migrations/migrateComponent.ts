@@ -1,115 +1,171 @@
-import { getComponentPropsMetadata, getTodoComment } from "../utils/migration.ts";
-import type { Runtime } from "../utils/types.js";
-import { addAttribute } from "./addAttribute.js";
-import { migrateAttribute } from "./migrateAttribute.js";
+import type { ASTPath, JSXOpeningElement } from "jscodeshift";
+
+import { getLocalNameFromImport, resolveComponentMapping } from "../utils/migration.ts";
+import type {
+  ComponentMapMetaData,
+  Runtime
+} from "../utils/types.js";
+import { migrateComponentInstances } from "./migrateComponentInstances.ts";
 import { migrateImport } from "./migrateImport.js";
 
-/**
- * Creates a function that migrates a component from one package to another
- * @param j - jscodeshift API
- * @param root - AST root
- * @param sourcePackage - Package to migrate from
- * @param targetPackage - Package to migrate to
- * @returns A function that takes a component name and migrates it
- */
-export function migrateComponent(
-  componentName: string,
-  runtime: Runtime
-): void {
-  const migrateImportResults = migrateImport(componentName, runtime);
-  const { mappings, filePath } = runtime;
-
-  if (!migrateImportResults) {
-    return; // No mapping found, exit early
+export function migrateComponent(componentName: string, runtime: Runtime): void {
+  // 1. Find all local names for the component.
+  const localNames = getAllLocalImports(componentName, runtime);
+  if (localNames.length === 0) {
+    return;
   }
 
-  const { j, root } = runtime;
+  // 2. For each instance, resolve the mapping and collect migration data for only the components that have mappings available.
+  const { instances, allTagsAreMigratable } = getMigratableComponentInstances(localNames, componentName, runtime);
 
-  // Process each imported alias
-  migrateImportResults.forEach(({ oldLocalName, newLocalName }) => {
-    const instances = root.find(j.JSXOpeningElement, {
-      name: {
-        name: oldLocalName
+  // 3. Create a map for localName to the list of newComponentNames. (e.g. when `Button as B` will be migrated to `LinkButton as B` and `TextButton as B1`)
+  const { localToNewComponentNamesMap, getNewLocalName } = getLocalToNewComponentNamesMap(
+    instances,
+    allTagsAreMigratable,
+    componentName
+  );
+
+  
+  // 4. Apply migrations to each instance.
+  instances.forEach(({ tag, mapping, localName, newComponentName }) => {
+    const newLocalName = getNewLocalName(localName, newComponentName);
+
+    migrateComponentInstances([tag], componentName, localName, newLocalName, mapping, runtime);
+  });
+
+  
+  // 5. Handle imports
+  localToNewComponentNamesMap.forEach((newComponentNames, localName) => {
+    newComponentNames.forEach(newComponentName => {
+      const newLocalName = getNewLocalName(localName, newComponentName);
+      migrateImport(componentName, localName, newComponentName, newLocalName, runtime);
+    });
+  });
+
+  // unusedImports: 
+  //  - includes: unused imports (by unused we mean that cannot find a tag with this local name)
+  //  - includes: imports without related tags (like type imports)
+  //  - exclude: removed skipImport  
+  const unusedImports = localNames
+    .filter(localName => !localToNewComponentNamesMap.has(localName))
+    .filter(localName => 
+      instances.find(item => item.localName === localName && item.skipImport) === undefined
+    );
+
+  unusedImports.forEach(localName => {
+    const mapping = resolveComponentMapping(componentName, undefined, runtime);
+    const newComponentName = typeof mapping === "string" ? mapping : (mapping?.to ?? componentName);    
+
+    migrateImport(componentName, localName, newComponentName, localName, runtime);
+  });
+}
+
+function getAllLocalImports(componentName: string, runtime: Runtime) {
+  const { j, root, mappings } = runtime;
+  const { sourcePackage } = mappings;
+  const results: string[] = [];
+
+  const sourceDeclarations = root.find(j.ImportDeclaration, {
+    source: { value: sourcePackage }
+  });
+
+  sourceDeclarations.forEach(path => {
+    const specifiers = path.node.specifiers || [];
+    specifiers.forEach(specifier => {
+      if (
+        j.ImportSpecifier.check(specifier) &&
+          specifier.imported.name === componentName
+      ) {
+        const localName = getLocalNameFromImport(specifier);
+        results.push(localName);
       }
     });
+  });
 
-    if (newLocalName !== oldLocalName) {
-      // rename all instances of the component with the target name
-      // Note: we cannot use instances because it is not including closing tags
-      root
-        .find(j.JSXIdentifier, {
-          name: oldLocalName
-        })
-        .forEach(path => {
-          path.node.name = newLocalName;
-        });
-    }
+  return results;
+}
 
-    // Migrate attributes for this specific component alias
-    const propsMetadata = getComponentPropsMetadata(componentName, mappings);
+interface MigratableComponentInstance {
+  tag: ASTPath<JSXOpeningElement>;
+  mapping: ComponentMapMetaData;
+  localName: string;
+  newComponentName: string;
+  skipImport: boolean;
+}
 
-    Object.entries(propsMetadata?.mappings || {}).forEach(
-      ([oldAttrName, newAttrName]) => {
-        if (oldAttrName === newAttrName) {return;} // Skip if no change
-        migrateAttribute(instances, oldAttrName, newAttrName, componentName, runtime);
-      }
+function getMigratableComponentInstances(localNames: string[], componentName: string, runtime: Runtime) {
+  const migratableInstances: MigratableComponentInstance[] = [];
+  const { j, root } = runtime;
+
+  //Find all instances of the component regardless of having mapping or not.
+  const allAvailableInstances = root
+    .find(j.JSXOpeningElement)
+    .filter(
+      path =>
+        j.JSXIdentifier.check(path.node.name) &&
+        localNames.includes(path.node.name.name)
     );
 
-    // Add additional attributes for this specific component alias
-    Object.entries(propsMetadata?.additions || {}).forEach(
-      ([newAttrName, newAttrValue]) => {
-        instances.forEach(path => {
-          if (typeof newAttrValue === "function") {
-            const newValue = newAttrValue(path, runtime);
-            if (newValue !== null) {
-              addAttribute(
-                path,
-                newAttrName,
-                newAttrValue(path, runtime),
-                runtime
-              );
-            }
-          } else {addAttribute(path, newAttrName, newAttrValue, runtime);}
-        });
-      }
-    );
+  //Note: actually it should be per localName, 
+  //      but it is not important as it only causes not reusing the local name when it is available.
+  let allTagsAreMigratable = true;
 
-    // Handle component-level migration notes
-    const componentMapData = mappings.components[componentName];
-    if (typeof componentMapData === "object" && componentMapData.migrationNotes) {
-      try {
-        runtime.getMigrationNotesManager().addMigrationNotes(componentName, componentMapData.migrationNotes, filePath);
-      } catch (error) {
-        runtime.log(String(error));
-      }
-    }
+  allAvailableInstances.forEach(tag => {
+    const localName = (tag.node.name as any).name;    
+    const mapping = resolveComponentMapping(componentName, tag, runtime);
 
-    // Add todoComments if any
-    if (
-      typeof componentMapData === "object" &&
-      componentMapData.todoComments !== undefined
-    ) {
-      const todoComment = componentMapData.todoComments;
-
-      instances.forEach(path => {
-        let comments : string | string[] | undefined = [];
-        if (typeof todoComment === "function") {
-          comments = todoComment(path, runtime);
-        } else {
-          comments = todoComment;
-        }
-
-        if (typeof comments === "string") {
-          comments = [comments];
-        } else if (comments === undefined) {
-          comments = [];
-        }           
-
-        path.node.comments = [
-          ...path.node.comments || [],
-          ...comments.map(msg => getTodoComment(msg, runtime, true))
-        ];
+    if (mapping) {
+      migratableInstances.push({ 
+        tag, 
+        mapping, 
+        localName,         
+        newComponentName: typeof mapping === "string" ? mapping : (mapping.to || componentName),
+        skipImport: typeof mapping === "string" ? false : (mapping.skipImport ?? false)
+        
       });
+    } else {
+      allTagsAreMigratable = false;
     }
   });
+
+  return { instances: migratableInstances, allTagsAreMigratable };
+}
+
+function getLocalToNewComponentNamesMap(
+  instances: MigratableComponentInstance[],
+  allTagsAreMigratable: boolean,
+  componentName: string
+) {
+  const localToNewComponentNamesMap = new Map<string, string[]>();
+    
+  instances
+    .filter(o => !o.skipImport)
+    .forEach(({ localName, newComponentName }) => {
+      if (!localToNewComponentNamesMap.has(localName)) {
+        localToNewComponentNamesMap.set(localName, []);
+      }
+      localToNewComponentNamesMap.get(localName)?.push(newComponentName);
+    });
+
+  const getNewLocalName = (localName: string, newComponentName: string) => {
+    const newComponentNameList = localToNewComponentNamesMap.get(localName);
+    if (!newComponentNameList) {
+      return localName; // If no new component names, return the original local name. It happens when skipImport is true.
+    }
+
+    if (localName === componentName) {// it is not an aliased local name, so we can use the new component name directly.
+      return newComponentName;
+    }
+
+    //Aliased local names should be suffixed with an index if there are multiple new component names.
+    const idx = newComponentNameList.indexOf(newComponentName);
+
+    if (allTagsAreMigratable) {//all items have mapping, so we can reuse the local name safely
+      return `${localName}${idx === 0 ? "" : idx}`;
+    } else {//we should keep the original local name for the not-mapped instances
+      return `${localName}${idx + 1}`;
+    }
+  };
+
+  return { localToNewComponentNamesMap, getNewLocalName };
 }
