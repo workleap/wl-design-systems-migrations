@@ -516,32 +516,34 @@ describe("migrations", () => {
 
     assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
   });
+ 
+  describe("dynamic mappings", () => {
+    test("when a component has dynamic mappings, they should be applied correctly", async () => {
+      const INPUT = "import { Item } from \"@workleap/orbiter-ui\"; export function App() { return <Item x={1} />; }";
+      const OUTPUT = "import { ListItem } from \"@hopper-ui/components\"; export function App() { return <ListItem y={1} />; }";
 
-  test("when a component has dynamic mappings, they should be applied correctly", async () => {
-    const INPUT = "import { Item } from \"@workleap/orbiter-ui\"; export function App() { return <Item x={1} />; }";
-    const OUTPUT = "import { ListItem } from \"@hopper-ui/components\"; export function App() { return <ListItem y={1} />; }";
-
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Item: [() => ({
-            to: "ListItem",
-            props: {
-              mappings: {
-                "x": "y"
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [() => ({
+              to: "ListItem",
+              props: {
+                mappings: {
+                  "x": "y"
+                }
               }
-            }
-          })]
-        }
-      })
-    )!;
+            })]
+          }
+        })
+      )!;
 
-    assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
-  });
+      assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+    });
 
-  test("when a component has a list of dynamic mappings, they should be applied correctly", async () => {
-    const INPUT = `
-      import { Item } from "@workleap/orbiter-ui"; 
+    test("when a component has a list of dynamic mappings, they should be applied correctly", async () => {
+      const INPUT = `
+      import { Item } from "@workleap/orbiter-ui";
+
       export function App() { 
         return <>
           <Item x={1} />
@@ -550,10 +552,10 @@ describe("migrations", () => {
         </>;
       }
     `;
-    const OUTPUT = `
-      import { Item } from "@workleap/orbiter-ui"; 
-      import { ListItem, MenuItem } from "@hopper-ui/components"; 
-      
+      const OUTPUT = `
+      import { ListItem, MenuItem } from "@hopper-ui/components";
+      import { Item } from "@workleap/orbiter-ui";
+
       export function App() { 
         return (
           <>
@@ -565,44 +567,44 @@ describe("migrations", () => {
       }
     `;
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Item: [tag => {
-            if (hasAttribute(tag!.node, "x")) {
-              return {
-                to: "ListItem",
-                props: {
-                  mappings: {
-                    "x": "x1"
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "x")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "x": "x1"
+                    }
                   }
-                }
-              };
-            }
-          }, tag => {
-            if (hasAttribute(tag!.node, "y")) {
-              return {
-                to: "MenuItem",
-                props: {
-                  mappings: {
-                    "y": "y1"
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "y")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "y": "y1"
+                    }
                   }
-                }
-              };
-            }
-          }]
-        }
-      })
-    )!;
+                };
+              }
+            }]
+          }
+        })
+      )!;
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
 
-  test("when a component has a list of dynamic mappings with skipImport option, they should be applied correctly", async () => {
-    const INPUT = `
-      import { Item } from "@workleap/orbiter-ui"; 
-      
-      export function App() { 
+    test("when a component has a list of dynamic mappings with skipImport option, they should be applied correctly", async () => {
+      const INPUT = `
+      import { Item } from "@workleap/orbiter-ui";
+
+      export function App() {
         return <>
           <Item x={1} />
           <Item y={1} />
@@ -611,11 +613,11 @@ describe("migrations", () => {
         </>;
       }
     `;
-    const OUTPUT = `
-      import { Item } from "@workleap/orbiter-ui"; 
-      import { ListItem, MenuItem } from "@hopper-ui/components"; 
-      
-      export function App() { 
+      const OUTPUT = `
+      import { ListItem, MenuItem } from "@hopper-ui/components";
+      import { Item } from "@workleap/orbiter-ui";
+
+      export function App() {
         return (
           <>
             <ListItem x1={1} />
@@ -628,49 +630,49 @@ describe("migrations", () => {
       }
     `;
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Item: [tag => {
-            if (hasAttribute(tag!.node, "x")) {
-              return {
-                to: "ListItem",
-                props: {
-                  mappings: {
-                    "x": "x1"
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "x")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "x": "x1"
+                    }
                   }
-                }
-              };
-            }
-          }, tag => {
-            if (hasAttribute(tag!.node, "y")) {
-              return {
-                to: "MenuItem",
-                props: {
-                  mappings: {
-                    "y": "y1"
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "y")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "y": "y1"
+                    }
                   }
-                }
-              };
-            }
-          }, tag => {
-            if (hasAttribute(tag!.node, "z")) {
-              return {
-                skipImport: true,
-                todoComments: "Not supported"
-              };
-            }
-          }]
-        }
-      })
-    )!;
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "z")) {
+                return {
+                  skipImport: true,
+                  todoComments: "Not supported"
+                };
+              }
+            }]
+          }
+        })
+      )!;
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
 
-  test("when a component with local name has a list of dynamic mappings, the name should be preserved accordingly", async () => {
-    const INPUT = `
-      import { Item as X } from "@workleap/orbiter-ui"; 
+    test("when a component with local name has a list of dynamic mappings, the name should be preserved accordingly", async () => {
+      const INPUT = `
+      import { Item as X } from "@workleap/orbiter-ui";
       
       export function App() { 
         return <>
@@ -680,10 +682,10 @@ describe("migrations", () => {
         </>;
       }
     `;
-    const OUTPUT = `
-      import { Item as X} from "@workleap/orbiter-ui"; 
-      import { ListItem as X1, MenuItem as X2} from "@hopper-ui/components"; 
-      
+      const OUTPUT = `
+      import { ListItem as X1, MenuItem as X2 } from "@hopper-ui/components";
+      import { Item as X } from "@workleap/orbiter-ui";
+
       export function App() { 
         return (
           <>
@@ -695,100 +697,101 @@ describe("migrations", () => {
       }
     `;
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Item: [tag => {
-            if (hasAttribute(tag!.node, "x")) {
-              return {
-                to: "ListItem",
-                props: {
-                  mappings: {
-                    "x": "x1"
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "x")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "x": "x1"
+                    }
                   }
-                }
-              };
-            }
-          }, tag => {
-            if (hasAttribute(tag!.node, "y")) {
-              return {
-                to: "MenuItem",
-                props: {
-                  mappings: {
-                    "y": "y1"
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "y")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "y": "y1"
+                    }
                   }
-                }
-              };
-            }
-          }]
-        }
-      })
-    )!;
+                };
+              }
+            }]
+          }
+        })
+      )!;
 
-    assert.deepEqual(actualOutput, OUTPUT);
-  });
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
 
-  test.only("when a component with multiple local names has a list of dynamic mappings, the name should be preserved accordingly", async () => {
-    const INPUT = `
-      import { Item as X, Item as Y } from "@workleap/orbiter-ui"; 
-      
+    test("when a component with multiple local names has a list of dynamic mappings, the name should be preserved accordingly", async () => {
+      const INPUT = `
+      import { Item as X, Item as Y } from "@workleap/orbiter-ui";
+
       export function App() { 
         return <>
-          <X x={1} />
-          <X y={1} />
+          <X l={1} />
+          <X m={1} />
           <X />
-          <Y x={1} />
-          <Y y={1} />
+          <Y l={1} />
+          <Y m={1} />
         </>;
       }
     `;
-    const OUTPUT = `
-      import { Item as X} from "@workleap/orbiter-ui"; 
-      import { ListItem as X1, MenuItem as X2} from "@hopper-ui/components"; 
-      
+      const OUTPUT = `
+      import { ListItem as X1, MenuItem as X2, ListItem as Y, MenuItem as Y1 } from "@hopper-ui/components";
+      import { Item as X } from "@workleap/orbiter-ui";
+
       export function App() { 
         return (
           <>
-            <X1 x1={1} />
-            <X2 y1={1} />
+            <X1 ll={1} />
+            <X2 mm={1} />
             <X />
-            <Y1 x1={1} />
-            <Y2 y1={1} />
+            <Y ll={1} />
+            <Y1 mm={1} />
           </>
         );
       }
     `;
 
-    const actualOutput = migrate(
-      getRuntime(INPUT, {
-        components: {
-          Item: [tag => {
-            if (hasAttribute(tag!.node, "x")) {
-              return {
-                to: "ListItem",
-                props: {
-                  mappings: {
-                    "x": "x1"
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "l")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "l": "ll"
+                    }
                   }
-                }
-              };
-            }
-          }, tag => {
-            if (hasAttribute(tag!.node, "y")) {
-              return {
-                to: "MenuItem",
-                props: {
-                  mappings: {
-                    "y": "y1"
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "m")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "m": "mm"
+                    }
                   }
-                }
-              };
-            }
-          }]
-        }
-      })
-    )!;
+                };
+              }
+            }]
+          }
+        })
+      )!;
 
-    assert.deepEqual(actualOutput, OUTPUT);
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
   });
 });

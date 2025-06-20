@@ -1,5 +1,6 @@
 # Copilot Instructions for Code Modifications
 - Avoid using `any` type in TypeScript.
+- Keep functions small and focused. Avoid lengthy functions.
 - This project doesn't have any `build` script.
   - To test a codemod for a file, you can use the approaches in the `/scripts` folder.
 

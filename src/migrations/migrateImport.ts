@@ -1,17 +1,76 @@
 import { getLocalNameFromImport } from "../utils/migration.ts";
 import type { Runtime } from "../utils/types.js";
 
-export function migrateImport(
-  componentName: string,
-  localName: string,
-  targetComponentName: string,
-  targetLocalName: string,
+export interface ImportMap { componentName: string; localName: string; newComponentName: string; newLocalName: string }
+
+export function migrateImport(importCases: ImportMap[], localNamesWithoutMigration: Set<string>, runtime: Runtime) {
+  importCases.forEach(importCase => {
+    addImportCase(
+      importCase,
+      runtime
+    );
+  });
+
+  // Remove all matching component specifiers from the original import  
+  importCases.forEach(importCase => {
+    const { localName } = importCase;
+    if (localNamesWithoutMigration.has(localName)) {
+      // If the local name has instances that have not been migrated, skip removal
+      return;
+    }
+    removeImportCase(importCase, runtime);
+  });
+}
+
+function removeImportCase({ componentName, localName }: ImportMap, runtime: Runtime) {
+  const { j, root, mappings } = runtime;
+  const { sourcePackage } = mappings;
+
+  root
+    .find(j.ImportDeclaration, {
+      source: {
+        value: sourcePackage
+      }
+    })
+    .forEach(path => {
+      const importSpecifiers = path.node.specifiers || [];
+
+      const filteredSpecifiers = importSpecifiers.filter(
+        (specifier: any) =>
+          !j.ImportSpecifier.check(specifier) ||
+          !specifier.imported ||
+          !(specifier.imported.name === componentName && 
+          getLocalNameFromImport(specifier) === localName)
+      );
+
+      // Update the original import declaration if there are remaining imports
+      if (filteredSpecifiers.length > 0) {
+        const newImportDeclaration = j.importDeclaration(
+          sortImportSpecifiers(filteredSpecifiers),
+          j.stringLiteral(sourcePackage)
+        );
+
+        // Preserve the original importKind (for import type declarations)
+        if (path.node.importKind) {
+          newImportDeclaration.importKind = path.node.importKind;
+        }
+        j(path).replaceWith(newImportDeclaration);
+      } else {
+        // If there are no remaining imports, remove the declaration
+        j(path).remove();
+      }
+    });
+}
+
+function addImportCase(
+  { componentName,
+    localName,
+    newComponentName,
+    newLocalName }: ImportMap,
   runtime: Runtime
 ) {
   const { j, root, mappings } = runtime;
   const { sourcePackage, targetPackage } = mappings;
-  //console.log("parameters", componentName, localName, targetComponentName, targetLocalName, sourcePackage, targetPackage);
-
  
   // Collect all import specifiers that need to be migrated
   const newImportSpecifiers: any[] = [];
@@ -39,7 +98,7 @@ export function migrateImport(
       componentSpecifiers.forEach(componentSpecifier => {
         if (j.ImportSpecifier.check(componentSpecifier)) {
           // Get the local name (alias) of the component, or use the original name if no alias
-          const isAliased = targetLocalName !== targetComponentName;
+          const isAliased = newLocalName !== newComponentName;
 
           // Check if this is a type import (either the whole import or this specific specifier)
           const isTypeImport =
@@ -48,8 +107,8 @@ export function migrateImport(
 
           // Create a new import specifier for the target package
           const newImportSpecifier = j.importSpecifier(
-            j.identifier(targetComponentName),
-            isAliased ? j.identifier(targetLocalName) : null
+            j.identifier(newComponentName),
+            isAliased ? j.identifier(newLocalName) : null
           );
 
           // Set the importKind for inline type imports only (not for separate import type declarations)
@@ -64,38 +123,8 @@ export function migrateImport(
             path.node.importKind === "type";
         }
       });
-
-      // Remove all matching component specifiers from the original import
-      const filteredSpecifiers = importSpecifiers.filter(
-        (specifier: any) =>
-          !j.ImportSpecifier.check(specifier) ||
-          !specifier.imported ||
-          !(specifier.imported.name === componentName && 
-          getLocalNameFromImport(specifier) === localName)
-      );//TODO: we should not remove it if it is used 
-
-      // Update the original import declaration if there are remaining imports
-      if (filteredSpecifiers.length > 0) {
-        const newImportDeclaration = j.importDeclaration(
-          sortImportSpecifiers(filteredSpecifiers),
-          j.stringLiteral(sourcePackage)
-        );
-
-        // Preserve the original importKind (for import type declarations)
-        if (path.node.importKind) {
-          newImportDeclaration.importKind = path.node.importKind;
-        }
-        j(path).replaceWith(newImportDeclaration);
-      } else {
-        // If there are no remaining imports, remove the declaration
-        j(path).remove();
-      }
     });
 
-  // Only proceed if we have imports to migrate
-  if (newImportSpecifiers.length === 0) {
-    return ;
-  }
 
   // Check if there's already an import from the target package
   const existingTargetImport = root.find(j.ImportDeclaration, {
@@ -126,8 +155,6 @@ export function migrateImport(
         
         // Filter out duplicates - only add specifiers that don't already exist
         const filteredNewSpecifiers = newImportSpecifiers.filter(newSpec => {
-          const newLocalName = newSpec.local?.name || newSpec.imported.name;
-
           return !targetSpecifiers.some(
             (existingSpec: any) =>
               j.ImportSpecifier.check(existingSpec) &&
@@ -146,14 +173,7 @@ export function migrateImport(
           );
           // Set the import kind to type
           newImportDeclaration.importKind = "type";
-          
-          // Add prettier-ignore comment if there are many imports
-          if (combinedSpecifiers.length > 10) {
-            newImportDeclaration.comments = [
-              j.commentLine(" prettier-ignore", true, false)
-            ];
-          }
-          
+                  
           j(targetImportPath).replaceWith(newImportDeclaration);
         }
       } else {
@@ -174,18 +194,14 @@ export function migrateImport(
         const targetSpecifiers = targetImportPath.node.specifiers || [];
 
         // Filter out duplicates - only add specifiers that don't already exist
-        const filteredNewSpecifiers = newImportSpecifiers.filter(newSpec => {
-          const newLocalName = newSpec.local?.name || newSpec.imported.name;
-
-          return !targetSpecifiers.some(
-            (existingSpec: any) =>
-              j.ImportSpecifier.check(existingSpec) &&
+        const filteredNewSpecifiers = targetSpecifiers.some(
+          (existingSpec: any) =>
+            j.ImportSpecifier.check(existingSpec) &&
               existingSpec.imported &&
-              existingSpec.imported.name === targetComponentName &&
+              existingSpec.imported.name === newComponentName &&
               (existingSpec.local?.name || existingSpec.imported.name) ===
                 newLocalName
-          );
-        });
+        ) ? [] : newImportSpecifiers;
 
         if (filteredNewSpecifiers.length > 0) {
           // Combine new imports with existing ones

@@ -1,4 +1,3 @@
-// prettier-ignore
 import {
   Div as HopperDiv
 } from "@hopper-ui/components";

@@ -6,7 +6,7 @@ import type {
   Runtime
 } from "../utils/types.js";
 import { migrateComponentInstances } from "./migrateComponentInstances.ts";
-import { migrateImport } from "./migrateImport.js";
+import { type ImportMap, migrateImport } from "./migrateImport.js";
 
 export function migrateComponent(componentName: string, runtime: Runtime): void {
   // 1. Find all local names for the component.
@@ -16,12 +16,12 @@ export function migrateComponent(componentName: string, runtime: Runtime): void 
   }
 
   // 2. For each instance, resolve the mapping and collect migration data for only the components that have mappings available.
-  const { instances, allTagsAreMigratable } = getMigratableComponentInstances(localNames, componentName, runtime);
+  const { instances, localNamesWithoutMigration } = getMigratableComponentInstances(localNames, componentName, runtime);
 
   // 3. Create a map for localName to the list of newComponentNames. (e.g. when `Button as B` will be migrated to `LinkButton as B` and `TextButton as B1`)
   const { localToNewComponentNamesMap, getNewLocalName } = getLocalToNewComponentNamesMap(
     instances,
-    allTagsAreMigratable,
+    localNamesWithoutMigration,
     componentName
   );
 
@@ -35,10 +35,12 @@ export function migrateComponent(componentName: string, runtime: Runtime): void 
 
   
   // 5. Handle imports
+  const requiredImports: ImportMap[] = [];
+
   localToNewComponentNamesMap.forEach((newComponentNames, localName) => {
     newComponentNames.forEach(newComponentName => {
       const newLocalName = getNewLocalName(localName, newComponentName);
-      migrateImport(componentName, localName, newComponentName, newLocalName, runtime);
+      requiredImports.push({ componentName, localName, newComponentName, newLocalName });
     });
   });
 
@@ -56,8 +58,10 @@ export function migrateComponent(componentName: string, runtime: Runtime): void 
     const mapping = resolveComponentMapping(componentName, undefined, runtime);
     const newComponentName = typeof mapping === "string" ? mapping : (mapping?.to ?? componentName);    
 
-    migrateImport(componentName, localName, newComponentName, localName, runtime);
+    requiredImports.push({ componentName, localName, newComponentName, newLocalName: localName });
   });
+
+  migrateImport(requiredImports, localNamesWithoutMigration, runtime);
 }
 
 function getAllLocalImports(componentName: string, runtime: Runtime) {
@@ -106,9 +110,7 @@ function getMigratableComponentInstances(localNames: string[], componentName: st
         localNames.includes(path.node.name.name)
     );
 
-  //Note: actually it should be per localName, 
-  //      but it is not important as it only causes not reusing the local name when it is available.
-  let allTagsAreMigratable = true;
+  const localNamesWithoutMigration: Set<string> = new Set();
 
   allAvailableInstances.forEach(tag => {
     const localName = (tag.node.name as any).name;    
@@ -124,16 +126,16 @@ function getMigratableComponentInstances(localNames: string[], componentName: st
         
       });
     } else {
-      allTagsAreMigratable = false;
+      localNamesWithoutMigration.add(localName);
     }
   });
 
-  return { instances: migratableInstances, allTagsAreMigratable };
+  return { instances: migratableInstances, localNamesWithoutMigration };
 }
 
 function getLocalToNewComponentNamesMap(
   instances: MigratableComponentInstance[],
-  allTagsAreMigratable: boolean,
+  localNamesWithoutMigration: Set<string>,
   componentName: string
 ) {
   const localToNewComponentNamesMap = new Map<string, string[]>();
@@ -160,11 +162,12 @@ function getLocalToNewComponentNamesMap(
     //Aliased local names should be suffixed with an index if there are multiple new component names.
     const idx = newComponentNameList.indexOf(newComponentName);
 
-    if (allTagsAreMigratable) {//all items have mapping, so we can reuse the local name safely
-      return `${localName}${idx === 0 ? "" : idx}`;
-    } else {//we should keep the original local name for the not-mapped instances
+    if (localNamesWithoutMigration.has(localName)) {//we should keep the original local name for the not-mapped instances
       return `${localName}${idx + 1}`;
     }
+
+    //All items have mapping, so we can reuse the local name safely
+    return `${localName}${idx === 0 ? "" : idx}`;
   };
 
   return { localToNewComponentNamesMap, getNewLocalName };
