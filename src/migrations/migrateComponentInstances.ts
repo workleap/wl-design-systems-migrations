@@ -48,7 +48,7 @@ export function migrateComponentInstances(
             addAttribute(
               path,
               newAttrName,
-              newAttrValue(path, runtime),
+              newValue,
               runtime
             );
           }
