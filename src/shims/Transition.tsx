@@ -54,7 +54,7 @@ export const Transition = forwardRef<HTMLDivElement, TransitionProps >(({
 
     const handleAnimationEnd = useCallback(() => {
         setIsVisible(show);
-    }, []);
+    }, [show]);
 
     const className = useMemo(() => {
         return show
