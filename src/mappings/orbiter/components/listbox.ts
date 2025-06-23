@@ -41,7 +41,7 @@ export const listboxMapping = {
 
 export const listItemMappings = {
   Item: [(tag, runtime) => {
-    if (tag && isWithinComponent(tag, ["ListBox"], runtime)) {
+    if (tag && isWithinComponent(tag, ["ListBox"], runtime.mappings.targetPackage, runtime)) {
       return {
         to: "ListBoxItem"
       };

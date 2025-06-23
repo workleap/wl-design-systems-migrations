@@ -39,11 +39,12 @@ export function hasAttribute(
 
 export function isWithinComponent(
   path: ASTPath<JSXOpeningElement>,
-  componentNames: string[],
-  { j, root, mappings }: Runtime
+  componentNames: string | string[],
+  packageName: string,
+  { j, root }: Runtime
 ): boolean {
   // Extract components from the source package that this codemod is working with
-  const { importedComponents } = extractImportedComponents(j, root, mappings.sourcePackage);
+  const { importedComponents } = extractImportedComponents(j, root, packageName);
 
   let current = path.parentPath;
   
@@ -54,8 +55,8 @@ export function isWithinComponent(
      
       if (tagName.type === "JSXIdentifier") {
         const name = tagName.name;
-        const original = importedComponents[name] || name;
-        if (componentNames.includes(original)) {
+        const original = importedComponents[name] || name;//we should OR as we are not sure the parent component is imported from the same package
+        if (Array.isArray(componentNames) ? componentNames.includes(original) : componentNames === original && importedComponents[name] !== undefined) {
           return true;
         }
       }

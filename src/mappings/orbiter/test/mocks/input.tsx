@@ -1,5 +1,5 @@
 import {
-  Div as HopperDiv
+  Div as HopperDiv, ListBox as HopperLB
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 import {
@@ -838,6 +838,9 @@ export function App() {
       
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
+      <HopperLB>
+        <Item>Item 1</Item>
+      </HopperLB>
 
     </div>
   );

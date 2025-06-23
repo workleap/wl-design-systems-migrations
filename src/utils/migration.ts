@@ -47,11 +47,28 @@ export function getTodoComment(
 export function getLocalNameFromImport(  
   importSpecifier: ImportSpecifier | ImportDefaultSpecifier | ImportNamespaceSpecifier
 ): string {
-  const localName = importSpecifier.local?.name;
-  
-  if (typeof localName === "string") {return localName ;}
+  if (importSpecifier.local && typeof importSpecifier.local.name === "string") {
+    return importSpecifier.local.name;
+  }
 
-  throw new Error("Invalid import specifier: local name is not a string [This error should never happen]");
+  // For ImportSpecifier, fall back to the imported name
+  if (importSpecifier.type === "ImportSpecifier" && importSpecifier.imported) {
+    if (typeof importSpecifier.imported.name === "string") {
+      return importSpecifier.imported.name;
+    }
+  }
+
+  // For ImportDefaultSpecifier, the local name should always exist
+  if (importSpecifier.type === "ImportDefaultSpecifier") {
+    throw new Error("Invalid default import specifier: missing local name");
+  }
+
+  // For ImportNamespaceSpecifier, the local name should always exist
+  if (importSpecifier.type === "ImportNamespaceSpecifier") {
+    throw new Error("Invalid namespace import specifier: missing local name");
+  }
+
+  return "";
 }
 
 export function resolveComponentMapping(

@@ -26,6 +26,7 @@ import {
   Header,
   Heading,
   Div as HopperDiv,
+  ListBox as HopperLB,
   HtmlButton,
   HtmlFooter,
   HtmlForm,
@@ -842,6 +843,9 @@ export function App() {
       </Menu>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
+      <HopperLB>
+        <ListBoxItem>Item 1</ListBoxItem>
+      </HopperLB>
     </div>
   );
 }

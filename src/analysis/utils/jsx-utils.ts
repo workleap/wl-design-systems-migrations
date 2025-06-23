@@ -42,7 +42,7 @@ function buildRepoUrl(filePath: string, lineNumber: number, repoInfo: { url: str
 export function extractImportedComponents(
   j: Runtime["j"],
   root: Runtime["root"],
-  sourcePackage: string
+  sourcePackage: string 
 ): { importedComponents: Record<string, string>; potentialComponents: Set<string> } {
   // Find all import declarations from the source package
   const sourceImports = root.find(j.ImportDeclaration, {
@@ -60,7 +60,7 @@ export function extractImportedComponents(
     if (specifiers) {
       specifiers.forEach(spec => {
         if (spec.type === "ImportDefaultSpecifier") {
-          const localName = getLocalNameFromImport(spec);
+          const localName = getLocalNameFromImport(spec);          
           importedComponents[localName] = localName;
           potentialComponents.add(localName);
         } else if (spec.type === "ImportSpecifier") {
