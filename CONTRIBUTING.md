@@ -189,6 +189,21 @@ additions: {
 }
 ```
 
+### Removing Properties
+
+Use the `removals` field to remove properties from the target component:
+
+```ts
+props: {
+  removals: ["title", "deprecated"],  // Remove these properties
+  mappings: {
+    // ... other mappings
+  }
+}
+```
+
+The `removals` field accepts an array of property names that should be removed from the component during migration. This is useful when properties are no longer supported or have been replaced by different patterns.
+
 **PropertyAdderFunction signature:**
 
 ```ts
@@ -360,6 +375,45 @@ When components have dynamic mappings, the codemod automatically handles import 
 - **Import consolidation:** All required components are imported efficiently
 - **Mixed usage:** Supports cases where some instances are migrated and others remain in original package
 
+### Advanced Transformation Patterns
+
+**Property removal and child manipulation:**
+
+For complex transformations that involve removing properties and adding child elements, you can combine the `removals` field with helper functions like `addChildrenTo`:
+
+```ts
+components: {
+  Section: [(tag, runtime) => {
+    if (isWithinComponent(tag, "ListBox", runtime.mappings.targetPackage, runtime)) {
+      const titleValue = getAttributeValue(tag.node, "title");
+      
+      // Add a Header child with the title value
+      addChildrenTo(tag, "Header", [titleValue], runtime);
+      
+      return {
+        to: "ListBoxSection",
+        props: {
+          removals: ["title"]  // Remove the title prop since it's now a child
+        }
+      };
+    }
+  }]
+}
+```
+
+This pattern is useful when migrating from attribute-based APIs to child-based APIs:
+
+```tsx
+// Input
+<Section title="My Section">Content</Section>
+
+// Output  
+<ListBoxSection>
+  <Header>My Section</Header>
+  Content
+</ListBoxSection>
+```
+
 ### Helper Functions
 
 Key utilities from [`src/utils/mapping.ts`](/src/utils/mapping.ts):
@@ -369,6 +423,10 @@ Key utilities from [`src/utils/mapping.ts`](/src/utils/mapping.ts):
 - `tryGettingLiteralValue(value, runtime)` - Extract literal values from JSX attributes (most common)
 - `hasAttribute(tag, keys)` - Check if JSX element has specific attributes
 - `getAttributeLiteralValue(tag, attributeName, runtime)` - Extract literal value from a specific attribute
+
+**DOM manipulation functions:**
+
+- `addChildrenTo(tag, childName, values, runtime)` - Add child elements to a component with specified values
 
 **Property mapping functions:**
 

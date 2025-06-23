@@ -11,6 +11,7 @@ import type {
   ObjectProperty
 } from "jscodeshift";
 import { extractImportedComponents } from "../analysis/utils/jsx-utils.ts";
+import { addImportCase } from "../migrations/migrateImport.ts";
 import {
   type HopperStyledSystemPropsKeys,
   type LiteralType,
@@ -66,6 +67,36 @@ export function isWithinComponent(
   return false;
 }
 
+export function addChildrenTo(to: ASTPath<JSXOpeningElement>, childTagName: string, children: (Exclude<JSXElement["children"], undefined>[number] | null | undefined)[] = [], runtime: Runtime) {
+  const { j } = runtime;
+  
+  //add a Header child to the tag
+  const header = j.jsxElement(
+    j.jsxOpeningElement(j.jsxIdentifier(childTagName), [], false),
+    j.jsxClosingElement(j.jsxIdentifier(childTagName)),
+    children?.filter(child => !(child == null || child === undefined))
+  );
+
+  addImportCase({ componentName: childTagName, localName: childTagName, newComponentName: childTagName, newLocalName: childTagName }, runtime); 
+
+  //add the header as the first child of the tag
+  const jsxElement = to.parent.value;
+      
+  // Create newline and indentation text nodes
+  const newline = j.jsxText("\n");
+  const endNewline = j.jsxText("\n");
+      
+  if (jsxElement.children) {
+    jsxElement.children.unshift(newline, header);
+    if (jsxElement.children[jsxElement.children.length - 1].type !== "JSXText" || 
+            !jsxElement.children[jsxElement.children.length - 1].value.includes("\n")) {
+      jsxElement.children.push(endNewline);
+    }
+  } else {
+    jsxElement.children = [newline, header, endNewline];
+  }      
+}
+
 export function createObjectExpression(obj: Record<string, any>, runtime: Runtime) {
   const { j } = runtime;
 
@@ -113,6 +144,10 @@ export function getAttributeLiteralValue(
   attributeName: string,
   runtime: Runtime
 ) {
+  return tryGettingLiteralValue(getAttributeValue(tag, attributeName), runtime);
+}
+
+export function getAttributeValue(tag: JSXOpeningElement, attributeName: string) {
   const attribute = tag.attributes?.find(
     attr =>
       attr.type === "JSXAttribute" &&
@@ -121,10 +156,8 @@ export function getAttributeLiteralValue(
   );
 
   if (attribute && attribute.type == "JSXAttribute") {
-    return tryGettingLiteralValue(attribute.value, runtime);
+    return attribute.value;
   }
-
-  return null;
 }
 
 export function tryGettingLiteralValue(

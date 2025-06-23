@@ -55,6 +55,7 @@ export interface PropsMapMetaData {
   additions?: {
     [key: string]: PropertyAdderFunction | string | number | boolean | object;
   };
+  removals?: string[]; // properties to remove from the component
 }
 
 export type TodoComment = string | string[] | ((tag: ASTPath<JSXOpeningElement>, runtime: Runtime) => string | string[] | undefined);

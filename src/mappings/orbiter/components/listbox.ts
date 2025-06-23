@@ -1,4 +1,4 @@
-import { isWithinComponent, tryGettingLiteralValue } from "../../../utils/mapping.ts";
+import { addChildrenTo, getAttributeValue, isWithinComponent, tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const listboxMapping = {
@@ -39,11 +39,28 @@ export const listboxMapping = {
   ListItemMappings: []
 } satisfies Record<string, ComponentMapping>;
 
-export const listItemMappings = {
+export const listBoxItemMappings = {
   Item: [(tag, runtime) => {
-    if (isWithinComponent(tag, ["ListBox"], runtime.mappings.targetPackage, runtime)) {
+    if (isWithinComponent(tag, "ListBox", runtime.mappings.targetPackage, runtime)) {
       return {
         to: "ListBoxItem"
+      };
+    }
+  }]
+} satisfies Record<string, ComponentMapping>;
+
+export const listBoxSectionMappings = {
+  Section: [(tag, runtime) => {
+    if (isWithinComponent(tag, "ListBox", runtime.mappings.targetPackage, runtime)) {
+      const titleValue = getAttributeValue(tag.node, "title");
+
+      addChildrenTo(tag, "Header", [titleValue], runtime);     
+
+      return {
+        to: "ListBoxSection",
+        props: {
+          removals: ["title"]
+        }
       };
     }
   }]

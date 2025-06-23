@@ -1,6 +1,6 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
-import { listItemMappings } from "./listbox.ts";
+import { listBoxItemMappings } from "./listbox.ts";
 
 export const itemMapping = {
-  Item: [...listItemMappings.Item]
+  Item: [...listBoxItemMappings.Item]
 } satisfies Record<string, ComponentMapping>;
