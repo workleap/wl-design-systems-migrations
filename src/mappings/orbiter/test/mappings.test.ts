@@ -5,7 +5,7 @@ import { test } from "vitest";
 import { migrate } from "../../../migrations/migrate.ts";
 import { getRuntime } from "../../../utils/test.ts";
 
-test.only("migrates input.tsx to match expected output.tsx and generates migration notes", async () => {
+test("migrates input.tsx to match expected output.tsx and generates migration notes", async () => {
   // Read the input and expected output files
   const INPUT = readFileSync(new URL("./mocks/input.tsx", import.meta.url), "utf8");
   const EXPECTED_OUTPUT = readFileSync(
