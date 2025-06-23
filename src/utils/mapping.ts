@@ -44,8 +44,7 @@ export function isWithinComponent(
   { j, root }: Runtime
 ): boolean {
   // Extract components from the source package that this codemod is working with
-  const { importedComponents } = extractImportedComponents(j, root, packageName);
-
+  const { importedComponents } = extractImportedComponents(j, root, packageName);      
   let current = path.parentPath;
   
   while (current) {

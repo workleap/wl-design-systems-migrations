@@ -70,7 +70,7 @@ export type ComponentMapMetaData =
   | string;
 
 export type ComponentMappingFunction = (
-  tag: ASTPath<JSXOpeningElement> | undefined, // it could be undefined because we are using it for types too. For example DivProps. In this case, we only map the imports. 
+  tag: ASTPath<JSXOpeningElement>, // it could be undefined because we are using it for types too. For example DivProps. In this case, we only map the imports. 
   runtime: Runtime
 ) => ComponentMapMetaData | undefined;
 

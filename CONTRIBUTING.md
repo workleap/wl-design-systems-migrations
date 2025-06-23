@@ -328,10 +328,11 @@ components: {
 
 **How dynamic mappings work:**
 
-1. **Sequential evaluation:** Functions are called in order until one returns a mapping
-2. **First match wins:** The first function that returns a non-undefined result is used
-3. **Conditional logic:** Use `hasAttribute()`, `getAttributeLiteralValue()`, and other helpers to analyze the component
-4. **Flexible transformations:** Each mapping can specify different target components, properties, and import behavior
+1. **Only available for tags:** If it is being used for types (e.g. `DivProps`), these functions are getting ignored.
+2. **Sequential evaluation:** Functions are called in order until one returns a mapping
+3. **First match wins:** The first function that returns a non-undefined result is used
+4. **Conditional logic:** Use `hasAttribute()`, `getAttributeLiteralValue()`, and other helpers to analyze the component
+5. **Flexible transformations:** Each mapping can specify different target components, properties, and import behavior
 
 **Example transformation:**
 

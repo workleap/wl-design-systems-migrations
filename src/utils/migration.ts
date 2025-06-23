@@ -87,6 +87,7 @@ export function resolveComponentMapping(
 
   for (const mappingItem of mappingItems) {
     if (typeof mappingItem === "function") {
+      if (!tag) {continue;} // Skip if tag is undefined. It only happens when we are using types, like DivProps. Function mapping will not be applied in this case.
       const result = mappingItem(tag, runtime);
       if (result) {
         return result;
