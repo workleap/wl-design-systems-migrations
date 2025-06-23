@@ -202,8 +202,8 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
       "components": 20,
       "props": 80
     }
-  },  
-  "components": {  
+  },
+  "components": {
     "Text": {
       "usage": {
         "total": 15,
@@ -216,25 +216,25 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
         "size": {
           "usage": 75,
           "values": {
-            "lg": { 
+            "lg": {
               "usage": {
-                "total": 50, 
-                "projects": { 
-                  "frontend-team": 30, 
-                  "mobile-app": 20 
+                "total": 50,
+                "projects": {
+                  "frontend-team": 30,
+                  "mobile-app": 20
                 }
               },
               "files": [ //if --deep true is passed
                 "https://github.com/myorg/myrepo/blob/main/src/components/Header.tsx#L15",
                 "https://dev.azure.com/myorg/myproject/_git/myrepo?path=%2Fsrc%2Fcomponents%2FHero.tsx&version=GBmain&line=23",
-                "/src/pages/Dashboard.tsx"] 
+                "/src/pages/Dashboard.tsx"]
             },
-            "md": { 
+            "md": {
               "usage": {
-                "total": 25, 
-                "projects": { 
-                  "frontend-team": 15, 
-                  "mobile-app": 10 
+                "total": 25,
+                "projects": {
+                  "frontend-team": 15,
+                  "mobile-app": 10
                 }
               }
             }
@@ -279,7 +279,7 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 
 ## Shimmed components
 
-Shimmed components are compatibility layers that bridge the gap between Orbiter and Hopper component implementations. 
+Shimmed components are compatibility layers that bridge the gap between Orbiter and Hopper component implementations.
 They're designed to ease the migration process by preserving the expected behavior and API of Orbiter components while using Hopper's underlying implementation.
 
 When a component's implementation differs significantly between the two design systems, a shim can provide a transitional solution that:
@@ -289,7 +289,7 @@ When a component's implementation differs significantly between the two design s
 - Handles prop transformations that can't be handled by simple one-to-one mappings
 - Reduces the need for extensive manual refactoring
 
-Shims are particularly useful for complex components where the mental model or component architecture has changed between design systems. 
+Shims are particularly useful for complex components where the mental model or component architecture has changed between design systems.
 They allow you to migrate your codebase incrementally while maintaining functionality.
 
 ### Card
@@ -303,6 +303,17 @@ This shim bridges the gap between the two implementations, making Hopper’s Car
 
 See the [implementation](src/shims/OrbiterCard.tsx)
 See the [Stackblitz](https://stackblitz.com/edit/hopper-sandbox-qs8euohl?file=src%2FOrbiterCard.tsx) for examples.
+
+### Transition
+
+Orbiter's Transition component dynamically applies CSS classes to its children based on transition states. Since Hopper doesn't include a transition utility, this shim provides a lightweight implementation that applies the `transition` class to child elements.
+
+This component serves as a bridge between the two design systems, maintaining compatibility with existing Orbiter code patterns while facilitating a smoother migration to Hopper.
+
+- [Orbiter's Transition](https://wl-orbiter-website.netlify.app/?path=/docs/transition--docs)
+
+See the [TSX implementation](src/shims/Transition.tsx)
+See the [CSS implementation](src/shims/Transition.css)
 
 ## Contributing
 
