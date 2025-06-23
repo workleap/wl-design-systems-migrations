@@ -32,6 +32,7 @@ The codemod handles various migration scenarios including:
 - [Allowed Parameters](#allowed-parameters)
 - [Shimmed components](#shimmed-components)
   - [Card](#card)
+  - [Transition](#transition)
 - [Contributing](#contributing)
 
 ## Before Migration
