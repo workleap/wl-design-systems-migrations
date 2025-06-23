@@ -26,6 +26,7 @@ import {
   Header,
   Heading,
   Div as HopperDiv,
+  ListBox as HopperLB,
   HtmlButton,
   HtmlFooter,
   HtmlForm,
@@ -47,7 +48,11 @@ import {
   LI,
   Link,
   LinkButton,
+  ListBox,
+  ListBoxItem as ListboxItem,
+  ListBoxItem,
   Main,
+  Menu,
   Modal,
   ModalTrigger,
   Nav,
@@ -75,7 +80,7 @@ import {
   UL,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import { Alert, Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
+import { Alert, Counter, Dot, Item, Overlay, Section, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -799,8 +804,48 @@ export function App() {
       <Alert variant="confirmation" primaryButtonLabel="Confirm">
         This is an important alert message.
       </Alert>
+      {/* Listbox */}
+      <ListBox
+        isInvalid={true}
+        isFluid
+        zIndex={1000}
+        nodes={[]}/* Migration TODO: `nodes` is removed. Use dynamic list instead. An example: https://hopper.workleap.design/components/Listbox#usage-dynamic-lists */
+        selectedKeys={["1", "2"]}
+        selectionMode="multiple"
+        onSelectionChange={() => {}}
+      >
+        text
+      </ListBox>
+      <ListBox isInvalid={false}>text</ListBox>
+      <ListBox validationState={variable as any}/* Migration TODO: The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes */>text</ListBox>
+      <ListBox>
+        <Section title="Section 1">
+          <ListBoxItem>Item 1</ListBoxItem>
+          <ListBoxItem>Item 2</ListBoxItem>
+        </Section>
+        <Section title="Section 1">
+          <ListBoxItem>Item 1</ListBoxItem>
+          <ListBoxItem>Item 2</ListBoxItem>
+        </Section>
+        <ListBoxItem>Item 3</ListBoxItem>
+        <ListboxItem>Item 4</ListboxItem>
+      </ListBox>
+      <Menu>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Item>Item 3</Item>
+      </Menu>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
+      <HopperLB>
+        <ListBoxItem>Item 1</ListBoxItem>
+      </HopperLB>
     </div>
   );
 }

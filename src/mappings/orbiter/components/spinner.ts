@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { colorMapper } from "../styled-system/styles/colors.ts";
 
 export const spinnerMapping = {
@@ -16,4 +16,4 @@ export const spinnerMapping = {
     }
   },
   SpinnerProps: "SpinnerProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

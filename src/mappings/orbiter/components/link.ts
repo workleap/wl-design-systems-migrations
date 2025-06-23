@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const linkMapping = {
   Link: {
@@ -19,4 +19,4 @@ export const linkMapping = {
     }
   },
   LinkProps: "LinkProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

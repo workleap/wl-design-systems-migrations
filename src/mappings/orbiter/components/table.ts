@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const tableMapping = {
   Table: "Table",
@@ -15,4 +15,4 @@ export const tableMapping = {
   THeadProps: "THeadProps",
   TFoot: "TFoot",
   TFootProps: "TFootProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

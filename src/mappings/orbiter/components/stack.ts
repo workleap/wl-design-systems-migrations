@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { flexMapping } from "./flex.ts";
 
 export const stackMapping = {
@@ -10,4 +10,4 @@ export const stackMapping = {
     }
   },
   StackProps: "StackProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

@@ -1,12 +1,13 @@
 import assert from "node:assert";
 import { describe, test } from "vitest";
+import { hasAttribute } from "../../utils/mapping.ts";
 import { getRuntime, removeSpacesAndNewlines } from "../../utils/test.ts";
 import { migrate } from "../migrate.ts";
 
 describe("migrations", () => {
   test("when an Orbiter import got an alter name, keep it with Hopper", async () => {
-    const INPUT = "import { Div as Div2, Text } from \"@workleap/orbiter-ui\";";
-    const OUTPUT = "import { Div as Div2, Text } from \"@hopper-ui/components\";";
+    const INPUT = "import { Div as Div2, Text } from \"@workleap/orbiter-ui\"; function App() { return <><Div2 /><Text /></>; }";
+    const OUTPUT = "import { Div as Div2, Text } from \"@hopper-ui/components\"; function App() { return <><Div2 /><Text /></>; }";
 
     const actualOutput = migrate(
       getRuntime(INPUT, {
@@ -102,10 +103,18 @@ describe("migrations", () => {
     const INPUT = `
           import { Div } from "@workleap/orbiter-ui";
           import type { ContentProps } from "@workleap/orbiter-ui";
+          function App() {
+            const x: ContentProps = {};
+            return <Div />;
+          }
           `;
     const OUTPUT = `
           import { Div } from "@hopper-ui/components";
           import type { ContentProps } from "@hopper-ui/components";
+          function App() {
+            const x: ContentProps = {};
+            return <Div />;
+          }
           `;
 
     const actualOutput = migrate(
@@ -290,13 +299,13 @@ describe("migrations", () => {
   });
 
   test("when mapping has additional props for a mapping, add them to the result.", async () => {
-    const INPUT = "import { Paragraph } from \"@workleap/orbiter-ui\"; export function App() { return <Paragraph />; }";
+    const INPUT = "import { Text } from \"@workleap/orbiter-ui\"; export function App() { return <Text />; }";
     const OUTPUT = "import { Text } from \"@hopper-ui/components\"; export function App() { return <Text display=\"block\" />; }";
 
     const actualOutput = migrate(
       getRuntime(INPUT, {
         components: {
-          Paragraph: {
+          Text: {
             to: "Text",
             props: {
               additions: {
@@ -332,15 +341,15 @@ describe("migrations", () => {
   });
 
   test("when there are similar targets for two components, don't run migration twice for them", async () => {
-    const INPUT = "import { Text, Paragraph } from \"@workleap/orbiter-ui\"; export function App() { return <div><Paragraph fontFamily=\"tertiary\"/><Text fontFamily=\"tertiary\"></Text></div>; }";
-    const OUTPUT = "import { Text } from \"@hopper-ui/components\"; export function App() { return <div><Text fontFamily=\"core_tertiary\" elementType=\"p\" /><Text fontFamily=\"core_tertiary\"></Text></div>; }";
+    const INPUT = "import { Link, TextLink } from \"@workleap/orbiter-ui\"; export function App() { return <div><TextLink fontFamily=\"tertiary\"/><Link fontFamily=\"tertiary\"></Link></div>; }";
+    const OUTPUT = "import { Link } from \"@hopper-ui/components\"; export function App() { return <div><Link fontFamily=\"core_tertiary\" elementType=\"p\" /><Link fontFamily=\"core_tertiary\"></Link></div>; }";
 
     const actualOutput = migrate(
       getRuntime(INPUT, {
         components: {
-          Text: "Text",
-          Paragraph: {
-            to: "Text",
+          Link: "Link",
+          TextLink: {
+            to: "Link",
             props: {
               mappings: {
                 fontFamily: (value: any) => {
@@ -506,5 +515,283 @@ describe("migrations", () => {
     )!;
 
     assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+  });
+ 
+  describe("dynamic mappings", () => {
+    test("when a component has dynamic mappings, they should be applied correctly", async () => {
+      const INPUT = "import { Item } from \"@workleap/orbiter-ui\"; export function App() { return <Item x={1} />; }";
+      const OUTPUT = "import { ListItem } from \"@hopper-ui/components\"; export function App() { return <ListItem y={1} />; }";
+
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [() => ({
+              to: "ListItem",
+              props: {
+                mappings: {
+                  "x": "y"
+                }
+              }
+            })]
+          }
+        })
+      )!;
+
+      assert.deepEqual(removeSpacesAndNewlines(actualOutput), OUTPUT);
+    });
+
+    test("when a component has a list of dynamic mappings, they should be applied correctly", async () => {
+      const INPUT = `
+      import { Item } from "@workleap/orbiter-ui";
+
+      export function App() { 
+        return <>
+          <Item x={1} />
+          <Item y={1} />
+          <Item z={1} />
+        </>;
+      }
+    `;
+      const OUTPUT = `
+      import { ListItem, MenuItem } from "@hopper-ui/components";
+      import { Item } from "@workleap/orbiter-ui";
+
+      export function App() { 
+        return (
+          <>
+            <ListItem x1={1} />
+            <MenuItem y1={1} />
+            <Item z={1} />
+          </>
+        );
+      }
+    `;
+
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "x")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "x": "x1"
+                    }
+                  }
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "y")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "y": "y1"
+                    }
+                  }
+                };
+              }
+            }]
+          }
+        })
+      )!;
+
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
+
+    test("when a component has a list of dynamic mappings with skipImport option, they should be applied correctly", async () => {
+      const INPUT = `
+      import { Item } from "@workleap/orbiter-ui";
+
+      export function App() {
+        return <>
+          <Item x={1} />
+          <Item y={1} />
+          <Item z={1} />
+          <Item />
+        </>;
+      }
+    `;
+      const OUTPUT = `
+      import { ListItem, MenuItem } from "@hopper-ui/components";
+      import { Item } from "@workleap/orbiter-ui";
+
+      export function App() {
+        return (
+          <>
+            <ListItem x1={1} />
+            <MenuItem y1={1} />
+            /* Migration TODO: Not supported */
+            <Item z={1} />
+            <Item />
+          </>
+        );
+      }
+    `;
+
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "x")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "x": "x1"
+                    }
+                  }
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "y")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "y": "y1"
+                    }
+                  }
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "z")) {
+                return {
+                  skipImport: true,
+                  todoComments: "Not supported"
+                };
+              }
+            }]
+          }
+        })
+      )!;
+
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
+
+    test("when a component with local name has a list of dynamic mappings, the name should be preserved accordingly", async () => {
+      const INPUT = `
+      import { Item as X } from "@workleap/orbiter-ui";
+      
+      export function App() { 
+        return <>
+          <X x={1} />
+          <X y={1} />
+          <X />
+        </>;
+      }
+    `;
+      const OUTPUT = `
+      import { ListItem as X1, MenuItem as X2 } from "@hopper-ui/components";
+      import { Item as X } from "@workleap/orbiter-ui";
+
+      export function App() { 
+        return (
+          <>
+            <X1 x1={1} />
+            <X2 y1={1} />
+            <X />
+          </>
+        );
+      }
+    `;
+
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "x")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "x": "x1"
+                    }
+                  }
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "y")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "y": "y1"
+                    }
+                  }
+                };
+              }
+            }]
+          }
+        })
+      )!;
+
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
+
+    test("when a component with multiple local names has a list of dynamic mappings, the name should be preserved accordingly", async () => {
+      const INPUT = `
+      import { Item as X, Item as Y } from "@workleap/orbiter-ui";
+
+      export function App() { 
+        return <>
+          <X l={1} />
+          <X m={1} />
+          <X />
+          <Y l={1} />
+          <Y m={1} />
+        </>;
+      }
+    `;
+      const OUTPUT = `
+      import { ListItem as X1, MenuItem as X2, ListItem as Y, MenuItem as Y1 } from "@hopper-ui/components";
+      import { Item as X } from "@workleap/orbiter-ui";
+
+      export function App() { 
+        return (
+          <>
+            <X1 ll={1} />
+            <X2 mm={1} />
+            <X />
+            <Y ll={1} />
+            <Y1 mm={1} />
+          </>
+        );
+      }
+    `;
+
+      const actualOutput = migrate(
+        getRuntime(INPUT, {
+          components: {
+            Item: [tag => {
+              if (hasAttribute(tag!.node, "l")) {
+                return {
+                  to: "ListItem",
+                  props: {
+                    mappings: {
+                      "l": "ll"
+                    }
+                  }
+                };
+              }
+            }, tag => {
+              if (hasAttribute(tag!.node, "m")) {
+                return {
+                  to: "MenuItem",
+                  props: {
+                    mappings: {
+                      "m": "mm"
+                    }
+                  }
+                };
+              }
+            }]
+          }
+        })
+      )!;
+
+      assert.deepEqual(actualOutput, OUTPUT);
+    });
   });
 });

@@ -277,6 +277,89 @@ components: {
 - ✅ Component usage analysis still works
 - ❌ Component name won't be changed (even if `to` field is specified)
 
+### Dynamic Component Mappings
+
+Components can have multiple conditional mappings using an array of `ComponentMappingFunction`s. This allows a single component to be transformed into different target components based on its attributes:
+
+```ts
+components: {
+  // Single component with multiple possible mappings
+  Item: [
+    // First mapping function - check for "x" attribute
+    (tag, runtime) => {
+      if (hasAttribute(tag.node, "x")) {
+        return {
+          to: "ListItem",
+          props: {
+            mappings: {
+              x: "itemId"
+            }
+          }
+        };
+      }
+    },
+    
+    // Second mapping function - check for "y" attribute
+    (tag, runtime) => {
+      if (hasAttribute(tag.node, "y")) {
+        return {
+          to: "MenuItem", 
+          props: {
+            mappings: {
+              y: "menuId"
+            }
+          }
+        };
+      }
+    },
+    
+    // Third mapping function - fallback for unsupported cases
+    (tag, runtime) => {
+      if (hasAttribute(tag.node, "z")) {
+        return {
+          skipImport: true,
+          todoComments: "This usage pattern is not supported. Consider alternative approach."
+        };
+      }
+    }
+  ]
+}
+```
+
+**How dynamic mappings work:**
+
+1. **Only available for tags:** If it is being used for types (e.g. `DivProps`), these functions are getting ignored.
+2. **Sequential evaluation:** Functions are called in order until one returns a mapping
+3. **First match wins:** The first function that returns a non-undefined result is used
+4. **Conditional logic:** Use `hasAttribute()`, `getAttributeLiteralValue()`, and other helpers to analyze the component
+5. **Flexible transformations:** Each mapping can specify different target components, properties, and import behavior
+
+**Example transformation:**
+
+```tsx
+// Input
+<Item x="user1" />       // Matches first mapping function
+<Item y="menu1" />       // Matches second mapping function  
+<Item z="legacy" />      // Matches third mapping function
+<Item />                 // No match - remains unchanged
+
+// Output  
+<ListItem itemId="user1" />
+<MenuItem menuId="menu1" />  
+{/* Migration TODO: This usage pattern is not supported. Consider alternative approach. */}
+<Item z="legacy" />
+<Item />
+```
+
+**Import handling with dynamic mappings:**
+
+When components have dynamic mappings, the codemod automatically handles import management:
+
+- **Multiple targets:** Different instances map to different components
+- **Alias preservation:** Local aliases are maintained with numeric suffixes when needed
+- **Import consolidation:** All required components are imported efficiently
+- **Mixed usage:** Supports cases where some instances are migrated and others remain in original package
+
 ### Helper Functions
 
 Key utilities from [`src/utils/mapping.ts`](/src/utils/mapping.ts):

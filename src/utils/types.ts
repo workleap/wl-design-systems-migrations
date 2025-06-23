@@ -69,6 +69,13 @@ export type ComponentMapMetaData =
   }
   | string;
 
+export type ComponentMappingFunction = (
+  tag: ASTPath<JSXOpeningElement>, // it could be undefined because we are using it for types too. For example DivProps. In this case, we only map the imports. 
+  runtime: Runtime
+) => ComponentMapMetaData | undefined;
+
+export type ComponentMapping = ComponentMapMetaData | ComponentMappingFunction[];
+
 export interface MapMetaData {
   sourcePackage: string;
   targetPackage: string;
@@ -78,10 +85,10 @@ export interface MapMetaData {
     buttons: string[];
     visual: string[];
   };
-  components: Record<string, ComponentMapMetaData>;
+  components: Record<string, ComponentMapping>;
 }
 
-export function getMappingKeys<T extends Record<string, ComponentMapMetaData>>(
+export function getMappingKeys<T extends Record<string, unknown>>(
   obj: T
 ): Array<keyof T> {
   return Object.keys(obj) as Array<keyof T>;

@@ -1,6 +1,5 @@
-// prettier-ignore
 import {
-  Div as HopperDiv
+  Div as HopperDiv, ListBox as HopperLB
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 import {
@@ -55,9 +54,13 @@ import {
   Image,
   Img,
   Inline,
+  Item,
   LI,
   Link,
+  Listbox,
+  Item as ListboxItem,
   Main,
+  Menu,
   Modal,
   ModalTrigger,
   Nav,
@@ -66,6 +69,7 @@ import {
   Paragraph,
   Popover,
   PopoverTrigger,
+  Section,
   Span,
   Spinner,
   Stack,
@@ -792,9 +796,51 @@ export function App() {
       <Alert variant="confirmation" primaryButtonLabel="Confirm">
         This is an important alert message.
       </Alert>
+
+      {/* Listbox */}
+      <Listbox
+        validationState="invalid"
+        fluid
+        zIndex={1000}
+        nodes={[]}
+        selectedKeys={["1", "2"]}
+        selectionMode="multiple"
+        onSelectionChange={() => {}}
+      >
+        text
+      </Listbox>
+      <Listbox validationState="valid">text</Listbox>
+      <Listbox validationState={variable as any}>text</Listbox>
+      <Listbox>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Item>Item 3</Item>
+        <ListboxItem>Item 4</ListboxItem>
+      </Listbox>
+
+      <Menu>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Section title="Section 1">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Item>Item 3</Item>
+      </Menu>
       
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
+      <HopperLB>
+        <Item>Item 1</Item>
+      </HopperLB>
 
     </div>
   );

@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
-import type { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapping } from "../../utils/types.ts";
 import { avatarMapping } from "./components/avatar.ts";
 import { avatarTextMapping } from "./components/avatarText.ts";
 import { illustrationMapping } from "./components/illustration.ts";
 import { imageMapping } from "./components/image.ts";
 import { spinnerMapping } from "./components/spinner.ts";
 
-export const visualComponentsMappings: Record<string, ComponentMapMetaData> = {
+export const visualComponentsMappings: Record<string, ComponentMapping> = {
   ...avatarMapping,
   AvatarGroup: "AvatarGroup",
   AvatarGroupProps: "AvatarGroupProps",

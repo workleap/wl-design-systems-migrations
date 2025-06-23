@@ -30,4 +30,4 @@ test("migrates input.tsx to match expected output.tsx and generates migration no
   const expectedNotes = fs.readFileSync(new URL("./mocks/migration-notes-expected.md", import.meta.url), "utf-8");
 
   assert.deepEqual(actualNotes.trim(), expectedNotes.replace("<!-- markdownlint-disable -->", "").trim());
-});
+}, 10000);

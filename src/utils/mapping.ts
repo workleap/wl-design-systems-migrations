@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-wrapper-object-types */
 import type {
+  ASTPath,
   JSXAttribute,
   JSXElement,
   JSXEmptyExpression,
@@ -9,6 +10,7 @@ import type {
   Literal,
   ObjectProperty
 } from "jscodeshift";
+import { extractImportedComponents } from "../analysis/utils/jsx-utils.ts";
 import {
   type HopperStyledSystemPropsKeys,
   type LiteralType,
@@ -33,6 +35,35 @@ export function hasAttribute(
           : attr.name.name === keys)
     ) !== undefined
   );
+}
+
+export function isWithinComponent(
+  path: ASTPath<JSXOpeningElement>,
+  componentNames: string | string[],
+  packageName: string,
+  { j, root }: Runtime
+): boolean {
+  // Extract components from the source package that this codemod is working with
+  const { importedComponents } = extractImportedComponents(j, root, packageName);      
+  let current = path.parentPath;
+  
+  while (current) {
+    if (j.JSXElement.check(current.node)) {
+      const openingElement = (current.node as JSXElement).openingElement;
+      const tagName = openingElement.name;
+     
+      if (tagName.type === "JSXIdentifier") {
+        const name = tagName.name;
+        const original = importedComponents[name] || name;//we should OR as we are not sure the parent component is imported from the same package
+        if (Array.isArray(componentNames) ? componentNames.includes(original) : componentNames === original && importedComponents[name] !== undefined) {
+          return true;
+        }
+      }
+    }
+    current = current.parentPath;
+  }
+
+  return false;
 }
 
 export function createObjectExpression(obj: Record<string, any>, runtime: Runtime) {

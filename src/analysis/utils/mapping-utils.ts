@@ -33,6 +33,7 @@ export function isPropertyMapped(
 
   // Check component-specific prop mappings
   if (
+    !Array.isArray(componentMapping) &&
     componentMapping.props?.mappings &&
     propName in componentMapping.props.mappings
   ) {

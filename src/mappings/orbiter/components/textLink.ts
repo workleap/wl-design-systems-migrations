@@ -1,5 +1,5 @@
 import { hasAttribute, tryGettingLiteralValue } from "../../../utils/mapping.ts";
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { linkMapping } from "./link.ts";
 
 export const textLinkMapping = {
@@ -69,7 +69,7 @@ export const textLinkMapping = {
     }
   },
   TextLinkProps: "LinkProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;
 
 
 export const textLinkAsButtonMapping = {
@@ -77,4 +77,4 @@ export const textLinkAsButtonMapping = {
     ...textLinkMapping.TextLink    
   },
   TextLinkAsButtonProps: "LinkProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

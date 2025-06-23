@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../utils/types.ts";
+import type { ComponentMapping } from "../../utils/types.ts";
 import { flexMapping } from "./components/flex.ts";
 import { gridMappings } from "./components/grid.ts";
 import { headingMappings } from "./components/heading.ts";
@@ -81,4 +81,4 @@ export const layoutComponentsMappings = {
   NavProps: "NavProps",
   Span: "Span",
   SpanProps: "SpanProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

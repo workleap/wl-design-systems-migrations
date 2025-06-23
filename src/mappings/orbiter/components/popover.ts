@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const popoverMapping = {
   Popover: {
@@ -10,7 +10,7 @@ export const popoverMapping = {
     }
   },
   PopoverProps: "PopoverProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;
 
 export const popoverTriggerMapping = {
   PopoverTrigger: {
@@ -23,4 +23,4 @@ export const popoverTriggerMapping = {
     }
   },
   PopoverTriggerProps: "PopoverTriggerProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

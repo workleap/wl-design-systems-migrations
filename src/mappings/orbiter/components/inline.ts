@@ -1,5 +1,5 @@
 import { hasAttribute } from "../../../utils/mapping.ts";
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { flexMapping } from "./flex.ts";
 
 export const inlineMapping = {
@@ -18,4 +18,4 @@ export const inlineMapping = {
     }
   },
   InlineProps: "InlineProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

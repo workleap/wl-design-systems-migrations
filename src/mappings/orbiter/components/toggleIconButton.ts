@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { iconButtonMapping } from "./iconButton.ts";
 import { toggleButtonMapping } from "./toggleButton.ts";
 
@@ -13,4 +13,4 @@ export const toggleIconButtonMapping = {
     }
   },
   ToggleIconButtonProps: "ToggleIconButtonProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const tooltipMapping = {
   Tooltip: {
@@ -9,7 +9,7 @@ export const tooltipMapping = {
     }
   },
   TooltipProps: "TooltipProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;
 
 export const tooltipTriggerMapping = {
   TooltipTrigger: {
@@ -23,4 +23,4 @@ export const tooltipTriggerMapping = {
     }
   },
   TooltipTriggerProps: "TooltipTriggerProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { iconButtonMapping } from "./iconButton.ts";
 
 export const iconButtonAsLinkMapping = {
@@ -18,4 +18,4 @@ export const iconButtonAsLinkMapping = {
       "https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback"
   },
   ButtonAsLinkProps: "LinkButtonProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

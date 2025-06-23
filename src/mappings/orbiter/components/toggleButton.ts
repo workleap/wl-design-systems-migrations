@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 import { buttonMapping } from "./button.ts";
 
 export const toggleButtonMapping = {
@@ -16,4 +16,4 @@ export const toggleButtonMapping = {
     }
   },
   ToggleButtonProps: "ToggleButtonProps"
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;

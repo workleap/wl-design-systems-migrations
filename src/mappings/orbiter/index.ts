@@ -4,8 +4,10 @@ import {
   type PropsMapping
 } from "../../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
+import { itemMapping } from "./components/item.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
-import { overlayComponentsMappings } from "./overlay-components-mappings copy.ts";
+import { menuComponentsMappings } from "./menu-components-mappings.ts";
+import { overlayComponentsMappings } from "./overlay-components-mappings.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
 import { visualComponentsMappings } from "./visual-components-mappings.ts";
 
@@ -44,7 +46,9 @@ export const mappings = {
     ...layoutComponentsMappings,
     ...buttonComponentsMappings,
     ...visualComponentsMappings,
-    ...overlayComponentsMappings
+    ...overlayComponentsMappings,
+    ...menuComponentsMappings,
+    ...itemMapping//TODO: the map should be filtered based on categories. currently it maps in all cases
 
     //TODO: move items from todo list here when they are implemented
   }
@@ -52,24 +56,6 @@ export const mappings = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const todo = {
- 
-  //menus & lists - total usage: 74
-  Menu: "Menu", //usage: 31
-  MenuProps: "MenuProps",
-  MenuItem: "MenuItem", //usage: 0 (Item: 326)
-  MenuItemProps: "MenuItemProps",
-  MenuSection: "MenuSection", //usage: 0 (Section: 9)
-  MenuSectionProps: "MenuSectionProps",
-  MenuTrigger: "MenuTrigger", //usage: 32
-  MenuTriggerProps: "MenuTriggerProps",
-  // TODO: Not a direct mapping. Find the appropriate component/type.
-  // Listbox: "ListBox", //usage: 11
-  // ListboxProps: "ListBoxProps",
-  // ListboxSection: "ListBoxSection",
-  // ListboxSectionProps: "ListBoxSectionProps",
-  // ListboxOption: "ListBoxItem",
-  // ListboxOptionProps: "ListBoxItemProps",
-
   //disclosure & accordion - total usage: 28
   Disclosure: "Disclosure", //usage: 7
   DisclosureProps: "DisclosureProps",

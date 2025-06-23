@@ -1,4 +1,4 @@
-import type { ComponentMapMetaData } from "../../../utils/types.ts";
+import type { ComponentMapping } from "../../../utils/types.ts";
 
 export const avatarMapping = {
   Avatar: {
@@ -28,4 +28,4 @@ export const avatarMapping = {
   },
   AnonymousAvatarProps: "AnonymousAvatarProps"
   
-} satisfies Record<string, ComponentMapMetaData>;
+} satisfies Record<string, ComponentMapping>;
