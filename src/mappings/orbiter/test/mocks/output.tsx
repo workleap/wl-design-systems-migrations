@@ -112,14 +112,14 @@ export function App() {
       <Div backgroundColor="warning" UNSAFE_width="45rem" />
       <Div backgroundColor="warning" width={"-35%"} />
       <Div backgroundColor="warning" width="fit-content" />
-      <Div backgroundColor="warning" height="core_0" />
+      <Div backgroundColor="warning" height={0} />
       <Div backgroundColor="warning" height="0.5%" />
       <Div backgroundColor="warning" UNSAFE_height="800px" />
       <Div backgroundColor="warning" height={"-35%"} />
       <Div backgroundColor="warning" height="-moz-initial" />
       <Text color="neutral">Hello World!</Text>
       <Paragraph size={"2xl"}>Hello World!</Paragraph>
-      <Flex direction="row" gap="core_960" rowGap="core_0" columnGap="core_0">
+      <Flex direction="row" gap="core_960" rowGap={0} columnGap={0}>
         text 1
       </Flex>
       <Flex
@@ -136,7 +136,7 @@ export function App() {
       <Flex direction="row" UNSAFE_gap="35%" UNSAFE_rowGap="35%" UNSAFE_columnGap="35%">
         text 4
       </Flex>
-      <Stack gap="core_0" rowGap="core_0" columnGap="core_0">
+      <Stack gap="core_0" rowGap={0} columnGap="core_0">
         text
       </Stack>
       <Inline gap="core_0" rowGap="core_0" columnGap="core_0">
@@ -146,13 +146,13 @@ export function App() {
       <Div UNSAFE_marginTop={"10px"}></Div>
       <Div marginBottom="inline-sm"></Div>
       <Div UNSAFE_marginLeft="25%"></Div>
-      <Div UNSAFE_marginRight="auto"></Div>
-      <Div marginX="core_0"></Div>
+      <Div marginRight="auto"></Div>
+      <Div marginX={0}></Div>
       <Div marginLeft="core_1280"></Div>
       <Div marginY="core_0"></Div>
       <Div marginLeft="revert-layer"></Div>
       <Div margin="inline-lg"></Div>
-      <Div UNSAFE_margin="auto"></Div>
+      <Div margin="auto"></Div>
       <Div UNSAFE_margin="inline-lg inline-md"></Div>
       {/* ------------------------------------------------------------------------------------------ */}
       <Flex padding={variable}>text</Flex>
@@ -160,7 +160,7 @@ export function App() {
       <Span UNSAFE_paddingBottom="inline-sm"></Span>
       <Span UNSAFE_paddingLeft="25%"></Span>
       <Span UNSAFE_paddingRight="auto"></Span>
-      <Span paddingX="core_0"></Span>
+      <Span paddingX={0}></Span>
       <Span padding="core_1280"></Span>
       <Span paddingY="core_0"></Span>
       <Span paddingLeft="revert-layer"></Span>
@@ -224,7 +224,7 @@ export function App() {
       <Div gridAutoColumns="initial" />
       <Div gridAutoColumns="95%" />
       <Div gridAutoColumns="95.5fr" />
-      <Div gridAutoColumns="core_0" />
+      <Div gridAutoColumns={0} />
       <Div gridAutoColumns="core_0" />
       <Div gridAutoColumns="core_480" />
       <Div UNSAFE_gridAutoColumns="2/3" />
@@ -234,7 +234,7 @@ export function App() {
       <Div gridAutoRows="initial" />
       <Div gridAutoRows="95%" />
       <Div gridAutoRows="95.5fr" />
-      <Div gridAutoRows="core_0" />
+      <Div gridAutoRows={0} />
       <Div gridAutoRows="core_0" />
       <Div gridAutoRows="core_480" />
       <Div UNSAFE_gridAutoRows="2/3" />
@@ -242,13 +242,13 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       <Div gridTemplateColumns="subgrid" />
       <Div gridTemplateColumns="min-content" />
-      <Div gridTemplateColumns="core_0" />
+      <Div gridTemplateColumns={0} />
       <Div gridTemplateColumns="core_960" />
       <Div UNSAFE_gridTemplateColumns="invalid" />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div gridTemplateRows="none" />
       <Div gridTemplateRows="auto" />
-      <Div gridTemplateRows="core_0" />
+      <Div gridTemplateRows={0} />
       <Div gridTemplateRows="core_960" />
       <Div UNSAFE_gridTemplateRows="invalid" />
       {/* ------------------------------------------------------------------------------------------ */}
@@ -285,11 +285,11 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       <Div lineHeight="core_1-4285" />
       <Div lineHeight="body-xs" />
-      <Div UNSAFE_lineHeight="normal" />
+      <Div lineHeight="normal" />
       <Div UNSAFE_lineHeight="invalid" />
       <Div UNSAFE_lineHeight="124rem" />
       <Div UNSAFE_lineHeight={425} />
-      <Div UNSAFE_lineHeight={0} />
+      <Div lineHeight={0} />
       <Div UNSAFE_lineHeight={"0"} />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div boxShadow="none" />
@@ -403,7 +403,7 @@ export function App() {
       <Stack padding="core_400">text</Stack>
       <Heading UNSAFE_marginBottom="calc(1.75rem * .5)">text</Heading>
       <Heading size="xs" UNSAFE_marginBottom="calc(1.125rem * .5)">text</Heading>
-      <Heading margin="core_0">text</Heading>
+      <Heading margin={0}>text</Heading>
       <Heading marginBottom={"inline-md"}>text</Heading>
       <Heading size="3xl" marginBottom={"inline-md"}>
         text

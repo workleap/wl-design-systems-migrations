@@ -15,7 +15,7 @@ import {
 export const widthMapper = createHopperCssPropertyMapper({
   propertyName: "width",
   unsafePropertyName: "UNSAFE_width",
-  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content", 0, "-moz-max-content", "-moz-min-content", "-webkit-fit-content", "-moz-fit-content", "-webkit-max-content", "intrinsic", "min-intrinsic"],
   sourceValidKeys: OrbiterSizingMapping,
   targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
@@ -33,7 +33,7 @@ export const widthMapper = createHopperCssPropertyMapper({
 export const heightMapper = createHopperCssPropertyMapper({
   propertyName: "height",
   unsafePropertyName: "UNSAFE_height",
-  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content", "-moz-max-content", "-moz-min-content", "-webkit-fit-content", 0],
   sourceValidKeys: OrbiterSizingMapping,
   targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
@@ -51,7 +51,7 @@ export const heightMapper = createHopperCssPropertyMapper({
 export const minWidthMapper = createHopperCssPropertyMapper({
   propertyName: "minWidth",
   unsafePropertyName: "UNSAFE_minWidth",
-  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content", 0, "-moz-max-content", "-moz-min-content", "-webkit-fit-content", "-moz-fit-content", "-webkit-max-content", "intrinsic", "min-intrinsic"],
   sourceValidKeys: OrbiterSizingMapping,
   targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
@@ -69,7 +69,7 @@ export const minWidthMapper = createHopperCssPropertyMapper({
 export const minHeightMapper = createHopperCssPropertyMapper({
   propertyName: "minHeight",
   unsafePropertyName: "UNSAFE_minHeight",
-  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content", "-moz-max-content", "-moz-min-content", "-webkit-fit-content", 0],
   sourceValidKeys: OrbiterSizingMapping,
   targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
@@ -87,7 +87,7 @@ export const minHeightMapper = createHopperCssPropertyMapper({
 export const maxWidthMapper = createHopperCssPropertyMapper({
   propertyName: "maxWidth",
   unsafePropertyName: "UNSAFE_maxWidth",
-  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content", 0, "-moz-max-content", "-moz-min-content", "-webkit-fit-content", "-moz-fit-content", "-webkit-max-content", "intrinsic", "min-intrinsic"],
   sourceValidKeys: OrbiterSizingMapping,
   targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
@@ -105,7 +105,7 @@ export const maxWidthMapper = createHopperCssPropertyMapper({
 export const maxHeightMapper = createHopperCssPropertyMapper({
   propertyName: "maxHeight",
   unsafePropertyName: "UNSAFE_maxHeight",
-  validGlobalValues: ["auto", "fit-content", "max-content", "min-content"],
+  validGlobalValues: ["auto", "fit-content", "max-content", "min-content", "-moz-max-content", "-moz-min-content", "-webkit-fit-content", 0],
   sourceValidKeys: OrbiterSizingMapping,
   targetValidKeys: HopperSizingMapping,
   customMapper: (value, originalValue) => {
@@ -123,6 +123,7 @@ export const maxHeightMapper = createHopperCssPropertyMapper({
 export const lineHeightMapper = createHopperCssPropertyMapper({
   propertyName: "lineHeight",
   unsafePropertyName: "UNSAFE_lineHeight",
+  validGlobalValues: ["normal", 0],
   sourceValidKeys: OrbiterLineHeightMapping,
   targetValidKeys: HopperLineHeightMapping
 });

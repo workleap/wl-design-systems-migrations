@@ -16,7 +16,7 @@ export const createGridAutoColumnsMapper = <T extends string = string>(
   createCssPropertyMapper({
     propertyName,
     unsafePropertyName,
-    validGlobalValues: ["auto", "min-content", "max-content"],
+    validGlobalValues: ["auto", "min-content", "max-content", 0],
     sourceValidKeys: OrbiterSizingMapping,
     targetValidKeys: HopperSizingMapping,
     customMapper: (value, originalValue) => {
@@ -38,7 +38,7 @@ export const createGridAutoRowsMapper = <T extends string = string>(
   createCssPropertyMapper({
     propertyName,
     unsafePropertyName,
-    validGlobalValues: ["auto", "min-content", "max-content"],
+    validGlobalValues: ["auto", "min-content", "max-content", 0],
     sourceValidKeys: OrbiterSizingMapping,
     targetValidKeys: HopperSizingMapping,
     customMapper: (value, originalValue) => {
@@ -65,7 +65,8 @@ export const createGridTemplateColumnsMapper = <T extends string = string>(
       "subgrid",
       "auto",
       "max-content",
-      "min-content"
+      "min-content",
+      0
     ],
     sourceValidKeys: OrbiterSizingMapping,
     targetValidKeys: HopperSizingMapping,
@@ -93,7 +94,8 @@ export const createGridTemplateRowsMapper = <T extends string = string>(
       "subgrid",
       "auto",
       "max-content",
-      "min-content"
+      "min-content",
+      0
     ],
     sourceValidKeys: OrbiterSizingMapping,
     targetValidKeys: HopperSizingMapping,
