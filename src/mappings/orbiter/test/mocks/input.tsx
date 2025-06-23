@@ -816,7 +816,7 @@ export function App() {
           <Item>Item 1</Item>
           <Item>Item 2</Item>
         </Section>
-        <Section title="Section 1">
+        <Section title="Section 2">
           <Item>Item 1</Item>
           <Item>Item 2</Item>
         </Section>
@@ -829,7 +829,7 @@ export function App() {
           <Item>Item 1</Item>
           <Item>Item 2</Item>
         </Section>
-        <Section title="Section 1">
+        <Section title="Section 2">
           <Item>Item 1</Item>
           <Item>Item 2</Item>
         </Section>

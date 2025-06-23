@@ -5,6 +5,7 @@ import {
 } from "../../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { itemMapping } from "./components/item.ts";
+import { sectionMapping } from "./components/section.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { menuComponentsMappings } from "./menu-components-mappings.ts";
 import { overlayComponentsMappings } from "./overlay-components-mappings.ts";
@@ -48,9 +49,9 @@ export const mappings = {
     ...visualComponentsMappings,
     ...overlayComponentsMappings,
     ...menuComponentsMappings,
-    ...itemMapping//TODO: the map should be filtered based on categories. currently it maps in all cases
+    ...itemMapping,
+    ...sectionMapping
 
-    //TODO: move items from todo list here when they are implemented
   }
 } satisfies MapMetaData;
 

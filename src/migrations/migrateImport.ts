@@ -62,18 +62,65 @@ function removeImportCase({ componentName, localName }: ImportMap, runtime: Runt
     });
 }
 
-function addImportCase(
-  { componentName,
-    localName,
-    newComponentName,
-    newLocalName }: ImportMap,
+function isImportCaseAlreadyAdded(importCase: ImportMap, runtime: Runtime): boolean {
+  const { j, root, mappings } = runtime;
+  const { targetPackage } = mappings;
+  const { newComponentName, newLocalName } = importCase;
+
+  // Check if there's already an import from the target package with the same component and local name
+  const existingImport = root.find(j.ImportDeclaration, {
+    source: {
+      value: targetPackage
+    }
+  });
+
+  if (existingImport.length === 0) {
+    return false;
+  }
+
+  // Check all import specifiers in the target package imports
+  let isFound = false;
+  existingImport.forEach(path => {
+    const importSpecifiers = path.node.specifiers || [];
+    
+    const hasMatchingSpecifier = importSpecifiers.some((specifier: any) => {
+      if (!j.ImportSpecifier.check(specifier) || !specifier.imported) {
+        return false;
+      }
+      
+      const importedName = specifier.imported.name;
+      const localName = getLocalNameFromImport(specifier);
+      
+      return importedName === newComponentName && localName === newLocalName;
+    });
+
+    if (hasMatchingSpecifier) {
+      isFound = true;
+    }
+  });
+
+  return isFound;
+}
+
+export function addImportCase(
+  importCase: ImportMap,
   runtime: Runtime
 ) {
+  // Check if the import case is already added to the target package
+  if (isImportCaseAlreadyAdded(importCase, runtime)) {
+    return;
+  }
+
   const { j, root, mappings } = runtime;
   const { sourcePackage, targetPackage } = mappings;
+  const { componentName, localName, newComponentName, newLocalName } = importCase;
  
-  // Collect all import specifiers that need to be migrated
-  const newImportSpecifiers: any[] = [];
+  const isAliased = newLocalName !== newComponentName;   
+  const newImportSpecifier = j.importSpecifier(
+    j.identifier(newComponentName),
+    isAliased ? j.identifier(newLocalName) : null
+  );
+  let isFromSeparateTypeImport = false;
 
   // Find all import declarations from the source package
   root
@@ -97,30 +144,18 @@ function addImportCase(
       // Process each matching component specifier
       componentSpecifiers.forEach(componentSpecifier => {
         if (j.ImportSpecifier.check(componentSpecifier)) {
-          // Get the local name (alias) of the component, or use the original name if no alias
-          const isAliased = newLocalName !== newComponentName;
-
           // Check if this is a type import (either the whole import or this specific specifier)
           const isTypeImport =
             path.node.importKind === "type" ||
             (componentSpecifier as any).importKind === "type";
-
-          // Create a new import specifier for the target package
-          const newImportSpecifier = j.importSpecifier(
-            j.identifier(newComponentName),
-            isAliased ? j.identifier(newLocalName) : null
-          );
 
           // Set the importKind for inline type imports only (not for separate import type declarations)
           if (isTypeImport && path.node.importKind !== "type") {
             (newImportSpecifier as any).importKind = "type";
           }
 
-          newImportSpecifiers.push(newImportSpecifier);
-
           // Store whether this specifier came from a separate type import declaration
-          (newImportSpecifier as any)._isFromSeparateTypeImport =
-            path.node.importKind === "type";
+          isFromSeparateTypeImport = path.node.importKind === "type";
         }
       });
     });
@@ -134,11 +169,6 @@ function addImportCase(
   });
 
   if (existingTargetImport.length > 0) {
-    // Check if we need to handle type imports differently
-    const allAreFromSeparateTypeImports = newImportSpecifiers.every(
-      spec => (spec as any)._isFromSeparateTypeImport
-    );
-
     const targetImportPath = existingTargetImport.paths()[0];
 
     if (!targetImportPath) {
@@ -148,38 +178,25 @@ function addImportCase(
     const existingIsTypeImport = targetImportPath.node.importKind === "type";
 
     // If we have separate type imports, handle them appropriately
-    if (allAreFromSeparateTypeImports) {
+    if (isFromSeparateTypeImport) {
       if (existingIsTypeImport) {
         // Both existing and new are type imports - merge them
         const targetSpecifiers = targetImportPath.node.specifiers || [];
-        
-        // Filter out duplicates - only add specifiers that don't already exist
-        const filteredNewSpecifiers = newImportSpecifiers.filter(newSpec => {
-          return !targetSpecifiers.some(
-            (existingSpec: any) =>
-              j.ImportSpecifier.check(existingSpec) &&
-              existingSpec.imported &&
-              existingSpec.imported.name === newSpec.imported.name &&
-              (existingSpec.local?.name || existingSpec.imported.name) ===
-                newLocalName
-          );
-        });
 
-        if (filteredNewSpecifiers.length > 0) {
-          const combinedSpecifiers = [...targetSpecifiers, ...filteredNewSpecifiers];
-          const newImportDeclaration = j.importDeclaration(
-            sortImportSpecifiers(combinedSpecifiers),
-            j.stringLiteral(targetPackage)
-          );
+
+        const combinedSpecifiers = [...targetSpecifiers, newImportSpecifier];
+        const newImportDeclaration = j.importDeclaration(
+          sortImportSpecifiers(combinedSpecifiers),
+          j.stringLiteral(targetPackage)
+        );
           // Set the import kind to type
-          newImportDeclaration.importKind = "type";
+        newImportDeclaration.importKind = "type";
                   
-          j(targetImportPath).replaceWith(newImportDeclaration);
-        }
+        j(targetImportPath).replaceWith(newImportDeclaration);
       } else {
         // Existing is regular import, new are type imports - create separate type import
         const newImport = j.importDeclaration(
-          sortImportSpecifiers(newImportSpecifiers),
+          [newImportSpecifier],
           j.stringLiteral(targetPackage)
         );
         newImport.importKind = "type";
@@ -192,49 +209,27 @@ function addImportCase(
       // Access the node's specifiers safely
       if (targetImportPath && targetImportPath.node) {
         const targetSpecifiers = targetImportPath.node.specifiers || [];
+     
+        const combinedSpecifiers = [...targetSpecifiers, newImportSpecifier]; // Existing first normally
 
-        // Filter out duplicates - only add specifiers that don't already exist
-        const filteredNewSpecifiers = targetSpecifiers.some(
-          (existingSpec: any) =>
-            j.ImportSpecifier.check(existingSpec) &&
-              existingSpec.imported &&
-              existingSpec.imported.name === newComponentName &&
-              (existingSpec.local?.name || existingSpec.imported.name) ===
-                newLocalName
-        ) ? [] : newImportSpecifiers;
-
-        if (filteredNewSpecifiers.length > 0) {
-          // Combine new imports with existing ones
-          // For normal cases: add new imports after existing ones
-          // For multiple imports of same component: add new imports before existing ones
-          const hasMultipleImportsOfSameComponent =
-            newImportSpecifiers.length > 1;
-
-          const combinedSpecifiers = hasMultipleImportsOfSameComponent
-            ? [...filteredNewSpecifiers, ...targetSpecifiers] // New first for multiple imports
-            : [...targetSpecifiers, ...filteredNewSpecifiers]; // Existing first normally
-
-          const newImportDeclaration = j.importDeclaration(
-            sortImportSpecifiers(combinedSpecifiers),
-            j.stringLiteral(targetPackage)
-          );
-          j(targetImportPath).replaceWith(newImportDeclaration);
-        }
+        const newImportDeclaration = j.importDeclaration(
+          sortImportSpecifiers(combinedSpecifiers),
+          j.stringLiteral(targetPackage)
+        );
+        j(targetImportPath).replaceWith(newImportDeclaration);
       }
     } // Close the else block
   } else {
     // Create a new import declaration if one doesn't exist
-    const allAreFromSeparateTypeImports = newImportSpecifiers.every(
-      spec => (spec as any)._isFromSeparateTypeImport
-    );
+
 
     const newImport = j.importDeclaration(
-      sortImportSpecifiers(newImportSpecifiers),
+      [newImportSpecifier],
       j.stringLiteral(targetPackage)
     );
 
     // Set import kind for type imports
-    if (allAreFromSeparateTypeImports) {
+    if (isFromSeparateTypeImport) {
       newImport.importKind = "type";
     }
     

@@ -57,6 +57,17 @@ export function migrateComponentInstances(
     }
   );
 
+  // Remove attributes
+  const removals = componentMapData.props?.removals || [];
+  if (removals.length > 0) {
+    instances.forEach(path => {
+      const list = path.node.attributes?.filter(
+        attr => !(attr.type === "JSXAttribute" && typeof attr.name.name === "string" && removals.includes(attr.name.name))
+      );
+      path.node.attributes = list;
+    });
+  }
+
   // Handle component-level migration notes
   if (typeof componentMapData === "object" && componentMapData?.migrationNotes) {
     try {
