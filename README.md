@@ -1,4 +1,4 @@
-# Orbiter to Hopper Codemod
+# Orbiter to Hopper Codemod <!-- omit in toc -->
 
 This codemod automates the migration of components from [Orbiter](https://github.com/workleap/wl-orbiter) to the [Hopper](https://github.com/workleap/wl-hopper) design system.
 
@@ -9,6 +9,30 @@ The codemod handles various migration scenarios including:
 - ✅ **Deprecated component handling** - Keeps deprecated components in original package with todo comments for manual migration
 - ✅ **Todo comment generation** - Adds contextual migration guidance directly in your code
 - ✅ **Migration notes collection** - Generates comprehensive notes about important changes that require manual review
+
+## Table of contents <!-- omit in toc -->
+
+- [Before Migration](#before-migration)
+- [After Migration](#after-migration)
+- [Usage Guide](#usage-guide)
+  - [Running Migrations](#running-migrations)
+    - [Migrate All Components](#migrate-all-components)
+    - [Migrate Layout Components Only](#migrate-layout-components-only)
+    - [Migrate Button Components Only](#migrate-button-components-only)
+    - [Migrate Visual Components Only](#migrate-visual-components-only)
+    - [Migrate Specific Components](#migrate-specific-components)
+    - [Target a Specific Path](#target-a-specific-path)
+    - [Additional Options](#additional-options)
+  - [Migration Notes](#migration-notes)
+  - [Analyzing Component Usage](#analyzing-component-usage)
+    - [Project-Specific Analysis](#project-specific-analysis)
+    - [Deep Analysis](#deep-analysis)
+    - [Specifying Mapping Table](#specifying-mapping-table)
+    - [Filtering Analysis Results](#filtering-analysis-results)
+- [Allowed Parameters](#allowed-parameters)
+- [Shimmed components](#shimmed-components)
+  - [Card](#card)
+- [Contributing](#contributing)
 
 ## Before Migration
 
@@ -234,17 +258,17 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 
 ## Allowed Parameters
 
-| Parameter | Description | Example |
-|-----------|-------------|---------|
-| `-a <filename>` | Output analysis results to a JSON file | `-a orbiter-usage.json` |
-| `-c <components>` | Specify which components to migrate (`all`, category name, or comma-separated list) | `-c layout`, `-c Div,Text,Button` |
-| `-t <path>` | Target path for migration (use current directory if not specified) | `-t /app/users` |
-| `--project <name>` | Track usage by project/team (accumulates across runs) | `--project frontend-team` |
-| `--deep true` | Include file paths for each property value | `--deep true` |
-| `--filter-unmapped <type>` | Filter to show only unmapped items (`components` or `props`) | `--filter-unmapped props` |
-| `--include-ignoreList` | Include ignored properties (aria-*, data-*, etc.) in analysis | `--include-ignoreList` |
-| `--mappings <type>` | Specify which mapping to use for analysis or migration (`orbiter` or `hopper`) | `--mappings hopper` |
-| `-n 1` | Use single thread for accurate output collection | `-n 1` |
+| Parameter                  | Description                                                                         | Example                           |
+| -------------------------- | ----------------------------------------------------------------------------------- | --------------------------------- |
+| `-a <filename>`            | Output analysis results to a JSON file                                              | `-a orbiter-usage.json`           |
+| `-c <components>`          | Specify which components to migrate (`all`, category name, or comma-separated list) | `-c layout`, `-c Div,Text,Button` |
+| `-t <path>`                | Target path for migration (use current directory if not specified)                  | `-t /app/users`                   |
+| `--project <name>`         | Track usage by project/team (accumulates across runs)                               | `--project frontend-team`         |
+| `--deep true`              | Include file paths for each property value                                          | `--deep true`                     |
+| `--filter-unmapped <type>` | Filter to show only unmapped items (`components` or `props`)                        | `--filter-unmapped props`         |
+| `--include-ignoreList`     | Include ignored properties (aria-*, data-*, etc.) in analysis                       | `--include-ignoreList`            |
+| `--mappings <type>`        | Specify which mapping to use for analysis or migration (`orbiter` or `hopper`)      | `--mappings hopper`               |
+| `-n 1`                     | Use single thread for accurate output collection                                    | `-n 1`                            |
 
 **⚠️ Important Notes:**
 
@@ -253,6 +277,34 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 - Deep analysis provides detailed file location tracking but may increase processing time
 - Results are automatically sorted by usage frequency (most used first)
 
+## Shimmed components
+
+Shimmed components are compatibility layers that bridge the gap between Orbiter and Hopper component implementations. 
+They're designed to ease the migration process by preserving the expected behavior and API of Orbiter components while using Hopper's underlying implementation.
+
+When a component's implementation differs significantly between the two design systems, a shim can provide a transitional solution that:
+
+- Maintains backward compatibility with existing Orbiter component usage patterns
+- Preserves complex layout structures and child component relationships
+- Handles prop transformations that can't be handled by simple one-to-one mappings
+- Reduces the need for extensive manual refactoring
+
+Shims are particularly useful for complex components where the mental model or component architecture has changed between design systems. 
+They allow you to migrate your codebase incrementally while maintaining functionality.
+
+### Card
+
+Orbiter previously implemented a Card component that handled layout and styling for its children (e.g., Image, Illustration, Heading, Header, Content, Button, ButtonGroup). Hopper’s Card, in contrast, is a simpler styled div.
+
+This shim bridges the gap between the two implementations, making Hopper’s Card behave like Orbiter’s. It’s intended to ease the migration process by preserving the expected structure and usage from Orbiter.
+
+- [Hopper's Card](https://hopper.workleap.design/components/Card)
+- [Orbiter's Card](https://wl-orbiter-website.netlify.app/?path=/docs/card--docs)
+
+See the [implementation](src/shims/OrbiterCard.tsx)
+See the [Stackblitz](https://stackblitz.com/edit/hopper-sandbox-qs8euohl?file=src%2FOrbiterCard.tsx) for examples.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to contribute to this project.
+****
