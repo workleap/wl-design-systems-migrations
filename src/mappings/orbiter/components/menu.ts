@@ -1,15 +1,5 @@
-import { addChildrenTo, getAttributeValue, isWithinComponent, tryGettingLiteralValue } from "../../../utils/mapping.ts";
+import { addChildrenTo, getAttributeValue, isWithinComponent } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
-
-//menus & lists - total usage: 74
-// Menu: "Menu", //usage: 31
-// MenuProps: "MenuProps",
-// MenuItem: "MenuItem", //usage: 0 (Item: 326)
-// MenuItemProps: "MenuItemProps",
-// MenuSection: "MenuSection", //usage: 0 (Section: 9)
-// MenuSectionProps: "MenuSectionProps",
-// MenuTrigger: "MenuTrigger", //usage: 32
-// MenuTriggerProps: "MenuTriggerProps",
 
 export const menuMapping = {
   Menu: {
