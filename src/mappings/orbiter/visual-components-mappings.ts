@@ -31,12 +31,11 @@ export const visualComponentsMappings: Record<string, ComponentMapping> = {
     migrationNotes: "`Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files"
   },
 
+  VisuallyHidden: "VisuallyHidden", //usage: 1
+  VisuallyHiddenProps: "VisuallyHiddenProps",
+
   ...spinnerMapping,
   ...avatarTextMapping,
   ...imageMapping,
   ...illustrationMapping
-
-  // Lozenge: "Badge", //usage: 90
-  // LozengeProps: "BadgeProps",
-
 };

@@ -83,19 +83,30 @@ export function resolveComponentMapping(
     return null;
   }
 
-  const mappingItems = Array.isArray(componentMapping) ? componentMapping : [componentMapping];
+  if (!Array.isArray(componentMapping)) {
+    return componentMapping;
+  }
 
-  for (const mappingItem of mappingItems) {
-    if (typeof mappingItem === "function") {
-      if (!tag) {continue;} // Skip if tag is undefined. It only happens when we are using types, like DivProps. Function mapping will not be applied in this case.
+  if (tag) { // When we are using types, like DivProps, function mapping will not be applied in this case.
+    for (const mappingItem of componentMapping) {
       const result = mappingItem(tag, runtime);
       if (result) {
         return result;
       }
-    } else {
-      return mappingItem;
     }
   }
 
   return null;
+}
+
+export function tryToGetStaticMapping(
+  componentName: string,
+  runtime: Runtime
+): ComponentMapMetaData | undefined {
+  const { mappings } = runtime;
+  const componentMapping = mappings.components[componentName];
+
+  if (componentMapping && !Array.isArray(componentMapping)) {
+    return componentMapping;
+  }
 }

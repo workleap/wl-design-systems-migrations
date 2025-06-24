@@ -14,6 +14,7 @@ import {
   type ContentProps,
   DeletedAvatar,
   Div,
+  Divider,
   Flex,
   Footer,
   Grid,
@@ -69,6 +70,8 @@ import {
   Stack,
   SvgImage,
   Table,
+  Tag,
+  TagGroup,
   TBody,
   TD,
   Text,
@@ -82,6 +85,7 @@ import {
   TooltipTrigger,
   TR,
   UL,
+  VisuallyHidden,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 import { Alert, Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
@@ -534,7 +538,7 @@ export function App() {
       >
         text
       </Tile>
-      /* Migration TODO: `TileLink` is not supported yet. You can follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents  */
+      /* Migration TODO: `TileLink` is not supported anymore. Check the generated migration notes for more details. */
       <TileLink
         href="https://example.com"
         external
@@ -892,6 +896,58 @@ export function App() {
         </MenuSection>
         <MenuItem>Item 3</MenuItem>
       </Menu>
+      {/* Divider */}
+      <Divider orientation="horizontal" />
+      <Divider orientation="vertical" />
+      {/* Tag */}
+      <Tag
+        width="100%"
+        isInvalid={true}
+        variant="neutral"
+        size="md"
+        title="Tag Title"/* Migration TODO: `title` is not supported anymore. Wrap it inside a `Tooltip` component instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+        onClick={() => {}}/* Migration TODO: `onClick` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use `onSelectionChange` callback. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+        onRemove={() => {}}/* Migration TODO: `onRemove` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use its `onRemove` callback. More details: https://hopper.workleap.design/components/TagGroup#usage-removable */
+        onKeyDown={() => {}}/* Migration TODO: `onKeyDown` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use `onSelectionChange` callback. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+        tabIndex={0}/* Migration TODO: `tabIndex` is not supported anymore. Check if it is relevant, but probably it is safe to remove. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+      >
+        text
+      </Tag>
+      <Tag variant="subdued">text</Tag>
+      <Tag variant="subdued">text</Tag>
+      <Tag variant={variable ? "outline": "solid"}/* Migration TODO: Map `solid`->`subdued` and `outline`->`neutral` manually if needed. More details: https://hopper.workleap.design/components/Tag#migration-notes */>text</Tag>
+      <Tag
+        fluid={false}/* Migration TODO: `fluid` is not supported anymore. You can use width=100% instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+        variant="subdued">text</Tag>
+      <Tag isInvalid={false} variant="subdued">text</Tag>
+      <Tag
+        validationState={variable ? "invalid": "valid"}/* Migration TODO: The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+        variant="subdued">
+        text
+      </Tag>
+      <TagGroup
+        isReadOnly
+        onRemove={() => {}}
+      >
+        text
+      </TagGroup>
+      {/* Lozenge */}
+      <Tag
+        textTransform="uppercase"
+        size="md"
+      >
+        text
+      </Tag>
+      <Tag textTransform="uppercase">text</Tag>
+      <Tag highlight={false}/* Migration TODO: `highlight` is not supported anymore. Use textTransform=uppercase instead. More details: https://hopper.workleap.design/components/Tag */>text</Tag>
+      <Tag variant="negative">text</Tag>
+      <Tag variant="progress">text</Tag>
+      <Tag variant="caution">text</Tag>
+      <Tag variant="positive">text</Tag>
+      <Tag variant={variable ? "informative" : "negative"}/* Migration TODO: Map `negative`->`Negative`, `warning`->`Caution`, `informative`->`Progress`, and `positive`->`Positive` manually if needed. More details: https://workleap.atlassian.net/wiki/spaces/TL/pages/5529272372/Orbiter+to+Hopper+Migration */>text</Tag>
+      <Tag size="sm">text</Tag>
+      {/* VisuallyHidden */}
+      <VisuallyHidden />
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
       <HopperLB>

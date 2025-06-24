@@ -85,6 +85,9 @@ export interface MapMetaData {
     layout: string[];
     buttons: string[];
     visual: string[];
+    menu: string[];
+    overlay: string[];
+    tags: string[];
   };
   components: Record<string, ComponentMapping>;
 }

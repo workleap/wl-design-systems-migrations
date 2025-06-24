@@ -20,6 +20,7 @@ import {
   CrossButton,
   DeletedAvatar,
   Div,
+  Divider,
   Dot,
   Flex,
   Footer,
@@ -59,6 +60,7 @@ import {
   Link,
   Listbox,
   Item as ListboxItem,
+  Lozenge,
   Main,
   Menu,
   MenuTrigger,
@@ -76,6 +78,8 @@ import {
   Stack,
   SvgImage,
   Table,
+  Tag,
+  TagList,
   TBody,
   TD,
   Text,
@@ -94,6 +98,7 @@ import {
   TR,
   UL,
   useAccordionContext,
+  VisuallyHidden,
   type ContentProps,
 } from "@workleap/orbiter-ui";
 
@@ -885,7 +890,58 @@ export function App() {
         </Section>
         <Item>Item 3</Item>
       </Menu>
-      
+
+      {/* Divider */}
+      <Divider orientation="horizontal" />
+      <Divider orientation="vertical" />
+
+      {/* Tag */}
+      <Tag
+        fluid
+        validationState="invalid"
+        variant="outline"
+        size="md"
+        title="Tag Title"
+        onClick={() => {}}
+        onRemove={() => {}}
+        onKeyDown={() => {}}
+        tabIndex={0}
+      >
+        text
+      </Tag>
+      <Tag variant="solid">text</Tag>
+      <Tag>text</Tag>
+      <Tag variant={variable ? "outline": "solid"}>text</Tag>
+      <Tag fluid={false}>text</Tag>
+      <Tag validationState={"valid"}>text</Tag>
+      <Tag validationState={variable ? "invalid": "valid"}>
+        text
+      </Tag>
+      <TagList
+        readOnly
+        onRemove={() => {}}
+      >
+        text
+      </TagList>
+
+      {/* Lozenge */}
+      <Lozenge
+        highlight
+        size="md"
+      >
+        text
+      </Lozenge>
+      <Lozenge highlight={true}>text</Lozenge>
+      <Lozenge highlight={false}>text</Lozenge>
+      <Lozenge variant="negative">text</Lozenge>
+      <Lozenge variant="informative">text</Lozenge>
+      <Lozenge variant="warning">text</Lozenge>
+      <Lozenge variant="positive">text</Lozenge>
+      <Lozenge variant={variable ? "informative" : "negative"}>text</Lozenge>
+      <Lozenge size="sm">text</Lozenge>
+
+      {/* VisuallyHidden */}
+      <VisuallyHidden />
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
       <HopperLB>

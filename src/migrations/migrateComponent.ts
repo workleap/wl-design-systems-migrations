@@ -1,6 +1,6 @@
-import type { ASTPath, JSXOpeningElement } from "jscodeshift";
+import type { ASTPath, Collection, JSXOpeningElement } from "jscodeshift";
 
-import { getLocalNameFromImport, resolveComponentMapping } from "../utils/migration.ts";
+import { getLocalNameFromImport, resolveComponentMapping, tryToGetStaticMapping } from "../utils/migration.ts";
 import type {
   ComponentMapMetaData,
   Runtime
@@ -27,10 +27,10 @@ export function migrateComponent(componentName: string, runtime: Runtime): void 
 
   
   // 4. Apply migrations to each instance.
-  instances.forEach(({ tag, mapping, localName, newComponentName }) => {
+  instances.forEach(({ tags, mapping, localName, newComponentName }) => {
     const newLocalName = getNewLocalName(localName, newComponentName);
 
-    migrateComponentInstances([tag], componentName, localName, newLocalName, mapping, runtime);
+    migrateComponentInstances(tags, componentName, localName, newLocalName, mapping, runtime);
   });
 
   
@@ -90,7 +90,7 @@ function getAllLocalImports(componentName: string, runtime: Runtime) {
 }
 
 interface MigratableComponentInstance {
-  tag: ASTPath<JSXOpeningElement>;
+  tags: ASTPath<JSXOpeningElement>[];
   mapping: ComponentMapMetaData;
   localName: string;
   newComponentName: string;
@@ -111,26 +111,33 @@ function getMigratableComponentInstances(localNames: string[], componentName: st
     );
 
   const localNamesWithoutMigration: Set<string> = new Set();
+  const staticMapping = tryToGetStaticMapping(componentName, runtime);
 
-  allAvailableInstances.forEach(tag => {
-    const localName = (tag.node.name as any).name;    
-    const mapping = resolveComponentMapping(componentName, tag, runtime);
+  if (staticMapping) {
+    processStaticMapping(allAvailableInstances, staticMapping, componentName, migratableInstances);
 
-    if (mapping) {
-      migratableInstances.push({ 
-        tag, 
-        mapping, 
-        localName,         
-        newComponentName: typeof mapping === "string" ? mapping : (mapping.to || componentName),
-        skipImport: typeof mapping === "string" ? false : (mapping.skipImport ?? false)
-        
-      });
-    } else {
-      localNamesWithoutMigration.add(localName);
-    }
-  });
+    return { instances: migratableInstances, localNamesWithoutMigration };
+  } else {
+    processDynamicMapping(allAvailableInstances, componentName, runtime, migratableInstances, localNamesWithoutMigration);
+  }
 
   return { instances: migratableInstances, localNamesWithoutMigration };
+}
+
+function createMigratableComponentInstance(
+  tags: ASTPath<JSXOpeningElement>[],
+  mapping: ComponentMapMetaData,
+  localName: string,
+  componentName: string
+): MigratableComponentInstance {
+  return { 
+    tags, 
+    mapping, 
+    localName,         
+    newComponentName: typeof mapping === "string" ? mapping : (mapping.to || componentName),
+    skipImport: typeof mapping === "string" ? false : (mapping.skipImport ?? false)
+        
+  };
 }
 
 function getLocalToNewComponentNamesMap(
@@ -171,4 +178,56 @@ function getLocalToNewComponentNamesMap(
   };
 
   return { localToNewComponentNamesMap, getNewLocalName };
+}
+
+function processStaticMapping(
+  allAvailableInstances: Collection<JSXOpeningElement>,
+  staticMapping: ComponentMapMetaData,
+  componentName: string,
+  migratableInstances: MigratableComponentInstance[]
+): void {
+  // If there is a static mapping, we can use it for all instances.
+  const localNameTagsMap = groupTagsByLocalName(allAvailableInstances, staticMapping);
+  
+  localNameTagsMap.forEach(({ mapping, tags }, localName) => {
+    migratableInstances.push(createMigratableComponentInstance(tags, mapping, localName, componentName));
+  });
+}
+
+function processDynamicMapping(
+  allAvailableInstances: Collection<JSXOpeningElement>,
+  componentName: string,
+  runtime: Runtime,
+  migratableInstances: MigratableComponentInstance[],
+  localNamesWithoutMigration: Set<string>
+): void {
+  allAvailableInstances.forEach(tag => {
+    const localName = (tag.node.name as any).name;
+    const mapping = resolveComponentMapping(componentName, tag, runtime);
+
+    if (mapping) {
+      migratableInstances.push(createMigratableComponentInstance([tag], mapping, localName, componentName));
+    } else {
+      localNamesWithoutMigration.add(localName);
+    }
+  });
+}
+
+function groupTagsByLocalName(
+  allAvailableInstances: Collection<JSXOpeningElement>,
+  staticMapping: ComponentMapMetaData
+): Map<string, { mapping: ComponentMapMetaData; tags: ASTPath<JSXOpeningElement>[] }> {
+  const localNameTagsMap: Map<string, { mapping: ComponentMapMetaData; tags: ASTPath<JSXOpeningElement>[] }> = new Map();
+  
+  allAvailableInstances.forEach(tag => {
+    const localName = (tag.node.name as any).name;
+    let localNameTags = localNameTagsMap.get(localName);
+    if (!localNameTags) {
+      localNameTags = { mapping: staticMapping, tags: [] };
+      localNameTagsMap.set(localName, localNameTags);
+    }
+    localNameTags.tags.push(tag);
+  });
+  
+  return localNameTagsMap;
 }

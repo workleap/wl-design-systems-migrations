@@ -32,5 +32,4 @@ export const buttonComponentsMappings: Record<string, ComponentMapping> = {
   ...textLinkAsButtonMapping,
   ...iconLinkMapping,
   ...iconLinkAsButtonMapping
-
 };

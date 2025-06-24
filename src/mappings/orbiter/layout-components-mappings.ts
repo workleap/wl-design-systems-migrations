@@ -1,3 +1,4 @@
+import { Divider } from "@hopper-ui/components";
 import type { ComponentMapping } from "../../utils/types.ts";
 import { flexMapping } from "./components/flex.ts";
 import { gridMappings } from "./components/grid.ts";
@@ -80,5 +81,8 @@ export const layoutComponentsMappings = {
   Nav: "Nav",
   NavProps: "NavProps",
   Span: "Span",
-  SpanProps: "SpanProps"
+  SpanProps: "SpanProps",
+
+  Divider: "Divider",
+  DividerProps: "DividerProps"
 } satisfies Record<string, ComponentMapping>;
