@@ -792,13 +792,18 @@ export function App() {
       </Tooltip>
       <TooltipTrigger
         isOpen={true}
-        placement="top-end"
+        placement={undefined}
         isDisabled
         zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead. */
         onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore. Hopper has ContextualHelp component if it is used for this purpose. More details: https://hopper.workleap.design/components/ContextualHelp */
       >
         text
       </TooltipTrigger>
+      <TooltipTrigger placement="bottom">text</TooltipTrigger>
+      <TooltipTrigger placement="left">text</TooltipTrigger>
+      <TooltipTrigger placement={undefined}>text</TooltipTrigger>
+      <TooltipTrigger placement={undefined}>text</TooltipTrigger>
+      <TooltipTrigger placement={undefined}>text</TooltipTrigger>
       /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
       <Overlay show>text</Overlay>
       {/* Alert */}
@@ -822,7 +827,13 @@ export function App() {
       <ListBox>
         <ListBoxSection>
           <Header>Section 1</Header>
-          <ListBoxItem>Item 1</ListBoxItem>
+          <TooltipTrigger>
+            /* Migration TODO: ListBox Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
+            <ListBoxItem isDisabled key="item" onAction={()=>{}}>
+              Item 1
+            </ListBoxItem>
+            <Tooltip>tooltip</Tooltip>
+          </TooltipTrigger>
           <ListBoxItem>Item 2</ListBoxItem>
         </ListBoxSection>
         <ListBoxSection>

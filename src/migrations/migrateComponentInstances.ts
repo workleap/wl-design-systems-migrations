@@ -1,5 +1,5 @@
 import type { ASTPath, JSXOpeningElement } from "jscodeshift";
-import { getFullComponentMappings as getFullComponentMapData, getTodoComment } from "../utils/migration.ts";
+import { getFullComponentMappings, getTodoComment } from "../utils/migration.ts";
 import type {
   ComponentMapMetaData,
   Runtime
@@ -28,7 +28,7 @@ export function migrateComponentInstances(
     });
   }
 
-  const componentMapData = getFullComponentMapData(initialComponentMapData, runtime);    
+  const componentMapData = getFullComponentMappings(initialComponentMapData, runtime);    
 
   // Migrate attributes
   Object.entries(componentMapData.props?.mappings || {}).forEach(
