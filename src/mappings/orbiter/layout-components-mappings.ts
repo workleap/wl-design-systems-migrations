@@ -1,4 +1,3 @@
-import { Divider } from "@hopper-ui/components";
 import type { ComponentMapping } from "../../utils/types.ts";
 import { flexMapping } from "./components/flex.ts";
 import { gridMappings } from "./components/grid.ts";
