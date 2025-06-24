@@ -35,8 +35,7 @@ export const listboxMapping = {
       }
     }
   },
-  ListboxProps: "ListboxProps",
-  ListItemMappings: []
+  ListboxProps: "ListboxProps"
 } satisfies Record<string, ComponentMapping>;
 
 export const listBoxItemMappings = {
@@ -56,7 +55,7 @@ export const listBoxItemMappings = {
           : undefined
       };
     }
-  }]
+  }] 
 } satisfies Record<string, ComponentMapping>;
 
 export const listBoxSectionMappings = {
@@ -70,7 +69,7 @@ export const listBoxSectionMappings = {
         to: "ListBoxSection",
         props: {
           removals: ["title"]
-        }
+        }        
       };
     }
   }]

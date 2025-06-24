@@ -12,6 +12,9 @@ export const buttonMapping = {
         inherit: () => ({
           todoComments: "`inherit` is not supported anymore. Remove it."
         }),
+        title: () => ({
+          todoComments: "`title` is not supported anymore. Possibly `aria-label` or `aria-labelledby` would be appropriate alternatives."
+        }),
         variant: (originalValue, runtime) => {
           const { j } = runtime;
 

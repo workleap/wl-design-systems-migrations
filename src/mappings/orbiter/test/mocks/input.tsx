@@ -61,6 +61,7 @@ import {
   Item as ListboxItem,
   Main,
   Menu,
+  MenuTrigger,
   Modal,
   ModalTrigger,
   Nav,
@@ -838,9 +839,44 @@ export function App() {
         <ListboxItem>Item 4</ListboxItem>
       </Listbox>
 
+      {/* Menu */}
+      <MenuTrigger
+        open={true}
+        allowPreventOverflow
+        closeOnSelect
+        zIndex={1000}
+        direction="top"
+        allowFlip
+        onOpenChange={() => {}}
+      >
+        text
+      </MenuTrigger>
+      <Menu
+        onSelectionChange={() => {}}
+        selectionMode="none"
+        selectedKeys={["1", "2"]}
+        autoFocus
+        nodes={[]}
+        disabled
+        fluid
+        autoFocusTarget="target"
+        validationState="invalid"
+        zIndex={1000}
+      >
+        test
+      </Menu>
       <Menu>
         <Section title="Section 1">
-          <Item>Item 1</Item>
+          <TooltipTrigger>
+            <Item
+              disabled
+              key="item"
+              onClick={() => {}}
+            >
+              Item 1
+            </Item>
+            <Tooltip>tooltip</Tooltip>
+          </TooltipTrigger>
           <Item>Item 2</Item>
         </Section>
         <Section title="Section 2">
