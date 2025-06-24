@@ -17,5 +17,8 @@
         "typescript",
         "typescriptreact",
         "yaml"
-    ]
+    ],
+
+    "github.copilot.chat.codeGeneration.useInstructionFiles": true
+
 }

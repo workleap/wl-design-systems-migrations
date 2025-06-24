@@ -42,8 +42,18 @@ export const listboxMapping = {
 export const listBoxItemMappings = {
   Item: [(tag, runtime) => {
     if (isWithinComponent(tag, "ListBox", runtime.mappings.targetPackage, runtime)) {
+      const isWrappedInTooltip = isWithinComponent(tag, "TooltipTrigger", runtime.mappings.targetPackage, runtime);
+
       return {
-        to: "ListBoxItem"
+        to: "ListBoxItem",
+        props:{
+          mappings: {
+            onClick: "onAction"
+          }
+        },
+        todoComments: isWrappedInTooltip
+          ? "ListBox Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration."
+          : undefined
       };
     }
   }]

@@ -782,13 +782,18 @@ export function App() {
       </Tooltip>
       <TooltipTrigger
         open={true}
-        position="top-end"
+        position="auto-start"
         disabled
         zIndex={1000}
         onMouseLeave={() => {}}
       >
         text
       </TooltipTrigger>
+      <TooltipTrigger position="bottom-end">text</TooltipTrigger>
+      <TooltipTrigger position="left-start">text</TooltipTrigger>
+      <TooltipTrigger position="auto-end">text</TooltipTrigger>
+      <TooltipTrigger position="auto">text</TooltipTrigger>
+      <TooltipTrigger position={undefined}>text</TooltipTrigger>
 
       <Overlay show>text</Overlay>
       
@@ -813,7 +818,16 @@ export function App() {
       <Listbox validationState={variable as any}>text</Listbox>
       <Listbox>
         <Section title="Section 1">
-          <Item>Item 1</Item>
+          <TooltipTrigger>
+            <Item 
+              disabled 
+              key="item" 
+              onClick={()=>{}}
+            >
+              Item 1
+            </Item>
+            <Tooltip>tooltip</Tooltip>
+          </TooltipTrigger>
           <Item>Item 2</Item>
         </Section>
         <Section title="Section 2">

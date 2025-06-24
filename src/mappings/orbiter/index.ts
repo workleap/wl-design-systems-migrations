@@ -51,7 +51,6 @@ export const mappings = {
     ...menuComponentsMappings,
     ...itemMapping,
     ...sectionMapping
-
   }
 } satisfies MapMetaData;
 
