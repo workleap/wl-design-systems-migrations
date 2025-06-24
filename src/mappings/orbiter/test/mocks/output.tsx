@@ -54,6 +54,9 @@ import {
   ListBoxSection,
   Main,
   Menu,
+  MenuItem,
+  MenuSection,
+  MenuTrigger,
   Modal,
   ModalTrigger,
   Nav,
@@ -81,7 +84,7 @@ import {
   UL,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import { Alert, Counter, Dot, Item, Overlay, Section, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
+import { Alert, Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -844,16 +847,50 @@ export function App() {
         <ListBoxItem>Item 3</ListBoxItem>
         <ListboxItem>Item 4</ListboxItem>
       </ListBox>
+      {/* Menu */}
+      <MenuTrigger
+        isOpen={true}
+        allowPreventOverflow/* Migration TODO: The `allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes */
+        closeOnSelect/* Migration TODO: The `closeOnSelect` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes */
+        zIndex={1000}/* Migration TODO: The `zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead. */
+        direction="top"
+        allowFlip
+        onOpenChange={() => {}}
+      >
+        text
+      </MenuTrigger>
+      <Menu
+        onSelectionChange={() => {}}
+        selectionMode="none"
+        selectedKeys={["1", "2"]}
+        autoFocus
+        nodes={[]}/* Migration TODO: `nodes` is removed. Use dynamic items instead. An example: https://hopper.workleap.design/components/Menu#usage-dynamic-items */
+        disabled/* Migration TODO: `disabled` has been removed, set the disabled items as disabledKeys instead. More details: https://hopper.workleap.design/components/Menu#migration-notes */
+        fluid/* Migration TODO: `fluid` has been removed. More details: https://hopper.workleap.design/components/Menu#migration-notes */
+        autoFocusTarget="target"/* Migration TODO: The `autoFocusTarget` is removed. More details: https://hopper.workleap.design/components/Menu#migration-notes */
+        validationState="invalid"/* Migration TODO: `validationState` has been removed. `isInvalid` should be used instead on the MenuItem. More details: https://hopper.workleap.design/components/Menu#migration-notes */
+        zIndex={1000}
+      >
+        test
+      </Menu>
       <Menu>
-        <Section title="Section 1">
-          <Item>Item 1</Item>
-          <Item>Item 2</Item>
-        </Section>
-        <Section title="Section 2">
-          <Item>Item 1</Item>
-          <Item>Item 2</Item>
-        </Section>
-        <Item>Item 3</Item>
+        <MenuSection>
+          <Header>Section 1</Header>
+          <TooltipTrigger>
+            /* Migration TODO: Menu Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
+            <MenuItem isDisabled key="item" onAction={() => {}}>
+              Item 1
+            </MenuItem>
+            <Tooltip>tooltip</Tooltip>
+          </TooltipTrigger>
+          <MenuItem>Item 2</MenuItem>
+        </MenuSection>
+        <MenuSection>
+          <Header>Section 2</Header>
+          <MenuItem>Item 1</MenuItem>
+          <MenuItem>Item 2</MenuItem>
+        </MenuSection>
+        <MenuItem>Item 3</MenuItem>
       </Menu>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
