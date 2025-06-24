@@ -7,5 +7,11 @@
 - **Dot**: `Dot` is not supported anymore. Find an alternative. One possible option: `<Badge isIndeterminate />`
   - test.tsx
 
+- **Lozenge.size**: The alternative `Tag` might be a bit taller(4px) than the old `Lozenge` even with the same size. Make sure you validate the design after the migration.
+  - test.tsx
+
 - **Overlay**: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`.
+  - test.tsx
+
+- **TileLink**: `TileLink` is not supported. You should manually implement a `Link` with a `Tile` inside. You can also follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents 
   - test.tsx

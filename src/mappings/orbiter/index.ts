@@ -10,6 +10,7 @@ import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { menuComponentsMappings } from "./menu-components-mappings.ts";
 import { overlayComponentsMappings } from "./overlay-components-mappings.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
+import { tagComponentsMappings } from "./tags-components-mappings.ts";
 import { visualComponentsMappings } from "./visual-components-mappings.ts";
 
 const defaultPropsMappings = {
@@ -41,7 +42,10 @@ export const mappings = {
   categories: {
     layout: getMappingKeys(layoutComponentsMappings),
     buttons: getMappingKeys(buttonComponentsMappings),
-    visual: getMappingKeys(visualComponentsMappings)
+    visual: getMappingKeys(visualComponentsMappings),
+    menu: getMappingKeys(menuComponentsMappings),
+    overlay: getMappingKeys(overlayComponentsMappings),
+    tags: getMappingKeys(tagComponentsMappings)
   },
   components: {
     ...layoutComponentsMappings,
@@ -50,7 +54,8 @@ export const mappings = {
     ...overlayComponentsMappings,
     ...menuComponentsMappings,
     ...itemMapping,
-    ...sectionMapping
+    ...sectionMapping,
+    ...tagComponentsMappings
   }
 } satisfies MapMetaData;
 
@@ -97,14 +102,6 @@ const todo = {
   AlertTrigger: "AlertTrigger", //usage: 10
   AlertTriggerProps: "AlertTriggerProps",
 
-  //tags & tiles - total usage: 74
-  Tag: "Tag", //usage: 64
-  TagProps: "TagProps",
-  TagList: "TagGroup", //usage: 6
-  TagListProps: "TagGroupProps",
-  // TODO: Not a direct mapping. Find the appropriate component/type.
-  // TileLink: "TileLink", //usage: 4
-  // TileLinkProps: "TileLinkProps",
 
   //toolbar & utilities - total usage: 33
   ThemeProvider: "HopperProvider", //usage: 30
@@ -112,8 +109,6 @@ const todo = {
   // TODO: Not a direct mapping. Find the appropriate component/type.
   // Toolbar: "Toolbar",
   // ToolbarProps: "ToolbarProps",
-  // VisuallyHidden: "VisuallyHidden", //usage: 1
-  // VisuallyHiddenProps: "VisuallyHiddenProps",
   // Transition: "Transition", //usage: 2
   // TransitionProps: "TransitionProps",
 

@@ -12,5 +12,6 @@
   - It is an important step before final step.
   - Note that some changes come from `package.json` changes.
 - At the end:
+  - Run `pnpm lint:eslint` and `pnpm lint:typecheck` to ensure the code is formatted correctly.
   - Open the PR on Web using `gh pr view --web`, or just share the PR's url.
   - Generate a short summary of the changes so I can share it in Slack.

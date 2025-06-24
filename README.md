@@ -17,9 +17,7 @@ The codemod handles various migration scenarios including:
 - [Usage Guide](#usage-guide)
   - [Running Migrations](#running-migrations)
     - [Migrate All Components](#migrate-all-components)
-    - [Migrate Layout Components Only](#migrate-layout-components-only)
-    - [Migrate Button Components Only](#migrate-button-components-only)
-    - [Migrate Visual Components Only](#migrate-visual-components-only)
+    - [Migrate Component Categories](#migrate-component-categories)
     - [Migrate Specific Components](#migrate-specific-components)
     - [Target a Specific Path](#target-a-specific-path)
     - [Additional Options](#additional-options)
@@ -64,29 +62,16 @@ export function App() {
 pnpx codemod workleap/orbiter-to-hopper
 ```
 
-#### Migrate Layout Components Only
+#### Migrate Component Categories
 
-Migrate layout and structural components only (Flex, Grid, Div, Span, Article, Nav, ...). This includes all layout containers, HTML wrapper components, content elements, and placeholders. You can see the complete list in [layout-components-mappings.ts](/src/mappings/orbiter/layout-components-mappings.ts) file.
-
-```bash
-pnpx codemod workleap/orbiter-to-hopper -c layout
-```
-
-#### Migrate Button Components Only
-
-Migrate buttons components only. You can see the complete list in [button-components-mappings.ts](/src/mappings/orbiter/button-components-mappings.ts) file.
-
-```bash
-pnpx codemod workleap/orbiter-to-hopper -c buttons
-```
-
-#### Migrate Visual Components Only
-
-Migrate visual components only (Avatar, AvatarText, Badge, Image, Illustration, Spinner, ...). This includes visual elements that often represent data or provide feedback. You can see the complete list in [visual-components-mappings.ts](/src/mappings/orbiter/visual-components-mappings.ts) file.
-
-```bash
-pnpx codemod workleap/orbiter-to-hopper -c visual
-```
+| Category | Description | Command | Mapping File |
+|----------|-------------|---------|--------------|
+| **Layout** | Layout containers, HTML wrappers, content elements (Flex, Grid, Div, Span, Article, Nav, ...) | `pnpx codemod workleap/orbiter-to-hopper -c layout` | [layout-components-mappings.ts](/src/mappings/orbiter/layout-components-mappings.ts) |
+| **Buttons** | Button components and variants | `pnpx codemod workleap/orbiter-to-hopper -c buttons` | [button-components-mappings.ts](/src/mappings/orbiter/button-components-mappings.ts) |
+| **Visual** | Visual elements and feedback components (Avatar, Image, Illustration, Spinner, ...) | `pnpx codemod workleap/orbiter-to-hopper -c visual` | [visual-components-mappings.ts](/src/mappings/orbiter/visual-components-mappings.ts) |
+| **Menu** | Menu and navigation components (Menu, MenuItem, ListBox, ListBoxItem, ...) | `pnpx codemod workleap/orbiter-to-hopper -c menu` | [menu-components-mappings.ts](/src/mappings/orbiter/menu-components-mappings.ts) |
+| **Overlay** | Overlay and dialog components (Modal, Popover, Tooltip, ...) | `pnpx codemod workleap/orbiter-to-hopper -c overlay` | [overlay-components-mappings.ts](/src/mappings/orbiter/overlay-components-mappings.ts) |
+| **Tags** | Tag and labeling components (Tag, TagGroup, Lozenge, ...) | `pnpx codemod workleap/orbiter-to-hopper -c tags` | [tags-components-mappings.ts](/src/mappings/orbiter/tags-components-mappings.ts) |
 
 #### Migrate Specific Components
 
@@ -279,7 +264,7 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
 
 ## Shimmed components
 
-Shimmed components are compatibility layers that bridge the gap between Orbiter and Hopper component implementations. 
+Shimmed components are compatibility layers that bridge the gap between Orbiter and Hopper component implementations.
 They're designed to ease the migration process by preserving the expected behavior and API of Orbiter components while using Hopper's underlying implementation.
 
 When a component's implementation differs significantly between the two design systems, a shim can provide a transitional solution that:
@@ -289,7 +274,7 @@ When a component's implementation differs significantly between the two design s
 - Handles prop transformations that can't be handled by simple one-to-one mappings
 - Reduces the need for extensive manual refactoring
 
-Shims are particularly useful for complex components where the mental model or component architecture has changed between design systems. 
+Shims are particularly useful for complex components where the mental model or component architecture has changed between design systems.
 They allow you to migrate your codebase incrementally while maintaining functionality.
 
 ### Card
@@ -307,4 +292,3 @@ See the [Stackblitz](https://stackblitz.com/edit/hopper-sandbox-qs8euohl?file=sr
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on how to contribute to this project.
-****

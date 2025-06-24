@@ -80,5 +80,8 @@ export const layoutComponentsMappings = {
   Nav: "Nav",
   NavProps: "NavProps",
   Span: "Span",
-  SpanProps: "SpanProps"
+  SpanProps: "SpanProps",
+
+  Divider: "Divider",
+  DividerProps: "DividerProps"
 } satisfies Record<string, ComponentMapping>;
