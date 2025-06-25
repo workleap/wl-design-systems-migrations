@@ -34,7 +34,7 @@ export const menuTriggerMapping = {
       mappings: {
         open: "isOpen",
         "allowPreventOverflow":() => ({ todoComments: "The `allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes" }),
-        "closeOnSelect":() => ({ todoComments: "The `closeOnSelect` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes" }), //TODO: it is still under discussion
+        "closeOnSelect":() => ({ todoComments: "The `closeOnSelect` is not supported in Hopper so we removed it. We have to wait for this issue to be fixed before adding it: https://github.com/adobe/react-spectrum/issues/8208" }), 
         "zIndex": () => ({ todoComments: "The `zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead." }),
         direction: "direction",
         "allowFlip": "allowFlip",

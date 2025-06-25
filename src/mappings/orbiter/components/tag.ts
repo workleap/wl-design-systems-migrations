@@ -46,7 +46,7 @@ export const tagMapping = {
           if (value === "invalid") {
             return {
               to: "isInvalid",
-              value: j.jsxExpressionContainer(j.booleanLiteral(true))
+              value: null
             };
           } else if (value === "valid") {
             return {            

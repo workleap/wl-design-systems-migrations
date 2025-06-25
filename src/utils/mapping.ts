@@ -17,6 +17,7 @@ import {
   type LiteralType,
   type PropertyMapperFunction,
   type PropertyMapResult,
+  type PropertyRemoveResult,
   type ReviewMe,
   REVIEWME_PREFIX,
   type Runtime
@@ -77,7 +78,7 @@ export function addChildrenTo(to: ASTPath<JSXOpeningElement>, childTagName: stri
     children?.filter(child => !(child == null || child === undefined))
   );
 
-  addImportCase({ componentName: childTagName, localName: childTagName, newComponentName: childTagName, newLocalName: childTagName }, runtime); 
+  addImportCase({ target: { componentName: childTagName, localName: childTagName } }, runtime);
 
   //add the header as the first child of the tag
   const jsxElement = to.parent.value;
@@ -225,7 +226,7 @@ function parseLiteralValue<T extends string>(
   originalValue: JSXAttribute["value"] | ObjectProperty["value"],
   options: PropertyMapperOptions<T>,
   runtime: Runtime
-): PropertyMapResult<T> {
+): PropertyMapResult<T> | PropertyRemoveResult {
   const {
     propertyName,
     unsafePropertyName,
@@ -312,6 +313,10 @@ function parseResponsiveObjectValue<T extends string>(
           options,
           runtime
         );
+
+        if ("removeIt" in mappedResult) {
+          continue;
+        }
 
         if (!mappedResult.value) {
           runtime.log(

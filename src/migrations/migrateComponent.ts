@@ -40,7 +40,7 @@ export function migrateComponent(componentName: string, runtime: Runtime): void 
   localToNewComponentNamesMap.forEach((newComponentNames, localName) => {
     newComponentNames.forEach(newComponentName => {
       const newLocalName = getNewLocalName(localName, newComponentName);
-      requiredImports.push({ componentName, localName, newComponentName, newLocalName });
+      requiredImports.push({ source: { componentName, localName }, target: { componentName: newComponentName, localName: newLocalName } });
     });
   });
 
@@ -58,7 +58,7 @@ export function migrateComponent(componentName: string, runtime: Runtime): void 
     const mapping = resolveComponentMapping(componentName, undefined, runtime);
     const newComponentName = typeof mapping === "string" ? mapping : (mapping?.to ?? componentName);    
 
-    requiredImports.push({ componentName, localName, newComponentName, newLocalName: localName });
+    requiredImports.push({ source: { componentName, localName }, target: { componentName: newComponentName, localName } });
   });
 
   migrateImport(requiredImports, localNamesWithoutMigration, runtime);

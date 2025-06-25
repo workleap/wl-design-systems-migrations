@@ -73,6 +73,7 @@ pnpx codemod workleap/orbiter-to-hopper
 | **Menu** | Menu and navigation components (Menu, MenuItem, ListBox, ListBoxItem, ...) | `pnpx codemod workleap/orbiter-to-hopper -c menu` | [menu-components-mappings.ts](/src/mappings/orbiter/menu-components-mappings.ts) |
 | **Overlay** | Overlay and dialog components (Modal, Popover, Tooltip, ...) | `pnpx codemod workleap/orbiter-to-hopper -c overlay` | [overlay-components-mappings.ts](/src/mappings/orbiter/overlay-components-mappings.ts) |
 | **Tags** | Tag and labeling components (Tag, TagGroup, Lozenge, ...) | `pnpx codemod workleap/orbiter-to-hopper -c tags` | [tags-components-mappings.ts](/src/mappings/orbiter/tags-components-mappings.ts) |
+| **Disclosure** | Disclosure and expandable content components (Accordion, Disclosure, Tab, ...) | `pnpx codemod workleap/orbiter-to-hopper -c disclosure` | [disclosure-components-mappings.ts](/src/mappings/orbiter/disclosure-components-mappings.ts) |
 
 #### Migrate Specific Components
 

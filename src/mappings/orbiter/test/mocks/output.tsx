@@ -1,6 +1,7 @@
 // prettier-ignore
 import {
   A,
+  Accordion,
   Address,
   AnonymousAvatar,
   Article,
@@ -13,6 +14,8 @@ import {
   Content,
   type ContentProps,
   DeletedAvatar,
+  Disclosure,
+  DisclosurePanel,
   Div,
   Divider,
   Flex,
@@ -69,7 +72,11 @@ import {
   Spinner,
   Stack,
   SvgImage,
+  Tab,
   Table,
+  TabList,
+  TabPanel,
+  Tabs,
   Tag,
   TagGroup,
   TBody,
@@ -80,6 +87,7 @@ import {
   THead,
   Tile,
   TileGroup,
+  ToggleArrow,
   ToggleButton,
   Tooltip,
   TooltipTrigger,
@@ -454,7 +462,7 @@ export function App() {
       <HtmlForm
         aria-label="test"
         data-testId="test"
-        min-width="100vdh"/* Migration TODO: It seems it is an invalid property. Remove it if not needed */
+        min-width="100vdh"/* Migration TODO: It seems it is an invalid property. Remove it if it is not needed */
       ></HtmlForm>
       <Nav flexWrap={"revert-layer"}>
         <UL color="neutral-weak" marginLeft={"revert"}>
@@ -794,7 +802,7 @@ export function App() {
       >
         test
       </PopoverTrigger>
-      <Tooltip onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore. Hopper has ContextualHelp component if it is used for this purpose. More details: https://hopper.workleap.design/components/ContextualHelp */>
+      <Tooltip onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore. If you really need it you can add it in a Div inside the tooltip if needed. */>
         text
       </Tooltip>
       <TooltipTrigger
@@ -802,7 +810,7 @@ export function App() {
         placement={undefined}
         isDisabled
         zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead. */
-        onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore. Hopper has ContextualHelp component if it is used for this purpose. More details: https://hopper.workleap.design/components/ContextualHelp */
+        onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore since TooltipTrigger doesn't render an element.  You should move this property on the rendered element. For instance, if the trigger is a button, you should add onMouseLeave directly on the button instead. */
       >
         text
       </TooltipTrigger>
@@ -819,7 +827,7 @@ export function App() {
       </Alert>
       {/* Listbox */}
       <ListBox
-        isInvalid={true}
+        isInvalid
         isFluid
         zIndex={1000}
         nodes={[]}/* Migration TODO: `nodes` is removed. Use dynamic list instead. An example: https://hopper.workleap.design/components/Listbox#usage-dynamic-lists */
@@ -855,7 +863,7 @@ export function App() {
       <MenuTrigger
         isOpen={true}
         allowPreventOverflow/* Migration TODO: The `allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes */
-        closeOnSelect/* Migration TODO: The `closeOnSelect` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes */
+        closeOnSelect/* Migration TODO: The `closeOnSelect` is not supported in Hopper so we removed it. We have to wait for this issue to be fixed before adding it: https://github.com/adobe/react-spectrum/issues/8208 */
         zIndex={1000}/* Migration TODO: The `zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead. */
         direction="top"
         allowFlip
@@ -902,7 +910,7 @@ export function App() {
       {/* Tag */}
       <Tag
         width="100%"
-        isInvalid={true}
+        isInvalid
         variant="neutral"
         size="md"
         title="Tag Title"/* Migration TODO: `title` is not supported anymore. Wrap it inside a `Tooltip` component instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
@@ -948,6 +956,93 @@ export function App() {
       <Tag size="sm">text</Tag>
       {/* VisuallyHidden */}
       <VisuallyHidden />
+      {/* Disclosure */}
+      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
+      <Disclosure defaultExpanded isExpanded onExpandedChange={() => {}}>
+        <Button slot="trigger">text</Button>
+        <DisclosurePanel>
+          text
+        </DisclosurePanel>
+      </Disclosure>
+      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
+      <Disclosure>
+        <Div slot="trigger" />
+        <DisclosurePanel>test</DisclosurePanel>
+      </Disclosure>
+      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
+      <Disclosure>
+        <Div UNSAFE_width="20px" slot="trigger" />
+        <DisclosurePanel UNSAFE_width="120px"/>
+      </Disclosure>
+      /* Migration TODO: It cannot be migrated automatically. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+      <Disclosure>
+        <Div UNSAFE_width="20px"/>
+        {variable ? <Div/> : <Div UNSAFE_width="120px"/>}
+      </Disclosure>
+      /* Migration TODO: It cannot be migrated automatically. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+      <Disclosure>
+         <Button>text</Button>
+      </Disclosure>
+      /* Migration TODO: It cannot be migrated automatically. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+      <Disclosure>
+        <Button>text</Button>
+        <Div UNSAFE_width="120px"/>
+        <Div UNSAFE_width="120px"/>
+      </Disclosure>
+      <ToggleArrow isExpanded={true} />
+      {/* Accordion */}
+      <Accordion 
+        allowsMultipleExpanded
+        autoFocus/* Migration TODO: autofocus is removed. It did not make sense to have. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
+        expandedKeys={["1", "2"]}
+        onExpandedChange={() => {}}
+        defaultExpandedKeys={["1", "2"]}
+        variant="standalone"/* Migration TODO: `inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
+      >
+        text
+      </Accordion>
+      <Accordion allowsMultipleExpanded={false}>
+        text
+      </Accordion>
+      <Accordion variant="inline"/* Migration TODO: `inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes */>
+        text
+      </Accordion>
+      <Accordion variant={variable ? "bordered" : "borderless"}/* Migration TODO: `inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes */>
+        text
+      </Accordion>
+      <Accordion>
+        <Disclosure isDisabled key="item1">item1</Disclosure>
+        <Disclosure isDisabled key="item2"></Disclosure>
+        <Disclosure isDisabled key="item3"/>
+      </Accordion>
+      {/* Tabs */}
+      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
+      <Tabs
+        aria-label="test"
+        onSelectionChange={() => {}}
+        selectedKey="tab1"
+        variant="heading"
+        manual/* Migration TODO: `manual` is not supported anymore. Refer to this sample(https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes */
+        collapsible
+        orientation="horizontal"/* Migration TODO: `orientation` is not supported anymore. More details: https://hopper.workleap.design/components/Tabs#migration-notes */>
+        test
+      </Tabs>
+      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
+      <Tabs aria-label="tabs">test</Tabs>
+      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
+      <Tabs aria-label="tabs">
+        <TabList>
+          <Tab UNSAFE_width="120px" id="mars">Mars</Tab>
+          <Tab id="jupiter">Jupiter</Tab>
+          <Tab id="venus" isDisabled>Venus</Tab></TabList>
+        <TabPanel UNSAFE_width="120px" id="mars">Mars</TabPanel>
+        <TabPanel id="jupiter">
+            Jupiter
+        </TabPanel>
+        <TabPanel id="venus">
+            Venus
+        </TabPanel>
+      </Tabs>
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
       <HopperLB>

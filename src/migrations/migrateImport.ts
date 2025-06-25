@@ -1,7 +1,10 @@
 import { getLocalNameFromImport } from "../utils/migration.ts";
 import type { Runtime } from "../utils/types.js";
 
-export interface ImportMap { componentName: string; localName: string; newComponentName: string; newLocalName: string }
+export interface ImportMap { 
+  source?: { componentName: string; localName: string };
+  target: { componentName: string; localName: string };
+}
 
 export function migrateImport(importCases: ImportMap[], localNamesWithoutMigration: Set<string>, runtime: Runtime) {
   importCases.forEach(importCase => {
@@ -13,16 +16,17 @@ export function migrateImport(importCases: ImportMap[], localNamesWithoutMigrati
 
   // Remove all matching component specifiers from the original import  
   importCases.forEach(importCase => {
-    const { localName } = importCase;
+    if (!importCase.source) { return; }
+    const { source: { localName } } = importCase;
     if (localNamesWithoutMigration.has(localName)) {
       // If the local name has instances that have not been migrated, skip removal
       return;
     }
-    removeImportCase(importCase, runtime);
+    removeImportCase(importCase.source, runtime);
   });
 }
 
-function removeImportCase({ componentName, localName }: ImportMap, runtime: Runtime) {
+function removeImportCase({ componentName, localName }: NonNullable<ImportMap["source"]>, runtime: Runtime) {
   const { j, root, mappings } = runtime;
   const { sourcePackage } = mappings;
 
@@ -65,7 +69,7 @@ function removeImportCase({ componentName, localName }: ImportMap, runtime: Runt
 function isImportCaseAlreadyAdded(importCase: ImportMap, runtime: Runtime): boolean {
   const { j, root, mappings } = runtime;
   const { targetPackage } = mappings;
-  const { newComponentName, newLocalName } = importCase;
+  const { target: { componentName: newComponentName, localName: newLocalName } } = importCase;
 
   // Check if there's already an import from the target package with the same component and local name
   const existingImport = root.find(j.ImportDeclaration, {
@@ -113,9 +117,9 @@ export function addImportCase(
 
   const { j, root, mappings } = runtime;
   const { sourcePackage, targetPackage } = mappings;
-  const { componentName, localName, newComponentName, newLocalName } = importCase;
- 
-  const isAliased = newLocalName !== newComponentName;   
+  const { target: { componentName: newComponentName, localName: newLocalName } } = importCase;
+
+  const isAliased = newLocalName !== newComponentName;
   const newImportSpecifier = j.importSpecifier(
     j.identifier(newComponentName),
     isAliased ? j.identifier(newLocalName) : null
@@ -123,42 +127,45 @@ export function addImportCase(
   let isFromSeparateTypeImport = false;
 
   // Find all import declarations from the source package
-  root
-    .find(j.ImportDeclaration, {
-      source: {
-        value: sourcePackage
-      }
-    })
-    .forEach(path => {
-      const importSpecifiers = path.node.specifiers || [];
+  if (importCase.source !== undefined) {
+    const { componentName, localName } = importCase.source;
+    root
+      .find(j.ImportDeclaration, {
+        source: {
+          value: sourcePackage
+        }
+      })
+      .forEach(path => {
+        const importSpecifiers = path.node.specifiers || [];
 
-      // Find ALL component specifiers matching the component name and local name
-      const componentSpecifiers = importSpecifiers.filter(
-        specifier =>
-          j.ImportSpecifier.check(specifier) &&
+        // Find ALL component specifiers matching the component name and local name
+        const componentSpecifiers = importSpecifiers.filter(
+          specifier =>
+            j.ImportSpecifier.check(specifier) &&
           specifier.imported &&
           specifier.imported.name === componentName && 
           getLocalNameFromImport(specifier) === localName
-      );
+        );
 
-      // Process each matching component specifier
-      componentSpecifiers.forEach(componentSpecifier => {
-        if (j.ImportSpecifier.check(componentSpecifier)) {
+        // Process each matching component specifier
+        componentSpecifiers.forEach(componentSpecifier => {
+          if (j.ImportSpecifier.check(componentSpecifier)) {
           // Check if this is a type import (either the whole import or this specific specifier)
-          const isTypeImport =
+            const isTypeImport =
             path.node.importKind === "type" ||
             (componentSpecifier as any).importKind === "type";
 
-          // Set the importKind for inline type imports only (not for separate import type declarations)
-          if (isTypeImport && path.node.importKind !== "type") {
-            (newImportSpecifier as any).importKind = "type";
-          }
+            // Set the importKind for inline type imports only (not for separate import type declarations)
+            if (isTypeImport && path.node.importKind !== "type") {
+              (newImportSpecifier as any).importKind = "type";
+            }
 
-          // Store whether this specifier came from a separate type import declaration
-          isFromSeparateTypeImport = path.node.importKind === "type";
-        }
+            // Store whether this specifier came from a separate type import declaration
+            isFromSeparateTypeImport = path.node.importKind === "type";
+          }
+        });
       });
-    });
+  }
 
 
   // Check if there's already an import from the target package
