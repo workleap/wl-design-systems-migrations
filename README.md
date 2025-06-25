@@ -30,6 +30,7 @@ The codemod handles various migration scenarios including:
 - [Allowed Parameters](#allowed-parameters)
 - [Shimmed components](#shimmed-components)
   - [Card](#card)
+  - [Transition](#transition)
 - [Contributing](#contributing)
 
 ## Before Migration
@@ -187,8 +188,8 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
       "components": 20,
       "props": 80
     }
-  },  
-  "components": {  
+  },
+  "components": {
     "Text": {
       "usage": {
         "total": 15,
@@ -201,25 +202,25 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
         "size": {
           "usage": 75,
           "values": {
-            "lg": { 
+            "lg": {
               "usage": {
-                "total": 50, 
-                "projects": { 
-                  "frontend-team": 30, 
-                  "mobile-app": 20 
+                "total": 50,
+                "projects": {
+                  "frontend-team": 30,
+                  "mobile-app": 20
                 }
               },
               "files": [ //if --deep true is passed
                 "https://github.com/myorg/myrepo/blob/main/src/components/Header.tsx#L15",
                 "https://dev.azure.com/myorg/myproject/_git/myrepo?path=%2Fsrc%2Fcomponents%2FHero.tsx&version=GBmain&line=23",
-                "/src/pages/Dashboard.tsx"] 
+                "/src/pages/Dashboard.tsx"]
             },
-            "md": { 
+            "md": {
               "usage": {
-                "total": 25, 
-                "projects": { 
-                  "frontend-team": 15, 
-                  "mobile-app": 10 
+                "total": 25,
+                "projects": {
+                  "frontend-team": 15,
+                  "mobile-app": 10
                 }
               }
             }
@@ -288,6 +289,17 @@ This shim bridges the gap between the two implementations, making Hopper’s Car
 
 See the [implementation](src/shims/OrbiterCard.tsx)
 See the [Stackblitz](https://stackblitz.com/edit/hopper-sandbox-qs8euohl?file=src%2FOrbiterCard.tsx) for examples.
+
+### Transition
+
+Orbiter's Transition component dynamically applies CSS classes to its children based on transition states. Since Hopper doesn't include a transition utility, this shim provides a lightweight implementation that applies the `transition` class to child elements.
+
+This component serves as a bridge between the two design systems, maintaining compatibility with existing Orbiter code patterns while facilitating a smoother migration to Hopper.
+
+- [Orbiter's Transition](https://wl-orbiter-website.netlify.app/?path=/docs/transition--docs)
+
+See the [TSX implementation](src/shims/Transition.tsx)
+See the [CSS implementation](src/shims/Transition.css)
 
 ## Contributing
 
