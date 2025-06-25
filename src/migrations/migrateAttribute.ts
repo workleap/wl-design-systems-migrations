@@ -17,7 +17,7 @@ export function migrateAttribute(
     );
 
     if (sourceAttribute && sourceAttribute.type === "JSXAttribute") {
-      const newAttribute: { name: string; value: any; todoComments?: string; migrationNotes?: string | string[] } =
+      const newAttribute: { name: string; value: any; todoComments?: string; migrationNotes?: string | string[]; removeIt?: boolean } =
         {
           name: "",
           value: null
@@ -28,7 +28,9 @@ export function migrateAttribute(
           ...runtime,
           tag: path
         });
-        if (mapResult) {
+        if (mapResult && "removeIt" in mapResult) {
+          newAttribute.removeIt = true;
+        } else if (mapResult) {
           const { to, value, todoComments, migrationNotes } = mapResult;
           newAttribute.name = to ?? oldAttrName;
           newAttribute.value = value === undefined ? sourceAttribute.value : value;
@@ -82,6 +84,11 @@ export function migrateAttribute(
         } catch (error) {
           runtime.log(String(error));
         }
+      }
+
+      //Remove the attribute if specified
+      if (newAttribute.removeIt) {
+        attributes.splice(sourceAttributeIndex, 1);
       }
     }
   });

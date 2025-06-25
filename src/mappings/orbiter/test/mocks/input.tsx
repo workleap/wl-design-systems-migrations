@@ -4,6 +4,7 @@ import {
 import { SparklesIcon } from "@hopper-ui/icons";
 import {
   A,
+  Accordion,
   Address,
   Alert,
   AnonymousAvatar,
@@ -19,6 +20,8 @@ import {
   Counter,
   CrossButton,
   DeletedAvatar,
+  Disclosure,
+  DisclosureArrow,
   Div,
   Divider,
   Dot,
@@ -78,6 +81,7 @@ import {
   Stack,
   SvgImage,
   Table,
+  Tabs,
   Tag,
   TagList,
   TBody,
@@ -942,6 +946,98 @@ export function App() {
 
       {/* VisuallyHidden */}
       <VisuallyHidden />
+
+      {/* Disclosure */}
+      <Disclosure
+        defaultOpen
+        open
+        onOpenChange={() => {}}
+      >
+        <Button>text</Button>
+        <Div>
+          text
+        </Div>
+      </Disclosure>
+      <Disclosure>
+        <Div />
+        <Content>test</Content>
+      </Disclosure>      
+      <Disclosure>
+        <Div width="20px"/>
+        <Div width="120px"/>
+      </Disclosure>
+      <Disclosure>
+        <Div width="20px"/>
+        {variable ? <Div/> : <Div width="120px"/>}
+      </Disclosure>      
+      <Disclosure>
+         <Button>text</Button>
+      </Disclosure>   
+      <Disclosure>
+        <Button>text</Button>
+        <Div width="120px"/>
+        <Div width="120px"/>
+      </Disclosure>
+      <DisclosureArrow open={true} />
+
+      {/* Accordion */}
+      <Accordion 
+        expansionMode="multiple"
+        autoFocus
+        expandedKeys={["1", "2"]}
+        onExpansionChange={() => {}}
+        defaultExpandedKeys={["1", "2"]}
+        variant="bordered"
+      >
+        text
+      </Accordion>
+      <Accordion expansionMode="single">
+        text
+      </Accordion>      
+      <Accordion variant="borderless">
+        text
+      </Accordion>           
+      <Accordion variant={variable ? "bordered" : "borderless"}>
+        text
+      </Accordion>           
+      <Accordion>
+        <Item disabled key="item1">item1</Item>
+        <Item disabled key="item2"></Item>
+        <Item disabled key="item3"/>
+      </Accordion>
+
+      {/* Tabs */}
+      <Tabs 
+        aria-label="test"
+        onSelectionChange={() => {}}
+        selectedKey="tab1"
+        variant="heading"
+        manual
+        collapsible
+        orientation="horizontal"        
+      >
+        test
+      </Tabs>
+      <Tabs aria-label="tabs" collapsible={false}>test</Tabs>
+      <Tabs aria-label="tabs">
+        <Item key="mars">
+            <Header width="120px">Mars</Header>
+            <Content width="120px">Mars</Content>
+        </Item>
+        <Item key="jupiter">
+            <Header>Jupiter</Header>
+            <Content>
+                Jupiter
+            </Content>
+        </Item>
+        <Item key="venus" disabled>
+            <Header>Venus</Header>
+            <Content>
+                Venus
+            </Content>
+        </Item>
+      </Tabs>
+
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
       <HopperLB>

@@ -26,7 +26,9 @@ export type ExtendedRuntime = Runtime & {
 export type PropertyMapperFunction<T extends string = string> = (
   originalValue: JSXAttribute["value"],
   runtime: ExtendedRuntime
-) => PropertyMapResult<T> | null;
+) => PropertyMapResult<T> | PropertyRemoveResult | null;
+
+export interface PropertyRemoveResult { removeIt: true }
 
 export interface PropertyMapResult<
   T extends string = string,
@@ -88,6 +90,7 @@ export interface MapMetaData {
     menu: string[];
     overlay: string[];
     tags: string[];
+    disclosure: string[];
   };
   components: Record<string, ComponentMapping>;
 }

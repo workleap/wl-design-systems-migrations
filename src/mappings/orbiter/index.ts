@@ -6,6 +6,7 @@ import {
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { itemMapping } from "./components/item.ts";
 import { sectionMapping } from "./components/section.ts";
+import { disclosureComponentsMappings } from "./disclosure-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { menuComponentsMappings } from "./menu-components-mappings.ts";
 import { overlayComponentsMappings } from "./overlay-components-mappings.ts";
@@ -20,7 +21,7 @@ const defaultPropsMappings = {
   "min-width": originalValue => ({
     to: "min-width",
     value: originalValue,
-    todoComments: "It seems it is an invalid property. Remove it if not needed"
+    todoComments: "It seems it is an invalid property. Remove it if it is not needed"
   }),
   active: () => ({
     todoComments: "`active` is not supported anymore. Find an alternative solution. If the use case is to implement the toggle status, you can use the ToggleButton. More details: https://hopper.workleap.design/components/ToggleButton"
@@ -45,7 +46,8 @@ export const mappings = {
     visual: getMappingKeys(visualComponentsMappings),
     menu: getMappingKeys(menuComponentsMappings),
     overlay: getMappingKeys(overlayComponentsMappings),
-    tags: getMappingKeys(tagComponentsMappings)
+    tags: getMappingKeys(tagComponentsMappings),
+    disclosure: getMappingKeys(disclosureComponentsMappings)
   },
   components: {
     ...layoutComponentsMappings,
@@ -53,42 +55,20 @@ export const mappings = {
     ...visualComponentsMappings,
     ...overlayComponentsMappings,
     ...menuComponentsMappings,
-    ...itemMapping,
     ...sectionMapping,
-    ...tagComponentsMappings
+    ...tagComponentsMappings,
+    ...disclosureComponentsMappings,
+    ...itemMapping//Note: it should be the last item to have all parents migrated first
   }
 } satisfies MapMetaData;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const todo = {
-  //disclosure & accordion - total usage: 28
-  Disclosure: "Disclosure", //usage: 7
-  DisclosureProps: "DisclosureProps",
-  Accordion: "Accordion", //usage: 3
-  AccordionProps: "AccordionProps",
-  // TODO: Not a direct mapping. Find the appropriate component/type.
-  // DisclosureArrow: "ToggleArrow", //usage: 18
-  // DisclosureArrowProps: "ToggleArrowProps",
-  // AccordionHeader: "DisclosureHeader",
-  // AccordionHeaderProps: "DisclosureHeaderProps",
-  // AccordionPanel: "DisclosurePanel",
-  // AccordionPanelProps: "DisclosurePanelProps",
-
-  //tabs - total usage: 18
-  Tabs: "Tabs", //usage: 18
-  TabsProps: "TabsProps",
-  Tab: "Tab", //usage: 0
-  TabProps: "TabProps",
-  TabList: "TabList", //usage: 0
-  TabListProps: "TabListProps",
-  TabPanel: "TabPanel", //usage: 0
-  TabPanelProps: "TabPanelProps",
+  
 
   //layout & containers - total usage: 64
   Card: "Card", //usage: 16
   CardProps: "CardProps",
-  Divider: "Divider", //usage: 40
-  DividerProps: "DividerProps",
   // TODO: Not a direct mapping. Find the appropriate component/type.
   // Box: "Box", //usage: 7
   // BoxProps: "BoxProps",
@@ -167,19 +147,4 @@ const todo = {
   //FieldsetProps: "FieldsetProps",
   //TextAddon: "TextAddon",
   //TextAddonProps: "TextAddonProps",
-
-
-  //collection components - total usage: 335
-  // TODO: Not a direct mapping. Find the appropriate component/type.
-  // Item: "Item", //usage: 326
-  // ItemProps: "ItemProps",
-  // Section: "Section", //usage: 9
-  // SectionProps: "SectionProps",
 };
-
-//Notes:
-/*
-- Divider is probably not 1:1, depending on what property is used.
-- Box will be a case by case basis. It's usually used to render a polymorphic component using the as props. We don't support that in hopper. It might be a case of manual migration for that one
-- Label: probably we don't use Label component as field have their own label prop in Hopper
-*/

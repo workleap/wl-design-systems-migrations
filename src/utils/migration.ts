@@ -110,3 +110,70 @@ export function tryToGetStaticMapping(
     return componentMapping;
   }
 }
+
+/**
+ * Extracts the base indentation from the first child element of a given type
+ * Useful for maintaining proper JSX formatting when restructuring components
+ */
+export function extractBaseIndentation(jsxElement: any, childElementName: string): string {
+  const firstChildIndex = jsxElement.children.findIndex((child: any) =>
+    child.type === "JSXElement" && 
+    child.openingElement?.name?.name === childElementName
+  );
+  
+  let baseIndent = "\n        "; // Default indentation
+  if (firstChildIndex > 0 && 
+      jsxElement.children[firstChildIndex - 1]?.type === "JSXText") {
+    baseIndent = jsxElement.children[firstChildIndex - 1].value;
+  }
+  
+  return baseIndent;
+}
+
+/**
+ * Creates a properly indented JSX element list with text nodes
+ * Handles the spacing between elements within a container
+ */
+export function createIndentedElementList(elements: any[], baseIndent: string, childIndent: string, runtime: Runtime) {
+  const { j } = runtime;
+  const result = [];
+  
+  for (let i = 0; i < elements.length; i++) {
+    // Add indentation before each element
+    if (i === 0) {
+      result.push(j.jsxText(childIndent));
+    }
+    result.push(elements[i]);
+    
+    // Add indentation after each element except the last one
+    if (i < elements.length - 1) {
+      result.push(j.jsxText(childIndent));
+    }
+  }
+  
+  return result;
+}
+
+/**
+ * Creates the final children array with proper indentation
+ * Handles the overall structure with a main element and additional sibling elements
+ */
+export function createFinalChildrenArray(mainElement: any, siblingElements: any[], baseIndent: string, runtime: Runtime) {
+  const { j } = runtime;
+  
+  const newChildren = [
+    j.jsxText(baseIndent),
+    mainElement
+  ];
+  
+  // Add sibling elements with proper indentation
+  for (const element of siblingElements) {
+    newChildren.push(j.jsxText(baseIndent));
+    newChildren.push(element);
+  }
+  
+  // Add final indentation
+  newChildren.push(j.jsxText(baseIndent.replace(/ {2}$/, "")));
+  
+  return newChildren;
+}

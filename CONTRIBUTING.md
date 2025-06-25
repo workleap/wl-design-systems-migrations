@@ -204,6 +204,22 @@ props: {
 
 The `removals` field accepts an array of property names that should be removed from the component during migration. This is useful when properties are no longer supported or have been replaced by different patterns.
 
+**Removing properties during transformation:**
+
+Use `removeIt: true` to completely remove a property during migration:
+
+```ts
+mappings: {
+  conditionalRemoval: (originalValue, runtime) => {
+    const value = tryGettingLiteralValue(originalValue, runtime);
+    if (value === "legacy") {
+      return { removeIt: true };  // Remove if legacy value
+    }
+    return { to: "newProp", value: originalValue };  // Otherwise transform
+  }
+}
+```
+
 **PropertyAdderFunction signature:**
 
 ```ts
@@ -423,15 +439,22 @@ Key utilities from [`src/utils/mapping.ts`](/src/utils/mapping.ts):
 - `tryGettingLiteralValue(value, runtime)` - Extract literal values from JSX attributes (most common)
 - `hasAttribute(tag, keys)` - Check if JSX element has specific attributes
 - `getAttributeLiteralValue(tag, attributeName, runtime)` - Extract literal value from a specific attribute
+- `getAttributeValue(tag, attributeName)` - Get the raw value of a JSX attribute (returns the AST node)
+
+**Component context functions:**
+
+- `isWithinComponent(path, componentNames, packageName, runtime)` - Check if current element is within a specific parent component
 
 **DOM manipulation functions:**
 
 - `addChildrenTo(tag, childName, values, runtime)` - Add child elements to a component with specified values
+- `createObjectExpression(obj, runtime)` - Create JSX object expression from a plain object
 
 **Property mapping functions:**
 
 - `createHopperCssPropertyMapper(options)` - CSS property mapping for Hopper styled system
 - `createCssPropertyMapper(options)` - Generic CSS property mapping
+- `getReviewMePropertyName(propertyName)` - Generate ReviewMe property name with prefix
 
 **Value validation utilities:**
 

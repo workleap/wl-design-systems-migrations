@@ -5,7 +5,7 @@ export const tooltipMapping = {
   Tooltip: {
     props: {
       mappings: {
-        "onMouseLeave":  () => ({ todoComments: "`onMouseLeave` is not supported anymore. Hopper has ContextualHelp component if it is used for this purpose. More details: https://hopper.workleap.design/components/ContextualHelp" }) 
+        "onMouseLeave":  () => ({ todoComments: "`onMouseLeave` is not supported anymore. If you really need it you can add it in a Div inside the tooltip if needed." }) 
       }
     }
   },
@@ -41,7 +41,8 @@ export const tooltipTriggerMapping = {
           };
         },
         "zIndex": () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead." }),
-        "onMouseLeave":  () => ({ todoComments: "`onMouseLeave` is not supported anymore. Hopper has ContextualHelp component if it is used for this purpose. More details: https://hopper.workleap.design/components/ContextualHelp" }) //TODO: it is still under investigation.
+        // eslint-disable-next-line max-len
+        "onMouseLeave":  () => ({ todoComments: "`onMouseLeave` is not supported anymore since TooltipTrigger doesn't render an element.  You should move this property on the rendered element. For instance, if the trigger is a button, you should add onMouseLeave directly on the button instead." }) 
       }
     }
   },
