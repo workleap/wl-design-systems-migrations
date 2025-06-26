@@ -50,12 +50,12 @@ export type PropsMapping<
 export type PropertyAdderFunction = (
   tag: ASTPath<JSXOpeningElement>,
   runtime: Runtime
-) => string | number | boolean | object | JSXAttribute["value"] | null;
+) => string | number | boolean | null | object | JSXAttribute["value"] | undefined;// undefined means skip adding the property
 
 export interface PropsMapMetaData {
   mappings?: PropsMapping;
   additions?: {
-    [key: string]: PropertyAdderFunction | string | number | boolean | object;
+    [key: string]: PropertyAdderFunction | string | number | boolean | null | object;
   };
   removals?: string[]; // properties to remove from the component
 }

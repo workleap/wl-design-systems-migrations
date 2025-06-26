@@ -44,7 +44,7 @@ export function migrateComponentInstances(
       instances.forEach(path => {
         if (typeof newAttrValue === "function") {
           const newValue = newAttrValue(path, runtime);
-          if (newValue !== null) {
+          if (newValue !== undefined) {
             addAttribute(
               path,
               newAttrName,
@@ -52,7 +52,9 @@ export function migrateComponentInstances(
               runtime
             );
           }
-        } else {addAttribute(path, newAttrName, newAttrValue, runtime);}
+        } else {
+          addAttribute(path, newAttrName, newAttrValue, runtime);
+        }
       });
     }
   );

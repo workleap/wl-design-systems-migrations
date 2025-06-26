@@ -5,7 +5,7 @@ export const modalMapping = {
   Modal: {
     props: {
       mappings: {
-        "dismissable": "isDismissible",
+        "dismissable": "isDismissable",
         "wrapperProps": "overlayProps",
         "onClose": () => ({ 
           to: getReviewMePropertyName("onOpenChange"), 
@@ -22,7 +22,7 @@ export const modalTriggerMapping = {
     props: {
       mappings: {
         "open": "isOpen",
-        "dismissable": () => ({ todoComments: "`dismissable` is not supported anymore. Use `isDismissible` prop at related `Modal` component instead." })       
+        "dismissable": () => ({ todoComments: "`dismissable` is not supported anymore. Use `isDismissable` prop at related `Modal` component instead." })       
       }
     }
   },

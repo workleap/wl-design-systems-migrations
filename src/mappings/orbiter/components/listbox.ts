@@ -28,7 +28,7 @@ export const listboxMapping = {
             };
           } else {
             return {             
-              todoComments: "The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes"
+              todoComments: "`validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes"
             };
           }
         }

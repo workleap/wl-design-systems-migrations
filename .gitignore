@@ -1,4 +1,5 @@
 node_modules
+tsconfig.tsbuildinfo
 cdmd_dist
 **/*.log
 **/*.tmp

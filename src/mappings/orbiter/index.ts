@@ -64,34 +64,8 @@ export const mappings = {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const todo = {
-  
-
-  //layout & containers - total usage: 64
-  Card: "Card", //usage: 16
-  CardProps: "CardProps",
-  // TODO: Not a direct mapping. Find the appropriate component/type.
-  // Box: "Box", //usage: 7
-  // BoxProps: "BoxProps",
-  // Group: "Group", //usage: 1
-  // GroupProps: "GroupProps",
-
-
-  //messaging & feedback - total usage: 19
-  Alert: "Alert", //usage: 9
-  AlertProps: "AlertProps",
-  AlertTrigger: "AlertTrigger", //usage: 10
-  AlertTriggerProps: "AlertTriggerProps",
-
-
-  //toolbar & utilities - total usage: 33
   ThemeProvider: "HopperProvider", //usage: 30
   ThemeProviderProps: "HopperProviderProps",
-  // TODO: Not a direct mapping. Find the appropriate component/type.
-  // Toolbar: "Toolbar",
-  // ToolbarProps: "ToolbarProps",
-  // Transition: "Transition", //usage: 2
-  // TransitionProps: "TransitionProps",
-
 
   //form fields - total usage: 777
   TextInput: "TextField", //usage: 111
