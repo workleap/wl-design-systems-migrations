@@ -9,11 +9,14 @@ import {
   SimplePaddingMapping as OrbiterSimplePaddingMapping
 } from "@workleap/orbiter-ui";
 
+const validGlobalValues = [0];
+
 export const paddingMapper = createHopperCssPropertyMapper({
   propertyName: "padding",
   unsafePropertyName: "UNSAFE_padding",
   sourceValidKeys: OrbiterComplexPaddingMapping,
   targetValidKeys: HopperComplexPaddingMapping,
+  validGlobalValues,
   customMapper: (value, originalValue, runtime) => {
     const { j } = runtime;
     if (typeof value === "number") {
@@ -30,6 +33,7 @@ export const paddingMapper = createHopperCssPropertyMapper({
 export const paddingBottomMapper = createHopperCssPropertyMapper({
   propertyName: "paddingBottom",
   unsafePropertyName: "UNSAFE_paddingBottom",
+  validGlobalValues,
   sourceValidKeys: OrbiterSimplePaddingMapping,
   targetValidKeys: HopperSimplePaddingMapping
 });
@@ -37,6 +41,7 @@ export const paddingBottomMapper = createHopperCssPropertyMapper({
 export const paddingLeftMapper = createHopperCssPropertyMapper({
   propertyName: "paddingLeft",
   unsafePropertyName: "UNSAFE_paddingLeft",
+  validGlobalValues,
   sourceValidKeys: OrbiterSimplePaddingMapping,
   targetValidKeys: HopperSimplePaddingMapping
 });
@@ -44,6 +49,7 @@ export const paddingLeftMapper = createHopperCssPropertyMapper({
 export const paddingRightMapper = createHopperCssPropertyMapper({
   propertyName: "paddingRight",
   unsafePropertyName: "UNSAFE_paddingRight",
+  validGlobalValues,
   sourceValidKeys: OrbiterSimplePaddingMapping,
   targetValidKeys: HopperSimplePaddingMapping
 });
@@ -51,6 +57,7 @@ export const paddingRightMapper = createHopperCssPropertyMapper({
 export const paddingTopMapper = createHopperCssPropertyMapper({
   propertyName: "paddingTop",
   unsafePropertyName: "UNSAFE_paddingTop",
+  validGlobalValues,
   sourceValidKeys: OrbiterSimplePaddingMapping,
   targetValidKeys: HopperSimplePaddingMapping
 });
@@ -58,6 +65,7 @@ export const paddingTopMapper = createHopperCssPropertyMapper({
 export const paddingXMapper = createHopperCssPropertyMapper({
   propertyName: "paddingX",
   unsafePropertyName: "UNSAFE_paddingX",
+  validGlobalValues,
   sourceValidKeys: OrbiterSimplePaddingMapping,
   targetValidKeys: HopperSimplePaddingMapping
 });
@@ -65,6 +73,7 @@ export const paddingXMapper = createHopperCssPropertyMapper({
 export const paddingYMapper = createHopperCssPropertyMapper({
   propertyName: "paddingY",
   unsafePropertyName: "UNSAFE_paddingY",
+  validGlobalValues,
   sourceValidKeys: OrbiterSimplePaddingMapping,
   targetValidKeys: HopperSimplePaddingMapping
 });
