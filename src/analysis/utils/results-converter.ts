@@ -1,5 +1,5 @@
 import type { Runtime } from "../../utils/types.js";
-import type { AnalysisResults, ComponentAnalysisData, ComponentUsageData, PropertyUsage } from "../types.js";
+import type { AnalysisResults, ComponentAnalysisData, ComponentUsageData, FunctionAnalysisData, FunctionUsageData, PropertyUsage } from "../types.js";
 import { isComponentMapped, isPropertyMapped } from "./mapping-utils.js";
 
 /**
@@ -7,6 +7,7 @@ import { isComponentMapped, isPropertyMapped } from "./mapping-utils.js";
  */
 export function convertToAnalysisResults(
   componentUsageData: Record<string, ComponentUsageData>,
+  functionUsageData: Record<string, FunctionUsageData>,
   mappings: Runtime["mappings"],
   filterUnmapped?: "components" | "props"
 ): AnalysisResults {
@@ -86,13 +87,53 @@ export function convertToAnalysisResults(
     0
   );
 
+  // Process functions
+  const functions: Record<string, FunctionAnalysisData> = {};
+
+  Object.entries(functionUsageData).forEach(([functionName, data]) => {
+    // Sort values by total count (descending)
+    const sortedValues = Object.entries(data.values).sort(
+      ([, a], [, b]) => b.usage.total - a.usage.total
+    );
+
+    const sortedValuesObj: {
+      [callSignature: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] };
+    } = {};
+    sortedValues.forEach(([callSignature, counts]) => {
+      sortedValuesObj[callSignature] = counts;
+    });
+
+    functions[functionName] = {
+      usage: data.count,
+      values: sortedValuesObj
+    };
+  });
+
+  // Sort functions by usage count (descending)
+  const sortedFunctions = Object.entries(functions).sort(
+    ([, a], [, b]) => b.usage.total - a.usage.total
+  );
+
+  const sortedFunctionsObj: Record<string, FunctionAnalysisData> = {};
+  sortedFunctions.forEach(([name, data]) => {
+    sortedFunctionsObj[name] = data;
+  });
+
+  // Calculate function totals
+  const totalFunctionUsage = Object.values(functions).reduce(
+    (sum, func) => sum + func.usage.total,
+    0
+  );
+
   return {
     overall: {
       usage: {
         components: totalComponentUsage,
-        props: totalPropUsage
+        props: totalPropUsage,
+        functions: totalFunctionUsage
       }
     },
-    components: sortedComponentsObj
+    components: sortedComponentsObj,
+    functions: sortedFunctionsObj
   };
 }

@@ -34,7 +34,7 @@
     "sample": "codemod --source ./  -t src/mappings/orbiter/test/mocks/input.tsx -d",
     "sample:write": "codemod --source ./  -t src/mappings/orbiter/test/mocks/input.tsx --no-interactive",
     "analyze:orbiter:all": "pnpm analyze:state && pnpm analyze:components && pnpm analyze:props",
-    "analyze:orbiter:all:deep": "pnpm analyze:state:deep && pnpm analyze:components:deep && pnpm analyze:props:deep",
+    "analyze:orbiter:all:deep": "pnpm analyze:orbiter:state:deep && pnpm analyze:orbiter:components:deep && pnpm analyze:orbiter:props:deep",
     "analyze:orbiter:components": "./scripts/analyze.not-mapped-components.sh",
     "analyze:orbiter:components:deep": "./scripts/analyze.not-mapped-components.sh --deep true",
     "analyze:orbiter:props": "./scripts/analyze.not-mapped-props.sh",

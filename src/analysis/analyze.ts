@@ -2,13 +2,14 @@ import { existsSync, readFileSync, writeFileSync } from "fs";
 import type { Options } from "jscodeshift";
 import type { Runtime } from "../utils/types.js";
 import type { AnalysisResults } from "./types.js";
+import { performFunctionAnalysis } from "./utils/function-analyzer.js";
 import { customStringify } from "./utils/json-utils.js";
 import { performJSXAnalysis } from "./utils/jsx-analyzer.js";
 import { mergeAnalysisResults } from "./utils/merge-utils.js";
 import { convertToAnalysisResults } from "./utils/results-converter.js";
 
 // Re-export types and utilities for backward compatibility
-export type { AnalysisResults, ComponentAnalysisData, PropertyUsage } from "./types.js";
+export type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage } from "./types.js";
 export { customStringify, getSortedKeys } from "./utils/json-utils.js";
 export { mergeAnalysisResults } from "./utils/merge-utils.js";
 
@@ -46,9 +47,17 @@ export function analyze(
     deep
   });
 
+  // Perform function analysis to extract function usage data
+  const functionUsageData = performFunctionAnalysis(runtime, sourcePackage, {
+    includeIgnoredList,
+    project,
+    deep
+  });
+
   // Convert to analysis results format and apply filtering
   const analysisResults = convertToAnalysisResults(
     componentUsageData,
+    functionUsageData,
     mappings,
     filterUnmapped
   );

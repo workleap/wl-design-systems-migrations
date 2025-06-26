@@ -126,7 +126,7 @@ describe("analyze - utility functions", () => {
     
     // Verify top-level keys are sorted (Object.keys natural order)
     const topLevelKeys = Object.keys(parsed);
-    expect(topLevelKeys).toEqual(["overall", "components"]);
+    expect(topLevelKeys).toEqual(["overall", "components", "functions"]);
     
     // Verify components are sorted by usage count (descending)
     const componentKeys = Object.keys(parsed.components);
