@@ -1,4 +1,4 @@
-import type { AnalysisResults, ComponentAnalysisData, PropertyUsage } from "../types.js";
+import type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage } from "../types.js";
 
 /**
  * Helper function to deep clone property values (just the count objects)
@@ -128,9 +128,45 @@ function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>
 }
 
 /**
+ * Applies sorting to function analysis results based on usage counts
+ */
+function sortFunctionResults(combinedFunctions: Record<string, FunctionAnalysisData>): Record<string, FunctionAnalysisData> {
+  const sortedCombinedFunctions: Record<string, FunctionAnalysisData> = {};
+
+  // Sort functions by usage count (descending)
+  const sortedFunctions = Object.entries(combinedFunctions).sort(
+    ([, a], [, b]) => b.usage.total - a.usage.total
+  );
+
+  sortedFunctions.forEach(([functionName, functionData]) => {
+    // Sort function call values by total count (descending)
+    const sortedValues = Object.entries(functionData.values).sort(
+      ([, a], [, b]) => b.usage.total - a.usage.total
+    );
+
+    const sortedValuesObj: {
+      [callSignature: string]: { usage: { total: number; projects?: { [project: string]: number } }; files?: string[] };
+    } = {};
+    sortedValues.forEach(([callSignature, counts]) => {
+      sortedValuesObj[callSignature] = counts;
+    });
+
+    sortedCombinedFunctions[functionName] = {
+      usage: functionData.usage,
+      values: sortedValuesObj
+    };
+  });
+
+  return sortedCombinedFunctions;
+}
+
+/**
  * Calculates total usage statistics from analysis results
  */
-function calculateTotals(components: Record<string, ComponentAnalysisData>): { components: number; props: number } {
+function calculateTotals(
+  components: Record<string, ComponentAnalysisData>,
+  functions: Record<string, FunctionAnalysisData>
+): { components: number; props: number; functions: number } {
   const totalComponentUsage = Object.values(components).reduce(
     (sum, comp) => sum + comp.usage.total,
     0
@@ -144,10 +180,15 @@ function calculateTotals(components: Record<string, ComponentAnalysisData>): { c
       ),
     0
   );
+  const totalFunctionUsage = Object.values(functions).reduce(
+    (sum, func) => sum + func.usage.total,
+    0
+  );
 
   return {
     components: totalComponentUsage,
-    props: totalPropUsage
+    props: totalPropUsage,
+    functions: totalFunctionUsage
   };
 }
 
@@ -184,7 +225,23 @@ export function mergeAnalysisResults(
       )
     );
 
-  // Merge new results
+  // Create a deep copy of existing functions as the base
+  const combinedFunctions: Record<string, FunctionAnalysisData> =
+    Object.fromEntries(
+      Object.entries(existingResults.functions).map(
+        ([functionName, functionData]) => {
+          return [
+            functionName,
+            {
+              usage: functionData.usage,
+              values: clonePropertyValues(functionData.values) // Deep clone count objects
+            }
+          ];
+        }
+      )
+    );
+
+  // Merge new component results
   Object.entries(newResults.components).forEach(
     ([componentName, componentData]) => {
       const combinedComponentData = combinedData[componentName];
@@ -227,16 +284,38 @@ export function mergeAnalysisResults(
     }
   );
 
+  // Merge new function results
+  Object.entries(newResults.functions).forEach(
+    ([functionName, functionData]) => {
+      const combinedFunctionData = combinedFunctions[functionName];
+      if (combinedFunctionData) {
+        // Merge function usage counts
+        mergeComponentUsage(combinedFunctionData.usage, functionData.usage);
+
+        // Merge function call values
+        mergeProjectValues(combinedFunctionData.values, functionData.values);
+      } else {
+        // Create a deep copy for new function
+        combinedFunctions[functionName] = {
+          usage: functionData.usage,
+          values: clonePropertyValues(functionData.values)
+        };
+      }
+    }
+  );
+
   // Apply sorting to the merged results
   const sortedCombinedData = sortAnalysisResults(combinedData);
+  const sortedCombinedFunctions = sortFunctionResults(combinedFunctions);
 
   // Calculate combined totals
-  const totals = calculateTotals(sortedCombinedData);
+  const totals = calculateTotals(sortedCombinedData, sortedCombinedFunctions);
 
   return {
     overall: {
       usage: totals
     },
-    components: sortedCombinedData
+    components: sortedCombinedData,
+    functions: sortedCombinedFunctions
   };
 }

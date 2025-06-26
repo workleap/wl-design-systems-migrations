@@ -36,6 +36,20 @@ export interface ComponentAnalysisData {
 }
 
 /**
+ * Analysis results for a single function
+ * Functions are sorted by usage count (most used first)
+ */
+export interface FunctionAnalysisData {
+  usage: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
+  values: Values;
+}
+
+/**
  * Complete analysis results containing all components and their usage data
  */
 export interface AnalysisResults {
@@ -43,9 +57,11 @@ export interface AnalysisResults {
     usage: {
       components: number;
       props: number;
+      functions: number;
     };
   };
   components: Record<string, ComponentAnalysisData>;
+  functions: Record<string, FunctionAnalysisData>;
 }
 
 /**
@@ -63,14 +79,37 @@ export interface ComponentUsageData {
     {
       usage: number;
       values: {
-        [value: string]: { 
+        [value: string]: {
           usage: {
-            total: number; 
+            total: number;
             projects?: { [project: string]: number };
-          };  
-          files?: string[]; 
+          };
+          files?: string[];
         };
       };
     }
   >;
+}
+
+/**
+ * Internal data structure for function usage during analysis
+ */
+export interface FunctionUsageData {
+  count: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
+  values: {
+    [callSignature: string]: {
+      usage: {
+        total: number;
+        projects?: {
+          [project: string]: number;
+        };
+      };
+      files?: string[];
+    };
+  };
 }

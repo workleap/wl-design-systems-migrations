@@ -22,7 +22,7 @@ The codemod handles various migration scenarios including:
     - [Target a Specific Path](#target-a-specific-path)
     - [Additional Options](#additional-options)
   - [Migration Notes](#migration-notes)
-  - [Analyzing Component Usage](#analyzing-component-usage)
+  - [Analyzing Component and Function Usage](#analyzing-component-and-function-usage)
     - [Project-Specific Analysis](#project-specific-analysis)
     - [Deep Analysis](#deep-analysis)
     - [Specifying Mapping Table](#specifying-mapping-table)
@@ -105,9 +105,9 @@ For more configuration options, refer to the [Codemod CLI options documentation]
 
 The codemod automatically generates migration notes to help track important changes that require manual review. These notes are collected during the transformation process and aggregated into a `migration-notes.md` file.
 
-### Analyzing Component Usage
+### Analyzing Component and Function Usage
 
-To generate a report of Orbiter component usage patterns, use the following command:
+To generate a comprehensive report of Orbiter component and function usage patterns, use the following command:
 
 ```bash
 pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage.json -n 1
@@ -180,14 +180,15 @@ This can be combined with other filters for comprehensive analysis:
 pnpx codemod workleap/orbiter-to-hopper -a orbiter-usage-all-unmapped.json --filter-unmapped props --include-ignoreList -n 1
 ```
 
-This command generates a JSON file (`orbiter-usage.json`) containing usage statistics ordered by frequency. The output format prioritizes frequently used components and their properties:
+This command generates a JSON file (`orbiter-usage.json`) containing usage statistics for both components and functions, ordered by frequency. The output format prioritizes frequently used components and functions with their properties:
 
 ```json
 {
   "overall": {
     "usage": {
       "components": 20,
-      "props": 80
+      "props": 80,
+      "functions": 5
     }
   },
   "components": {
@@ -238,6 +239,32 @@ This command generates a JSON file (`orbiter-usage.json`) containing usage stati
         }
       },
       ...
+    }
+  },
+  "functions": {
+    "useResponsive": {
+      "usage": {
+        "total": 12,
+        "projects": {
+          "frontend-team": 8,
+          "mobile-app": 4
+        }
+      },
+      "values": {
+        "useResponsive()": {
+          "usage": {
+            "total": 12,
+            "projects": {
+              "frontend-team": 8,
+              "mobile-app": 4
+            }
+          },
+          "files": [
+            "https://github.com/myorg/myrepo/blob/main/src/hooks/responsive.tsx#L10",
+            "/src/components/Layout.tsx"
+          ]
+        }
+      }
     }
   }
 }
