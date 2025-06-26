@@ -38,9 +38,10 @@ export function addAttribute(
   ) {
     value = createAttributeValue(newAttrValue);
   } else {
-    value = newAttrValue ;
+    value = newAttrValue;
   }
 
+ 
   const newAttributeNode = j.jsxAttribute(j.jsxIdentifier(newAttrName), value);
 
   attributes.push(newAttributeNode);

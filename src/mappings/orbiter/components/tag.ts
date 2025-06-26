@@ -55,7 +55,7 @@ export const tagMapping = {
             };
           } else {
             return {             
-              todoComments: "The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+              todoComments: "`validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Tag#migration-notes"
             };
           }
         },

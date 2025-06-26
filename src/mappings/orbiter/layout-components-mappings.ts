@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../utils/types.ts";
+import { cardMapping } from "./components/card.ts";
 import { flexMapping } from "./components/flex.ts";
 import { gridMappings } from "./components/grid.ts";
 import { headingMappings } from "./components/heading.ts";
@@ -30,6 +31,25 @@ export const layoutComponentsMappings = {
   FooterProps: "FooterProps",
   Header: "Header",
   HeaderProps: "HeaderProps",
+
+  //containers
+  ...cardMapping,
+  Box: {
+    skipImport: true,
+    todoComments: "`Box` component is not supported in Hopper. Use `Div` if you have set `as=\"div\"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration.",
+    migrationNotes: "`Box` component is not supported in Hopper. Use `Div` if you have set `as=\"div\"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration."
+  },
+  BoxProps: {
+    skipImport: true
+  },
+  Group: {
+    skipImport: true,
+    todoComments: "`Group` component is not supported in Hopper. Use `AvatarGroup` if it is used to group Avatars. You can reach out to #wl-hopper-migration-devs team if you need help with this migration.",
+    migrationNotes: "`Group` component is not supported in Hopper. Use `AvatarGroup` if it is used to group Avatars. You can reach out to #wl-hopper-migration-devs team if you need help with this migration."
+  },
+  GroupProps: {
+    skipImport: true
+  },
 
   //html elements
   HtmlButton: "HtmlButton",

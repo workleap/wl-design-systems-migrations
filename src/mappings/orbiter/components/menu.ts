@@ -7,7 +7,7 @@ export const menuMapping = {
     props: {
       mappings: {
         autoFocusTarget: () => ({
-          todoComments: "The `autoFocusTarget` is removed. More details: https://hopper.workleap.design/components/Menu#migration-notes"
+          todoComments: "`autoFocusTarget` is removed. More details: https://hopper.workleap.design/components/Menu#migration-notes"
         }),
         nodes: () => ({
           todoComments: "`nodes` is removed. Use dynamic items instead. An example: https://hopper.workleap.design/components/Menu#usage-dynamic-items"
@@ -33,12 +33,13 @@ export const menuTriggerMapping = {
     props: {
       mappings: {
         open: "isOpen",
-        "allowPreventOverflow":() => ({ todoComments: "The `allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes" }),
-        "closeOnSelect":() => ({ todoComments: "The `closeOnSelect` is not supported in Hopper so we removed it. We have to wait for this issue to be fixed before adding it: https://github.com/adobe/react-spectrum/issues/8208" }), 
-        "zIndex": () => ({ todoComments: "The `zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead." }),
         direction: "direction",
-        "allowFlip": "allowFlip",
-        "onOpenChange": "onOpenChange"
+        allowFlip: "allowFlip",
+        onOpenChange: "onOpenChange",
+        allowPreventOverflow:() => ({ todoComments: "`allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes" }),
+        closeOnSelect: "shouldCloseOnSelect",
+        zIndex: () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead." })
+
       }
     }
   },

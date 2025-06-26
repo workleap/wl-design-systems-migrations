@@ -3,6 +3,8 @@ import {
   A,
   Accordion,
   Address,
+  Alert,
+  AlertTrigger,
   AnonymousAvatar,
   Article,
   Aside,
@@ -10,6 +12,7 @@ import {
   AvatarGroup,
   Button,
   ButtonGroup,
+  Card,
   CloseButton,
   Content,
   type ContentProps,
@@ -96,7 +99,16 @@ import {
   VisuallyHidden,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import { Alert, Counter, Dot, Overlay, TileLink, useAccordionContext } from "@workleap/orbiter-ui";
+import {
+  Box,
+  Counter,
+  Dot,
+  Group,
+  Overlay,
+  TileLink,
+  Transition,
+  useAccordionContext,
+} from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -447,6 +459,17 @@ export function App() {
       <Header padding="core_400" slot="sample">
         text
       </Header>
+      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/OrbiterCard.tsx */
+      <Card
+        fluid/* Migration TODO: `fluid` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#fluid */
+        orientation="horizontal"/* Migration TODO: `orientation` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#orientation */
+        size="md"/* Migration TODO: `size` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#size */
+        variant="main">
+        text
+      </Card>
+      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/OrbiterCard.tsx */
+      <Card
+        variant="second-level"/* Migration TODO: You shouldn't use a second-level variant without a parent main variant. More details: https://hopper.workleap.design/components/Card#migration-notes */>test</Card>
       <A padding="core_400">text</A>
       <Address padding="core_400">text</Address>
       <Article padding="core_400">text</Article>
@@ -677,8 +700,8 @@ export function App() {
       <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onPress={() => {}}/>
       <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onPress={() => {}}/>
       <Spinner size="sm" />
-      <Spinner size="md" color="core_toad-500"/* Migration TODO: The `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
-      <Spinner size="lg" color="decorative-option2"/* Migration TODO: The `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
+      <Spinner size="md" color="core_toad-500"/* Migration TODO: `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
+      <Spinner size="lg" color="decorative-option2"/* Migration TODO: `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
       <Text
         size="md"
         display="inline-flex"
@@ -787,17 +810,17 @@ export function App() {
         <SparklesIcon />
       </Link>
       <Modal 
-        isDismissible 
+        isDismissable 
         overlayProps={{ className: "test" }} 
         REVIEWME_onOpenChange={(e) => {}}/* Migration TODO: `onClose` is not supported anymore. Use `onOpenChange` instead. */
       >
         test
       </Modal>
-      <ModalTrigger isOpen onOpenChange={()=>{}} dismissable/* Migration TODO: `dismissable` is not supported anymore. Use `isDismissible` prop at related `Modal` component instead. */>test</ModalTrigger>
+      <ModalTrigger isOpen onOpenChange={()=>{}} dismissable/* Migration TODO: `dismissable` is not supported anymore. Use `isDismissable` prop at related `Modal` component instead. */>test</ModalTrigger>
       <Popover dismissable/* Migration TODO: `dismissable` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */ focus/* Migration TODO: `focus` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */>test</Popover>
       <PopoverTrigger 
         isOpen 
-        position="left-start"/* Migration TODO: The `position` property has been moved to the `Popover` component and renamed to `placement`. More details: https://hopper.workleap.design/components/Popover#migration-notes  */ 
+        position="left-start"/* Migration TODO: `position` property has been moved to the `Popover` component and renamed to `placement`. More details: https://hopper.workleap.design/components/Popover#migration-notes  */ 
         zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Popover` component instead. */
       >
         test
@@ -822,9 +845,53 @@ export function App() {
       /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
       <Overlay show>text</Overlay>
       {/* Alert */}
-      <Alert variant="confirmation" primaryButtonLabel="Confirm">
-        This is an important alert message.
+      <Alert 
+        isDismissable
+        overlayProps={{ className: "test" }}
+        onClose={() => {}}/* Migration TODO: `onClose` is removed. Use the `onOpenChange` callback on `AlertTrigger` instead. */
+        variant="confirmation" 
+        primaryButtonLabel="Confirm"
+        onPrimaryButtonClick={() => {}}
+        cancelButtonLabel="Cancel"
+        onCancelButtonClick={() => {}}
+      >
+        Alert
       </Alert>
+      <AlertTrigger 
+        isOpen
+        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Alert` component instead. */
+      >
+        <Button>Show Alert</Button>
+      </AlertTrigger>
+      {/* Underlay */}
+      <Div
+        aria-hidden="true"
+        position="fixed"
+        top={0}
+        left={0}
+        width="100%"
+        height="100%"
+        UNSAFE_backgroundColor="rgba(60, 60, 60, 0.6)"
+        overflow="hidden"
+        style={{
+          isolation: "isolate"
+        }}>text</Div>
+      <Div
+        UNSAFE_width="20px;"
+        UNSAFE_height="20px;"
+        UNSAFE_backgroundColor="red"
+        aria-hidden="true"
+        position="fixed"
+        top={0}
+        left={0}
+        overflow="hidden"
+        style={{
+          isolation: "isolate"
+        }}>text</Div>
+      /* Migration TODO: `Box` component is not supported in Hopper. Use `Div` if you have set `as="div"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
+      <Box>text</Box>
+      /* Migration TODO: `Group` component is not supported in Hopper. Use `AvatarGroup` if it is used to group Avatars. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
+      <Group as="div">text</Group>
       {/* Listbox */}
       <ListBox
         isInvalid
@@ -838,7 +905,7 @@ export function App() {
         text
       </ListBox>
       <ListBox isInvalid={false}>text</ListBox>
-      <ListBox validationState={variable as any}/* Migration TODO: The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes */>text</ListBox>
+      <ListBox validationState={variable as any}/* Migration TODO: `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes */>text</ListBox>
       <ListBox>
         <ListBoxSection>
           <Header>Section 1</Header>
@@ -862,9 +929,9 @@ export function App() {
       {/* Menu */}
       <MenuTrigger
         isOpen={true}
-        allowPreventOverflow/* Migration TODO: The `allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes */
-        closeOnSelect/* Migration TODO: The `closeOnSelect` is not supported in Hopper so we removed it. We have to wait for this issue to be fixed before adding it: https://github.com/adobe/react-spectrum/issues/8208 */
-        zIndex={1000}/* Migration TODO: The `zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead. */
+        allowPreventOverflow/* Migration TODO: `allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes */
+        shouldCloseOnSelect
+        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead. */
         direction="top"
         allowFlip
         onOpenChange={() => {}}
@@ -879,7 +946,7 @@ export function App() {
         nodes={[]}/* Migration TODO: `nodes` is removed. Use dynamic items instead. An example: https://hopper.workleap.design/components/Menu#usage-dynamic-items */
         disabled/* Migration TODO: `disabled` has been removed, set the disabled items as disabledKeys instead. More details: https://hopper.workleap.design/components/Menu#migration-notes */
         fluid/* Migration TODO: `fluid` has been removed. More details: https://hopper.workleap.design/components/Menu#migration-notes */
-        autoFocusTarget="target"/* Migration TODO: The `autoFocusTarget` is removed. More details: https://hopper.workleap.design/components/Menu#migration-notes */
+        autoFocusTarget="target"/* Migration TODO: `autoFocusTarget` is removed. More details: https://hopper.workleap.design/components/Menu#migration-notes */
         validationState="invalid"/* Migration TODO: `validationState` has been removed. `isInvalid` should be used instead on the MenuItem. More details: https://hopper.workleap.design/components/Menu#migration-notes */
         zIndex={1000}
       >
@@ -929,7 +996,7 @@ export function App() {
         variant="subdued">text</Tag>
       <Tag isInvalid={false} variant="subdued">text</Tag>
       <Tag
-        validationState={variable ? "invalid": "valid"}/* Migration TODO: The `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+        validationState={variable ? "invalid": "valid"}/* Migration TODO: `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
         variant="subdued">
         text
       </Tag>
@@ -956,6 +1023,9 @@ export function App() {
       <Tag size="sm">text</Tag>
       {/* VisuallyHidden */}
       <VisuallyHidden />
+      {/* Transition */}
+      /* Migration TODO: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/Transition.tsx */
+      <Transition show>test</Transition>
       {/* Disclosure */}
       /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
       <Disclosure defaultExpanded isExpanded onExpandedChange={() => {}}>

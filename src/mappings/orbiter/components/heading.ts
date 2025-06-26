@@ -11,7 +11,7 @@ const additions = {
         "UNSAFE_margin"
       ])
     ) {
-      return null;
+      return;
     }
 
     const size = hasAttribute(tag.node, "size")
@@ -32,8 +32,6 @@ const additions = {
         return "calc(1rem * .5)";
       case "3xl":
         return "calc(1rem * .5)";
-      default:
-        return null;
     }
   }
 } satisfies PropsMapMetaData["additions"];

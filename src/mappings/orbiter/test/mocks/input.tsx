@@ -7,15 +7,18 @@ import {
   Accordion,
   Address,
   Alert,
+  AlertTrigger,
   AnonymousAvatar,
   Article,
   Aside,
   Avatar,
   AvatarGroup,
   AvatarText,
+  Box,
   Button,
   ButtonAsLink,
   ButtonGroup,
+  Card,
   Content,
   Counter,
   CrossButton,
@@ -28,6 +31,7 @@ import {
   Flex,
   Footer,
   Grid,
+  Group,
   H1,
   H2,
   H3,
@@ -100,7 +104,9 @@ import {
   Tooltip,
   TooltipTrigger,
   TR,
+  Transition,
   UL,
+  Underlay,
   useAccordionContext,
   VisuallyHidden,
   type ContentProps,
@@ -437,6 +443,15 @@ export function App() {
       <Header padding={400} slot="sample">
         text
       </Header>
+      <Card
+        fluid
+        orientation="horizontal"
+        size="md"
+        variant="outline"
+      >
+        text
+      </Card>
+      <Card variant="elevated">test</Card>
       <A padding={400}>text</A>
       <Address padding={400}>text</Address>
       <Article padding={400}>text</Article>
@@ -808,9 +823,31 @@ export function App() {
       <Overlay show>text</Overlay>
       
       {/* Alert */}
-      <Alert variant="confirmation" primaryButtonLabel="Confirm">
-        This is an important alert message.
+      <Alert 
+        dismissable
+        wrapperProps={{ className: "test" }}
+        onClose={() => {}}
+        variant="confirmation" 
+        primaryButtonLabel="Confirm"
+        onPrimaryButtonClick={() => {}}
+        cancelButtonLabel="Cancel"
+        onCancelButtonClick={() => {}}
+      >
+        Alert
       </Alert>
+      <AlertTrigger 
+        open
+        zIndex={1000}
+      >
+        <Button>Show Alert</Button>
+      </AlertTrigger>
+
+      {/* Underlay */}
+      <Underlay>text</Underlay>
+      <Underlay width="20px;" height="20px;" backgroundColor="red">text</Underlay>
+
+      <Box>text</Box>
+      <Group as="div">text</Group>
 
       {/* Listbox */}
       <Listbox
@@ -946,6 +983,9 @@ export function App() {
 
       {/* VisuallyHidden */}
       <VisuallyHidden />
+
+      {/* Transition */}
+      <Transition show>test</Transition>
 
       {/* Disclosure */}
       <Disclosure
