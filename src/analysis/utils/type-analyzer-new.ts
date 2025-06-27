@@ -102,7 +102,10 @@ export function performTypeAnalysis(
       if (typeAnnotation.type === "TSTypeAnnotation") {
         const originalTypeName = isTargetType(typeAnnotation.typeAnnotation);
         if (originalTypeName) {
-          trackTypeUsage(typeAnnotation.typeAnnotation.typeName.name, originalTypeName, path.value);
+          const typeName = (typeAnnotation.typeAnnotation as any).typeName?.name;
+          if (typeName) {
+            trackTypeUsage(typeName, originalTypeName, path.value);
+          }
         }
       }
     }
@@ -114,7 +117,10 @@ export function performTypeAnalysis(
       if (param.type === "Identifier" && param.typeAnnotation && param.typeAnnotation.type === "TSTypeAnnotation") {
         const originalTypeName = isTargetType(param.typeAnnotation.typeAnnotation);
         if (originalTypeName) {
-          trackTypeUsage(param.typeAnnotation.typeAnnotation.typeName.name, originalTypeName, param);
+          const typeName = (param.typeAnnotation.typeAnnotation as any).typeName?.name;
+          if (typeName) {
+            trackTypeUsage(typeName, originalTypeName, param);
+          }
         }
       }
     });
@@ -126,7 +132,10 @@ export function performTypeAnalysis(
       if (param.type === "Identifier" && param.typeAnnotation && param.typeAnnotation.type === "TSTypeAnnotation") {
         const originalTypeName = isTargetType(param.typeAnnotation.typeAnnotation);
         if (originalTypeName) {
-          trackTypeUsage(param.typeAnnotation.typeAnnotation.typeName.name, originalTypeName, param);
+          const typeName = (param.typeAnnotation.typeAnnotation as any).typeName?.name;
+          if (typeName) {
+            trackTypeUsage(typeName, originalTypeName, param);
+          }
         }
       }
     });
@@ -136,7 +145,10 @@ export function performTypeAnalysis(
   root.find(j.TSAsExpression).forEach(path => {
     const originalTypeName = isTargetType(path.value.typeAnnotation);
     if (originalTypeName) {
-      trackTypeUsage(path.value.typeAnnotation.typeName.name, originalTypeName, path.value);
+      const typeName = (path.value.typeAnnotation as any).typeName?.name;
+      if (typeName) {
+        trackTypeUsage(typeName, originalTypeName, path.value);
+      }
     }
   });
 
@@ -144,7 +156,10 @@ export function performTypeAnalysis(
   root.find(j.TSTypeAssertion).forEach(path => {
     const originalTypeName = isTargetType(path.value.typeAnnotation);
     if (originalTypeName) {
-      trackTypeUsage(path.value.typeAnnotation.typeName.name, originalTypeName, path.value);
+      const typeName = (path.value.typeAnnotation as any).typeName?.name;
+      if (typeName) {
+        trackTypeUsage(typeName, originalTypeName, path.value);
+      }
     }
   });
 
@@ -153,7 +168,10 @@ export function performTypeAnalysis(
     if (funcPath.value.returnType && funcPath.value.returnType.type === "TSTypeAnnotation") {
       const originalTypeName = isTargetType(funcPath.value.returnType.typeAnnotation);
       if (originalTypeName) {
-        trackTypeUsage(funcPath.value.returnType.typeAnnotation.typeName.name, originalTypeName, funcPath.value);
+        const typeName = (funcPath.value.returnType.typeAnnotation as any).typeName?.name;
+        if (typeName) {
+          trackTypeUsage(typeName, originalTypeName, funcPath.value);
+        }
       }
     }
   });
@@ -163,7 +181,10 @@ export function performTypeAnalysis(
     if (funcPath.value.returnType && funcPath.value.returnType.type === "TSTypeAnnotation") {
       const originalTypeName = isTargetType(funcPath.value.returnType.typeAnnotation);
       if (originalTypeName) {
-        trackTypeUsage(funcPath.value.returnType.typeAnnotation.typeName.name, originalTypeName, funcPath.value);
+        const typeName = (funcPath.value.returnType.typeAnnotation as any).typeName?.name;
+        if (typeName) {
+          trackTypeUsage(typeName, originalTypeName, funcPath.value);
+        }
       }
     }
   });
@@ -201,7 +222,10 @@ export function performTypeAnalysis(
       path.value.typeParameters.params.forEach(param => {
         const originalTypeName = isTargetType(param);
         if (originalTypeName) {
-          trackTypeUsage(param.typeName.name, originalTypeName, path.value);
+          const typeName = (param as any).typeName?.name;
+          if (typeName) {
+            trackTypeUsage(typeName, originalTypeName, path.value);
+          }
         }
       });
     }

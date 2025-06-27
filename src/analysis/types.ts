@@ -142,3 +142,31 @@ export interface TypeUsageData {
   };
   files?: string[];
 }
+
+/**
+ * Internal data structure for object usage during analysis
+ */
+export interface ObjectUsageData {
+  count: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
+  props: Record<
+    string,
+    {
+      usage: number;
+      values: {
+        [value: string]: {
+          usage: {
+            total: number;
+            projects?: { [project: string]: number };
+          };
+          files?: string[];
+        };
+      };
+    }
+  >;
+  files?: string[];
+}
