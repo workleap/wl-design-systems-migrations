@@ -1,17 +1,15 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getMigrationNote, getTodoComment } from "../message-utils.ts";
 
 export const tileLinkMapping = {
   TileLink: {
     skipImport: true,
-    todoComments:  "`TileLink` is not supported anymore. Check the generated migration notes for more details.",    
-    migrationNotes:
-      "`TileLink` is not supported. You should manually implement a `Link` with a `Tile` inside. You can also follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents "
+    todoComments: getTodoComment("tilelink_not_supported"),
+    migrationNotes: getMigrationNote("tilelink_not_supported")
   },
   TileLinkProps: {
     skipImport: true,
-    todoComments:  "`TileLinkProps` is not supported anymore. Check the generated migration notes for more details.",    
-    migrationNotes:
-      // eslint-disable-next-line max-len
-      "`TileLinkProps` is not supported. You should manually implement a `Link` with a `Tile` inside. You can also follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents "
+    todoComments: getTodoComment("tilelinkprops_not_supported"),
+    migrationNotes: getMigrationNote("tilelinkprops_not_supported")
   }
 } satisfies Record<string, ComponentMapping>;

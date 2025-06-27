@@ -1,5 +1,6 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const tagMapping = {
   Tag: {
@@ -16,28 +17,28 @@ export const tagMapping = {
           }
 
           return {
-            todoComments: "`fluid` is not supported anymore. You can use width=100% instead. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+            todoComments: getTodoComment("tag_fluid_not_supported")
           };
         },
 
         onClick: () => ({
-          todoComments: "`onClick` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use `onSelectionChange` callback. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+          todoComments: getTodoComment("tag_on_click_not_supported")
         }),
 
         onRemove: () => ({
-          todoComments: "`onRemove` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use its `onRemove` callback. More details: https://hopper.workleap.design/components/TagGroup#usage-removable"
+          todoComments: getTodoComment("tag_on_remove_not_supported")
         }),
 
         title: () => ({
-          todoComments: "`title` is not supported anymore. Wrap it inside a `Tooltip` component instead. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+          todoComments: getTodoComment("tag_title_not_supported")
         }),
 
         onKeyDown: () => ({
-          todoComments: "`onKeyDown` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use `onSelectionChange` callback. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+          todoComments: getTodoComment("tag_on_key_down_not_supported")
         }),
 
         tabIndex: () => ({
-          todoComments: "`tabIndex` is not supported anymore. Check if it is relevant, but probably it is safe to remove. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+          todoComments: getTodoComment("tag_tab_index_not_supported")
         }),
 
         validationState: (originalValue, runtime) => {
@@ -55,7 +56,7 @@ export const tagMapping = {
             };
           } else {
             return {             
-              todoComments: "`validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+              todoComments: getTodoComment("tag_validation_state_not_supported")
             };
           }
         },
@@ -74,7 +75,7 @@ export const tagMapping = {
             };
           } else {
             return {
-              todoComments: "Map `solid`->`subdued` and `outline`->`neutral` manually if needed. More details: https://hopper.workleap.design/components/Tag#migration-notes"
+              todoComments: getTodoComment("tag_variant_mapping")
             };
           }
         }

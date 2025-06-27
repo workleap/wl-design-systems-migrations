@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const avatarMapping = {
   Avatar: {
@@ -7,7 +8,7 @@ export const avatarMapping = {
         onClick: "onPress",
         size: "size",
         retryCount: () => ({
-          todoComments: "`retryCount` is not supported anymore. Remove it."
+          todoComments: getTodoComment("avatar_retry_count_not_supported")
         })
       }
     }

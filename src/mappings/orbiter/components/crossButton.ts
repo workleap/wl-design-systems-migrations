@@ -1,5 +1,6 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 import { buttonMapping } from "./button.ts";
 
 export const crossButtonMapping = {
@@ -12,8 +13,7 @@ export const crossButtonMapping = {
           const value = tryGettingLiteralValue(originalValue, runtime);
           if (value === "2xs") {
             return {
-              todoComments:
-                "`2xs` is not supported anymore. `xs` is the closest one, but if you're using this icon for implementing `Callout` or `ContextualHelp`, Hopper has built-in support for these cases: https://hopper.workleap.design/components/Callout"
+              todoComments: getTodoComment("cross_button_2xs_not_supported")
             };
           }
 

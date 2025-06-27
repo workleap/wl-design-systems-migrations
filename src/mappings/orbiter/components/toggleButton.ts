@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 import { buttonMapping } from "./button.ts";
 
 export const toggleButtonMapping = {
@@ -10,7 +11,7 @@ export const toggleButtonMapping = {
         checked: "isSelected",
         defaultChecked: "defaultSelected",
         onChange: () => ({
-          todoComments: "`onChange` is not supported anymore. Remove it. More details: https://hopper.workleap.design/components/ToggleButton#migration-notes"
+          todoComments: getTodoComment("toggle_button_on_change_not_supported")
         })
       }
     }

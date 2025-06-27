@@ -2,15 +2,16 @@ import { addImportCase } from "../../../migrations/migrateImport.ts";
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import { createFinalChildrenArray, createIndentedElementList, extractBaseIndentation } from "../../../utils/migration.ts";
 import type { ComponentMapping, Runtime } from "../../../utils/types.ts";
+import { getMigrationNote, getTodoComment } from "../message-utils.ts";
 
 const basicMappings: ComponentMapping = {
   props: {
     mappings: {    
       orientation: () => ({
-        todoComments: "`orientation` is not supported anymore. More details: https://hopper.workleap.design/components/Tabs#migration-notes"      
+        todoComments: getTodoComment("tabs_orientation_not_supported")
       }),
       manual: () => ({
-        todoComments: "`manual` is not supported anymore. Refer to this sample(https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes"      
+        todoComments: getTodoComment("tabs_manual_not_supported")
       }),
       collapsible: (originalValue, innerRuntime) => {
         const value = tryGettingLiteralValue(originalValue, innerRuntime);
@@ -21,7 +22,7 @@ const basicMappings: ComponentMapping = {
         }
 
         return {          
-          migrationNotes: "Tabs are NOT collapsible by default. It means if you have multiple tabs you may get different view if they are not all visible at once. Please manually validate it"
+          migrationNotes: getMigrationNote("tabs_not_collapsible")
         };
       }      
     }
@@ -34,8 +35,8 @@ export const tabMapping = {
     
     // Get the JSX element (parent of the opening tag)
     const jsxElement = tag.parent.value;
-    let tagComment = "Please review the Tabs migration changes, especially the TabList and TabPanel structure.";
-    const notDoneComment = "It cannot be migrated automatically. Please do it manually by restructuring Items with Header/Content to TabList/Tab and TabPanel components. More details: https://hopper.workleap.design/components/Tabs#usage";
+    let tagComment = getTodoComment("tabs_review_changes");
+    const notDoneComment = getTodoComment("tabs_manual_restructure");
 
     if (jsxElement.children && jsxElement.children.length > 0) {
       const itemChildren = jsxElement.children.filter((child: any) =>

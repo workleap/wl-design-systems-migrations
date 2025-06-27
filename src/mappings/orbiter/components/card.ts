@@ -1,35 +1,35 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const cardMapping = {
   Card: {
     props: {
-      mappings: {
-        fluid: () => ({ 
-          todoComments: "`fluid` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#fluid" 
-        }),
-        orientation: () => ({ 
-          todoComments: "`orientation` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#orientation" 
-        }),
-        size: () => ({ 
-          todoComments: "`size` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#size" 
-        }),
-        variant: (originalValue, runtime) => {
-          const value = tryGettingLiteralValue(originalValue, runtime);
-          const map: Record<string, string> = {
-            outline: "main",
-            elevated: "second-level"
-          };
-          const newValue = typeof value === "string" && value in map ? map[value] : undefined;
+      mappings: { fluid: () => ({
+        todoComments: getTodoComment("card_fluid_removed")
+      }),
+      orientation: () => ({
+        todoComments: getTodoComment("card_orientation_removed")
+      }),
+      size: () => ({
+        todoComments: getTodoComment("card_size_removed")
+      }),
+      variant: (originalValue, runtime) => {
+        const value = tryGettingLiteralValue(originalValue, runtime);
+        const map: Record<string, string> = {
+          outline: "main",
+          elevated: "second-level"
+        };
+        const newValue = typeof value === "string" && value in map ? map[value] : undefined;
 
-          return {
-            value: newValue ? runtime.j.stringLiteral(newValue) : undefined,
-            todoComments: newValue === map["elevated"] ? "You shouldn't use a second-level variant without a parent main variant. More details: https://hopper.workleap.design/components/Card#migration-notes" : undefined
-          };
-        }
+        return {
+          value: newValue ? runtime.j.stringLiteral(newValue) : undefined,
+          todoComments: newValue === map["elevated"] ? getTodoComment("card_variant_second_level") : undefined
+        };
+      }
       }
     },
-    todoComments: "The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/OrbiterCard.tsx"
+    todoComments: getTodoComment("card_significant_changes")
   },
   CardProps: "CardProps"
 } satisfies Record<string, ComponentMapping>;

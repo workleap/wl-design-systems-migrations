@@ -1,5 +1,6 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const tileGroupMapping = {
   TileGroup: {
@@ -20,32 +21,25 @@ export const tileGroupMapping = {
           return null;
         },
         autoFocus: () => ({
-          todoComments:
-            "Remove the `autoFocus` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+          todoComments: getTodoComment("tile_group_auto_focus_remove")
         }),
         inline: () => ({
-          todoComments:
-            "Remove the `inline` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+          todoComments: getTodoComment("tile_group_inline_remove")
         }),
         reverse: () => ({
-          todoComments:
-            "Remove the `reverse` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+          todoComments: getTodoComment("tile_group_reverse_remove")
         }),
         value: () => ({
-          todoComments:
-            "Remove the `value` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+          todoComments: getTodoComment("tile_group_value_remove")
         }),
         defaultValue: () => ({
-          todoComments:
-            "Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+          todoComments: getTodoComment("tile_group_default_value_remove")
         }),
         defaultChecked: () => ({
-          todoComments:
-            "Remove the `defaultChecked` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+          todoComments: getTodoComment("tile_group_default_checked_remove")
         }),
         rowSize: () => ({
-          todoComments:
-            "Remove the `rowSize` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes"
+          todoComments: getTodoComment("tile_group_row_size_remove")
         })
       }
     }

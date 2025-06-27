@@ -1,5 +1,6 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getMigrationNote, getTodoComment } from "../message-utils.ts";
 
 export const lozengeMapping = {
   Lozenge: {
@@ -17,7 +18,7 @@ export const lozengeMapping = {
           }
 
           return {
-            todoComments: "`highlight` is not supported anymore. Use textTransform=uppercase instead. More details: https://hopper.workleap.design/components/Tag"
+            todoComments: getTodoComment("lozenge_highlight_not_supported")
           };
         },
        
@@ -36,13 +37,13 @@ export const lozengeMapping = {
             };
           } else {
             return {
-              todoComments: "Map `negative`->`Negative`, `warning`->`Caution`, `informative`->`Progress`, and `positive`->`Positive` manually if needed. More details: https://workleap.atlassian.net/wiki/spaces/TL/pages/5529272372/Orbiter+to+Hopper+Migration"
+              todoComments: getTodoComment("lozenge_variant_manual_map")
             };
           }
         },
         
         size: () => ({
-          migrationNotes: "The alternative `Tag` might be a bit taller(4px) than the old `Lozenge` even with the same size. Make sure you validate the design after the migration."
+          migrationNotes: getMigrationNote("lozenge_tag_height_difference")
         })
 
       }

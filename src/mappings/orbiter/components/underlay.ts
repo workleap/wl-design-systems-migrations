@@ -1,5 +1,6 @@
 import { hasAttribute } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getMigrationNote } from "../message-utils.ts";
 
 export const underlayMapping = {
   Underlay: {
@@ -29,7 +30,7 @@ export const underlayMapping = {
         style: { isolation: "isolate" }
       }
     },
-    migrationNotes: "`Underlay` is mapped to `Div`. Please review it to ensure it meets your requirements. More details: https://workleap.atlassian.net/browse/SSD-2565?focusedCommentId=198239"
+    migrationNotes: getMigrationNote("underlay_mapped_to_div_review")
   },
   UnderlayProps: {
     skipImport: true 

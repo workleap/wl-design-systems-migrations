@@ -1,5 +1,6 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 import { buttonMapping } from "./button.ts";
 
 export const iconButtonMapping = {
@@ -12,8 +13,7 @@ export const iconButtonMapping = {
           const value = tryGettingLiteralValue(originalValue, runtime);
           if (value === "2xs") {
             return {
-              todoComments:
-                "`2xs` is not supported anymore. `xs` is the closest one."
+              todoComments: getTodoComment("icon_button_2xs_not_supported")
             };
           }
 

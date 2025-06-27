@@ -1,5 +1,6 @@
 import { addChildrenTo, getAttributeValue, isWithinComponent, tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const listboxMapping = {
   Listbox: {
@@ -10,7 +11,7 @@ export const listboxMapping = {
         zIndex: "zIndex",
         fluid: "isFluid",
         nodes: () => ({
-          todoComments: "`nodes` is removed. Use dynamic list instead. An example: https://hopper.workleap.design/components/Listbox#usage-dynamic-lists" 
+          todoComments: getTodoComment("listbox_nodes_removed")
         }),
 
         validationState: (originalValue, runtime) => {
@@ -28,7 +29,7 @@ export const listboxMapping = {
             };
           } else {
             return {             
-              todoComments: "`validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes"
+              todoComments: getTodoComment("listbox_validation_state_not_supported")
             };
           }
         }
@@ -51,7 +52,7 @@ export const listBoxItemMappings = {
           }
         },
         todoComments: isWrappedInTooltip
-          ? "ListBox Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration."
+          ? getTodoComment("listbox_item_tooltip_not_supported")
           : undefined
       };
     }

@@ -1,4 +1,5 @@
 import type { PropsMapping } from "../../utils/types.ts";
+import { getTodoComment } from "./message-utils.ts";
 import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
 
 export const defaultPropsMappings = {
@@ -8,15 +9,15 @@ export const defaultPropsMappings = {
   "min-width": originalValue => ({
     to: "min-width",
     value: originalValue,
-    todoComments: "It seems it is an invalid property. Remove it if it is not needed"
+    todoComments: getTodoComment("all_components_min_width_invalid")
   }),
   active: () => ({
-    todoComments: "`active` is not supported anymore. Find an alternative solution. If the use case is to implement the toggle status, you can use the ToggleButton. More details: https://hopper.workleap.design/components/ToggleButton"
+    todoComments: getTodoComment("all_components_active_not_supported")
   }),
   focus: () => ({
-    todoComments: "`focus` is not supported anymore. Find an alternative solution"
+    todoComments: getTodoComment("all_components_focus_not_supported")
   }),
   hover: () => ({
-    todoComments: "`hover` is not supported anymore. Find an alternative solution"
+    todoComments: getTodoComment("all_components_hover_not_supported")
   })
 } satisfies PropsMapping;

@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const alertMapping = {
   Alert: {
@@ -7,7 +8,7 @@ export const alertMapping = {
         dismissable: "isDismissable",
         wrapperProps: "overlayProps",
         onClose: () => ({ 
-          todoComments: "`onClose` is removed. Use the `onOpenChange` callback on `AlertTrigger` instead." 
+          todoComments: getTodoComment("alert_on_close_removed")
         })
       }
     }
@@ -20,7 +21,7 @@ export const alertTriggerMapping = {
     props: {
       mappings: {
         open: "isOpen",
-        zIndex: () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Alert` component instead." })
+        zIndex: () => ({ todoComments: getTodoComment("alert_trigger_z_index_not_supported") })
       }
     }
   },

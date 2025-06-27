@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const linkMapping = {
   Link: {
@@ -9,10 +10,10 @@ export const linkMapping = {
         onMouseEnter: "onHoverStart",
         onMouseLeave: "onHoverEnd",
         onAuxClick: () => ({
-          todoComments: "`onAuxClick` is not supported anymore. Probably `onPress` could be used instead. https://hopper.workleap.design/components/Link#migration-notes"
+          todoComments: getTodoComment("link_on_aux_click_not_supported")
         }),
-        shape: () => ({ 
-          todoComments: "`shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes"            
+        shape: () => ({
+          todoComments: getTodoComment("link_shape_not_supported")
         })
 
       }
