@@ -17,6 +17,8 @@
           "enforceForNewInMemberExpressions": false,
           "enforceForFunctionPrototypeMethods": false,
           "allowParensAfterCommentPattern": "any-string-pattern"
-        }]
+        }
+      ],
+      "quote-props": ["error", "as-needed"]
     }
 }

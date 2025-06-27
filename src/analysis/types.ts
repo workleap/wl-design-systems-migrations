@@ -50,18 +50,34 @@ export interface FunctionAnalysisData {
 }
 
 /**
+ * Analysis results for a single type
+ * Types are sorted by usage count (most used first)
+ */
+export interface TypeAnalysisData {
+  usage: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
+  files?: string[];
+}
+
+/**
  * Complete analysis results containing all components and their usage data
  */
 export interface AnalysisResults {
   overall: {
     usage: {
       components: number;
-      props: number;
+      componentProps: number;
       functions: number;
+      types: number;
     };
   };
   components: Record<string, ComponentAnalysisData>;
   functions: Record<string, FunctionAnalysisData>;
+  types: Record<string, TypeAnalysisData>;
 }
 
 /**
@@ -112,4 +128,45 @@ export interface FunctionUsageData {
       files?: string[];
     };
   };
+}
+
+/**
+ * Internal data structure for type usage during analysis
+ */
+export interface TypeUsageData {
+  count: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
+  files?: string[];
+}
+
+/**
+ * Internal data structure for object usage during analysis
+ */
+export interface ObjectUsageData {
+  count: {
+    total: number;
+    projects?: {
+      [project: string]: number;
+    };
+  };
+  props: Record<
+    string,
+    {
+      usage: number;
+      values: {
+        [value: string]: {
+          usage: {
+            total: number;
+            projects?: { [project: string]: number };
+          };
+          files?: string[];
+        };
+      };
+    }
+  >;
+  files?: string[];
 }

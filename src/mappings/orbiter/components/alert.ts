@@ -4,9 +4,9 @@ export const alertMapping = {
   Alert: {
     props: {
       mappings: {
-        "dismissable": "isDismissable",
-        "wrapperProps": "overlayProps",
-        "onClose": () => ({ 
+        dismissable: "isDismissable",
+        wrapperProps: "overlayProps",
+        onClose: () => ({ 
           todoComments: "`onClose` is removed. Use the `onOpenChange` callback on `AlertTrigger` instead." 
         })
       }
@@ -19,8 +19,8 @@ export const alertTriggerMapping = {
   AlertTrigger: {
     props: {
       mappings: {
-        "open": "isOpen",
-        "zIndex": () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Alert` component instead." })
+        open: "isOpen",
+        zIndex: () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Alert` component instead." })
       }
     }
   },

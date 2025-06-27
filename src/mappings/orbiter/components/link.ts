@@ -5,13 +5,13 @@ export const linkMapping = {
     props: {
       mappings: {
         external: "isExternal",
-        "onClick": "onPress",
-        "onMouseEnter": "onHoverStart",
-        "onMouseLeave": "onHoverEnd",
-        "onAuxClick": () => ({
+        onClick: "onPress",
+        onMouseEnter: "onHoverStart",
+        onMouseLeave: "onHoverEnd",
+        onAuxClick: () => ({
           todoComments: "`onAuxClick` is not supported anymore. Probably `onPress` could be used instead. https://hopper.workleap.design/components/Link#migration-notes"
         }),
-        "shape": () => ({ 
+        shape: () => ({ 
           todoComments: "`shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes"            
         })
 

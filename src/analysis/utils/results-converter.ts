@@ -1,5 +1,5 @@
 import type { Runtime } from "../../utils/types.js";
-import type { AnalysisResults, ComponentAnalysisData, ComponentUsageData, FunctionAnalysisData, FunctionUsageData, PropertyUsage } from "../types.js";
+import type { AnalysisResults, ComponentAnalysisData, ComponentUsageData, FunctionAnalysisData, FunctionUsageData, TypeAnalysisData, TypeUsageData, PropertyUsage } from "../types.js";
 import { isComponentMapped, isPropertyMapped } from "./mapping-utils.js";
 
 /**
@@ -8,6 +8,7 @@ import { isComponentMapped, isPropertyMapped } from "./mapping-utils.js";
 export function convertToAnalysisResults(
   componentUsageData: Record<string, ComponentUsageData>,
   functionUsageData: Record<string, FunctionUsageData>,
+  typeUsageData: Record<string, TypeUsageData>,
   mappings: Runtime["mappings"],
   filterUnmapped?: "components" | "props"
 ): AnalysisResults {
@@ -125,15 +126,43 @@ export function convertToAnalysisResults(
     0
   );
 
+  // Process types
+  const types: Record<string, TypeAnalysisData> = {};
+
+  Object.entries(typeUsageData).forEach(([typeName, data]) => {
+    types[typeName] = {
+      usage: data.count,
+      files: data.files
+    };
+  });
+
+  // Sort types by usage count (descending)
+  const sortedTypes = Object.entries(types).sort(
+    ([, a], [, b]) => b.usage.total - a.usage.total
+  );
+
+  const sortedTypesObj: Record<string, TypeAnalysisData> = {};
+  sortedTypes.forEach(([name, data]) => {
+    sortedTypesObj[name] = data;
+  });
+
+  // Calculate type totals
+  const totalTypeUsage = Object.values(types).reduce(
+    (sum, type) => sum + type.usage.total,
+    0
+  );
+
   return {
     overall: {
       usage: {
         components: totalComponentUsage,
-        props: totalPropUsage,
-        functions: totalFunctionUsage
+        componentProps: totalPropUsage,
+        functions: totalFunctionUsage,
+        types: totalTypeUsage
       }
     },
     components: sortedComponentsObj,
-    functions: sortedFunctionsObj
+    functions: sortedFunctionsObj,
+    types: sortedTypesObj
   };
 }

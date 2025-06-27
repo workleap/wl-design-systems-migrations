@@ -24,10 +24,10 @@ export const lozengeMapping = {
         variant: (originalValue, runtime) => {
           const value = tryGettingLiteralValue(originalValue, runtime);
           const map: Record<string, string> = {
-            "negative": "negative",
-            "positive": "positive",
-            "warning": "caution",
-            "informative": "progress"
+            negative: "negative",
+            positive: "positive",
+            warning: "caution",
+            informative: "progress"
           } ;
 
           if (typeof value === "string" && map[value]) {

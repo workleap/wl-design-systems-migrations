@@ -1,4 +1,4 @@
-import type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage } from "../types.js";
+import type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage, TypeAnalysisData } from "../types.js";
 
 /**
  * Helper function to deep clone property values (just the count objects)
@@ -128,6 +128,23 @@ function sortAnalysisResults(combinedData: Record<string, ComponentAnalysisData>
 }
 
 /**
+ * Applies sorting to type analysis results based on usage counts
+ */
+function sortTypeResults(combinedTypes: Record<string, TypeAnalysisData>): Record<string, TypeAnalysisData> {
+  const sortedCombinedTypes: Record<string, TypeAnalysisData> = {};
+
+  // Sort types by usage count (descending)
+  const sortedTypes = Object.entries(combinedTypes).sort(
+    ([, a], [, b]) => b.usage.total - a.usage.total
+  );
+
+  sortedTypes.forEach(([typeName, typeData]) => {
+    sortedCombinedTypes[typeName] = typeData;
+  });
+
+  return sortedCombinedTypes;
+}
+/**
  * Applies sorting to function analysis results based on usage counts
  */
 function sortFunctionResults(combinedFunctions: Record<string, FunctionAnalysisData>): Record<string, FunctionAnalysisData> {
@@ -165,13 +182,14 @@ function sortFunctionResults(combinedFunctions: Record<string, FunctionAnalysisD
  */
 function calculateTotals(
   components: Record<string, ComponentAnalysisData>,
-  functions: Record<string, FunctionAnalysisData>
-): { components: number; props: number; functions: number } {
+  functions: Record<string, FunctionAnalysisData>,
+  types: Record<string, TypeAnalysisData>
+): { components: number; componentProps: number; functions: number; types: number } {
   const totalComponentUsage = Object.values(components).reduce(
     (sum, comp) => sum + comp.usage.total,
     0
   );
-  const totalPropUsage = Object.values(components).reduce(
+  const totalComponentPropUsage = Object.values(components).reduce(
     (sum, comp) =>
       sum +
       Object.values(comp.props).reduce(
@@ -184,11 +202,16 @@ function calculateTotals(
     (sum, func) => sum + func.usage.total,
     0
   );
+  const totalTypeUsage = Object.values(types).reduce(
+    (sum, type) => sum + type.usage.total,
+    0
+  );
 
   return {
     components: totalComponentUsage,
-    props: totalPropUsage,
-    functions: totalFunctionUsage
+    componentProps: totalComponentPropUsage,
+    functions: totalFunctionUsage,
+    types: totalTypeUsage
   };
 }
 
@@ -235,6 +258,22 @@ export function mergeAnalysisResults(
             {
               usage: functionData.usage,
               values: clonePropertyValues(functionData.values) // Deep clone count objects
+            }
+          ];
+        }
+      )
+    );
+
+  // Create a deep copy of existing types as the base
+  const combinedTypes: Record<string, TypeAnalysisData> =
+    Object.fromEntries(
+      Object.entries(existingResults.types).map(
+        ([typeName, typeData]) => {
+          return [
+            typeName,
+            {
+              usage: { ...typeData.usage, ...typeData.usage.projects && { projects: { ...typeData.usage.projects } } },
+              ...typeData.files && { files: [...typeData.files] }
             }
           ];
         }
@@ -304,18 +343,47 @@ export function mergeAnalysisResults(
     }
   );
 
+  // Merge new type results
+  Object.entries(newResults.types).forEach(
+    ([typeName, typeData]) => {
+      const combinedTypeData = combinedTypes[typeName];
+      if (combinedTypeData) {
+        // Merge type usage counts
+        mergeComponentUsage(combinedTypeData.usage, typeData.usage);
+
+        // Merge files
+        if (typeData.files) {
+          if (!combinedTypeData.files) {
+            combinedTypeData.files = [];
+          }
+          // Merge files using Set to avoid duplicates
+          const fileSet = new Set([...combinedTypeData.files, ...typeData.files]);
+          combinedTypeData.files = Array.from(fileSet);
+        }
+      } else {
+        // Create a deep copy for new type
+        combinedTypes[typeName] = {
+          usage: { ...typeData.usage, ...typeData.usage.projects && { projects: { ...typeData.usage.projects } } },
+          ...typeData.files && { files: [...typeData.files] }
+        };
+      }
+    }
+  );
+
   // Apply sorting to the merged results
   const sortedCombinedData = sortAnalysisResults(combinedData);
   const sortedCombinedFunctions = sortFunctionResults(combinedFunctions);
+  const sortedCombinedTypes = sortTypeResults(combinedTypes);
 
   // Calculate combined totals
-  const totals = calculateTotals(sortedCombinedData, sortedCombinedFunctions);
+  const totals = calculateTotals(sortedCombinedData, sortedCombinedFunctions, sortedCombinedTypes);
 
   return {
     overall: {
       usage: totals
     },
     components: sortedCombinedData,
-    functions: sortedCombinedFunctions
+    functions: sortedCombinedFunctions,
+    types: sortedCombinedTypes
   };
 }

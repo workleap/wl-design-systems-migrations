@@ -529,7 +529,7 @@ describe("migrations", () => {
               to: "ListItem",
               props: {
                 mappings: {
-                  "x": "y"
+                  x: "y"
                 }
               }
             })]
@@ -576,7 +576,7 @@ describe("migrations", () => {
                   to: "ListItem",
                   props: {
                     mappings: {
-                      "x": "x1"
+                      x: "x1"
                     }
                   }
                 };
@@ -587,7 +587,7 @@ describe("migrations", () => {
                   to: "MenuItem",
                   props: {
                     mappings: {
-                      "y": "y1"
+                      y: "y1"
                     }
                   }
                 };
@@ -639,7 +639,7 @@ describe("migrations", () => {
                   to: "ListItem",
                   props: {
                     mappings: {
-                      "x": "x1"
+                      x: "x1"
                     }
                   }
                 };
@@ -650,7 +650,7 @@ describe("migrations", () => {
                   to: "MenuItem",
                   props: {
                     mappings: {
-                      "y": "y1"
+                      y: "y1"
                     }
                   }
                 };
@@ -706,7 +706,7 @@ describe("migrations", () => {
                   to: "ListItem",
                   props: {
                     mappings: {
-                      "x": "x1"
+                      x: "x1"
                     }
                   }
                 };
@@ -717,7 +717,7 @@ describe("migrations", () => {
                   to: "MenuItem",
                   props: {
                     mappings: {
-                      "y": "y1"
+                      y: "y1"
                     }
                   }
                 };
@@ -770,7 +770,7 @@ describe("migrations", () => {
                   to: "ListItem",
                   props: {
                     mappings: {
-                      "l": "ll"
+                      l: "ll"
                     }
                   }
                 };
@@ -781,7 +781,7 @@ describe("migrations", () => {
                   to: "MenuItem",
                   props: {
                     mappings: {
-                      "m": "mm"
+                      m: "mm"
                     }
                   }
                 };

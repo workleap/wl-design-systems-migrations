@@ -6,7 +6,7 @@ export interface MigrationNote {
   affectedFiles: Set<string>;
 }
 
-const MIGRATION_NOTES_FILE = "migration-notes.md";
+export const MIGRATION_NOTES_FILE = "migration-notes.md";
 
 // Simple file-based locking mechanism for the output file
 class FileLock {

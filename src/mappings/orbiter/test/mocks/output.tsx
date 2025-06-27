@@ -890,7 +890,7 @@ export function App() {
         }}>text</Div>
       /* Migration TODO: `Box` component is not supported in Hopper. Use `Div` if you have set `as="div"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
       <Box>text</Box>
-      /* Migration TODO: `Group` component is not supported in Hopper. Use `AvatarGroup` if it is used to group Avatars. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
+      /* Migration TODO: `Group` component is not supported in Hopper. Check the `migration-notes.md` file to see the migration path. */
       <Group as="div">text</Group>
       {/* Listbox */}
       <ListBox

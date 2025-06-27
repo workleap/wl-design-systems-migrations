@@ -72,9 +72,9 @@ export const disclosureMapping = {
     return {
       props: {
         mappings: {    
-          "defaultOpen": "defaultExpanded",
-          "open": "isExpanded",
-          "onOpenChange": "onExpandedChange"
+          defaultOpen: "defaultExpanded",
+          open: "isExpanded",
+          onOpenChange: "onExpandedChange"
         }
       },
       todoComments: tagComment

@@ -31,7 +31,7 @@ codemod --source /path/to/your/local/copy
 
 ### Analysis Scripts
 
-Analyze component and function usage across all locally cloned repositories:
+Analyze component, function, and type usage across all locally cloned repositories:
 
 ```bash
 # For orbiter mappings (default)
