@@ -1,5 +1,5 @@
 node_modules
-tsconfig.tsbuildinfo
+**/tsconfig.tsbuildinfo
 cdmd_dist
 **/*.log
 **/*.tmp

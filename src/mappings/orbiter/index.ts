@@ -1,38 +1,17 @@
 import {
   getMappingKeys,
-  type MapMetaData,
-  type PropsMapping
+  type MapMetaData
 } from "../../utils/types.ts";
 import { buttonComponentsMappings } from "./button-components-mappings.ts";
 import { itemMapping } from "./components/item.ts";
 import { sectionMapping } from "./components/section.ts";
+import { defaultPropsMappings } from "./default-props-mappings.ts";
 import { disclosureComponentsMappings } from "./disclosure-components-mappings.ts";
 import { layoutComponentsMappings } from "./layout-components-mappings.ts";
 import { menuComponentsMappings } from "./menu-components-mappings.ts";
 import { overlayComponentsMappings } from "./overlay-components-mappings.ts";
-import { styledSystemPropsMappings } from "./styled-system/mappings.ts";
 import { tagComponentsMappings } from "./tags-components-mappings.ts";
 import { visualComponentsMappings } from "./visual-components-mappings.ts";
-
-const defaultPropsMappings = {
-  ...styledSystemPropsMappings,
-  disabled: "isDisabled",
-  readOnly: "isReadOnly",
-  "min-width": originalValue => ({
-    to: "min-width",
-    value: originalValue,
-    todoComments: "It seems it is an invalid property. Remove it if it is not needed"
-  }),
-  active: () => ({
-    todoComments: "`active` is not supported anymore. Find an alternative solution. If the use case is to implement the toggle status, you can use the ToggleButton. More details: https://hopper.workleap.design/components/ToggleButton"
-  }),
-  focus: () => ({
-    todoComments: "`focus` is not supported anymore. Find an alternative solution"
-  }),
-  hover: () => ({
-    todoComments: "`hover` is not supported anymore. Find an alternative solution"
-  })
-} satisfies PropsMapping;
 
 export const mappings = {
   sourcePackage: "@workleap/orbiter-ui",
@@ -98,7 +77,8 @@ const todo = {
   FormProps: "FormProps",
   InputGroup: "InputGroup", //usage: 1
   InputGroupProps: "InputGroupProps"
-  // TODO: Not a direct mapping. Find the appropriate component/type.
+
+  // Not a direct mapping. Find the appropriate component/type:
   //HiddenSelect: "HiddenSelect",
   //HiddenSelectProps: "HiddenSelectProps",
   //HiddenAutocomplete: "HiddenAutocomplete",
