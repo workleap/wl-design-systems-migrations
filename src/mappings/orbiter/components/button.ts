@@ -1,5 +1,6 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const buttonMapping = {
   Button: {
@@ -10,10 +11,10 @@ export const buttonMapping = {
         loading: "isLoading",
         size: "size",
         inherit: () => ({
-          todoComments: "`inherit` is not supported anymore. Remove it."
+          todoComments: getTodoComment("button_inherit_not_supported")
         }),
         title: () => ({
-          todoComments: "`title` is not supported anymore. Possibly `aria-label` or `aria-labelledby` would be appropriate alternatives."
+          todoComments: getTodoComment("button_title_not_supported")
         }),
         variant: (originalValue, runtime) => {
           const { j } = runtime;
@@ -28,8 +29,7 @@ export const buttonMapping = {
             return {
               to: "variant",
               value: j.stringLiteral("ghost-secondary"),
-              todoComments:
-                "`tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`."
+              todoComments: getTodoComment("button_tertiary_mapping")
             };
           }
 

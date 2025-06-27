@@ -7,6 +7,7 @@ import { headingMappings } from "./components/heading.ts";
 import { inlineMapping } from "./components/inline.ts";
 import { stackMapping } from "./components/stack.ts";
 import { tableMapping } from "./components/table.ts";
+import { getMigrationNote, getTodoComment } from "./message-utils.ts";
 
 export const layoutComponentsMappings = {
   //structural
@@ -37,8 +38,8 @@ export const layoutComponentsMappings = {
   ...cardMapping,
   Box: {
     skipImport: true,
-    todoComments: "`Box` component is not supported in Hopper. Use `Div` if you have set `as=\"div\"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration.",
-    migrationNotes: "`Box` component is not supported in Hopper. Use `Div` if you have set `as=\"div\"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration."
+    todoComments: getTodoComment("box_not_supported"),
+    migrationNotes: getMigrationNote("box_not_supported")
   },
   BoxProps: {
     skipImport: true

@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const buttonGroupMapping = {
   ButtonGroup: {
@@ -6,10 +7,10 @@ export const buttonGroupMapping = {
       mappings: {
         fluid: "isFluid",
         inline: () => ({
-          todoComments: "`inline` is not supported anymore. Remove it."
+          todoComments: getTodoComment("button_group_inline_not_supported")
         }),
         reverse: () => ({
-          todoComments: "`reverse` is not supported anymore. Remove it."
+          todoComments: getTodoComment("button_group_reverse_not_supported")
         })
       }
     }

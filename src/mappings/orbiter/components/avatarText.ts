@@ -1,5 +1,6 @@
 import { tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const avatarTextMapping = {
   AvatarText: {
@@ -17,7 +18,7 @@ export const avatarTextMapping = {
 
           return {
             value: originalValue,
-            todoComments: "Passed values is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`."
+            todoComments: getTodoComment("avatar_text_invalid_size")
           };
         }
       },

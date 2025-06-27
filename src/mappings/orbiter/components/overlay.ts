@@ -1,10 +1,11 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getMigrationNote, getTodoComment } from "../message-utils.ts";
 
 export const overlayMapping = {
   Overlay: {
     skipImport: true, 
-    todoComments: "`Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`.",
-    migrationNotes: "`Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`."
+    todoComments: getTodoComment("overlay_not_supported"),
+    migrationNotes: getMigrationNote("overlay_not_supported")
   },
   OverlayProps: "OverlayProps"
 } satisfies Record<string, ComponentMapping>;

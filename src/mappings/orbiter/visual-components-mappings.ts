@@ -5,6 +5,7 @@ import { avatarTextMapping } from "./components/avatarText.ts";
 import { illustrationMapping } from "./components/illustration.ts";
 import { imageMapping } from "./components/image.ts";
 import { spinnerMapping } from "./components/spinner.ts";
+import { getMigrationNote, getTodoComment } from "./message-utils.ts";
 
 export const visualComponentsMappings: Record<string, ComponentMapping> = {
   ...avatarMapping,
@@ -20,15 +21,15 @@ export const visualComponentsMappings: Record<string, ComponentMapping> = {
 
   Dot: {
     skipImport: true,
-    todoComments: "`Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate />",
-    migrationNotes: "`Dot` is not supported anymore. Find an alternative. One possible option: `<Badge isIndeterminate />`"
+    todoComments: getTodoComment("dot_not_supported"),
+    migrationNotes: getMigrationNote("dot_not_supported")
   },
   DotProps: "DotProps",
 
   Counter: {
     skipImport: true,
-    todoComments: "`Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files",
-    migrationNotes: "`Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files"
+    todoComments: getTodoComment("counter_not_supported"),
+    migrationNotes: getMigrationNote("counter_not_supported")
   },
 
   VisuallyHidden: "VisuallyHidden", 
@@ -36,8 +37,8 @@ export const visualComponentsMappings: Record<string, ComponentMapping> = {
 
   Transition: {
     skipImport: true,
-    todoComments: "`Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/Transition.tsx",
-    migrationNotes: "`Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/Transition.tsx"
+    todoComments: getTodoComment("transition_not_supported"),
+    migrationNotes: getMigrationNote("transition_not_supported")
   },
 
   ...spinnerMapping,

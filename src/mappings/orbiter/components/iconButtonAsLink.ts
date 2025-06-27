@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 import { iconButtonMapping } from "./iconButton.ts";
 
 export const iconButtonAsLinkMapping = {
@@ -8,14 +9,11 @@ export const iconButtonAsLinkMapping = {
       mappings: {
         ...iconButtonMapping.IconButton.props.mappings,
         loading: () => ({
-          todoComments: "`loading` is not supported anymore. Remove it."
+          todoComments: getTodoComment("button_loading_not_supported")
         })
       }
     },
-    todoComments:
-      "If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. " +
-      "But if you need a full page reload instead of client-side routing, follow this: " +
-      "https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback"
+    todoComments: getTodoComment("button_as_link_external_note")
   },
   ButtonAsLinkProps: "LinkButtonProps"
 } satisfies Record<string, ComponentMapping>;

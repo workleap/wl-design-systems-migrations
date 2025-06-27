@@ -1,6 +1,7 @@
 import { addImportCase } from "../../../migrations/migrateImport.ts";
 import { getTodoComment } from "../../../utils/migration.ts";
 import type { ComponentMapping, Runtime } from "../../../utils/types.ts";
+import { getTodoComment as getMessageTodoComment } from "../message-utils.ts";
 
 export const disclosureMapping = {
   Disclosure: [(tag, runtime: Runtime) => {
@@ -8,8 +9,8 @@ export const disclosureMapping = {
     
     // Get the JSX element (parent of the opening tag)
     const jsxElement = tag.parent.value;
-    let tagComment = "Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper.";
-    const notDoneComment = "It cannot be migrated automatically. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header";
+    let tagComment = getMessageTodoComment("disclosure_review_changes");
+    const notDoneComment = getMessageTodoComment("disclosure_manual_migration");
 
 
     if (jsxElement.children && jsxElement.children.length >= 2) {
@@ -34,7 +35,7 @@ export const disclosureMapping = {
         } else {
           // Add comment for manual handling
           const comment = getTodoComment(
-            "Please add slot=\"trigger\" to the first child element manually.",
+            getMessageTodoComment("disclosure_manual_slot_trigger"),
             runtime,
             true
           );
@@ -56,7 +57,7 @@ export const disclosureMapping = {
         } else {
           // Add comment for manual handling
           const comment = getTodoComment(
-            "Please replace the second child with a DisclosurePanel element manually.",
+            getMessageTodoComment("disclosure_manual_replace_content"),
             runtime,
             true
           );

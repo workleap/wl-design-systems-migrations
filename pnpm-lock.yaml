@@ -41,9 +41,15 @@ importers:
       '@workleap/orbiter-ui':
         specifier: 5.6.10
         version: 5.6.10(@hopper-ui/components@1.11.3(@hopper-ui/styled-system@2.5.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-aria-components@1.10.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-aria@3.41.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@hopper-ui/styled-system@2.5.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-aria-components@1.10.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@zohodesk/eslint-plugin-no-hardcoding':
+        specifier: ^1.0.6
+        version: 1.0.6
       eslint:
         specifier: 8.57.1
         version: 8.57.1
+      eslint-plugin-no-hardcoding:
+        specifier: ^1.1.0
+        version: 1.1.0
       jscodeshift:
         specifier: 17.3.0
         version: 17.3.0
@@ -1526,6 +1532,9 @@ packages:
       react-aria-components: '*'
       react-dom: ^18.0.0
 
+  '@zohodesk/eslint-plugin-no-hardcoding@1.0.6':
+    resolution: {integrity: sha512-PBvxwqUItEcxfQyXGh33Fx03QAQBoh8Gkr1lbSKs/uAun+sbcgYZl710ddf4DnihyUIeyeoh2d7U4yL88PK8zg==}
+
   abbrev@2.0.0:
     resolution: {integrity: sha512-6/mh1E2u2YgEsCHdY0Yx5oW+61gZU+1vXaoiHHrpKeuRNNgFvS+/jrwHiQhB5apAf5oB7UB7E19ol2R2LKH8hQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -1994,6 +2003,9 @@ packages:
     engines: {node: '>=18.0.0'}
     peerDependencies:
       eslint: '>=8.0.0'
+
+  eslint-plugin-no-hardcoding@1.1.0:
+    resolution: {integrity: sha512-Hx2HvLa9Ze7yl8FquvHEjpbgIoWxNZHaNp8QhJWt7DxBeOJpzAV06I0pi7VVPzgNXqXt7/4KDxaul4sEd7vGpw==}
 
   eslint-plugin-package-json@0.31.0:
     resolution: {integrity: sha512-4bv/QDcExDUqs9/q89rJndkNV/hA0T5PzvRJX4oLdC5xvYXIZ4zz/RBs7KHj0JLE0BhGwLqHHVCLXQ+Y+IjHPg==}
@@ -5616,6 +5628,8 @@ snapshots:
       react-is: 18.3.1
       use-debounce: 10.0.4(react@19.1.0)
 
+  '@zohodesk/eslint-plugin-no-hardcoding@1.0.6': {}
+
   abbrev@2.0.0: {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
@@ -6210,6 +6224,8 @@ snapshots:
       - bluebird
       - remark-lint-file-extension
       - supports-color
+
+  eslint-plugin-no-hardcoding@1.1.0: {}
 
   eslint-plugin-package-json@0.31.0(@types/estree@1.0.8)(eslint@8.57.1)(jsonc-eslint-parser@2.4.0):
     dependencies:

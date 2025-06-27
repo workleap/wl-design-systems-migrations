@@ -1,5 +1,6 @@
 import { isWithinComponent, tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const accordionMapping = {
   Accordion: {
@@ -7,7 +8,7 @@ export const accordionMapping = {
       mappings: {    
         onExpansionChange: "onExpandedChange",
         autoFocus: () => (
-          { todoComments: "autofocus is removed. It did not make sense to have. More details: https://hopper.workleap.design/components/Accordion#migration-notes" }
+          { todoComments: getTodoComment("accordion_autofocus_removed") }
         ),
         variant:  (originalValue, runtime) => {
           const value = tryGettingLiteralValue(originalValue, runtime);
@@ -19,7 +20,7 @@ export const accordionMapping = {
 
           return {
             value: newValue ? runtime.j.stringLiteral(newValue) : undefined,
-            todoComments: "`inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes"
+            todoComments: getTodoComment("accordion_variant_no_match")
           };
         },
         expansionMode:  (originalValue, runtime) => {
@@ -39,7 +40,7 @@ export const accordionMapping = {
           }
 
           return {
-            todoComments: "`expansionMode` is not supported anymore. Use `allowsMultipleExpanded` instead if you want to allow multiple items to be expanded. More details: https://hopper.workleap.design/components/Accordion#migration-notes"
+            todoComments: getTodoComment("accordion_expansion_mode_not_supported")
           };
         }
       }

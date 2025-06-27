@@ -1,4 +1,5 @@
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const tileMapping = {
   Tile: {
@@ -9,12 +10,10 @@ export const tileMapping = {
         checked: "isSelected",
         defaultChecked: "defaultSelected",
         defaultValue: () => ({
-          todoComments:
-            "Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/Tile#migration-notes"
+          todoComments: getTodoComment("tile_default_value_remove")
         }),
         orientation: () => ({
-          todoComments:
-            "Remove the `orientation` property, read this: https://hopper.workleap.design/components/Tile#migration-notes"
+          todoComments: getTodoComment("tile_orientation_remove")
         })
       }
     }

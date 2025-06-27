@@ -1,5 +1,6 @@
 import { addChildrenTo, getAttributeValue, isWithinComponent } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const menuMapping = {
   Menu: {
@@ -7,19 +8,19 @@ export const menuMapping = {
     props: {
       mappings: {
         autoFocusTarget: () => ({
-          todoComments: "`autoFocusTarget` is removed. More details: https://hopper.workleap.design/components/Menu#migration-notes"
+          todoComments: getTodoComment("menu_auto_focus_target_removed")
         }),
         nodes: () => ({
-          todoComments: "`nodes` is removed. Use dynamic items instead. An example: https://hopper.workleap.design/components/Menu#usage-dynamic-items"
+          todoComments: getTodoComment("menu_nodes_removed")
         }),
         disabled: () => ({
-          todoComments: "`disabled` has been removed, set the disabled items as disabledKeys instead. More details: https://hopper.workleap.design/components/Menu#migration-notes"
+          todoComments: getTodoComment("menu_disabled_removed")
         }),
         fluid: () => ({
-          todoComments: "`fluid` has been removed. More details: https://hopper.workleap.design/components/Menu#migration-notes"
+          todoComments: getTodoComment("menu_fluid_removed")
         }),
         validationState: () => ({
-          todoComments: "`validationState` has been removed. `isInvalid` should be used instead on the MenuItem. More details: https://hopper.workleap.design/components/Menu#migration-notes"
+          todoComments: getTodoComment("menu_validation_state_removed")
         })
       }
     }
@@ -36,9 +37,9 @@ export const menuTriggerMapping = {
         direction: "direction",
         allowFlip: "allowFlip",
         onOpenChange: "onOpenChange",
-        allowPreventOverflow:() => ({ todoComments: "`allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes" }),
+        allowPreventOverflow:() => ({ todoComments: getTodoComment("menu_allow_prevent_overflow_removed") }),
         closeOnSelect: "shouldCloseOnSelect",
-        zIndex: () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead." })
+        zIndex: () => ({ todoComments: getTodoComment("menu_z_index_not_supported") })
 
       }
     }
@@ -59,7 +60,7 @@ export const menuItemMappings = {
           }
         },
         todoComments: isWrappedInTooltip
-          ? "Menu Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration."
+          ? getTodoComment("menu_item_tooltip_not_supported")
           : undefined
       };
     }

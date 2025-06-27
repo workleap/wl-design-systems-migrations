@@ -1,5 +1,6 @@
 import { getReviewMePropertyName } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 
 export const modalMapping = {
   Modal: {
@@ -9,7 +10,7 @@ export const modalMapping = {
         wrapperProps: "overlayProps",
         onClose: () => ({ 
           to: getReviewMePropertyName("onOpenChange"), 
-          todoComments: "`onClose` is not supported anymore. Use `onOpenChange` instead." 
+          todoComments: getTodoComment("modal_on_close_not_supported")
         })
       }
     }
@@ -22,7 +23,7 @@ export const modalTriggerMapping = {
     props: {
       mappings: {
         open: "isOpen",
-        dismissable: () => ({ todoComments: "`dismissable` is not supported anymore. Use `isDismissable` prop at related `Modal` component instead." })       
+        dismissable: () => ({ todoComments: getTodoComment("modal_trigger_dismissable_not_supported") })
       }
     }
   },

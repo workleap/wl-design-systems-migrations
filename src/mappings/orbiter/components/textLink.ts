@@ -1,5 +1,6 @@
 import { hasAttribute, tryGettingLiteralValue } from "../../../utils/mapping.ts";
 import type { ComponentMapping } from "../../../utils/types.ts";
+import { getTodoComment } from "../message-utils.ts";
 import { linkMapping } from "./link.ts";
 
 export const textLinkMapping = {
@@ -15,7 +16,7 @@ export const textLinkMapping = {
           const value = tryGettingLiteralValue(originalValue, runtime);
           if (value === "negative") {
             return {
-              todoComments: "`negative` is not supported anymore. Remove it."
+              todoComments: getTodoComment("text_link_negative_not_supported")
             };
           } else if (value === "accent") {
             return {            
@@ -38,15 +39,15 @@ export const textLinkMapping = {
               value: j.jsxExpressionContainer(j.booleanLiteral(true))
             };
           } else {
-            return {            
-              todoComments: "`underline` is not supported anymore. Remove it."
+            return {
+              todoComments: getTodoComment("text_link_underline_not_supported")
             };
           }
         },
         onMouseDown:  (_, { tag }) => {          
           if (hasAttribute(tag.node, "onPress")) {
             return {
-              todoComments: "`onMouseDown` is not supported anymore. Use `onPress` instead."
+              todoComments: getTodoComment("text_link_on_mouse_down_not_supported")
             };
           } else {
             return {
@@ -57,7 +58,7 @@ export const textLinkMapping = {
         onKeyPress: (_, { tag }) => {          
           if (hasAttribute(tag.node, "onPress")) {
             return {
-              todoComments: "`onKeyPress` is not supported anymore. Use `onPress` instead."
+              todoComments: getTodoComment("text_link_on_key_press_not_supported")
             };
           } else {
             return {
