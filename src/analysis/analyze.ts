@@ -5,11 +5,12 @@ import type { AnalysisResults } from "./types.js";
 import { performFunctionAnalysis } from "./utils/function-analyzer.js";
 import { customStringify } from "./utils/json-utils.js";
 import { performJSXAnalysis } from "./utils/jsx-analyzer.js";
+import { performTypeAnalysis } from "./utils/type-analyzer.js";
 import { mergeAnalysisResults } from "./utils/merge-utils.js";
 import { convertToAnalysisResults } from "./utils/results-converter.js";
 
 // Re-export types and utilities for backward compatibility
-export type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage } from "./types.js";
+export type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, TypeAnalysisData, PropertyUsage } from "./types.js";
 export { customStringify, getSortedKeys } from "./utils/json-utils.js";
 export { mergeAnalysisResults } from "./utils/merge-utils.js";
 
@@ -54,10 +55,18 @@ export function analyze(
     deep
   });
 
+  // Perform type analysis to extract type usage data
+  const typeUsageData = performTypeAnalysis(runtime, sourcePackage, {
+    includeIgnoredList,
+    project,
+    deep
+  });
+
   // Convert to analysis results format and apply filtering
   const analysisResults = convertToAnalysisResults(
     componentUsageData,
     functionUsageData,
+    typeUsageData,
     mappings,
     filterUnmapped
   );

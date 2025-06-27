@@ -10,7 +10,22 @@
 - **Dot**: `Dot` is not supported anymore. Find an alternative. One possible option: `<Badge isIndeterminate />`
   - test.tsx
 
-- **Group**: `Group` component is not supported in Hopper. Use `AvatarGroup` if it is used to group Avatars. You can reach out to #wl-hopper-migration-devs team if you need help with this migration.
+- **Group**: `Group` component is not supported in Hopper. Use `Flex` or `AvatarGroup` if it is used to group Avatars.
+    If you want to use Flex, here is the migration path:
+      - if there is no props on the tag, simply replace it with <Flex direction="column" justifyContent="center">
+      - otherwise:
+        - wrap=true => wrap="wrap"
+        - wrap=false => remove it
+        - if orientation is "horizontal":
+          - align becomes justifyContent
+          - add alignItems="center"
+          - add direction="row"
+        - if orientation is "vertical" or undefined:
+          - align becomes alignItems
+          - add justifyContent="center"
+          - add direction="column"
+
+    You can reach out to #wl-hopper-migration-devs team if you need help with this migration.
   - test.tsx
 
 - **Lozenge.size**: The alternative `Tag` might be a bit taller(4px) than the old `Lozenge` even with the same size. Make sure you validate the design after the migration.

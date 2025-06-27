@@ -65,7 +65,7 @@ describe("analyze - basic functionality", () => {
     const { analysisResults } = analyze(getRuntime(INPUT), null);
 
     expect(analysisResults.overall.usage.components).toBe(3);
-    expect(analysisResults.overall.usage.props).toBe(3);
+    expect(analysisResults.overall.usage.componentProps).toBe(3);
   });
 
   test("analyze with project parameter", () => {
@@ -109,7 +109,7 @@ describe("analyze - merging results", () => {
     expect(merged.components.Div!.props.border?.values["1px"]?.usage.total).toBe(1);
     expect(merged.components.Div!.props.border?.values["2px"]?.usage.total).toBe(1);
     expect(merged.overall.usage.components).toBe(2);
-    expect(merged.overall.usage.props).toBe(2);
+    expect(merged.overall.usage.componentProps).toBe(2);
   });
 
   test("mergeAnalysisResults handles duplicate values", () => {
@@ -563,7 +563,7 @@ describe("analyze - merging results", () => {
 
       // Check overall statistics
       expect(finalResults.overall.usage.components).toBe(6); // Total component instances
-      expect(finalResults.overall.usage.props).toBe(10); // All prop instances: Button(8) + Div(1) + Text(1) = 10
+      expect(finalResults.overall.usage.componentProps).toBe(10); // All prop instances: Button(8) + Div(1) + Text(1) = 10
 
       // Verify values are sorted by total count (primary should come first with total=3)
       const variantKeys = Object.keys(variantValues || {});

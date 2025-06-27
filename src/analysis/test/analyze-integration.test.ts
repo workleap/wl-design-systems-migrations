@@ -81,3 +81,48 @@ test("analyze should include project tracking and files when enabled", () => {
   expect(mdCall?.files).toBeDefined();
   expect(mdCall?.files?.length).toBe(1);
 });
+
+test("should analyze components, functions, and objects together", () => {
+  const sourceCode = `
+    import { Button, useBreakpoint, ButtonProps } from "@workleap/orbiter-ui";
+    
+    function MyComponent() {
+      const breakpoint = useBreakpoint("md");
+      
+      const buttonConfig: ButtonProps = {
+        variant: "primary",
+        size: "sm"
+      };
+      
+      return (
+        <Button variant="secondary" size="lg">
+          Click me
+        </Button>
+      );
+    }
+  `;
+
+  const runtime = getRuntime(sourceCode);
+  const { analysisResults } = analyze(runtime, null);
+
+  // Should track components
+  expect(analysisResults.components.Button).toBeDefined();
+  expect(analysisResults.components.Button!.usage.total).toBe(1);
+  expect(analysisResults.components.Button!.props.variant!.values["secondary"]!.usage.total).toBe(1);
+  expect(analysisResults.components.Button!.props.size!.values["lg"]!.usage.total).toBe(1);
+
+  // Should track functions
+  expect(analysisResults.functions.useBreakpoint).toBeDefined();
+  expect(analysisResults.functions.useBreakpoint!.usage.total).toBe(1);
+  expect(analysisResults.functions.useBreakpoint!.values["useBreakpoint(\"md\")"]!.usage.total).toBe(1);
+
+  // Should track objects
+  expect(analysisResults.types.ButtonProps).toBeDefined();
+  expect(analysisResults.types.ButtonProps!.usage.total).toBe(1);
+
+  // Should track overall statistics correctly
+  expect(analysisResults.overall.usage.components).toBe(1); // 1 Button component
+  expect(analysisResults.overall.usage.componentProps).toBe(2); // variant + size props on Button
+  expect(analysisResults.overall.usage.functions).toBe(1); // 1 useBreakpoint function
+  expect(analysisResults.overall.usage.types).toBe(1); // 1 ButtonProps type usage
+});

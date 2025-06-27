@@ -5,7 +5,7 @@ export const tooltipMapping = {
   Tooltip: {
     props: {
       mappings: {
-        "onMouseLeave":  () => ({ todoComments: "`onMouseLeave` is not supported anymore. If you really need it you can add it in a Div inside the tooltip if needed." }) 
+        onMouseLeave:  () => ({ todoComments: "`onMouseLeave` is not supported anymore. If you really need it you can add it in a Div inside the tooltip if needed." }) 
       }
     }
   },
@@ -17,7 +17,7 @@ export const tooltipTriggerMapping = {
     props: {
       mappings: {
         open: "isOpen",
-        "position": (originalValue, runtime) => {          
+        position: (originalValue, runtime) => {          
           const { j } = runtime;
           const value = tryGettingLiteralValue(originalValue, runtime);          
 
@@ -40,9 +40,9 @@ export const tooltipTriggerMapping = {
             to: "placement"
           };
         },
-        "zIndex": () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead." }),
+        zIndex: () => ({ todoComments: "`zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead." }),
         // eslint-disable-next-line max-len
-        "onMouseLeave":  () => ({ todoComments: "`onMouseLeave` is not supported anymore since TooltipTrigger doesn't render an element.  You should move this property on the rendered element. For instance, if the trigger is a button, you should add onMouseLeave directly on the button instead." }) 
+        onMouseLeave:  () => ({ todoComments: "`onMouseLeave` is not supported anymore since TooltipTrigger doesn't render an element.  You should move this property on the rendered element. For instance, if the trigger is a button, you should add onMouseLeave directly on the button instead." }) 
       }
     }
   },

@@ -5,20 +5,20 @@ export const cardMapping = {
   Card: {
     props: {
       mappings: {
-        "fluid": () => ({ 
+        fluid: () => ({ 
           todoComments: "`fluid` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#fluid" 
         }),
-        "orientation": () => ({ 
+        orientation: () => ({ 
           todoComments: "`orientation` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#orientation" 
         }),
-        "size": () => ({ 
+        size: () => ({ 
           todoComments: "`size` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#size" 
         }),
-        "variant": (originalValue, runtime) => {
+        variant: (originalValue, runtime) => {
           const value = tryGettingLiteralValue(originalValue, runtime);
           const map: Record<string, string> = {
-            "outline": "main",
-            "elevated": "second-level"
+            outline: "main",
+            elevated: "second-level"
           };
           const newValue = typeof value === "string" && value in map ? map[value] : undefined;
 

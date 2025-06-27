@@ -43,7 +43,7 @@ export const textLinkMapping = {
             };
           }
         },
-        "onMouseDown":  (_, { tag }) => {          
+        onMouseDown:  (_, { tag }) => {          
           if (hasAttribute(tag.node, "onPress")) {
             return {
               todoComments: "`onMouseDown` is not supported anymore. Use `onPress` instead."
@@ -54,7 +54,7 @@ export const textLinkMapping = {
             };
           }
         },
-        "onKeyPress": (_, { tag }) => {          
+        onKeyPress: (_, { tag }) => {          
           if (hasAttribute(tag.node, "onPress")) {
             return {
               todoComments: "`onKeyPress` is not supported anymore. Use `onPress` instead."

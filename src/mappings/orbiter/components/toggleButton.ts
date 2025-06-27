@@ -6,9 +6,9 @@ export const toggleButtonMapping = {
     props: {
       mappings: {
         ...buttonMapping.Button.props.mappings,        
-        "value": "id",
-        "checked": "isSelected",
-        "defaultChecked": "defaultSelected",
+        value: "id",
+        checked: "isSelected",
+        defaultChecked: "defaultSelected",
         onChange: () => ({
           todoComments: "`onChange` is not supported anymore. Remove it. More details: https://hopper.workleap.design/components/ToggleButton#migration-notes"
         })
