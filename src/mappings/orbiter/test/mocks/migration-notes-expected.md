@@ -1,9 +1,6 @@
 <!-- markdownlint-disable -->
 # Migration Notes
 
-- **Box**: `Box` component is not supported in Hopper. Use `Div` if you have set `as="div"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration.
-  - test.tsx
-
 - **Counter**: `Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files
   - test.tsx
 

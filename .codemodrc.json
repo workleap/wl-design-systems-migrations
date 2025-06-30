@@ -1,7 +1,7 @@
 {
   "$schema": "https://codemod-utils.s3.us-west-1.amazonaws.com/configuration_schema.json",
   "name": "workleap/orbiter-to-hopper",
-  "version": "0.52.0",
+  "version": "1.0.0",
   "engine": "jscodeshift",
   "private": false,
   "arguments": [
@@ -10,9 +10,9 @@
       "kind": "string",
       "description": "Which mappings table should be used for migration or analysis. 'hopper' is only for analysis purpose and will not perform any migration.",
       "required": false,
-      "default": "orbiter",
+      "default": "orbiter-to-hopper",
       "choices": [
-        "orbiter",
+        "orbiter-to-hopper",
         "hopper"
       ]
     },
