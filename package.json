@@ -1,5 +1,6 @@
 {
   "name": "orbiter-to-hopper",
+  "version": "0.0.0",
   "description": "Codemods to assist design system migrations and analysis. Orbiter to Hopper, Igloo to Hopper, or Hopper usage analysis.",
   "devDependencies": {
     "@codemod.com/codemod-utils": "1.1.3",
