@@ -66,11 +66,11 @@ export default function transform(
   }
 }
 function getMappingTable(options: Options | undefined) : MapMetaData {
-  const target = options?.mappings ?? "orbiter2hopper";
+  const target = options?.mappings ?? "orbiter-to-hopper";
   switch (target) {
     case "hopper":
       return hopper2HopperMappings;
-    case "orbiter":
+    case "orbiter-to-hopper":
       return orbiter2HopperMappings;
     default:
       throw new Error(`Unknown mapping target: ${target}`);

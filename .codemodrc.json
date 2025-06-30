@@ -10,9 +10,9 @@
       "kind": "string",
       "description": "Which mappings table should be used for migration or analysis. 'hopper' is only for analysis purpose and will not perform any migration.",
       "required": false,
-      "default": "orbiter",
+      "default": "orbiter-to-hopper",
       "choices": [
-        "orbiter",
+        "orbiter-to-hopper",
         "hopper"
       ]
     },
