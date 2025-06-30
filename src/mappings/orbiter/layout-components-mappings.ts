@@ -7,7 +7,6 @@ import { headingMappings } from "./components/heading.ts";
 import { inlineMapping } from "./components/inline.ts";
 import { stackMapping } from "./components/stack.ts";
 import { tableMapping } from "./components/table.ts";
-import { getMigrationNote, getTodoComment } from "./message-utils.ts";
 
 export const layoutComponentsMappings = {
   //structural
@@ -36,14 +35,8 @@ export const layoutComponentsMappings = {
 
   //containers
   ...cardMapping,
-  Box: {
-    skipImport: true,
-    todoComments: getTodoComment("box_not_supported"),
-    migrationNotes: getMigrationNote("box_not_supported")
-  },
-  BoxProps: {
-    skipImport: true
-  },
+  Box: "Box",
+  BoxProps: "BoxProps",
   ...groupMapping,
 
   //html elements

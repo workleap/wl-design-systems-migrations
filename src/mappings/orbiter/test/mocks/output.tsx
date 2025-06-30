@@ -10,6 +10,7 @@ import {
   Aside,
   Avatar,
   AvatarGroup,
+  Box,
   Button,
   ButtonGroup,
   Card,
@@ -99,16 +100,7 @@ import {
   VisuallyHidden,
 } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import {
-  Box,
-  Counter,
-  Dot,
-  Group,
-  Overlay,
-  TileLink,
-  Transition,
-  useAccordionContext,
-} from "@workleap/orbiter-ui";
+import { Counter, Dot, Group, Overlay, TileLink, Transition, useAccordionContext } from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -485,7 +477,7 @@ export function App() {
       <HtmlForm
         aria-label="test"
         data-testId="test"
-        min-width="100vdh"/* Migration TODO: It seems it is an invalid property. Remove it if it is not needed */
+        min-width="100vdh"/* Migration TODO: It seems `min-width` is an invalid property. Remove it if it is not needed */
       ></HtmlForm>
       <Nav flexWrap={"revert-layer"}>
         <UL color="neutral-weak" marginLeft={"revert"}>
@@ -714,7 +706,7 @@ export function App() {
           transition: "background-color var(--hop-easing-duration-2) var(--hop-easing-duration-2)"
         }}>Avatar Text</Text>
       <Text
-        size="invalid"/* Migration TODO: Passed values is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`. */
+        size="invalid"/* Migration TODO: The passed value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`. */
         display="inline-flex"
         alignItems="center"
         justifyContent="center"
@@ -753,7 +745,7 @@ export function App() {
         isDisabled 
         isExternal 
         onPress={() => {}}
-        onAuxClick={() => {}}/* Migration TODO: `onAuxClick` is not supported anymore. Probably `onPress` could be used instead. https://hopper.workleap.design/components/Link#migration-notes */
+        onAuxClick={() => {}}/* Migration TODO: `onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/onAuxClick.md */
         onHoverStart={() => {}}
         onHoverEnd={() => {}}
         colorHover="core_quetzal-25"          
@@ -888,7 +880,6 @@ export function App() {
         style={{
           isolation: "isolate"
         }}>text</Div>
-      /* Migration TODO: `Box` component is not supported in Hopper. Use `Div` if you have set `as="div"`. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
       <Box>text</Box>
       /* Migration TODO: `Group` component is not supported in Hopper. Check the `migration-notes.md` file to see the migration path. */
       <Group as="div">text</Group>
@@ -1044,16 +1035,16 @@ export function App() {
         <Div UNSAFE_width="20px" slot="trigger" />
         <DisclosurePanel UNSAFE_width="120px"/>
       </Disclosure>
-      /* Migration TODO: It cannot be migrated automatically. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
       <Disclosure>
         <Div UNSAFE_width="20px"/>
         {variable ? <Div/> : <Div UNSAFE_width="120px"/>}
       </Disclosure>
-      /* Migration TODO: It cannot be migrated automatically. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
       <Disclosure>
          <Button>text</Button>
       </Disclosure>
-      /* Migration TODO: It cannot be migrated automatically. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
       <Disclosure>
         <Button>text</Button>
         <Div UNSAFE_width="120px"/>
@@ -1063,7 +1054,7 @@ export function App() {
       {/* Accordion */}
       <Accordion 
         allowsMultipleExpanded
-        autoFocus/* Migration TODO: autofocus is removed. It did not make sense to have. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
+        autoFocus/* Migration TODO: `autofocus` is removed. It did not make sense to have. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
         expandedKeys={["1", "2"]}
         onExpandedChange={() => {}}
         defaultExpandedKeys={["1", "2"]}
