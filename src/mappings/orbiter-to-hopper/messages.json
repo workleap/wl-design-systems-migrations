@@ -20,7 +20,7 @@
     "button_title_not_supported": "`title` is not supported anymore. Possibly `aria-label` or `aria-labelledby` would be appropriate alternatives.",
     "card_fluid_removed": "`fluid` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#fluid",
     "card_orientation_removed": "`orientation` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#orientation",
-    "card_significant_changes": "The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/OrbiterCard.tsx",
+    "card_significant_changes": "The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx",
     "card_size_removed": "`size` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#size",
     "card_variant_second_level": "You shouldn't use a second-level variant without a parent main variant. More details: https://hopper.workleap.design/components/Card#migration-notes",
     "counter_not_supported": "`Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files",
@@ -35,7 +35,7 @@
     "icon_button_2xs_not_supported": "`2xs` is not supported anymore. `xs` is the closest one.",
     "illustration_orientation_removed": "orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation.",
     "illustration_width_height_wrapper": "width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes",
-    "link_on_aux_click_not_supported": "`onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/onAuxClick.md",
+    "link_on_aux_click_not_supported": "`onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/onAuxClick.md",
     "link_shape_not_supported": "`shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes",
     "listbox_item_tooltip_not_supported": "ListBox Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration.",
     "listbox_nodes_removed": "`nodes` is removed. Use dynamic list instead. An example: https://hopper.workleap.design/components/Listbox#usage-dynamic-lists",
@@ -96,7 +96,7 @@
     "tooltip_on_mouse_leave_not_supported": "`onMouseLeave` is not supported anymore. If you really need it you can add it in a Div inside the tooltip if needed.",
     "tooltip_on_mouse_leave_trigger_not_supported": "`onMouseLeave` is not supported anymore since TooltipTrigger doesn't render an element.  You should move this property on the rendered element. For instance, if the trigger is a button, you should add onMouseLeave directly on the button instead.",
     "tooltip_z_index_not_supported": "`zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead.",
-    "transition_not_supported": "`Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/Transition.tsx"
+    "transition_not_supported": "`Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx"
   },
   "migrationNotes": {
     "counter_not_supported": "`Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files",
@@ -107,7 +107,7 @@
     "tabs_not_collapsible": "Tabs are NOT collapsible by default. It means if you have multiple tabs you may get different view if they are not all visible at once. Please manually validate it",
     "tilelink_not_supported": "`TileLink` is not supported. You should manually implement a `Link` with a `Tile` inside. You can also follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents ",
     "tilelinkprops_not_supported": "`TileLinkProps` is not supported. You should manually implement a `Link` with a `Tile` inside. You can also follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents ",
-    "transition_not_supported": "`Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/Transition.tsx",
+    "transition_not_supported": "`Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx",
     "underlay_mapped_to_div": "`Underlay` is mapped to `Div`. Please review it to ensure it meets your requirements. More details: https://workleap.atlassian.net/browse/SSD-2565?focusedCommentId=198239",
     "underlay_mapped_to_div_review": "`Underlay` is mapped to `Div`. Please review it to ensure it meets your requirements. More details: https://workleap.atlassian.net/browse/SSD-2565?focusedCommentId=198239"
   }

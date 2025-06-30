@@ -37,7 +37,7 @@
 - **TileLink**: `TileLink` is not supported. You should manually implement a `Link` with a `Tile` inside. You can also follow this to implement one: https://dev.azure.com/sharegate/ShareGate.One/_git/ShareGate.One?path=/src/frontend/client/src/components/TileLink/TileLink.tsx&version=GBmain&_a=contents 
   - test.tsx
 
-- **Transition**: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/Transition.tsx
+- **Transition**: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx
   - test.tsx
 
 - **Underlay**: `Underlay` is mapped to `Div`. Please review it to ensure it meets your requirements. More details: https://workleap.atlassian.net/browse/SSD-2565?focusedCommentId=198239

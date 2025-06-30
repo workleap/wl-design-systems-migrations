@@ -451,7 +451,7 @@ export function App() {
       <Header padding="core_400" slot="sample">
         text
       </Header>
-      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/OrbiterCard.tsx */
+      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
       <Card
         fluid/* Migration TODO: `fluid` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#fluid */
         orientation="horizontal"/* Migration TODO: `orientation` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#orientation */
@@ -459,7 +459,7 @@ export function App() {
         variant="main">
         text
       </Card>
-      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/OrbiterCard.tsx */
+      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
       <Card
         variant="second-level"/* Migration TODO: You shouldn't use a second-level variant without a parent main variant. More details: https://hopper.workleap.design/components/Card#migration-notes */>test</Card>
       <A padding="core_400">text</A>
@@ -745,7 +745,7 @@ export function App() {
         isDisabled 
         isExternal 
         onPress={() => {}}
-        onAuxClick={() => {}}/* Migration TODO: `onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/onAuxClick.md */
+        onAuxClick={() => {}}/* Migration TODO: `onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/onAuxClick.md */
         onHoverStart={() => {}}
         onHoverEnd={() => {}}
         colorHover="core_quetzal-25"          
@@ -1015,7 +1015,7 @@ export function App() {
       {/* VisuallyHidden */}
       <VisuallyHidden />
       {/* Transition */}
-      /* Migration TODO: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/orbiter-to-hopper-codemods/blob/main/src/mappings/orbiter/shims/Transition.tsx */
+      /* Migration TODO: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx */
       <Transition show>test</Transition>
       {/* Disclosure */}
       /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */

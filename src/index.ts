@@ -5,7 +5,7 @@ import type {
 } from "jscodeshift";
 import { analyze } from "./analysis/analyze.js";
 import { mappings as hopper2HopperMappings } from "./mappings/hopper-to-hopper/index.js";
-import { mappings as orbiter2HopperMappings } from "./mappings/orbiter/index.ts";
+import { mappings as orbiter2HopperMappings } from "./mappings/orbiter-to-hopper/index.ts";
 import { migrate } from "./migrations/migrate.js";
 import { logToFile } from "./utils/logger.js";
 import { createLazyMigrationNotesManager } from "./utils/migration-notes.js";
