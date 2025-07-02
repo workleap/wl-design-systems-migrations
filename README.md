@@ -23,6 +23,32 @@ This codemod automates the migration of components between design systems. Curre
 
 ## Quick Start
 
+### Using the CLI (Recommended)
+
+The easiest way to run migrations is using our CLI tool:
+
+```bash
+# Run directly with npx (no installation required)
+npx @workleap/design-systems-migrations-cli ./src
+
+# Or install globally
+npm install -g @workleap/design-systems-migrations-cli
+workleap-migrations ./src
+```
+
+The CLI automatically:
+
+- Clones the latest migration repository
+- Installs dependencies
+- Runs the codemod with your specified options
+- Cleans up temporary files
+
+For more CLI options:
+
+```bash
+npx @workleap/design-systems-migrations-cli --help
+```
+
 ### Orbiter to Hopper Migration Example
 
 Before:

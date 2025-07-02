@@ -1,5 +1,6 @@
 {
   "name": "wl-design-systems-migrations",
+  "private": true,
   "version": "0.0.0",
   "description": "Codemods to assist design system migrations and analysis. Orbiter to Hopper, Igloo to Hopper, or Hopper usage analysis.",
   "devDependencies": {
@@ -23,7 +24,9 @@
     "react-dom": "19.1.0",
     "recast": "0.23.11",
     "typescript": "5.8.3",
-    "vitest": "3.2.4"
+    "vitest": "3.2.4",
+    "@changesets/changelog-github": "0.5.0",
+    "@changesets/cli": "2.27.10"
   },
   "scripts": {
     "test": "vitest run",
@@ -43,7 +46,11 @@
     "analyze:orbiter:state": "./scripts/analyze-state.sh",
     "analyze:orbiter:state:deep": "./scripts/analyze-state.sh --deep true",
     "analyze:hopper:state": "./scripts/analyze-state.sh --mappings hopper",
-    "analyze:hopper:state:deep": "./scripts/analyze-state.sh --deep true --mappings hopper"
+    "analyze:hopper:state:deep": "./scripts/analyze-state.sh --deep true --mappings hopper",
+    "build:cli": "cd packages/cli && pnpm build",
+    "cli:dev": "cd packages/cli && pnpm dev",
+    "changeset": "changeset",
+    "ci-release": "pnpm build:cli && changeset publish"
   },
   "files": [
     "README.md",
