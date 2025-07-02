@@ -37,7 +37,7 @@ export const getRuntime = (
     filePath: "test.tsx",
     j: api.j,
     mappings: {
-      ...initialMappings, //TODO : we should fix to to not rely on one mapping table only
+      ...initialMappings, //TODO : we should fix to not rely on one mapping table only
       ...mappingsOverrides
     },
     getMigrationNotesManager: () => testMigrationNotesManager,
