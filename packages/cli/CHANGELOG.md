@@ -1,6 +1,6 @@
 # @workleap/migrations
 
-## 2.0.0
+## 0.1.0
 
 ### Major Changes
 
