@@ -4,9 +4,9 @@ import { getLocalNameFromImport, resolveComponentMapping, tryToGetStaticMapping 
 import type {
   ComponentMapMetaData,
   Runtime
-} from "../utils/types.js";
+} from "../utils/types.ts";
 import { migrateComponentInstances } from "./migrateComponentInstances.ts";
-import { type ImportMap, migrateImport } from "./migrateImport.js";
+import { type ImportMap, migrateImport } from "./migrateImport.ts";
 
 export function migrateComponent(componentName: string, runtime: Runtime): void {
   // 1. Find all local names for the component.

@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
-import { getRuntime } from "../../utils/test.js";
-import { performFunctionAnalysis } from "../utils/function-analyzer.js";
+import { getRuntime } from "../../utils/test.ts";
+import { performFunctionAnalysis } from "../utils/function-analyzer.ts";
 
 test("should analyze function calls from source package", () => {
   const sourceCode = `

@@ -17,8 +17,18 @@
           "enforceForNewInMemberExpressions": false,
           "enforceForFunctionPrototypeMethods": false,
           "allowParensAfterCommentPattern": "any-string-pattern"
-        }
-      ],
-      "quote-props": ["error", "as-needed"]
+        }],
+        "quote-props": ["error", "as-needed"],
+        "no-restricted-imports": [
+          "error", // Set to "warn" if you prefer a warning instead of an error
+          {
+            "patterns": [
+              {
+                "group": ["**/*.js"], // Matches any import path ending with .js
+                "message": "Avoid using the .js extension in import paths."
+              }
+            ]
+          }
+        ]
     }
 }

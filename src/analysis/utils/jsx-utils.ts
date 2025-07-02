@@ -1,7 +1,7 @@
 import { getLocalNameFromImport } from "../../utils/migration.ts";
-import type { Runtime } from "../../utils/types.js";
-import type { ComponentUsageData } from "../types.js";
-import { shouldIgnoreProperty } from "./mapping-utils.js";
+import type { Runtime } from "../../utils/types.ts";
+import type { ComponentUsageData } from "../types.ts";
+import { shouldIgnoreProperty } from "./mapping-utils.ts";
 
 /**
  * Constructs a repository URL with line number for a specific file location

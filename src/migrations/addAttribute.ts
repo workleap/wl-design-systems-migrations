@@ -1,6 +1,6 @@
 import type { ASTPath, JSXAttribute, JSXOpeningElement } from "jscodeshift";
 import { createObjectExpression, isAttributeValueType } from "../utils/mapping.ts";
-import type { Runtime } from "../utils/types.js";
+import type { Runtime } from "../utils/types.ts";
 
 
 export function addAttribute(

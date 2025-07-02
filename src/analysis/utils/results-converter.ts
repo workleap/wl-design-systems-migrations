@@ -1,6 +1,6 @@
-import type { Runtime } from "../../utils/types.js";
-import type { AnalysisResults, ComponentAnalysisData, ComponentUsageData, FunctionAnalysisData, FunctionUsageData, TypeAnalysisData, TypeUsageData, PropertyUsage } from "../types.js";
-import { isComponentMapped, isPropertyMapped } from "./mapping-utils.js";
+import type { Runtime } from "../../utils/types.ts";
+import type { AnalysisResults, ComponentAnalysisData, ComponentUsageData, FunctionAnalysisData, FunctionUsageData, PropertyUsage, TypeAnalysisData, TypeUsageData } from "../types.ts";
+import { isComponentMapped, isPropertyMapped } from "./mapping-utils.ts";
 
 /**
  * Converts internal component usage data to final analysis results format

@@ -1,6 +1,6 @@
 import type { Options } from "jscodeshift";
-import { isMappingCategoryKey, type Runtime } from "../utils/types.js";
-import { migrateComponent } from "./migrateComponent.js";
+import { isMappingCategoryKey, type Runtime } from "../utils/types.ts";
+import { migrateComponent } from "./migrateComponent.ts";
 
 export function migrate(
   runtime: Runtime,

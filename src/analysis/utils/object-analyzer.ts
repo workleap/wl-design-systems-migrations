@@ -1,6 +1,6 @@
-import { getLocalNameFromImport } from "../../utils/migration.js";
-import type { Runtime } from "../../utils/types.js";
-import type { ObjectUsageData } from "../types.js";
+import { getLocalNameFromImport } from "../../utils/migration.ts";
+import type { Runtime } from "../../utils/types.ts";
+import type { ObjectUsageData } from "../types.ts";
 
 /**
  * Performs object literal analysis to extract object type usage data
