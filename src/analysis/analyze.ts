@@ -1,18 +1,18 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import type { Options } from "jscodeshift";
-import type { Runtime } from "../utils/types.js";
-import type { AnalysisResults } from "./types.js";
-import { performFunctionAnalysis } from "./utils/function-analyzer.js";
-import { customStringify } from "./utils/json-utils.js";
-import { performJSXAnalysis } from "./utils/jsx-analyzer.js";
-import { performTypeAnalysis } from "./utils/type-analyzer.js";
-import { mergeAnalysisResults } from "./utils/merge-utils.js";
-import { convertToAnalysisResults } from "./utils/results-converter.js";
+import type { Runtime } from "../utils/types.ts";
+import type { AnalysisResults } from "./types.ts";
+import { performFunctionAnalysis } from "./utils/function-analyzer.ts";
+import { customStringify } from "./utils/json-utils.ts";
+import { performJSXAnalysis } from "./utils/jsx-analyzer.ts";
+import { mergeAnalysisResults } from "./utils/merge-utils.ts";
+import { convertToAnalysisResults } from "./utils/results-converter.ts";
+import { performTypeAnalysis } from "./utils/type-analyzer.ts";
 
 // Re-export types and utilities for backward compatibility
-export type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, TypeAnalysisData, PropertyUsage } from "./types.js";
-export { customStringify, getSortedKeys } from "./utils/json-utils.js";
-export { mergeAnalysisResults } from "./utils/merge-utils.js";
+export type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage, TypeAnalysisData } from "./types.ts";
+export { customStringify, getSortedKeys } from "./utils/json-utils.ts";
+export { mergeAnalysisResults } from "./utils/merge-utils.ts";
 
 /**
  * Analyzes a file to find all component usages from the specified source package

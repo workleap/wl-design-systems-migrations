@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { MigrationNotesManager, resetGlobalManager } from "../migration-notes.js";
+import { MigrationNotesManager, resetGlobalManager } from "../migration-notes.ts";
 
 describe("MigrationNotesManager", () => {
   let testDir: string;

@@ -1,7 +1,7 @@
 import type { StyledSystemProps as HopperStyledSystemProps } from "@hopper-ui/components";
-import type core from "jscodeshift/src/core.js";
-import type { ASTNode, ASTPath, Collection, JSXAttribute, JSXOpeningElement, ObjectProperty } from "jscodeshift/src/core.js";
-import type { MigrationNotesManager } from "./migration-notes.js";
+import type core from "jscodeshift/src/core.ts";
+import type { ASTNode, ASTPath, Collection, JSXAttribute, JSXOpeningElement, ObjectProperty } from "jscodeshift/src/core.ts";
+import type { MigrationNotesManager } from "./migration-notes.ts";
 
 
 export interface Runtime {

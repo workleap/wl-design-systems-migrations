@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
-import { getRuntime } from "../../utils/test.js";
-import { performObjectAnalysis } from "../utils/object-analyzer.js";
+import { getRuntime } from "../../utils/test.ts";
+import { performObjectAnalysis } from "../utils/object-analyzer.ts";
 
 test("should analyze object literals with type annotations", () => {
   const sourceCode = `
