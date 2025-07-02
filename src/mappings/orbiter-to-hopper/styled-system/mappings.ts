@@ -60,7 +60,7 @@ import {
   fontStyleMapper,
   fontWeightMapper
 } from "./styles/fonts.ts";
-import { columnGapMapper, gapMapper, rowGapMapper } from "./styles/gap.js";
+import { columnGapMapper, gapMapper, rowGapMapper } from "./styles/gap.ts";
 import {
   gridAutoColumnsMapper,
   gridAutoRowsMapper,

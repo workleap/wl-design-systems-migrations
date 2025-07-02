@@ -1,4 +1,4 @@
-import type { Runtime } from "../../utils/types.js";
+import type { Runtime } from "../../utils/types.ts";
 
 /**
  * Checks if a component has a mapping in the mappings configuration

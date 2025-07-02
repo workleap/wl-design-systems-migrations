@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
-import { getRuntime } from "../../utils/test.js";
-import { analyze } from "../analyze.js";
+import { getRuntime } from "../../utils/test.ts";
+import { analyze } from "../analyze.ts";
 
 test("analyze should include both components and functions", () => {
   const sourceCode = `

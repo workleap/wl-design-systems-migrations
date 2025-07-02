@@ -1,6 +1,6 @@
-import { getLocalNameFromImport } from "../../utils/migration.js";
-import type { Runtime } from "../../utils/types.js";
-import type { FunctionUsageData } from "../types.js";
+import { getLocalNameFromImport } from "../../utils/migration.ts";
+import type { Runtime } from "../../utils/types.ts";
+import type { FunctionUsageData } from "../types.ts";
 
 /**
  * Performs function call analysis to extract function usage data

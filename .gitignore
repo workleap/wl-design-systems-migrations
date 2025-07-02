@@ -4,3 +4,4 @@ cdmd_dist
 **/*.log
 **/*.tmp
 **/.DS_Store
+**/dist/*

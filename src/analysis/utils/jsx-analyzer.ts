@@ -1,6 +1,6 @@
-import type { Runtime } from "../../utils/types.js";
-import type { ComponentUsageData } from "../types.js";
-import { extractImportedComponents, processJSXAttributes } from "./jsx-utils.js";
+import type { Runtime } from "../../utils/types.ts";
+import type { ComponentUsageData } from "../types.ts";
+import { extractImportedComponents, processJSXAttributes } from "./jsx-utils.ts";
 
 /**
  * Performs the core JSX element analysis to extract component usage data

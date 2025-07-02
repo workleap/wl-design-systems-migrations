@@ -2,7 +2,7 @@ import { defaultJSCodeshiftParser } from "@codemod.com/codemod-utils";
 import jscodeshift, { type API } from "jscodeshift";
 import { tmpdir } from "os";
 import { mappings as initialMappings } from "../mappings/orbiter-to-hopper/index.ts";
-import { getMigrationNotesManager } from "./migration-notes.js";
+import { getMigrationNotesManager } from "./migration-notes.ts";
 import type { MapMetaData, Runtime } from "./types.ts";
 
 export const buildApi = (parser?: string | jscodeshift.Parser): API => ({

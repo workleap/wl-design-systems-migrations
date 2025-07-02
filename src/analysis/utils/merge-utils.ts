@@ -1,4 +1,4 @@
-import type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage, TypeAnalysisData } from "../types.js";
+import type { AnalysisResults, ComponentAnalysisData, FunctionAnalysisData, PropertyUsage, TypeAnalysisData } from "../types.ts";
 
 /**
  * Helper function to deep clone property values (just the count objects)

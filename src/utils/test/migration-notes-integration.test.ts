@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { describe, expect, it } from "vitest";
-import { MigrationNotesManager, resetGlobalManager } from "../migration-notes.js";
+import { MigrationNotesManager, resetGlobalManager } from "../migration-notes.ts";
 
 describe("Migration Notes Integration", () => {
   it("should merge with existing migration-notes.md file in real project scenario", async () => {

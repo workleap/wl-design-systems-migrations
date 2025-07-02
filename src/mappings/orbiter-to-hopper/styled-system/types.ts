@@ -1,5 +1,5 @@
 import type { StyledSystemProps as OrbiterStyledSystemProps } from "@workleap/orbiter-ui";
-import type { HopperStyledSystemPropsKeys, PropertyMapperFunction, PropsMapping } from "../../../utils/types.js";
+import type { HopperStyledSystemPropsKeys, PropertyMapperFunction, PropsMapping } from "../../../utils/types.ts";
 
 export type OrbiterStyledSystemPropsKeys = keyof OrbiterStyledSystemProps;
   

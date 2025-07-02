@@ -1,5 +1,5 @@
 import { getLocalNameFromImport } from "../utils/migration.ts";
-import type { Runtime } from "../utils/types.js";
+import type { Runtime } from "../utils/types.ts";
 
 export interface ImportMap { 
   source?: { componentName: string; localName: string };

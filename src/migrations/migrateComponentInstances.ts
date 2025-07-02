@@ -3,9 +3,9 @@ import { getFullComponentMappings, getTodoComment } from "../utils/migration.ts"
 import type {
   ComponentMapMetaData,
   Runtime
-} from "../utils/types.js";
-import { addAttribute } from "./addAttribute.js";
-import { migrateAttribute } from "./migrateAttribute.js";
+} from "../utils/types.ts";
+import { addAttribute } from "./addAttribute.ts";
+import { migrateAttribute } from "./migrateAttribute.ts";
 
 export function migrateComponentInstances(
   instances: ASTPath<JSXOpeningElement>[],
