@@ -1,12 +1,18 @@
 {
   "name": "@workleap/migrations",
-  "author": "Workleap",
   "version": "0.1.0",
+  "author": "Workleap",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/workleap/wl-design-systems-migrations.git",
+    "directory": "cli"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
   "description": "CLI tool for running Workleap design system migration codemods",
   "bin": {
     "workleap-migrations": "dist/cli.js"
   },
-  "type": "module",
   "scripts": {
     "build": "tsc",
     "test:cli": "node dist/cli.js --help"
@@ -28,18 +34,8 @@
     "dist/**/*",
     "README.md"
   ],
-  "keywords": [
-    "codemod",
-    "migration",
-    "orbiter",
-    "hopper",
-    "design-system",
-    "workleap"
-  ],
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/workleap/wl-design-systems-migrations.git",
-    "directory": "cli"
+  "publishConfig": {
+      "access": "public",
+      "provenance": true
   }
 }
