@@ -3,27 +3,34 @@ import type {
   FileInfo,
   Options
 } from "jscodeshift";
-import { analyze } from "./analysis/analyze.js";
-import { mappings as hopper2HopperMappings } from "./mappings/hopper-to-hopper/index.js";
+import { analyze } from "./analysis/analyze.ts";
+import { mappings as hopper2HopperMappings } from "./mappings/hopper-to-hopper/index.ts";
 import { mappings as orbiter2HopperMappings } from "./mappings/orbiter-to-hopper/index.ts";
-import { migrate } from "./migrations/migrate.js";
-import { logToFile } from "./utils/logger.js";
-import { createLazyMigrationNotesManager } from "./utils/migration-notes.js";
-import { createLazyRepoInfo } from "./utils/repo-cache.js";
-import type { MapMetaData, Runtime } from "./utils/types.js";
+import { migrate } from "./migrations/migrate.ts";
+import { logToFile } from "./utils/logger.ts";
+import { createLazyMigrationNotesManager } from "./utils/migration-notes.ts";
+import { createLazyRepoInfo } from "./utils/repo-cache.ts";
+import type { MapMetaData, Runtime } from "./utils/types.ts";
 
-export default function transform(
+export function transform(
   file: FileInfo,
   api: API,
   options?: Options
 ): string | undefined {
   // Create lazy-loaded repository information getters
   const { getRepoInfo, getBranch } = createLazyRepoInfo(file.path);
-  
+
+    
   // Create lazy-loaded migration notes manager getter
   const { getMigrationNotesManager } = createLazyMigrationNotesManager();
+  const logger: Runtime["log"] = (...args) => {
+    logToFile(file.path, ...args);
+  };
 
-  const mappings = getMappingTable(options);
+  console.log("Running migration for file:", file.path);
+  logger("test");
+
+  const mappings = getMappingTable(options, logger);
 
   const runtime: Runtime = {
     j: api.jscodeshift,
@@ -33,10 +40,9 @@ export default function transform(
     getRepoInfo,
     getBranch,
     getMigrationNotesManager,
-    log: (...args) => {
-      logToFile(file.path, ...args);
-    }
+    log: logger
   };
+
 
   try {
     if (options?.a !== undefined && options?.a !== "") {
@@ -65,7 +71,9 @@ export default function transform(
     return errorMessage;
   }
 }
-function getMappingTable(options: Options | undefined) : MapMetaData {
+
+
+export function getMappingTable(options: Options | undefined, logger: Runtime["log"]): MapMetaData {
   const target = options?.mappings ?? "orbiter-to-hopper";
   switch (target) {
     case "hopper":
@@ -73,7 +81,7 @@ function getMappingTable(options: Options | undefined) : MapMetaData {
     case "orbiter-to-hopper":
       return orbiter2HopperMappings;
     default:
+      logger(`Unknown mapping target: ${target}. Using default 'orbiter-to-hopper' mappings.`);
       throw new Error(`Unknown mapping target: ${target}`);
   }
 }
-

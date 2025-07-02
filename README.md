@@ -113,7 +113,7 @@ pnpx codemod workleap/migrations -a unmapped-components.json --filter-unmapped c
 | `-a <filename>` | Output analysis to JSON file | `-a usage-report.json` |
 | `-c <components>` | Specify components to migrate | `-c layout` or `-c Div,Text` |
 | `-t <path>` | Target specific path | `-t /app/users` |
-| `--project <name>` | Track usage by project/team. It is pretty usefule when you analysis multiple repos and want to aggregate analysis results. | `--project frontend-team` |
+| `--project <name>` | Track usage by project/team. It is pretty useful when you analysis multiple repos and want to aggregate analysis results. | `--project frontend-team` |
 | `--mappings <type>` | Specify mapping table (`orbiter-to-hopper` (default) or `hopper`) | `--mappings hopper` |
 | `--deep true` | Include file locations | `--deep true` |
 | `--filter-unmapped <type>` | Show only unmapped items | `--filter-unmapped props` |
