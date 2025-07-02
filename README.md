@@ -47,7 +47,7 @@ export function App() {
 
 ## Usage Examples
 
-The default mapping table is set. for Orbiter to Hopper. If you want to run it for other mappings, you need to set it through the `mappings` parameter.
+The default mapping table is set for Orbiter to Hopper. If you want to run it for other mappings, you need to set it through the `mappings` parameter.  
 
 ### Migrate All Components
 
