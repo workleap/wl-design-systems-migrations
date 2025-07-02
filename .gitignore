@@ -5,3 +5,4 @@ cdmd_dist
 **/*.tmp
 **/.DS_Store
 **/dist/*
+dist

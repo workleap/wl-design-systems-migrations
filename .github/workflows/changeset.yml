@@ -9,12 +9,8 @@ env:
   CI: true
 
 jobs:
-  test:
-    uses: ./.github/workflows/test-reusable.yml
-
   version:
     runs-on: ubuntu-latest
-    needs: test
     permissions:
       id-token: write # required for provenance https://docs.npmjs.com/generating-provenance-statements#publishing-packages-with-provenance-via-github-actions
       contents: write
