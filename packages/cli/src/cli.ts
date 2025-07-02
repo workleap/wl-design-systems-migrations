@@ -7,7 +7,7 @@ import { existsSync, rmSync } from "fs";
 import { createRequire } from "module";
 import ora from "ora";
 import { join, resolve } from "path";
-import simpleGit from "simple-git";
+import { simpleGit } from "simple-git";
 import tempDir from "temp-dir";
 
 const require = createRequire(import.meta.url);
