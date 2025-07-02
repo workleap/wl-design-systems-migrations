@@ -3,8 +3,6 @@ name: Changesets
 # Pnpm setup based on https://github.com/pnpm/action-setup#use-cache-to-reduce-installation-time
 
 on:
-  pull_request:
-    branches: [ main ]  
   push:
     branches: ["main"]
 env:
