@@ -1,10 +1,10 @@
-name: Reusable Test Workflow
+name: Reusable Setup Workflow
 
 on:
   workflow_call:
 
 jobs:
-  test:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,12 +36,3 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Type check
-        run: pnpm lint:typecheck
-      - name: Run oxlint
-        run: pnpm lint:oxlint
-      - name: Run eslint
-        run: pnpm lint:eslint
-      - name: Run tests
-        run: pnpm test
