@@ -47,20 +47,22 @@ export function App() {
 
 ## Usage Examples
 
+The default mapping table is set for Orbiter to Hopper. If you want to run it for other mappings, you need to set it through the `mappings` parameter.  
+
 ### Migrate All Components
 
 ```bash
-pnpx codemod workleap/orbiter-to-hopper
+pnpx codemod workleap/migrations
 ```
 
 ### Migrate by Category
 
 ```bash
 # Migrate layout components (Flex, Grid, Div, etc.)
-pnpx codemod workleap/orbiter-to-hopper -c layout
+pnpx codemod workleap/migrations -c layout
 
 # Migrate button components
-pnpx codemod workleap/orbiter-to-hopper -c buttons
+pnpx codemod workleap/migrations -c buttons
 
 # Other categories: visual, menu, overlay, tags, disclosure
 ```
@@ -69,10 +71,10 @@ pnpx codemod workleap/orbiter-to-hopper -c buttons
 
 ```bash
 # Single component
-pnpx codemod workleap/orbiter-to-hopper -c Div
+pnpx codemod workleap/migrations -c Div
 
 # Multiple components
-pnpx codemod workleap/orbiter-to-hopper -c Div,Text,Button
+pnpx codemod workleap/migrations -c Div,Text,Button
 ```
 
 ### Target Specific Path
@@ -80,7 +82,7 @@ pnpx codemod workleap/orbiter-to-hopper -c Div,Text,Button
 Run the command in the desire path or pass the target path with the `-t` argument.
 
 ```bash
-pnpx codemod workleap/orbiter-to-hopper -t /app/users
+pnpx codemod workleap/migrations -t /app/users
 ```
 
 ## Usage Analysis
@@ -89,19 +91,19 @@ Generate usage reports to understand your migration scope:
 
 ```bash
 # Basic analysis
-pnpx codemod workleap/orbiter-to-hopper -a usage-report.json -n 1
+pnpx codemod workleap/migrations -a usage-report.json -n 1
 
 # Detailed analysis with file locations
-pnpx codemod workleap/orbiter-to-hopper -a usage-report.json --deep true -n 1
+pnpx codemod workleap/migrations -a usage-report.json --deep true -n 1
 
 # Project-specific analysis
-pnpx codemod workleap/orbiter-to-hopper -a usage-report.json --project frontend-team -n 1
+pnpx codemod workleap/migrations -a usage-report.json --project frontend-team -n 1
 
 # Using hopper mappings for analysis
-pnpx codemod workleap/orbiter-to-hopper -a hopper-usage.json --mappings hopper -n 1
+pnpx codemod workleap/migrations -a hopper-usage.json --mappings hopper -n 1
 
 # Analyze unmapped components only
-pnpx codemod workleap/orbiter-to-hopper -a unmapped-components.json --filter-unmapped components -n 1
+pnpx codemod workleap/migrations -a unmapped-components.json --filter-unmapped components -n 1
 ```
 
 **Key Parameters:**
@@ -111,7 +113,7 @@ pnpx codemod workleap/orbiter-to-hopper -a unmapped-components.json --filter-unm
 | `-a <filename>` | Output analysis to JSON file | `-a usage-report.json` |
 | `-c <components>` | Specify components to migrate | `-c layout` or `-c Div,Text` |
 | `-t <path>` | Target specific path | `-t /app/users` |
-| `--project <name>` | Track usage by project/team. It is pretty usefule when you analysis multiple repos and want to aggregate analysis results. | `--project frontend-team` |
+| `--project <name>` | Track usage by project/team. It is pretty useful when you analysis multiple repos and want to aggregate analysis results. | `--project frontend-team` |
 | `--mappings <type>` | Specify mapping table (`orbiter-to-hopper` (default) or `hopper`) | `--mappings hopper` |
 | `--deep true` | Include file locations | `--deep true` |
 | `--filter-unmapped <type>` | Show only unmapped items | `--filter-unmapped props` |

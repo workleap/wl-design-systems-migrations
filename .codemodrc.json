@@ -1,6 +1,6 @@
 {
   "$schema": "https://codemod-utils.s3.us-west-1.amazonaws.com/configuration_schema.json",
-  "name": "workleap/orbiter-to-hopper",
+  "name": "workleap/migrations",
   "version": "1.0.0",
   "engine": "jscodeshift",
   "private": false,
@@ -59,6 +59,6 @@
   ],
   "meta": {
     "tags": [],
-    "git": "https://github.com/workleap/orbiter-to-hopper-codemods.git"
+    "git": "https://github.com/workleap/wl-design-systems-migrations.git"
   }
 }

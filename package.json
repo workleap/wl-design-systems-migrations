@@ -1,5 +1,5 @@
 {
-  "name": "orbiter-to-hopper",
+  "name": "wl-design-systems-migrations",
   "version": "0.0.0",
   "description": "Codemods to assist design system migrations and analysis. Orbiter to Hopper, Igloo to Hopper, or Hopper usage analysis.",
   "devDependencies": {

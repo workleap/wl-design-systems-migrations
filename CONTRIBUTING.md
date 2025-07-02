@@ -23,7 +23,7 @@ pnpm sample:write          # Apply changes (remember to revert)
 **Test with external repository:**
 
 ```bash
-codemod --source /path/to/your/local/copy
+codemod --source /path_to_local_copy_of_this_repo
 ```
 
 > [!TIP]

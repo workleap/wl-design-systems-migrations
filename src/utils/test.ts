@@ -1,7 +1,7 @@
 import { defaultJSCodeshiftParser } from "@codemod.com/codemod-utils";
 import jscodeshift, { type API } from "jscodeshift";
 import { tmpdir } from "os";
-import { mappings as initialMappings } from "../mappings/orbiter/index.ts";
+import { mappings as initialMappings } from "../mappings/orbiter-to-hopper/index.ts";
 import { getMigrationNotesManager } from "./migration-notes.js";
 import type { MapMetaData, Runtime } from "./types.ts";
 
@@ -37,7 +37,7 @@ export const getRuntime = (
     filePath: "test.tsx",
     j: api.j,
     mappings: {
-      ...initialMappings,
+      ...initialMappings, //TODO : we should fix to not rely on one mapping table only
       ...mappingsOverrides
     },
     getMigrationNotesManager: () => testMigrationNotesManager,
