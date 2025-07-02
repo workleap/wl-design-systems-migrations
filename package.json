@@ -48,7 +48,6 @@
     "analyze:hopper:state": "./scripts/analyze-state.sh --mappings hopper",
     "analyze:hopper:state:deep": "./scripts/analyze-state.sh --deep true --mappings hopper",
     "build:cli": "cd packages/cli && pnpm build",
-    "cli:dev": "cd packages/cli && pnpm dev",
     "changeset": "changeset",
     "ci-release": "pnpm build:cli && changeset publish"
   },
