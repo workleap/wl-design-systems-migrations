@@ -1054,7 +1054,7 @@ export function App() {
       {/* Accordion */}
       <Accordion 
         allowsMultipleExpanded
-        autoFocus/* Migration TODO: `autofocus` is removed. It did not make sense to have. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
+        autoFocus/* Migration TODO: `autofocus` is removed. It was unnecessary. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
         expandedKeys={["1", "2"]}
         onExpandedChange={() => {}}
         defaultExpandedKeys={["1", "2"]}
