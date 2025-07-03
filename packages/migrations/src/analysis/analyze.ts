@@ -33,8 +33,8 @@ export function analyze(
     project?: string;
     deep?: boolean;
   }
-): { source: string | undefined; analysisResults: AnalysisResults } {
-  const { root, mappings } = runtime;
+): { analysisResults: AnalysisResults } {
+  const { mappings } = runtime;
   const sourcePackage = options?.sourcePackage || mappings.sourcePackage;
   const filterUnmapped = options?.["filter-unmapped"];
   const includeIgnoredList = options?.["include-ignoreList"] || false;
@@ -97,13 +97,13 @@ export function analyze(
 
     // Return the merged results when output path is provided
     return {
-      source: root.toSource(),
+      
       analysisResults: finalResults
     };
   }
 
   return {
-    source: root.toSource(),
+    
     analysisResults
   };
 }

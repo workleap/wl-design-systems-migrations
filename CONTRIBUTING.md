@@ -1,33 +1,23 @@
-# Contributing to Orbiter to Hopper Codemod
+# Contributing to Design Systems Migrations Tools
 
-Thank you for your interest in contributing! This guide helps you contribute effectively to the Orbiter to Hopper migration codemod.
+Thank you for your interest in contributing! This guide helps you contribute effectively to the design systems migrations and analysis tool.
 
 ## Quick Start
 
-1. [Install the codemod CLI globally](https://docs.codemod.com/deploying-codemods/cli#installation)
-2. Make your modifications to the codebase
-3. Test locally using `pnpm sample`
-4. Publish with `pnpm deploy:codemod`
+1. Make your modifications to the codebase
+2. Test locally using `pnpm test`
+3. Run `pnpm changeset` IF you have **modified** the [cli](/packages/cli/). No need for any changeset if you only touched the [migrations](/packages/migrations/)
 
 ## Development Workflow
 
 ### Local Testing
 
-**Test with sample file:**
-
-```bash
-pnpm sample                 # Dry run (preview changes)
-pnpm sample:write          # Apply changes (remember to revert)
-```
-
 **Test with external repository:**
 
-```bash
-codemod --source /path_to_local_copy_of_this_repo
-```
-
-> [!TIP]
-> Delete the `cdmd_dist` folder to ensure latest modifications run. The deploy script handles this automatically.
+1. Register the local `cli` globally by running `pnpm link --global` from the [packages/cli](/packages/cli/) folder.
+2. Run desire command from the external repo as mentioned in the README.md file.
+3. When you are done, you have to uninstall it by calling `pnpm uninstall --global @workleap/migrations`
+   Note: Calling `pnpm unlink` doesn't work in this case. More info: <https://pnpm.io/cli/unlink>
 
 ### Analysis Scripts
 
@@ -54,29 +44,9 @@ You can also use the scripts with custom parameters:
 
 ## Architecture Overview
 
-### Project Structure
-
-```text
-src/
-├── mappings/           # Mapping rules and transformations
-│   ├── index.ts       # Main mapping configuration
-│   ├── components/    # Component-specific mappings
-│   └── styled-system/ # Style property mappings
-├── migrations/        # Core transformation logic
-└── analysis/          # Usage analysis tools
-
-test/
-├── input.tsx          # Test cases (Orbiter components)
-├── output.txt         # Expected results (Hopper components)
-├── analyze.test.ts    # Analysis functionality tests
-├── migrate.test.ts    # Migration functionality tests
-├── mappings.test.ts   # Mappings table tests
-└── utils.ts           # Test utilities and helpers
-```
-
 ### Mapping Configuration
 
-Main mapping object in [`src/mappings/orbiter/index.ts`](/src/mappings/orbiter/index.ts):
+Orbiter to Hopper mapping object is in [`packages/migrations/src/mappings/orbiter/index.ts`](/packages/migrations/src/mappings/orbiter-to-hopper/index.ts):
 
 ```ts
 {
@@ -384,7 +354,7 @@ components: {
 
 **Import handling with dynamic mappings:**
 
-When components have dynamic mappings, the codemod automatically handles import management:
+When components have dynamic mappings, the migration engine automatically handles import management:
 
 - **Multiple targets:** Different instances map to different components
 - **Alias preservation:** Local aliases are maintained with numeric suffixes when needed
@@ -432,7 +402,7 @@ This pattern is useful when migrating from attribute-based APIs to child-based A
 
 ### Helper Functions
 
-Key utilities from [`src/utils/mapping.ts`](/src/utils/mapping.ts):
+Key utilities from [`src/utils/mapping.ts`](/packages/migrations/src/utils/mapping.ts):
 
 **Core extraction functions:**
 
@@ -490,8 +460,8 @@ log("Applied fluid transformation");
 
 ### Test Mappings
 
-- **[`test/input.tsx`](/test/input.tsx)** - Orbiter component test cases
-- **[`test/output.txt`](/test/output.txt)** - Expected transformation results
+- **[`input.tsx`](/packages/migrations/src/mappings/orbiter-to-hopper/test/mocks/input.tsx)** - Orbiter component test cases
+- **[`output.txt`](/packages/migrations/src/mappings/orbiter-to-hopper/test/mocks/output.tsx)** - Expected transformation results
 
 ### Adding Test Cases
 

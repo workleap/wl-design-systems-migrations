@@ -1,5 +1,7 @@
 import * as fs from "fs";
-import * as path from "path";
+import { tmpdir } from "os";
+import { join } from "path";
+
 
 export interface MigrationNote {
   note: string;
@@ -14,8 +16,8 @@ class FileLock {
   private maxRetries: number;
   private retryDelay: number;
 
-  constructor(filePath: string, maxRetries = 50, retryDelay = 100) {
-    this.lockFile = `${filePath}.lock`;
+  constructor(maxRetries = 50, retryDelay = 100) {
+    this.lockFile = join(tmpdir(), `${MIGRATION_NOTES_FILE}.lock`);
     this.maxRetries = maxRetries;
     this.retryDelay = retryDelay;
   }
@@ -57,8 +59,8 @@ export class MigrationNotesManager {
     projectRoot: string = process.cwd(), 
     outputFileName: string = MIGRATION_NOTES_FILE
   ) {   
-    this.outputFilePath = path.join(projectRoot, outputFileName);
-    this.lock = new FileLock(this.outputFilePath);   
+    this.outputFilePath = join(projectRoot, outputFileName);
+    this.lock = new FileLock();   
   }
 
   getOutputFilePath(): string {

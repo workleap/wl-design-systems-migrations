@@ -4,7 +4,7 @@ import { tmpdir } from "os";
 import { join } from "path";
 
 // File-based cache for git repository information to persist across jscodeshift file processes
-const CACHE_DIR = join(tmpdir(), "orbiter-codemod-cache");
+const CACHE_DIR = join(tmpdir(), "ds-migrations-cache");
 const REPO_CACHE_FILE = join(CACHE_DIR, "repo-info.json");
 const BRANCH_CACHE_FILE = join(CACHE_DIR, "branch-info.json");
 
