@@ -12,7 +12,7 @@ import { createLazyMigrationNotesManager } from "./utils/migration-notes.ts";
 import { createLazyRepoInfo } from "./utils/repo-cache.ts";
 import type { MapMetaData, Runtime } from "./utils/types.ts";
 
-export function transform(
+export default function transform(
   file: FileInfo,
   api: API,
   options?: Options
