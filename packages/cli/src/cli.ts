@@ -119,6 +119,21 @@ function cleanup(): void {
   }
 }
 
+function installDependencies(repoPath: string): void {
+  const spinner = ora("Installing dependencies...").start();
+  
+  try {
+    execSync("pnpm install", { 
+      cwd: repoPath, 
+      stdio: "pipe" 
+    });
+    spinner.succeed("Dependencies installed");
+  } catch (error) {
+    spinner.fail("Failed to install dependencies");
+    throw error;
+  }
+}
+
 async function main() {
   const program = new Command();
 
@@ -151,6 +166,9 @@ async function main() {
 
         // Clone the repository if no source is provided
         const repoPath = options.source ? join(cwd(), options.source) : await cloneRepo();
+
+        // Install dependencies
+        installDependencies(repoPath);
 
         // Run the migration
         runCommand(mode, repoPath, targetPath, options);
