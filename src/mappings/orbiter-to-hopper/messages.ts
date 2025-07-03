@@ -60,7 +60,7 @@ export const messages = {
     popover_dismissable_not_supported: "`dismissable` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions.",
     popover_focus_not_supported: "`focus` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions.",
     spinner_color_only_text: "`color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes",
-    tabs_manual_not_supported: "`manual` is not supported anymore. Refer to this sample(https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes",
+    tabs_manual_not_supported: "`manual` is not supported anymore. Refer to this sample (https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes",
     tabs_manual_restructure: "Automatic migration is not possible. Please do it manually by restructuring Items with Header/Content to TabList/Tab and TabPanel components. More details: https://hopper.workleap.design/components/Tabs#usage",
     tabs_orientation_not_supported: "`orientation` is not supported anymore. More details: https://hopper.workleap.design/components/Tabs#migration-notes",
     tabs_review_changes: "Please review the Tabs migration changes, especially the TabList and TabPanel structure.",
