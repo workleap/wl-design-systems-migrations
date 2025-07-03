@@ -683,7 +683,7 @@ export function App() {
         name="John Doe"
         onPress={() => {}}
         size="2xl"
-        retryCount={0}/* Migration TODO: `retryCount` is not supported anymore. Remove it. */
+        retryCount={0}/* Migration TODO: `retryCount` is not supported anymore. Remove it. */        
         src="https://example.com/avatar.jpg"
       />
       <AvatarGroup size="xs" wrap reverse align="center">
@@ -706,7 +706,7 @@ export function App() {
           transition: "background-color var(--hop-easing-duration-2) var(--hop-easing-duration-2)"
         }}>Avatar Text</Text>
       <Text
-        size="invalid"/* Migration TODO: The provided value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`. */
+        size="invalid"/* Migration TODO: The passed value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`. */
         display="inline-flex"
         alignItems="center"
         justifyContent="center"
@@ -716,7 +716,7 @@ export function App() {
         style={{
           transition: "background-color var(--hop-easing-duration-2) var(--hop-easing-duration-2)"
         }}>Avatar Text</Text>
-      <Image
+      <Image 
         src="src"
         alt="alt"
         shape="circular"
@@ -728,33 +728,33 @@ export function App() {
       <SvgImage src="blockquote" aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
       <Illustration orientation="vertical" shape="rounded">test</Illustration>
       <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
-      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
+      /* Migration TODO: orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
       <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
-      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
+      /* Migration TODO: orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
       /* Migration TODO: width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes */
       <IllustratedMessage orientation="vertical" UNSAFE_width="120px">test</IllustratedMessage>
       <IllustratedMessage>test</IllustratedMessage>
       /* Migration TODO: `Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate /> */
       <Dot />
-      <Link
-        href="test"
-        target="_blank"
-        rel="test"
-        shape="box"/* Migration TODO: `shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes */
-        autoFocus
-        isDisabled
-        isExternal
+      <Link 
+        href="test" 
+        target="_blank" 
+        rel="test" 
+        shape="box"/* Migration TODO: `shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes */ 
+        autoFocus 
+        isDisabled 
+        isExternal 
         onPress={() => {}}
         onAuxClick={() => {}}/* Migration TODO: `onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/onAuxClick.md */
         onHoverStart={() => {}}
         onHoverEnd={() => {}}
-        colorHover="core_quetzal-25"
+        colorHover="core_quetzal-25"          
       >
         Link Text
       </Link>
       {/* TextLink */}
-      <Link
-        href="test"
+      <Link 
+        href="test" 
         onPress={() => {}}
         onMouseDown={() => {}}/* Migration TODO: `onMouseDown` is not supported anymore. Use `onPress` instead. */
         onKeyPress={() => {}}/* Migration TODO: `onKeyPress` is not supported anymore. Use `onPress` instead. */
@@ -779,18 +779,18 @@ export function App() {
       <Link href="test" aria-label="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
         <SparklesIcon />
       </Link>
-      <Link
-        href="test"
-        variant="primary"
-        underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */
+      <Link 
+        href="test" 
+        variant="primary" 
+        underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */ 
         size="sm"
       >
         Link Text
       </Link>
-      <Link
-        href="test"
-        variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */
-        underline="solid"/* Migration TODO: `underline` is not supported anymore. Remove it. */
+      <Link 
+        href="test" 
+        variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */ 
+        underline="solid"/* Migration TODO: `underline` is not supported anymore. Remove it. */ 
         size="inherit"
       >
         Link Text
@@ -801,18 +801,18 @@ export function App() {
       <Link href="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
         <SparklesIcon />
       </Link>
-      <Modal
-        isDismissable
-        overlayProps={{ className: "test" }}
+      <Modal 
+        isDismissable 
+        overlayProps={{ className: "test" }} 
         REVIEWME_onOpenChange={(e) => {}}/* Migration TODO: `onClose` is not supported anymore. Use `onOpenChange` instead. */
       >
         test
       </Modal>
       <ModalTrigger isOpen onOpenChange={()=>{}} dismissable/* Migration TODO: `dismissable` is not supported anymore. Use `isDismissable` prop at related `Modal` component instead. */>test</ModalTrigger>
       <Popover dismissable/* Migration TODO: `dismissable` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */ focus/* Migration TODO: `focus` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */>test</Popover>
-      <PopoverTrigger
-        isOpen
-        position="left-start"/* Migration TODO: `position` property has been moved to the `Popover` component and renamed to `placement`. More details: https://hopper.workleap.design/components/Popover#migration-notes  */
+      <PopoverTrigger 
+        isOpen 
+        position="left-start"/* Migration TODO: `position` property has been moved to the `Popover` component and renamed to `placement`. More details: https://hopper.workleap.design/components/Popover#migration-notes  */ 
         zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Popover` component instead. */
       >
         test
@@ -837,11 +837,11 @@ export function App() {
       /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
       <Overlay show>text</Overlay>
       {/* Alert */}
-      <Alert
+      <Alert 
         isDismissable
         overlayProps={{ className: "test" }}
         onClose={() => {}}/* Migration TODO: `onClose` is removed. Use the `onOpenChange` callback on `AlertTrigger` instead. */
-        variant="confirmation"
+        variant="confirmation" 
         primaryButtonLabel="Confirm"
         onPrimaryButtonClick={() => {}}
         cancelButtonLabel="Cancel"
@@ -849,7 +849,7 @@ export function App() {
       >
         Alert
       </Alert>
-      <AlertTrigger
+      <AlertTrigger 
         isOpen
         zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Alert` component instead. */
       >
@@ -1052,9 +1052,9 @@ export function App() {
       </Disclosure>
       <ToggleArrow isExpanded={true} />
       {/* Accordion */}
-      <Accordion
+      <Accordion 
         allowsMultipleExpanded
-        autoFocus/* Migration TODO: `autofocus` is removed. It was unnecessary. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
+        autoFocus/* Migration TODO: `autofocus` is removed. It did not make sense to have. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
         expandedKeys={["1", "2"]}
         onExpandedChange={() => {}}
         defaultExpandedKeys={["1", "2"]}
@@ -1083,7 +1083,7 @@ export function App() {
         onSelectionChange={() => {}}
         selectedKey="tab1"
         variant="heading"
-        manual/* Migration TODO: `manual` is not supported anymore. Refer to this sample (https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes */
+        manual/* Migration TODO: `manual` is not supported anymore. Refer to this sample(https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes */
         collapsible
         orientation="horizontal"/* Migration TODO: `orientation` is not supported anymore. More details: https://hopper.workleap.design/components/Tabs#migration-notes */>
         test
