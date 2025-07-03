@@ -2,7 +2,7 @@
 //NOTE: we used .ts file instead of .json + import ... { type: "json" } to avoid issues with the codemod tool that doesn't support advanced TS features like import assertions.
 export const messages = {
   todoComments: {
-    accordion_autofocus_removed: "`autofocus` is removed. It did not make sense to have. More details: https://hopper.workleap.design/components/Accordion#migration-notes",
+    accordion_autofocus_removed: "`autofocus` is removed. It was unnecessary. More details: https://hopper.workleap.design/components/Accordion#migration-notes",
     accordion_expansion_mode_not_supported: "`expansionMode` is not supported anymore. Use `allowsMultipleExpanded` instead if you want to allow multiple items to be expanded. More details: https://hopper.workleap.design/components/Accordion#migration-notes",
     accordion_variant_no_match: "`inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes",
     alert_on_close_removed: "`onClose` is removed. Use the `onOpenChange` callback on `AlertTrigger` instead.",
@@ -12,7 +12,7 @@ export const messages = {
     all_components_hover_not_supported: "`hover` is not supported anymore. Find an alternative solution",
     all_components_min_width_invalid: "It seems `min-width` is an invalid property. Remove it if it is not needed",
     avatar_retry_count_not_supported: "`retryCount` is not supported anymore. Remove it.",
-    avatar_text_invalid_size: "The passed value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`.",
+    avatar_text_invalid_size: "The provided value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`.",
     button_as_link_external_note: "If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback",
     button_group_inline_not_supported: "`inline` is not supported anymore. Remove it.",
     button_group_reverse_not_supported: "`reverse` is not supported anymore. Remove it.",
@@ -35,7 +35,7 @@ export const messages = {
     flex_reverse_not_supported: "Remove the `reverse` property, read this: https://hopper.workleap.design/components/Flex#migration-notes",
     group_not_supported: "`Group` component is not supported in Hopper. Check the `migration-notes.md` file to see the migration path.",
     icon_button_2xs_not_supported: "`2xs` is not supported anymore. `xs` is the closest one.",
-    illustration_orientation_removed: "orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation.",
+    illustration_orientation_removed: "orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation.",
     illustration_width_height_wrapper: "width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes",
     link_on_aux_click_not_supported: "`onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/onAuxClick.md",
     link_shape_not_supported: "`shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes",
