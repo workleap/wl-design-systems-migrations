@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.0.1
+
+### Patch Changes
+
+- [#83](https://github.com/workleap/wl-design-systems-migrations/pull/83) [`345e66b`](https://github.com/workleap/wl-design-systems-migrations/commit/345e66bce0bc650c1b0ac43d403d065ede83d392) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Fix CI issue
+
 ## 1.0.0
 
 ### Major Changes
