@@ -1,9 +1,14 @@
-import { defaultJSCodeshiftParser } from "@codemod.com/codemod-utils";
+import babylon, { type ParserOptions } from "@babel/parser";
 import jscodeshift, { type API } from "jscodeshift";
 import { tmpdir } from "os";
+import parserConfig from "../../../cli/src/parser-config.json" with { type: "json" };
 import { mappings as initialMappings } from "../mappings/orbiter-to-hopper/index.ts";
 import { getMigrationNotesManager } from "./migration-notes.ts";
 import type { MapMetaData, Runtime } from "./types.ts";
+
+const defaultParser: jscodeshift.Parser = {
+  parse: (source: string) => babylon.parse(source, parserConfig as ParserOptions)
+};
 
 export const buildApi = (parser?: string | jscodeshift.Parser): API => ({
   j: parser ? jscodeshift.withParser(parser) : jscodeshift,
@@ -24,7 +29,7 @@ export const getRuntime = (
   source: string,
   mappingsOverrides?: Partial<MapMetaData>
 ): Runtime => {
-  const api = buildApi(defaultJSCodeshiftParser); //to make sure our tests work like the codemod parser
+  const api = buildApi(defaultParser); //to make sure our tests work like the Jscodeshift CLI's parser
 
   // Create a migration notes manager with a temporary directory and random filename for tests
   const testMigrationNotesManager = getMigrationNotesManager(

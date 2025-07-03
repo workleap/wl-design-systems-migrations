@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-//NOTE: we used .ts file instead of .json + import ... { type: "json" } to avoid issues with the codemod tool that doesn't support advanced TS features like import assertions.
+//NOTE: we used .ts file instead of .json + import ... { type: "json" } to avoid issues with the Jscodeshift tool that doesn't support advanced TS features like import assertions.
 export const messages = {
   todoComments: {
     accordion_autofocus_removed: "`autofocus` is removed. It was unnecessary. More details: https://hopper.workleap.design/components/Accordion#migration-notes",

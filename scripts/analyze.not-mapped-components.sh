@@ -4,7 +4,7 @@
 
 DEEP_ANALYSIS_FLAG=""
 MAPPINGS="orbiter" # Default mappings
-MAPPINGS_FLAG="--mappings orbiter"
+MAPPINGS_FLAG="--mappings orbiter-to-hopper"
 
 # Parse arguments
 if [ "$1" == "--deep" ] && [ "$2" == "true" ]; then
@@ -33,17 +33,19 @@ fi
 
 rm -f "$OUTPUT_FILE_NAME"
 
-pnpx codemod -s ./ -t ../ShareGate.Protect.Web -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "SG Protect" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-pnpx codemod -s ./ -t ../ShareGate.One -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "SG One" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm build:cli
 
-pnpx codemod -s ./ -t ../workleap-performance-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "Performance" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../ShareGate.Protect.Web --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"SG Protect\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../ShareGate.One --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"SG One\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
 
-pnpx codemod -s ./ -t ../workleap-management-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "Management App" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-pnpx codemod -s ./ -t ../workleap-management-shell -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "Management Shell" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-pnpx codemod -s ./ -t ../workleap-administration-portal -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "Administration Portal" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-pnpx codemod -s ./ -t ../workleap-activation-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "Activation" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
-pnpx codemod -s ./ -t ../workleap-login-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "Login" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../workleap-performance-app --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"Performance\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
 
-pnpx codemod -s ./ -t ../workleap-ai-app -a "$OUTPUT_FILE_NAME" -n 1 --no-interactive --filter-unmapped components --project "AI" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../workleap-management-app --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"Management App\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../workleap-management-shell --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"Management Shell\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../workleap-administration-portal --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"Administration Portal\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../workleap-activation-app --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"Activation\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+pnpm cli analyze -s ./ -t ../workleap-login-app --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"Login\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
+
+pnpm cli analyze -s ./ -t ../workleap-ai-app --usage-report-file "$OUTPUT_FILE_NAME" --filter-unmapped components --project "\"AI\"" $MAPPINGS_FLAG $DEEP_ANALYSIS_FLAG
 
 echo "✅ Analysis complete! Check $OUTPUT_FILE_NAME for results."

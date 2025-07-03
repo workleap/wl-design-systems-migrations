@@ -27,9 +27,6 @@ export default function transform(
     logToFile(file.path, ...args);
   };
 
-  console.log("Running migration for file:", file.path);
-  logger("test");
-
   const mappings = getMappingTable(options, logger);
 
   const runtime: Runtime = {
@@ -43,11 +40,10 @@ export default function transform(
     log: logger
   };
 
-
   try {
     if (options?.a !== undefined && options?.a !== "") {
       const outputPath = options.a as string;
-      const result = analyze(runtime, outputPath, {
+      analyze(runtime, outputPath, {
         ...options,
         "filter-unmapped": options["filter-unmapped"] as
           | "components"
@@ -60,7 +56,7 @@ export default function transform(
         deep: options.deep as boolean | undefined
       });
 
-      return result.source;
+      return undefined; // Analysis does not change anything. returning result.source is not accurate as it may have been modified through parsing.
     } else {
       return migrate(runtime, options);
     }

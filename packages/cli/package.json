@@ -1,6 +1,6 @@
 {
   "name": "@workleap/migrations",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Workleap",
   "repository": {
     "type": "git",
@@ -9,12 +9,13 @@
   },
   "license": "Apache-2.0",
   "type": "module",
-  "description": "CLI tool for running Workleap design system migration codemods",
+  "description": "CLI tool for running Workleap design systems migrations",
   "bin": {
     "workleap-migrations": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
+    "cli": "node dist/cli.js",
     "test:cli": "node dist/cli.js --help"
   },
   "dependencies": {

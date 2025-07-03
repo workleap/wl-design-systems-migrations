@@ -1,6 +1,6 @@
-# Design System Migration Codemod <!-- omit in toc -->
+# Design Systems Migrations Tools <!-- omit in toc -->
 
-This codemod automates the migration of components between design systems. Currently supports migration from [Orbiter](https://github.com/workleap/wl-orbiter) to [Hopper](https://github.com/workleap/wl-hopper), with extensible architecture for other design system migrations.
+This tool automates the migration of components between design systems. Currently supports migration from [Orbiter](https://github.com/workleap/wl-orbiter) to [Hopper](https://github.com/workleap/wl-hopper), with extensible architecture for other design system migrations.
 
 **Key Features:**
 
@@ -12,6 +12,7 @@ This codemod automates the migration of components between design systems. Curre
 ## Table of contents <!-- omit in toc -->
 
 - [Quick Start](#quick-start)
+  - [Using the CLI (Recommended)](#using-the-cli-recommended)
   - [Orbiter to Hopper Migration Example](#orbiter-to-hopper-migration-example)
 - [Usage Examples](#usage-examples)
   - [Migrate All Components](#migrate-all-components)
@@ -29,24 +30,19 @@ The easiest way to run migrations is using our CLI tool:
 
 ```bash
 # Run directly with npx (no installation required)
-npx @workleap/design-systems-migrations-cli ./src
-
-# Or install globally
-npm install -g @workleap/design-systems-migrations-cli
-workleap-migrations ./src
+pnpx @workleap/migrations
 ```
 
 The CLI automatically:
 
 - Clones the latest migration repository
-- Installs dependencies
-- Runs the codemod with your specified options
+- Runs the migrations with your specified options
 - Cleans up temporary files
 
 For more CLI options:
 
 ```bash
-npx @workleap/design-systems-migrations-cli --help
+npx pnpx @workleap/migrations --help
 ```
 
 ### Orbiter to Hopper Migration Example
@@ -78,17 +74,17 @@ The default mapping table is set for Orbiter to Hopper. If you want to run it fo
 ### Migrate All Components
 
 ```bash
-pnpx codemod workleap/migrations
+pnpx @workleap/migrations
 ```
 
 ### Migrate by Category
 
 ```bash
 # Migrate layout components (Flex, Grid, Div, etc.)
-pnpx codemod workleap/migrations -c layout
+pnpx @workleap/migrations -c layout
 
 # Migrate button components
-pnpx codemod workleap/migrations -c buttons
+pnpx @workleap/migrations -c buttons
 
 # Other categories: visual, menu, overlay, tags, disclosure
 ```
@@ -97,10 +93,10 @@ pnpx codemod workleap/migrations -c buttons
 
 ```bash
 # Single component
-pnpx codemod workleap/migrations -c Div
+pnpx @workleap/migrations -c Div
 
 # Multiple components
-pnpx codemod workleap/migrations -c Div,Text,Button
+pnpx @workleap/migrations -c Div,Text,Button
 ```
 
 ### Target Specific Path
@@ -108,7 +104,7 @@ pnpx codemod workleap/migrations -c Div,Text,Button
 Run the command in the desire path or pass the target path with the `-t` argument.
 
 ```bash
-pnpx codemod workleap/migrations -t /app/users
+pnpx @workleap/migrations -t /app/users
 ```
 
 ## Usage Analysis
@@ -117,33 +113,32 @@ Generate usage reports to understand your migration scope:
 
 ```bash
 # Basic analysis
-pnpx codemod workleap/migrations -a usage-report.json -n 1
+pnpx @workleap/migrations analyze 
 
 # Detailed analysis with file locations
-pnpx codemod workleap/migrations -a usage-report.json --deep true -n 1
+pnpx @workleap/migrations analyze --deep true
 
 # Project-specific analysis
-pnpx codemod workleap/migrations -a usage-report.json --project frontend-team -n 1
+pnpx @workleap/migrations analyze --project frontend-team
 
 # Using hopper mappings for analysis
-pnpx codemod workleap/migrations -a hopper-usage.json --mappings hopper -n 1
+pnpx @workleap/migrations analyze --mappings hopper
 
 # Analyze unmapped components only
-pnpx codemod workleap/migrations -a unmapped-components.json --filter-unmapped components -n 1
+pnpx @workleap/migrations analyze --filter-unmapped components
 ```
 
 **Key Parameters:**
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
-| `-a <filename>` | Output analysis to JSON file | `-a usage-report.json` |
 | `-c <components>` | Specify components to migrate | `-c layout` or `-c Div,Text` |
 | `-t <path>` | Target specific path | `-t /app/users` |
 | `--project <name>` | Track usage by project/team. It is pretty useful when you analysis multiple repos and want to aggregate analysis results. | `--project frontend-team` |
 | `--mappings <type>` | Specify mapping table (`orbiter-to-hopper` (default) or `hopper`) | `--mappings hopper` |
 | `--deep true` | Include file locations | `--deep true` |
 | `--filter-unmapped <type>` | Show only unmapped items | `--filter-unmapped props` |
-| `-n 1` | Use single thread (required for analysis) | `-n 1` |
+| `analyze` | Pass it as first argument to analyze. Otherwise, it runs migrations | `N/A` |
 
 **Sample Analysis Output:**
 

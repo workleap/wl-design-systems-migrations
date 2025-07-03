@@ -45,7 +45,7 @@ export function isWithinComponent(
   packageName: string,
   { j, root }: Runtime
 ): boolean {
-  // Extract components from the source package that this codemod is working with
+  // Extract components from the source package that this migration is working with
   const { importedComponents } = extractImportedComponents(j, root, packageName);      
   let current = path.parentPath;
   
@@ -298,7 +298,7 @@ function parseResponsiveObjectValue<T extends string>(
   // Process each property in the responsive object
   for (const property of objectExpression.properties) {
     if (
-      //tsx parser returns ObjectProperty, but codemod default parser returns Property
+      //tsx parser returns ObjectProperty, but Jscodeshift default parser returns Property
       (property.type === "ObjectProperty" || property.type === "Property") &&
       property.key &&
       property.value

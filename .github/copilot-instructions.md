@@ -5,8 +5,6 @@
   - Commit the changes to the branch.
 - No need to rebase or checking the status.
 - Create a new PR based on the branch.
-- Make sure to update the version in the `.codemodrc.json` file only if the logic has changed.
-  - Just increment the minor version.
 - Make sure to update the `README.md` or `CONTRIBUTING.md` files with any new features or changes if there are related section in the file.
   - Just update the existing sections if it is required.
   - It is an important step before final step.
