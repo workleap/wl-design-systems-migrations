@@ -8,6 +8,7 @@
     "@changesets/cli": "2.29.5",
     "@typescript-eslint/parser": "8.35.1",
     "@workleap/eslint-plugin": "3.4.2",
+    "@workleap/typescript-configs": "3.0.4",
     "eslint": "8.57.1",
     "oxlint": "^1.3.0",
     "vitest": "3.2.4"
@@ -31,7 +32,10 @@
     "build:cli": "pnpm -F \"./packages/cli\" run build",
     "cli": "node packages/cli/dist/cli.js",
     "changeset": "changeset",
-    "ci-release": "pnpm build:cli && changeset publish"
+    "ci-release": "pnpm build:cli && changeset publish",
+    "clean": "pnpm -r --parallel --include-workspace-root exec pnpm dlx rimraf dist node_modules/.cache",
+    "reset:modules": "pnpm -r --parallel --include-workspace-root exec pnpm dlx rimraf node_modules pnpm-lock.yaml",
+    "reset": "pnpm clean && pnpm reset:modules"
   },
   "files": [
     "README.md"
