@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.0.3
+
+### Patch Changes
+
+- [#87](https://github.com/workleap/wl-design-systems-migrations/pull/87) [`9803146`](https://github.com/workleap/wl-design-systems-migrations/commit/9803146f182e37306a169c845fa2b5e96f4f0f07) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Fix CLI: installing dependencies
+
 ## 1.0.2
 
 ### Patch Changes
