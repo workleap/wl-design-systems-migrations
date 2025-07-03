@@ -29,7 +29,7 @@ This tool automates the migration of components between design systems. Currentl
 The easiest way to run migrations is using our CLI tool:
 
 ```bash
-# Run directly with npx (no installation required)
+# Run directly with pnpx (no installation required)
 pnpx @workleap/migrations
 ```
 
@@ -42,7 +42,7 @@ The CLI automatically:
 For more CLI options:
 
 ```bash
-npx pnpx @workleap/migrations --help
+pnpx @workleap/migrations --help
 ```
 
 ### Orbiter to Hopper Migration Example
