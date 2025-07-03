@@ -706,7 +706,7 @@ export function App() {
           transition: "background-color var(--hop-easing-duration-2) var(--hop-easing-duration-2)"
         }}>Avatar Text</Text>
       <Text
-        size="invalid"/* Migration TODO: The passed value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`. */
+        size="invalid"/* Migration TODO: The provided value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`. */
         display="inline-flex"
         alignItems="center"
         justifyContent="center"
@@ -728,9 +728,9 @@ export function App() {
       <SvgImage src="blockquote" aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
       <Illustration orientation="vertical" shape="rounded">test</Illustration>
       <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
-      /* Migration TODO: orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
+      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
       <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
-      /* Migration TODO: orientation has been removed. Refer to this sample(https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
+      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
       /* Migration TODO: width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes */
       <IllustratedMessage orientation="vertical" UNSAFE_width="120px">test</IllustratedMessage>
       <IllustratedMessage>test</IllustratedMessage>
@@ -1083,7 +1083,7 @@ export function App() {
         onSelectionChange={() => {}}
         selectedKey="tab1"
         variant="heading"
-        manual/* Migration TODO: `manual` is not supported anymore. Refer to this sample(https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes */
+        manual/* Migration TODO: `manual` is not supported anymore. Refer to this sample (https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes */
         collapsible
         orientation="horizontal"/* Migration TODO: `orientation` is not supported anymore. More details: https://hopper.workleap.design/components/Tabs#migration-notes */>
         test
