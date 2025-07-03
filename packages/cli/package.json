@@ -1,6 +1,6 @@
 {
   "name": "@workleap/migrations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Workleap",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.0",
-    "typescript": "^5.3.0"    
+    "typescript": "^5.3.0"
   },
   "files": [
     "dist/**/*",
