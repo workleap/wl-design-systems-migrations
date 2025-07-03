@@ -128,7 +128,7 @@ async function main() {
     .version(packageJson.version)    
     .argument("[mode]", "Mode to run: 'migrate' or 'analyze'", "migrate")
     .option("-t, --target <target>", "Target directory or file to transform", process.cwd())
-    .option("-s, --source [source]", "Source directory for file to transform. If not provided, it will clone the related Github repository to a temporary directory.", TEMP_REPO_DIR)
+    .option("-s, --source [source]", "Source directory for file to transform. If not provided, it will clone the related Github repository to a temporary directory.")
     .option("-m, --mappings <type>", "Which mappings table to use (orbiter-to-hopper, hopper)", "orbiter-to-hopper")
     .option("-c, --component <name>", "Specific component to migrate. Comma-separated list of component names, or use available categories, or use 'all' to migrate all components", "all")
     .option("--deep [deep]", "Enable deep analysis to include file information for each prop value. When enabled, adds a 'files' property containing filenames where each value is used.", false)
