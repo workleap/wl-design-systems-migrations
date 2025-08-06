@@ -9,6 +9,7 @@ import { join, resolve } from "path";
 import { cwd } from "process";
 import { simpleGit } from "simple-git";
 import tempDir from "temp-dir";
+import { fileURLToPath } from "url";
 import packageJson from "../package.json" with { type: "json" };
 
 
@@ -53,7 +54,7 @@ function runCommand(mode: "migrate" | "analyze", repoPath: string, targetPath: s
   const spinner = ora("Running command...").start();
 
   //get the folder of path to the running cli script
-  const cliPath = resolve(import.meta.url.replace("file:", ""), "..");
+  const cliPath = resolve(fileURLToPath(import.meta.url), "..");
 
   try {
     const args: string[] = [
