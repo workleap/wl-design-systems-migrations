@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.0.4
+
+### Patch Changes
+
+- [#89](https://github.com/workleap/wl-design-systems-migrations/pull/89) [`2ced849`](https://github.com/workleap/wl-design-systems-migrations/commit/2ced849dd1cbcb77cc6378dfb9a39a801ca116e2) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Fix CLI's url resolving method in Windows
+
 ## 1.0.3
 
 ### Patch Changes
