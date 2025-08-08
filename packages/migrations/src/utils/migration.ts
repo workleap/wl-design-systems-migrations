@@ -177,3 +177,55 @@ export function createFinalChildrenArray(mainElement: any, siblingElements: any[
   
   return newChildren;
 }
+
+export function resolveAliasLocalNames(componentName: string, runtime: Runtime): string[] {
+  if (!runtime.aliases) {
+    return [];
+  }
+
+  const aliasesForComponent = runtime.aliases[componentName];
+  if (!aliasesForComponent) {
+    return [];
+  }
+
+  const directAliases = Array.isArray(aliasesForComponent) ? aliasesForComponent : [aliasesForComponent];
+  
+  // Find all local names for these aliases (including 'as' aliases)
+  const allAliasNames = new Set(directAliases);
+  
+  directAliases.forEach(aliasName => {
+    const localNamesForAlias = getAllLocalNamesForComponent(aliasName, runtime);
+    localNamesForAlias.forEach(name => allAliasNames.add(name));
+  });
+  
+  return Array.from(allAliasNames);
+}
+
+/**
+ * Gets all local names for a component from imports, including 'as' aliases
+ * For example: import { PrivateButton as PB } would return ['PrivateButton', 'PB']
+ */
+function getAllLocalNamesForComponent(componentName: string, runtime: Runtime): string[] {
+  const { j, root } = runtime;
+  const results: string[] = [];
+
+  // Look through all import declarations (not just the source package)
+  const allImportDeclarations = root.find(j.ImportDeclaration);
+
+  allImportDeclarations.forEach(path => {
+    const specifiers = path.node.specifiers || [];
+    specifiers.forEach(specifier => {
+      if (
+        j.ImportSpecifier.check(specifier) &&
+        specifier.imported.name === componentName
+      ) {
+        const localName = getLocalNameFromImport(specifier);
+        if (localName && localName !== componentName) {
+          results.push(localName);
+        }
+      }
+    });
+  });
+
+  return results;
+}
