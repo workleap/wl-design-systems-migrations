@@ -19,6 +19,7 @@ This tool automates the migration of components between design systems. Currentl
   - [Migrate by Category](#migrate-by-category)
   - [Migrate Specific Components](#migrate-specific-components)
   - [Target Specific Path](#target-specific-path)
+  - [Component Aliases](#component-aliases)
 - [Usage Analysis](#usage-analysis)
 - [Contributing](#contributing)
 
@@ -111,19 +112,33 @@ pnpx "@workleap/migrations"@latest -t /app/users
 
 Handle custom component names that should be treated as specific design system components for migration. Aliases maintain their original imports while migrating their props according to the component mapping.
 
+#### Using a JSON file
+
 Create an aliases configuration file:
 
 ```json
 {
   "Button": "PublicButton",
-  "Div": ["OfferBox", "InfoCard", "WarningCard"]
+  "Div": ["InfoCard", "WarningCard", "PrivateAlert"]
 }
 ```
 
-Run migrations with aliases:
+Run migrations with aliases file:
 
 ```bash
 pnpx "@workleap/migrations"@latest --aliases aliases.json
+```
+
+#### Using inline JSON string
+
+Pass aliases directly as a JSON string:
+
+```bash
+# Single alias
+pnpx "@workleap/migrations"@latest --aliases '{"Button": "MyButton"}'
+
+# Multiple aliases
+pnpx "@workleap/migrations"@latest --aliases '{"Button": ["PublicButton", "PrivateButton"], "Div": "CustomDiv"}'
 ```
 
 **Example transformation:**

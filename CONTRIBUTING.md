@@ -19,6 +19,9 @@ Thank you for your interest in contributing! This guide helps you contribute eff
 3. When you are done, you have to uninstall it by calling `pnpm uninstall --global @workleap/migrations`
    Note: Calling `pnpm unlink` doesn't work in this case. More info: <https://pnpm.io/cli/unlink>
 
+**Test the cli changes:**
+Run the `pnpm build:cli && pnpm cli` from the root and pass the required options.
+
 ### Analysis Scripts
 
 Analyze component, function, and type usage across all locally cloned repositories:
