@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.1.0
+
+### Minor Changes
+
+- [#91](https://github.com/workleap/wl-design-systems-migrations/pull/91) [`d74daad`](https://github.com/workleap/wl-design-systems-migrations/commit/d74daad22c025122a4e9adbda49875732a35ef10) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Added `--aliases` parameter to the CLI
+
 ## 1.0.4
 
 ### Patch Changes
