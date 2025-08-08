@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.1.1
+
+### Patch Changes
+
+- [#93](https://github.com/workleap/wl-design-systems-migrations/pull/93) [`b791749`](https://github.com/workleap/wl-design-systems-migrations/commit/b7917492de3d16a396513d268e7bd83dad48b130) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Support passing raw json for `aliases` parameter
+
 ## 1.1.0
 
 ### Minor Changes
