@@ -30,7 +30,7 @@ The easiest way to run migrations is using our CLI tool:
 
 ```bash
 # Run directly with pnpx (no installation required)
-pnpx @workleap/migrations
+pnpx "@workleap/migrations"@latest
 ```
 
 The CLI automatically:
@@ -42,7 +42,7 @@ The CLI automatically:
 For more CLI options:
 
 ```bash
-pnpx @workleap/migrations --help
+pnpx "@workleap/migrations"@latest --help
 ```
 
 ### Orbiter to Hopper Migration Example
@@ -74,17 +74,17 @@ The default mapping table is set for Orbiter to Hopper. If you want to run it fo
 ### Migrate All Components
 
 ```bash
-pnpx @workleap/migrations
+pnpx "@workleap/migrations"@latest
 ```
 
 ### Migrate by Category
 
 ```bash
 # Migrate layout components (Flex, Grid, Div, etc.)
-pnpx @workleap/migrations -c layout
+pnpx "@workleap/migrations"@latest -c layout
 
 # Migrate button components
-pnpx @workleap/migrations -c buttons
+pnpx "@workleap/migrations"@latest -c buttons
 
 # Other categories: visual, menu, overlay, tags, disclosure
 ```
@@ -93,10 +93,10 @@ pnpx @workleap/migrations -c buttons
 
 ```bash
 # Single component
-pnpx @workleap/migrations -c Div
+pnpx "@workleap/migrations"@latest -c Div
 
 # Multiple components
-pnpx @workleap/migrations -c Div,Text,Button
+pnpx "@workleap/migrations"@latest -c Div,Text,Button
 ```
 
 ### Target Specific Path
@@ -104,7 +104,48 @@ pnpx @workleap/migrations -c Div,Text,Button
 Run the command in the desire path or pass the target path with the `-t` argument.
 
 ```bash
-pnpx @workleap/migrations -t /app/users
+pnpx "@workleap/migrations"@latest -t /app/users
+```
+
+### Component Aliases
+
+Handle custom component names that should be treated as specific design system components for migration. Aliases maintain their original imports while migrating their props according to the component mapping.
+
+Create an aliases configuration file:
+
+```json
+{
+  "Button": "PublicButton",
+  "Div": ["OfferBox", "InfoCard", "WarningCard"]
+}
+```
+
+Run migrations with aliases:
+
+```bash
+pnpx "@workleap/migrations"@latest --aliases aliases.json
+```
+
+**Example transformation:**
+
+Before:
+
+```tsx
+import { PublicButton } from "./components";
+
+export function App() {
+  return <PublicButton width="120px" onClick={callback} />;
+}
+```
+
+After:
+
+```tsx
+import { PublicButton } from "./components"; // Import unchanged
+
+export function App() {
+  return <PublicButton UNSAFE_width="120px" onPress={callback} />; // Props migrated
+}
 ```
 
 ## Usage Analysis
@@ -113,19 +154,19 @@ Generate usage reports to understand your migration scope:
 
 ```bash
 # Basic analysis
-pnpx @workleap/migrations analyze 
+pnpx "@workleap/migrations"@latest analyze 
 
 # Detailed analysis with file locations
-pnpx @workleap/migrations analyze --deep true
+pnpx "@workleap/migrations"@latest analyze --deep true
 
 # Project-specific analysis
-pnpx @workleap/migrations analyze --project frontend-team
+pnpx "@workleap/migrations"@latest analyze --project frontend-team
 
 # Using hopper mappings for analysis
-pnpx @workleap/migrations analyze --mappings hopper
+pnpx "@workleap/migrations"@latest analyze --mappings hopper
 
 # Analyze unmapped components only
-pnpx @workleap/migrations analyze --filter-unmapped components
+pnpx "@workleap/migrations"@latest analyze --filter-unmapped components
 ```
 
 **Key Parameters:**
@@ -134,6 +175,7 @@ pnpx @workleap/migrations analyze --filter-unmapped components
 |-----------|-------------|---------|
 | `-c <components>` | Specify components to migrate | `-c layout` or `-c Div,Text` |
 | `-t <path>` | Target specific path | `-t /app/users` |
+| `--aliases <path>` | Path to JSON file containing component aliases mapping | `--aliases aliases.json` |
 | `--project <name>` | Track usage by project/team. It is pretty useful when you analysis multiple repos and want to aggregate analysis results. | `--project frontend-team` |
 | `--mappings <type>` | Specify mapping table (`orbiter-to-hopper` (default) or `hopper`) | `--mappings hopper` |
 | `--deep true` | Include file locations | `--deep true` |

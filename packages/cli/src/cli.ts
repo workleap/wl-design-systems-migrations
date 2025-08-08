@@ -27,6 +27,7 @@ interface RunOptions {
   project?: string;
   filterUnmapped?: "components" | "props";
   includeIgnoreList?: boolean;
+  aliases?: string;
 }
 
 async function cloneRepo(): Promise<string> {
@@ -100,6 +101,10 @@ function runCommand(mode: "migrate" | "analyze", repoPath: string, targetPath: s
       args.push("--include-ignoreList", "true");
     }
 
+    if (options.aliases) {
+      args.push("--aliases", options.aliases);
+    }
+
     console.log(chalk.blue("\nRunning command:"), chalk.gray(`pnpx ${args.join(" ")}`));
     
     execSync(`pnpx ${args.join(" ")}`, { 
@@ -151,6 +156,7 @@ async function main() {
     .option("--project <project>", "Specify the project name for analysis")
     .option("--filter-unmapped <filter-unmapped>", "Filter analysis to show only unmapped items. Options: 'components' (unmapped components only) or 'props' (unmapped props for mapped components only).")
     .option("--include-ignoreList <include-ignoreList>", "Include ignored properties (aria-*, data-*, className, style, etc.) in analysis. By default, these properties are excluded to focus on component-specific migration needs.", false)
+    .option("--aliases <aliases>", "Path to JSON file containing component aliases mapping")
     .option("--usage-report-file <usage-report-file>", "File to save usage report for analysis mode. Defaults to 'usage-report.json'", "usage-report.json")
     .action(async (mode: "migrate" | "analyze", options: RunOptions) => {
       const targetPath = resolve(options.target);
@@ -191,6 +197,7 @@ Examples:
   $ workleap-migrations
   $ workleap-migrations --mappings orbiter-to-hopper
   $ workleap-migrations --component Button
+  $ workleap-migrations --aliases aliases.json
   $ workleap-migrations analyze --deep true
 `);
 

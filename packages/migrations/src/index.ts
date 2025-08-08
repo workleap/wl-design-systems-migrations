@@ -1,3 +1,4 @@
+import { readFileSync } from "fs";
 import type {
   API,
   FileInfo,
@@ -11,6 +12,20 @@ import { logToFile } from "./utils/logger.ts";
 import { createLazyMigrationNotesManager } from "./utils/migration-notes.ts";
 import { createLazyRepoInfo } from "./utils/repo-cache.ts";
 import type { MapMetaData, Runtime } from "./utils/types.ts";
+
+function loadAliases(aliasesPath: string, logger: Runtime["log"]): Record<string, string | string[]> | undefined {
+  try {
+    const aliasesContent = readFileSync(aliasesPath, "utf8");
+    const aliases = JSON.parse(aliasesContent);
+    logger(`Loaded aliases from ${aliasesPath}`);
+
+    return aliases;
+  } catch (error) {
+    logger(`Failed to load aliases from ${aliasesPath}: ${error}`, "error");
+
+    return undefined;
+  }
+}
 
 export default function transform(
   file: FileInfo,
@@ -28,6 +43,9 @@ export default function transform(
   };
 
   const mappings = getMappingTable(options, logger);
+  
+  // Load aliases if provided
+  const aliases = options?.aliases ? loadAliases(options.aliases as string, logger) : undefined;
 
   const runtime: Runtime = {
     j: api.jscodeshift,
@@ -37,7 +55,8 @@ export default function transform(
     getRepoInfo,
     getBranch,
     getMigrationNotesManager,
-    log: logger
+    log: logger,
+    aliases
   };
 
   try {

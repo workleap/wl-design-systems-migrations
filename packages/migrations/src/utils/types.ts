@@ -13,6 +13,7 @@ export interface Runtime {
   getRepoInfo: () => { url: string; type: "github" | "azure" | "unknown"; projectRoot: string } | null;
   getBranch: () => string;
   getMigrationNotesManager: () => MigrationNotesManager;
+  aliases?: Record<string, string | string[]>;
 }
 
 export const REVIEWME_PREFIX = "REVIEWME_" as const;
