@@ -7,6 +7,7 @@ import { existsSync, rmSync } from "fs";
 import ora from "ora";
 import { join, resolve } from "path";
 import { cwd } from "process";
+import { quote } from "shell-quote";
 import { simpleGit } from "simple-git";
 import tempDir from "temp-dir";
 import { fileURLToPath } from "url";
@@ -106,8 +107,8 @@ function runCommand(mode: "migrate" | "analyze", repoPath: string, targetPath: s
     }
 
     console.log(chalk.blue("\nRunning command:"), chalk.gray(`pnpx ${args.join(" ")}`));
-    
-    execSync(`pnpx ${args.join(" ")}`, { 
+
+    execSync(`pnpx ${quote(args)}`, {
       cwd: process.cwd(),
       stdio: "inherit" 
     });
@@ -156,7 +157,7 @@ async function main() {
     .option("--project <project>", "Specify the project name for analysis")
     .option("--filter-unmapped <filter-unmapped>", "Filter analysis to show only unmapped items. Options: 'components' (unmapped components only) or 'props' (unmapped props for mapped components only).")
     .option("--include-ignoreList <include-ignoreList>", "Include ignored properties (aria-*, data-*, className, style, etc.) in analysis. By default, these properties are excluded to focus on component-specific migration needs.", false)
-    .option("--aliases <aliases>", "Path to JSON file containing component aliases mapping")
+    .option("--aliases <aliases>", "Component aliases mapping. Can be either a path to a JSON file or a JSON string directly (e.g., '{\"Button\": \"MyButton\"}')")
     .option("--usage-report-file <usage-report-file>", "File to save usage report for analysis mode. Defaults to 'usage-report.json'", "usage-report.json")
     .action(async (mode: "migrate" | "analyze", options: RunOptions) => {
       const targetPath = resolve(options.target);
@@ -169,6 +170,13 @@ async function main() {
         
         if (options.component) {
           console.log(chalk.gray(`Component(s): ${options.component}`));
+        }
+
+        if (options.aliases) {
+          const aliasPreview = options.aliases.length > 150
+            ? "..." + options.aliases.slice(-150)
+            : options.aliases;
+          console.log(chalk.gray(`Aliases: ${aliasPreview}`));
         }
 
         // Clone the repository if no source is provided
@@ -198,6 +206,8 @@ Examples:
   $ workleap-migrations --mappings orbiter-to-hopper
   $ workleap-migrations --component Button
   $ workleap-migrations --aliases aliases.json
+  $ workleap-migrations --aliases '{"Button": "MyButton"}'
+  $ workleap-migrations --aliases '{"Button": ["PublicButton", "PrivateButton"]}'
   $ workleap-migrations analyze --deep true
 `);
 

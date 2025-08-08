@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import type {
   API,
   FileInfo,
@@ -13,15 +13,30 @@ import { createLazyMigrationNotesManager } from "./utils/migration-notes.ts";
 import { createLazyRepoInfo } from "./utils/repo-cache.ts";
 import type { MapMetaData, Runtime } from "./utils/types.ts";
 
-function loadAliases(aliasesPath: string, logger: Runtime["log"]): Record<string, string | string[]> | undefined {
-  try {
-    const aliasesContent = readFileSync(aliasesPath, "utf8");
-    const aliases = JSON.parse(aliasesContent);
-    logger(`Loaded aliases from ${aliasesPath}`);
+function loadAliases(aliasesInput: object, logger: Runtime["log"]): Record<string, string | string[]> | undefined {
+  // First, check if it's a valid file path
+  if (typeof aliasesInput === "string" && existsSync(aliasesInput)) {
+    try {
+      const aliasesContent = readFileSync(aliasesInput, "utf8");
+      const aliases = JSON.parse(aliasesContent);
+      logger(`Loaded aliases from file: ${aliasesInput}`);
+
+      return aliases;
+    } catch (error) {
+      logger(`Failed to load aliases from file ${aliasesInput}: ${error}`, "error");
+
+      return undefined;
+    }
+  }
+  
+  // If not a file, try to parse as JSON string
+  try {    
+    const aliases = typeof aliasesInput === "string" ? JSON.parse(aliasesInput) : aliasesInput;
+    logger("Loaded aliases from JSON string: ", JSON.stringify(aliases));
 
     return aliases;
   } catch (error) {
-    logger(`Failed to load aliases from ${aliasesPath}: ${error}`, "error");
+    logger(`Failed to parse aliases JSON string: ${error}`, "error");
 
     return undefined;
   }
@@ -45,7 +60,7 @@ export default function transform(
   const mappings = getMappingTable(options, logger);
   
   // Load aliases if provided
-  const aliases = options?.aliases ? loadAliases(options.aliases as string, logger) : undefined;
+  const aliases = options?.aliases ? loadAliases(options.aliases, logger) : undefined;
 
   const runtime: Runtime = {
     j: api.jscodeshift,

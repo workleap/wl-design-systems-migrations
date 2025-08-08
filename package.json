@@ -30,7 +30,7 @@
     "analyze:hopper:state": "./scripts/analyze-state.sh --mappings hopper",
     "analyze:hopper:state:deep": "./scripts/analyze-state.sh --deep true --mappings hopper",
     "build:cli": "pnpm -F \"./packages/cli\" run build",
-    "cli": "node packages/cli/dist/cli.js",
+    "cli": "node packages/cli/dist/cli.js --source ./",
     "changeset": "changeset",
     "ci-release": "pnpm build:cli && changeset publish",
     "clean": "pnpm -r --parallel --include-workspace-root exec pnpm dlx rimraf dist node_modules/.cache",
