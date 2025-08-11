@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.1.2
+
+### Patch Changes
+
+- [#95](https://github.com/workleap/wl-design-systems-migrations/pull/95) [`e6382fe`](https://github.com/workleap/wl-design-systems-migrations/commit/e6382feb8dd8cb48030366e02d6ee85e97afd61d) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Fixed and changed aliases file reading which mostly affected Windows systems
+
 ## 1.1.1
 
 ### Patch Changes
