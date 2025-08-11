@@ -3,11 +3,11 @@
 import chalk from "chalk";
 import { execSync } from "child_process";
 import { Command } from "commander";
-import { existsSync, rmSync } from "fs";
+import { execaSync } from "execa";
+import { existsSync, readFileSync, rmSync } from "fs";
 import ora from "ora";
 import { join, resolve } from "path";
 import { cwd } from "process";
-import { quote } from "shell-quote";
 import { simpleGit } from "simple-git";
 import tempDir from "temp-dir";
 import { fileURLToPath } from "url";
@@ -29,6 +29,33 @@ interface RunOptions {
   filterUnmapped?: "components" | "props";
   includeIgnoreList?: boolean;
   aliases?: string;
+}
+
+function readAliasesSafe(aliasesInput: string | undefined): string | undefined {
+  if (!aliasesInput) {return undefined;}
+
+  // First, check if it's a valid file path
+  if (existsSync(aliasesInput)) {
+    try {
+      const aliasesContent = readFileSync(aliasesInput, "utf8");
+      const aliases = JSON.parse(aliasesContent);
+
+      return JSON.stringify(aliases);
+    } catch (error) {
+      console.error("Failed to read or parse aliases file: ", error);
+      throw error;
+    }
+  }
+  
+  // If not a file, try to parse as JSON string
+  try {
+    const aliases = JSON.parse(aliasesInput);
+
+    return JSON.stringify(aliases);
+  } catch (error) {
+    console.error("The aliases parameter is not a valid file, nor a valid JSON string: ", error);
+    throw error;
+  }
 }
 
 async function cloneRepo(): Promise<string> {
@@ -72,8 +99,7 @@ function runCommand(mode: "migrate" | "analyze", repoPath: string, targetPath: s
       "--ignore-pattern", "**/.github/**",
       "--ignore-pattern", "**/.vscode/**",
       "--ignore-pattern", "**/dist/**",
-      "--ignore-pattern", "**/build/**"
-      
+      "--ignore-pattern", "**/build/**"      
     ];
 
     // Add optional arguments
@@ -102,14 +128,15 @@ function runCommand(mode: "migrate" | "analyze", repoPath: string, targetPath: s
       args.push("--include-ignoreList", "true");
     }
 
-    if (options.aliases) {
-      args.push("--aliases", options.aliases);
+    const parsedAliases = readAliasesSafe(options.aliases);
+    if (parsedAliases) {
+      args.push("--aliases", parsedAliases);
     }
 
     console.log(chalk.blue("\nRunning command:"), chalk.gray(`pnpx ${args.join(" ")}`));
 
-    execSync(`pnpx ${quote(args)}`, {
-      cwd: process.cwd(),
+    execaSync("pnpx", args, {
+      cwd: process.cwd(), 
       stdio: "inherit" 
     });
     
@@ -172,10 +199,12 @@ async function main() {
           console.log(chalk.gray(`Component(s): ${options.component}`));
         }
 
-        if (options.aliases) {
-          const aliasPreview = options.aliases.length > 150
-            ? "..." + options.aliases.slice(-150)
-            : options.aliases;
+        const parsedAliases = readAliasesSafe(options.aliases);
+
+        if (parsedAliases) {
+          const aliasPreview = parsedAliases.length > 150
+            ? "..." + parsedAliases.slice(-150)
+            : parsedAliases;
           console.log(chalk.gray(`Aliases: ${aliasPreview}`));
         }
 
@@ -215,12 +244,6 @@ Examples:
 }
 
 // Handle process termination
-process.on("SIGINT", () => {
-  console.log(chalk.yellow("\n🛑 Process interrupted, cleaning up..."));
-  cleanup();
-  process.exit(0);
-});
-
 process.on("SIGTERM", () => {
   console.log(chalk.yellow("\n🛑 Process terminated, cleaning up..."));
   cleanup();
