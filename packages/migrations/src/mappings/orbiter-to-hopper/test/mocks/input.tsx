@@ -1,4 +1,8 @@
 import {
+  Div as HopperDiv, ListBox as HopperLB
+} from "@hopper-ui/components";
+import { SparklesIcon } from "@hopper-ui/icons";
+import {
   A,
   Accordion,
   Address,
@@ -9,21 +13,25 @@ import {
   Aside,
   Avatar,
   AvatarGroup,
+  AvatarText,
   Box,
   Button,
+  ButtonAsLink,
   ButtonGroup,
   Card,
-  CloseButton,
   Content,
-  type ContentProps,
+  Counter,
+  CrossButton,
   DeletedAvatar,
   Disclosure,
-  DisclosurePanel,
+  DisclosureArrow,
   Div,
   Divider,
+  Dot,
   Flex,
   Footer,
   Grid,
+  Group,
   H1,
   H2,
   H3,
@@ -32,8 +40,6 @@ import {
   H6,
   Header,
   Heading,
-  Div as HopperDiv,
-  ListBox as HopperLB,
   HtmlButton,
   HtmlFooter,
   HtmlForm,
@@ -47,59 +53,64 @@ import {
   HtmlHeader,
   HtmlInput,
   HtmlSection,
+  IconButton,
+  IconButtonAsLink,
+  IconLink,
+  IconLinkAsButton,
   IllustratedMessage,
   Illustration,
   Image,
   Img,
   Inline,
+  Item,
   LI,
   Link,
-  LinkButton,
-  ListBox,
-  ListBoxItem as ListboxItem,
-  ListBoxItem,
-  ListBoxSection,
+  Listbox,
+  Item as ListboxItem,
+  Lozenge,
   Main,
   Menu,
-  MenuItem,
-  MenuSection,
   MenuTrigger,
   Modal,
   ModalTrigger,
   Nav,
   OL,
+  Overlay,
   Paragraph,
   Popover,
   PopoverTrigger,
+  Section,
   Span,
   Spinner,
   Stack,
   SvgImage,
-  Tab,
   Table,
-  TabList,
-  TabPanel,
   Tabs,
   Tag,
-  TagGroup,
+  TagList,
   TBody,
   TD,
   Text,
+  TextLink,
+  TextLinkAsButton,
   TFoot,
   TH,
   THead,
   Tile,
   TileGroup,
-  ToggleArrow,
+  TileLink,
   ToggleButton,
+  ToggleIconButton,
   Tooltip,
   TooltipTrigger,
   TR,
+  Transition,
   UL,
+  Underlay,
+  useAccordionContext,
   VisuallyHidden,
-} from "@hopper-ui/components";
-import { SparklesIcon } from "@hopper-ui/icons";
-import { Counter, Dot, Group, Overlay, TileLink, Transition, useAccordionContext } from "@workleap/orbiter-ui";
+  type ContentProps,
+} from "@workleap/orbiter-ui";
 
 const ConditionalContent = ({ children, ...rest }: ContentProps) => {
   if (!children) {
@@ -125,19 +136,21 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Styled System Props ---------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}
-      <Div backgroundColor="warning" width="core_320" UNSAFE_minHeight={"120px"} />
+      <Div backgroundColor="warning" width={320} minHeight={"120px"} />
       <Div backgroundColor="warning" width="35%" />
-      <Div backgroundColor="warning" UNSAFE_width="45rem" />
+      <Div backgroundColor="warning" width="45rem" />
       <Div backgroundColor="warning" width={"-35%"} />
       <Div backgroundColor="warning" width="fit-content" />
+
       <Div backgroundColor="warning" height={0} />
       <Div backgroundColor="warning" height="0.5%" />
-      <Div backgroundColor="warning" UNSAFE_height="800px" />
+      <Div backgroundColor="warning" height="800px" />
       <Div backgroundColor="warning" height={"-35%"} />
       <Div backgroundColor="warning" height="-moz-initial" />
+
       <Text color="neutral">Hello World!</Text>
       <Paragraph size={"2xl"}>Hello World!</Paragraph>
-      <Flex direction="row" gap="core_960" rowGap={0} columnGap={0}>
+      <Flex direction="row" gap={960} rowGap={0} columnGap={0}>
         text 1
       </Flex>
       <Flex
@@ -148,93 +161,93 @@ export function App() {
       >
         text 2
       </Flex>
-      <Flex direction="row" UNSAFE_gap={"20px"} UNSAFE_rowGap="20px" UNSAFE_columnGap={"20px"}>
+      <Flex direction="row" gap={"20px"} rowGap="20px" columnGap={"20px"}>
         text 3
       </Flex>
-      <Flex direction="row" UNSAFE_gap="35%" UNSAFE_rowGap="35%" UNSAFE_columnGap="35%">
+      <Flex direction="row" gap="35%" rowGap="35%" columnGap="35%">
         text 4
       </Flex>
-      <Stack gap="core_0" rowGap={0} columnGap="core_0">
+      <Stack gap={0} rowGap={0} columnGap={"0"}>
         text
       </Stack>
-      <Inline gap="core_0" rowGap="core_0" columnGap="core_0">
+      <Inline gap={"0"} rowGap="0" columnGap={"0"}>
         text
       </Inline>
       {/* ------------------------------------------------------------------------------------------ */}
-      <Div UNSAFE_marginTop={"10px"}></Div>
+      <Div marginTop={"10px"}></Div>
       <Div marginBottom="inline-sm"></Div>
-      <Div UNSAFE_marginLeft="25%"></Div>
+      <Div marginLeft="25%"></Div>
       <Div marginRight="auto"></Div>
       <Div marginX={0}></Div>
-      <Div marginLeft="core_1280"></Div>
-      <Div marginY="core_0"></Div>
+      <Div marginLeft={1280}></Div>
+      <Div marginY={"0"}></Div>
       <Div marginLeft="revert-layer"></Div>
       <Div margin="inline-lg"></Div>
       <Div margin="auto"></Div>
-      <Div UNSAFE_margin="inline-lg inline-md"></Div>
+      <Div margin="inline-lg inline-md"></Div>
       {/* ------------------------------------------------------------------------------------------ */}
       <Flex padding={variable}>text</Flex>
-      <Span UNSAFE_paddingTop={"10px"}></Span>
-      <Span UNSAFE_paddingBottom="inline-sm"></Span>
-      <Span UNSAFE_paddingLeft="25%"></Span>
-      <Span UNSAFE_paddingRight="auto"></Span>
+      <Span paddingTop={"10px"}></Span>
+      <Span paddingBottom="inline-sm"></Span>
+      <Span paddingLeft="25%"></Span>
+      <Span paddingRight="auto"></Span>
       <Span paddingX={0}></Span>
-      <Span padding="core_1280"></Span>
-      <Span paddingY="core_0"></Span>
+      <Span padding={1280}></Span>
+      <Span paddingY={"0"}></Span>
       <Span paddingLeft="revert-layer"></Span>
-      <Span UNSAFE_padding="inline-lg"></Span>
-      <Span UNSAFE_padding="auto"></Span>
+      <Span padding="inline-lg"></Span>
+      <Span padding="auto"></Span>
       <Span padding="inset-squish-lg"></Span>
       {/* ------------------------------------------------------------------------------------------ */}
       <Div alignContent="initial" />
       <Div alignContent="baseline" />
       <Div alignContent="space-between" />
-      <Div REVIEWME_alignContent="random value" />
+      <Div alignContent="random value" />
       <Div alignContent={expandedKeys ? "initial" : "space-around"} />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div alignItems="initial" />
       <Div alignItems="baseline" />
       <Div alignItems="flex-start" />
-      <Div REVIEWME_alignItems="space-between" />
+      <Div alignItems="space-between" />
       <Div alignItems={expandedKeys ? "initial" : "space-around"} />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div alignSelf="initial" />
       <Div alignSelf="auto" />
       <Div alignSelf="flex-start" />
-      <Div REVIEWME_alignSelf="space-between" />
+      <Div alignSelf="space-between" />
       <Div alignSelf={expandedKeys ? "initial" : "space-around"} />
       {/* ------------------------------------------------------------------------------------------ */}
-      <Div UNSAFE_border="3px" />
+      <Div border="3px" />
       <Div border="upsell" />
-      <Div border="core_rock-200" />
-      <Div border="core_coastal-200" />
+      <Div border="rock-200" />
+      <Div border="coastal-200" />
       <Div border="currentcolor" />
-      <Div UNSAFE_border="0" />
+      <Div border="0" />
       <Div border={0} />
-      <Div UNSAFE_border={"solid"} />
+      <Div border={"solid"} />
       <Div border={expandedKeys ? "initial" : "space-around"} />
       {/* ------------------------------------------------------------------------------------------ */}
-      <Div UNSAFE_borderRadius="3px" />
+      <Div borderRadius="3px" />
       <Div borderRadius="rounded-md" />
       <Div borderRadius="pill" />
-      <Div borderRadius="core_9999" />
-      <Div borderRadius="core_0" />
+      <Div borderRadius={9999} />
+      <Div borderRadius="0" />
       <Div borderRadius={0} />
-      <Div UNSAFE_borderRadius="invalid value" />
+      <Div borderRadius="invalid value" />
       <Div borderRadius={expandedKeys ? "initial" : "space-around"} />
       <Div borderRadius="circle" />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div color="initial" />
       <Div color="currentcolor" />
-      <Div UNSAFE_color="invalid value" />
-      <Div color="core_amanita-400" />
+      <Div color="invalid value" />
+      <Div color="amanita-400" />
       <Div color="neutral-weak-selected" />
-      <Div UNSAFE_color="dotColor" />
-      <Div UNSAFE_color="" />
+      <Div color="dotColor" />
+      <Div color="" />
       <Div backgroundColor="initial" />
       <Div backgroundColor="currentcolor" />
-      <Div UNSAFE_backgroundColor="invalid value" />
-      <Div backgroundColor="core_orchid-bloom-50" />
+      <Div backgroundColor="invalid value" />
+      <Div backgroundColor="orchid-bloom-50" />
       <Div backgroundColor="neutral-weak-selected" />
       <Div backgroundColor="primary" />
       {/* ------------------------------------------------------------------------------------------ */}
@@ -243,78 +256,78 @@ export function App() {
       <Div gridAutoColumns="95%" />
       <Div gridAutoColumns="95.5fr" />
       <Div gridAutoColumns={0} />
-      <Div gridAutoColumns="core_0" />
-      <Div gridAutoColumns="core_480" />
-      <Div UNSAFE_gridAutoColumns="2/3" />
-      <Div UNSAFE_gridAutoColumns="invalid value" />
+      <Div gridAutoColumns="0" />
+      <Div gridAutoColumns={480} />
+      <Div gridAutoColumns="2/3" />
+      <Div gridAutoColumns="invalid value" />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div gridAutoRows="min-content" />
       <Div gridAutoRows="initial" />
       <Div gridAutoRows="95%" />
       <Div gridAutoRows="95.5fr" />
       <Div gridAutoRows={0} />
-      <Div gridAutoRows="core_0" />
-      <Div gridAutoRows="core_480" />
-      <Div UNSAFE_gridAutoRows="2/3" />
-      <Div UNSAFE_gridAutoRows="invalid value" />
+      <Div gridAutoRows="0" />
+      <Div gridAutoRows={480} />
+      <Div gridAutoRows="2/3" />
+      <Div gridAutoRows="invalid value" />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div gridTemplateColumns="subgrid" />
       <Div gridTemplateColumns="min-content" />
       <Div gridTemplateColumns={0} />
-      <Div gridTemplateColumns="core_960" />
-      <Div UNSAFE_gridTemplateColumns="invalid" />
+      <Div gridTemplateColumns={960} />
+      <Div gridTemplateColumns="invalid" />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div gridTemplateRows="none" />
       <Div gridTemplateRows="auto" />
       <Div gridTemplateRows={0} />
-      <Div gridTemplateRows="core_960" />
-      <Div UNSAFE_gridTemplateRows="invalid" />
+      <Div gridTemplateRows={960} />
+      <Div gridTemplateRows="invalid" />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div justifyContent="space-between" />
       <Div justifyContent="left" />
-      <Div REVIEWME_justifyContent="invalid" />
+      <Div justifyContent="invalid" />
       <Div justifyItems="normal" />
       <Div justifyItems="legacy" />
-      <Div REVIEWME_justifyItems="invalid" />
+      <Div justifyItems="invalid" />
       <Div justifySelf="auto" />
       <Div justifySelf="baseline" />
-      <Div REVIEWME_justifySelf="invalid" />
+      <Div justifySelf="invalid" />
       {/* ------------------------------------------------------------------------------------------ */}
-      <Text UNSAFE_fontFamily="cursive" />
+      <Text fontFamily="cursive" />
       <Text fontFamily="revert" />
       <Text fontFamily="heading-md" />
-      <Text fontFamily="core_tertiary" />
+      <Text fontFamily="tertiary" />
       <Text fontFamily="overline" />
-      <Text UNSAFE_fontFamily="Arial, sans-serif" />
-      <Text UNSAFE_fontSize="lighter" />
-      <Text UNSAFE_fontSize="bold" />
+      <Text fontFamily="Arial, sans-serif" />
+      <Text fontSize="lighter" />
+      <Text fontSize="bold" />
       <Text fontSize="body-lg-bold" />
-      <Text fontSize="core_120" />
-      <Text UNSAFE_fontSize="1234.5px" />
-      <Text UNSAFE_fontSize="1.2em" />
-      <Text UNSAFE_fontSize="invalid-size" />
+      <Text fontSize={120} />
+      <Text fontSize={1234.5} />
+      <Text fontSize="1.2em" />
+      <Text fontSize="invalid-size" />
       <Text fontStyle="initial" />
       <Text fontStyle="oblique" />
-      <Text REVIEWME_fontStyle="invalid-style" />
+      <Text fontStyle="invalid-style" />
       <Text fontWeight="body-lg-semibold" />
       <Text fontWeight="initial" />
       <Text fontWeight="revert" />
-      <Text fontWeight="core_680" />
+      <Text fontWeight={680} />
       {/* ------------------------------------------------------------------------------------------ */}
-      <Div lineHeight="core_1-4285" />
+      <Div lineHeight="1-4285" />
       <Div lineHeight="body-xs" />
       <Div lineHeight="normal" />
-      <Div UNSAFE_lineHeight="invalid" />
-      <Div UNSAFE_lineHeight="124rem" />
-      <Div UNSAFE_lineHeight={425} />
+      <Div lineHeight="invalid" />
+      <Div lineHeight="124rem" />
+      <Div lineHeight={425} />
       <Div lineHeight={0} />
-      <Div UNSAFE_lineHeight={"0"} />
+      <Div lineHeight={"0"} />
       {/* ------------------------------------------------------------------------------------------ */}
       <Div boxShadow="none" />
-      <Div boxShadow="core_sm" />
-      <Div UNSAFE_boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)" />
-      <Div UNSAFE_boxShadow="invalid-shadow" />
-      <Div UNSAFE_boxShadow={"0"} />
+      <Div boxShadow="sm" />
+      <Div boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)" />
+      <Div boxShadow="invalid-shadow" />
+      <Div boxShadow={"0"} />
       <Div boxShadowActive="floating" />
       <Div boxShadowFocus="lifted" />
       <Div boxShadowHover="raised" />
@@ -322,78 +335,54 @@ export function App() {
       {/* ------------------------------------------------------------------------------------------ */}
       <Div fill="initial" />
       <Div fill="child" />
-      <Div fill="core_coastal-700" />
-      <Div fill="core_abyss" />
+      <Div fill="coastal-700" />
+      <Div fill="abyss" />
       <Div fill="primary-active" />
-      <Div UNSAFE_fill="invalid value" />
+      <Div fill="invalid value" />
       <Div fill="initial" />
       <Div fillFocus="-moz-initial" />
-      <Div fillFocus="core_amanita-75" />
+      <Div fillFocus="amanita-75" />
       <Div fillFocus="warning" />
       <Div fillFocus="none" />
-      <Div UNSAFE_fillFocus="invalid value" />
+      <Div fillFocus="invalid value" />
       <Div fillFocus="-moz-initial" />
-      <Div fillHover="core_moss-400" />
+      <Div fillHover="moss-400" />
       <Div fillHover="danger" />
       <Div fillHover="context-stroke" />
-      <Div UNSAFE_fillHover="invalid value" />
+      <Div fillHover="invalid value" />
       {/* ------------------------------------------------------------------------------------------ */}
       <Span stroke="currentcolor" />
       <Span stroke="child" />
-      <Span stroke="core_moss-600" />
+      <Span stroke="moss-600" />
       <Span stroke="transparent" />
-      <Span UNSAFE_stroke="red" />
-      <Span UNSAFE_stroke="aliceblue" />
-      <Span UNSAFE_stroke="CaptionText" />
-      <Span UNSAFE_stroke="invalid value" />
+      <Span stroke="red" />
+      <Span stroke="aliceblue" />
+      <Span stroke="CaptionText" />
+      <Span stroke="invalid value" />
       {/* ------------------------------------------------------------------------------------------ */}
-      <Div UNSAFE_padding={{
-        base: "core_0",
-        md: "inset-sm",
-        xl: "20rem"
-      }} />
-      <Div padding={{
-        base: "core_0",
-        md: "inset-sm",
-        xl: "inset-squish-sm"
-      }} />
+      <Div padding={{ base: "0", md: "inset-sm", xl: "20rem" }} />
+      <Div padding={{ base: "0", md: "inset-sm", xl: "inset-squish-sm" }} />
       <Div
-        padding={{
-          base: "core_0",
-          md: "inset-sm",
-          xl: expandedKeys ? "s" : "f"
-        }}
+        padding={{ base: "0", md: "inset-sm", xl: expandedKeys ? "s" : "f" }}
       />
       <Div padding={{}} />
-      <Div justifyContent={{
-        base: "space-between",
-        md: "initial"
-      }} />
-      <Div REVIEWME_justifyContent={{
-        base: "space-between",
-        md: "invalid"
-      }} />
+      <Div justifyContent={{ base: "space-between", md: "initial" }} />
+      <Div justifyContent={{ base: "space-between", md: "invalid" }} />
       <Div display={{ base: "none", md: "block" }} />
       <Flex
         {...rest}
-        borderRadius={{
-          base: 0,
-          xs: "core_2"
-        }}
-        UNSAFE_width={{
-          base: "100%",
-          xs: "488px"
-        }}
+        borderRadius={{ base: 0, xs: 2 }}
+        width={{ base: "100%", xs: "488px" }}
       />
       {/* ------------------------------------------------------------------------------------------ */}
       {/* Components ------------------------------------------------------------------------------- */}
       {/* ------------------------------------------------------------------------------------------ */}
       <Flex
-        padding="core_400"
-        grow={1}
-        shrink={2}
+        padding={400}
+        flexGrow={1}
+        flexShrink={2}
         fluid={1 == 1 ? true : true}
-        direction="row"
+        flexFlow="row"
         basis={"invalid"}
       >
         text
@@ -401,158 +390,162 @@ export function App() {
       <Flex fluid width="120%">
         text
       </Flex>
-      <Flex width="100%">text</Flex>
+      <Flex fluid={true}>text</Flex>
       <Flex fluid={false}>text</Flex>
-      <Flex reverse/* Migration TODO: Remove the `reverse` property, read this: https://hopper.workleap.design/components/Flex#migration-notes */>text</Flex>
-      <Grid padding="core_400">text</Grid>
-      <Grid UNSAFE_autoRows="repeat(3, 1fr)">text</Grid>
+
+      <Flex reverse>text</Flex>
+
+      <Grid padding={400}>text</Grid>
+      <Grid autoRows="repeat(3, 1fr)">text</Grid>
       <Grid autoRows="min-content">text</Grid>
-      <Grid UNSAFE_autoColumns="repeat(3, 1fr)">text</Grid>
+      <Grid autoColumns="repeat(3, 1fr)">text</Grid>
       <Grid autoColumns="auto">text</Grid>
-      <Grid UNSAFE_templateRows="repeat(3, 1fr)">text</Grid>
+      <Grid templateRows="repeat(3, 1fr)">text</Grid>
       <Grid templateRows="subgrid">text</Grid>
-      <Grid UNSAFE_templateColumns="repeat(3, 1fr)">text</Grid>
+      <Grid templateColumns="repeat(3, 1fr)">text</Grid>
       <Grid templateColumns="subgrid">text</Grid>
-      <Inline UNSAFE_gap="1.25rem">text</Inline>
-      <Inline gap="core_400">text</Inline>
-      <Inline UNSAFE_gap={"invalid"}>text</Inline>
-      <Inline width="100%" UNSAFE_gap="1.25rem">text</Inline>
-      <Inline fluid={false} UNSAFE_gap="1.25rem">text</Inline>
-      <Stack padding="core_400">text</Stack>
-      <Heading UNSAFE_marginBottom="calc(1.75rem * .5)">text</Heading>
-      <Heading size="xs" UNSAFE_marginBottom="calc(1.125rem * .5)">text</Heading>
+
+      <Inline>text</Inline>
+      <Inline gap={400}>text</Inline>
+      <Inline gap={"invalid"}>text</Inline>
+      <Inline fluid={true}>text</Inline>
+      <Inline fluid={false}>text</Inline>
+      <Stack padding={400}>text</Stack>
+
+      <Heading>text</Heading>
+      <Heading size="xs">text</Heading>
       <Heading margin={0}>text</Heading>
       <Heading marginBottom={"inline-md"}>text</Heading>
       <Heading size="3xl" marginBottom={"inline-md"}>
         text
       </Heading>
-      <H1 size="lg" UNSAFE_marginBottom="calc(2rem * .5)">text</H1>
-      <H2 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H2>
-      <H3 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H3>
-      <H4 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H4>
-      <H5 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H5>
-      <H6 UNSAFE_marginBottom="calc(1.75rem * .5)">text</H6>
-      <HtmlH1 padding="core_400">text</HtmlH1>
-      <HtmlH2 padding="core_400">text</HtmlH2>
-      <HtmlH3 padding="core_400">text</HtmlH3>
-      <HtmlH4 padding="core_400">text</HtmlH4>
-      <HtmlH5 padding="core_400">text</HtmlH5>
-      <HtmlH6 padding="core_400">text</HtmlH6>
+      <H1 size="lg">text</H1>
+      <H2>text</H2>
+      <H3>text</H3>
+      <H4>text</H4>
+      <H5>text</H5>
+      <H6>text</H6>
+      <HtmlH1 padding={400}>text</HtmlH1>
+      <HtmlH2 padding={400}>text</HtmlH2>
+      <HtmlH3 padding={400}>text</HtmlH3>
+      <HtmlH4 padding={400}>text</HtmlH4>
+      <HtmlH5 padding={400}>text</HtmlH5>
+      <HtmlH6 padding={400}>text</HtmlH6>
       <Text size="xs" slot="ff">
         text
       </Text>
-      <Content padding="core_400" slot="sample">
+      <Content padding={400} slot="sample">
         text
       </Content>
-      <Footer padding="core_400" slot="sample">
+      <Footer padding={400} slot="sample">
         text
       </Footer>
-      <Header padding="core_400" slot="sample">
+      <Header padding={400} slot="sample">
         text
       </Header>
-      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
       <Card
-        fluid/* Migration TODO: `fluid` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#fluid */
-        orientation="horizontal"/* Migration TODO: `orientation` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#orientation */
-        size="md"/* Migration TODO: `size` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#size */
-        variant="main">
+        fluid
+        orientation="horizontal"
+        size="md"
+        variant="outline"
+      >
         text
       </Card>
-      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
-      <Card
-        variant="second-level"/* Migration TODO: You shouldn't use a second-level variant without a parent main variant. More details: https://hopper.workleap.design/components/Card#migration-notes */>test</Card>
-      <A padding="core_400">text</A>
-      <Address padding="core_400">text</Address>
-      <Article padding="core_400">text</Article>
+      <Card variant="elevated">test</Card>
+      <A padding={400}>text</A>
+      <Address padding={400}>text</Address>
+      <Article padding={400}>text</Article>
       <Aside color="neutral-weak">text</Aside>
-      <HtmlButton border="core_rock-900" UNSAFE_padding="1" type="button">
+      <HtmlButton border="rock-900" padding="1" type="button">
         text
       </HtmlButton>
-      <Div padding="core_400">text</Div>
-      <HtmlFooter padding="core_400">text</HtmlFooter>
-      <HtmlHeader padding="core_400">text</HtmlHeader>
-      <Img border="core_rock-400" src="Planet" />
+      <Div padding={400}>text</Div>
+      <HtmlFooter padding={400}>text</HtmlFooter>
+      <HtmlHeader padding={400}>text</HtmlHeader>
+      <Img border="rock-400" src="Planet" />
       <HtmlInput type="email">text</HtmlInput>
       <HtmlForm
         aria-label="test"
         data-testId="test"
-        min-width="100vdh"/* Migration TODO: It seems `min-width` is an invalid property. Remove it if it is not needed */
+        min-width="100vdh"
       ></HtmlForm>
+
       <Nav flexWrap={"revert-layer"}>
         <UL color="neutral-weak" marginLeft={"revert"}>
-          <LI color="core_sapphire-600">Colonize</LI>
+          <LI color="sapphire-600">Colonize</LI>
         </UL>
         <OL color="neutral-weak">
-          <LI color="core_sapphire-600" backgroundColor="core_amanita-400">
+          <LI color="sapphire-600" backgroundColor={"amanita-400"}>
             Colonize
           </LI>
         </OL>
       </Nav>
-      <Main padding="core_400">text</Main>
-      <Nav padding="core_400">text</Nav>
-      <HtmlSection padding="core_400">text</HtmlSection>
-      <Span padding="core_400">text</Span>
-      <Table cellPadding={5} color="neutral-weak" padding="core_400">
-        <THead fontWeight="core_680" padding="core_400">
-          <TR padding="core_400">
-            <TH textAlign="left" padding="core_400">
+      <Main padding={400}>text</Main>
+      <Nav padding={400}>text</Nav>
+      <HtmlSection padding={400}>text</HtmlSection>
+      <Span padding={400}>text</Span>
+
+      <Table cellPadding={5} color="neutral-weak" padding={400}>
+        <THead fontWeight={680} padding={400}>
+          <TR padding={400}>
+            <TH textAlign="left" padding={400}>
               Company
             </TH>
           </TR>
         </THead>
-        <TBody padding="core_400">
-          <TR padding="core_400">
-            <TD padding="core_400">Space</TD>
+        <TBody padding={400}>
+          <TR padding={400}>
+            <TD padding={400}>Space</TD>
           </TR>
         </TBody>
-        <TFoot padding="core_400"></TFoot>
+        <TFoot padding={400}></TFoot>
       </Table>
+
       <Button
-        isFluid={variable ? true : false}
-        isLoading={false}
-        onPress={() => alert("Button clicked!")}
-        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
         size="md"
-        isDisabled
-        active/* Migration TODO: `active` is not supported anymore. Find an alternative solution. If the use case is to implement the toggle status, you can use the ToggleButton. More details: https://hopper.workleap.design/components/ToggleButton */
-        focus/* Migration TODO: `focus` is not supported anymore. Find an alternative solution */
-        hover/* Migration TODO: `hover` is not supported anymore. Find an alternative solution */
+        disabled
+        active
+        focus
+        hover
       >
         text
-        /* Migration TODO: `Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files */
         <Counter variant="divider">60</Counter>
       </Button>
-      <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</Button>
-      <Button variant="danger">text</Button>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
-        isFluid={variable ? true : false}
-        loading={false}/* Migration TODO: `loading` is not supported anymore. Remove it. */
-        onPress={() => alert("Button clicked!")}
-        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+      <Button variant="tertiary">text</Button>
+      <Button variant="negative">text</Button>
+
+      <ButtonAsLink
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
         size="md"
-        isDisabled
+        disabled
         href="https://example.com"
         rel="noopener noreferrer"
         download
-        referrerPolicy="origin-when-cross-origin">
+        referrerPolicy="origin-when-cross-origin"
+      >
         text33
-      </LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
-        variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton variant="danger">text</LinkButton>
-      <ButtonGroup inline/* Migration TODO: `inline` is not supported anymore. Remove it. */ reverse/* Migration TODO: `reverse` is not supported anymore. Remove it. */ size={{ base: "sm", xl: "md" }} wrap={false}>
+      </ButtonAsLink>
+      <ButtonAsLink variant="tertiary">text</ButtonAsLink>
+      <ButtonAsLink variant="negative">text</ButtonAsLink>
+
+      <ButtonGroup inline reverse size={{ base: "sm", xl: "md" }} wrap={false}>
         <Button>text</Button>
       </ButtonGroup>
+
       <Tile
-        id="x"
-        isSelected
-        defaultSelected
-        defaultValue="y"/* Migration TODO: Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
-        orientation="horizontal"/* Migration TODO: Remove the `orientation` property, read this: https://hopper.workleap.design/components/Tile#migration-notes */
-        onPress={() => {
+        value="x"
+        checked
+        defaultChecked
+        defaultValue="y"
+        orientation="horizontal"
+        onClick={() => {
           alert(1);
         }}
         type="reset"
@@ -560,7 +553,7 @@ export function App() {
       >
         text
       </Tile>
-      /* Migration TODO: `TileLink` is not supported anymore. Check the generated migration notes for more details. */
+
       <TileLink
         href="https://example.com"
         external
@@ -572,149 +565,134 @@ export function App() {
           alert(1);
         }}
         type="reset"
-        cursorHover="nw-resize">
+        cursorHover="nw-resize"
+      >
         text
       </TileLink>
+
       <TileGroup
-        alignItems="start"
-        selectionMode={undefined}
-        onSelectionChange={() => {}}
-        reverse/* Migration TODO: Remove the `reverse` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
-        value={["10"]}/* Migration TODO: Remove the `value` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
-        inline/* Migration TODO: Remove the `inline` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
-        autoFocus/* Migration TODO: Remove the `autoFocus` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
-        defaultChecked/* Migration TODO: Remove the `defaultChecked` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
-        defaultValue={["12"]}/* Migration TODO: Remove the `defaultValue` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
-        rowSize={3}/* Migration TODO: Remove the `rowSize` property, read this: https://hopper.workleap.design/components/TileGroup#migration-notes */
+        align="start"
+        selectionMode="none"
+        onChange={() => {}}
+        reverse
+        value={["10"]}
+        inline
+        autoFocus
+        defaultChecked
+        defaultValue={["12"]}
+        rowSize={3}
       >
         items
       </TileGroup>
-      <Button
-        isFluid={variable ? true : false}
-        isLoading={false}
-        onPress={() => alert("Button clicked!")}
-        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
-        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one. */
-        isDisabled
+
+      <IconButton
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
+        size="2xs"
+        disabled
         aria-label="Icon Button"
       >
         <SparklesIcon />
-      </Button>
-      <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs">
+      </IconButton>
+      <IconButton variant="tertiary" aria-label="Icon Button" size="xs">
         <SparklesIcon />
-      </Button>
-      <Button variant="danger" aria-label="Icon Button" size="sm">
+      </IconButton>
+      <IconButton variant="negative" aria-label="Icon Button" size="sm">
         <SparklesIcon />
-      </Button>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
-        isFluid={variable ? true : false}
-        loading={false}/* Migration TODO: `loading` is not supported anymore. Remove it. */
-        onPress={() => alert("Button clicked!")}
-        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+      </IconButton>
+
+      <IconButtonAsLink
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
         size="md"
-        isDisabled
+        disabled
         href="https://example.com"
         rel="noopener noreferrer"
         download
-        referrerPolicy="origin-when-cross-origin">
+        referrerPolicy="origin-when-cross-origin"
+      >
         <SparklesIcon />
-      </LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
-        variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */
-        size="xs">
+      </IconButtonAsLink>
+      <IconButtonAsLink variant="tertiary" size="xs">
         <SparklesIcon />
-      </LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
-        variant="danger"
-        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one. */>
+      </IconButtonAsLink>
+      <IconButtonAsLink variant="negative" size="2xs">
         <SparklesIcon />
-      </LinkButton>
-      <CloseButton
+      </IconButtonAsLink>
+
+      <CrossButton
         aria-label="Close"
         size="xs"
-        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        inherit
         autoFocus
-        onPress={() => {}}
+        onClick={() => {}}
       />
-      <CloseButton
+      <CrossButton
         aria-label="Close"
-        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one, but if you're using this icon for implementing `Callout` or `ContextualHelp`, Hopper has built-in support for these cases: https://hopper.workleap.design/components/Callout */
+        size="2xs"
       />
+
       <ToggleButton
-        isFluid={variable ? true : false}
-        isLoading={false}
-        onPress={() => alert("Button clicked!")}
-        onChange={() => {}}/* Migration TODO: `onChange` is not supported anymore. Remove it. More details: https://hopper.workleap.design/components/ToggleButton#migration-notes */
-        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        onChange={() => {}}
+        inherit
         size="md"
-        isDisabled
-        isSelected={false}
-        defaultSelected={true}
-        id="test"
+        disabled
+        checked={false}
+        defaultChecked={true}
+        value="test"
       >
         text
       </ToggleButton>
-      <ToggleButton variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</ToggleButton>
+      <ToggleButton variant="tertiary">text</ToggleButton>
       <ToggleButton variant="upsell">text</ToggleButton>
       <ToggleButton variant="primary">text</ToggleButton>
       <ToggleButton variant="secondary">text</ToggleButton>
-      <ToggleButton
-        isFluid={variable ? true : false}
-        isLoading={false}
-        onPress={() => alert("Button clicked!")}
-        inherit/* Migration TODO: `inherit` is not supported anymore. Remove it. */
-        size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one. */
-        isDisabled
+
+      <ToggleIconButton
+        fluid={variable ? true : false}
+        loading={false}
+        onClick={() => alert("Button clicked!")}
+        inherit
+        size="2xs"
+        disabled
         aria-label="Icon Button"
       >
         <SparklesIcon />
-      </ToggleButton>
-      <ToggleButton variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */ aria-label="Icon Button" size="xs">
+      </ToggleIconButton>
+      <ToggleIconButton variant="tertiary" aria-label="Icon Button" size="xs">
         <SparklesIcon />
-      </ToggleButton>
-      <ToggleButton variant="secondary" aria-label="Icon Button" size="sm">
+      </ToggleIconButton>
+      <ToggleIconButton variant="secondary" aria-label="Icon Button" size="sm">
         <SparklesIcon />
-      </ToggleButton>
+      </ToggleIconButton>      
+
       <Avatar
         name="John Doe"
-        onPress={() => {}}
+        onClick={() => {}}
         size="2xl"
-        retryCount={0}/* Migration TODO: `retryCount` is not supported anymore. Remove it. */        
+        retryCount={0}        
         src="https://example.com/avatar.jpg"
-      />
+      />        
       <AvatarGroup size="xs" wrap reverse align="center">
         <Avatar name="test" />
       </AvatarGroup>
-      <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onPress={() => {}}/>
-      <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onPress={() => {}}/>
+      <DeletedAvatar size={"2xl"} aria-label="Deleted Avatar" slot="test" onClick={() => {}}/>
+      <AnonymousAvatar size="xs" aria-label="Anonymous Avatar" slot="test" onClick={() => {}}/>
+
       <Spinner size="sm" />
-      <Spinner size="md" color="core_toad-500"/* Migration TODO: `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
-      <Spinner size="lg" color="decorative-option2"/* Migration TODO: `color` prop will only affect the spinner's text color and not the color of the tracks. More details: https://hopper.workleap.design/components/Spinner#migration-notes */>Loading...</Spinner>
-      <Text
-        size="md"
-        display="inline-flex"
-        alignItems="center"
-        justifyContent="center"
-        width="100%"
-        height="100%"
-        backgroundColor="transparent"
-        style={{
-          transition: "background-color var(--hop-easing-duration-2) var(--hop-easing-duration-2)"
-        }}>Avatar Text</Text>
-      <Text
-        size="invalid"/* Migration TODO: The provided value is not supported. Use `inherit`, `xs`, `sm`, `md`, `lg`, `xl`, or `2xl`. */
-        display="inline-flex"
-        alignItems="center"
-        justifyContent="center"
-        width="100%"
-        height="100%"
-        backgroundColor="transparent"
-        style={{
-          transition: "background-color var(--hop-easing-duration-2) var(--hop-easing-duration-2)"
-        }}>Avatar Text</Text>
+      <Spinner size="md" color="toad-500">Loading...</Spinner>
+      <Spinner size="lg" color="decorative-option2">Loading...</Spinner>
+
+      <AvatarText size="md">Avatar Text</AvatarText>
+      <AvatarText size="invalid">Avatar Text</AvatarText>
+
       <Image 
         src="src"
         alt="alt"
@@ -723,123 +701,132 @@ export function App() {
         onLoad={() => {}}
         objectFit="cover"
       />
-      <SvgImage src={SparklesIcon} aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
-      <SvgImage src="blockquote" aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
+
+      <SvgImage src={SparklesIcon} aria-label="test" stroke="invalid" fill="invalid" />
+      <SvgImage src="blockquote" aria-label="test" stroke="invalid" fill="invalid" />
+
       <Illustration orientation="vertical" shape="rounded">test</Illustration>
       <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
-      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
+
       <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
-      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
-      /* Migration TODO: width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes */
-      <IllustratedMessage orientation="vertical" UNSAFE_width="120px">test</IllustratedMessage>
+      <IllustratedMessage orientation="vertical" width="120px">test</IllustratedMessage>
       <IllustratedMessage>test</IllustratedMessage>
-      /* Migration TODO: `Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate /> */
+
       <Dot />
+
       <Link 
         href="test" 
         target="_blank" 
         rel="test" 
-        shape="box"/* Migration TODO: `shape` is not supported anymore. Remove it. https://hopper.workleap.design/components/Link#migration-notes */ 
+        shape="box" 
         autoFocus 
-        isDisabled 
-        isExternal 
-        onPress={() => {}}
-        onAuxClick={() => {}}/* Migration TODO: `onAuxClick` is not supported. Follow these instructions to migrate to Hopper: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/onAuxClick.md */
-        onHoverStart={() => {}}
-        onHoverEnd={() => {}}
-        colorHover="core_quetzal-25"          
+        disabled 
+        external 
+        onClick={() => {}}
+        onAuxClick={() => {}}
+        onMouseEnter={() => {}}
+        onMouseLeave={() => {}}
+        colorHover="quetzal-25"          
       >
         Link Text
       </Link>
+        
       {/* TextLink */}
-      <Link 
+      <TextLink 
         href="test" 
-        onPress={() => {}}
-        onMouseDown={() => {}}/* Migration TODO: `onMouseDown` is not supported anymore. Use `onPress` instead. */
-        onKeyPress={() => {}}/* Migration TODO: `onKeyPress` is not supported anymore. Use `onPress` instead. */
-        variant="secondary"
+        onClick={() => {}}
+        onMouseDown={() => {}}
+        onKeyPress={() => {}}
+        variant="primary"
         size="inherit"
-        underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */
+        underline="dotted"
       >
         Link Text
-      </Link>
-      <Link href="test" variant="primary" size="sm" isQuiet={true}>
+      </TextLink>
+      <TextLink href="test" variant="accent" size="sm" underline="none">
         Link Text
-      </Link>
-      <Link href="test" variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */ size="md">
+      </TextLink>
+      <TextLink href="test" variant="negative" size="md">
         Link Text
-      </Link>
-      <Link href="test" onPress={() => {}}>text</Link>
-      <Link onPress={() => {}}>text</Link>
+      </TextLink>
+      <TextLink href="test" onMouseDown={() => {}}>text</TextLink>
+      <TextLink onKeyPress={() => {}}>text</TextLink>
+
       {/* IconLink */}
-      <Link href="test" aria-label="test" variant="primary">
+      <IconLink href="test" aria-label="test" variant="accent">
         <SparklesIcon />
-      </Link>
-      <Link href="test" aria-label="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
+      </IconLink>
+      <IconLink href="test" aria-label="test" external onClick={() => {}} variant="negative">
         <SparklesIcon />
-      </Link>
-      <Link 
+      </IconLink>
+
+      <TextLinkAsButton 
         href="test" 
-        variant="primary" 
-        underline="dotted"/* Migration TODO: `underline` is not supported anymore. Remove it. */ 
+        variant="accent" 
+        underline="dotted" 
         size="sm"
       >
         Link Text
-      </Link>
-      <Link 
+      </TextLinkAsButton>
+      <TextLinkAsButton 
         href="test" 
-        variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */ 
-        underline="solid"/* Migration TODO: `underline` is not supported anymore. Remove it. */ 
+        variant="negative" 
+        underline="solid" 
         size="inherit"
       >
         Link Text
-      </Link>
-      <Link href="test" variant="primary">
+      </TextLinkAsButton>
+
+      <IconLinkAsButton href="test" variant="accent">
         <SparklesIcon />
-      </Link>
-      <Link href="test" isExternal onPress={() => {}} variant="negative"/* Migration TODO: `negative` is not supported anymore. Remove it. */>
+      </IconLinkAsButton>
+      <IconLinkAsButton href="test" external onClick={() => {}} variant="negative">
         <SparklesIcon />
-      </Link>
+      </IconLinkAsButton>
+
       <Modal 
-        isDismissable 
-        overlayProps={{ className: "test" }} 
-        REVIEWME_onOpenChange={(e) => {}}/* Migration TODO: `onClose` is not supported anymore. Use `onOpenChange` instead. */
+        dismissable 
+        wrapperProps={{ className: "test" }} 
+        onClose={(e) => {}}
       >
         test
       </Modal>
-      <ModalTrigger isOpen onOpenChange={()=>{}} dismissable/* Migration TODO: `dismissable` is not supported anymore. Use `isDismissable` prop at related `Modal` component instead. */>test</ModalTrigger>
-      <Popover dismissable/* Migration TODO: `dismissable` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */ focus/* Migration TODO: `focus` is not supported anymore. Remove it, or discuss it with the Hopper team if you have any questions. */>test</Popover>
+      <ModalTrigger open onOpenChange={()=>{}} dismissable>test</ModalTrigger>
+
+      <Popover dismissable focus>test</Popover>
       <PopoverTrigger 
-        isOpen 
-        position="left-start"/* Migration TODO: `position` property has been moved to the `Popover` component and renamed to `placement`. More details: https://hopper.workleap.design/components/Popover#migration-notes  */ 
-        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Popover` component instead. */
+        open 
+        position="left-start" 
+        zIndex={1000}
       >
         test
       </PopoverTrigger>
-      <Tooltip onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore. If you really need it you can add it in a Div inside the tooltip if needed. */>
+
+      <Tooltip onMouseLeave={() => {}}>
         text
       </Tooltip>
       <TooltipTrigger
-        isOpen={true}
-        placement={undefined}
-        isDisabled
-        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Tooltip` component instead. */
-        onMouseLeave={() => {}}/* Migration TODO: `onMouseLeave` is not supported anymore since TooltipTrigger doesn't render an element.  You should move this property on the rendered element. For instance, if the trigger is a button, you should add onMouseLeave directly on the button instead. */
+        open={true}
+        position="auto-start"
+        disabled
+        zIndex={1000}
+        onMouseLeave={() => {}}
       >
         text
       </TooltipTrigger>
-      <TooltipTrigger placement="bottom">text</TooltipTrigger>
-      <TooltipTrigger placement="left">text</TooltipTrigger>
-      <TooltipTrigger placement={undefined}>text</TooltipTrigger>
-      <TooltipTrigger placement={undefined}>text</TooltipTrigger>
-      <TooltipTrigger placement={undefined}>text</TooltipTrigger>
-      /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
+      <TooltipTrigger position="bottom-end">text</TooltipTrigger>
+      <TooltipTrigger position="left-start">text</TooltipTrigger>
+      <TooltipTrigger position="auto-end">text</TooltipTrigger>
+      <TooltipTrigger position="auto">text</TooltipTrigger>
+      <TooltipTrigger position={undefined}>text</TooltipTrigger>
+
       <Overlay show>text</Overlay>
+      
       {/* Alert */}
       <Alert 
-        isDismissable
-        overlayProps={{ className: "test" }}
-        onClose={() => {}}/* Migration TODO: `onClose` is removed. Use the `onOpenChange` callback on `AlertTrigger` instead. */
+        dismissable
+        wrapperProps={{ className: "test" }}
+        onClose={() => {}}
         variant="confirmation" 
         primaryButtonLabel="Confirm"
         onPrimaryButtonClick={() => {}}
@@ -849,79 +836,61 @@ export function App() {
         Alert
       </Alert>
       <AlertTrigger 
-        isOpen
-        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Alert` component instead. */
+        open
+        zIndex={1000}
       >
         <Button>Show Alert</Button>
       </AlertTrigger>
+
       {/* Underlay */}
-      <Div
-        aria-hidden="true"
-        position="fixed"
-        top={0}
-        left={0}
-        width="100%"
-        height="100%"
-        UNSAFE_backgroundColor="rgba(60, 60, 60, 0.6)"
-        overflow="hidden"
-        style={{
-          isolation: "isolate"
-        }}>text</Div>
-      <Div
-        UNSAFE_width="20px;"
-        UNSAFE_height="20px;"
-        UNSAFE_backgroundColor="red"
-        aria-hidden="true"
-        position="fixed"
-        top={0}
-        left={0}
-        overflow="hidden"
-        style={{
-          isolation: "isolate"
-        }}>text</Div>
+      <Underlay>text</Underlay>
+      <Underlay width="20px;" height="20px;" backgroundColor="red">text</Underlay>
+
       <Box>text</Box>
-      /* Migration TODO: `Group` component is not supported in Hopper. Check the `migration-notes.md` file to see the migration path. */
       <Group as="div">text</Group>
+
       {/* Listbox */}
-      <ListBox
-        isInvalid
-        isFluid
+      <Listbox
+        validationState="invalid"
+        fluid
         zIndex={1000}
-        nodes={[]}/* Migration TODO: `nodes` is removed. Use dynamic list instead. An example: https://hopper.workleap.design/components/Listbox#usage-dynamic-lists */
+        nodes={[]}
         selectedKeys={["1", "2"]}
         selectionMode="multiple"
         onSelectionChange={() => {}}
       >
         text
-      </ListBox>
-      <ListBox isInvalid={false}>text</ListBox>
-      <ListBox validationState={variable as any}/* Migration TODO: `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Listbox#migration-notes */>text</ListBox>
-      <ListBox>
-        <ListBoxSection>
-          <Header>Section 1</Header>
+      </Listbox>
+      <Listbox validationState="valid">text</Listbox>
+      <Listbox validationState={variable as any}>text</Listbox>
+      <Listbox>
+        <Section title="Section 1">
           <TooltipTrigger>
-            /* Migration TODO: ListBox Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
-            <ListBoxItem isDisabled key="item" onAction={()=>{}}>
+            <Item 
+              disabled 
+              key="item" 
+              onClick={()=>{}}
+            >
               Item 1
-            </ListBoxItem>
+            </Item>
             <Tooltip>tooltip</Tooltip>
           </TooltipTrigger>
-          <ListBoxItem>Item 2</ListBoxItem>
-        </ListBoxSection>
-        <ListBoxSection>
-          <Header>Section 2</Header>
-          <ListBoxItem>Item 1</ListBoxItem>
-          <ListBoxItem>Item 2</ListBoxItem>
-        </ListBoxSection>
-        <ListBoxItem>Item 3</ListBoxItem>
+          <Item>Item 2</Item>
+        </Section>
+        <Section title="Section 2">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Item>Item 3</Item>
         <ListboxItem>Item 4</ListboxItem>
-      </ListBox>
+      </Listbox>
+
       {/* Menu */}
       <MenuTrigger
-        isOpen={true}
-        allowPreventOverflow/* Migration TODO: `allowPreventOverflow` has been removed. More details https://hopper.workleap.design/components/Menu#migration-notes */
-        shouldCloseOnSelect
-        zIndex={1000}/* Migration TODO: `zIndex` is not supported anymore. Remove it, or move it to `Menu` component instead. */
+        open={true}
+        allowPreventOverflow
+        closeOnSelect
+        zIndex={1000}
         direction="top"
         allowFlip
         onOpenChange={() => {}}
@@ -933,181 +902,188 @@ export function App() {
         selectionMode="none"
         selectedKeys={["1", "2"]}
         autoFocus
-        nodes={[]}/* Migration TODO: `nodes` is removed. Use dynamic items instead. An example: https://hopper.workleap.design/components/Menu#usage-dynamic-items */
-        disabled/* Migration TODO: `disabled` has been removed, set the disabled items as disabledKeys instead. More details: https://hopper.workleap.design/components/Menu#migration-notes */
-        fluid/* Migration TODO: `fluid` has been removed. More details: https://hopper.workleap.design/components/Menu#migration-notes */
-        autoFocusTarget="target"/* Migration TODO: `autoFocusTarget` is removed. More details: https://hopper.workleap.design/components/Menu#migration-notes */
-        validationState="invalid"/* Migration TODO: `validationState` has been removed. `isInvalid` should be used instead on the MenuItem. More details: https://hopper.workleap.design/components/Menu#migration-notes */
+        nodes={[]}
+        disabled
+        fluid
+        autoFocusTarget="target"
+        validationState="invalid"
         zIndex={1000}
       >
         test
       </Menu>
       <Menu>
-        <MenuSection>
-          <Header>Section 1</Header>
+        <Section title="Section 1">
           <TooltipTrigger>
-            /* Migration TODO: Menu Items cannot be wrapped in `TooltipTrigger` anymore. You can reach out to #wl-hopper-migration-devs team if you need help with this migration. */
-            <MenuItem isDisabled key="item" onAction={() => {}}>
+            <Item
+              disabled
+              key="item"
+              onClick={() => {}}
+            >
               Item 1
-            </MenuItem>
+            </Item>
             <Tooltip>tooltip</Tooltip>
           </TooltipTrigger>
-          <MenuItem>Item 2</MenuItem>
-        </MenuSection>
-        <MenuSection>
-          <Header>Section 2</Header>
-          <MenuItem>Item 1</MenuItem>
-          <MenuItem>Item 2</MenuItem>
-        </MenuSection>
-        <MenuItem>Item 3</MenuItem>
+          <Item>Item 2</Item>
+        </Section>
+        <Section title="Section 2">
+          <Item>Item 1</Item>
+          <Item>Item 2</Item>
+        </Section>
+        <Item>Item 3</Item>
       </Menu>
+
       {/* Divider */}
       <Divider orientation="horizontal" />
       <Divider orientation="vertical" />
+
       {/* Tag */}
       <Tag
-        width="100%"
-        isInvalid
-        variant="neutral"
+        fluid
+        validationState="invalid"
+        variant="outline"
         size="md"
-        title="Tag Title"/* Migration TODO: `title` is not supported anymore. Wrap it inside a `Tooltip` component instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
-        onClick={() => {}}/* Migration TODO: `onClick` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use `onSelectionChange` callback. More details: https://hopper.workleap.design/components/Tag#migration-notes */
-        onRemove={() => {}}/* Migration TODO: `onRemove` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use its `onRemove` callback. More details: https://hopper.workleap.design/components/TagGroup#usage-removable */
-        onKeyDown={() => {}}/* Migration TODO: `onKeyDown` is not supported anymore. Alternative solution is to wrap it inside a `TagGroup` and use `onSelectionChange` callback. More details: https://hopper.workleap.design/components/Tag#migration-notes */
-        tabIndex={0}/* Migration TODO: `tabIndex` is not supported anymore. Check if it is relevant, but probably it is safe to remove. More details: https://hopper.workleap.design/components/Tag#migration-notes */
+        title="Tag Title"
+        onClick={() => {}}
+        onRemove={() => {}}
+        onKeyDown={() => {}}
+        tabIndex={0}
       >
         text
       </Tag>
-      <Tag variant="subdued">text</Tag>
-      <Tag variant="subdued">text</Tag>
-      <Tag variant={variable ? "outline": "solid"}/* Migration TODO: Map `solid`->`subdued` and `outline`->`neutral` manually if needed. More details: https://hopper.workleap.design/components/Tag#migration-notes */>text</Tag>
-      <Tag
-        fluid={false}/* Migration TODO: `fluid` is not supported anymore. You can use width=100% instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
-        variant="subdued">text</Tag>
-      <Tag isInvalid={false} variant="subdued">text</Tag>
-      <Tag
-        validationState={variable ? "invalid": "valid"}/* Migration TODO: `validationState` prop is not supported anymore. Use `isInvalid` prop instead. More details: https://hopper.workleap.design/components/Tag#migration-notes */
-        variant="subdued">
+      <Tag variant="solid">text</Tag>
+      <Tag>text</Tag>
+      <Tag variant={variable ? "outline": "solid"}>text</Tag>
+      <Tag fluid={false}>text</Tag>
+      <Tag validationState={"valid"}>text</Tag>
+      <Tag validationState={variable ? "invalid": "valid"}>
         text
       </Tag>
-      <TagGroup
-        isReadOnly
+      <TagList
+        readOnly
         onRemove={() => {}}
       >
         text
-      </TagGroup>
+      </TagList>
+
       {/* Lozenge */}
-      <Tag
-        textTransform="uppercase"
+      <Lozenge
+        highlight
         size="md"
       >
         text
-      </Tag>
-      <Tag textTransform="uppercase">text</Tag>
-      <Tag highlight={false}/* Migration TODO: `highlight` is not supported anymore. Use textTransform=uppercase instead. More details: https://hopper.workleap.design/components/Tag */>text</Tag>
-      <Tag variant="negative">text</Tag>
-      <Tag variant="progress">text</Tag>
-      <Tag variant="caution">text</Tag>
-      <Tag variant="positive">text</Tag>
-      <Tag variant={variable ? "informative" : "negative"}/* Migration TODO: Map `negative`->`Negative`, `warning`->`Caution`, `informative`->`Progress`, and `positive`->`Positive` manually if needed. More details: https://workleap.atlassian.net/wiki/spaces/TL/pages/5529272372/Orbiter+to+Hopper+Migration */>text</Tag>
-      <Tag size="sm">text</Tag>
+      </Lozenge>
+      <Lozenge highlight={true}>text</Lozenge>
+      <Lozenge highlight={false}>text</Lozenge>
+      <Lozenge variant="negative">text</Lozenge>
+      <Lozenge variant="informative">text</Lozenge>
+      <Lozenge variant="warning">text</Lozenge>
+      <Lozenge variant="positive">text</Lozenge>
+      <Lozenge variant={variable ? "informative" : "negative"}>text</Lozenge>
+      <Lozenge size="sm">text</Lozenge>
+
       {/* VisuallyHidden */}
       <VisuallyHidden />
+
       {/* Transition */}
-      /* Migration TODO: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx */
       <Transition show>test</Transition>
+
       {/* Disclosure */}
-      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
-      <Disclosure defaultExpanded isExpanded onExpandedChange={() => {}}>
-        <Button slot="trigger">text</Button>
-        <DisclosurePanel>
+      <Disclosure
+        defaultOpen
+        open
+        onOpenChange={() => {}}
+      >
+        <Button>text</Button>
+        <Div>
           text
-        </DisclosurePanel>
+        </Div>
       </Disclosure>
-      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
       <Disclosure>
-        <Div slot="trigger" />
-        <DisclosurePanel>test</DisclosurePanel>
-      </Disclosure>
-      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
+        <Div />
+        <Content>test</Content>
+      </Disclosure>      
       <Disclosure>
-        <Div UNSAFE_width="20px" slot="trigger" />
-        <DisclosurePanel UNSAFE_width="120px"/>
+        <Div width="20px"/>
+        <Div width="120px"/>
       </Disclosure>
-      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
       <Disclosure>
-        <Div UNSAFE_width="20px"/>
-        {variable ? <Div/> : <Div UNSAFE_width="120px"/>}
-      </Disclosure>
-      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+        <Div width="20px"/>
+        {variable ? <Div/> : <Div width="120px"/>}
+      </Disclosure>      
       <Disclosure>
          <Button>text</Button>
-      </Disclosure>
-      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+      </Disclosure>   
       <Disclosure>
         <Button>text</Button>
-        <Div UNSAFE_width="120px"/>
-        <Div UNSAFE_width="120px"/>
+        <Div width="120px"/>
+        <Div width="120px"/>
       </Disclosure>
-      <ToggleArrow isExpanded={true} />
+      <DisclosureArrow open={true} />
+
       {/* Accordion */}
       <Accordion 
-        allowsMultipleExpanded
-        autoFocus/* Migration TODO: `autofocus` is removed. It was unnecessary. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
+        expansionMode="multiple"
+        autoFocus
         expandedKeys={["1", "2"]}
-        onExpandedChange={() => {}}
+        onExpansionChange={() => {}}
         defaultExpandedKeys={["1", "2"]}
-        variant="standalone"/* Migration TODO: `inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes */
+        variant="bordered"
       >
         text
       </Accordion>
-      <Accordion allowsMultipleExpanded={false}>
+      <Accordion expansionMode="single">
         text
-      </Accordion>
-      <Accordion variant="inline"/* Migration TODO: `inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes */>
+      </Accordion>      
+      <Accordion variant="borderless">
         text
-      </Accordion>
-      <Accordion variant={variable ? "bordered" : "borderless"}/* Migration TODO: `inline` and `standalone` are the new variants, but there is no direct match; the new variants are context-based, depending on whether an accordion is contained or not. More details: https://hopper.workleap.design/components/Accordion#migration-notes */>
+      </Accordion>           
+      <Accordion variant={variable ? "bordered" : "borderless"}>
         text
-      </Accordion>
+      </Accordion>           
       <Accordion>
-        <Disclosure isDisabled key="item1">item1</Disclosure>
-        <Disclosure isDisabled key="item2"></Disclosure>
-        <Disclosure isDisabled key="item3"/>
+        <Item disabled key="item1">item1</Item>
+        <Item disabled key="item2"></Item>
+        <Item disabled key="item3"/>
       </Accordion>
+
       {/* Tabs */}
-      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
-      <Tabs
+      <Tabs 
         aria-label="test"
         onSelectionChange={() => {}}
         selectedKey="tab1"
         variant="heading"
-        manual/* Migration TODO: `manual` is not supported anymore. Refer to this sample (https://hopper.workleap.design/components/Tabs#usage-manually-activated-tabs) to quickly match old sizes. More details: https://hopper.workleap.design/components/Tabs#migration-notes */
+        manual
         collapsible
-        orientation="horizontal"/* Migration TODO: `orientation` is not supported anymore. More details: https://hopper.workleap.design/components/Tabs#migration-notes */>
+        orientation="horizontal"        
+      >
         test
       </Tabs>
-      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
-      <Tabs aria-label="tabs">test</Tabs>
-      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
+      <Tabs aria-label="tabs" collapsible={false}>test</Tabs>
       <Tabs aria-label="tabs">
-        <TabList>
-          <Tab UNSAFE_width="120px" id="mars">Mars</Tab>
-          <Tab id="jupiter">Jupiter</Tab>
-          <Tab id="venus" isDisabled>Venus</Tab></TabList>
-        <TabPanel UNSAFE_width="120px" id="mars">Mars</TabPanel>
-        <TabPanel id="jupiter">
-            Jupiter
-        </TabPanel>
-        <TabPanel id="venus">
-            Venus
-        </TabPanel>
+        <Item key="mars">
+            <Header width="120px">Mars</Header>
+            <Content width="120px">Mars</Content>
+        </Item>
+        <Item key="jupiter">
+            <Header>Jupiter</Header>
+            <Content>
+                Jupiter
+            </Content>
+        </Item>
+        <Item key="venus" disabled>
+            <Header>Venus</Header>
+            <Content>
+                Venus
+            </Content>
+        </Item>
       </Tabs>
+
       {/* ------------------------------------------------------------------------------------------ */}
       <HopperDiv padding={"core_400"}>text</HopperDiv>
       <HopperLB>
-        <ListBoxItem>Item 1</ListBoxItem>
+        <Item>Item 1</Item>
       </HopperLB>
+
     </div>
   );
 }
