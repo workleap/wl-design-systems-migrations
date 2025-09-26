@@ -5,9 +5,9 @@
   "description": "Tools to assist design system migrations and analysis. Orbiter to Hopper, Igloo to Hopper, or Hopper usage analysis.",
   "devDependencies": {
     "@changesets/changelog-github": "0.5.1",
-    "@changesets/cli": "2.29.5",
-    "@typescript-eslint/parser": "8.35.1",
-    "@workleap/eslint-plugin": "3.4.2",
+    "@changesets/cli": "2.29.7",
+    "@typescript-eslint/parser": "8.44.1",
+    "@workleap/eslint-plugin": "3.5.0",
     "@workleap/typescript-configs": "3.0.4",
     "eslint": "8.57.1",
     "oxlint": "^1.3.0",
