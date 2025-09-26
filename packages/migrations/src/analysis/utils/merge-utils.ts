@@ -12,9 +12,9 @@ function clonePropertyValues(values: {
     cloned[value] = { 
       usage: {
         total: counts.usage.total,
-        ...counts.usage.projects && { projects: { ...counts.usage.projects } }
+        ...(counts.usage.projects && { projects: { ...counts.usage.projects } })
       },
-      ...counts.files && { files: [...counts.files] }
+      ...(counts.files && { files: [...counts.files] })
     };
   });
   
@@ -54,9 +54,9 @@ function mergeProjectValues(
       target[value] = { 
         usage: {
           total: counts.usage.total,
-          ...counts.usage.projects && { projects: { ...counts.usage.projects } }
+          ...(counts.usage.projects && { projects: { ...counts.usage.projects } })
         },
-        ...counts.files && { files: [...counts.files] }
+        ...(counts.files && { files: [...counts.files] })
       };
     }
   });
@@ -272,8 +272,8 @@ export function mergeAnalysisResults(
           return [
             typeName,
             {
-              usage: { ...typeData.usage, ...typeData.usage.projects && { projects: { ...typeData.usage.projects } } },
-              ...typeData.files && { files: [...typeData.files] }
+              usage: { ...typeData.usage, ...(typeData.usage.projects && { projects: { ...typeData.usage.projects } }) },
+              ...(typeData.files && { files: [...typeData.files] })
             }
           ];
         }
@@ -363,8 +363,8 @@ export function mergeAnalysisResults(
       } else {
         // Create a deep copy for new type
         combinedTypes[typeName] = {
-          usage: { ...typeData.usage, ...typeData.usage.projects && { projects: { ...typeData.usage.projects } } },
-          ...typeData.files && { files: [...typeData.files] }
+          usage: { ...typeData.usage, ...(typeData.usage.projects && { projects: { ...typeData.usage.projects } }) },
+          ...(typeData.files && { files: [...typeData.files] })
         };
       }
     }

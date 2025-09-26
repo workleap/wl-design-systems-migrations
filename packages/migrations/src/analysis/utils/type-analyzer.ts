@@ -34,7 +34,7 @@ export function performTypeAnalysis(
       typeUsageData[originalTypeName] = {
         count: {
           total: 0,
-          ...project && { projects: {} }
+          ...(project && { projects: {} })
         }
       };
     }

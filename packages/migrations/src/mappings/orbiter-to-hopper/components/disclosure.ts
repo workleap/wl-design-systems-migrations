@@ -39,7 +39,7 @@ export const disclosureMapping = {
             runtime,
             true
           );
-          firstChild.comments = [...firstChild.comments || [], comment];
+          firstChild.comments = [...(firstChild.comments || []), comment];
         }
         
         // Handle second child: replace with DisclosurePanel
@@ -61,7 +61,7 @@ export const disclosureMapping = {
             runtime,
             true
           );
-          secondChild.comments = [...secondChild.comments || [], comment];
+          secondChild.comments = [...(secondChild.comments || []), comment];
         }
       } else {
         tagComment = notDoneComment;

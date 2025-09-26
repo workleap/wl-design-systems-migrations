@@ -450,17 +450,15 @@ export function App() {
       </Footer>
       <Header padding="core_400" slot="sample">
         text
-      </Header>
-      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
-      <Card
+      </Header>/* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
+            <Card
         fluid/* Migration TODO: `fluid` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#fluid */
         orientation="horizontal"/* Migration TODO: `orientation` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#orientation */
         size="md"/* Migration TODO: `size` is removed. Use the provided `OrbiterCard` shim or check this example to see an implementation example: https://hopper.workleap.design/components/Card#size */
         variant="main">
         text
-      </Card>
-      /* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
-      <Card
+      </Card>/* Migration TODO: The `Card` component has significant changes. You can use this provided `OrbiterCard` shim to make it work: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/OrbiterCard.tsx */
+            <Card
         variant="second-level"/* Migration TODO: You shouldn't use a second-level variant without a parent main variant. More details: https://hopper.workleap.design/components/Card#migration-notes */>test</Card>
       <A padding="core_400">text</A>
       <Address padding="core_400">text</Address>
@@ -521,12 +519,12 @@ export function App() {
       >
         text
         /* Migration TODO: `Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files */
+        /* Migration TODO: `Counter` is not supported anymore. You need to find an alternative. You can see this as an example:https://dev.azure.com/sharegate/ShareGate.Protect.Web/_git/ShareGate.Protect.Web/commit/8c969df4da52b1a0208d54e295762f36aa364ce4?path=/apps/tenant-assessment/src/pages/sharing-links.%5BworkspaceId%5D.tsx&version=GBmain&line=83&lineEnd=89&lineStartColumn=1&lineEndColumn=1&type=2&lineStyle=plain&_a=files */
         <Counter variant="divider">60</Counter>
       </Button>
       <Button variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</Button>
-      <Button variant="danger">text</Button>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
+      <Button variant="danger">text</Button>/* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+            <LinkButton
         isFluid={variable ? true : false}
         loading={false}/* Migration TODO: `loading` is not supported anymore. Remove it. */
         onPress={() => alert("Button clicked!")}
@@ -538,12 +536,10 @@ export function App() {
         download
         referrerPolicy="origin-when-cross-origin">
         text33
-      </LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
-        variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton variant="danger">text</LinkButton>
+      </LinkButton>/* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+            <LinkButton
+        variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */>text</LinkButton>/* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+            <LinkButton variant="danger">text</LinkButton>
       <ButtonGroup inline/* Migration TODO: `inline` is not supported anymore. Remove it. */ reverse/* Migration TODO: `reverse` is not supported anymore. Remove it. */ size={{ base: "sm", xl: "md" }} wrap={false}>
         <Button>text</Button>
       </ButtonGroup>
@@ -560,8 +556,8 @@ export function App() {
         cursorHover="nw-resize"
       >
         text
-      </Tile>
-      /* Migration TODO: `TileLink` is not supported anymore. Check the generated migration notes for more details. */
+      </Tile>/* Migration TODO: `TileLink` is not supported anymore. Check the generated migration notes for more details. */
+            /* Migration TODO: `TileLink` is not supported anymore. Check the generated migration notes for more details. */
       <TileLink
         href="https://example.com"
         external
@@ -606,9 +602,8 @@ export function App() {
       </Button>
       <Button variant="danger" aria-label="Icon Button" size="sm">
         <SparklesIcon />
-      </Button>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
+      </Button>/* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+            <LinkButton
         isFluid={variable ? true : false}
         loading={false}/* Migration TODO: `loading` is not supported anymore. Remove it. */
         onPress={() => alert("Button clicked!")}
@@ -620,15 +615,13 @@ export function App() {
         download
         referrerPolicy="origin-when-cross-origin">
         <SparklesIcon />
-      </LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
+      </LinkButton>/* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+            <LinkButton
         variant="ghost-secondary"/* Migration TODO: `tertiary` is not supported anymore. `ghost-secondary` is the closest one, but you can also consider `ghost-primary` or `ghost-danger`. */
         size="xs">
         <SparklesIcon />
-      </LinkButton>
-      /* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
-      <LinkButton
+      </LinkButton>/* Migration TODO: If the link is external, you need to set `isExternal` property accordingly. It opens the url in a new tab. But if you need a full page reload instead of client-side routing, follow this: https://workleap.atlassian.net/wiki/spaces/~62b0cfb467dff38e0986a1c1/pages/5413634146/29+May+2025+Hopper+migration+feedback */
+            <LinkButton
         variant="danger"
         size="2xs"/* Migration TODO: `2xs` is not supported anymore. `xs` is the closest one. */>
         <SparklesIcon />
@@ -727,14 +720,12 @@ export function App() {
       <SvgImage src={SparklesIcon} aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
       <SvgImage src="blockquote" aria-label="test" UNSAFE_stroke="invalid" UNSAFE_fill="invalid" />
       <Illustration orientation="vertical" shape="rounded">test</Illustration>
-      <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>
-      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
-      <IllustratedMessage orientation="horizontal">test</IllustratedMessage>
-      /* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
-      /* Migration TODO: width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes */
-      <IllustratedMessage orientation="vertical" UNSAFE_width="120px">test</IllustratedMessage>
-      <IllustratedMessage>test</IllustratedMessage>
-      /* Migration TODO: `Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate /> */
+      <Illustration orientation={{base: "horizontal", "lg": "vertical", "md": undefined}} shape="rounded">test</Illustration>/* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
+            <IllustratedMessage orientation="horizontal">test</IllustratedMessage>/* Migration TODO: orientation has been removed. Refer to this sample (https://hopper.workleap.design/components/IllustratedMessage#horizontal) to see an implementation example for a horizontal orientation. */
+            /* Migration TODO: width and height prop will now affect the whole wrapper instead of just the image. Details: https://hopper.workleap.design/components/IllustratedMessage#migration-notes */
+            <IllustratedMessage orientation="vertical" UNSAFE_width="120px">test</IllustratedMessage>
+      <IllustratedMessage>test</IllustratedMessage>/* Migration TODO: `Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate />*/
+            /* Migration TODO: `Dot` is not supported anymore. Find an alternative. One possible option: <Badge isIndeterminate /> */
       <Dot />
       <Link 
         href="test" 
@@ -833,8 +824,8 @@ export function App() {
       <TooltipTrigger placement="left">text</TooltipTrigger>
       <TooltipTrigger placement={undefined}>text</TooltipTrigger>
       <TooltipTrigger placement={undefined}>text</TooltipTrigger>
-      <TooltipTrigger placement={undefined}>text</TooltipTrigger>
-      /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
+      <TooltipTrigger placement={undefined}>text</TooltipTrigger>/* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
+            /* Migration TODO: `Overlay` is not supported anymore. Remove it and move its props to `Modal` instead and use `isOpen` prop instead of `show`. */
       <Overlay show>text</Overlay>
       {/* Alert */}
       <Alert 
@@ -880,8 +871,8 @@ export function App() {
         style={{
           isolation: "isolate"
         }}>text</Div>
-      <Box>text</Box>
-      /* Migration TODO: `Group` component is not supported in Hopper. Check the `migration-notes.md` file to see the migration path. */
+      <Box>text</Box>/* Migration TODO: `Group` component is not supported in Hopper. Check the `migration-notes.md` file to see the migration path. */
+            /* Migration TODO: `Group` component is not supported in Hopper. Check the `migration-notes.md` file to see the migration path. */
       <Group as="div">text</Group>
       {/* Listbox */}
       <ListBox
@@ -1014,38 +1005,32 @@ export function App() {
       <Tag size="sm">text</Tag>
       {/* VisuallyHidden */}
       <VisuallyHidden />
-      {/* Transition */}
-      /* Migration TODO: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx */
+      {/* Transition */}/* Migration TODO: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx */
+            /* Migration TODO: `Transition` is not supported anymore. You can use The provided `Transition` shim instead: https://github.com/workleap/wl-design-systems-migrations/blob/main/src/mappings/orbiter-to-hopper/shims/Transition.tsx */
       <Transition show>test</Transition>
-      {/* Disclosure */}
-      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
-      <Disclosure defaultExpanded isExpanded onExpandedChange={() => {}}>
+      {/* Disclosure */}/* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
+            <Disclosure defaultExpanded isExpanded onExpandedChange={() => {}}>
         <Button slot="trigger">text</Button>
         <DisclosurePanel>
           text
         </DisclosurePanel>
-      </Disclosure>
-      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
-      <Disclosure>
+      </Disclosure>/* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
+            <Disclosure>
         <Div slot="trigger" />
         <DisclosurePanel>test</DisclosurePanel>
-      </Disclosure>
-      /* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
-      <Disclosure>
+      </Disclosure>/* Migration TODO: Please review the Disclosure migration changes, especially the trigger slot and DisclosurePanel wrapper. */
+            <Disclosure>
         <Div UNSAFE_width="20px" slot="trigger" />
         <DisclosurePanel UNSAFE_width="120px"/>
-      </Disclosure>
-      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
-      <Disclosure>
+      </Disclosure>/* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+            <Disclosure>
         <Div UNSAFE_width="20px"/>
         {variable ? <Div/> : <Div UNSAFE_width="120px"/>}
-      </Disclosure>
-      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
-      <Disclosure>
+      </Disclosure>/* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+            <Disclosure>
          <Button>text</Button>
-      </Disclosure>
-      /* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
-      <Disclosure>
+      </Disclosure>/* Migration TODO: Automatic migration is not possible. Please do it manually by adding slot=`trigger` to the trigger and replace the content tag with `DisclosurePanel` component. More details: https://hopper.workleap.design/components/Disclosure#usage-custom-header */
+            <Disclosure>
         <Button>text</Button>
         <Div UNSAFE_width="120px"/>
         <Div UNSAFE_width="120px"/>
@@ -1076,9 +1061,8 @@ export function App() {
         <Disclosure isDisabled key="item2"></Disclosure>
         <Disclosure isDisabled key="item3"/>
       </Accordion>
-      {/* Tabs */}
-      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
-      <Tabs
+      {/* Tabs */}/* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
+            <Tabs
         aria-label="test"
         onSelectionChange={() => {}}
         selectedKey="tab1"
@@ -1087,11 +1071,9 @@ export function App() {
         collapsible
         orientation="horizontal"/* Migration TODO: `orientation` is not supported anymore. More details: https://hopper.workleap.design/components/Tabs#migration-notes */>
         test
-      </Tabs>
-      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
-      <Tabs aria-label="tabs">test</Tabs>
-      /* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
-      <Tabs aria-label="tabs">
+      </Tabs>/* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
+            <Tabs aria-label="tabs">test</Tabs>/* Migration TODO: Please review the Tabs migration changes, especially the TabList and TabPanel structure. */
+            <Tabs aria-label="tabs">
         <TabList>
           <Tab UNSAFE_width="120px" id="mars">Mars</Tab>
           <Tab id="jupiter">Jupiter</Tab>

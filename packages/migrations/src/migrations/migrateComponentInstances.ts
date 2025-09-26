@@ -101,7 +101,7 @@ export function migrateComponentInstances(
       }           
 
       path.node.comments = [
-        ...path.node.comments || [],
+        ...(path.node.comments || []),
         ...comments.map(msg => getTodoComment(msg, runtime, true))
       ];
     });

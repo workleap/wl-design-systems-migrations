@@ -50,7 +50,7 @@ export function performFunctionAnalysis(
           functionUsageData[originalFunctionName] = {
             count: {
               total: 0,
-              ...project && { projects: {} }
+              ...(project && { projects: {} })
             },
             values: {}
           };
@@ -75,7 +75,7 @@ export function performFunctionAnalysis(
           functionData.values[callSignature] = {
             usage: {
               total: 0,
-              ...project && { projects: {} }
+              ...(project && { projects: {} })
             }
           };
         }

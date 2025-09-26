@@ -41,7 +41,7 @@ export function performJSXAnalysis(
           componentUsageData[originalComponentName] = {
             count: {
               total: 0,
-              ...project && { projects: {} }
+              ...(project && { projects: {} })
             },
             props: {}
           };
