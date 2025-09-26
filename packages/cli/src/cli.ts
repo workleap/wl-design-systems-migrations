@@ -136,7 +136,7 @@ function runCommand(mode: "migrate" | "analyze", repoPath: string, targetPath: s
     console.log(chalk.blue("\nRunning command:"), chalk.gray(`pnpx ${args.join(" ")}`));
 
     execaSync("pnpx", args, {
-      cwd: process.cwd(), 
+      cwd: repoPath, 
       stdio: "inherit" 
     });
     
@@ -209,7 +209,8 @@ async function main() {
         }
 
         // Clone the repository if no source is provided
-        const repoPath = options.source ? join(cwd(), options.source) : await cloneRepo();
+        const repoPath = options.source ? join(cwd(), options.source) : await cloneRepo();        
+        console.log(chalk.gray(`Working dir: ${repoPath}`));
 
         // Install dependencies
         installDependencies(repoPath);
