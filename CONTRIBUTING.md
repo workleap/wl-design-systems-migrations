@@ -20,7 +20,7 @@ Thank you for your interest in contributing! This guide helps you contribute eff
    Note: Calling `pnpm unlink` doesn't work in this case. More info: <https://pnpm.io/cli/unlink>
 
 **Test the cli changes:**
-Run the `pnpm build:cli && pnpm cli` from the root and pass the required options.
+Run the `pnpm build:cli && pnpm cli` from the root and pass the required options.  ⚠️ **IMPORTANT**: It will update some of the files in the current repo. Make sure you revert the changes.
 
 ### Analysis Scripts
 
