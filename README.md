@@ -21,6 +21,7 @@ This tool automates the migration of components between design systems. Currentl
   - [Target Specific Path](#target-specific-path)
   - [Component Aliases](#component-aliases)
 - [Usage Analysis](#usage-analysis)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 
 ## Quick Start
@@ -263,6 +264,29 @@ pnpx "@workleap/migrations"@latest analyze --filter-unmapped components
     }
   }
 }
+```
+
+## Troubleshooting
+
+### Node.js Version Issues
+
+If you encounter this error:
+
+```text
+Error [ERR_REQUIRE_ESM]: require() of ES Module
+```
+
+You need to update your Node.js version to **v22.17.1** or later. This error occurs when using an incompatible Node.js version with ES modules.
+
+To update Node.js:
+
+```bash
+# Using nvm (recommended)
+nvm install 22.17.1
+nvm use 22.17.1
+
+# Or download from nodejs.org
+# https://nodejs.org/
 ```
 
 ## Contributing
