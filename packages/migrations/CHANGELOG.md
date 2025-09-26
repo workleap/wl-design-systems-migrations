@@ -1,5 +1,11 @@
 # migrations
 
+## 0.1.2
+
+### Patch Changes
+
+- [#101](https://github.com/workleap/wl-design-systems-migrations/pull/101) [`d8516d1`](https://github.com/workleap/wl-design-systems-migrations/commit/d8516d1643619ea37180d101d48bf2f22325fa5e) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Add Node.js version requirement (>=22.17.1) to resolve ES module compatibility issues
+
 ## 0.1.1
 
 ### Patch Changes
