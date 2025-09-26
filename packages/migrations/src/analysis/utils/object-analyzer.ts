@@ -47,7 +47,7 @@ export function performObjectAnalysis(
             objectUsageData[originalTypeName] = {
               count: {
                 total: 0,
-                ...(project && { projects: {} })
+                ...project && { projects: {} }
               },
               props: {}
             };
@@ -101,7 +101,7 @@ export function performObjectAnalysis(
                     objectUsageData[originalTypeName] = {
                       count: {
                         total: 0,
-                        ...(project && { projects: {} })
+                        ...project && { projects: {} }
                       },
                       props: {}
                     };
