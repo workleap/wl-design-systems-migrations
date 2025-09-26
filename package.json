@@ -41,5 +41,8 @@
     "README.md"
   ],
   "type": "module",
-  "author": "Workleap"
+  "author": "Workleap",
+  "engines": {
+    "node": ">=22.17.1"
+  }
 }
