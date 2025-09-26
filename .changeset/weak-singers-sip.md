@@ -3,4 +3,4 @@
 "@workleap/migrations": patch
 ---
 
-update minimum Node version
+Add Node.js version requirement (>=22.17.1) to resolve ES module compatibility issues
