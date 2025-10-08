@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.2.3
+
+### Patch Changes
+
+- [#104](https://github.com/workleap/wl-design-systems-migrations/pull/104) [`f9b4707`](https://github.com/workleap/wl-design-systems-migrations/commit/f9b4707d337e06f62be6595fa6b3e61de26417e2) Thanks [@mahmoudmoravej](https://github.com/mahmoudmoravej)! - Removing working dir as it wrongly generated report file in the clone temp folder
+
 ## 1.2.2
 
 ### Patch Changes
