@@ -136,7 +136,6 @@ function runCommand(mode: "migrate" | "analyze", repoPath: string, targetPath: s
     console.log(chalk.blue("\nRunning command:"), chalk.gray(`pnpx ${args.join(" ")}`));
 
     execaSync("pnpx", args, {
-      cwd: repoPath, 
       stdio: "inherit" 
     });
     
@@ -210,7 +209,6 @@ async function main() {
 
         // Clone the repository if no source is provided
         const repoPath = options.source ? join(cwd(), options.source) : await cloneRepo();        
-        console.log(chalk.gray(`Working dir: ${repoPath}`));
 
         // Install dependencies
         installDependencies(repoPath);
@@ -239,6 +237,7 @@ Examples:
   $ workleap-migrations --aliases '{"Button": "MyButton"}'
   $ workleap-migrations --aliases '{"Button": ["PublicButton", "PrivateButton"]}'
   $ workleap-migrations analyze --deep true
+  $ workleap-migrations analyze --usage-report-file custom-report.json
 `);
 
   await program.parseAsync();

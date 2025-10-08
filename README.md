@@ -196,6 +196,7 @@ pnpx "@workleap/migrations"@latest analyze --filter-unmapped components
 | `--mappings <type>` | Specify mapping table (`orbiter-to-hopper` (default) or `hopper`) | `--mappings hopper` |
 | `--deep true` | Include file locations | `--deep true` |
 | `--filter-unmapped <type>` | Show only unmapped items | `--filter-unmapped props` |
+| `--usage-report-file <file>` | File to save usage report for analysis mode (defaults to `usage-report.json`) | `--usage-report-file custom-report.json` |
 | `analyze` | Pass it as first argument to analyze. Otherwise, it runs migrations | `N/A` |
 
 **Sample Analysis Output:**
