@@ -413,6 +413,7 @@ export function App() {
       <Grid UNSAFE_templateRows="repeat(3, 1fr)">text</Grid>
       <Grid templateRows="subgrid">text</Grid>
       <Grid UNSAFE_templateColumns="repeat(3, 1fr)">text</Grid>
+      <Grid UNSAFE_templateColumns={{ base: ["0", "1fr"], sm: ["var(--wai-sidebar-width)", "1fr"] }}>text</Grid>
       <Grid templateColumns="subgrid">text</Grid>
       <Inline UNSAFE_gap="1.25rem">text</Inline>
       <Inline gap="core_400">text</Inline>

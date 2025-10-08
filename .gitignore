@@ -6,3 +6,4 @@ cdmd_dist
 **/.DS_Store
 **/dist/*
 dist
+test-integration-real/**

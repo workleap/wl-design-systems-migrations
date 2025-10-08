@@ -277,6 +277,40 @@ function parseLiteralValue<T extends string>(
   }
 }
 
+/**
+ * Helper function to process a value and determine if it requires UNSAFE or REVIEWME prefix
+ * Returns the mapped result and whether it should trigger UNSAFE/REVIEWME
+ */
+function processValueForMapping<T extends string>(
+  value: any,
+  options: PropertyMapperOptions<T>,
+  runtime: Runtime
+): { mappedResult: PropertyMapResult<T> | PropertyRemoveResult | null; shouldTrackPropertyName: boolean } {
+  const literalValue = tryGettingLiteralValue(value, runtime);
+  
+  if (literalValue === null) {
+    return { mappedResult: null, shouldTrackPropertyName: false };
+  }
+
+  const mappedResult = parseLiteralValue(
+    literalValue,
+    value,
+    options,
+    runtime
+  );
+
+  if ("removeIt" in mappedResult) {
+    return { mappedResult, shouldTrackPropertyName: false };
+  }
+
+  // Determine if this result requires UNSAFE or REVIEWME tracking
+  const shouldTrackPropertyName = 
+    mappedResult.to === options.unsafePropertyName || 
+    mappedResult.to === getReviewMePropertyName(options.propertyName);
+
+  return { mappedResult, shouldTrackPropertyName };
+}
+
 function parseResponsiveObjectValue<T extends string>(
   originalValue: JSXExpressionContainer,
   options: PropertyMapperOptions<T>,
@@ -303,21 +337,19 @@ function parseResponsiveObjectValue<T extends string>(
       property.key &&
       property.value
     ) {
-      // Extract the literal value from the property value
-      const literalValue = tryGettingLiteralValue(property.value, runtime);
+      // Try to process as a literal value first
+      const { mappedResult } = processValueForMapping(
+        property.value,
+        options,
+        runtime
+      );
 
-      if (literalValue !== null) {
-        const mappedResult = parseLiteralValue(
-          literalValue,
-          property.value,
-          options,
-          runtime
-        );
+      if (mappedResult && "removeIt" in mappedResult) {
+        continue;
+      }
 
-        if ("removeIt" in mappedResult) {
-          continue;
-        }
-
+      if (mappedResult) {
+        // Successfully mapped a literal value
         if (!mappedResult.value) {
           runtime.log(
             `Error in parsing the object expression literal value for property: ${j(
@@ -342,6 +374,30 @@ function parseResponsiveObjectValue<T extends string>(
         transformedProperties.push(
           j.objectProperty(property.key, mappedResult.value)
         );
+      } else if (property.value.type === "ArrayExpression") {
+        // Handle array values in responsive objects
+        // Check if any array element would require UNSAFE prefix
+        
+        for (const element of property.value.elements) {
+          if (element && element.type !== "SpreadElement") {
+            const { mappedResult: elementResult, shouldTrackPropertyName: shouldTrack } = 
+              processValueForMapping(element, options, runtime);
+            
+            if (elementResult && "removeIt" in elementResult) {
+              continue;
+            }
+            
+            // If this element would map to unsafe or reviewMe property, track it
+            // but don't set hasChanges since we're not modifying the value
+            if (shouldTrack && elementResult?.to) {
+              offeredTargetPropertyNames.push(elementResult.to);
+              break;
+            }
+          }
+        }
+        
+        // Keep the original array value as-is (no hasChanges needed)
+        transformedProperties.push(property);
       } else {
         // Keep original if not a literal value
         transformedProperties.push(property);
@@ -376,6 +432,32 @@ function parseResponsiveObjectValue<T extends string>(
     return {
       to: finalPropertyName,
       value: newJsxExpressionContainer
+    };
+  }
+
+  // Even if we haven't changed the values, we might have determined a different property name
+  // (e.g., UNSAFE_ prefix needed for array values)
+  if (offeredTargetPropertyNames.length > 0) {
+    let finalPropertyName: T | ReviewMe<T> = options.propertyName;
+
+    if (
+      options.unsafePropertyName &&
+      offeredTargetPropertyNames.includes(options.unsafePropertyName)
+    ) {
+      finalPropertyName = options.unsafePropertyName;
+    } else if (
+      offeredTargetPropertyNames.includes(getReviewMePropertyName(options.propertyName))
+    ) {
+      finalPropertyName = getReviewMePropertyName(options.propertyName);
+    } else if (
+      offeredTargetPropertyNames.includes(options.propertyName)
+    ) {
+      finalPropertyName = options.propertyName;
+    }
+
+    return {
+      to: finalPropertyName,
+      value: originalValue
     };
   }
 
