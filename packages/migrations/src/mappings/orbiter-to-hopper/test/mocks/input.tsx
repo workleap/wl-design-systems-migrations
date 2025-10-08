@@ -403,6 +403,7 @@ export function App() {
       <Grid templateRows="repeat(3, 1fr)">text</Grid>
       <Grid templateRows="subgrid">text</Grid>
       <Grid templateColumns="repeat(3, 1fr)">text</Grid>
+      <Grid templateColumns={{ base: ["0", "1fr"], sm: ["var(--wai-sidebar-width)", "1fr"] }}>text</Grid>
       <Grid templateColumns="subgrid">text</Grid>
 
       <Inline>text</Inline>
