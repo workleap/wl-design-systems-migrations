@@ -443,11 +443,17 @@ function parseResponsiveObjectValue<T extends string>(
     if (
       options.unsafePropertyName &&
       offeredTargetPropertyNames.includes(options.unsafePropertyName)
-    ) {finalPropertyName = options.unsafePropertyName;} else if (
-      offeredTargetPropertyNames.includes(
-        getReviewMePropertyName(options.propertyName)
-      )
-    ) {finalPropertyName = getReviewMePropertyName(options.propertyName);} else if (offeredTargetPropertyNames.includes(options.propertyName)) {finalPropertyName = options.propertyName;}
+    ) {
+      finalPropertyName = options.unsafePropertyName;
+    } else if (
+      offeredTargetPropertyNames.includes(getReviewMePropertyName(options.propertyName))
+    ) {
+      finalPropertyName = getReviewMePropertyName(options.propertyName);
+    } else if (
+      offeredTargetPropertyNames.includes(options.propertyName)
+    ) {
+      finalPropertyName = options.propertyName;
+    }
 
     return {
       to: finalPropertyName,
