@@ -1,5 +1,11 @@
 # @workleap/migrations
 
+## 1.2.4
+
+### Patch Changes
+
+- [#107](https://github.com/workleap/wl-design-systems-migrations/pull/107) [`7079fcb`](https://github.com/workleap/wl-design-systems-migrations/commit/7079fcb81387396d3460861ad1cdca7925b62af7) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Bump versions to test OIDC publishing
+
 ## 1.2.3
 
 ### Patch Changes
