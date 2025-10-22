@@ -277,14 +277,14 @@ If you encounter this error:
 Error [ERR_REQUIRE_ESM]: require() of ES Module
 ```
 
-You need to update your Node.js version to **v22.17.1** or later. This error occurs when using an incompatible Node.js version with ES modules.
+You need to update your Node.js version to **v24.0.0** or later. This error occurs when using an incompatible Node.js version with ES modules.
 
 To update Node.js:
 
 ```bash
 # Using nvm (recommended)
-nvm install 22.17.1
-nvm use 22.17.1
+nvm install 24
+nvm use 24
 
 # Or download from nodejs.org
 # https://nodejs.org/
